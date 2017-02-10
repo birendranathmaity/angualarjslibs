@@ -11,3 +11,5 @@ paxis.iws
 !.idea/codeStyleSettings.xml
 index.html
 *.swp
+id_rsa_gitlab.pub
+id_rsa_gitlab
