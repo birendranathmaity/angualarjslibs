@@ -1,0 +1,13 @@
+app/app.config.js
+node_modules/
+dist/
+coverage/
+tests/browserified/browserified_tests.js
+**/.DS_Store
+.idea/*
+paxis.iml
+paxis.ipr
+paxis.iws
+!.idea/codeStyleSettings.xml
+index.html
+*.swp

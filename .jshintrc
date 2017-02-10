@@ -1,0 +1,26 @@
+{
+  "node": true,
+  "predef": [
+    "require",
+    "describe",
+    "before",
+    "after",
+    "beforeEach",
+    "afterEach",
+    "it",
+    "module",
+    "ngModule",
+    "inject",
+    "element",
+    "by",
+    "browser",
+    "beforeAll",
+    "afterAll",
+    "expect"
+  ],
+  "curly": true,
+  "eqeqeq": true,
+  "lastsemic": true,
+  "browserify": true,
+  "mocha": true
+}
