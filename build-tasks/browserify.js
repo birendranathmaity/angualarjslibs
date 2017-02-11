@@ -26,9 +26,9 @@ var SCRIPTS_DEST = 'dist/scripts';
 
 // Bundle for development (Excludes vendor files.)
 gulp.task('browserify', function () {
-    var bundler = browserify(ENTRY_FILE, { fullPaths: true, insertGlobals: true, debug: true });
+    var bundler = browserify(ENTRY_FILE, {fullPaths: true, insertGlobals: true, debug: true});
     // Add all vendor libraries as external dependencies
-    _.keys(config.dependencies).forEach(function(dependency) {
+    _.keys(config.dependencies).forEach(function (dependency) {
         bundler.external(dependency);
     });
 
@@ -37,11 +37,11 @@ gulp.task('browserify', function () {
         .pipe(source('app.min.js'))
         .pipe(plumber())
         .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(filesize())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(SCRIPTS_DEST))
-        .pipe(notify({ title: 'JavaScript', message: 'Created <%= file.relative %>.' }))
+        .pipe(notify({title: 'JavaScript', message: 'Created <%= file.relative %>.'}))
         .on('error', gutil.log);
 });
 
@@ -54,7 +54,7 @@ gulp.task('browserify-libs', function () {
     _.keys(config.dependencies).forEach(function (dependency) {
         // If dependency is not excluded, add it to bundler
         //if (excludedDependencies.indexOf(dependency) < 0) {
-            bundler.require(resolve.sync(dependency), { expose: dependency });
+        bundler.require(resolve.sync(dependency), {expose: dependency});
         //}
     });
 
@@ -66,7 +66,7 @@ gulp.task('browserify-libs', function () {
         .pipe(uglify())
         .pipe(filesize())
         .pipe(gulp.dest(SCRIPTS_DEST))
-        .pipe(notify({ title: 'JavaScript', message: 'Created <%= file.relative %>.' }))
+        .pipe(notify({title: 'JavaScript', message: 'Created <%= file.relative %>.'}))
         .on('error', gutil.log);
 });
 
@@ -74,7 +74,7 @@ gulp.task('browserify-libs', function () {
 gulp.task('browserify-min', function () {
     var bundler = browserify(ENTRY_FILE);
     // Add all vendor libraries as external dependencies
-    _.keys(config.dependencies).forEach(function(dependency) {
+    _.keys(config.dependencies).forEach(function (dependency) {
         bundler.external(dependency);
     });
 

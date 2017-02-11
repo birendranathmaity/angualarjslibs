@@ -12,7 +12,7 @@ var SASS_SRC = 'scss/**/*.scss';
 
 /**
  * Watch tasks
- * 
+ *
  * Unlike other tasks which are broken down by responsibility, the watch tasks need to be placed together due to the
  * nature of the blobbing logic.
  */
@@ -26,7 +26,7 @@ gulp.task('watch', ['libs-js-dev', 'libs-css-dev', 'browserify', 'sass-watch', '
 
 // Run browserify anytime a change is made
 //gulp.task('browserify-watch', ['unit-watch', 'lint-watch'], function() {
-gulp.task('browserify-watch', ['lint-watch'], function() {
+gulp.task('browserify-watch', ['lint-watch'], function () {
     gulp.start(['browserify']);
 });
 
@@ -45,9 +45,9 @@ gulp.task('browserify-watch', ['lint-watch'], function() {
 gulp.task('lint-watch', function () {
     return gulp.src(lintBlob)
         .pipe(jshint())
-        .pipe(jshint.reporter(stylish, { verbose: true }))
+        .pipe(jshint.reporter(stylish, {verbose: true}))
         .pipe(jshint.reporter('fail'))
-        .on('end', function() {
+        .on('end', function () {
             lintBlob = [];
         });
 });

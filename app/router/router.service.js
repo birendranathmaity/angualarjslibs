@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function ($location, $rootScope, $state, logger, routerConfig, config, LocalStorage, UserPermissionsService) {
+module.exports = function ($location, $rootScope, $state, routerConfig) {
     var stateProvider = routerConfig.config.$stateProvider,
         urlRouterProvider = routerConfig.config.$urlRouterProvider,
         handlingRouteChangeError = false;
@@ -20,12 +20,7 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
     /**
      * Initializes route helper
      */
-    function init () {
-        routerConfig.config.resolveAlways = _.extend({}, routerConfig.config.resolveAlways, {
-            permissions: function () {
-                return UserPermissionsService.getUserPermissions();
-            }
-        });
+    function init() {
         handleRoutingTransition();
         handleRoutingErrors();
         handleRoutingSuccess();
@@ -36,20 +31,20 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
      *
      * @param routes - list of routes
      */
-    function configureRoutes (routes) {
+    function configureRoutes(routes) {
         _.each(routes, function (route) {
-            route.config.resolve = _.extend(route.config.resolve || {}, routerConfig.config.resolveAlways);
+            route.config.resolve = route.config.resolve || {};
             stateProvider.state(route.name, route.config);
         });
 
-        urlRouterProvider.otherwise('/');
+        urlRouterProvider.otherwise('/landing');
     }
 
     /**
      * Gets all routes. It also lazy loads the routes from $route.routes if not already in routes.
      * @returns {Array}
      */
-    function getRoutes () {
+    function getRoutes() {
         var routes = [];
         _.each($state.get(), function (route) {
             if (!!route.title) {
@@ -63,7 +58,7 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
     /**
      * Handles routing errors
      */
-    function handleRoutingErrors () {
+    function handleRoutingErrors() {
         $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
                 if (handlingRouteChangeError) {
                     return;
@@ -71,9 +66,9 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
 
                 $rootScope.showGlobalLoader = false;
                 handlingRouteChangeError = true;
-                var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) || 'unknown target';
-                var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
-                logger.error(msg, [current]);
+                //var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) || 'unknown target';
+                //var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
+                //logger.error(msg, [current]);
                 $location.path('/');
             }
         );
@@ -84,14 +79,14 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
      *
      * binds to <title> in <head> block
      */
-    function handleRoutingSuccess () {
+    function handleRoutingSuccess() {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.showGlobalLoader = false;
             handlingRouteChangeError = false;
-            $rootScope.title = config.appTitle + ' | ' + (toState.title || '');
-            config.previousState = config.loopCheck;
-            config.previousState = fromState;
-            config.previousParams = fromParams;
+            // $rootScope.title = config.appTitle + ' | ' + (toState.title || '');
+            // config.previousState = config.loopCheck;
+            // config.previousState = fromState;
+            // config.previousParams = fromParams;
         });
     }
 
@@ -102,27 +97,11 @@ module.exports = function ($location, $rootScope, $state, logger, routerConfig, 
      * the route for redirect which does not play nicely with ui-router-extras during testing.
      */
     /* istanbul ignore next */
-    function handleRoutingTransition () {
+    function handleRoutingTransition() {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-            var user = LocalStorage.getUser();
-            if (!config.authorized && (!_.has(toState, 'data.authorization') || toState.data.authorization)) {
-                // If not authorized, redirect to login
-                event.preventDefault();
-                config.returnState = toState.name;
-                config.returnParams = toParams;
-                $state.go('public.login');
-            } else if (config.authorized && (toState.name === 'public.login' || _.find(toState.deepStateRedirect, _.matchesProperty('state', 'public.login')))) {
-                // If authorized, redirect from login to default page
-                event.preventDefault();
-                $state.go(config.defaultRoute);
-            } else if (_.has(toState, 'data.permissionsGroup') && !_.has(toState.data.permissionsGroup, user.permissionsGroup) && config.defaultRoute !== toState.name) {
-                // If not in permissionsGroup, to default page
-                event.preventDefault();
-                $state.go(config.defaultRoute);
-            } else {
-                // Otherwise continue routing as normal
-                $rootScope.showGlobalLoader = true;
-            }
+
+            //$state.go('public.landing');
+
         });
     }
 };

@@ -23,11 +23,11 @@ gulp.task('sass', function () {
     return gulp.src(SASS_SRC)
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(sass({ noCache: true }).on('error', sass.logError))
+        .pipe(sass({noCache: true}).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(SASS_DEST))
-        .pipe(notify({ title: 'Sass', message: 'Created <%= file.relative %>.' }))
+        .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}))
         .on('error', gutil.log);
 });
 // Release build minifies CSS after compiling Sass
@@ -40,5 +40,5 @@ gulp.task('sass-min', function () {
         }))
         .pipe(autoprefixer())
         .pipe(gulp.dest(SASS_DEST))
-        .pipe(notify({ title: 'Sass', message: 'Created <%= file.relative %>.' }));
+        .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}));
 });

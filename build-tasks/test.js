@@ -25,16 +25,16 @@ gulp.task('pre-unit', function () {
     coverageVariable = '$$cov_' + new Date().getTime() + '$$';
 
     return gulp.src([
-            'app/**/*.js'
-        ])
-        .pipe(istanbul({ coverageVariable: coverageVariable }))
+        'app/**/*.js'
+    ])
+        .pipe(istanbul({coverageVariable: coverageVariable}))
         .pipe(istanbul.hookRequire());
 });
 // Run tests independently
 gulp.task('unit-test', ['lint-build', 'pre-unit'], function () {
     return gulp.src(['tests/unit/**/*.js'])
         .pipe(plumber())
-        .pipe(notify({ title: 'Unit Tests', message: 'Running unit tests.', onLast: true }))
+        .pipe(notify({title: 'Unit Tests', message: 'Running unit tests.', onLast: true}))
         .pipe(mocha())
         .on('error', function (e) {
             gutil.log(e);
@@ -45,17 +45,17 @@ gulp.task('unit-test', ['lint-build', 'pre-unit'], function () {
             coverageVariable: coverageVariable,
             reporters: ['text-summary', 'html'],
             reportOpts: {
-                html: { dir: './coverage' }
+                html: {dir: './coverage'}
             }
         }))
-        .pipe(istanbul.enforceThresholds({ thresholds: { global: 70 } }));
+        .pipe(istanbul.enforceThresholds({thresholds: {global: 70}}));
 });
 
 // Run tests with development build
 gulp.task('unit', function () {
     return gulp.src('tests/unit/**/*.js')
         .pipe(plumber())
-        .pipe(notify({ title: 'Unit Tests', message: 'Running unit tests.', onLast: true }))
+        .pipe(notify({title: 'Unit Tests', message: 'Running unit tests.', onLast: true}))
         .pipe(mocha())
         .on('end', function () {
             testBlob = [];

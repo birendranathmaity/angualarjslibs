@@ -6,7 +6,7 @@ var connect = require('gulp-connect');
  *
  * The fallback property enables html5Mode in Angular to work.
  */
-gulp.task('connect', function() {
+gulp.task('connect', function () {
     connect.server({
         root: './',
         port: 2000,

@@ -15,13 +15,13 @@ require('ng-device-detector');
 require('ng-idle');
 
 // App UI modules
-// var configModule = require('./app.config');
-// var routerModule = require('./router');
-// var registrationModule = require('./registration');
-// var dashboardsModule = require('./dashboards');
-// var sharedModule = require('./shared');
+var routerModule = require('./router');
+var publicModule = require('./public');
+var layoutsModule = require('./layouts');
+var patientModule = require('./patient');
+var providerModule = require('./provider');
 
-angular.module('phoenix.ui', [
+angular.module('app.ui', [
     uiRouter,
     ngCookies,
     ngAnimate,
@@ -32,9 +32,9 @@ angular.module('phoenix.ui', [
     'ngPasswordStrength',
     'ng.deviceDetector',
     'ngIdle',
-    // configModule.name,
-    // routerModule.name,
-    // registrationModule.name,
-    // sharedModule.name,
-    // dashboardsModule.name
+    routerModule.name,
+    publicModule.name,
+    layoutsModule.name,
+    patientModule.name,
+    providerModule.name
 ]);
