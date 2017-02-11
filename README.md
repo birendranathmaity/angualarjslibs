@@ -26,7 +26,8 @@ From the root directory, run this command - *gulp*
 This will run a bunch of tasks behind the scenes. For example, we use SASS as the CSS preprocessor that converts .scss files to .css files. Other tasks include JavaScript & CSS bundling and minification,
 test runners, clean delete, versioning, etc. Check out gulpfile.js for more information.
 
-Launch url **http://localhost:4000** in browser. This should open App. There you go!
+## 7. Set to Launch App
+Launch url **http://localhost:2000** in browser. There you go!
 
 **-> watch[task]\(gulpfile.js) -> browserfy[task]\(browserfy.js) **
 
