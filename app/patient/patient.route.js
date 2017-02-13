@@ -7,11 +7,24 @@ module.exports = function PatientRoutes(Router) {
                 url: '/patient',
                 views: {
                     '@': {
-                        templateUrl: "app/patient/dashboard/dashboard.html",
-                        controller: "PatientDashboardController as ctrl"
+                        templateUrl: "app/patient/login/login.html",
+                        controller: "PatientLoginController as ctrl"
                     }
                 },
-                title: 'Patient Dashboard'
+                title: 'Patient Login'
+            }
+        },
+        {
+            name: "root.patient-registration",
+            config: {
+                url: '/patient-registration',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/registration/registration.html",
+                        controller: "PatientRegistrationController as ctrl"
+                    }
+                },
+                title: 'Patient Registration'
             }
         }
     ]);
