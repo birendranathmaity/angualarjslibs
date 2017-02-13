@@ -15,11 +15,13 @@ require('ng-device-detector');
 require('ng-idle');
 
 // App UI modules
+var configModule = require('./app.config');
 var routerModule = require('./router');
 var publicModule = require('./public');
 var layoutsModule = require('./layouts');
 var patientModule = require('./patient');
 var providerModule = require('./provider');
+var sharedModule = require('./shared');
 
 angular.module('app.ui', [
     uiRouter,
@@ -32,9 +34,11 @@ angular.module('app.ui', [
     'ngPasswordStrength',
     'ng.deviceDetector',
     'ngIdle',
+    configModule.name,
     routerModule.name,
     publicModule.name,
     layoutsModule.name,
     patientModule.name,
-    providerModule.name
+    providerModule.name,
+    sharedModule.name
 ]);
