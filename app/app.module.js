@@ -15,7 +15,7 @@ require('ng-device-detector');
 require('ng-idle');
 
 // App UI modules
-var configModule = require('./app.config');
+//var configModule = require('./app.config');
 var routerModule = require('./router');
 var publicModule = require('./public');
 var layoutsModule = require('./layouts');
@@ -34,7 +34,7 @@ angular.module('app.ui', [
     'ngPasswordStrength',
     'ng.deviceDetector',
     'ngIdle',
-    configModule.name,
+    //configModule.name,
     routerModule.name,
     publicModule.name,
     layoutsModule.name,

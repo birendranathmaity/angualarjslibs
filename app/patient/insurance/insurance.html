@@ -1,0 +1,98 @@
+<h2>Patient insurance information</h2>
+<form name="insurance" novalidate>
+	<table>
+
+		<tr>
+			<th>Primary Insurance Provider:</th>
+        <th><select name="primary insurance provider">
+    <option value="UHC">United Health Care</option>
+    <option value="BCBS">BCBS</option>
+    <option value="humana">Humana</option>
+    <option value="Multiplan">Multiplan</option>
+  </select></th>
+
+
+		</tr>
+
+		<tr>
+			<th>Effective Date:</th>
+			<td><input type=date step=7 min=2017-01-01>
+				</td>
+		</tr>
+
+		<tr>
+			<th>policy Number:
+			</th>
+			<td><input id="policy" type="number" name="policy" >
+				</td>
+				</tr>
+<tr>
+			<th>Group Number:</th>
+			<td><input id="groupnumber" type="number" name="groupnumber">
+				 </td>
+				</tr>
+		<tr>
+			<th>Are you the primary:
+			</th>
+			<td><input id="confirmpsw" type="password" name="confirmpsw" maxlength="10">
+				 </td>
+				</tr>
+		<tr>
+			<th>Relationship:</th>
+        <th> <select name="relationship">
+    <option value="spouse">spouse</option>
+    <option value="mother">mother</option>
+    <option value="father">father</option>
+    <option value="other">other</option>
+  </select>
+</th>
+				</tr>
+		<tr>
+			<th>Subscriber Id</th>
+      <td><input id="subscriberid" type="number" name="subscriberid">
+				 </td>
+				</tr>
+
+        <tr>
+          <th>Subscriber Name</th>
+          <td><input id="firstname" type="text" name="firstname" placeholder="First Name">
+            <input id="middlename" type="text" name="middlename" placeholder="Middle Name">
+            <input id="lastname" type="text" name="lastname" placeholder="Last Name">
+             </td>
+            </tr>
+
+            <tr>
+              <th>Subscriber DOB:</th>
+              <td><input type=date step=7 min=2017-01-01>
+                </td>
+            </tr>
+            <tr>
+              <th>(*) Subscriber Address:</th>
+
+            <td><input id="street1" type="text" name="street1" placeholder="Street1">
+              <input id="street2" type="text" name="street2" placeholder="Street2">
+                <input id="city" type="text" name="city" placeholder="City">
+                <input id="state" type="text" name="state" placeholder="State">
+                <input id="zipcode" type="number" name="zipcode" placeholder="Zip code">
+                 </td>
+                </tr>
+
+                <tr>
+                  <th>Subscriber Phonenumber</th>
+                  <td><input id="phonenumber" type="number" name="phonenumber">
+                     </td>
+                    </tr>
+                    <tr>
+                      <th>Subscriber SSN</th>
+                      <td><input id="ssn" type="number" name="ssn">
+                         </td>
+                        </tr>
+
+		<tr>
+			<td colspan="2"><button type="button" value="Next">Next</button></td>
+		</tr>
+
+
+
+	</table>
+</form>

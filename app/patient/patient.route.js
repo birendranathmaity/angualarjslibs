@@ -26,6 +26,45 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Registration'
             }
+        },
+        {
+            name: "root.patient-insurance",
+            config: {
+                url: '/patient-insurance',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/insurance/insurance.html",
+                        controller: "InsuranceController as ctrl"
+                    }
+                },
+                title: 'patinet-insurance'
+            }
+        },
+        {
+            name: "root.patinet-personal-information",
+            config: {
+                url: '/patinet-personal-information',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/personal-information/personal-information.html",
+                        controller: " PersonalInformationController as ctrl"
+                    }
+                },
+                title: 'personal-information'
+            }
+        },
+        {
+            name: "root.add-patient",
+            config: {
+                url: '/add-patient',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/add-patient/add-patient.html",
+                        controller: " AddPatientController as ctrl"
+                    }
+                },
+                title: 'add-patient'
+            }
         }
     ]);
 };
