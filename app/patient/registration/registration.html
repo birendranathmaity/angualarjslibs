@@ -1,52 +1,40 @@
 <form name="patientRegistration" novalidate>
-	<table>
+    <table>
+        <tr>
+            <th>First Name:</th>
+            <th><input id="firstname" type="text" name="firstname"/></th>
 
-		<tr>
-			<th>First Name:</th>
-			<th><input id="firstname" type="text" name="firstname"></th>
+        </tr>
+        <tr>
+            <th>Last Name:</th>
+            <td><input id="lastname" type="text" name="lastname"/></td>
+        </tr>
 
-		</tr>
-
-		<tr>
-			<th>Last Name:</th>
-			<td><input id="lastname" type="text" name="lastname">
-				</td>
-		</tr>
-
-		<tr>
-			<th>E-mail:
-			</th>
-			<td><input id="email" type="email" name="email" autocomplete="off">
-				</td>
-				</tr>
-
-			<th>Password:</th>
-			<td><input id="psw" type="password" name="psw" maxlength="10">
-				 </td>
-				</tr>
-		<tr>
-			<th>Confirm Password: 
-			</th>
-			<td><input id="confirmpsw" type="password" name="confirmpsw" maxlength="10">
-				 </td>
-				</tr>
-		<tr>
-			<th>Phone:</th>
-			<td><input id="phone" type="number" name="phone"></td>
-				</tr>
-		<tr>
-			<th>Multi Families</th>
-			<td><input type="checkbox" id="multifamilies" name="multifamilies" value="multifamilies" />
-
-
-
-		</tr>
-
-		<tr>
-			<td colspan="2"><button type="button" value="Next">Next</button></td>
-		</tr>
-
-
-
-	</table>
+        <tr>
+            <th>E-mail:
+            </th>
+            <td><input id="email" type="email" name="email" autocomplete="off"/></td>
+        </tr>
+        <th>Password:</th>
+        <td><input id="psw" type="password" name="psw" maxlength="10"/></td>
+        </tr>
+        <tr>
+            <th>Confirm Password:
+            </th>
+            <td><input id="confirmpsw" type="password" name="confirmpsw" maxlength="10"></td>
+        </tr>
+        <tr>
+            <th>Phone:</th>
+            <td><input id="phone" type="number" name="phone"></td>
+        </tr>
+        <tr>
+            <th>Multi Families</th>
+            <td><input type="checkbox" id="multifamilies" name="multifamilies" value="multifamilies"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" value="Next">Next</button>
+            </td>
+        </tr>
+    </table>
 </form>

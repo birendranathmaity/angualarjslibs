@@ -1,0 +1,19 @@
+<script>
+    var counter = 1;
+
+    function addInput(divName) {
+
+        var newdiv = document.createElement('div');
+        newdiv.innerHTML = "Email <input type='text' name='email[]'> Or Phone <input type='number' name='phone[]'>";
+        document.getElementById(divName).appendChild(newdiv);
+
+    }
+
+</script>
+<form method="POST">
+    <input type="button" value="Add new Patient" onClick="addInput('dynamicInput');">
+    <div id="dynamicInput">
+        Email: <input type="text" name="email[]"> Or Phone <input type='number' name='phone[]'>
+    </div>
+    <input type="button" value="Save"/>
+</form>
