@@ -15,6 +15,19 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
+            name: "root.patient-dashboard",
+            config: {
+                url: '/patient-dashboard',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/dashboard/dashboard.html",
+                        controller: "PatientDashboardController as ctrl"
+                    }
+                },
+                title: 'Patient Dashboard'
+            }
+        },
+        {
             name: "root.patient-registration",
             config: {
                 url: '/patient-registration',

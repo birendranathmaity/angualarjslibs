@@ -1,6 +1,11 @@
 /* @ngInject */
 module.exports = function PatientLoginController() {
-    var controller = this;
+    var ctrl = this;
+    ctrl.authenticateUser = authenticateUser;
+
+
+
+
 
     activate();
 
@@ -8,6 +13,10 @@ module.exports = function PatientLoginController() {
      * Initiate Controller.
      */
     function activate() {
-        controller.info = 'Patinet login Controller';
+        ctrl.info = 'Patinet login Controller';
     }
+
+    function authenticateUser() {
+      console.log(ctrl.loginInfo);
+    };
 };
