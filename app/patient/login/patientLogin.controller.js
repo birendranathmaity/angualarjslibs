@@ -1,6 +1,7 @@
 /* @ngInject */
 module.exports = function PatientLoginController() {
     var controller = this;
+    controller.onSubmit = onSubmit;
 
     activate();
 
@@ -9,5 +10,9 @@ module.exports = function PatientLoginController() {
      */
     function activate() {
         controller.info = 'Patinet login Controller';
+    }
+
+    function onSubmit() {
+        console.log("submitted");
     }
 };
