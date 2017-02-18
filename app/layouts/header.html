@@ -1,12 +1,25 @@
-<div id="auth" class="row-fluid">
-    <div class="span12" class="auth-container right">
-        <header>
-            Welcome {{ ctrl.user.name }} | <a ui-sref="landing">Logout</a>
-        </header>
-        <div class="auth-content">
-            <ui-view></ui-view>
-        </div>
-        <footer>
-        </footer>
+<header>
+    <div class="container">
+        <nav class="row">
+            <a ui-sref="landing" class="col-xs-6">
+                <img src="/images/logo.png" width="125"/>
+            </a>
+            <div class="col-xs-6 text-right">
+                <ul class="list-inline">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript: void(0);">
+                            <span class="avatar img-circle" aria-hidden="true">
+                                <span class="first-letter-only">{{ ctrl.user.firstName}}</span>
+                                <span class="first-letter-only">{{ ctrl.user.lastName}}</span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript: void(0);">Profile</a></li>
+                            <li><a ui-sref="landing">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</div>
+</header>

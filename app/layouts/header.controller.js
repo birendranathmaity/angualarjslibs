@@ -13,7 +13,8 @@ module.exports = function HeaderController() {
     function activate() {
         //TODO - Get permissions, login details etc
         controller.user = {
-            name: "venkata"
+            firstName: "venkata",
+            lastName: "Adari"
         };
     }
 

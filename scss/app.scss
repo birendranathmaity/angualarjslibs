@@ -2,9 +2,11 @@
 @import "mixins";
 @import "media-query";
 @import "landing";
+@import "header";
 
 html {
   position: relative;
+  height: 100%;
 }
 
 body {
@@ -47,4 +49,18 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
   color: $heading-color;
+}
+
+ul.list-inline {
+  margin: 0;
+}
+
+.first-letter-only {
+  display: none;
+  visibility: hidden;
+  text-transform: uppercase;
+
+  &:first-letter {
+    visibility: visible;
+  }
 }

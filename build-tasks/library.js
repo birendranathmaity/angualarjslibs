@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var filesize = require('gulp-filesize');
 var concat = require('gulp-concat');
+var flatten = require('gulp-flatten');
 
 var libraries = {
     js: [
@@ -10,6 +11,9 @@ var libraries = {
     ],
     css: [
         'node_modules/**/bootstrap/dist/css/bootstrap.css'
+    ],
+    fonts: [
+        'node_modules/**/bootstrap/dist/fonts/**.*'
     ]
 };
 
@@ -53,4 +57,13 @@ gulp.task('libs-css-dev', function () {
         .pipe(concat('vendor.css'))
         .pipe(filesize())
         .pipe(gulp.dest('dist/styles'));
+});
+
+/**
+ * Combines external CSS dependencies
+ */
+gulp.task('libs-fonts-dev', function () {
+    gulp.src(libraries.fonts)
+        .pipe(flatten())
+        .pipe(gulp.dest('dist/fonts'));
 });
