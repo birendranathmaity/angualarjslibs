@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function InsuranceController() {
+module.exports = function PersonalInfoController() {
     var controller = this;
 
     activate();
@@ -8,6 +8,6 @@ module.exports = function InsuranceController() {
      * Initiate Controller.
      */
     function activate() {
-        controller.info = 'Insurance Controller ';
+        controller.info = 'Personal Information Controller ';
     }
 };

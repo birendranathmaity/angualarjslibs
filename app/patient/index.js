@@ -6,9 +6,9 @@ var routes = require('./patient.route');
 var PatientDashboardController = require('./dashboard/patientDashboard.controller');
 var PatientLoginController = require('./login/patientLogin.controller');
 var PatientRegistrationController = require('./registration/patientRegistration.controller');
-var PersonalInformationController = require('./personal-information/personalInformation.controller');
-var InsuranceController = require('./insurance/insurance.controller');
-var AddPatientController = require('./add-patient/addPatient.controller');
+var PersonalInformationController = require('./personalInfo/personalInfo.controller');
+var PatientInsuranceController = require('./insurance/patientInsurance.controller');
+var AddPatientController = require('./addPatient/addPatient.controller');
 
 
 module.exports = angular.module('app.ui.patient', [])
@@ -17,5 +17,5 @@ module.exports = angular.module('app.ui.patient', [])
     .controller('PatientLoginController', PatientLoginController)
     .controller('PatientRegistrationController', PatientRegistrationController)
     .controller('PersonalInformationController', PersonalInformationController)
-    .controller('InsuranceController', InsuranceController)
+    .controller('InsuranceController', PatientInsuranceController)
     .controller('AddPatientController', AddPatientController);

@@ -15,22 +15,9 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
-            name: "root.patient-dashboard",
+            name: "root.patient.registration",
             config: {
-                url: '/patient-dashboard',
-                views: {
-                    '@': {
-                        templateUrl: "app/patient/dashboard/dashboard.html",
-                        controller: "PatientDashboardController as ctrl"
-                    }
-                },
-                title: 'Patient Dashboard'
-            }
-        },
-        {
-            name: "root.patient-registration",
-            config: {
-                url: '/patient-registration',
+                url: '/registration',
                 views: {
                     '@': {
                         templateUrl: "app/patient/registration/registration.html",
@@ -41,42 +28,42 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
-            name: "root.patient-insurance",
+            name: "root.patient.insurance",
             config: {
-                url: '/patient-insurance',
+                url: '/insurance',
                 views: {
                     '@': {
                         templateUrl: "app/patient/insurance/insurance.html",
-                        controller: "InsuranceController as ctrl"
+                        controller: "PatientInsuranceController as ctrl"
                     }
                 },
-                title: 'patinet-insurance'
+                title: 'Patinet Insurance'
             }
         },
         {
-            name: "root.patinet-personal-information",
+            name: "root.patient.personalInfo",
             config: {
-                url: '/patinet-personal-information',
+                url: '/personalInfo',
                 views: {
                     '@': {
-                        templateUrl: "app/patient/personal-information/personal-information.html",
-                        controller: " PersonalInformationController as ctrl"
+                        templateUrl: "app/patient/personalInfo/personalInfo.html",
+                        controller: " PersonalInfoController as ctrl"
                     }
                 },
-                title: 'personal-information'
+                title: 'Personal Information'
             }
         },
         {
-            name: "root.add-patient",
+            name: "root.patient.add",
             config: {
-                url: '/add-patient',
+                url: '/add',
                 views: {
                     '@': {
-                        templateUrl: "app/patient/add-patient/add-patient.html",
+                        templateUrl: "app/patient/addPatient/addPatient.html",
                         controller: " AddPatientController as ctrl"
                     }
                 },
-                title: 'add-patient'
+                title: 'Add Patient'
             }
         }
     ]);

@@ -1,10 +1,9 @@
 /* @ngInject */
 module.exports = function PatientLoginController() {
-    var ctrl = this;
-    ctrl.authenticateUser = authenticateUser;
+    var controller = this;
 
-
-
+    controller.profile = {};
+    controller.onSubmit = onSubmit;
 
 
     activate();
@@ -13,10 +12,10 @@ module.exports = function PatientLoginController() {
      * Initiate Controller.
      */
     function activate() {
-        ctrl.info = 'Patinet login Controller';
+        controller.info = 'Patinet login Controller';
     }
 
-    function authenticateUser() {
-      console.log(ctrl.loginInfo);
-    };
+    function onSubmit() {
+        console.log("Profile:: "+controller.profile.userId + " "+ controller.profile.password);
+    }
 };
