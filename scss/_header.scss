@@ -1,0 +1,27 @@
+header {
+  color: white;
+  padding: 0.5rem 0;
+  margin-bottom: 4rem;
+  @include gradient-bar($landing-teal, $landing-green);
+
+  nav {
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    .avatar {
+      background-color: lightblue;
+      height: 50px;
+      width: 50px;
+      border: 2px solid white;
+      display: block;
+      cursor: pointer;
+      text-align: center;
+      color: white;
+
+      &:hover {
+        border-color: $text-color;
+      }
+    }
+  }
+}

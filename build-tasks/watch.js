@@ -19,7 +19,7 @@ var SASS_SRC = 'scss/**/*.scss';
 
 // Watch files For changes
 gulp.task('watch', ['libs-js-dev', 'libs-css-dev', 'browserify', 'sass-watch', 'change-watch'], function () {
-    livereload.listen(10000);
+    livereload.listen();
     // Reload page
     gulp.watch(['dist/**/*', 'app/**/*.html', 'index.html']).on('change', livereload.changed);
 });

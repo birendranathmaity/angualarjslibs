@@ -7,7 +7,7 @@ module.exports = function BaseRoutes(Router) {
                 url: '/',
                 deepStateRedirect: {
                     default: {
-                        state: 'public.landing'
+                        state: 'landing'
                     }
                 }
             }

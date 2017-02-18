@@ -1,4 +1,66 @@
 @import "vars";
+@import "mixins";
+@import "media-query";
+@import "landing";
+@import "header";
+
+html {
+  position: relative;
+  height: 100%;
+}
 
 body {
+  color: $text-color;
+}
+
+.error-msg {
+  display: none;
+}
+
+.has-error {
+  .error-msg {
+    color: $error;
+    display: block;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 2rem 0;
+  color: white;
+
+  @include gradient-bar($footer-gray, $footer-gray-1);
+
+  @include media-query(xxxs) {
+    text-align: center;
+  }
+}
+
+section {
+  padding: 2rem 0;
+}
+
+/* Vendor CSS off */
+#ghostery-purple-box {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $heading-color;
+}
+
+ul.list-inline {
+  margin: 0;
+}
+
+.first-letter-only {
+  display: none;
+  visibility: hidden;
+  text-transform: uppercase;
+
+  &:first-letter {
+    visibility: visible;
+  }
 }

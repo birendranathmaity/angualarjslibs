@@ -1,0 +1,17 @@
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin gradient-bar($color-stop-1, $color-stop-2) {
+  background: $color-stop-1; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, $color-stop-1, $color-stop-2); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, $color-stop-1, $color-stop-2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
