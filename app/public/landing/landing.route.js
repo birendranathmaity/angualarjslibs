@@ -2,7 +2,7 @@
 module.exports = function LandingRoutes(Router) {
     Router.configureRoutes([
         {
-            name: "public.landing",
+            name: "landing",
             config: {
                 url: '/landing',
                 views: {

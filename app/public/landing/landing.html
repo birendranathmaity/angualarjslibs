@@ -1,2 +1,131 @@
-<p>Welcome to {{ ctrl.appName }} Landing page!</p>
-<a ui-sref="root.patient">Patient Login</a> |  <a ui-sref="root.provider">Provider Login</a>
+<div id="landing-page" class="landing">
+    <section class="landing--login">
+        <div class="container">
+            <header><img src="/images/logo.png" width="125"/></header>
+            <div class="row landing--form">
+                <div class="col-xs-10 col-sm-5 col-md-5 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                    <form role="form" name="loginForm" novalidate>
+                        <fieldset>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : loginForm.email.$dirty && !loginForm.email.$valid}">
+                                <input type="email" name="email" id="email" class="form-control"
+                                       placeholder="Email Address" ng-model="ctrl.profile.userId"
+                                       ng-pattern="/^[A-Za-z0-9-_]+(\.[A-Za-z0-9-_]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/"
+                                       autocomplete="off" required/>
+                                <span class="error-msg">Please enter a valid email address.</span>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : loginForm.password.$dirty && !loginForm.password.$valid}">
+                                <input type="password" name="password" id="password" class="form-control"
+                                       placeholder="Password" ng-model="ctrl.profile.password" minlength="6" required/>
+                                <span class="error-msg">Please enter a valid password.</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <a href="" class="btn btn-link">Forgot Password?</a>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Sign In"
+                                           ng-click="ctrl.onSubmit()" ng-disabled="loginForm.$invalid"/>
+                                </div>
+                            </div>
+                            <hr class="colorgraph">
+                            <div class="text-center">
+                                Don't have an account? <a ui-sref="root.patient.registration" class="btn btn-link">Register</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="hidden-xs col-sm-4 col-md-5 col-sm-offset-1 col-md-offset-1">
+                    <h1>Lorum Ipsum</h1>
+                    <p>
+                        Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth
+                        tatsoi tomatillo melon azuki bean garlic.
+                    </p>
+                    <p>
+                        Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts
+                        fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut
+                        soko zucchini.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <img src="/images/langing-marketing.jpg" class="landing--marketing hidden-xs"/>
+    </section>
+    <section class="landing--dashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="landing--dashboard__provider">
+                        <h3>Provider</h3>
+                        <p>Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="landing--dashboard__patient">
+                        <h3>Patient</h3>
+                        <p>Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="landing--services">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 text-right">
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                </div>
+                <div class="hidden-xs col-sm-4">
+                    <img src="/images/services.png"/>
+                </div>
+                <div class="col-xs-6 col-sm-4">
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                    <div class="landing--services__service">
+                        <h4>Lorum Ipsum</h4>
+                        <p>
+                            Potenti aenean dui himenaeos posuere tempus placerat quam, eleifend etiam gravida tincidunt
+                            ut etiam, lacus ac ligula duis scelerisque duis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
