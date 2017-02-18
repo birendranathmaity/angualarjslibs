@@ -8,6 +8,6 @@ module.exports = function PersonalInfoController() {
      * Initiate Controller.
      */
     function activate() {
-        controller.info = 'Personal Information Controller ';
+        controller.user = {};
     }
 };

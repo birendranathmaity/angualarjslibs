@@ -1,0 +1,21 @@
+.btn-default {
+  border-color: $landing-green;
+  color: white;
+  background-color: $landing-teal;
+
+  &:hover, &:active {
+    border-color: $landing-teal;
+    color: white;
+    background-color: $landing-green;
+  }
+}
+
+.actions {
+  padding-top: 2rem;
+}
+
+#registration {
+  .multi-families {
+    margin-top: 30px;
+  }
+}

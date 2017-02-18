@@ -1,54 +1,51 @@
-<div class="row" style="margin-top:20px">
+<div class="row" style="margin-top20px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
         <h2>Patient insurance information</h2>
         <form name="insurance" novalidate>
             <fieldset>
-
-
-                <div class="form-group">
-                    <label>Primary Insurance Provider:</label>
-                    <select class="form-control" name="primaryInsuranceProvider" id="primary-insurance-provider">
-                        <option value="UHC">United Health Care</option>
-                        <option value="BCBS">BCBS</option>
-                        <option value="humana">Humana</option>
-                        <option value="Multiplan">Multiplan</option>
-                    </select>
-
-
+                <div class="row">
+                    <div class="form-group col-xs-5">
+                        <label for="insuranceProvide">Primary Insurance Provider</label>
+                        <select class="form-control" name="primaryInsuranceProvider" id="insuranceProvide">
+                            <option value="UHC">United Health Care</option>
+                            <option value="BCBS">BCBS</option>
+                            <option value="humana">Humana</option>
+                            <option value="Multiplan">Multiplan</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="effectiveDate">Effective Date</label>
+                        <input id="effectiveDate" class="form-control" type="text" name="effectiveDate"
+                               mask="39/19/9999"
+                               ng-model="ctrl.user.insurance.effectiveDate" placeholder="Effective"/>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label for="policyNumber">policy Number</label>
+                        <input id="policyNumber" class="form-control" id="policy" name="policy"
+                               placeholder="Policy Number">
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-xs-5">
+                        <label>Group Number</label>
+                        <input class="form-control" id="groupnumber" type="number" name="groupnumber">
 
-                <div class="form-group">
-                    <label>Effective Date:</label>
-                    <input class="form-control" type=date step=7 min=2017-01-01>
-
-                </div>
-
-                <div class="form-group">
-                    <label>policy Number:
-                    </label>
-                    <input class="form-control" id="policy" type="number" name="policy">
-
-                </div>
-                <div class="form-group">
-                    <label>Group Number:</label>
-                    <input class="form-control" id="groupnumber" type="number" name="groupnumber">
-
-                </div>
-                <div class="form-group">
-                    <label>Are you the primary:
-                    </label>
-                    <input class="form-control" id="confirmpsw" type="password" name="confirmpsw" maxlength="10">
-
-                </div>
-                <div class="form-group">
-                    <label>Relationship:</label>
-                    <select class="form-control" name="relationship">
-                        <option value="spouse">spouse</option>
-                        <option value="mother">mother</option>
-                        <option value="father">father</option>
-                        <option value="other">other</option>
-                    </select>
-
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Relationship</label>
+                        <select class="form-control" name="relationship">
+                            <option value="spouse">Spouse</option>
+                            <option value="mother">Mother</option>
+                            <option value="father">Father</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="multi-families col-xs-4">
+                        <label for="primaryInsurance">
+                            <input type="checkbox" id="primaryInsurance" name="primaryInsurance">
+                            Primary
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Subscriber Id</label>
@@ -65,12 +62,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Subscriber DOB:</label>
+                    <label>Subscriber DOB</label>
                     <input class="form-control" type=date step=7 min=2017-01-01>
 
                 </div>
                 <div class="form-group">
-                    <label>*Subscriber Address:</label>
+                    <label>*Subscriber Address</label>
 
                     <input class="form-control" id="street1" type="text" name="street1" placeholder="Street1">
                     <input class="form-control" id="street2" type="text" name="street2" placeholder="Street2">

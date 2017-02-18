@@ -13,6 +13,7 @@ require('ng-password-strength');
 require('moment-range');
 require('ng-device-detector');
 require('ng-idle');
+require('ng-mask');
 
 // App UI modules
 //var configModule = require('./app.config');
@@ -34,6 +35,7 @@ angular.module('app.ui', [
     'ngPasswordStrength',
     'ng.deviceDetector',
     'ngIdle',
+    'ngMask',
     //configModule.name,
     routerModule.name,
     publicModule.name,

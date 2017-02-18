@@ -8,6 +8,10 @@
       text-align: center;
     }
   }
+  
+  & + footer {
+    position: relative;
+  }
 
   .landing--login {
     position: relative;
@@ -26,6 +30,7 @@
 
   .landing--form {
     padding-bottom: 8rem;
+    margin-top: 4rem;
 
     form {
       padding: 2rem;

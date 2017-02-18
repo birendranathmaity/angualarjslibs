@@ -1,7 +1,6 @@
 header {
   color: white;
   padding: 0.5rem 0;
-  margin-bottom: 4rem;
   @include gradient-bar($landing-teal, $landing-green);
 
   nav {

@@ -8,6 +8,6 @@ module.exports = function PatientRegistrationController() {
      * Initiate Controller.
      */
     function activate() {
-        controller.info = 'Patinet registration Controller';
+        controller.user = {};
     }
 };

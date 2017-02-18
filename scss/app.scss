@@ -3,6 +3,7 @@
 @import "media-query";
 @import "landing";
 @import "header";
+@import "form";
 
 html {
   position: relative;
@@ -63,4 +64,10 @@ ul.list-inline {
   &:first-letter {
     visibility: visible;
   }
+}
+
+.form-control:focus {
+  outline: none !important;
+  border:1px solid $landing-green;
+  box-shadow: 0 0 1rem $landing-teal;
 }
