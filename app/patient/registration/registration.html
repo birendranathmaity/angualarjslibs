@@ -1,40 +1,46 @@
-<form name="patientRegistration" novalidate>
-    <table>
-        <tr>
-            <th>First Name:</th>
-            <th><input id="firstname" type="text" name="firstname"/></th>
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <form name="patientRegistration" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input class="form-control" id="firstname" type="text" name="firstname"/>
 
-        </tr>
-        <tr>
-            <th>Last Name:</th>
-            <td><input id="lastname" type="text" name="lastname"/></td>
-        </tr>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input class="form-control" id="lastname" type="text" name="lastname"/>
+                </div>
 
-        <tr>
-            <th>E-mail:
-            </th>
-            <td><input id="email" type="email" name="email" autocomplete="off"/></td>
-        </tr>
-        <th>Password:</th>
-        <td><input id="psw" type="password" name="psw" maxlength="10"/></td>
-        </tr>
-        <tr>
-            <th>Confirm Password:
-            </th>
-            <td><input id="confirmpsw" type="password" name="confirmpsw" maxlength="10"></td>
-        </tr>
-        <tr>
-            <th>Phone:</th>
-            <td><input id="phone" type="number" name="phone"></td>
-        </tr>
-        <tr>
-            <th>Multi Families</th>
-            <td><input type="checkbox" id="multifamilies" name="multifamilies" value="multifamilies"/></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button type="button" value="Next">Next</button>
-            </td>
-        </tr>
-    </table>
-</form>
+                <div class="form-group">
+                    <label>E-mail:
+                    </label>
+                    <input class="form-control" id="email" type="email" name="email" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input class="form-control" id="psw" type="password" name="psw" maxlength="10"/>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password:
+                    </label>
+                    <input class="form-control" id="confirmpsw" type="password" name="confirmpsw" maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input class="form-control" id="phone" type="number" name="phone">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="multifamilies" name="multifamilies" value="multifamilies"> Multi
+                        Families
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="button" value="Next">Next</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

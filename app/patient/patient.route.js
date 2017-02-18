@@ -47,7 +47,7 @@ module.exports = function PatientRoutes(Router) {
                 views: {
                     '@': {
                         templateUrl: "app/patient/personalInfo/personalInfo.html",
-                        controller: " PersonalInfoController as ctrl"
+                        controller: "PersonalInfoController as ctrl"
                     }
                 },
                 title: 'Personal Information'
@@ -60,7 +60,7 @@ module.exports = function PatientRoutes(Router) {
                 views: {
                     '@': {
                         templateUrl: "app/patient/addPatient/addPatient.html",
-                        controller: " AddPatientController as ctrl"
+                        controller: "AddPatientController as ctrl"
                     }
                 },
                 title: 'Add Patient'

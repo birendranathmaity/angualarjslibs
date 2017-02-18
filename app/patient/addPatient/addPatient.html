@@ -1,19 +1,33 @@
-<script>
-    var counter = 1;
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <form name="patientRegistration" novalidate>
+            <fieldset>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <button style="margin: 10px; float: right" class="btn btn-primary btn-block"
+                                ng-click="ctrl.createNewPatient()" type="button" value="Next">
+                            Add new patient
+                        </button>
+                    </div>
+                    <div ng-repeat="patient in ctrl.newPatients track by $index">
+                        <div class="col-md-6"><input ng-model="patient.email" class="form-control" type="text"
+                                                     name="email" placeholder="Email">
+                        </div>
 
-    function addInput(divName) {
+                        <label class="col-md-1">Or</label>
+                        <div class="col-md-5"><input ng-model="patient.phone" class="form-control" type='number'
+                                                     name='phone' placeholder="Phone"></div>
 
-        var newdiv = document.createElement('div');
-        newdiv.innerHTML = "Email <input type='text' name='email[]'> Or Phone <input type='number' name='phone[]'>";
-        document.getElementById(divName).appendChild(newdiv);
 
-    }
+                    </div>
+                    <div class="col-md-12" style="margin: 10px">
+                        <button style="margin: 10px" class="btn btn-primary btn-block" type="button" value="Next">
+                            Next
+                        </button>
+                    </div>
+                </div>
 
-</script>
-<form method="POST">
-    <input type="button" value="Add new Patient" onClick="addInput('dynamicInput');">
-    <div id="dynamicInput">
-        Email: <input type="text" name="email[]"> Or Phone <input type='number' name='phone[]'>
+            </fieldset>
+        </form>
     </div>
-    <input type="button" value="Save"/>
-</form>
+</div>
