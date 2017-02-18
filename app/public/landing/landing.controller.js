@@ -14,6 +14,6 @@ module.exports = function LandingController() {
     }
 
     function onSubmit() {
-        console.log("Profile:: "+controller.profile.userId + " "+ controller.profile.password);
+        console.log("Profile:: " + controller.profile.userId + " " + controller.profile.password);
     }
 };

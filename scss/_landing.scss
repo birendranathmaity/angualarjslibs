@@ -2,9 +2,9 @@
 
 #landing-page {
   header {
-    padding-bottom: 2rem ;
+    padding-bottom: 2rem;
 
-    @include media-query(xxxs){
+    @include media-query(xxxs) {
       text-align: center;
     }
   }
@@ -63,11 +63,11 @@
     }
   }
 
-  .landing--services, .landing--dashboard{
+  .landing--services, .landing--dashboard {
     padding: 4rem 0;
   }
 
-  .landing--services{
+  .landing--services {
     img {
       width: 500px;
       height: 370px;
@@ -80,12 +80,12 @@
 
   }
 
-  .landing--services__service{
+  .landing--services__service {
     padding: 1rem;
   }
 
   .landing--dashboard__patient, .landing--dashboard__provider {
     padding: 4rem;
-    box-shadow: 0 18px 35px rgba(50,50,93,.1), 0 8px 15px rgba(0,0,0,.07);
+    box-shadow: 0 18px 35px rgba(50, 50, 93, .1), 0 8px 15px rgba(0, 0, 0, .07);
   }
 }

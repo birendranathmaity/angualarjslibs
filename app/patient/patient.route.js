@@ -6,7 +6,7 @@ module.exports = function PatientRoutes(Router) {
             config: {
                 url: '/patient',
                 views: {
-                    '@' : {
+                    '@': {
                         templateUrl: "app/patient/dashboard/dashboard.html",
                         controller: "PatientDashboardController as ctrl"
                     }
