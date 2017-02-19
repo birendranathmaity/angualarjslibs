@@ -15,6 +15,7 @@ require('ng-device-detector');
 require('ng-idle');
 require('ng-mask');
 
+
 // App UI modules
 //var configModule = require('./app.config');
 var routerModule = require('./router');
@@ -36,6 +37,7 @@ angular.module('app.ui', [
     'ng.deviceDetector',
     'ngIdle',
     'ngMask',
+    'uiSwitch',
     //configModule.name,
     routerModule.name,
     publicModule.name,
