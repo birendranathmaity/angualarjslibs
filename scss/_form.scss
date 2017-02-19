@@ -11,11 +11,28 @@
 }
 
 .actions {
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 #registration {
   .multi-families {
     margin-top: 30px;
+  }
+}
+
+#patientInsurance {
+  .primary-insurance label {
+    padding-top: 3rem;
+  }
+
+  label[for='subscriberAddress'] {
+    margin-left: 1.75rem;
+  }
+}
+
+#addPatient {
+  .remove-patient {
+    padding-top: 0.75rem;
+    display: inline-block;
   }
 }

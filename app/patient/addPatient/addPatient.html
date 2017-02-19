@@ -1,33 +1,47 @@
-<div class="row" style="margin-top:20px">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form name="patientRegistration" novalidate>
-            <fieldset>
-                <div class="col-md-12">
-                    <div class="col-md-12">
-                        <button style="margin: 10px; float: right" class="btn btn-primary btn-block"
-                                ng-click="ctrl.createNewPatient()" type="button" value="Next">
-                            Add new patient
-                        </button>
-                    </div>
-                    <div ng-repeat="patient in ctrl.newPatients track by $index">
-                        <div class="col-md-6"><input ng-model="patient.email" class="form-control" type="text"
-                                                     name="email" placeholder="Email">
+<section id="addPatient" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <h2>Add New Patient</h2>
+            <form name="addPatient" novalidate>
+                <fieldset>
+                    <p class="form-text text-muted">
+                        Please enter either Email or Phone to add new Patients.
+                    </p>
+                    <div ng-repeat="patient in ctrl.newPatients track by $index" class="row">
+                        <div class="form-group col-xs-6"
+                             ng-class="{'has-error' : addPatient.password.$dirty && !addPatient.password.$valid}">
+                            <input class="form-control" id="email{{$index}}" name="email{{$index}}" autocomplete="off"
+                                   ng-pattern="/^[A-Za-z0-9-_]+(\.[A-Za-z0-9-_]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/"
+                                   autocomplete="off" required placeholder="Email Address" ng-model="patient.email"/>
+                            <span class="error-msg">Please enter a valid email address.</span>
                         </div>
-
-                        <label class="col-md-1">Or</label>
-                        <div class="col-md-5"><input ng-model="patient.phone" class="form-control" type='number'
-                                                     name='phone' placeholder="Phone"></div>
-
-
+                        <div class="form-group col-xs-5">
+                            <input id="phone{{$index}}" class="form-control" type="text"
+                                   name="phone{{$index}}" mask="(999)-999-9999"
+                                   ng-model="patient.phone" placeholder="Phone Number"/>
+                        </div>
+                        <div class="form-group col-xs-1" ng-if="ctrl.newPatients.length-1">
+                            <a href="javascript: void(0);" class="remove-patient" ng-click="ctrl.removePatient(patient)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-12" style="margin: 10px">
-                        <button style="margin: 10px" class="btn btn-primary btn-block" type="button" value="Next">
-                            Next
-                        </button>
+                    <div class="row">
+                        <a href="javascript: void(0);" class="btn btn-link" ng-click="ctrl.createNewPatient()">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Add Patient
+                        </a>
                     </div>
-                </div>
-
-            </fieldset>
-        </form>
+                    <div class="actions row">
+                        <div class="col-xs-6">
+                            <a ui-sref="root.patient" class="btn btn-link">Skip if already configured</a>
+                        </div>
+                        <div class="form-group col-xs-4 col-xs-offset-2">
+                            <a class="btn btn-default btn-block" type="button" value="Next"
+                               ui-sref="root.patient">Next</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-</div>
+</section>

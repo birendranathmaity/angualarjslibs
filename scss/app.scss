@@ -12,6 +12,7 @@ html {
 
 body {
   color: $text-color;
+  background-color: $body-background;
 }
 
 .error-msg {
@@ -56,18 +57,28 @@ ul.list-inline {
   margin: 0;
 }
 
-.first-letter-only {
-  display: none;
-  visibility: hidden;
-  text-transform: uppercase;
-
-  &:first-letter {
-    visibility: visible;
-  }
-}
-
 .form-control:focus {
   outline: none !important;
   border:1px solid $landing-green;
   box-shadow: 0 0 1rem $landing-teal;
+}
+
+.avatar{
+  text-transform: uppercase;
+  color: $footer-gray !important;
+  line-height: 4rem;
+  text-decoration: none;
+  font-size: 2rem;
+
+  &:hover {
+    color: white !important;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.main-content {
+
 }

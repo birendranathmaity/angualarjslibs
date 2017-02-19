@@ -1,7 +1,10 @@
+var _ = require('lodash');
+
 /* @ngInject */
 module.exports = function AddPatientController() {
     var controller = this;
     controller.createNewPatient = createNewPatient;
+    controller.removePatient = removePatient;
 
     activate();
 
@@ -15,18 +18,23 @@ module.exports = function AddPatientController() {
     }
     
     function createNewPatientsModel() {
-        var newPatients = [];
-        newPatients.push(addNewPatient());
-        controller.newPatients = newPatients;
+        controller.newPatients = [];
+        controller.newPatients.push(addNewPatient());
     }
 
     function createNewPatient() {
         controller.newPatients.push(addNewPatient());
     }
 
+    function removePatient(patient) {
+
+        _.remove(controller.newPatients, patient);
+    }
+
     function addNewPatient() {
         return {
           "patient": {
+              "id": controller.newPatients.length ,
               "email":"",
               "phone":""
           }

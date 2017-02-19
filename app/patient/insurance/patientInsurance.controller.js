@@ -9,7 +9,10 @@ module.exports = function PatientInsuranceController() {
      */
     function activate() {
         controller.user = {
-            'insurance' : {}
+            'insurance' : {
+                'primary': {},
+                'subscriber': {}
+            }
         };
     }
 };

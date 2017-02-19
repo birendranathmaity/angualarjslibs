@@ -1,57 +1,62 @@
-<div class="row" style="margin-top20px">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <h2>Patient personal information</h2>
-        <form name="personal information" novalidate>
-            <fieldset>
-                <div class="row">
-                    <div class="form-group col-xs-4">
-                        <label for="firstName">First Name</label>
-                        <input class="form-control" id="firstName" type="text" name="firstName"
-                               placeholder="First Name"/>
+<section id="patientPersonalInfo" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <h2> Personal Information</h2>
+            <form name="personal information" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label for="firstName">First Name</label>
+                            <input class="form-control" id="firstName" type="text" name="firstName"
+                                   placeholder="First Name"/>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label for="middleName">Middle Name</label>
+                            <input class="form-control" id="middleName" type="text" name="middleName"
+                                   placeholder="Middle Name"/>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label for="lastName">Last Name</label>
+                            <input class="form-control" id="lastName" type="text" name="lastName"
+                                   placeholder="Last Name"/>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-4">
-                        <label for="middleName">Middle Name</label>
-                        <input class="form-control" id="middleName" type="text" name="middleName"
-                               placeholder="Middle Name"/>
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label for="ssn"> SSN</label>
+                            <input id="ssn" class="form-control" type="text" name="ssn" placeholder="SSN"
+                                   mask="999-99-9999"
+                                   ng-model="ctrl.user.ssn"/>
+                        </div>
+                        <div class="form-group col-xs-8">
+                            <label for="dob"> DOB</label>
+                            <input id="dob" class="form-control" type="text" name="dob" mask="39/19/9999"
+                                   ng-model="ctrl.user.dob" placeholder="Date of Birth"/>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-4">
-                        <label for="lastName">Last Name</label>
-                        <input class="form-control" id="lastName" type="text" name="lastName" placeholder="Last Name"/>
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label for="martialStatus"> Marital Status</label>
+                            <select id="martialStatus" class="form-control" name="martialStatus">
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="separated">Separated</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-xs-4">
-                        <label for="ssn"> SSN</label>
-                        <input id="ssn" class="form-control" type="text" name="ssn" placeholder="SSN" mask="999-99-9999"
-                               ng-model="ctrl.user.ssn"/>
+                    <div class="actions row">
+                        <div class="col-xs-6">
+                            <a ui-sref="root.patient" class="btn btn-link">Skip if already configured</a>
+                        </div>
+                        <div class="form-group col-xs-4 col-xs-offset-2">
+                            <a class="btn btn-default btn-block" type="button" value="Next"
+                               ui-sref="root.patient.insurance">Next</a>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-8">
-                        <label for="dob"> DOB</label>
-                        <input id="dob" class="form-control" type="text" name="dob" mask="39/19/9999"
-                               ng-model="ctrl.user.dob" placeholder="Date of Birth"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-xs-4">
-                        <label for="martialStatus"> Marital Status</label>
-                        <select id="martialStatus" class="form-control" name="martialStatus">
-                            <option value="single">Single</option>
-                            <option value="married">Married</option>
-                            <option value="separated">Separated</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="actions row">
-                    <div class="col-xs-6">
-                        <a ui-sref="landing" class="btn btn-link">Skip if already configured</a>
-                    </div>
-                    <div class="form-group col-xs-4 col-xs-offset-2">
-                        <a class="btn btn-default btn-block" type="button" value="Next" ui-sref="root.patient.insurance">Next</a>
-                    </div>
-                </div>
-            </fieldset>
+                </fieldset>
 
-        </form>
+            </form>
 
+        </div>
     </div>
-</div>
+</section>
