@@ -4,6 +4,7 @@
 @import "landing";
 @import "header";
 @import "form";
+@import "dashboard";
 
 html {
   position: relative;
@@ -55,6 +56,10 @@ h1, h2, h3, h4, h5, h6 {
 
 ul.list-inline {
   margin: 0;
+
+  & > li {
+    padding: 0;
+  }
 }
 
 .form-control:focus {

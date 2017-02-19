@@ -13,15 +13,7 @@
       @content
     }
   } @else if ($point == xs) {
-    @media (max-width: 767px) and (min-width: 641px) {
-      @content
-    }
-  } @else if ($point == xxs) {
-    @media (max-width: 640px) and (min-width: 481px) {
-      @content
-    }
-  } @else if ($point == xxxs) {
-    @media (max-width: 480px) {
+    @media (max-width: 767px) {
       @content
     }
   }

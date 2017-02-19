@@ -1,0 +1,66 @@
+
+.tile {
+  position: relative;
+  width: 30%;
+  text-align: center;
+  height: 15rem;
+  border-radius: 0.5rem;
+  border: 1px solid $landing-green;
+  margin: 2rem 1rem;
+  box-sizing: border-box;
+  padding: 0;
+
+  -webkit-box-shadow: 2px 2px 9px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 2px 9px -2px rgba(0,0,0,0.75);
+  box-shadow: 2px 2px 9px -2px rgba(0,0,0,0.75);
+
+  .tile--content {
+    padding-top: 3rem;
+  }
+
+  .tile--footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    padding: 0.5rem 0;
+    background-color: $landing-green;
+  }
+
+  .tile--footer-name {
+    padding: 0 0.5rem;
+  }
+
+  .tile--icon {
+    font-size: 5rem;
+  }
+
+  .tile--footer-count {
+    padding: 0 0.5rem;
+    width: 2.5rem;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: white;
+    color: $footer-gray;
+    margin-right: 0.5rem;
+  }
+
+  @include media-query(sm) {
+    width: 29%;
+  }
+
+  @include media-query(xs) {
+    width: 42%;
+  }
+}
+
+#patientDashboard {
+  .emergency-btn {
+    width: 95%;
+    margin: 1rem;
+  }
+}
+
+#providerDashboard {
+
+}

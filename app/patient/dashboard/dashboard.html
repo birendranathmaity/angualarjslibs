@@ -1,4 +1,24 @@
-<p>Welcome to Patient dashboard! you {{ ctrl.info }}</p>
-<ul ng-repeat="feature in ctrl.features">
-    <li class="">Feature {{ feature }}</li>
-</ul>
+<section id="patientDashboard" class="container page-content">
+    <div class="row">
+        <div class="col-xs-10 col-md-8 col-xs-offset-1 col-md-offset-2">
+            <h2>Patient Services</h2>
+            <ul class="list-inline">
+                <li class="tile" ng-repeat="feature in ctrl.features">
+                    <div class="tile--content">
+                        <div class="glyphicon glyphicon-{{feature.icon}} tile--icon"></div>
+                    </div>
+                    <div class="tile--footer clearfix">
+                        <div class="pull-left tile--footer-name">{{ feature.name }}</div>
+                        <div class="pull-right tile--footer-count">{{ feature.count }}</div>
+                    </div>
+                </li>
+            </ul>
+            <a class="btn btn-danger emergency-btn" href="tel: 210-519-7617">
+                Emergency Help
+            </a>
+        </div>
+    </div>
+
+</section>
+
+<span class="glyphicon glyphicon-u"

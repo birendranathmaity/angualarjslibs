@@ -9,7 +9,7 @@ module.exports = function PatientResource($resource, config) {
         },
         getFeatures: {
             method: 'GET',
-            url: config.apiPath + 'app/services/patientFeatures.json'
+            url: config.apiPath + 'app/serviceEndPoints/patientFeatures.json'
         }
     });
 
