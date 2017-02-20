@@ -2,7 +2,6 @@
 
 var angular = require('angular');
 var routes = require('./patient.route');
-//var uiSwitch = require('angular-ui-switch');
 
 var PatientDashboardController = require('./dashboard/patientDashboard.controller');
 var PatientRegistrationController = require('./registration/patientRegistration.controller');
@@ -13,7 +12,7 @@ var AddPatientNetworkController = require('./network/addPatientNetwork.controlle
 var PatientNetworkController = require('./network/patientNetwork.controller');
 
 
-module.exports = angular.module('app.ui.patient', ['uiSwitch'])
+module.exports = angular.module('app.ui.patient', [])
     .run(routes)
     .controller('PatientDashboardController', PatientDashboardController)
     .controller('PatientRegistrationController', PatientRegistrationController)

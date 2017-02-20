@@ -10,7 +10,8 @@ var libraries = {
         'node_modules/**/bootstrap/dist/js/bootstrap.js'
     ],
     css: [
-        'node_modules/**/bootstrap/dist/css/bootstrap.css'
+        'node_modules/**/bootstrap/dist/css/bootstrap.css',
+        'node_modules/**/angular-ui-switch/angular-ui-switch.css'
     ],
     fonts: [
         'node_modules/**/bootstrap/dist/fonts/**.*'

@@ -80,16 +80,18 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
-            name: "root.patient.addNetwork",
+            name: "root.patient.network.add",
             config: {
-                url: '/addNetwork',
+                url: '/network/add',
                 views: {
                     '@': {
                         templateUrl: "app/patient/network/addPatientNetwork.html",
                         controller: "AddPatientNetworkController as ctrl"
                     }
                 },
-                title: 'Add Patient Network'
+                title: 'Add Patient Network',
+                deepStateRedirect: true,
+                sticky: true
             }
         }
     ]);

@@ -6,7 +6,8 @@
                 <fieldset>
 
                     <div ng-repeat="patientNetwork in ctrl.patientNetworks track by $index" class="row">
-                        <div class="form-group col-xs-6">
+
+                        <div class="form-group col-xs-6"> <span class="glyphicon glyphicon-user"></span>
                             <div>{{patientNetwork.network}}</div>
                         </div>
                         <div class="form-group col-xs-6">
@@ -21,7 +22,7 @@
 
                         <div class="form-group col-xs-4 col-xs-offset-2">
                             <a class="btn btn-default btn-block" type="button" value="Next"
-                               ui-sref="root.patient.addNetwork">Add Patient Network</a>
+                               ui-sref="root.patient.network.add">Add Patient Network</a>
                         </div>
                     </div>
                 </fieldset>

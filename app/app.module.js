@@ -14,6 +14,7 @@ require('moment-range');
 require('ng-device-detector');
 require('ng-idle');
 require('ng-mask');
+require('angular-ui-switch');
 
 
 // App UI modules
