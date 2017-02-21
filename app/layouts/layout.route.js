@@ -21,9 +21,6 @@ module.exports = function BaseRoutes(Router) {
                     'header': {
                         templateUrl: 'app/layouts/header.html',
                         controller: 'HeaderController as ctrl'
-                    },
-                    'footer': {
-                        templateUrl: 'app/layouts/footer.html'
                     }
                 }
             }

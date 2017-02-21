@@ -1,3 +1,5 @@
+var _=require('lodash');
+
 /* @ngInject */
 module.exports = function AddPatientNetworkController() {
     var controller = this;

@@ -12,3 +12,13 @@ $text-color: #6b7c93;
 
 //Messages
 $error: #ec6e73;
+
+//Gutters
+// Base spacing
+$gutter: 2.4rem;
+$gutter-double: 2 * $gutter;
+$gutter-quarter: $gutter/4;
+$gutter-third: $gutter/3;
+$gutter-half: $gutter/2;
+$gutter-two-thirds: $gutter-third * 2;
+$gutter-and-half: $gutter + $gutter-half;

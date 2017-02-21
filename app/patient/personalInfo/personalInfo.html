@@ -1,54 +1,54 @@
 <section id="patientPersonalInfo" class="container page-content">
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <h2> Personal Information</h2>
+        <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
+            <h1> Personal Information</h1>
             <form name="personal information" novalidate>
                 <fieldset>
                     <div class="row">
                         <div class="form-group col-xs-4">
-                            <label for="firstName">First Name</label>
                             <input class="form-control" id="firstName" type="text" name="firstName"
                                    placeholder="First Name"/>
+                            <label for="firstName">First Name</label>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="middleName">Middle Name</label>
                             <input class="form-control" id="middleName" type="text" name="middleName"
                                    placeholder="Middle Name"/>
+                            <label for="middleName">Middle Name</label>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="lastName">Last Name</label>
                             <input class="form-control" id="lastName" type="text" name="lastName"
                                    placeholder="Last Name"/>
+                            <label for="lastName">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-4">
-                            <label for="ssn"> SSN</label>
                             <input id="ssn" class="form-control" type="text" name="ssn" placeholder="SSN"
                                    mask="999-99-9999"
                                    ng-model="ctrl.user.ssn"/>
+                            <label for="ssn">SSN</label>
                         </div>
                         <div class="form-group col-xs-8">
-                            <label for="dob"> DOB</label>
                             <input id="dob" class="form-control" type="text" name="dob" mask="39/19/9999"
                                    ng-model="ctrl.user.dob" placeholder="Date of Birth"/>
+                            <label for="dob">Date Of Birth</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-4">
-                            <label for="martialStatus"> Marital Status</label>
                             <select id="martialStatus" class="form-control" name="martialStatus">
                                 <option value="single">Single</option>
                                 <option value="married">Married</option>
                                 <option value="separated">Separated</option>
                             </select>
+                            <label for="martialStatus"> Marital Status</label>
                         </div>
                     </div>
                     <div class="actions row">
                         <div class="col-xs-6">
                             <a ui-sref="root.patient" class="btn btn-link">Skip if already configured</a>
                         </div>
-                        <div class="form-group col-xs-4 col-xs-offset-2">
+                        <div class="form-group col-xs-6">
                             <a class="btn btn-default btn-block" type="button" value="Next"
                                ui-sref="root.patient.insurance">Next</a>
                         </div>

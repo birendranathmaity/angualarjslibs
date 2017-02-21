@@ -13,10 +13,17 @@
     <base href="/">
 </head>
 <body>
-<div>
-    <div ui-view="header"></div>
-    <ui-view class="main-content"></ui-view>
-    <div ui-view="footer"></div>
+<div ui-view="header"></div>
+<ui-view class="main-content"></ui-view>
+<div ui-view="footer">
+    <footer id="footer" class="navbar-default">
+        <div class="container">
+            <div class="row">
+                <span class="col-sm-6">Copyright © 2012-2017. All Rights Reserved.</span>
+                <span class="col-sm-6 text-right">Powered by <a href="http://ideps.net/">IDEPS</a></span>
+            </div>
+        </div>
+    </footer>
 </div>
 <!--uncache-->
 <script type="text/javascript" src="/dist/scripts/libs.min.js"></script>

@@ -1,52 +1,51 @@
 <section id="patientInsurance" class="container page-content">
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <h2>Insurance Information</h2>
+        <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
+            <h1>Insurance Information</h1>
             <form name="insurance" novalidate>
-
                 <h4>Primary Insurance Info</h4>
                 <fieldset>
                     <div class="row">
                         <div class="form-group col-xs-6">
-                            <label for="insuranceProvide">Insurance Provider</label>
                             <select class="form-control" name="primaryInsuranceProvider" id="insuranceProvide">
                                 <option value="UHC">United Health Care</option>
                                 <option value="BCBS">BCBS</option>
                                 <option value="humana">Humana</option>
                                 <option value="Multiplan">Multiplan</option>
                             </select>
+                            <label for="insuranceProvide">Insurance Provider</label>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label for="policyNumber">Policy Number</label>
                             <input id="policyNumber" class="form-control" id="policy" name="policy"
-                                   placeholder="Policy Number">
+                                   placeholder="Policy Number" />
+                            <label for="policyNumber">Policy Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-6">
-                            <label for="effectiveDate">Effective Date</label>
                             <input id="effectiveDate" class="form-control" type="text" name="effectiveDate"
                                    mask="39/19/9999"
-                                   ng-model="ctrl.user.insurance.effectiveDate" placeholder="Effective"/>
+                                   ng-model="ctrl.user.insurance.effectiveDate" placeholder="Effective Date"/>
+                            <label for="effectiveDate">Effective Date</label>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label for="groupNumber">Group Number</label>
                             <input class="form-control" id="groupNumber" type="text" name="groupNumber"
                                    placeholder="Group Number"/>
+                            <label for="groupNumber">Group Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-6">
-                            <label>Relationship</label>
                             <select class="form-control" name="relationship">
                                 <option value="spouse">Spouse</option>
                                 <option value="mother">Mother</option>
                                 <option value="father">Father</option>
                                 <option value="other">Other</option>
                             </select>
+                            <label>Relationship</label>
                         </div>
-                        <div class="primary-insurance col-xs-6">
-                            <label for="primaryInsurance">
+                        <div class="form-group primary-insurance col-xs-6">
+                            <label for="primaryInsurance" class="input-checkbox">
                                 <input type="checkbox" id="primaryInsurance" name="primaryInsurance">
                                 Primary
                             </label>
@@ -57,74 +56,78 @@
                 <fieldset>
                     <div class="row">
                         <div class="form-group col-xs-4">
-                            <label for="firstName">First Name</label>
                             <input class="form-control" id="firstName" type="text" name="firstName"
                                    placeholder="First Name"/>
+                            <label for="firstName">First Name</label>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="middleName">Middle Name</label>
                             <input class="form-control" id="middleName" type="text" name="middleName"
                                    placeholder="Middle Name"/>
+                            <label for="middleName">Middle Name</label>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="lastName">Last Name</label>
                             <input class="form-control" id="lastName" type="text" name="lastName"
                                    placeholder="Last Name"/>
+                            <label for="lastName">Last Name</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-xs-6">
-                            <label for="subscriberId">Id</label>
                             <input class="form-control" id="subscriberId" type="text" name="subscriberId"
                                    placeholder="Subscriber ID"/>
+                            <label for="subscriberId">Subscriber Id</label>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label for="subscriberSSN">SSN</label>
                             <input id="subscriberSSN" class="form-control" id="ssn" type="text" name="ssn"
                                    placeholder="SSN" mask="999-99-9999"
                                    ng-model="ctrl.user.insurance.subscriber.ssn"/>
+                            <label for="subscriberSSN">SSN</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-6">
-                            <label for="subscriberDOB">DOB</label>
                             <input id="subscriberDOB" class="form-control" type="text" placeholder="Date of Birth"
                                    mask="39/19/9999"
                                    ng-model="ctrl.user.insurance.subscriber.dob"/>
+                            <label for="subscriberDOB">Date of Birth</label>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label for="subscriberPhone">Phone Number</label>
                             <input id="subscriberPhone" class="form-control" id="subscriberPhone" type="text"
                                    name="subscriberPhone" mask="(999)-999-9999"
                                    ng-model="ctrl.user.insurance.subscriber.phone" placeholder="Phone Number"/>
+                            <label for="subscriberPhone">Phone Number</label>
                         </div>
                     </div>
-                    <div class="row subscriberAddress" id="subscriberAddress">
-                        <label for="subscriberAddress">Address</label>
+                    <h6>Address</h6>
+                    <div class="row subscriberAddress" id="subscriberAddressLine1">
                         <div class="form-group col-xs-12">
                             <input class="form-control" type="text" name="subscriberAddressLine1"
                                    placeholder="Address Line1"/>
-
+                            <label for="subscriberAddressLine1">Address <Line1></Line1></label>
                         </div>
                         <div class="form-group col-xs-12">
                             <input class="form-control" id="subscriberAddressLine2" type="text"
                                    name="subscriberAddressLine2"
                                    placeholder="Address Line2"/>
+                            <label for="subscriberAddressLine2">Address Line2</label>
                         </div>
                         <div class="form-group col-xs-5">
-                            <input class="form-control" type="text" name="subscriberCity"
-                                   placeholder="Address Line2"/>
+                            <input class="form-control" type="text" name="subscriberCity" id="subscriberCity"
+                                   placeholder="City"/>
+                            <label for="subscriberCity">City</label>
                         </div>
                         <div class="form-group col-xs-3">
-                            <input class="form-control" type="text" name="subscriberState"
+                            <input class="form-control" type="text" name="subscriberState" id="subscriberState"
                                    placeholder="State" mask="99999"
                                    ng-model="ctrl.user.insurance.subscriber.state"/>
+                            <label for="subscriberState">State</label>
                         </div>
                         <div class="form-group col-xs-4">
-                            <input class="form-control" type="text" name="subscriberState"
+                            <input class="form-control" type="text" name="subscriberZipcode" id="subscriberZipcode"
                                    placeholder="Zip Code" mask="99999"
                                    ng-model="ctrl.user.insurance.subscriber.zipcode"/>
+                            <label for="subscriberZipcode">Zip Code</label>
                         </div>
                     </div>
                 </fieldset>
@@ -132,7 +135,7 @@
                     <div class="col-xs-6">
                         <a ui-sref="root.patient" class="btn btn-link">Skip if already configured</a>
                     </div>
-                    <div class="form-group col-xs-4 col-xs-offset-2">
+                    <div class="form-group col-xs-6">
                         <a class="btn btn-default btn-block" type="button" value="Next"
                            ui-sref="root.patient.add">Next</a>
                     </div>
@@ -142,9 +145,3 @@
 
     </div>
 </section>
-//TODO - Remove this once footer is all set
-<style>
-    html {
-        height: auto;
-    }
-</style>
