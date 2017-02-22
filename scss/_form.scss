@@ -121,5 +121,15 @@ input:focus {
   -webkit-box-shadow: 2px 0 10px -2px $landing-marketing-shadow;
   -moz-box-shadow: 2px 0 10px -2px $landing-marketing-shadow;
   box-shadow: 2px 0 10px -2px $landing-marketing-shadow;
-;
+
+  h1 {
+    background: $footer-gray-1;
+    margin: 0 -15px;
+    padding: 1rem 1.5rem;
+    color: white;
+
+    &:after {
+      content: '';
+    }
+  }
 }
