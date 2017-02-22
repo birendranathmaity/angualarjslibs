@@ -4,7 +4,8 @@
             <h1>Patient Services</h1>
             <ul class="list-inline tiles">
                 <li class="tile" ng-repeat="feature in ctrl.features">
-                    <div class="tile--content">
+
+                    <a class="tile--content" ui-sref="{{ feature.page }}">
                         <div class="glyphicon glyphicon-{{feature.icon}} tile--icon">
                             <span class="tile-count">{{ feature.count }}</span>
                         </div>
@@ -13,7 +14,7 @@
                             <span class="tile-title">{{ feature.name }}</span> <br />
                             {{ feature.desc }}
                         </p>
-                    </div>
+                    </a>
                 </li>
             </ul>
             <a class="btn btn-danger emergency-btn actions" href="tel: 210-519-7617">

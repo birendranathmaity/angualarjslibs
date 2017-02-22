@@ -93,6 +93,19 @@ module.exports = function PatientRoutes(Router) {
                 deepStateRedirect: true,
                 sticky: true
             }
-        }
+        },
+        {
+            name: "root.patient.notifications",
+            config: {
+                url: '/notifications',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/notifications/notifications.html",
+                        controller: "PatientNotificationController as ctrl"
+                    }
+                },
+                title: 'Add Patient'
+            }
+        },
     ]);
 };

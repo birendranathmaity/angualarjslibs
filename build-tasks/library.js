@@ -11,7 +11,8 @@ var libraries = {
     ],
     css: [
         'node_modules/**/bootstrap/dist/css/bootstrap.css',
-        'node_modules/**/angular-ui-switch/angular-ui-switch.css'
+        'node_modules/**/angular-ui-switch/angular-ui-switch.css',
+        'node_modules/fullcalendar/dist/fullcalendar.css'
     ],
     fonts: [
         'node_modules/**/bootstrap/dist/fonts/**.*'

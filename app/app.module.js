@@ -15,7 +15,8 @@ require('ng-device-detector');
 require('ng-idle');
 require('ng-mask');
 require('angular-ui-switch');
-
+require('angular-ui-calendar');
+require('fullcalendar');
 
 // App UI modules
 //var configModule = require('./app.config');
@@ -32,6 +33,7 @@ angular.module('app.ui', [
     ngAnimate,
     ngMessages,
     'ui.bootstrap',
+    'ui.calendar',
     'angular-click-outside',
     'ct.ui.router.extras',
     'ngPasswordStrength',

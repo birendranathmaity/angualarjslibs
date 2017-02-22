@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function PatientDashboardController(/*PatientService*/) {
+module.exports = function SidebarController(/*PatientService*/) {
     var controller = this;
 
     activate();
@@ -8,7 +8,9 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
      * Initiate Controller.
      */
     function activate() {
-        getFeaturesMock();
+        getPatientFeaturesMock();
+
+        bindSidebar();
     }
 
     function getFeatures() {
@@ -21,7 +23,15 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
          });*/
     }
 
-    function getFeaturesMock() {
+    function bindSidebar() {
+        /* off-canvas sidebar toggle */
+        $('[data-toggle=offcanvas]').click(function() {
+            $('.row-offcanvas').toggleClass('active');
+            $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
+        });
+    }
+
+    function getPatientFeaturesMock() {
         controller.features = [
             {
                 "type": "questionnaire",
@@ -39,7 +49,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "calendar",
                 "desc": "Ei vim sale natum animal. Qui utamur debitis necessitatibus ut, odio debet oratio an sit, consul ubique accusata eos eu.",
-                "page": "root.patient.notifications"
+                "page": "auth.patient.notifications"
             },
             {
                 "type": "provider",

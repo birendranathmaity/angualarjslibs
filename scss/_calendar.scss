@@ -1,0 +1,17 @@
+.ui-calendar {
+  padding: 5rem;
+  padding-top: 0;
+
+  .fc-view-container {
+    background-color: $body-background;
+  }
+
+  .fc-content {
+    background-color: $landing-green;
+  }
+
+  .fc-widget-header {
+    background-color: $footer-gray-1;
+    color: white;
+  }
+}

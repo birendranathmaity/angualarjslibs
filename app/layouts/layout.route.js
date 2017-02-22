@@ -36,6 +36,47 @@ module.exports = function BaseRoutes(Router) {
                     }
                 }
             }
+        },
+        {
+            name: 'auth',
+            config: {
+                url: '/auth',
+                abstract: true,
+                views: {
+                    'header': {
+                        templateUrl: 'app/layouts/header.html',
+                        controller: 'HeaderController as ctrl'
+                    },
+                    'sidebar': {
+                        templateUrl: 'app/layouts/sidebar.html',
+                        controller: 'SidebarController as ctrl'
+                    }
+                }
+            }
+        },
+        {
+            name: "auth.patient",
+            config: {
+                url: '/patient',
+                views: {
+                    '@': {
+                        templateUrl: "app/layouts/auth.html"
+                    }
+                },
+                title: "Patient Auth Dashboard"
+            }
+        },
+        {
+            name: "auth.provider",
+            config: {
+                url: '/provider',
+                views: {
+                    '@': {
+                        templateUrl: "app/layouts/auth.html"
+                    }
+                },
+                title: "Provider Auth Dashboard"
+            }
         }
     ]);
 };

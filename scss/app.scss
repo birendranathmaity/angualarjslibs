@@ -6,6 +6,7 @@
 @import "header";
 @import "form";
 @import "dashboard";
+@import "calendar";
 
 html {
   position: relative;
@@ -39,6 +40,7 @@ footer {
   width: 100%;
   padding: 0.5rem 0;
   color: white;
+  z-index: 1;
 
   @include gradient-bar($footer-gray, $footer-gray-1);
 
