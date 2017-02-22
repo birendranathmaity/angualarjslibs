@@ -24,46 +24,52 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
     function getFeaturesMock() {
         controller.features = [
             {
-                "type": "Questionnaire",
+                "type": "questionnaire",
                 "name": "Questionnaire",
                 "count": "4",
                 "status": "",
-                "icon": "question-sign"
+                "icon": "list-alt",
+                "desc": "Lorem ipsum dolor sit amet, ea nam tamquam tractatos, te harum nostrud recusabo eos, ex nostrud perfecto deterruisset cum"
             },
             {
                 "type": "notifications",
                 "name": "Notifications",
                 "count": "2",
                 "status": "",
-                "icon": "calendar"
+                "icon": "calendar",
+                "desc": "Ei vim sale natum animal. Qui utamur debitis necessitatibus ut, odio debet oratio an sit, consul ubique accusata eos eu."
             },
             {
-                "type": "Provider",
-                "name": "provider",
+                "type": "provider",
+                "name": "Provider",
                 "count": "2",
                 "status": "",
-                "icon": "user"
+                "icon": "user",
+                "desc": "Facete eripuit euripidis mea no. Atomorum sensibus per ad, ad partiendo similique pri."
             },
             {
-                "type": "Feature1",
-                "name": "feature1",
+                "type": "health",
+                "name": "Health Monitor",
                 "count": "1",
                 "status": "",
-                "icon": "heart-empty"
+                "icon": "heart-empty",
+                "desc": "Vim detraxit senserit assentior ne, sit at tamquam noluisse, sea libris minimum ei."
             },
             {
-                "type": "Feature2",
-                "name": "feature2",
+                "type": "metrics",
+                "name": "Metrics",
                 "count": "1",
                 "status": "",
-                "icon": "blackboard"
+                "icon": "stats",
+                "desc": "Ei quo sint inermis, erant iriure offendit te pri."
             },
             {
-                "type": "Feature3",
-                "name": "feature3",
-                "count": "1",
+                "type": "Chat",
+                "name": "Chat",
+                "count": "10",
                 "status": "",
-                "icon": "grain"
+                "icon": "comment",
+                "desc": "Quot dolorem intellegebat eu vis, et oblique maiorum habemus eam. Duo salutandi efficiantur ad, sea electram forensibus an."
             }
         ];
     }
