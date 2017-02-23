@@ -1,5 +1,5 @@
-.tiles {
-  margin-bottom: 2rem !important;
+ul.list-inline.tiles {
+  margin-bottom: 2rem;
   border: 1px solid $landing-teal;
 }
 
@@ -79,26 +79,6 @@
   @include media-query(xs) {
     width: 50%;
   }
-
-  //&:first-child {
-  //  background-color: $landing-yellow;
-  //}
-  //&:last-child {
-  //  background-color: $landing-teal;
-  //}
-  //
-  //&:nth-child(3) {
-  //  background-color: $landing-red;
-  //}
-  //&:nth-child(2) {
-  //  background-color: $landing-green;
-  //}
-  //&:nth-child(5) {
-  //  background-color: $footer-gray-1;
-  //}
-  //&:nth-child(4) {
-  //  background-color: $heading-color;
-  //}
 }
 
 #patientDashboard {
@@ -116,6 +96,12 @@
     font-size: 2rem;
     text-shadow: 1px 1px 2px $body-background;
     line-height: 7rem;
+  }
+}
+
+#providerDashboard {
+  ul.list-inline.tiles {
+    margin-bottom: 8rem;
   }
 }
 
@@ -138,13 +124,4 @@
     line-height: normal;
   }
 
-}
-
-.fa-pill {
-  &:before {
-    content: "\f205";
-  }
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
 }
