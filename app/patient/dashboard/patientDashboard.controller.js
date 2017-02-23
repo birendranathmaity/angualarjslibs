@@ -24,13 +24,44 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
     function getFeaturesMock() {
         controller.features = [
             {
-                "type": "questionnaire",
-                "name": "Questionnaire",
+                "type": "medicine",
+                "name": "Medicine",
                 "count": "4",
                 "status": "",
-                "icon": "list-alt",
-                "desc": "Lorem ipsum dolor sit amet, ea nam tamquam tractatos, te harum nostrud recusabo eos, ex nostrud perfecto deterruisset cum",
+                "icon": "medkit",
+                "icon1": "",
+                "desc": "Lorem ipsum dolor sit amet",
                 "page": "landing"
+            },
+            {
+                "type": "exercise-goals",
+                "name": "Excercise Goals",
+                "count": "3",
+                "status": "",
+                "icon": "line-chart",
+                "icon1": "",
+                "desc": "Vim detraxit senserit assentior ne",
+                "page": "landing"
+            },
+            {
+                "type": "exercise-mindfulness",
+                "name": "Mindfulness Exercise",
+                "count": "4",
+                "status": "",
+                "icon": "grav",
+                "icon1": "",
+                "desc": "Lorem ipsum dolor sit amet",
+                "page": "landing"
+            },
+            {
+                "type": "reminders",
+                "name": "Reminders",
+                "count": "9",
+                "status": "",
+                "icon": "bell",
+                "icon1": "bell-o",
+                "desc": "Quot dolorem intellegebat eu vis",
+                "page": "root.patient.notifications"
             },
             {
                 "type": "notifications",
@@ -38,45 +69,51 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "count": "2",
                 "status": "",
                 "icon": "calendar",
-                "desc": "Ei vim sale natum animal. Qui utamur debitis necessitatibus ut, odio debet oratio an sit, consul ubique accusata eos eu.",
+                "icon1": "calendar-o",
+                "desc": "Ei vim sale natum animal",
                 "page": "root.patient.notifications"
-            },
-            {
-                "type": "provider",
-                "name": "Provider",
-                "count": "2",
-                "status": "",
-                "icon": "user",
-                "desc": "Facete eripuit euripidis mea no. Atomorum sensibus per ad, ad partiendo similique pri.",
-                "page": "landing"
-            },
-            {
-                "type": "health",
-                "name": "Health Monitor",
-                "count": "1",
-                "status": "",
-                "icon": "heart-empty",
-                "desc": "Vim detraxit senserit assentior ne, sit at tamquam noluisse, sea libris minimum ei.",
-                "page": "landing"
-            },
-            {
-                "type": "metrics",
-                "name": "Metrics",
-                "count": "1",
-                "status": "",
-                "icon": "stats",
-                "desc": "Ei quo sint inermis, erant iriure offendit te pri.",
-                "page": "landing"
             },
             {
                 "type": "Chat",
                 "name": "Chat",
                 "count": "10",
                 "status": "",
-                "icon": "comment",
-                "desc": "Quot dolorem intellegebat eu vis, et oblique maiorum habemus eam. Duo salutandi efficiantur ad, sea electram forensibus an.",
+                "icon": "comments",
+                "icon1": "comments-o",
+                "desc": "Quot dolorem intellegebat eu vis",
+                "page": "landing"
+            },
+            {
+                "type": "questionnaire",
+                "name": "Questionnaire",
+                "count": "4",
+                "status": "",
+                "icon": "list-alt",
+                "icon1": "",
+                "desc": "Lorem ipsum dolor sit amet",
+                "page": "landing"
+            },
+            {
+                "type": "provider",
+                "name": "Provider",
+                "count": "2",
+                "status": "",
+                "icon": "user-md",
+                "icon1": "user-plus",
+                "desc": "Facete eripuit euripidis mea no",
+                "page": "landing"
+            },
+            {
+                "type": "network",
+                "name": "Network",
+                "count": "1",
+                "status": "",
+                "icon": "users",
+                "icon1": "",
+                "desc": "Ei quo sint inermis",
                 "page": "landing"
             }
+
         ];
     }
 };
