@@ -91,7 +91,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "list-alt",
                 "icon1": "",
                 "desc": "Lorem ipsum dolor sit amet",
-                "page": "landing"
+                "page": "root.patient.questionnaire"
             },
             {
                 "type": "provider",
