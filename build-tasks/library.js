@@ -12,10 +12,11 @@ var libraries = {
     css: [
         'node_modules/**/bootstrap/dist/css/bootstrap.css',
         'node_modules/**/angular-ui-switch/angular-ui-switch.css',
-        'node_modules/fullcalendar/dist/fullcalendar.css'
+        'node_modules/fullcalendar/dist/fullcalendar.css',
+        'images/**/font-awesome-4.7.0/css/font-awesome.css'
     ],
     fonts: [
-        'node_modules/**/bootstrap/dist/fonts/**.*'
+        'images/**/font-awesome-4.7.0/fonts/**.*'
     ]
 };
 

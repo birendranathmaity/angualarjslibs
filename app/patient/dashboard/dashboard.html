@@ -1,24 +1,36 @@
 <section id="patientDashboard" class="container page-content">
     <div class="row">
-        <div class="col-xs-12 page-content-row">
-            <h1>Patient Services</h1>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 page-content-row">
+            <div class="header clearfix">
+                <h1 class="pull-left">Patient Services</h1>
+                <div class="pull-right">
+                    <a class="btn btn-link emergency-link" href="tel: 210-519-7617">
+                        <i class="fa fa-ambulance" aria-hidden="true"></i> Emergency Help
+                    </a>
+                </div>
+            </div>
             <ul class="list-inline tiles">
                 <li class="tile" ng-repeat="feature in ctrl.features">
 
                     <a class="tile--content" ui-sref="{{ feature.page }}">
-                        <div class="glyphicon glyphicon-{{feature.icon}} tile--icon">
-                            <span class="tile-count">{{ feature.count }}</span>
+                        <div class="tile--icon">
+                            <span class="fa-stack">
+                                <i class="fa fa-{{feature.icon}} icon1" aria-hidden="true"></i>
+                                <i class="fa fa-{{feature.icon1}} icon2" aria-hidden="true"></i>
+                            </span>
                         </div>
-                        <div class="tile-title hidden-lg">{{ feature.name }}</div>
+                        <div class="tile-title">
+                            {{ feature.name }}
+                            <span class="tile-count coin gold">{{ feature.count }}</span>
+                        </div>
                         <p class="hidden-xs hidden-md hidden-sm">
-                            <span class="tile-title">{{ feature.name }}</span> <br />
                             {{ feature.desc }}
                         </p>
                     </a>
                 </li>
             </ul>
             <a class="btn btn-danger emergency-btn actions" href="tel: 210-519-7617">
-                Emergency Help
+                <i class="fa fa-ambulance" aria-hidden="true"></i> Emergency Help
             </a>
         </div>
     </div>
