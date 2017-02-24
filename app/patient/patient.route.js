@@ -104,8 +104,34 @@ module.exports = function PatientRoutes(Router) {
                         controller: "PatientNotificationController as ctrl"
                     }
                 },
-                title: 'Add Patient'
+                title: 'Patient Notifications'
             }
         },
+        {
+            name: "root.patient.questionnaire",
+            config: {
+                url: '/questionnaire',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/questionnaire/patientQuestionnaire.html",
+                        controller: "PatientQuestionnaireController as ctrl"
+                    }
+                },
+                title: 'Patient Questionnaire'
+            }
+        },
+        {
+            name: "root.patient.forms",
+            config: {
+                url: '/forms',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/forms/patientForms.html",
+                        controller: "PatientFormsController as ctrl"
+                    }
+                },
+                title: 'Patient Questionnaire'
+            }
+        }
     ]);
 };

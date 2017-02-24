@@ -5,6 +5,7 @@ var ngCookies = require('angular-cookies');
 var ngAnimate = require('angular-animate');
 var ngMessages = require('angular-messages');
 var moment = window.moment = require('moment');
+//var angularBootstrap = require('angular-ui-bootstrap');
 
 require('ui-router-extras');
 require('angular-ui-bootstrap');
