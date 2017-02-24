@@ -7,7 +7,10 @@
                     <uib-accordion close-others="oneAtATime">
                     <div uib-accordion-group class="panel-default" is-open="patientForm.open" ng-repeat="patientForm in ctrl.patientForms">
                         <uib-accordion-heading>
-                            {{patientForm.formName}} <i ng-click="ctrl.toggleForm(patientForm)" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': patientForm.open, 'glyphicon-chevron-right': !patientForm.open}"></i>
+                            <span class="glyphicon glyphicon-check"
+                                  ng-class="{'glyphicon-check': patientForm.agreeTermsAndConditions, 'glyphicon-exclamation-sign': !patientForm.agreeTermsAndConditions}"></span>
+                            {{patientForm.formName}}
+                            <i ng-click="ctrl.toggleForm(patientForm)" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': patientForm.open, 'glyphicon-chevron-right': !patientForm.open}"></i>
                         </uib-accordion-heading>
                         <div class="col-xs-12" ng-if="patientForm.open">
                         <div class="col-xs-12">
@@ -18,7 +21,7 @@
 
                             </div>
                             <div class="col-xs-12">
-                                <input type="checkbox" name="agreeTermsAndConditions" ng-value="patientForm.agreeTermsAndConditions"> Agree Terms and Conditions
+                                <input type="checkbox" id="agreeTermsAndConditions" ng-model="patientForm.agreeTermsAndConditions"> Agree Terms and Conditions
                             </div>
                         </div>
 
