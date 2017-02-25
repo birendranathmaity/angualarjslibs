@@ -95,16 +95,16 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
-            name: "root.patient.notifications",
+            name: "root.patient.appointments",
             config: {
-                url: '/notifications',
+                url: '/appointments',
                 views: {
                     '@': {
-                        templateUrl: "app/patient/notifications/notifications.html",
-                        controller: "PatientNotificationController as ctrl"
+                        templateUrl: "app/patient/appointments/appointments.html",
+                        controller: "PatientAppointmentsController as ctrl"
                     }
                 },
-                title: 'Patient Notifications'
+                title: 'Patient Appointments'
             }
         },
         {
