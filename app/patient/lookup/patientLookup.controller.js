@@ -8,7 +8,7 @@ module.exports = function PatientLookupController() {
      * Initiate Controller.
      */
     function activate() {
-        controller.selectedPatient = {};
+        controller.selectedPatient = undefined;
         controller.patients = [{
             "id": 1,
             "first_name": "Peter",

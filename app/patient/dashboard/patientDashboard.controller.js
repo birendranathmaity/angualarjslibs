@@ -64,14 +64,14 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "page": "root.patient.notifications"
             },
             {
-                "type": "notifications",
-                "name": "Notifications",
+                "type": "apppointments",
+                "name": "Appointments",
                 "count": "2",
                 "status": "",
                 "icon": "calendar",
                 "icon1": "calendar-o",
                 "desc": "Ei vim sale natum animal",
-                "page": "root.patient.notifications"
+                "page": "root.patient.appointments"
             },
             {
                 "type": "Chat",
