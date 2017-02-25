@@ -61,7 +61,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "bell",
                 "icon1": "bell-o",
                 "desc": "Quot dolorem intellegebat eu vis",
-                "page": "root.patient.notifications"
+                "page": "root.patient.reminders"
             },
             {
                 "type": "apppointments",
