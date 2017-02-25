@@ -41,7 +41,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "icon": "exclamation-triangle",
                 "icon1": "ambulance",
                 "desc": "Vim detraxit senserit assentior ne",
-                "page": "landing"
+                "page": "root.provider.emergency"
             },
             {
                 "type": "Chat",
