@@ -145,6 +145,19 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Lookup'
             }
+        },
+        {
+            name: "root.patient.reminders",
+            config: {
+                url: '/reminders',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/reminders/patientReminder.html",
+                        controller: "PatientReminderController as ctrl"
+                    }
+                },
+                title: 'Patient Reminders'
+            }
         }
     ]);
 };

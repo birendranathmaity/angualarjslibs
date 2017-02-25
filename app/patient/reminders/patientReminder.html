@@ -1,0 +1,24 @@
+<section id="patientForms" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
+            <h1>Patient Reminders</h1>
+            <form name="patientRemindersForm" novalidate>
+                <fieldset>
+
+                        <div class="col-xs-12 alert" ng-class="{'alert-danger': reminder.dismissed, 'alert-success': reminder.done, 'alert-info': !reminder.dismissed && !reminder.done}" role="alert"
+                             ng-repeat="reminder in ctrl.patientReminders track by $index">
+                            {{reminder.name}} at {{reminder.time}}
+                            <span class="pull-right">
+                            <i ng-click="ctrl.toggleReminder(reminder)" class="fa fa-check-circle"
+                               ng-class="{'active-icon': reminder.done, 'disabled-icon': !reminder.done}"></i>
+                            <!--<i ng-click="ctrl.dismissReminder(reminder)" class="pull-right fa fa-icon-remove-sign"></i>-->
+                            <i ng-if="!reminder.done" ng-click="ctrl.dismissReminder(reminder)" class="remove-icon fa fa-times-circle-o" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
