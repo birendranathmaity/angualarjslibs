@@ -13,7 +13,7 @@ var PatientNetworkController = require('./network/patientNetwork.controller');
 var PatientNotificationController = require('./notifications/patientNotificationController');
 var PatientQuestionnaireController = require('./questionnaire/patientQuestionnaire.controller');
 var PatientFormsController = require('./forms/patientForms.controller');
-
+var PatientLookupController = require('./lookup/patientLookup.controller');
 
 module.exports = angular.module('app.ui.patient', [])
     .run(routes)
@@ -26,4 +26,5 @@ module.exports = angular.module('app.ui.patient', [])
     .controller('PatientNetworkController', PatientNetworkController)
     .controller('PatientNotificationController', PatientNotificationController)
     .controller('PatientQuestionnaireController', PatientQuestionnaireController)
-    .controller('PatientFormsController', PatientFormsController);
+    .controller('PatientFormsController', PatientFormsController)
+    .controller('PatientLookupController', PatientLookupController);

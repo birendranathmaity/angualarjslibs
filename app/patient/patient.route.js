@@ -132,6 +132,19 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Questionnaire'
             }
+        },
+        {
+            name: "root.patient.lookup",
+            config: {
+                url: '/lookup',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/lookup/lookup.html",
+                        controller: "PatientLookupController as ctrl"
+                    }
+                },
+                title: 'Patient Lookup'
+            }
         }
     ]);
 };

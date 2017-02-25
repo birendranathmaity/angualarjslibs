@@ -81,7 +81,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "comments",
                 "icon1": "comments-o",
                 "desc": "Quot dolorem intellegebat eu vis",
-                "page": "landing"
+                "page": "root.patient.chat"
             },
             {
                 "type": "questionnaire",

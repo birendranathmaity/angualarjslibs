@@ -51,7 +51,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "icon": "comments",
                 "icon1": "comments-o",
                 "desc": "Quot dolorem intellegebat eu vis",
-                "page": "landing"
+                "page": "root.provider.chat"
             },
             {
                 "type": "add-patient",
@@ -71,7 +71,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "icon": "search",
                 "icon1": "user-circle",
                 "desc": "Quot dolorem intellegebat eu vis",
-                "page": "landing"
+                "page": "root.patient.lookup"
             },
             {
                 "type": "history",

@@ -5,7 +5,6 @@ var ngCookies = require('angular-cookies');
 var ngAnimate = require('angular-animate');
 var ngMessages = require('angular-messages');
 var moment = window.moment = require('moment');
-//var angularBootstrap = require('angular-ui-bootstrap');
 
 require('ui-router-extras');
 require('angular-ui-bootstrap');
@@ -27,6 +26,7 @@ var layoutsModule = require('./layouts');
 var patientModule = require('./patient');
 var providerModule = require('./provider');
 var sharedModule = require('./shared');
+var commonModule = require('./common');
 
 angular.module('app.ui', [
     uiRouter,
@@ -48,5 +48,6 @@ angular.module('app.ui', [
     layoutsModule.name,
     patientModule.name,
     providerModule.name,
-    sharedModule.name
+    sharedModule.name,
+    commonModule.name
 ]);
