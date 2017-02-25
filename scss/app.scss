@@ -99,6 +99,16 @@ a:hover {
 .page-content {
   display: table-cell;
   vertical-align: middle;
+
+  .page-main-content {
+    background-color: $body-background;
+    padding: 1rem 0;
+    border: 1px solid $landing-teal;
+
+    .actions {
+      margin: 0 15px;
+    }
+  }
 }
 
 .dropdown-menu {

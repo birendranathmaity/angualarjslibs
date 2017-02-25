@@ -133,3 +133,12 @@ input:focus {
     }
   }
 }
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $table-zebra-stripe;
+}
+
+.thead-default {
+  background-color: $footer-gray-1;
+  color: white;
+}

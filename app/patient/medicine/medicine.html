@@ -1,0 +1,50 @@
+<section id="addPatient" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h1>Patient Medicine</h1>
+            <div class="page-main-content">
+                <form name="addPatient" novalidate>
+                    <fieldset>
+                        <div class="form-group col-xs-12">
+                            <table class="table table-striped">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th class="text-center">S.No</th>
+                                    <th>Prescription</th>
+                                    <th>Dosage</th>
+                                    <th>Status</th>
+                                    <th>Request or Refill</th>
+                                    <th>Comments</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="medicine in ctrl.medicines">
+                                    <td scope="row" class="text-center">{{medicine.id}}</td>
+                                    <td>{{medicine.prescription}}</td>
+                                    <td>{{medicine.dosage.time1}}, {{medicine.dosage.time2}}</td>
+                                    <td>{{medicine.status}}</td>
+                                    <td>
+                                        <a href="javascript: void(0)" ng-if="medicine.status === 'Active'">Refill</a>
+                                        <span ng-if="medicine.status !== 'Active'">
+                                            <a href="javascript: void(0)">Request </a> | <a href="javascript: void(0)">Refill </a>
+                                        </span>
+                                    </td>
+                                    <td class="form-group">
+                                        <input class="form-control" id="firstName" type="text" name="firstName"
+                                               placeholder="About Prescription" ng-model="medicine.comments"/>
+                                        <label for="firstName">About Prescription</label>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                    <div class="actions row">
+                        <a class="btn btn-default col-xs-2 col-xs-offset-10" ui-sref="root.patient.dashboard" type="button"
+                           value="Next">Submit</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

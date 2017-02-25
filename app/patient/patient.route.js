@@ -147,6 +147,19 @@ module.exports = function PatientRoutes(Router) {
             }
         },
         {
+            name: "root.patient.medicine",
+            config: {
+                url: '/medicine',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/medicine/medicine.html",
+                        controller: "PatientMedicineController as ctrl"
+                    }
+                },
+                title: 'Patient Lookup'
+            }
+        },
+        {
             name: "root.patient.reminders",
             config: {
                 url: '/reminders',

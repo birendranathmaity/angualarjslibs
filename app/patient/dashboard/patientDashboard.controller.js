@@ -30,8 +30,8 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "medkit",
                 "icon1": "",
-                "desc": "Lorem ipsum dolor sit amet",
-                "page": "landing"
+                "desc": "Drugs Prescription",
+                "page": "root.patient.medicine"
             },
             {
                 "type": "exercise-goals",
@@ -40,7 +40,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "line-chart",
                 "icon1": "",
-                "desc": "Vim detraxit senserit assentior ne",
+                "desc": "Keep you fit",
                 "page": "landing"
             },
             {
@@ -50,7 +50,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "grav",
                 "icon1": "",
-                "desc": "Lorem ipsum dolor sit amet",
+                "desc": "Sooth yourself",
                 "page": "landing"
             },
             {
@@ -60,8 +60,8 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "bell",
                 "icon1": "bell-o",
-                "desc": "Quot dolorem intellegebat eu vis",
-                "page": "root.patient.reminders"
+                "desc": "See whats set-up for today",
+                "page": "root.patient.notifications"
             },
             {
                 "type": "apppointments",
@@ -70,7 +70,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "calendar",
                 "icon1": "calendar-o",
-                "desc": "Ei vim sale natum animal",
+                "desc": "View/Set-up Appointments",
                 "page": "root.patient.appointments"
             },
             {
@@ -80,7 +80,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "comments",
                 "icon1": "comments-o",
-                "desc": "Quot dolorem intellegebat eu vis",
+                "desc": "Reach Us",
                 "page": "root.patient.chat"
             },
             {
@@ -90,7 +90,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "list-alt",
                 "icon1": "",
-                "desc": "Lorem ipsum dolor sit amet",
+                "desc": "Update Answers",
                 "page": "root.patient.questionnaire"
             },
             {
@@ -100,7 +100,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "user-md",
                 "icon1": "user-plus",
-                "desc": "Facete eripuit euripidis mea no",
+                "desc": "Grant Access",
                 "page": "landing"
             },
             {
@@ -110,7 +110,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "users",
                 "icon1": "",
-                "desc": "Ei quo sint inermis",
+                "desc": "Add Family and Friends",
                 "page": "landing"
             }
 
