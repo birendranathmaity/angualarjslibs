@@ -1,0 +1,50 @@
+<section id="patientForms" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
+            <h1>Patients who needs emergency</h1>
+            <form name="providerEmergencyForm" novalidate>
+                <fieldset>
+                    <table class="table" class="col-xs-12">
+                    <thead>
+                    <tr>
+                        <th class="col-xs-3">
+                             First Name
+                        </th>
+                        <th class="col-xs-3">
+                            Last Name
+                        </th>
+                        <th class="col-xs-3">
+                            Emergency requested on
+                        </th>
+                        <th class="col-xs-3">
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="patient in ctrl.emergencyPatients track by $index">
+                        <td class="col-xs-3">
+                            {{patient.firstName}}
+                        </td>
+                        <td class="col-xs-3">
+                            {{patient.lastName}}
+                        </td>
+                        <td class="col-xs-3">
+                            {{patient.emergencyNeededOn}}
+                        </td>
+                        <td class="col-xs-3">
+                            {{patient.action}}
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    <div class="form-group col-xs-12">
+                        <a class="btn btn-default btn-block" type="button" value="Next"
+                           ui-sref="root.patient">Next</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

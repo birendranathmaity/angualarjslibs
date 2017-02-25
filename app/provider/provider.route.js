@@ -13,6 +13,19 @@ module.exports = function ProviderRoutes(Router) {
                 },
                 title: 'Provider Dashboard'
             }
+        },
+        {
+            name: "root.provider.emergency",
+            config: {
+                url: '/emergency',
+                views: {
+                    '@': {
+                        templateUrl: "app/provider/emergency/providerEmergency.html",
+                        controller: "ProviderEmergencyController as ctrl"
+                    }
+                },
+                title: 'Provider Emergency'
+            }
         }
     ]);
 };
