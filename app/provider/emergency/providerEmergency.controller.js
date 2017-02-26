@@ -22,20 +22,20 @@ module.exports = function ProviderEmergencyController() {
     function getEmergencyPatients() {
         controller.emergencyPatients = [
             {
-                "firstName":"Patient FirstName 1",
-                "lastName": "Patient LastName 1",
+                "firstName":"Josh",
+                "lastName": "Boyd",
                 "emergencyNeededOn":"02/24/2017",
                 "action": "Need Ambulance"
             },
             {
-                "firstName":"Patient FirstName 2",
-                "lastName": "Patient LastName 2",
+                "firstName":"Ester",
+                "lastName": "Hmual",
                 "emergencyNeededOn":"02/22/2017",
                 "action": "Need pain killer"
             },
             {
-                "firstName":"Patient FirstName 3",
-                "lastName": "Patient LastName 3",
+                "firstName":"Wall",
+                "lastName": "K",
                 "emergencyNeededOn":"02/22/2017",
                 "action": "Need quick help"
             }

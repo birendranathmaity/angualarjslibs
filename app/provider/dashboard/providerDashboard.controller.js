@@ -30,7 +30,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "calendar",
                 "icon1": "calendar-o",
-                "desc": "Ei vim sale natum animal",
+                "desc": "Reminders and appointments",
                 "page": "root.patient.notifications"
             },
             {
@@ -40,7 +40,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "exclamation-triangle",
                 "icon1": "ambulance",
-                "desc": "Vim detraxit senserit assentior ne",
+                "desc": "Never too late",
                 "page": "root.provider.emergency"
             },
             {
@@ -50,7 +50,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "comments",
                 "icon1": "comments-o",
-                "desc": "Quot dolorem intellegebat eu vis",
+                "desc": "Get connected",
                 "page": "root.provider.chat"
             },
             {
@@ -60,8 +60,8 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "user-plus",
                 "icon1": "",
-                "desc": "Lorem ipsum dolor sit amet",
-                "page": "landing"
+                "desc": "Invite patient",
+                "page": "root.patient.add"
             },
             {
                 "type": "lookup",
@@ -70,7 +70,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "search",
                 "icon1": "user-circle",
-                "desc": "Quot dolorem intellegebat eu vis",
+                "desc": "Find patient",
                 "page": "root.patient.lookup"
             },
             {
@@ -80,7 +80,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "status": "",
                 "icon": "history",
                 "icon1": "calendar",
-                "desc": "Ei vim sale natum animal",
+                "desc": "Your events",
                 "page": "root.patient.notifications"
             }
 
