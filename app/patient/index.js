@@ -35,6 +35,5 @@ module.exports = angular.module('app.ui.patient', [])
     .controller('PatientMedicineController', PatientMedicineController)
     .controller('PatientLookupController', PatientLookupController)
     .controller('PatientReminderController', PatientReminderController)
-    .controller('PatientTimelineController', PatientTimelineController);
-    .controller('PatientReminderController', PatientReminderController)
+    .controller('PatientTimelineController', PatientTimelineController)
     .controller('PatientExerciseController', PatientExerciseController);
