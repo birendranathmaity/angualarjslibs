@@ -19,6 +19,7 @@ var PatientReminderController = require('./reminders/patientReminder.controller'
 var PatientTimelineController = require('./timeline/patientTimelineController');
 
 var PatientExerciseController = require('./exercise/patientExercise.controller');
+var PatientExerciseMindfulnessController = require('./exercise-mindfulness/patientExerciseMindfulness.controller');
 
 module.exports = angular.module('app.ui.patient', [])
     .run(routes)
@@ -36,4 +37,5 @@ module.exports = angular.module('app.ui.patient', [])
     .controller('PatientLookupController', PatientLookupController)
     .controller('PatientReminderController', PatientReminderController)
     .controller('PatientTimelineController', PatientTimelineController)
-    .controller('PatientExerciseController', PatientExerciseController);
+    .controller('PatientExerciseController', PatientExerciseController)
+    .controller('PatientExerciseMindfulnessController', PatientExerciseMindfulnessController);

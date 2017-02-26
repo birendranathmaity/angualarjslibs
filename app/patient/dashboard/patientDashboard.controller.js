@@ -41,7 +41,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "line-chart",
                 "icon1": "",
                 "desc": "Keep you fit",
-                "page": "landing"
+                "page": "root.patient.exercises"
             },
             {
                 "type": "exercise-mindfulness",
@@ -51,7 +51,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "grav",
                 "icon1": "",
                 "desc": "Sooth yourself",
-                "page": "landing"
+                "page": "root.patient.exercise-mindfulness"
             },
             {
                 "type": "reminders",

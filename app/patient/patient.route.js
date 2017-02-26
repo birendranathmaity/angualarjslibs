@@ -197,6 +197,19 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Exercises'
             }
+        },
+        {
+            name: "root.patient.exercise-mindfulness",
+            config: {
+                url: '/exercise-mindfulness',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/exercise-mindfulness/patientExerciseMindfulness.html",
+                        controller: "PatientExerciseMindfulnessController as ctrl"
+                    }
+                },
+                title: 'Patient Exercises'
+            }
         }
     ]);
 };
