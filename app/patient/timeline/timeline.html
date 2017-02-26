@@ -31,11 +31,11 @@
             <div class="page-main-content">
                 <!-- view -->
                 <timeline>
-                    <timeline-event ng-repeat="event in ctrl.events | limitTo: 1">
+                    <timeline-event ng-repeat="event in ctrl.events">
                         <timeline-badge class="{{event.status}}">
                             <i ng-class="ctrl.getIconClass(event.type)" aria-hidden="true"></i>
                         </timeline-badge>
-                        <timeline-panel class="{{event.badgeClass}}">
+                        <timeline-panel>
                             <timeline-heading>
                                 <h4 class="{{event.status}}">
                                     <i ng-class="ctrl.getIconClass(event.status)" aria-hidden="true"></i>
@@ -49,13 +49,11 @@
             </div>
         </div>
     </div>
-
-    <ul id="filter-menu-circular" class="menu">
-        <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-    </ul>
+    <div id="filterMenu">
+        <ul class="list-inline">
+            <li ng-repeat="(type, events) in ctrl.types" ng-class="ctrl.randomStatus()">
+                <i ng-class="ctrl.getIconClass(type)" aria-hidden="true" ></i>
+            </li>
+        </ul>
+    </div>
 </section>

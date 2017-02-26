@@ -1,17 +1,20 @@
-<section id="chat" class="container page-content">
+<section id="patientLookup" class="container page-content">
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 page-content-row">
             <h1>Patient Lookup</h1>
             <div class="input-group col-md-12">
-                <input type="text" class="form-control input-lg" placeholder="Patient Lookup" ng-model="ctrl.selectedPatient"
-                       typeahead="patient.id as patient.first_name for patient in patients | filter:$viewValue | limitTo:4"/>
+                <!--<input type="text" class="form-control input-lg" placeholder="Patient Lookup" ng-model="ctrl.selectedPatient"
+                       typeahead="patient.id as patient.first_name for patient in ctrl.patients | filter:$viewValue | limitTo:4"/>-->
                 <span class="input-group-btn">
                     <button class="btn btn-info btn-lg" type="button">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
             </div>
-            {{ ctrl.selectedPatient.first_name | json }}
         </div>
     </div>
 </section>
+
+
+<input type="text" ng-model="Selected" typeahead="Unidade.Codigo as Unidade.Nome for Unidade in ctrl.Unidades | filter:$viewValue | limitTo:8" class="form-control" />
+

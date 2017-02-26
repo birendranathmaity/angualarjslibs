@@ -16,36 +16,38 @@
   background: linear-gradient(to $direction, $color-stop-1, $color-stop-2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-@mixin circularMenu-styles() {
-  &.menu li:first-child {
-    background: $tile-yellow;
-    font-size:200%;
-    border-color: #fff;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 50%;
-    padding: 2rem;
-    box-shadow: 0 0 2px 1px #aaa;
-
-    i.fa {
-      top: -13px;
-      position: relative;
-      left: -8px;
-      font-size: 2rem;
-      color: $footer-gray-1;
-    }
+@mixin status-bg() {
+  .success {
+    background-color: $landing-teal !important;
   }
-
-  &.menu li {
-    background:#000;
-    color:#fff;
-    font-size:25px;
+  .warning {
+    background-color: $tile-orange !important;
   }
-  &.menu a{
-    text-decoration: none;
-    color:#fff;
+  .danger {
+    background-color: $tile-red !important;
   }
+}
 
-  &.menu{ position:absolute; }
+@mixin status-color() {
+  .success {
+    color: $landing-teal;
+  }
+  .warning {
+    color: $tile-orange !important;
+  }
+  .danger {
+    color: $tile-red !important;
+  }
+}
 
+@mixin wheelNav-styles() {
+  @media (max-width: 400px) { #piemenu { width: 200px; } }
+
+  [class|=wheelnav-piemenu-slice-basic] { fill: #497F4C; stroke: none; }
+  [class|=wheelnav-piemenu-slice-selected] { fill: #497F4C; stroke: none; }
+  [class|=wheelnav-piemenu-slice-hover] { fill: #497F4C;  stroke: none; fill-opacity: 0.77; cursor: pointer; }
+
+  [class|=wheelnav-piemenu-title-basic] { fill: #333; stroke: none; }
+  [class|=wheelnav-piemenu-title-selected] { fill: #fff; stroke: none; }
+  [class|=wheelnav-piemenu-title-hover] { fill: #222; stroke: none; cursor: pointer; }
 }
