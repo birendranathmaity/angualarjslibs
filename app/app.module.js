@@ -17,6 +17,7 @@ require('ng-mask');
 require('angular-ui-switch');
 require('angular-ui-calendar');
 require('fullcalendar');
+require('angular-timeline');
 
 // App UI modules
 //var configModule = require('./app.config');
@@ -42,6 +43,7 @@ angular.module('app.ui', [
     'ngIdle',
     'ngMask',
     'uiSwitch',
+    'angular-timeline',
     //configModule.name,
     routerModule.name,
     publicModule.name,

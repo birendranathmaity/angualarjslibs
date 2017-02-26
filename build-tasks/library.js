@@ -7,12 +7,15 @@ var flatten = require('gulp-flatten');
 var libraries = {
     js: [
         'node_modules/**/jquery/dist/jquery.js',
-        'node_modules/**/bootstrap/dist/js/bootstrap.js'
+        'node_modules/**/bootstrap/dist/js/bootstrap.js',
+        'js/**/*.js'
     ],
     css: [
         'node_modules/**/bootstrap/dist/css/bootstrap.css',
         'node_modules/**/angular-ui-switch/angular-ui-switch.css',
-        'node_modules/fullcalendar/dist/fullcalendar.css',
+        'node_modules/**/fullcalendar/dist/fullcalendar.css',
+        'node_modules/**/angular-timeline/dist/angular-timeline.css',
+        'node_modules/**/angular-timeline/dist/angular-timeline-bootstrap.css',
         'images/**/font-awesome-4.7.0/css/font-awesome.css'
     ],
     fonts: [
