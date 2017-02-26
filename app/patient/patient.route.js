@@ -158,6 +158,19 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Reminders'
             }
+        },
+        {
+            name: "root.patient.exercises",
+            config: {
+                url: '/exercises',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/exercise/patientExercise.html",
+                        controller: "PatientExerciseController as ctrl"
+                    }
+                },
+                title: 'Patient Exercises'
+            }
         }
     ]);
 };

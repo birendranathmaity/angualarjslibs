@@ -15,6 +15,7 @@ var PatientQuestionnaireController = require('./questionnaire/patientQuestionnai
 var PatientFormsController = require('./forms/patientForms.controller');
 var PatientLookupController = require('./lookup/patientLookup.controller');
 var PatientReminderController = require('./reminders/patientReminder.controller');
+var PatientExerciseController = require('./exercise/patientExercise.controller');
 
 module.exports = angular.module('app.ui.patient', [])
     .run(routes)
@@ -29,4 +30,5 @@ module.exports = angular.module('app.ui.patient', [])
     .controller('PatientQuestionnaireController', PatientQuestionnaireController)
     .controller('PatientFormsController', PatientFormsController)
     .controller('PatientLookupController', PatientLookupController)
-    .controller('PatientReminderController', PatientReminderController);
+    .controller('PatientReminderController', PatientReminderController)
+    .controller('PatientExerciseController', PatientExerciseController);

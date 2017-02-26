@@ -41,7 +41,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "line-chart",
                 "icon1": "",
                 "desc": "Vim detraxit senserit assentior ne",
-                "page": "landing"
+                "page": "root.patient.exercises"
             },
             {
                 "type": "exercise-mindfulness",

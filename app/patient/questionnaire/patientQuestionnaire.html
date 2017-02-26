@@ -4,12 +4,12 @@
             <h1>Patient Questionnaire</h1>
             <form name="addPatient" novalidate>
                 <fieldset>
-                    <uib-accordion close-others="oneAtATime">
-                    <div uib-accordion-group class="panel-default" is-open="patientQuestionnaire.open" ng-repeat="patientQuestionnaire in ctrl.patientQuestionnaires">
-                        <uib-accordion-heading>
-                            {{patientQuestionnaire.heading}} <i ng-click="ctrl.toggleQuestion(patientQuestionnaire)" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': patientQuestionnaire.open, 'glyphicon-chevron-right': !patientQuestionnaire.open}"></i>
-                        </uib-accordion-heading>
-                        <div class="col-xs-12" ng-if="patientQuestionnaire.open">
+                    <accordion close-others="oneAtATime">
+                    <div accordion-group class="panel-default" is-open="patientQuestionnaire.open" ng-repeat="patientQuestionnaire in ctrl.patientQuestionnaires">
+                        <accordion-heading>
+                            {{patientQuestionnaire.heading}} <i class="pull-right fa" ng-class="{'fa-caret-down': patientQuestionnaire.open, 'fa-caret-right': !patientQuestionnaire.open}"></i>
+                        </accordion-heading>
+                        <div class="col-xs-12">
                         <div class="col-xs-6">
                             {{patientQuestionnaire.question}}
                         </div>
@@ -29,7 +29,7 @@
                         </div>
 
                     </div>
-                    </uib-accordion>
+                    </accordion>
                     <div class="form-group col-xs-12">
                         <a class="btn btn-default btn-block" type="button" value="Next"
                            ui-sref="root.patient">Next</a>
