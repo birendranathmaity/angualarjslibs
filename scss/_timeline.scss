@@ -1,0 +1,76 @@
+#patientTimeline {
+  padding: 0 2rem;
+
+  .timeline-header .btn-group {
+    margin-top: 1rem;
+  }
+
+  .page-main-content {
+    padding: 1rem;
+  }
+
+  timeline-badge {
+    i {
+      font-size: 2rem;
+    };
+    .success {
+      background-color: $landing-teal !important;
+    }
+    .warning {
+      background-color: $tile-orange !important;
+    }
+    .danger {
+      background-color: $tile-red !important;
+    }
+  }
+
+  .timeline-heading {
+    .success {
+      color: $landing-teal;
+    }
+    .warning {
+      color: $tile-orange !important;
+    }
+    .danger {
+      color: $tile-red !important;
+    }
+  }
+
+  .legend {
+    line-height: 6.5rem;
+    text-align: right;
+
+    span:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    .success {
+      color: $landing-teal;
+    }
+    .warning {
+      color: $tile-orange !important;
+    }
+    .danger {
+      color: $tile-red !important;
+    }
+  }
+
+  timeline-panel {
+    padding: 6px 12px;
+    top: 30px;
+
+    &:before {
+      top: 8px;
+    }
+
+    &:after {
+      top: 9px;
+    }
+  }
+
+  #filter-menu-circular {
+    right: 24px;
+    top: 92px;
+    @include circularMenu-styles;
+  }
+}

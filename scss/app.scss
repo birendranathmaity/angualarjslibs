@@ -9,6 +9,7 @@
 @import "calendar";
 @import "chat";
 @import "utilities";
+@import "timeline";
 
 html {
   position: relative;
@@ -42,7 +43,7 @@ footer {
   width: 100%;
   padding: 0.5rem 0;
   color: white;
-  z-index: 1;
+  z-index: 100;
 
   @include gradient-bar($footer-gray, $footer-gray-1);
 

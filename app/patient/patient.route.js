@@ -171,6 +171,19 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Reminders'
             }
+        },
+        {
+            name: "root.patient.timeline",
+            config: {
+                url: '/timeline',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/timeline/timeline.html",
+                        controller: "PatientTimelineController as ctrl"
+                    }
+                },
+                title: 'Patient Timeline'
+            }
         }
     ]);
 };

@@ -15,3 +15,37 @@
   background: -webkit-linear-gradient(to $direction, $color-stop-1, $color-stop-2); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to $direction, $color-stop-1, $color-stop-2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+@mixin circularMenu-styles() {
+  &.menu li:first-child {
+    background: $tile-yellow;
+    font-size:200%;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    padding: 2rem;
+    box-shadow: 0 0 2px 1px #aaa;
+
+    i.fa {
+      top: -13px;
+      position: relative;
+      left: -8px;
+      font-size: 2rem;
+      color: $footer-gray-1;
+    }
+  }
+
+  &.menu li {
+    background:#000;
+    color:#fff;
+    font-size:25px;
+  }
+  &.menu a{
+    text-decoration: none;
+    color:#fff;
+  }
+
+  &.menu{ position:absolute; }
+
+}

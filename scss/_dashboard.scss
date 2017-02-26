@@ -21,8 +21,8 @@ ul.list-inline.tiles {
   .icon1 {
     color: $landing-teal;
     position: absolute;
-    left: -5rem;
-    top: 2rem;
+    left: -3rem;
+    top: 1.5rem;
   }
 
   &:nth-of-type(even) {
@@ -126,7 +126,7 @@ ul.list-inline.tiles {
   }
 
   .fa-stack {
-    font-size: 8rem;
+    font-size: 6rem;
      width: auto;
      height: auto;
     line-height: normal;

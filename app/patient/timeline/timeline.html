@@ -1,0 +1,61 @@
+<section id="patientTimeline" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="timeline-header row clearfix">
+                <h1 class="col-sm-4">Patient Timeline</h1>
+                <div class="btn-group col-sm-4">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default active">
+                            <input type="radio" name="options" id="Today"> Today
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="Week"> Week
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="Month"> Month
+                        </label>
+                    </div>
+                </div>
+                <div class="legend col-sm-4">
+                    <span class="success">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i> Well done
+                    </span>
+                    <span class="warning">
+                        <i class="fa fa-exclamation" aria-hidden="true"></i> Yet to do
+                    </span>
+                    <span class="danger">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Missed
+                    </span>
+                </div>
+            </div>
+            <div class="page-main-content">
+                <!-- view -->
+                <timeline>
+                    <timeline-event ng-repeat="event in ctrl.events | limitTo: 1">
+                        <timeline-badge class="{{event.status}}">
+                            <i ng-class="ctrl.getIconClass(event.type)" aria-hidden="true"></i>
+                        </timeline-badge>
+                        <timeline-panel class="{{event.badgeClass}}">
+                            <timeline-heading>
+                                <h4 class="{{event.status}}">
+                                    <i ng-class="ctrl.getIconClass(event.status)" aria-hidden="true"></i>
+                                    {{ ctrl.typeIconMapping[event.type].name }}
+                                </h4>
+                            </timeline-heading>
+                            <p>{{event.title}}</p>
+                        </timeline-panel>
+                    </timeline-event>
+                </timeline>
+            </div>
+        </div>
+    </div>
+
+    <ul id="filter-menu-circular" class="menu">
+        <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+</section>
