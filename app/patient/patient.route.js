@@ -210,6 +210,20 @@ module.exports = function PatientRoutes(Router) {
                 },
                 title: 'Patient Exercises'
             }
+        },
+        {
+            name: "root.patient.addFamily",
+            config: {
+                url: '/addFamilyPatient',
+                views: {
+                    '@': {
+                        templateUrl: "app/patient/addFamilyPatient/addFamilyPatient.html",
+                        controller: "AddFamilyPatientController as ctrl"
+                    }
+                },
+                title: 'Add Family Or Patient'
+            }
         }
+
     ]);
 };
