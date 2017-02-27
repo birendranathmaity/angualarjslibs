@@ -8,6 +8,23 @@ module.exports = function PatientLookupController() {
      * Initiate Controller.
      */
     function activate() {
+
+        controller.Unidades = [{
+            "Nome": "laskjdhflksjfg",
+            "Codigo": "11106600",
+            "welc":"dude"
+        },
+        {
+            "Nome": "wertwertwertwer",
+            "Codigo": "11106601",
+            "welc":"dude"
+        },
+        {
+            "Nome": "wertwertwertwer",
+            "Codigo": "11106602",
+            "welc":"dude"
+        }];
+
         controller.selectedPatient = undefined;
         controller.patients = [{
             "id": 1,

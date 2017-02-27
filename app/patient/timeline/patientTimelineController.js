@@ -3,20 +3,20 @@ var _ = require('lodash');
 /* @ngInject */
 module.exports = function PatientTimelineController() {
     var controller = this;
-    var filterMenu = '#filter-menu-circular';
     controller.getIconClass = getIconClass;
+    controller.randomStatus = randomStatus;
 
     controller.typeIconMapping = {
-        chat :          { icon: "comments", name: "Chat" },
-        questionnaire:  { icon: "list-alt", name: "Questionnaire" },
-        medicine:       { icon: "medkit", name: "Medicine" },
-        reminder:       { icon: "bell", name: "Reminder" },
-        activity:       { icon: "universal-access", name: "Activity" },
-        permissions:       { icon: "user-md", name: "Provider" },
-        emergency:      { icon: "exclamation-triangle", name: "Emergency"},
-        success: { icon: "check-circle"},
-        warning: { icon: "exclamation"},
-        danger: { icon: "exclamation-triangle"}
+        chat: {icon: "comments", name: "Chat"},
+        questionnaire: {icon: "list-alt", name: "Questionnaire"},
+        medicine: {icon: "medkit", name: "Medicine"},
+        reminder: {icon: "bell", name: "Reminder"},
+        activity: {icon: "universal-access", name: "Activity"},
+        permissions: {icon: "user-md", name: "Provider"},
+        emergency: {icon: "exclamation-triangle", name: "Emergency"},
+        success: {icon: "check-circle"},
+        warning: {icon: "exclamation"},
+        danger: {icon: "exclamation-triangle"}
     };
 
     activate();
@@ -26,17 +26,15 @@ module.exports = function PatientTimelineController() {
      */
     function activate() {
         controller.events = getPatientEvents();
-        //controller.getTypes = getTypes();
+        controller.filterType = null;
 
-        initiateCircularMenu();
+        initiateWheelNav();
         triggerFilterSearch();
         addClickEventToFilterSearch();
-    }
 
-    // function getTypes() {
-    //
-    //     return eventTypes;
-    // }
+        //Get all events types for menu
+        controller.types = _.groupBy(controller.events, 'type');
+    }
 
     /**
      * Get icon class from type, icon mapping
@@ -44,34 +42,28 @@ module.exports = function PatientTimelineController() {
      * @returns {string}
      */
     function getIconClass(type) {
-        if(!(type && controller.typeIconMapping[type])) {
-            return ;
+        if (!(type && controller.typeIconMapping[type])) {
+            return;
         }
-        return 'fa fa-'+controller.typeIconMapping[type].icon;
+        return 'fa fa-' + controller.typeIconMapping[type].icon;
+    }
+
+    function randomStatus() {
+        var statuses = ['danger', 'success', 'warning'];
+        return statuses[Math.floor(Math.random() * statuses.length)];
+
     }
 
     /**
      * Trigger filter menu on click
      */
     function triggerFilterSearch() {
-        $(filterMenu).circleMenu('open');
     }
 
     function addClickEventToFilterSearch() {
-        $(filterMenu).circleMenu({trigger:'click'});
     }
 
-    function initiateCircularMenu() {
-
-        //Initiate circular menu
-        $(filterMenu).circleMenu({
-            item_diameter: 20,
-            circle_radius: 100,
-            direction: 'bottom-left'
-        });
-
-        //prevent default of a
-        $('a', filterMenu).on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault();}});
+    function initiateWheelNav() {
     }
 
     function getPatientEvents() {

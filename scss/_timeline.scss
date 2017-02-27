@@ -9,31 +9,15 @@
     padding: 1rem;
   }
 
-  timeline-badge {
+  timeline-badge{
     i {
       font-size: 2rem;
-    };
-    .success {
-      background-color: $landing-teal !important;
     }
-    .warning {
-      background-color: $tile-orange !important;
-    }
-    .danger {
-      background-color: $tile-red !important;
-    }
+    @include status-bg;
   }
 
   .timeline-heading {
-    .success {
-      color: $landing-teal;
-    }
-    .warning {
-      color: $tile-orange !important;
-    }
-    .danger {
-      color: $tile-red !important;
-    }
+    @include status-color;
   }
 
   .legend {
@@ -68,9 +52,23 @@
     }
   }
 
-  #filter-menu-circular {
-    right: 24px;
-    top: 92px;
-    @include circularMenu-styles;
+  #filterMenu {
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+
+    @include status-bg;
+
+    ul {
+      border: 1px solid $landing-teal;
+      border-radius: 6px;
+    }
+
+    li {
+      padding: 1rem;
+      margin: 0.5rem;
+      border-radius: 50%;
+      color: white;
+    }
   }
 }

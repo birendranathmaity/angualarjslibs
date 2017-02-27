@@ -81,7 +81,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "icon": "history",
                 "icon1": "calendar",
                 "desc": "Your events",
-                "page": "root.patient.notifications"
+                "page": "root.patient.timeline"
             }
 
         ];

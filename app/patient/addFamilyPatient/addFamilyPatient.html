@@ -1,11 +1,11 @@
 <section id="addPatient" class="container page-content">
     <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
-            <h1>Add New Patient</h1>
+            <h1>Add Family</h1>
             <form name="addPatient" novalidate>
                 <fieldset>
                     <p class="form-text text-muted">
-                        Please enter either Email or Phone to add new Patients.
+                        Please enter either Email or Phone to add new Family or Patients.
                     </p>
                     <div ng-repeat="patient in ctrl.newPatients track by $index" class="row">
                         <div class="form-group col-xs-6"
@@ -30,13 +30,13 @@
                     </div>
                     <div class="row">
                         <a href="javascript: void(0);" class="btn btn-link" ng-click="ctrl.createNewPatient()">
-                            <i class="fa fa-plus-square" aria-hidden="true"></i> Add Patient
+                            <i class="fa fa-plus-square" aria-hidden="true"></i> Add Family
                         </a>
                     </div>
                     <div class="actions row">
                         <div class="col-xs-6">
                             <a class="btn btn-link" type="button" value="Next"
-                               ui-sref="root.provider"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to
+                               ui-sref="root.patient"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to
                                 Dashboard</a>
                         </div>
                         <div class="form-group col-xs-6">

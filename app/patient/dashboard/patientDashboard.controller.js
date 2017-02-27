@@ -101,7 +101,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "user-md",
                 "icon1": "user-plus",
                 "desc": "Grant Access",
-                "page": "landing"
+                "page": "root.patient.network"
             },
             {
                 "type": "network",
@@ -111,7 +111,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
                 "icon": "users",
                 "icon1": "",
                 "desc": "Add Family and Friends",
-                "page": "landing"
+                "page": "root.patient.addFamily"
             }
 
         ];

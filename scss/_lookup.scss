@@ -1,0 +1,10 @@
+#patientLookup {
+
+  .dropdown-menu {
+    width: 100%;
+
+    & > .active > a, & > .active > a:hover, & > .active > a:focus {
+      background-color: $landing-teal;
+    }
+  }
+}
