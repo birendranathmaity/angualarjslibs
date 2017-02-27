@@ -10,15 +10,15 @@
                                  ng-repeat="patientForm in ctrl.patientForms">
                                 <accordion-heading>
                             <span class="fa"
-                                  ng-class="{'fa-check-circle active-icon': patientForm.agreeTermsAndConditions, 'fa-exclamation-circle': !patientForm.agreeTermsAndConditions}"></span>
+                                  ng-class="{'fa-check-circle active-icon': patientForm.agreeTermsAndConditions, 'fa-exclamation-circle amber-icon': !patientForm.agreeTermsAndConditions}"></span>
                                     {{patientForm.formName}}
                                     <i class="pull-right fa"
                                        ng-class="{'fa-caret-down': patientForm.open, 'fa-caret-right': !patientForm.open}"></i>
                                 </accordion-heading>
                                 <div class="col-xs-12">
-                                    <div class="col-xs-12">
+                                    <p class="col-xs-12">
                                         {{patientForm.description}}
-                                    </div>
+                                    </p>
                                     <div class="col-xs-12">
                                         <object type="application/pdf" width="100%" height="100%"
                                                 data="/pdf/{{patientForm.formPath}}"></object>
