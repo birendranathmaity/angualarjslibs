@@ -7,6 +7,7 @@
                     <p class="form-text text-muted">
                         Please enter either Email or Phone to add new Family or Patients.
                     </p>
+
                     <div ng-repeat="patient in ctrl.newPatients track by $index" class="row">
                         <div class="form-group col-xs-6"
                              ng-class="{'has-error' : addPatient.password.$dirty && !addPatient.password.$valid}">

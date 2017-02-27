@@ -69,19 +69,6 @@ module.exports = function PatientRoutes(Router) {
         {
             name: "root.patient.network",
             config: {
-                url: '/network',
-                views: {
-                    '@': {
-                        templateUrl: "app/patient/network/patientNetwork.html",
-                        controller: "PatientNetworkController as ctrl"
-                    }
-                },
-                title: 'Patient Networks'
-            }
-        },
-        {
-            name: "root.patient.network.add",
-            config: {
                 url: '/network/add',
                 views: {
                     '@': {
@@ -221,7 +208,7 @@ module.exports = function PatientRoutes(Router) {
                         controller: "AddFamilyPatientController as ctrl"
                     }
                 },
-                title: 'Add Family Or Patient'
+                title: ''
             }
         }
 

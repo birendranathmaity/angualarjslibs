@@ -15,6 +15,7 @@ module.exports = function AddPatientNetworkController() {
     function activate() {
         controller.info = 'Add PatientNetwork Controller';
         createNewPatientNetworksModel();
+        controller.patientNetworks = getPatientNetworks();
     }
     
     function createNewPatientNetworksModel() {
@@ -40,5 +41,22 @@ module.exports = function AddPatientNetworkController() {
               "phone":""
           }
         };
+    }
+
+    function getPatientNetworks() {
+        return [
+            {
+                "network": "Baylor",
+                "enabled": true
+            },
+            {
+                "network": "Texas Med clinic",
+                "enabled": true
+            },
+            {
+                "network": "Medical center",
+                "enabled": true
+            }
+        ];
     }
 };

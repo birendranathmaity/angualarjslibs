@@ -139,3 +139,18 @@ a:hover {
   }
 
 }
+
+#addPatientToNetwork {
+  .icon {
+    padding: 1rem;
+    background-color: $landing-teal;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid $footer-gray-1;
+    display: inline-block;
+  }
+  .network {
+    margin: 0 1rem;
+    border-bottom: 1px solid $landing-marketing-shadow;
+  }
+}
