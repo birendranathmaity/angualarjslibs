@@ -28,37 +28,30 @@ module.exports = function PatientQuestionnaireController() {
                 "question":"Did you take medicine today?",
                 "answer" : {
                     "type" : "radio",
-                    "options" : [
-                        {
-                            "label": "Yes",
-                            "value": "yes"
-                        },
-                        {
-                            "label": "No",
-                            "value": "no"
-                        }
-                    ],
-                     "selectedValue" : ""
+                     "selectedValue" : false
 
                 },
                 "open": true
             },
             {
                 "heading":"Meditation?",
-                "question":"How many times are you doing meditation?",
+                "question":"Are you doing meditation?",
                 "answer" : {
-                    "type" : "number",
-                    "selectedValue" : ""
+                    "type" : "radio",
+
+                    "selectedValue" : true
+
                 },
                 "open": false
             },
             {
                 "heading":"Problems?",
-                "question":"Explain current problems?",
+                "question":"Are you doing exercise daily?",
                 "answer" : {
-                    "type" : "textarea",
-                    "selectedValue" : "",
-                    "show": false
+                    "type" : "radio",
+
+                    "selectedValue" : true
+
                 },
                 "open": false
             }

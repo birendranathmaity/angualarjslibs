@@ -5,16 +5,16 @@
 
                 <form name="patientFormsForm" novalidate>
                     <fieldset>
-                        <accordion close-others="oneAtATime">
-                            <div accordion-group class="panel-default" is-open="patientForm.open"
+                        <uib-accordion close-others="oneAtATime">
+                            <div uib-accordion-group class="panel-default" is-open="patientForm.open"
                                  ng-repeat="patientForm in ctrl.patientForms">
-                                <accordion-heading>
+                                <uib-accordion-heading>
                             <span class="fa"
                                   ng-class="{'fa-check-circle active-icon': patientForm.agreeTermsAndConditions, 'fa-exclamation-circle amber-icon': !patientForm.agreeTermsAndConditions}"></span>
                                     {{patientForm.formName}}
                                     <i class="pull-right fa"
                                        ng-class="{'fa-caret-down': patientForm.open, 'fa-caret-right': !patientForm.open}"></i>
-                                </accordion-heading>
+                                </uib-accordion-heading>
                                 <div class="col-xs-12">
                                     <p class="col-xs-12">
                                         {{patientForm.description}}
@@ -32,7 +32,7 @@
                                 </div>
 
                             </div>
-                        </accordion>
+                        </uib-accordion>
                     </fieldset>
                     <div class="actions row">
                         <a class="btn btn-default col-xs-2 col-xs-offset-10" ui-sref="root.patient" type="button"

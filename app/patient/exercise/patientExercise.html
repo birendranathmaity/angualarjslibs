@@ -4,11 +4,11 @@
             <h1>Patient Exercise Goals</h1>
             <form name="patientExerciseForm" novalidate>
                 <fieldset>
-                    <accordion close-others="oneAtATime">
-                    <div accordion-group class="panel-default" is-open="exercise.open" ng-repeat="exercise in ctrl.patientExercises track by $index">
-                        <accordion-heading>
+                    <uib-accordion close-others="oneAtATime">
+                    <div uib-accordion-group class="panel-default" is-open="exercise.open" ng-repeat="exercise in ctrl.patientExercises track by $index">
+                        <uib-accordion-heading>
                             {{exercise.heading}} <i class="pull-right fa" ng-class="{'fa-caret-down': exercise.open, 'fa-caret-right': !exercise.open}"></i>
-                        </accordion-heading>
+                        </uib-accordion-heading>
                         <div class="col-xs-12">
                         <div class="col-xs-6">
                             {{exercise.for}}
@@ -30,7 +30,7 @@
                         </div>
 
                     </div>
-                    </accordion>
+                    </uib-accordion>
 
                 </fieldset>
             </form>
