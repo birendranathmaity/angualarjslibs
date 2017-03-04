@@ -7,4 +7,62 @@
       background-color: $landing-teal;
     }
   }
+
+  .heading {
+    float: left;
+
+    @include media-query(xs) {
+      float: none;
+    }
+  }
+
+  .actions {
+    margin-top: 1rem;
+    float: right;
+    padding: 0;
+
+    @include media-query(xs) {
+      margin-top: 0;
+      float: none;
+    }
+  }
+
+  .avatar {
+    width: 70%;
+  }
+
+  .masonry-brick__body {
+    .fa {
+      color: $landing-green;
+    }
+
+    ul.list-inline > li {
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  .masonry-brick:nth-child(1) .masonry-brick__header {
+    border-color: $tile-blue;
+  }
+
+  .masonry-brick:nth-child(2) .masonry-brick__header {
+    border-color: $tile-yellow;
+  }
+
+  .masonry-brick:nth-child(3) .masonry-brick__header {
+    border-color: $tile-orange;
+  }
+
+  .masonry-brick:nth-child(4) .masonry-brick__header {
+    border-color: $tile-blue;
+  }
+
+  .masonry-brick:nth-child(5) .masonry-brick__header {
+    border-color: $landing-teal;
+  }
+
+  .masonry-brick:nth-child(6) .masonry-brick__header {
+    border-color: $tile-yellow;
+  }
 }

@@ -5,7 +5,7 @@
             <div class="input-group col-md-12">
                 <input type="text" class="form-control input-lg" placeholder="Patient Lookup"
                        ng-model="ctrl.selectedPatient"
-                       uib-typeahead="patient as patient.first_name for patient in ctrl.patients | filter:$viewValue | limitTo:4"/>
+                       uib-typeahead="patient as patient.profile.first_name for patient in ctrl.patients | filter:$viewValue | limitTo:4"/>
                 <span class="input-group-btn">
                     <button class="btn btn-info btn-lg" type="button">
                         <i class="fa fa-search"></i>
@@ -14,40 +14,29 @@
             </div>
         </div>
 
-        <div ng-if="ctrl.selectedPatient" class="col-xs-12 col-sm-10 col-sm-offset-1 page-content-row">
-            <h1>Patient Information <img class="img-thumbnail" alt="Patient Image" src="{{ctrl.selectedPatient.image}}" width="50" height="50"/></h1>
-            <div class="col-md-6">
-                <div class="col-md-3">First Name</div>
-                <div class="col-md-3">{{ctrl.selectedPatient.first_name}}</div>
+        <div ng-if="ctrl.selectedPatient.profile.id" class="col-xs-12 col-sm-10 col-sm-offset-1 page-content-row">
+            <div class="clearfix">
+            <h2 class="heading">Patient Information</h2>
+            <ul class="list-inline actions">
+                <li><a class="btn btn-link"> Plan Details</a> |</li>
+                <li><a class="btn btn-link" ui-sref="root.patient.timeline"> History</a></li>
+                <li ng-if="ctrl.selectedPatient.emergencyHelp">
+                    <a class="btn btn-danger">Need Emergency</a>
+                </li>
+            </ul>
             </div>
-            <div class="col-md-6">
-                <div class="col-md-3">Last Name</div>
-                <div class="col-md-3">{{ctrl.selectedPatient.last_name}}</div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-3">Email</div>
-                <div class="col-md-3">{{ctrl.selectedPatient.email}}</div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-3">Gender</div>
-                <div class="col-md-3">{{ctrl.selectedPatient.gender}}</div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-3">Address</div>
-                <div class="col-md-3">{{ctrl.selectedPatient.Address}}</div>
-            </div>
-
-
-<!--
-                "first_name": "Peter",
-                "last_name": "Spencer",
-                "email": "pspencer0@seesaa.net",
-                "gender": "Male",
-                "Address": "65844 Rieder Court",
-                "doHelpRequire": false,
-                "SSN": "185-41-2427",
-                "image":-->
-            </div>
+            <masonry-wall classmasonry-wall-brick=".masonry-brick">
+                <masonry-brick-sizer class="masonry-brick--sizer"></masonry-brick-sizer>
+                <masonry-brick-gutter class="masonry-brick--gutter"></masonry-brick-gutter>
+                <masonry-brick class="masonry-brick" ng-repeat="(key, item) in ctrl.selectedPatient" ng-if="ctrl.getBrick(key)">
+                    <div class="masonry-brick__header">
+                        <div class="masonry-brick__heading">{{ ctrl.getBrick(key).title }}</div>
+                    </div>
+                    <div class="masonry-brick__body" ng-include="ctrl.getBrick(key).templateUrl">
+                    </div>
+                </masonry-brick>
+            </masonry-wall>
         </div>
+    </div>
     </div>
 </section>

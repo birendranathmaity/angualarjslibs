@@ -96,7 +96,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
             {
                 "type": "provider",
                 "name": "Provider",
-                "count": "2",
+                "count": "",
                 "status": "",
                 "icon": "user-md",
                 "icon1": "user-plus",
@@ -106,7 +106,7 @@ module.exports = function PatientDashboardController(/*PatientService*/) {
             {
                 "type": "network",
                 "name": "Network",
-                "count": "1",
+                "count": "",
                 "status": "",
                 "icon": "users",
                 "icon1": "",

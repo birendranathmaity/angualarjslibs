@@ -31,11 +31,11 @@
             <div class="page-main-content">
                 <!-- view -->
                 <timeline>
-                    <timeline-event ng-repeat="event in ctrl.events">
+                    <timeline-event ng-repeat="event in ctrl.events | filter: {type: ctrl.eventFilter}">
                         <timeline-badge class="{{event.status}}">
                             <i ng-class="ctrl.getIconClass(event.type)" aria-hidden="true"></i>
                         </timeline-badge>
-                        <timeline-panel>
+                        <timeline-panel class="{{event.status}}">
                             <timeline-heading>
                                 <h4 class="{{event.status}}">
                                     <i ng-class="ctrl.getIconClass(event.status)" aria-hidden="true"></i>
@@ -51,8 +51,11 @@
     </div>
     <div id="filterMenu">
         <ul class="list-inline">
-            <li ng-repeat="(type, events) in ctrl.types" ng-class="ctrl.randomStatus()">
+            <li ng-repeat="(type, events) in ctrl.types" ng-class="ctrl.randomStatus($index, ctrl.eventFilter==type)" ng-click="ctrl.eventFilter=type">
                 <i ng-class="ctrl.getIconClass(type)" aria-hidden="true" ></i>
+            </li>
+            <li ng-click="ctrl.eventFilter=undefined" class="success">
+                <i class="fa fa-list" aria-hidden="true" ></i>
             </li>
         </ul>
     </div>

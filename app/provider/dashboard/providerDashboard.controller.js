@@ -56,7 +56,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
             {
                 "type": "add-patient",
                 "name": "Add Patient",
-                "count": "4",
+                "count": "",
                 "status": "",
                 "icon": "user-plus",
                 "icon1": "",
@@ -66,7 +66,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
             {
                 "type": "lookup",
                 "name": "Patient Look up",
-                "count": "9",
+                "count": "",
                 "status": "",
                 "icon": "search",
                 "icon1": "user-circle",

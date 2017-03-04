@@ -48,9 +48,12 @@ module.exports = function PatientTimelineController() {
         return 'fa fa-' + controller.typeIconMapping[type].icon;
     }
 
-    function randomStatus() {
-        var statuses = ['danger', 'success', 'warning'];
-        return statuses[Math.floor(Math.random() * statuses.length)];
+    function randomStatus(index, isSelected) {
+        var statuses = ['danger', 'success', 'warning'],
+            rand = index % statuses.length,
+            isActive = (isSelected)?'active':'in-active';
+
+        return statuses[rand] + ' ' + isActive;
 
     }
 

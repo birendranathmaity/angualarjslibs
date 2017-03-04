@@ -1,3 +1,32 @@
+@mixin status-borderColor() {
+  &.success {
+    border-color: $landing-teal;
+
+    &:before {
+      border-left-color: $landing-teal;
+      border-right-color: $landing-teal;
+
+    }
+  }
+  &.warning {
+    border-color: $tile-orange;
+
+    &:before {
+      border-left-color: $tile-orange;
+      border-right-color: $tile-orange;
+
+    }
+  }
+  &.danger {
+    border-color: $tile-red;
+
+    &:before {
+      border-left-color: $tile-red;
+      border-right-color: $tile-red;
+    }
+  }
+}
+
 #patientTimeline {
   padding: 0 2rem;
 
@@ -50,6 +79,8 @@
     &:after {
       top: 9px;
     }
+
+    @include status-borderColor;
   }
 
   #filterMenu {
@@ -69,6 +100,21 @@
       margin: 0.5rem;
       border-radius: 50%;
       color: white;
+      cursor: pointer;
+
+      &:hover {
+        @include box-shadow(1px, 2px, 2px, $landing-marketing-shadow);
+      }
+
+      &.in-active {
+        background-color: $landing-marketing-shadow !important;
+        
+        &:hover {
+          background: inherit;
+        }
+      }
+
     }
   }
+
 }
