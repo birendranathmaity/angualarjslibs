@@ -7,7 +7,6 @@ var ngMessages = require('angular-messages');
 var moment = window.moment = require('moment');
 
 require('ui-router-extras');
-require('angular-ui-bootstrap');
 require('../node_modules/@iamadamjowett/angular-click-outside/clickoutside.directive');
 require('ng-password-strength');
 require('moment-range');
@@ -18,6 +17,7 @@ require('angular-ui-switch');
 require('angular-ui-calendar');
 require('fullcalendar');
 require('angular-timeline');
+require('angular-ui-bootstrap');
 
 // App UI modules
 //var configModule = require('./app.config');

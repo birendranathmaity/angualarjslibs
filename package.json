@@ -17,7 +17,7 @@
     "angular-mocks": "1.5.x",
     "angular-resource": "1.5.x",
     "angular-sanitize": "1.5.x",
-    "angular-ui-bootstrap": "^0.13.3",
+    "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-calendar": "^1.0.2",
     "angular-ui-router": "^0.2.18",
     "angular-ui-switch": "^0.1.1",
