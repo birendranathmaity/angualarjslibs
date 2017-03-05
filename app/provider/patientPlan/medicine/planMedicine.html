@@ -1,0 +1,51 @@
+<section id="medicine" class="container page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h1>Patient Medicine</h1>
+            <div class="page-main-content">
+                <form name="planMedicine" novalidate>
+                    <fieldset>
+                        <div class="form-group col-xs-12">
+                            <table class="table table-striped">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th class="text-center">S.No</th>
+                                    <th>Prescription</th>
+                                    <th>Dosage</th>
+                                    <th>Status</th>
+                                    <th>Request or Refill</th>
+                                    <th>Comments</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat-start="medicine in ctrl.medicines" ng-if="!medicine.edited">
+                                    <td scope="row" class="text-center">{{medicine.id}}</td>
+                                    <td>{{medicine.prescription}}</td>
+                                    <td>{{medicine.startDate}}</td>
+                                    <td>{{medicine.dosage.frequency}}</td>
+                                    <td>{{medicine.status}}</td>
+                                    <td><i ng-click="ctrl.editMedicine(medicine)" class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr ng-repeat-end ng-if="medicine.edited">
+                                    <td scope="row" class="text-center">{{medicine.id}}</td>
+                                    <td><input type="text" class="form-control" ng-model="medicine.prescription"></td>
+                                    <td><input type="text" class="form-control" mask="39/19/9999" ng-model="medicine.startDate" /></td>
+                                    <td><select ng-model="medicine.dosage.frequency"
+                                                ng-options="frequencyOption for frequencyOption in ctrl.frequencyOptions">
+                                    </select></td>
+                                    <td><input type="checkbox" ng-model="medicine.status" ng-true-value="'Active'" ng-false-value="'InActive'"></td>
+                                    <td><button type="button" ng-click="ctrl.saveMedicine(medicine)">Save</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                    <div class="actions row">
+                        <a class="btn btn-default col-xs-2 col-xs-offset-10" ui-sref="root.patient.dashboard" type="button"
+                           value="Next">Submit</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

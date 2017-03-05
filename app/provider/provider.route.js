@@ -26,6 +26,19 @@ module.exports = function ProviderRoutes(Router) {
                 },
                 title: 'Provider Emergency'
             }
+        },
+        {
+            name: "root.provider.planPatientMedicine",
+            config: {
+                url: '/planPatientMedicine',
+                views: {
+                    '@': {
+                        templateUrl: "app/provider/patientPlan/medicine/planMedicine.html",
+                        controller: "PlanMedicineController as ctrl"
+                    }
+                },
+                title: 'Plan Patient Medicine'
+            }
         }
     ]);
 };
