@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function CarePlanSetupController($scope, GraphService) {
+module.exports = function CarePlanSetupController($scope, $window, GraphService) {
     var controller = this;
     controller.networkId = "carePlanNetwork";
 
@@ -10,7 +10,7 @@ module.exports = function CarePlanSetupController($scope, GraphService) {
     /**
      * Initiate Controller.
      */
-    function activate() {
+    function activate(isOnLoad) {
 
         //Build Data
         var graphData = GraphService.buildGraphData(),
@@ -23,5 +23,18 @@ module.exports = function CarePlanSetupController($scope, GraphService) {
 
         //Add events to on select
         GraphService.onSelect(controller.context);
+
+        //Just a tweek to initiate font awesome icons
+        $("#"+controller.networkId).css({'height': '499px'});
+
+
+        if(!isOnLoad) {
+            /**
+             * Window resize event handling
+             */
+            angular.element($window).bind('resize', function () {
+                activate(true);
+            });
+        }
     }
 };

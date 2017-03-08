@@ -26,7 +26,7 @@ module.exports = function GraphService() {
 
     function buildGraphData() {
         var serverData = getMockData(),
-        gData = buildNodesEdges(serverData);
+            gData = buildNodesEdges(serverData);
 
         return {
             nodes: gData.nodes,
@@ -93,21 +93,40 @@ module.exports = function GraphService() {
 
         gData.nodes.push(rootNode);
 
-        var parentId = rootNode.id;
+        var parentId = rootNode.id, nodeId = 1;
         _.forEach(sData, function (data, key) {
             var node, edge;
 
+
             node = buildNode({
-                id: ++parentId,
+                id: parentId + "." + (++nodeId),
                 type: key,
                 metaData: data
             });
 
             //Builds edge FROM node to TO node
-            edge = buildEdge(rootNode.id, parentId, key);
+            edge = buildEdge(node.id, key);
 
             gData.nodes.push(node);
             gData.edges.push(edge);
+
+            //if data is array, it's a children, create nodes and edges
+            if (_.isArray(data)) {
+                _.forEach(data, function (item, itemIndex) {
+                    var childNode, childEdge;
+                    childNode = buildNode({
+                        id: node.id + "." + itemIndex,
+                        type: item.type,
+                        metaData: item
+                    });
+
+                    //Builds edge FROM node to TO node
+                    childEdge = buildEdge(childNode.id, item.type);
+
+                    gData.nodes.push(childNode);
+                    gData.edges.push(childEdge);
+                });
+            }
 
         });
 
@@ -117,25 +136,32 @@ module.exports = function GraphService() {
     function buildNode(data) {
         return {
             id: data.id,
-            label: getTypeName(data.type),
+            label: getTypeName(data.type) || data.metaData.name,
             group: data.type
         };
     }
 
-    function getColor (type) {
+    function getColor(type) {
         return getOptions().groups[type].icon.color;
     }
 
-    function getTypeName (type) {
+    function getTypeName(type) {
         return getOptions().groups[type].name;
     }
 
-    function buildEdge(from, to, key) {
+    /**
+     * Build edge automatically with the node id
+     * Node id is 1.1.1, parent would be 1.1
+     * @param id
+     * @param key
+     * @returns {{from: string, to: *, color: {color: (*|string)}}}
+     */
+    function buildEdge(id, key) {
         var color = getColor(key) || '#3A6073';
         return {
-            from: from,
-            to: to,
-            color: { color: color }
+            from: id.split(".").slice(0, -1).join('.'),
+            to: id,
+            color: {color: color}
         };
     }
 
@@ -199,6 +225,33 @@ module.exports = function GraphService() {
                         size: 40,
                         color: '#b76ac4'
                     }
+                },
+                questionnaire: {
+                    shape: 'icon',
+                    icon: {
+                        face: 'FontAwesome',
+                        code: '\uf03a',
+                        size: 25,
+                        color: '#FF9A40'
+                    }
+                },
+                exercise: {
+                    shape: 'icon',
+                    icon: {
+                        face: 'FontAwesome',
+                        code: '\uf2dd',
+                        size: 25,
+                        color: '#FFC240'
+                    }
+                },
+                medicine: {
+                    shape: 'icon',
+                    icon: {
+                        face: 'FontAwesome',
+                        code: '\uf205',
+                        size: 25,
+                        color: '#74D1DA'
+                    }
                 }
             }
         };
@@ -209,60 +262,76 @@ module.exports = function GraphService() {
             "questionnaires": [{
                 "id": 1,
                 "name": "Survey",
-                "author": "Lisa Foster",
-                "effectiveDate": "4/17/2016",
-                "expiryDate": "7/16/2016",
-                "questions": [{"id": 1, "question": "Donec ut dolor."}, {"id": 2, "question": "Donec dapibus."}]
+                "author": "Judith Lawson",
+                "effectiveDate": "8/1/2016",
+                "expiryDate": "7/14/2016",
+                "questions": [{"id": 1, "question": "In blandit ultrices enim.", "answer": false}, {
+                    "id": 2,
+                    "question": "Morbi a ipsum.",
+                    "answer": false
+                }, {
+                    "id": 3,
+                    "question": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
+                    "answer": false
+                }],
+                "type": "questionnaire"
             }, {
                 "id": 2,
-                "name": "Health",
-                "author": "Bruce Tucker",
-                "effectiveDate": "10/26/2016",
-                "expiryDate": "9/21/2016",
-                "questions": [{"id": 1, "question": "Nunc rhoncus dui vel sem. Sed sagittis."}]
-            }, {
-                "id": 3,
-                "name": "Family History",
-                "author": "Jane Watkins",
-                "effectiveDate": "8/28/2016",
-                "expiryDate": "11/9/2016",
+                "name": "Survey",
+                "author": "Evelyn Daniels",
+                "effectiveDate": "5/7/2016",
+                "expiryDate": "7/10/2016",
                 "questions": [{
                     "id": 1,
-                    "question": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo."
+                    "question": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
+                    "answer": true
                 }, {
                     "id": 2,
-                    "question": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante."
-                }, {"id": 3, "question": "Morbi a ipsum. Integer a nibh. In quis justo."}]
+                    "question": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.",
+                    "answer": false
+                }],
+                "type": "questionnaire"
             }],
-            "exercises": [{"id": 1, "name": "video2", "duration": "30Mins"}, {
+            "exercises": [{"id": 1, "name": "video2", "duration": "2hr", "type": "exercise"}, {
                 "id": 2,
-                "name": "video2",
-                "duration": "2hr"
-            }],
+                "name": "video3",
+                "duration": "30Mins",
+                "type": "exercise"
+            }, {"id": 3, "name": "video2", "duration": "1Hr", "type": "exercise"}],
             "medicines": [{
                 "id": 1,
-                "name": "ALCOHOL",
-                "dosage": "o-1-o",
-                "effectiveDate": "3/14/2016",
-                "endDate": "10/8/2016"
+                "name": "Acetaminophen and Codeine Phosphate",
+                "dosage": "1-o-1",
+                "effectiveDate": "2/17/2017",
+                "endDate": "8/10/2016",
+                "type": "medicine"
             }, {
                 "id": 2,
-                "name": "Argentum 5",
+                "name": "ESZOPICLONE",
                 "dosage": "1-1-1",
-                "effectiveDate": "9/18/2016",
-                "endDate": "1/27/2017"
+                "effectiveDate": "6/28/2016",
+                "endDate": "4/21/2016",
+                "type": "medicine"
             }, {
                 "id": 3,
-                "name": "STARCH, CORN",
-                "dosage": "1-1-1",
-                "effectiveDate": "5/19/2016",
-                "endDate": "7/30/2016"
-            }, {"id": 4, "name": "Adalimumab", "dosage": "1-o-1", "effectiveDate": "9/4/2016", "endDate": "11/11/2016"}]
+                "name": "Phenazopyridine",
+                "dosage": "1-o-1",
+                "effectiveDate": "11/5/2016",
+                "endDate": "2/12/2017",
+                "type": "medicine"
+            }, {
+                "id": 4,
+                "name": "Omeprazole",
+                "dosage": "o-1-o",
+                "effectiveDate": "7/19/2016",
+                "endDate": "9/13/2016",
+                "type": "medicine"
+            }]
         };
     }
 
     function onSelect(context) {
-        context.on('select', function(params) {
+        context.on('select', function (params) {
             document.getElementById('selection').innerHTML = 'Selection: ' + params.nodes;
         });
     }
