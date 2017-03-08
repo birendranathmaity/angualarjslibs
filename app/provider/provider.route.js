@@ -39,6 +39,19 @@ module.exports = function ProviderRoutes(Router) {
                 },
                 title: 'Plan Patient Medicine'
             }
+        },
+        {
+            name: "root.provider.carePlan",
+            config: {
+                url: '/carePlan',
+                views: {
+                    '@': {
+                        templateUrl: "app/provider/carePlanSetup/carePlan.html",
+                        controller: "CarePlanSetupController as ctrl"
+                    }
+                },
+                title: 'Care Plan Setup'
+            }
         }
     ]);
 };
