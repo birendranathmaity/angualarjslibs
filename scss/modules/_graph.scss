@@ -1,0 +1,36 @@
+#carePlanNetwork {
+
+  height: 500px;
+  width: 100%;
+  border: 1px solid $footer-gray-1;
+  margin-bottom: 4rem;
+  background-color: $body-background;
+
+  .vis-zoomExtends {
+    background-image: url('/images/vis/zoomExtends.png') !important;
+  }
+
+  .vis-up {
+    background-image: url('/images/vis/upArrow.png') !important;
+  }
+
+  .vis-down {
+    background-image: url('/images/vis/downArrow.png') !important;
+  }
+
+  .vis-left {
+    background-image: url('/images/vis/leftArrow.png') !important;
+  }
+
+  .vis-right {
+    background-image: url('/images/vis/rightArrow.png') !important;
+  }
+
+  .vis-zoomIn {
+    background-image: url('/images/vis/plus.png') !important;
+  }
+
+  .vis-zoomOut {
+    background-image: url('/images/vis/minus.png') !important;
+  }
+}
