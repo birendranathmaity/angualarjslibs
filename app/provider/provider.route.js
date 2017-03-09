@@ -28,16 +28,42 @@ module.exports = function ProviderRoutes(Router) {
             }
         },
         {
-            name: "root.provider.planPatientMedicine",
+            name: "root.provider.prescribeMedicine",
             config: {
-                url: '/planPatientMedicine',
+                url: '/prescribeMedicine',
                 views: {
                     '@': {
-                        templateUrl: "app/provider/patientPlan/medicine/planMedicine.html",
-                        controller: "PlanMedicineController as ctrl"
+                        templateUrl: "app/provider/patientCarePlan/medicine/medicine.html",
+                        controller: "MedicineController as ctrl"
                     }
                 },
                 title: 'Plan Patient Medicine'
+            }
+        },
+        {
+            name: "root.provider.prescribeExercise",
+            config: {
+                url: '/prescribeExercise',
+                views: {
+                    '@': {
+                        templateUrl: "app/provider/patientCarePlan/exercise/exercise.html",
+                        controller: "ExerciseController as ctrl"
+                    }
+                },
+                title: 'Plan Patient Exercise'
+            }
+        },
+        {
+            name: "root.provider.prescribeExerciseMindfulness",
+            config: {
+                url: '/prescribeExerciseMindfulness',
+                views: {
+                    '@': {
+                        templateUrl: "app/provider/patientCarePlan/exercise-mindfulness/exerciseMindfulness.html",
+                        controller: "ExerciseMindfulnessController as ctrl"
+                    }
+                },
+                title: 'Plan Patient Exercise Mindfulness'
             }
         }
     ]);
