@@ -28,7 +28,7 @@ module.exports = function ProviderRoutes(Router) {
             }
         },
         {
-            name: "root.provider.prescribeMedicine",
+            name: "empty.prescribeMedicine",
             config: {
                 url: '/prescribeMedicine',
                 views: {
@@ -54,7 +54,7 @@ module.exports = function ProviderRoutes(Router) {
             }
         },
         {
-            name: "root.provider.prescribeExercise",
+            name: "empty.prescribeExercise",
             config: {
                 url: '/prescribeExercise',
                 views: {
@@ -67,7 +67,7 @@ module.exports = function ProviderRoutes(Router) {
             }
         },
         {
-            name: "root.provider.prescribeExerciseMindfulness",
+            name: "empty.prescribeExerciseMindfulness",
             config: {
                 url: '/prescribeExerciseMindfulness',
                 views: {

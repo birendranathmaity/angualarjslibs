@@ -38,6 +38,18 @@ module.exports = function BaseRoutes(Router) {
             }
         },
         {
+            name: 'empty',
+            config: {
+                url: '',
+                abstract: true,
+                views: {
+                    '@': {
+                        templateUrl: 'app/layouts/empty.html'
+                    }
+                }
+            }
+        },
+        {
             name: 'auth',
             config: {
                 url: '/auth',
