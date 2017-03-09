@@ -43,11 +43,15 @@ module.exports = function ProviderRoutes(Router) {
         {
             name: "root.provider.carePlan",
             config: {
-                url: '/carePlan',
+                url: '/carePlan/:nodeTemplate',
                 views: {
                     '@': {
                         templateUrl: "app/provider/carePlanSetup/carePlan.html",
                         controller: "CarePlanSetupController as ctrl"
+                    },
+                    'nodeInfo@view': {
+                        templateUrl: "app/provider/patientCarePlan/exercise/exercise.html",
+                        controller: "ExerciseController as ctrl"
                     }
                 },
                 title: 'Care Plan Setup'
@@ -58,7 +62,7 @@ module.exports = function ProviderRoutes(Router) {
             config: {
                 url: '/prescribeExercise',
                 views: {
-                    '@': {
+                    'nodeInfo': {
                         templateUrl: "app/provider/patientCarePlan/exercise/exercise.html",
                         controller: "ExerciseController as ctrl"
                     }

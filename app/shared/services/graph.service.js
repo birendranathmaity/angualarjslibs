@@ -17,7 +17,8 @@ module.exports = function GraphService() {
         buildNodesEdges: buildNodesEdges,
         getMockData: getMockData,
         buildGraphData: buildGraphData,
-        gDestroy: gDestroy
+        gDestroy: gDestroy,
+        getTypeName: getTypeName
     };
 
     return graphService;
@@ -90,12 +91,12 @@ module.exports = function GraphService() {
 
         gData.nodes.push(rootNode);
 
-        var parentId = rootNode.id, nodeId = 1;
+        var parentId = rootNode.id;
         _.forEach(sData, function (data, key) {
             var node, edge;
 
             node = buildNode({
-                id: parentId + "." + (++nodeId),
+                id: parentId + "." + key,
                 type: key,
                 metaData: data
             });

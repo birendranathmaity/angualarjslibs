@@ -37,8 +37,12 @@
 
   .node-info{
     position: absolute;
-    height: 2rem;
-    background-color: red;
+    background-color: $landing-teal;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
     display: none;
+    height: auto;
+    color: white;
+    border: 1px solid $footer-gray-1;
   }
 }
