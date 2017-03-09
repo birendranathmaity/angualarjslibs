@@ -18,6 +18,7 @@ require('angular-ui-calendar');
 require('fullcalendar');
 require('angular-timeline');
 require('angular-ui-bootstrap');
+require('angular-xeditable');
 
 // App UI modules
 //var configModule = require('./app.config');
@@ -44,6 +45,7 @@ angular.module('app.ui', [
     'ngMask',
     'uiSwitch',
     'angular-timeline',
+    'xeditable',
     //configModule.name,
     routerModule.name,
     publicModule.name,
