@@ -5,6 +5,7 @@
   border: 1px solid $footer-gray-1;
   margin-bottom: 4rem;
   background-color: $body-background;
+  position: relative;
 
   .vis-zoomExtends {
     background-image: url('/images/vis/zoomExtends.png') !important;
@@ -32,5 +33,12 @@
 
   .vis-zoomOut {
     background-image: url('/images/vis/minus.png') !important;
+  }
+
+  .node-info{
+    position: absolute;
+    height: 2rem;
+    background-color: red;
+    display: none;
   }
 }

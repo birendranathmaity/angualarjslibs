@@ -17,9 +17,7 @@ module.exports = function GraphService() {
         buildNodesEdges: buildNodesEdges,
         getMockData: getMockData,
         buildGraphData: buildGraphData,
-        onResize: onResize,
-        gDestroy: gDestroy,
-        onSelect: onSelect
+        gDestroy: gDestroy
     };
 
     return graphService;
@@ -29,8 +27,8 @@ module.exports = function GraphService() {
             gData = buildNodesEdges(serverData);
 
         return {
-            nodes: gData.nodes,
-            edges: gData.edges
+            nodes: new vis.DataSet(gData.nodes),
+            edges: new vis.DataSet(gData.edges)
         };
     }
 
@@ -86,9 +84,8 @@ module.exports = function GraphService() {
 
         var gData = {nodes: [], edges: []},
             rootNode = buildNode({
-                id: 1,
-                type: "patient",
-                metaData: {}
+                id: 0,
+                type: "patient"
             });
 
         gData.nodes.push(rootNode);
@@ -96,7 +93,6 @@ module.exports = function GraphService() {
         var parentId = rootNode.id, nodeId = 1;
         _.forEach(sData, function (data, key) {
             var node, edge;
-
 
             node = buildNode({
                 id: parentId + "." + (++nodeId),
@@ -174,6 +170,14 @@ module.exports = function GraphService() {
             interaction: {
                 navigationButtons: true,
                 keyboard: true
+            },
+            nodes: {
+                color: {
+                    background: '#f6f9fc'
+                }
+            },
+            edges: {
+                width: 2
             },
             groups: {
                 patient: {
@@ -300,7 +304,7 @@ module.exports = function GraphService() {
             }, {"id": 3, "name": "video2", "duration": "1Hr", "type": "exercise"}],
             "medicines": [{
                 "id": 1,
-                "name": "Acetaminophen and Codeine Phosphate",
+                "name": "Acetaminophen",
                 "dosage": "1-o-1",
                 "effectiveDate": "2/17/2017",
                 "endDate": "8/10/2016",
@@ -328,16 +332,6 @@ module.exports = function GraphService() {
                 "type": "medicine"
             }]
         };
-    }
-
-    function onSelect(context) {
-        context.on('select', function (params) {
-            document.getElementById('selection').innerHTML = 'Selection: ' + params.nodes;
-        });
-    }
-
-    function onResize() {
-
     }
 
 };

@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function CarePlanSetupController($scope, $window, GraphService) {
+module.exports = function CarePlanSetupController($scope, $window, $compile, GraphService) {
     var controller = this;
     controller.networkId = "carePlanNetwork";
 
@@ -13,28 +13,56 @@ module.exports = function CarePlanSetupController($scope, $window, GraphService)
     function activate(isOnLoad) {
 
         //Build Data
-        var graphData = GraphService.buildGraphData(),
-            networkEl = document.getElementById(controller.networkId);
+        controller.graphData = controller.graphData || GraphService.buildGraphData();
+        controller.networkEl = controller.networkEl || document.getElementById(controller.networkId);
 
         GraphService.gDestroy(controller.context);
 
         //Draw Graph
-        controller.context = GraphService.draw(networkEl, graphData);
+        controller.context = GraphService.draw(controller.networkEl, controller.graphData);
 
-        //Add events to on select
-        GraphService.onSelect(controller.context);
+        //Add events
+        addEvents();
 
-        //Just a tweek to initiate font awesome icons
-        $("#"+controller.networkId).css({'height': '499px'});
+        //Just a tweak to initiate font awesome icons
+        $("#" + controller.networkId).css({'height': '499px'});
 
-
-        if(!isOnLoad) {
-            /**
-             * Window resize event handling
-             */
-            angular.element($window).bind('resize', function () {
-                activate(true);
-            });
+        //Redraw graph on service
+        if (!isOnLoad) {
+            redraw();
         }
+    }
+
+    function redraw() {
+        /**
+         * Window resize event handling
+         */
+        angular.element($window).bind('resize', function () {
+            activate(true);
+        });
+    }
+
+    function onSelect(params, nodeEl) {
+        if(params.nodes.length) {
+            nodeEl.css({
+                left: params.pointer.DOM.x,
+                top: params.pointer.DOM.y
+            }).show();
+        } else {
+            nodeEl.hide();
+        }
+    }
+
+    function addEvents() {
+
+        //Create node info element to show data
+        var infoEl = angular.element('<div class="node-info">Data goes here</div>');
+        $("#" + controller.networkId).append(infoEl);
+        $compile(infoEl)($scope);
+
+        //Event goes here
+        controller.context.on('select', function (params) {
+            onSelect(params, infoEl);
+        });
     }
 };
