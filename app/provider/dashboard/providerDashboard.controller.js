@@ -31,7 +31,7 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "icon": "calendar",
                 "icon1": "calendar-o",
                 "desc": "Reminders and appointments",
-                "page": "root.patient.notifications"
+                "page": "root.patient.appointments"
             },
             {
                 "type": "Emergency",
@@ -74,14 +74,14 @@ module.exports = function ProviderDashboardController(/*PatientService*/) {
                 "page": "root.patient.lookup"
             },
             {
-                "type": "history",
-                "name": "History",
+                "type": "Forum",
+                "name": "Forum",
                 "count": "2",
                 "status": "",
-                "icon": "history",
-                "icon1": "calendar",
-                "desc": "Your events",
-                "page": "root.patient.timeline"
+                "icon": "rss",
+                "icon1": "th",
+                "desc": "Discuss here",
+                "page": "root.provider"
             }
 
         ];

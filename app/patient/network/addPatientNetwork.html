@@ -1,7 +1,7 @@
 <section id="addPatientToNetwork" class="container page-content">
     <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 form-content">
-            <h2>Add New Patient Network</h2>
+            <h1>Add Patient Network</h1>
             <form name="addPatientToNetwork" novalidate>
                 <fieldset>
                     <p class="form-text text-muted">
@@ -48,11 +48,12 @@
                     </div>
                     <div class="actions row">
                         <div class="col-xs-6">
-                            <a ui-sref="root.patient" class="btn btn-link">Skip if already configured</a>
+                            <a ui-sref="root.patient" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to
+                                Dashboard</a>
                         </div>
                         <div class="form-group col-xs-6">
                             <a class="btn btn-default btn-block" type="button" value="Next"
-                               ui-sref="root.patient.network">Next</a>
+                               ui-sref="root.patient">Grant Access</a>
                         </div>
                     </div>
                 </fieldset>

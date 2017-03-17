@@ -1,7 +1,11 @@
 <section id="medicine" class="container page-content">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1">
-            <h1>Patient Medicine</h1>
+            <h1>
+                <a href="javascript: window.history.back();">
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                </a>
+                Patient Medicine</h1>
             <div class="page-main-content">
                 <form name="addPatient" novalidate>
                     <fieldset>
@@ -40,8 +44,13 @@
                         </div>
                     </fieldset>
                     <div class="actions row">
-                        <a class="btn btn-default col-xs-2 col-xs-offset-10" ui-sref="root.patient.dashboard" type="button"
-                           value="Next">Submit</a>
+                        <div class="col-xs-8">
+
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <a class="btn btn-default btn-block" type="button" value="Next"
+                               ui-sref="root.patient">Submit</a>
+                        </div>
                     </div>
                 </form>
             </div>
