@@ -19,5 +19,5 @@ requireDir('./build-tasks');
 
 gulp.task('default', ['clean'], function () {
     // These tasks must be run inside the task to wait for clean
-    gulp.start(['sass', 'libs-fonts-dev', 'connect', 'browserify-libs', 'purify-css', 'base', 'lint', 'watch']);
+    gulp.start(['libs-js','libs-css', 'app-js','app-img',  'app-fonts',  'connect', 'browserify-libs', 'purify-css', 'base', 'lint', 'watch']);
 });

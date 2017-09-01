@@ -8,6 +8,6 @@ var SASS_DEST = 'dist/styles';
 gulp.task('purify-css', function() {
     return gulp.src(VENDOR_CSS)
         .pipe(plumber())
-        .pipe(purify(['**/app/**/*.js', '**/app/**/*.html']))
+       // .pipe(purify(['**/app/**/*.js', '**/app/**/*.html']))
         .pipe(gulp.dest(SASS_DEST));
 });

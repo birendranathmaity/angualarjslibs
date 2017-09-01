@@ -1,0 +1,29 @@
+   <!--<ul class="dropdown-menu open" style="display:block">
+                      
+                       <li><a href="myprofile.html"> <span class="pull-left">My Profile </span><span class="glyphicon glyphicon-user pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="addphoto.html"> <span class="pull-left">Add Photo </span> <span class="glyphicon glyphicon-picture pull-right"></span></a></li>
+            
+          
+            
+        
+            
+                
+              <li><a href="changepassword.html"><span class="pull-left">Account Settings</span>  <span class="glyphicon glyphicon-cog pull-right"></span></a></li>           
+                   <li class="divider"></li>     
+            <li><a href="changepassword.html"><span class="pull-left">Change Password</span> <span class="glyphicon glyphicon-lock pull-right"></span></a></li>
+            <li class="divider"></li>
+         
+            <li><a href="#"><span class="pull-left">Log Out</span> <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+             <li class="divider"></li>
+ <li><a href="whocanviewmyprofile.html"><span class="pull-left">Who Can View My Profile</span> <span class="glyphicon glyphicon-eye-open pull-right"></span></a></li> <li class="divider"></li>
+              <li><a href="completeyourprofile.html"><span class="pull-left">Complete Your Profile</span> <span class="glyphicon glyphicon-star pull-right"></span></a></li>          
+         
+
+        
+              
+                    </ul>-->
+                    <ul class="list-group animated bounceIn" style="min-width:250px">
+  <li class="list-group-item" ng-repeat="pro in hdnm.profileSettingsData" ng-click="hdnm.logout()">{{pro.translateKey | translate}} <span class="{{pro.icon}} pull-right"></span></li>
+ 
+</ul>

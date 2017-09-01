@@ -14,20 +14,22 @@ require('ng-device-detector');
 require('ng-idle');
 require('ng-mask');
 require('angular-ui-switch');
-require('angular-ui-calendar');
-require('fullcalendar');
-require('angular-timeline');
 require('angular-ui-bootstrap');
-
+require('angular-sanitize');
+require('ui-select');
+require('angular-toastr');
+require('ng-scrollbars');
+require('ngstorage');
 // App UI modules
-//var configModule = require('./app.config');
+var LoadingBarModule = require('./loading-bar');
 var routerModule = require('./router');
 var publicModule = require('./public');
 var layoutsModule = require('./layouts');
-var patientModule = require('./patient');
-var providerModule = require('./provider');
-var sharedModule = require('./shared');
-var commonModule = require('./common');
+var translateModule = require('./translate');
+var myHomeModule = require('./my-home');
+var registrationLoginModule = require('./registration-login');
+var adminModule = require('./admin');
+
 
 angular.module('app.ui', [
     uiRouter,
@@ -35,7 +37,9 @@ angular.module('app.ui', [
     ngAnimate,
     ngMessages,
     'ui.bootstrap',
-    'ui.calendar',
+    'ngSanitize',
+    'ui.select',
+    'toastr',
     'angular-click-outside',
     'ct.ui.router.extras',
     'ngPasswordStrength',
@@ -43,13 +47,16 @@ angular.module('app.ui', [
     'ngIdle',
     'ngMask',
     'uiSwitch',
-    'angular-timeline',
-    //configModule.name,
+    'ngScrollbars',
+    'ngStorage',
+    
+    LoadingBarModule.name,
+    translateModule.name,
     routerModule.name,
     publicModule.name,
     layoutsModule.name,
-    patientModule.name,
-    providerModule.name,
-    sharedModule.name,
-    commonModule.name
+    myHomeModule.name,
+    registrationLoginModule.name,
+    adminModule.name
+  
 ]);

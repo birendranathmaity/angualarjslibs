@@ -1,0 +1,196 @@
+<form name="regisForm" class="animated flip" angular-validator-submit="registerFormCtrl.submitMyForm(form)" novalidate angular-validator>
+   <div class="row marg-b15">
+      <div class="col-md-6 p-l-0 p-r-7">
+        
+         <input class="input-btn form-control" 
+            type="text" 
+            name="email"
+            ng-model="form.email"
+            placeholder="Email"
+            email-available
+            validator = "registerFormCtrl.emailValidator(form.email) === true"
+            invalid-message="registerFormCtrl.emailValidator(form.email)"
+            required-message="registerFormCtrl.required('REQUIRED')"
+            validate-on="dirty"
+            required />
+           
+      </div>
+      <div class="col-md-6 p-l-0 p-r-7">
+         <input class="input-btn form-control"  type="password" name="password" placeholder="Password" 
+            ng-model = "form.password"
+            validator = "registerFormCtrl.passwordValidator(form.password) === true"
+            invalid-message = "registerFormCtrl.passwordValidator(form.password)"
+            required-message="registerFormCtrl.required('REQUIRED')"
+            validate-on="dirty"
+            required/>
+      </div>
+   </div>
+   <div class="row marg-b15" >
+      <div class="col-md-6 p-l-0 p-r-7">
+         <input class="input-btn form-control" type="text" 
+            name="first_name"
+            placeholder="First Name" 
+            ng-model="form.first_name"
+            required-message="registerFormCtrl.required('REQUIRED')"
+            validate-on="dirty"
+            required/>
+      </div>
+      <div class="col-md-6 p-l-0 p-r-7"> 
+         <input class="input-btn form-control" type="text" name="last_name" 
+            placeholder="Last Name"
+            ng-model="form.last_name"
+            required-message="registerFormCtrl.required('REQUIRED')"
+            validate-on="dirty"
+            required />
+      </div>
+   </div>
+   <div class="row marg-b15">
+      <div ng-init="form.created_by='SELF'"></div>
+      <div class="col-md-6  p-l-10"> 
+         <label for="email">Profile Created By </label>
+      </div>
+      <div class="col-md-6 p-l-0 p-r-7 ">
+         <select class="select-btn minimal form-control"
+            ng-model="form.created_by"
+            >
+            <option value="SELF"> Self</option>
+            <option value="FATHER"> Father</option>
+            <option value="MOTHER"> Mother</option>
+         </select>
+      </div>
+      <div class="requirements">
+      </div>
+   </div>
+   <div class="row marg-b15">
+      <div class="col-md-6  p-l-10"> 
+         <label for="email">Date Of Birth  </label>
+      </div>
+      <div class="col-md-6 p-l-0 p-r-7 dobfield">
+         <div class="pull-left date-birth p-r-7">
+            <select class="select-btn minimal form-control"
+               name="date"
+               ng-model = "form.day"
+               validator = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
+               invalid-message = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               append-message=".dobfield"
+               validate-on="dirty"
+               required
+               >
+               <option value disabled > Date</option>
+               <option ng-repeat="_ in ((_ = []) && (_.length=31) && _) track by $index" value="{{$index+1}}">{{$index+1}}</option>
+            </select>
+         </div>
+         <div class="pull-left month-birth p-r-7">
+            <select class="select-btn minimal form-control" 
+               name="month"
+               ng-model="form.month"
+               validator = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
+               invalid-message = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               append-message=".dobfield"
+               validate-on="dirty"
+               required >
+               <option value disabled> Month</option>
+               <option ng-repeat="month in registerFormCtrl.monthsL" value="{{$index+1}}">{{month}}</option>
+            </select>
+         </div>
+         <div class="pull-right year-birth">
+            <select class="select-btn minimal form-control"
+               name="year"
+               ng-options="year.value as year.label for year in registerFormCtrl.years" 
+               ng-model="form.year"
+               validator = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
+               invalid-message = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               append-message=".dobfield"
+               validate-on="dirty"
+               required>
+               <option value disabled > Year</option>
+            </select>
+         </div>
+      </div>
+      <div class="requirements">
+      </div>
+   </div>
+   <div class="row marg-b15">
+      <div class="col-md-6  p-l-10"> 
+         <label for="email">Your Mobile Number </label>
+      </div>
+      <div class="col-md-6 p-l-0 p-r-7 phoneNumber">
+         <div class="pull-left contry-code">
+            <!--<select class="select-btn minimal" >
+               <option> +91 </option>
+                  <option> +91</option>
+                  <option> +91</option>
+                  <option> +91</option>
+               
+               </select>-->
+            <div ng-init="form.country_code='+91'"></div>
+            <select class="select-btn minimal" ng-model="form.country_code">
+               <option ng-repeat="(key, value) in registerFormCtrl.countryCodes" value="{{ value }}">{{ value }}</option>
+            </select>
+         </div>
+         <div class="pull-right " style=" width: 182px; "> 
+            <input class="input-btn form-control" type="text"
+               name="phone_number" 
+               placeholder="999 999 9999"
+               ng-model = "form.phone_number"
+               validator = "registerFormCtrl.phoneValidator(form.phone_number) === true"
+               invalid-message = "registerFormCtrl.phoneValidator(form.phone_number)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               validate-on="dirty"
+               append-message=".phoneNumber"
+               required
+               /> 
+         </div>
+      </div>
+      <div class="requirements">
+      </div>
+   </div>
+   <div class="row marg-b15">
+      <div class=" p-l-0 hidden-md col-lg-6 p-r-7"> 
+         <label for="email"></label>
+      </div>
+      <div class="col-md-12 col-lg-6 p-l-0 p-r-7">
+         <div class="maxl">
+            <div ng-init="form.gender='MALE'"></div>
+            <label class="radio inline"> 
+            <input type="radio" name="sex" value="MALE"   ng-model="form.gender"
+               validator = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
+               invalid-message = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               append-message=".dobfield"
+               validate-on="dirty"
+               required
+               >
+            <span> Male </span> 
+            </label>
+            <label class="radio inline"> 
+            <input type="radio" name="sex" value="FEMALE" ng-model="form.gender"
+               validator = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
+               invalid-message = "registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)"
+               required-message="registerFormCtrl.required('REQUIRED')"
+               append-message=".dobfield"
+               validate-on="dirty"
+               required
+               >
+            <span>Female </span> 
+            </label>
+         </div>
+      </div>
+      <div class="requirements">
+      </div>
+   </div>
+   <div class="row marg-b15">
+      <div class="col-md-6 no-padding"> 
+         <div ng-init="form.profile_complete_status='PENDING'"></div>
+         <div ng-init="form.user_role='FREEUSER'">
+           <div ng-init="form.user_status='INPROGRESS'">
+         <input  type="submit" value="Sign Up" class="reg-sub pull-left" />
+      </div>
+      <div class="col-md-6">
+         <p class="pull-left note-tc"> By Clicking on Register  an acount You agree to  our  T&C and Privacy Policy</p>
+      </div>
+   </div>
+</form>

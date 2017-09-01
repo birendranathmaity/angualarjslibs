@@ -1,0 +1,14 @@
+{ 
+    
+    "LOGIN":"/login",
+    "AUTHENTICATE":"/authenticate",
+    "SIGNIN":"/signin",
+    "SIGNUP":"/singup",
+    "LOGOUT":"/logout",
+    "COUNTRIES":"/countries",
+    "STATES":"/states/:countryId",
+    "CITIES":"/cities/:state_id",
+    "CHECKEMAILID":"/checkemailid",
+    "OTPVERIFY":"/otpverify",
+    "SAVEMOREINFO":"/savemoreinfo"
+}

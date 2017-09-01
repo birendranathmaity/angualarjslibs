@@ -10,6 +10,6 @@ gulp.task('clean', function () {
 });
 
 gulp.task('clean-index', function () {
-    return gulp.src(['./index.html'], {read: false})
-        .pipe(clean());
+    // return gulp.src(['./index.html'], {read: false})
+    //    .pipe(clean());
 });

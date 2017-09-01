@@ -1,0 +1,7 @@
+<div class="lang">Language : <span class="">
+<select 
+  ng-options="language | translate for language in lang.languages"
+  ng-model="lang.language"
+  ng-change="lang.updateLanguage()">
+</select>
+</span></div> 

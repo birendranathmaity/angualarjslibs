@@ -1,0 +1,6 @@
+{
+    "DATABASE_URL": "mongodb://localhost:27017",
+    "DATABASE" : "dholbaaje_db",
+    "SERVER_PORT" : 4000,
+    "SERVER_URL":"localhost"
+}

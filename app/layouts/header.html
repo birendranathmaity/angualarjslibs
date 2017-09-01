@@ -1,26 +1,94 @@
 <header>
-    <div class="container">
-        <nav class="row">
-            <a ui-sref="landing" class="col-xs-6">
-                <img src="/images/logo.png" width="125"/>
-            </a>
-            <div class="col-xs-6 text-right">
-                <ul class="list-inline">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript: void(0);">
-                            <span class="avatar img-thumbnail" aria-hidden="true" ng-if="false">
-                                <span>{{ ctrl.user.firstName | limitTo: 1}}</span>
-                                <span>{{ ctrl.user.lastName | limitTo: 1 }}</span>
-                            </span>
-                            <img src="/images/thumbnail_profile.jpg" class="img-thumbnail" width="56"/>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript: void(0);">Profile</a></li>
-                            <li><a ui-sref="landing">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+  
+  <div class="header navbar navbar-inverse ">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="header-seperation">
+        
+            <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper" style="display:none">
+                <li class="dropdown"> <a id="main-menu-toggle" href="#main-menu"  class="" > <div class="iconset top-menu-toggle-white"></div> </a> </li>
+            </ul>
+       
+         
+            <a href="index.html"><img src="assets/img/logo.png" class="logo" alt=""  data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="" height=""/></a>
+         
+        
+            <ul class="nav pull-right ">
+                <li class="dhole-lng">  
+                     
+                    <div class="pull-right"> 
+
+                        <lang-select></lang-select>
+                    </div>
+                </li>
+<!--------------------test-->
+
+ 
+
+
+
+                <!--------------------End test---->
+
+                
+            </ul>
+         
+            
+            <!-- BEGIN LOGO -->
+            
+            <!-- END LOGO -->
+            
+        </div>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <div class="header-quick-nav" >
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="pull-left topnav">
+            
+              <div class="demo-1">
+ 
+
+                <ul class="">
+                    
+                 <li class="active" ng-repeat="menu in ctrl.headerMenu"> 
+                      <a ui-sref="{{menu.route}}" ng-click="ctrl.loadSubmenu(menu.route)" > {{ menu.translatekey | translate }} </a>
+                </li>
+           
+                 </ul>
+      </div>
+  
+   </div>
+
+    
+            <!-- END TOP NAVIGATION MENU -->
+            <!-- BEGIN CHAT TOGGLER -->
+            <div class="pull-right">
+              <header-notifications-msg></header-notifications-msg>
+                
+
+                      
             </div>
-        </nav>
-    </div>
+            <!-- END CHAT TOGGLER -->
+        </div>
+
+        <div class="header-sub-nav" >
+            <!-- BEGIN TOP NAVIGATION MENU -->
+
+           <div class="pull-left topnav">
+              <div class="demo-2">
+                <ul class="">
+                  <li ng-repeat="smenu in ctrl.subMenus" ng-class="{active: ctrl.$state.includes(smenu.route)}">  <a ui-sref="{{smenu.route}}" >  {{ smenu.translatekey | translate }}</a></li>
+                  <!--<li ng-class="{active: ctrl.$state.includes('root.myprofile')}"> <a ui-sref="root.myprofile" class="biliboard"> My Profile</a> </li>
+                  <li ng-class="{active: ctrl.$state.includes('root.addphotos')}"> <a ui-sref="root.addphotos"> Add Photos </a></li>   
+                                   -->
+                 </ul>
+              </div>  
+            </div>
+      </div>
+  
+   </div>
+
+    
+     
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+  
 </header>

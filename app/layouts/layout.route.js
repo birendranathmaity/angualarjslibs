@@ -7,7 +7,7 @@ module.exports = function BaseRoutes(Router) {
                 url: '/',
                 deepStateRedirect: {
                     default: {
-                        state: 'landing'
+                        state: 'register'
                     }
                 }
             }
@@ -21,74 +21,21 @@ module.exports = function BaseRoutes(Router) {
                     'header': {
                         templateUrl: 'app/layouts/header.html',
                         controller: 'HeaderController as ctrl'
-                    }
-                }
-            }
-        },
-        {
-            name: 'public',
-            config: {
-                url: '',
-                abstract: true,
-                views: {
-                    '@': {
-                        templateUrl: 'app/layouts/public.html'
-                    }
-                }
-            }
-        },
-        {
-            name: 'empty',
-            config: {
-                url: '',
-                abstract: true,
-                views: {
-                    '@': {
-                        templateUrl: 'app/layouts/empty.html'
-                    }
-                }
-            }
-        },
-        {
-            name: 'auth',
-            config: {
-                url: '/auth',
-                abstract: true,
-                views: {
-                    'header': {
-                        templateUrl: 'app/layouts/header.html',
-                        controller: 'HeaderController as ctrl'
                     },
-                    'sidebar': {
+                     'leftsidebar': {
                         templateUrl: 'app/layouts/sidebar.html',
                         controller: 'SidebarController as ctrl'
+                    },
+                   
+                    
+                     'footer': {
+                        templateUrl: 'app/layouts/footer.html'
+                       
                     }
                 }
             }
-        },
-        {
-            name: "auth.patient",
-            config: {
-                url: '/patient',
-                views: {
-                    '@': {
-                        templateUrl: "app/layouts/auth.html"
-                    }
-                },
-                title: "Patient Auth Dashboard"
-            }
-        },
-        {
-            name: "auth.provider",
-            config: {
-                url: '/provider',
-                views: {
-                    '@': {
-                        templateUrl: "app/layouts/auth.html"
-                    }
-                },
-                title: "Provider Auth Dashboard"
-            }
         }
+        
+      
     ]);
 };

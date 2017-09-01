@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function ($location, $rootScope, $state, routerConfig) {
+module.exports = function ($location, $rootScope, $state, routerConfig,$sessionStorage) {
     var stateProvider = routerConfig.config.$stateProvider,
         urlRouterProvider = routerConfig.config.$urlRouterProvider,
         handlingRouteChangeError = false;
@@ -37,7 +37,7 @@ module.exports = function ($location, $rootScope, $state, routerConfig) {
             stateProvider.state(route.name, route.config);
         });
 
-        urlRouterProvider.otherwise('/landing');
+        urlRouterProvider.otherwise('/');
     }
 
     /**
@@ -98,9 +98,14 @@ module.exports = function ($location, $rootScope, $state, routerConfig) {
      */
     /* istanbul ignore next */
     function handleRoutingTransition() {
+    //      $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+	// 	$rootScope.animation = currRoute.animation;
+	//   });
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-
-            //$state.go('public.landing');
+if(!$sessionStorage.token){
+ $location.path('/register');
+}
+      
 
         });
     }

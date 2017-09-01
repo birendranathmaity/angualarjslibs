@@ -10,7 +10,7 @@ var gutil = require('gulp-util');
  * override the global file.
  */
 gulp.task('lint', function () {
-    return gulp.src(['app/**/*.js', 'tests/**/*.js'])
+    return gulp.src(['app/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish, {verbose: true}))
         .pipe(jshint.reporter('fail'));
@@ -20,7 +20,7 @@ gulp.task('lint', function () {
  * Same lint task as above, but will exit the process if an error is detected. Used for build process.
  */
 gulp.task('lint-build', function () {
-    return gulp.src(['app/**/*.js', 'tests/**/*.js'])
+    return gulp.src(['app/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish, {verbose: true}))
         .pipe(jshint.reporter('fail'))

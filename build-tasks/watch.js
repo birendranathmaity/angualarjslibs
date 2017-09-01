@@ -18,10 +18,10 @@ var SASS_SRC = 'scss/**/*.scss';
  */
 
 // Watch files For changes
-gulp.task('watch', ['libs-js-dev', 'libs-css-dev', 'browserify', 'sass-watch', 'change-watch'], function () {
+gulp.task('watch', [ 'browserify','app-css', 'change-watch'], function () {
     livereload.listen();
     // Reload page
-    gulp.watch(['dist/**/*', 'app/**/*.html', 'index.html']).on('change', livereload.changed);
+    gulp.watch(['dist/**/*', 'app/**/*.html', 'index.html','assets/css/**/*.css']).on('change', livereload.changed);
 });
 
 // Run browserify anytime a change is made
@@ -52,14 +52,11 @@ gulp.task('lint-watch', function () {
         });
 });
 
-// Recompile CSS from Sass changes
-gulp.task('sass-watch', function () {
-    gulp.watch(SASS_SRC, ['sass']);
-});
+
 
 // Build blobs for unit tests and linting on file change
 gulp.task('change-watch', function () {
-    gulp.watch(['app/**/*.js', 'tests/**/*.js', '!app/app.config.js'], ['browserify-watch'])
+    gulp.watch(['app/**/*.js','assets/css/**.css'], ['browserify-watch','app-css'])
         .on('change', function (event) {
             // Only run tests for changed files
             var pathParts = event.path.split('/');

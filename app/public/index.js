@@ -3,7 +3,5 @@
 var angular = require('angular');
 
 var landingModule = require('./landing');
-
-module.exports = angular.module('app.ui.public', [
-    landingModule.name
-]);
+//var loginService = require('./../http-service/login/login.service');
+module.exports = angular.module('app.ui.public', [ landingModule.name]);

@@ -1,0 +1,2 @@
+dholbaaje_db
+mongoimport --db dholbaaje_db --collection countries --file fileName.json --jsonArray

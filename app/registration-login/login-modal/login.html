@@ -1,0 +1,79 @@
+<form name="loginForm" class="animated flip" angular-validator-submit="ctrl.signin(login)" novalidate angular-validator>
+
+                      <div class="modal-content animated jackInTheBox">
+                        <div class="modal-header">
+                          <button type="button" class="close" ng-click="ctrl.cancel()" aria-hidden="true">×</button>
+                        
+                        </div>
+                        <div class="modal-body ">
+                   <div class="row-fluid">
+
+                     <div class="col-lg-12 text-center">
+                       
+                       <a href="index.html"> <img src="assets/img/login-logo.png" width="64" height="64" />  </a>
+                     </div>
+                     <div class="clearfix"></div>
+                     <div class="text-center"> <h2> Login With  Your Email id</h2></div>
+                     <div class="clearfix"></div>
+                      <div class="text-center"><p class="validationMessage" ng-if="ctrl.invaliduser">{{'INVALID_USER_PASSWORD_MSG' | translate}}</p></div>
+                     <div> <input 
+                      type="text" 
+                      name="username"
+                      ng-model="login.email"
+                      placeholder="Email | Mobile No | Profile ID"
+                      required-message="ctrl.required('REQUIRED')"
+                      validate-on="dirty"
+                      required
+                      
+                      ></div>
+                     <div> <input 
+                       type="password"
+                       name="password"
+                       ng-model="login.password"
+                       placeholder="Password"
+                       required-message="ctrl.required('REQUIRED')"
+                       validate-on="dirty"
+                       required
+                       ></div>
+
+                     <div class="row-fluid">
+                       <div class="pull-left">   
+                       <div class="checkbox">
+            <label style="font-size: 1.2em; line-height: 13px;">
+                <input type="checkbox" value="" unchecked>
+                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+               <span style="font-size: 12px;"> Keep me signed in
+ </span>
+            </label>
+        </div>
+ </div>
+                       <div class="pull-right"> <p><a ng-click="ctrl.forgetPwdModal('lg')" href="#" > Forget Password? </a> </p></div>
+                     </div>
+<div class="clearfix"></div>
+                                    
+
+                   </div>
+                        </div>
+                        <div class="modal-footer">
+                                  <div class="row-fluid">
+                      <div class="col-lg-12 no-padding">
+                        <div> <button type="submit"  class="button  raised hoverable login-btn "  ><div class="anim"></div><span> <i class="fa fa-user" aria-hidden="true"></i>
+ Login</span></button></div>
+                      </div>
+                      <div class="col-lg-6 no-padding">
+                        <div> <button type="button" class="button  raised hoverable facebook-btn" hidden data-dismiss="modal"><div class="anim"></div><span> <i class="fa fa-facebook-official" aria-hidden="true"></i>
+
+ Facebook</span></button></div>
+                      </div>
+                       
+                    
+                     </div> 
+                     <div class="clearfix"></div>
+                     <p class="d-acnt"><a href="#"> Don’t have an account ?</a> </p>
+                          <p class="reg-free"><a href="#"> Register Free </a> </p>
+                        </div>
+                      </div>
+</form>
+                      <!-- /.modal-content -->
+                 
+                   

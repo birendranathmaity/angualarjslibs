@@ -1,0 +1,69 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="ctrl.cancel()" aria-hidden="true">×</button>
+        <div class="row">
+            <div class="col-lg-12 profile-img customModalTitle">
+                <h4 class="pop-h4"> Upload Profile Photo</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body ">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item"> 
+                <input type="file"  ng-model="ctrl.myImage" profile-image id="fileInput"/>
+          </li>
+             <li class="list-group-item cursorpointer"  ng-click="ctrl.openCamera()">
+                  <a href="#"  >
+      <span class="glyphicon glyphicon-camera"></span> {{ctrl.clicked ? "Close Camera" : "Open Camera"}}
+    </a> 
+                  </li>
+        </ul>
+        <ul class="list-group list-group-horizontal" >
+             <li class="list-group-item cursorpointer" ng-if="ctrl.clicked" ng-click="ctrl.makeSnapshot()"> 
+               <a href="#"  >
+      <span class="glyphicon glyphicon-picture"></span> Take Picture
+    </a>
+          </li>
+          <div ng-init="ctrl.cropType='circle'"></div>
+            <li class="list-group-item cursorpointer" ng-if="ctrl.myImage" ng-class="ctrl.cropType==='circle' ? 'active':''" ng-click="ctrl.cropType='circle'"> 
+               <a href="#" class="">
+      <span class="glyphicon glyphicon-record"></span> 
+    </a>
+          </li>
+             <li class="list-group-item cursorpointer" ng-if="ctrl.myImage" ng-class="ctrl.cropType==='square' ? 'active':''" ng-click="ctrl.cropType='square'">
+                  <a href="#" class="">
+      <span class="glyphicon glyphicon-retweet"></span> 
+    </a>
+                  </li>
+        </ul>
+
+         
+  <div class="cropArea">
+       <div class="alert alert-error ng-scope" ng-show="ctrl.webcamError && !ctrl.clicked" style="">
+<span>Webcam could not be started. Did you give access to it?</span>
+</div>
+      <webcam  ng-if="ctrl.clicked"
+        channel="ctrl.channel" 
+        on-streaming="ctrl.onSuccess()" 
+        on-error="ctrl.onError(err)" 
+        on-stream="ctrl.onStream(stream)"></webcam>
+    <img-crop 
+    area-type="{{ctrl.cropType}}"
+    ng-if="ctrl.myImage"
+    image="ctrl.myImage" 
+    result-image="ctrl.myCroppedImage"
+    ></img-crop>
+  </div>
+<canvas id="snapshot" style="display:none" width="300" height="300"></canvas>
+  <div ng-if="ctrl.myCroppedImage">Preview :</div>
+  <div id="watermark"></div>
+  <div ng-if="ctrl.myCroppedImage"  style="text-align: center;"><img ng-class="ctrl.cropType==='circle'?'cropCircle':'cropSquare'"  ng-src="{{ctrl.myCroppedImage}}" /></div>
+    </div>
+        <div class="modal-footer" >
+            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto()"  class="button pull-right    raised hoverable next-step" data-dismiss="modal">
+                <div class="anim"></div>
+                <span>Save & Continue!</span>
+            </button>
+        </div>
+    </div>
+</div>
