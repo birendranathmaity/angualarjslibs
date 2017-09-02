@@ -1,6 +1,6 @@
 /* @ngInject */
 
-module.exports = function CropModalController($uibModal,$uibModalInstance,$scope) {
+module.exports = function CropModalController($uibModal,$uibModalInstance,user,$location) {
   
     var controller = this;
     //modal close button//
@@ -86,12 +86,19 @@ var _video = null,
     };
 
   controller.savePhoto=function(){
-      
-watermark([controller.myCroppedImage])
-  .image(watermark.text.lowerRight('Dholbaaje', '30px Josefin Slab', '#fff', 0.5))
-  .then(function (img) {
-    document.getElementById('watermark').appendChild(img);
-  });
-  };
+
+  $location.path(user.skip_url);
+     controller.cancel();
+// watermark([controller.myCroppedImage])
+//   .image(watermark.text.lowerRight('Dholbaaje', '30px Josefin Slab', '#fff', 0.5))
+//   .then(function (img) {
+//     document.getElementById('watermark').appendChild(img);
+//   });
+};
+controller.skip=function(){
+    controller.cancel();
+$location.path(user.skip_url);
+};
+
 
 };

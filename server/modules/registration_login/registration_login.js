@@ -96,7 +96,10 @@ function afterUserSave(user,res){
 
  if(user.created_by==="ADMIN"){
      
-
+res.json({
+    success:true,
+    user:user
+});
     }
     else{
      createToken(res, user);
@@ -156,8 +159,25 @@ function createOtp(user,vrType) {
 
     };
 
-    var OTPMODEL = new OTP(otpDetails);
-    OTPMODEL.save(function(err, details) {});
+    
+
+
+    OTP.findOne({user_id:user.user_id},function(err, otpData) {
+ if (err) {
+                res.json({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+
+                console.log(otpData)
+                if (!otpData) {
+                    var OTPMODEL = new OTP(otpDetails);
+                    OTPMODEL.save(function(err, details) {});
+                }
+            }
+
+});
 
 };
 exports.savemoreinfo = function(req, res) {
@@ -194,6 +214,8 @@ exports.savemoreinfo = function(req, res) {
 
                                     more_info_vr: true
                                 };
+
+                                
                                  UserProfileUpdate(req.body.user_id,update,res);
                                
 
@@ -252,6 +274,8 @@ exports.verifyotp = function(req, res) {
         } else {
 
             if (result) {
+
+                
               var update={
                     phone_vr:true
                 };
@@ -260,10 +284,10 @@ exports.verifyotp = function(req, res) {
 
             }
             else{
-                 res.json({
+                res.json({
                 success: false,
                 msg: "Invalid otp"
-            });
+               });
             }
 
         }
@@ -275,35 +299,50 @@ function UserProfileUpdate(userId,update,res){
     }, update, {
         new: true
     }, function(err, user) {
-createToken(res, user);
+
+        res.json({
+                success: true,
+                user:user
+              
+            });
+        // if(user.created_by==="ADMIN"){
+        //         res.json({
+        //         success: true,
+        //         msg: ""
+        //     });
+        // }
+        // else{
+        //    createToken(res, user);
+        // }
+
         
     });
 };
-function saveUserProfileStatus(user_id, updateData) {
-    USER_P_STATUS.findOne({
-        "user_id": user_id
-    }, updateData, {
-        new: true
-    }, function(err, userPStatus) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-           // if (userPStatus) {
-                updateData.user_id = user_id;
-                var ststus = new USER_P_STATUS(updateData);
-                ststus.save(function(err) {});
+// function saveUserProfileStatus(user_id, updateData) {
+//     USER_P_STATUS.findOne({
+//         "user_id": user_id
+//     }, updateData, {
+//         new: true
+//     }, function(err, userPStatus) {
+//         if (err) {
+//             res.json({
+//                 type: false,
+//                 data: "Error occured: " + err
+//             });
+//         } else {
+//            // if (userPStatus) {
+//                 updateData.user_id = user_id;
+//                 var ststus = new USER_P_STATUS(updateData);
+//                 ststus.save(function(err) {});
 
 
-          //  }
+//           //  }
 
-        }
-    });
+//         }
+//     });
 
 
-};
+// };
 exports.signin = function(req, res) {
   
     User.findOne({
@@ -317,8 +356,13 @@ exports.signin = function(req, res) {
             });
         } else {
             if (user) {
+                
+                if(!user.phone_vr){
+                  
+                  createOtp(user,"PHONE_NUMBER_VR");
+                }
                 createToken(res, user);
-               // userProfileStatusCheccker(user,res);
+              
              
             } 
             else{
@@ -335,40 +379,40 @@ function afterSignIn(user,res){
 
 
 };
-function userProfileStatusCheccker(user,res){
- USER_P_STATUS.findOne({
-        "user_id": user.user_id
-    },  function(err, userPStatus) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
+// function userProfileStatusCheccker(user,res){
+//  USER_P_STATUS.findOne({
+//         "user_id": user.user_id
+//     },  function(err, userPStatus) {
+//         if (err) {
+//             res.json({
+//                 type: false,
+//                 data: "Error occured: " + err
+//             });
+//         } else {
            
-if(!userPStatus.phone_vr){
-createOtp(user.phone_number, userPStatus.user_id,"PHONE_NUMBER");
-}
+// if(!userPStatus.phone_vr){
+// createOtp(user.phone_number, userPStatus.user_id,"PHONE_NUMBER");
+// }
 
-Token.findOneAndUpdate({
-        "user_id": user.user_id
-    }, {
-        token:tokenId({user:user,user_p_status:userPStatus}),
-        token_status:"VALID",
-        created_on:new Date()
-    }, {
-        new: true
-    }, function(err, tokendetails) {
-     res.json({
-     success:true,
-     token:tokendetails.token
-});
+// Token.findOneAndUpdate({
+//         "user_id": user.user_id
+//     }, {
+//         token:tokenId({user:user,user_p_status:userPStatus}),
+//         token_status:"VALID",
+//         created_on:new Date()
+//     }, {
+//         new: true
+//     }, function(err, tokendetails) {
+//      res.json({
+//      success:true,
+//      token:tokendetails.token
+// });
         
-    });
+//     });
  
-        }
-    });
-};
+//         }
+//     });
+// };
 
 exports.logout=function(req,res){
 Token.findOneAndUpdate({user_id:  req.body.user_id},{token_status: "INVALID"},{ new: true} ,function(err, tokenData) {

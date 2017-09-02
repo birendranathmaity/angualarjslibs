@@ -4,6 +4,10 @@ module.exports = function ($uibModal, $filter,countryService,loginservice) {
         restrict: 'E',
         templateUrl:'./app/registration-login/components/basic-info.html',
         controllerAs:'ctrl',
+        scope:{
+            userId:"=",
+            isAdmin:"@"
+        },
         controller: [
             '$scope',
             '$element',
@@ -11,7 +15,7 @@ module.exports = function ($uibModal, $filter,countryService,loginservice) {
             function ($scope, $element, $attrs) {
            var controller = this;
 
-
+console.log($scope.userId);
     var formdata = require('./form-data');
 //open login modal//
     controller.openLoginModal = function(size) {
@@ -163,17 +167,18 @@ controller.cities.push({id:"other",name:"Other"});
 
     };
     controller.openDisplayPhotoUploadModal=function(size){
- var modalInstance = $uibModal.open({
-            animation: true,
-            windowClass: "",
-            templateUrl: './app/registration-login/crop-modal/crop-modal.html',
-            controller: 'CropModalController',
-            controllerAs: 'ctrl',
-            size: size,
-            backdrop: 'static',
-            keyboard: false
+        loginservice.openCropPopup({}); 
+//  var modalInstance = $uibModal.open({
+//             animation: true,
+//             windowClass: "",
+//             templateUrl: './app/registration-login/crop-modal/crop-modal.html',
+//             controller: 'CropModalController',
+//             controllerAs: 'ctrl',
+//             size: size,
+//             backdrop: 'static',
+//             keyboard: false
 
-        });
+//         });
     };
     controller.submitMoreInfo=function(basicinfo,educationwork,intrests,family){
        
@@ -182,19 +187,29 @@ family.time_birth_min=parseInt(family.time_birth_min);
 family.time_birth_hr=parseInt(family.time_birth_hr);
 
         var req={
-          "basicinfo":basicinfo,
-          "educationwork":educationwork,
-          "intrests":intrests,
+           "user_id":$scope.userId,
+           "basicinfo":basicinfo,
+           "educationwork":educationwork,
+           "intrests":intrests,
           "family":family
         };
          loginservice.savemoreinfo(req, function(res) {
                        if(res.success){
-                  
-                
-                  loginservice.saveToken(res.token);
-                  
-                 
-               }
+
+                           if($scope.isAdmin){
+                              
+                           res.skip_url="/viewusers";
+                      
+                           }
+                           else{
+                               
+                                  res.skip_url="/dashboard";
+                           }
+
+                          res.user_id=$scope.userId;
+                          
+                          loginservice.openCropPopup(res); 
+       }
                       
                     }, function() {
 

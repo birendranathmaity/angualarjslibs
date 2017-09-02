@@ -20,8 +20,14 @@ loginservice.verifyOtp(req, function(res) {
                      controller.invalidOtp=false;
                      if(res.success){
                           controller.cancel();
-                          loginservice.saveToken(res.token);
-                         // $location.path("/moreinfo");
+                          if(!res.user.more_info_vr){
+                                 $location.path("/moreinfo");
+                          }
+                          else{
+                               $location.path("/dashboard");
+                          }
+                          
+                        //  loginservice.afterloginRoute();
                      }
                      else{
                          controller.invalidOtp=true;

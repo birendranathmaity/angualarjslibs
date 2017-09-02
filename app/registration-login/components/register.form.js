@@ -5,13 +5,19 @@ module.exports = function ($uibModal, loginservice) {
         templateUrl: './app/registration-login/components/regis.form.html',
         controllerAs: 'registerFormCtrl',
         replace: true,
+        scope:{
+                isAdmin:"@"
+        },
         controller: [
             '$scope',
             '$element',
             '$attrs',
             '$filter',
             function ($scope, $element, $attrs, $filter) {
+             
+
                 var controller = this;
+                controller.isAdmin=$scope.isAdmin;
                 var formData = require('./form-data');
                 //date of birth//
                 controller.monthsL = formData.monthsL;
@@ -130,9 +136,15 @@ module.exports = function ($uibModal, loginservice) {
                     loginservice.signup(form, function(res) {
                        
                       if(res.success){
-                  
                 
-                  loginservice.saveToken(res.token);
+                if(!controller.isAdmin){
+                     loginservice.saveToken(res.token);
+                       loginservice.afterloginRoute();
+                }
+                else{
+                    loginservice.openMoreInfoModal(res.user);
+                }
+                 
                   
                  
                }
@@ -144,6 +156,8 @@ module.exports = function ($uibModal, loginservice) {
 
 
                 };
+               
+         
                 // controller.openOTPModal = function (size) {
                 //     var modalInstance = $uibModal.open({
                 //         animation: true,

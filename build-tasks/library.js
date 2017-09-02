@@ -54,7 +54,8 @@ var libraries = {
         'assets/plugins/jquery.mCustomScrollbar.css',
         'node_modules/angular-loading-bar/build/loading-bar.min.css',
         'assets/plugins/headereffects/css/component.css',
-        'assets/plugins/headereffects/css/normalize.css'
+        'assets/plugins/headereffects/css/normalize.css',
+        'assets/css/angular-toastr.css'
        
     ],
     appcss:[

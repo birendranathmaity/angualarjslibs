@@ -11,6 +11,7 @@ var OtpVrController = require('./otp-verification/otp.controller');
 var HelpMeWriteController = require('./help-me-write/help-me-write');
 var CropModalController = require('./crop-modal/crop-modal');
 var cropDirective = require('./crop-modal/ng-img-crop');
+var goToMoreController=require('./goto-moreinfo-modal/goto-moreinfo-modal');
 //services//
 var registrationLoginServices = require('./services');
 module.exports = angular.module('app.ui.registration.login', [registercomponents.name,'ngImgCrop',registrationLoginServices.name])
@@ -21,6 +22,7 @@ module.exports = angular.module('app.ui.registration.login', [registercomponents
     .controller('MoreInfoController', MoreInfoController)
     .controller('OtpVrController', OtpVrController)
     .controller('HelpMeWriteController', HelpMeWriteController)
-    .controller('CropModalController', CropModalController);
+    .controller('CropModalController', CropModalController)
+    .controller('goToMoreController', goToMoreController);
    
     

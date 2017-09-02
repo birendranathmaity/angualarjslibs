@@ -43,7 +43,10 @@
   "USER":"User",
   "ADD_USER":"Add User",
   "INVALID_USER_PASSWORD_MSG":"Invalid username/password",
-  "INVALIDOTP_MSG":"Invalid OTP"
+  "INVALIDOTP_MSG":"Invalid OTP",
+  "SIGNUP":"Sign Up",
+  "SAVE":"Save"
+
 
 
 }

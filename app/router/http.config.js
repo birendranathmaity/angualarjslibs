@@ -7,7 +7,7 @@ module.exports = function ($httpProvider) {
                     
                     config.headers = config.headers || {};
                     if ($sessionStorage.token) {
-                         console.log("ok")
+                       
                         config.headers.Authorization = 'Bearer ' + $sessionStorage.token;
                     }
                     return config;
@@ -15,7 +15,7 @@ module.exports = function ($httpProvider) {
                 'responseError': function(response) {
                      
                     if(response.status === 401 || response.status === 403) {
-                        console.log("error")
+                     
                        
                         $location.path('/register');
                     }

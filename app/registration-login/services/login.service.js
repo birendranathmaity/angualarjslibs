@@ -32,6 +32,7 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                 var obj = JSON.parse(urlBase64Decode(encoded));
                 user=obj._doc;
                 $rootScope.fname=user.first_name;
+                $rootScope.login_user_id=user.user_id;
             }
             return user;
         }
@@ -43,8 +44,7 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.SINGUP, data).success(success).error(error);
             },
             savemoreinfo: function(data, success, error) {
-               var user=getUserFromToken();
-                data.user_id=user.user_id;
+               
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.SAVEMOREINFO, data).success(success).error(error);
             },
             signin: function(data, success, error) {
@@ -58,10 +58,7 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                 data.user_id=user.user_id;
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
             },
-            afterloginSession:function(result){
-              $sessionStorage.token=result.token;
-           //   $sessionStorage.user_p_status=result.user_p_status;
-            },
+           
             afterloginRoute:function(){
 
                 var logindata=getUserFromToken();
@@ -70,7 +67,7 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                
 
             
-               if(!user.phone_vr){
+                  if(!user.phone_vr){
                        this.openotpPopup();
                                return;
                   }
@@ -88,6 +85,24 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                   }
                 
             },
+             openCropPopup:function(user){
+                 var modalInstance = $uibModal.open({
+                         animation: true,
+                         windowClass: "",
+                         templateUrl: './app/registration-login/crop-modal/crop-modal.html',
+                         controller: 'CropModalController',
+                         controllerAs: 'ctrl',
+                         size: "lg",
+                         backdrop: 'static',
+                         keyboard: false,
+                         resolve: {
+                             user: function () {
+                              return user;
+                                }
+                             }
+
+        });
+            },
             openotpPopup:function(){
                         var modalInstance = $uibModal.open({
                         animation: true,
@@ -101,17 +116,29 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
 
                     });
             },
+            openMoreInfoModal:function(user){
+                        var modalInstance = $uibModal.open({
+                        animation: true,
+                        windowClass: "login-model",
+                        templateUrl: './app/registration-login/goto-moreinfo-modal/goto-moreinfo.html',
+                        controller: 'goToMoreController',
+                        controllerAs: 'ctrl',
+                        size: "lg",
+                        backdrop: 'static',
+                        keyboard: false,
+                        resolve: {
+                             user: function () {
+                              return user;
+                                }
+                             }
+
+                    });
+            },
             saveToken: function(token) {
                
                $sessionStorage.token=token;
-               var user=getUserFromToken();
-
-               console.log(user);
-               this.afterloginRoute();
             },
-            me: function(success, error) {
-                $http.get(ServiceUrls.BASEURL + '/me/').success(success).error(error)
-            },
+            
             logout: function(success,error) {
                  var user=getUserFromToken();
                  var data={};

@@ -60,9 +60,13 @@
   <div ng-if="ctrl.myCroppedImage"  style="text-align: center;"><img ng-class="ctrl.cropType==='circle'?'cropCircle':'cropSquare'"  ng-src="{{ctrl.myCroppedImage}}" /></div>
     </div>
         <div class="modal-footer" >
-            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto()"  class="button pull-right    raised hoverable next-step" data-dismiss="modal">
+            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto()"  class="button raised hoverable next-step" data-dismiss="modal">
                 <div class="anim"></div>
                 <span>Save & Continue!</span>
+            </button>
+            <button type="button"  ng-click="ctrl.skip()"  class="button raised hoverable next-step" data-dismiss="modal">
+                <div class="anim"></div>
+                <span>Skip & Continue!</span>
             </button>
         </div>
     </div>

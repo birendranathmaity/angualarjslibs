@@ -1,16 +1,44 @@
 <div class="page-content">
    <div class="content">
-      <div class="full">
-         <div class="container reg-sec" style="padding-top:20px">
-            <div class="row">
-                 <basic-info ng-if="false"></basic-info>
-               <div class="col-md-6 col-lg-6 col-sm-8 col-xs-8 animated rubberBand">	<img src="assets/img/bg/dholecouple.png" width="100%" class="dhole-img" /></div>
-               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                 
-                  <register-form></register-form>
-               </div>
-            </div>
+      <div class="row">
+         <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+             <search-by-id></search-by-id>
+         </div>
+         <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+          
+              <div class="full" ng-if="ctrl.showMoreInfodir || ctrl.showRegisForm">
+                 <basic-info user-id="ctrl.user_id" is-admin="true" ng-if="ctrl.showMoreInfodir"></basic-info>
+                 <div class="reg-sec" style="padding:25px">
+                   <register-form is-admin="true" ng-if="ctrl.showRegisForm"></register-form>
+                 </div>
+              </div>
+         
+           
          </div>
       </div>
    </div>
 </div>
+<!--<div class="page-content">
+   <div class="content">
+     
+      <div class="full">
+        
+         <div class="container reg-sec" style="padding-top:20px">
+           
+            <div class="row">
+                 <div class="col-lg-7 col-md-7 col-sm-9 col-xs-12 no-padding">
+             <basic-info user-id="ctrl.user_id" is-admin="true" ng-if="ctrl.showMoreInfodir"></basic-info>
+            </div>
+                  <div ng-if="ctrl.showRegisForm">
+               <div class="col-md-6 col-lg-6 col-sm-8 col-xs-8 animated rubberBand" >	
+                 <img src="assets/img/bg/dholecouple.png" width="100%" class="dhole-img" /></div>
+               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                 
+                  <register-form is-admin="true" ng-if="ctrl.showRegisForm"></register-form>
+               </div>
+                  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>-->

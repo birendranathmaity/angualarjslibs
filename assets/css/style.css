@@ -14152,7 +14152,7 @@ form legend,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 750px;
+    /*min-height: 750px;*/
 }
 .reg-sec {
     padding-top: 125px;
@@ -14205,6 +14205,18 @@ form legend,
 }
 .reg-sec .year-birth {
     width: 85px;
+}
+
+.phoneNumber{
+    display: -webkit-inline-flex;
+display: -ms-inline-flexbox;
+display: inline-flex;
+
+}
+.dobfield{
+    display: -webkit-inline-flex;
+display: -ms-inline-flexbox;
+display: inline-flex;
 }
 .main-head {
     color: #fff;
@@ -15373,6 +15385,7 @@ span.round-tab:hover {
 .validationMessage {
     font-size: 16px !important;
     color: #b94a48 !important;
+    text-align: left !important;
     font-family: "Open Sans", "Helvetica", "Arial";
 }
 button[disabled] {

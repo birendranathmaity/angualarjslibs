@@ -5,7 +5,9 @@ var profileImage=require('./profile-image');
 var basicInfo=require('./basic.info.ctrl');
 var webcam=require('./webcam');
 var emailAvailable=require('./email-available');
+
 module.exports = angular.module('app.ui.registr.components',[])
+    
     .directive('registerForm', registerForm)
     .directive('angularValidator', angularValidator)
     .directive('profileImage', profileImage)

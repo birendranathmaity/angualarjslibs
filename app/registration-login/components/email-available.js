@@ -5,7 +5,7 @@ module.exports = function ($timeout, $filter,loginservice) {
     require: 'ngModel',
     link: function (scope, element, attrs, ngModel) {
       element.bind('blur', function (e) {
-        if (!ngModel || !element.val()) return;
+        if (!ngModel || !element.val()){return;} 
        
       
        loginservice.checkemail({"email": element.val()}, function(res) {
@@ -36,5 +36,5 @@ module.exports = function ($timeout, $filter,loginservice) {
        
       });
     }
-  }
+  };
 };
