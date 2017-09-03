@@ -1,5 +1,5 @@
 ## Dhol Baaje
-## How to get the paxis project up and running in your local dev machine
+## How to get the Dhol Baaje project up and running in your local dev machine
 Let's walk you through step-by-step on how to set up the AngularJS project on your environment.
 
 ## 1. Create a workspace

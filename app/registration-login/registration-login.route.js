@@ -13,6 +13,9 @@ module.exports = function regisLoginRoutes(Router) {
                         controller: "RegistrationController as ctrl"
                     }
                 },
+                 params: {
+                    permisstion: "ALLUSER"
+                },
                 title: 'register'
             }
         },
@@ -25,6 +28,9 @@ module.exports = function regisLoginRoutes(Router) {
                         templateUrl: "app/registration-login/more-info/more-info.html",
                         controller: "MoreInfoController as ctrl"
                     }
+                },
+                params: {
+                    permisstion: "ALLUSER"
                 },
                 title: 'moreinfo'
             }

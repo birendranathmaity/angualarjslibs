@@ -138,7 +138,18 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                
                $sessionStorage.token=token;
             },
-            
+            getCurrentUserRole:function(success){
+                var cUser = getUserFromToken();
+               
+                if($sessionStorage.token){
+                   
+                   success(cUser.user_role);
+                }
+             else{
+               $location.path("/register");
+             }
+                       
+            },
             logout: function(success,error) {
                  var user=getUserFromToken();
                  var data={};

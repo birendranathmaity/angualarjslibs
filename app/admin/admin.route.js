@@ -1,7 +1,6 @@
 /* @ngInject */
 module.exports = function adminRoutes(Router) {
-    Router.configureRoutes([
-        {
+    Router.configureRoutes([{
             name: "root.admindashboard",
             config: {
                 url: '/admin',
@@ -10,6 +9,9 @@ module.exports = function adminRoutes(Router) {
                         templateUrl: "app/admin/home/dashboard/dashboard.html",
                         controller: "adminDashboardController as ctrl"
                     }
+                },
+                params: {
+                    permisstion: "ADMIN"
                 },
                 title: ' Admin Dashboard'
             }
@@ -24,10 +26,13 @@ module.exports = function adminRoutes(Router) {
                         controller: "addUserController as ctrl"
                     }
                 },
+                params: {
+                    permisstion: "ADMIN"
+                },
                 title: ' User'
             }
         },
-          {
+        {
             name: "root.viewusers",
             config: {
                 url: '/viewusers',
@@ -37,10 +42,13 @@ module.exports = function adminRoutes(Router) {
                         controller: "viewUserController as ctrl"
                     }
                 },
+                params: {
+                    permisstion: "ADMIN"
+                },
                 title: 'view user'
             }
         },
-          {
+        {
             name: "root.newuser",
             config: {
                 url: '/newuser',
@@ -49,6 +57,9 @@ module.exports = function adminRoutes(Router) {
                         templateUrl: "app/admin/user/newuser.html",
                         controller: "newUserController as ctrl"
                     }
+                },
+                params: {
+                    permisstion: "ADMIN"
                 },
                 title: 'New User'
             }
@@ -62,6 +73,9 @@ module.exports = function adminRoutes(Router) {
                         templateUrl: "app/admin/user/newuser.html",
                         controller: "PhotoVrController as ctrl"
                     }
+                },
+                params: {
+                    permisstion: "ADMIN"
                 },
                 title: 'Photo Verification'
             }

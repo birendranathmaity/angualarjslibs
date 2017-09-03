@@ -12,7 +12,8 @@ return {
     "CITIES":"/cities",
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
-    "SAVEMOREINFO":"/savemoreinfo"
+    "SAVEMOREINFO":"/savemoreinfo",
+    "GETALL_ACTIVE_USERS":"/getallactiveusers"
       };
     
 

@@ -5,9 +5,83 @@
             <basic-search-box></basic-search-box>
          </div>
          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-            <div class="col-md-8 no-padding ">
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-12  col-xs-12  ">
+            <div class="col-md-12 no-padding ">
+               <div class="grid simple" >
+                  <div class="grid-body no-border email-body" >
+                     <br>
+                     <div class="row-fluid" >
+                        <div class="row-fluid dataTables_wrapper">
+                           <div class="col-lg-4 no-padding  ">
+                              <div class="pull-left">
+                                 <div class="checkbox check-success pull-left top-link-all">
+                                    <input id="checkbox72" type="checkbox" value="1" class="p-l-20" >
+                                    <label for="checkbox72"> All</label>
+                                    <ul class="pull-right del-link">
+                                       <li>
+                                          <a href="#">
+                                             Empty
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-8">
+                           <div class="dataTables_paginate paging_bootstrap pagination pull-right">
+                           <ul>
+                           <li class="pull-left"> <div class=" hidden-xs">Showing <b>1 to {{ctrl.users.length}}</b> of {{ctrl.total}} entries</div> </li>
+                           <li class="prev disabled">
+                          <ul 
+                            uib-pagination 
+                            total-items="ctrl.total"
+                            max-size="ctrl.maxSize"
+                            num-pages="ctrl.pages"
+                            ng-model="ctrl.page"
+                            items-per-page="ctrl.limit"
+                            class="pagination-sm"
+                            boundary-link-numbers="true"
+                            ng-change="ctrl.pageChanged()"
+                            rotate="true">
+                               </ul>
+
+                           </li>
+                              </ul>
+                           
+                           </div>
+                           </div>
+                           <div class="clearfix"></div>
+                           <div class="inbox-mail">
+                              <ul>
+                                 <li class="row-fluid" ng-repeat="user in ctrl.users">
+                                    <a href="#">
+                                       <div class="col-lg-2 no-padding pull-left">
+                                          <div class="checkbox check-success pull-left">
+                                             <input id="checkbox73" type="checkbox" value="1" >
+                                             <label for="checkbox73"> </label>
+                                          </div>
+                                          <div class="user-profile-pic pull-left">
+                                             <img data-src-retina="assets/img/profiles/dharma.jpg" data-src="assets/img/profiles/dharma.jpg" src="assets/img/profiles/dharma.jpg" alt="" width="91" height="88" />
+                                             <p> ( {{user.user_id}} )</p>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-10">
+                                          <p class="pull-right"> Recived  On : <span> {{user.created_on}} </span> | <span> 07 :15 pm</span>  </p>
+                                          <p class="clearfix"></p>
+                                          <p class="mailer-name"> {{user.first_name}}</p>
+                                          <p class="mailer-sub"><span> {{user.age}} Years. 5 feet 5 Inc, Single, Reddy. Has Sent You Contact Request </span> <span class="pull-right">   <button class="pic-accept" type="button">Accept   </button>  <button class="pic-reject" type="button">Reject   </button></span> </p>
+                                          <div class="clearfix"></div>
+                                          <div class=" m-t-10">
+                                             <p class="pull-left"> <span class="small-text"> 
+                                    <a href="#"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
+                                    </div>
+                                    </div>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>

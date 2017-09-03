@@ -1,5 +1,6 @@
 var serviceConfig = require('./serviceConfig.json');
 var regisLogin=require('./modules/registration_login/registration_login');
+var Admin=require('./modules/admin/view_users');
 module.exports = function(app,express,process){
    app.post(serviceConfig.AUTHENTICATE,regisLogin.authenticate);
    app.post(serviceConfig.SIGNIN,regisLogin.signin);
@@ -11,7 +12,8 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.COUNTRIES,regisLogin.getcountries);
    app.get(serviceConfig.STATES,regisLogin.getstates);
    app.get(serviceConfig.CITIES,regisLogin.getcities);
-
+//admin//////
+ app.post(serviceConfig.GETALL_ACTIVE_USERS,Admin.getallActiveUsers);
 
 // app.post('/authenticate', function(req, res) {
 //     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {

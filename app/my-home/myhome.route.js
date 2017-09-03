@@ -11,6 +11,9 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "DashboardController as ctrl"
                     }
                 },
+                params: {
+                    permisstion: "ALLUSER"
+                },
                 title: ' Dashboard'
             }
         },
@@ -24,6 +27,9 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "MyProfileController as ctrl"
                     }
                 },
+                params: {
+                    permisstion: "ALLUSER"
+                },
                 title: 'My Profile'
             }
         },
@@ -36,6 +42,9 @@ module.exports = function myHomeRoutes(Router) {
                         templateUrl: "app/my-home/add-photos/add-photos.html",
                         controller: "AddPhotosController as ctrl"
                     }
+                },
+                params: {
+                    permisstion: "ALLUSER"
                 },
                 title: 'Add Photos'
             }

@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function ($location, $rootScope, $state, routerConfig,$sessionStorage) {
+module.exports = function ($location, $rootScope, $state, routerConfig,loginservice) {
     var stateProvider = routerConfig.config.$stateProvider,
         urlRouterProvider = routerConfig.config.$urlRouterProvider,
         handlingRouteChangeError = false;
@@ -102,10 +102,25 @@ module.exports = function ($location, $rootScope, $state, routerConfig,$sessionS
 	// 	$rootScope.animation = currRoute.animation;
 	//   });
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-if(!$sessionStorage.token){
- $location.path('/register');
+          
+            loginservice.getCurrentUserRole(function(role){
+if(role ==="FREEUSER" && toParams.permisstion ==="ALLUSER"){
+return;
 }
-      
+if(role ===toParams.permisstion){
+return;
+}
+
+if(role !==toParams.permisstion){
+$location.path("/");
+}
+            });
+// if(!$sessionStorage.token){
+//  $location.path('/register');
+// }
+//  else{
+
+//  }     
 
         });
     }
