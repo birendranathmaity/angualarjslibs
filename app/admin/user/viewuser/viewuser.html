@@ -2,7 +2,7 @@
    <div class="content">
       <div class="row">
          <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-            <basic-search-box></basic-search-box>
+           <search-by-id></search-by-id>
          </div>
          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
             <div class="col-md-12 no-padding ">
@@ -13,7 +13,20 @@
                         <div class="row-fluid dataTables_wrapper">
                            <div class="col-lg-4 no-padding  ">
                               <div class="pull-left">
-                                 <div class="checkbox check-success pull-left top-link-all">
+                                  <div class="checkbox">
+            <label style="font-size: 1.2em; line-height: 13px;">
+                <input type="checkbox" value="" ng-model="ctrl.selectedAll" ng-click="ctrl.checkAll()">
+                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+               <span style="font-size: 12px;"> All
+ </span>
+            </label>
+            <ul class="pull-right del-link">
+                                       <li>
+                                         <button ng-if="ctrl.userIds.length>0" class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept   </button>
+                                       </li>
+                                    </ul>
+        </div>
+                                 <!--<div class="checkbox check-success pull-left top-link-all">
                                     <input id="checkbox72" type="checkbox" value="1" class="p-l-20" >
                                     <label for="checkbox72"> All</label>
                                     <ul class="pull-right del-link">
@@ -22,14 +35,15 @@
                                              Empty
                                        </li>
                                     </ul>
-                                 </div>
-                              </div>
+                                 </div>-->
+                                 
+                              </div> 
                            </div>
                            <div class="col-lg-8">
                            <div class="dataTables_paginate paging_bootstrap pagination pull-right">
                            <ul>
-                           <li class="pull-left"> <div class=" hidden-xs">Showing <b>1 to {{ctrl.users.length}}</b> of {{ctrl.total}} entries</div> </li>
-                           <li class="prev disabled">
+                           <li class="pull-left"> <div class=" hidden-xs">Showing <b>{{ctrl.start}} to {{ctrl.end}}</b> of {{ctrl.total}} entries</div> </li>
+                           <li class="prev disabled" style="margin-top: -2px;">
                           <ul 
                             uib-pagination 
                             total-items="ctrl.total"
@@ -39,10 +53,13 @@
                             items-per-page="ctrl.limit"
                             class="pagination-sm"
                             boundary-link-numbers="true"
+  
+                           
                             ng-change="ctrl.pageChanged()"
                             rotate="true">
                                </ul>
-
+                          <!--previous-text="&#10094;"
+                            next-text="&#10095;"-->
                            </li>
                               </ul>
                            
@@ -51,30 +68,31 @@
                            <div class="clearfix"></div>
                            <div class="inbox-mail">
                               <ul>
-                                 <li class="row-fluid" ng-repeat="user in ctrl.users">
-                                    <a href="#">
+                                 <li class="row-fluid userlist" ng-repeat="user in ctrl.users">
+                                  
                                        <div class="col-lg-2 no-padding pull-left">
                                           <div class="checkbox check-success pull-left">
-                                             <input id="checkbox73" type="checkbox" value="1" >
-                                             <label for="checkbox73"> </label>
+                                               <label > 
+                                              <input type="checkbox" ng-click="ctrl.checkBoxSelect()" value="" ng-model="user.Selected">
+                                          <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
                                           </div>
-                                          <div class="user-profile-pic pull-left">
+                                            <div class="user-profile-pic pull-left">
                                              <img data-src-retina="assets/img/profiles/dharma.jpg" data-src="assets/img/profiles/dharma.jpg" src="assets/img/profiles/dharma.jpg" alt="" width="91" height="88" />
                                              <p> ( {{user.user_id}} )</p>
                                           </div>
                                        </div>
                                        <div class="col-lg-10">
-                                          <p class="pull-right"> Recived  On : <span> {{user.created_on}} </span> | <span> 07 :15 pm</span>  </p>
+                                          <p class="pull-right"> Created  On : <span> {{user.created_on | date:'dd-MMM-yyyy'}} </span> | <span> {{user.created_on | date:'h:mm a'}}</span>  </p>
                                           <p class="clearfix"></p>
                                           <p class="mailer-name"> {{user.first_name}}</p>
-                                          <p class="mailer-sub"><span> {{user.age}} Years. 5 feet 5 Inc, Single, Reddy. Has Sent You Contact Request </span> <span class="pull-right">   <button class="pic-accept" type="button">Accept   </button>  <button class="pic-reject" type="button">Reject   </button></span> </p>
+                                          <p class="mailer-sub"><span> {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Contact Request </span> <span class="pull-right">   <button class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept   </button>  <button class="pic-reject" type="button">Reject   </button></span> </p>
                                           <div class="clearfix"></div>
                                           <div class=" m-t-10">
                                              <p class="pull-left"> <span class="small-text"> 
                                     <a href="#"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
                                     </div>
                                     </div>
-                                    </a>
+                                  
                                  </li>
                               </ul>
                            </div>

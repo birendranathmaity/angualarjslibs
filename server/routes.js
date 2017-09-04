@@ -14,7 +14,8 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.CITIES,regisLogin.getcities);
 //admin//////
  app.post(serviceConfig.GETALL_ACTIVE_USERS,Admin.getallActiveUsers);
-
+app.get(serviceConfig.GETALL_INACTIVE_USERS,Admin.getallinActiveUsers);
+app.post(serviceConfig.ADMIN_ACCEPT,Admin.adminAccept);
 // app.post('/authenticate', function(req, res) {
 //     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
 //         if (err) {

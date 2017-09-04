@@ -1,5 +1,6 @@
 var mongoose     = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 var Schema       = mongoose.Schema;
 
 var UserSchema   = new Schema({
@@ -23,5 +24,6 @@ var UserSchema   = new Schema({
 
 });
 
-UserSchema.plugin(mongoosePaginate);
+UserSchema.plugin(mongooseAggregatePaginate);
+
 module.exports = mongoose.model('dbusers', UserSchema);

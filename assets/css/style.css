@@ -2429,7 +2429,7 @@ textarea[class*="span"] {
     display: inline-block;
     cursor: pointer;
     position: relative;
-    padding-left: 25px;
+    padding-left: 0;
     margin-right: 15px;
     font-size: 13px;
     margin-bottom: 6px;
@@ -15453,3 +15453,25 @@ li.active span{
     color: #ffff80;
     font-size: 15px;
 }
+ li.userlist.ng-enter {
+            opacity: 0.2 ;
+            padding-left: 30px ;
+            animation-name: bounceInUp;
+            transition: all ease  250ms ;
+         
+        }
+        li.userlist.ng-enter-stagger {
+            transition-delay: 0.1s ;
+                -webkit-transition-delay: 0.1s ;
+            /*
+                FROM THE DOCUMENTATION:
+                In case the stagger doesn't work then these two values must be set
+                to 0 to avoid an accidental CSS inheritance.
+            */
+            transition-duration: 0s ;
+                -webkit-transition-duration: 0s ;
+        }
+        li.userlist.ng-enter-active {
+            opacity: 1.0 ;
+            padding-left: 0px ;
+        }

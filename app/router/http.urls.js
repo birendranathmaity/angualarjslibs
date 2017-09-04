@@ -13,7 +13,8 @@ return {
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
     "SAVEMOREINFO":"/savemoreinfo",
-    "GETALL_ACTIVE_USERS":"/getallactiveusers"
+    "GETALL_ACTIVE_USERS":"/getallactiveusers",
+    "ADMIN_ACCEPT":"/admin_accept"
       };
     
 
