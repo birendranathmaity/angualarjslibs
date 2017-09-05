@@ -21,5 +21,5 @@ controller.showMoreInfodir=false;
         }
 
     
-  };
+  }
 };

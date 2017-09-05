@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserController($viewusers) {
+module.exports = function viewUserController($viewusers,loginservice) {
 
 var controller=this;
  controller.limit = 10;
@@ -56,7 +56,7 @@ controller.loadPageData(req);
               }
           
         });
- console.log(controller.userIds) 
+
     };
     controller.checkBoxSelect=function(){
         controller.userIds=[];
@@ -67,7 +67,7 @@ controller.loadPageData(req);
             
           
         });
-        console.log(controller.userIds)
+       
     };
     controller.accept=function(){
 controller.userIds=[];
@@ -80,11 +80,8 @@ controller.userIds.push(user.user_id);
             user_ids:controller.userIds
 
         };
-     console.log(controller.userIds)     
+       
 $viewusers.accept(req,function(res){
-
-
-console.log(res)
 },function(){});
       
     };
@@ -94,5 +91,8 @@ console.log(res)
       inches %= 12;
 
       return feet + " feet " + inches + ' Inc. ';
-    }
+    };
+    controller.openImageUploadWindow=function(user){
+loginservice.openCropPopup(user);
+    };
 };

@@ -1,6 +1,6 @@
 /* @ngInject */
 
-module.exports = function CropModalController($uibModal,$uibModalInstance,user,$location) {
+module.exports = function CropModalController($uibModal,$uibModalInstance,user,$location,Upload, $timeout,ServiceUrls,toastr) {
   
     var controller = this;
     //modal close button//
@@ -67,9 +67,11 @@ var _video = null,
             var idata = getVideoData(controller.patOpts.x, controller.patOpts.y, controller.patOpts.w, controller.patOpts.h);
             ctxPat.putImageData(idata, 0, 0);
 
-           controller.myImage=patCanvas.toDataURL();
+           var img=patCanvas.toDataURL();
+           controller.myImage = img;
 
             patData = idata;
+
             controller.clicked=false;
         }
     };
@@ -85,10 +87,11 @@ var _video = null,
         return ctx.getImageData(x, y, w, h);
     };
 
-  controller.savePhoto=function(){
+  controller.savePhoto=function(dataUrl, name){
 
-  $location.path(user.skip_url);
-     controller.cancel();
+ // $location.path(user.skip_url);
+   //  controller.cancel();
+     controller.upload (dataUrl, name);
 // watermark([controller.myCroppedImage])
 //   .image(watermark.text.lowerRight('Dholbaaje', '30px Josefin Slab', '#fff', 0.5))
 //   .then(function (img) {
@@ -99,6 +102,37 @@ controller.skip=function(){
     controller.cancel();
 $location.path(user.skip_url);
 };
+ controller.upload = function (dataUrl, name) {
+     console.log(dataUrl)
+     console.log(name)
+        Upload.upload({
+            url: ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_UPLOAD,
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl, name)
+               
+            },
+            params: {
+        user_id: user.user_id
+       
+    }
+        }).then(function (response) {
+             
+            $timeout(function () {
 
+                if(response.data.error_code === 0){ //validate success
+                    toastr.success('Upload Successful');
+               
+            } else {
+               toastr.error('Not Uploaded', 'Error');
+            }
+               controller.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status 
+                + ': ' + response.data;
+        }, function (evt) {
+            controller.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    }
 
 };
