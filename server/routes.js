@@ -1,7 +1,10 @@
 var serviceConfig = require('./serviceConfig.json');
 var regisLogin=require('./modules/registration_login/registration_login');
-var Admin=require('./modules/admin/view_users');
+var photo=require('./modules/registration_login/photo');
+var admin=require('./modules/admin/view_users');
+var adminTask=require('./modules/admin/admin.task');
 module.exports = function(app,express,process){
+   app.use(serviceConfig.USER_PROFILE_PHOTO_DISPLAY_PATH, express.static(__dirname + '/upload_user_images'));
    app.post(serviceConfig.AUTHENTICATE,regisLogin.authenticate);
    app.post(serviceConfig.SIGNIN,regisLogin.signin);
    app.post(serviceConfig.SIGNUP,regisLogin.signup);
@@ -12,12 +15,16 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.COUNTRIES,regisLogin.getcountries);
    app.get(serviceConfig.STATES,regisLogin.getstates);
    app.get(serviceConfig.CITIES,regisLogin.getcities);
-   app.post(serviceConfig.USER_PROFILE_PHOTO_UPLOAD,regisLogin.pPhotoUpload);
+  
 //admin//////
- app.post(serviceConfig.GETALL_ACTIVE_USERS,Admin.getallActiveUsers);
-app.get(serviceConfig.GETALL_INACTIVE_USERS,Admin.getallinActiveUsers);
-app.post(serviceConfig.ADMIN_ACCEPT,Admin.adminAccept);
+ app.post(serviceConfig.GETALL_ACTIVE_USERS,admin.getallActiveUsers);
+ app.get(serviceConfig.GETALL_INACTIVE_USERS,admin.getallinActiveUsers);
+ app.post(serviceConfig.ADMIN_ACCEPT,admin.adminAccept);
+ app.post(serviceConfig.ADMIN_ACCEPT_PHOTO,adminTask.adminAcceptPhoto);
+ 
+//photo//
 
+ app.post(serviceConfig.USER_PROFILE_PHOTO_UPLOAD,photo.pPhotoUpload);
 // app.post('/authenticate', function(req, res) {
 //     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
 //         if (err) {

@@ -1,4 +1,4 @@
-var OTP = require('./model/user.otp.model');
+var OTP = require('./../model/user.otp.model');
 const SendOtp = require('sendotp');
 const sendOtp = new SendOtp('172595AQbcw8YLo59a90f6d','Dholbaaje.com for your mobile verificationnumber is {{otp}}');
 

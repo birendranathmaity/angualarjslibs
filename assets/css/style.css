@@ -5354,7 +5354,7 @@ ul.progress-list li .progress {
     border-right-color: rgba(0, 0, 0, 0.08);
 }
 .popover.top .arrow {
-    border-right-color: rgba(0, 0, 0, 0.08);
+    /*border-right-color: rgba(0, 0, 0, 0.08);*/
 }
 .popover.bottom .arrow:after {
     top: 0;
@@ -9647,6 +9647,16 @@ a#next:hover {
 }
 .next-step {
     background: #f66;
+    box-shadow: 0px 1px 5px #e0e0e0;
+    color: #fff;
+    font-size: 1.4em;
+    padding: 0.6em 2.7em;
+    margin: 20px 0 0 0;
+    border: none;
+    border-radius: 0;
+}
+.skipbtn {
+    background: #0f1310;
     box-shadow: 0px 1px 5px #e0e0e0;
     color: #fff;
     font-size: 1.4em;
@@ -15476,12 +15486,7 @@ li.active span{
             padding-left: 0px ;
         }
   #loading-bar .bar {
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5db1+0,ef017c+100;Pink+3D+%231 */
-background: #ff5db1; /* Old browsers */
-background: -moz-linear-gradient(top, #ff5db1 0%, #ef017c 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #ff5db1 0%,#ef017c 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #ff5db1 0%,#ef017c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', endColorstr='#ef017c',GradientType=0 ); /* IE6-9 */
+background: #ff8a26;
 height: 5px;
 }
 
@@ -15515,4 +15520,90 @@ border-radius: 10px;
 -ms-animation: loading-bar-spinner 400ms linear infinite;
 -o-animation: loading-bar-spinner 400ms linear infinite;
 animation: loading-bar-spinner 400ms linear infinite;
+}
+/*switch*/
+.switch {
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: visible;
+  width: 52px;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+  top: -1px;
+}
+/*adding a wide width for larger switch text*/
+.pripubsw{
+    margin-bottom: -13px;
+}
+.switch.wide {
+  width:80px;
+}
+.switch small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch.checked {
+  background: rgb(100, 189, 99);
+  border-color: rgb(100, 189, 99);
+}
+.switch.checked small {
+  left: 22px;
+}
+/*wider switch text moves small further to the right*/
+.switch.wide.checked small {
+  left:52px;
+}
+/*styles for switch-text*/
+.switch .switch-text {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+
+.switch .off {
+  display:block;
+  position: absolute;
+  right: 8%;
+  top: 20%;
+  z-index: 0;
+  color:#A9A9A9;
+}
+
+.switch .on {
+  display:none;
+   z-index: 0;
+  color:#fff;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+}
+
+.switch.checked .off {
+  display:none;
+}
+
+.switch.checked .on {
+  display:block;
+
+}
+
+.switch.disabled {
+  opacity: .50;
+  cursor: not-allowed;
 }

@@ -12,6 +12,7 @@
     "angular": "1.5.x",
     "angular-animate": "1.5.x",
     "angular-cookies": "1.5.x",
+    "angular-filter": "^0.5.16",
     "angular-loading-bar": "^0.9.0",
     "angular-messages": "1.5.x",
     "angular-mocks": "1.5.x",

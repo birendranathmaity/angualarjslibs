@@ -21,6 +21,7 @@ require('angular-toastr');
 require('ng-scrollbars');
 require('ngstorage');
 require('ng-file-upload');
+require('angular-filter');
 // App UI modules
 var LoadingBarModule = require('./loading-bar');
 var routerModule = require('./router');
@@ -51,6 +52,7 @@ angular.module('app.ui', [
     'ngScrollbars',
     'ngStorage',
     'ngFileUpload',
+    'angular.filter',
     LoadingBarModule.name,
     translateModule.name,
     routerModule.name,

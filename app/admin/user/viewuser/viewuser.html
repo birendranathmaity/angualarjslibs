@@ -22,7 +22,7 @@
             </label>
             <ul class="pull-right del-link">
                                        <li>
-                                         <button ng-if="ctrl.userIds.length>0" class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept   </button>
+                                         <button ng-if="ctrl.userIds.length>0" class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept All Photos  </button>
                                        </li>
                                     </ul>
         </div>
@@ -66,18 +66,18 @@
                            </div>
                            </div>
                            <div class="clearfix"></div>
-                           <div class="inbox-mail">
+                           <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
                               <ul>
                                  <li class="row-fluid userlist" ng-repeat="user in ctrl.users">
-                                  
+                                
                                        <div class="col-lg-2 no-padding pull-left">
                                           <div class="checkbox check-success pull-left">
                                                <label > 
                                               <input type="checkbox" ng-click="ctrl.checkBoxSelect()" value="" ng-model="user.Selected">
                                           <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
                                           </div>
-                                            <div class="user-profile-pic pull-left">
-                                             <img data-src-retina="assets/img/profiles/dharma.jpg" data-src="assets/img/profiles/dharma.jpg" src="assets/img/profiles/dharma.jpg" alt="" width="91" height="88" />
+                                            <div class="user-profile-pic pull-left cursorpointer" popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg(ctrl.profilepic(user.pic))" popover-placement="'top'" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
+                                             <img water-mark="{{ctrl.profilepic(user.pic)}}"  alt="" width="91" height="88" />
                                              <p> ( {{user.user_id}} )</p>
                                           </div>
                                        </div>
@@ -85,11 +85,17 @@
                                           <p class="pull-right"> Created  On : <span> {{user.created_on | date:'dd-MMM-yyyy'}} </span> | <span> {{user.created_on | date:'h:mm a'}}</span>  </p>
                                           <p class="clearfix"></p>
                                           <p class="mailer-name"> {{user.first_name}}</p>
-                                          <p class="mailer-sub"><span> {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Contact Request </span> <span class="pull-right">   <button class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept   </button>  <button class="pic-reject" type="button">Reject   </button></span> </p>
+                                          <p class="mailer-sub"><span>
+                                             {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Contact Request </span>
+                                           <span class="pull-right"> 
+                                            <button class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Edit   </button> 
+                                           <button class="pic-reject" type="button">Reject   </button>
+                                           </span>
+                                            </p>
                                           <div class="clearfix"></div>
                                           <div class=" m-t-10">
                                              <p class="pull-left"> <span class="small-text"> 
-                                    <a href="#" ng-click="ctrl.openImageUploadWindow({user_id:user.user_id,skip_url:'/viewusers'})"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
+                                    <a href="#" ng-click="ctrl.openImageUploadWindow({user_id:user.user_id,skip_url:'/viewusers',uploaded_by:login_user_id,photo_type:'PROFILE'})"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
                                     </div>
                                     </div>
                                   

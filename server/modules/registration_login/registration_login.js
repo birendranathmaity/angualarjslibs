@@ -1,43 +1,17 @@
 var jwt = require('jsonwebtoken');
-var country = require('./model/country.model');
-var state = require('./model/state.model');
-var city = require('./model/city.model');
-var User = require('./model/user.model');
-var Token = require('./model/user.token.model');
-var OTP = require('./model/user.otp.model');
-var USER_P_STATUS = require('./model/user.pstatus.model');
-var basicInfo = require('./model/basicinfo.model');
-var education = require('./model/education.model');
-var interest = require('./model/intrest.model');
-var family = require('./model/family.model');
-var multer = require('multer');
+var country = require('./../model/country.model');
+var state = require('./../model/state.model');
+var city = require('./../model/city.model');
+var User = require('./../model/user.model');
+var Token = require('./../model/user.token.model');
+var OTP = require('./../model/user.otp.model');
+var USER_P_STATUS = require('./../model/user.pstatus.model');
+var basicInfo = require('./../model/basicinfo.model');
+var education = require('./../model/education.model');
+var interest = require('./../model/intrest.model');
+var family = require('./../model/family.model');
 var otpConfig = require('./otp');
 //
-var storage = multer.diskStorage({ //multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, './upload_user_images/');
-        },
-        filename: function (req, file, cb) {
-         
-            var datetimestamp = Date.now();
-            cb(null, req.query.user_id + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
-        }
-    });
-
-    var upload = multer({ //multer settings
-                    storage: storage
-                }).single('file');
-//
-exports.pPhotoUpload=function(req,res){
-      console.log(req.query.user_id)
-upload(req,res,function(err){
-            if(err){
-                 res.json({error_code:1,err_desc:err});
-                 return;
-            }
-             res.json({error_code:0,err_desc:null});
-        });
-};
 exports.authenticate = function(req, res) {
     User.findOne({
         email: req.body.email,

@@ -15,7 +15,8 @@ return {
     "SAVEMOREINFO":"/savemoreinfo",
     "GETALL_ACTIVE_USERS":"/getallactiveusers",
     "ADMIN_ACCEPT":"/admin_accept",
-    "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload"
+    "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload",
+    "ADMIN_ACCEPT_PHOTO":"/admin_accept_photo"
       };
     
 

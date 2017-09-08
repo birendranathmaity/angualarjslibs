@@ -1,6 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserController($viewusers,loginservice) {
-
+module.exports = function viewUserController($viewusers,loginservice,$admintaskservice,toastr) {
 var controller=this;
  controller.limit = 10;
  controller.total = 0;
@@ -77,11 +76,14 @@ controller.userIds.push(user.user_id);
            }
         });
         var req={
-            user_ids:controller.userIds
+            user_ids:controller.userIds,
+            photo_type:"PROFILE"
 
         };
        
-$viewusers.accept(req,function(res){
+$admintaskservice.acceptPhoto(req,function(res){
+    if(res.success)
+ toastr.success('Successfully accepted');
 },function(){});
       
     };
@@ -95,4 +97,44 @@ $viewusers.accept(req,function(res){
     controller.openImageUploadWindow=function(user){
 loginservice.openCropPopup(user);
     };
+
+     controller.configScollBar= {
+                          autoHideScrollbar: true,
+                          theme: 'rounded-dark',
+                          axis: 'y', 
+                          setHeight: 380,
+                          scrollInertia: 0,
+                           scrollButtons: {
+            scrollAmount: 'auto', // scroll amount when button pressed 
+            enable: true // enable scrolling buttons by default 
+        },
+                           advanced:{
+                                   updateOnContentResize: true
+                              }
+    }; 
+    controller.profilepic=function(pics)
+    {
+        
+        if(pics.length>0){
+            for(var key in pics){
+                if(pics[key].photo_type==="PROFILE")
+                return "http://"+pics[key].photo_path;
+            }
+        }
+else{
+    return "dist/assets/img/emptyphoto.png"
+}
+
+    };
+
+    controller.photoView = {
+   
+    templateUrl: './app/admin/user/viewuser/photo.view.html'
+   
+  };
+  controller.imgsrc="";
+  controller.popImg=function(src){
+     
+      controller.imgsrc=src;
+  };
 };

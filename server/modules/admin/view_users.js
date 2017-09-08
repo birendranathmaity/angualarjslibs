@@ -1,4 +1,4 @@
-var User=require('./../registration_login/model/user.model');
+var User=require('./../model/user.model');
 
 exports.getallActiveUsers=function(req,res){
 
@@ -13,7 +13,7 @@ exports.getallActiveUsers=function(req,res){
   var aggregate = User.aggregate(
         [
 { "$sort": { created_on: -1 }},
-{ $match: { user_status: "INPROGRESS" } },
+{ $match: { user_status: "ACTIVE" } },
    {   "$project": {     
           
             "user_id": "$user_id",
@@ -31,6 +31,54 @@ exports.getallActiveUsers=function(req,res){
         as: "height"
         }
    },
+    {
+      $lookup:
+        {
+         from: "userphotos",
+        localField: "user_id",
+        foreignField: "user_id",
+        as: "pic"
+        }
+   },
+   
+//    { 
+//                      $match: { 
+//                          "pic.photo_type": {'$exists':false},
+                          
+//                           "pic.photo_type": 'PROFILE',
+//                          $nor: [
+//                               {"pic.photo_type": "ALBUM"}
+                             
+                             
+//                              ]
+//                      },
+//                    },
+    // { 
+    //   $filter: 
+    //   { 
+    //     input: "$pic", 
+    //     as: "p", 
+    //     cond: { $eq: [ "$$p.photo_type", "PROFILE" ] } 
+    //   } 
+    // },
+//    { "$unwind": "$pic" },
+//     // This actually "filters" the array content
+//     { "$match": { "pic.photo_type": "PROFILE" } },
+//    {
+//   $project: 
+//   {
+   
+//     pic: 
+//     { 
+//       $filter: 
+//       { 
+//         input: "$pic", 
+//         as: "p", 
+//         cond: { $eq: [ "$$p.photo_type", "PROFILE" ] } 
+//       } 
+//     } 
+//   } 
+// },
    {
   $unwind: "$height"
 },

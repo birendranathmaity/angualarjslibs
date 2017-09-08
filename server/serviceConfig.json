@@ -14,5 +14,7 @@
     "GETALL_ACTIVE_USERS":"/getallactiveusers",
     "GETALL_INACTIVE_USERS":"/getallinactiveusers",
     "ADMIN_ACCEPT":"/admin_accept",
-    "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload"
+    "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload",
+    "USER_PROFILE_PHOTO_DISPLAY_PATH":"/userphoto",
+    "ADMIN_ACCEPT_PHOTO":"/admin_accept_photo"
 }

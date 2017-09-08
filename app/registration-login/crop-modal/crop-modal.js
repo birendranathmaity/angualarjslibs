@@ -10,6 +10,7 @@ module.exports = function CropModalController($uibModal,$uibModalInstance,user,$
     //profile picture crop//
 controller.myImage='';
 controller.myCroppedImage='';
+controller.photo_visibility_status=true;
 
 //camera //
 controller.clicked=false;
@@ -91,20 +92,15 @@ var _video = null,
 
  // $location.path(user.skip_url);
    //  controller.cancel();
-     controller.upload (dataUrl, name);
-// watermark([controller.myCroppedImage])
-//   .image(watermark.text.lowerRight('Dholbaaje', '30px Josefin Slab', '#fff', 0.5))
-//   .then(function (img) {
-//     document.getElementById('watermark').appendChild(img);
-//   });
+    controller.upload (dataUrl, name);
+
 };
 controller.skip=function(){
     controller.cancel();
 $location.path(user.skip_url);
 };
  controller.upload = function (dataUrl, name) {
-     console.log(dataUrl)
-     console.log(name)
+    
         Upload.upload({
             url: ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_UPLOAD,
             data: {
@@ -112,7 +108,10 @@ $location.path(user.skip_url);
                
             },
             params: {
-        user_id: user.user_id
+        user_id: user.user_id,
+        photo_type:user.photo_type,
+        photo_visibility_status:controller.photo_visibility_status,
+        uploaded_by:user.uploaded_by
        
     }
         }).then(function (response) {
