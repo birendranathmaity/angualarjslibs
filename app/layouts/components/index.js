@@ -5,5 +5,5 @@ var waterMark = require('./watermark.photo');
 module.exports = angular.module('app.ui.headercomponents',[])
    .directive('headerNotificationsMsg', headerNotificationsMsg)
    .directive('langSelect', langSelect)
-   .directive('waterMark', waterMark);;
+   .directive('waterMark', waterMark);
  

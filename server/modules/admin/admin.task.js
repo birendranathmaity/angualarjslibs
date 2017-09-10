@@ -6,7 +6,8 @@ PhotoModel.update(
       photo_type:req.body.photo_type,
     }, 
 
-  {$set : {photo_vr:true}},
+  {$set : {photo_vr:true,photo_vr_msg:"APPROVED"}},
+ 
   {multi : true},
 
   function(err, docs) {

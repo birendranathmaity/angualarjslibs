@@ -7,6 +7,9 @@ module.exports =function($http,ServiceUrls){
             },
              accept: function(data,success, error) {
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACCEPT,data).success(success).error(error);
+            },
+            accept: function(data,success, error) {
+                $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACCEPT,data).success(success).error(error);
             }
             
         };

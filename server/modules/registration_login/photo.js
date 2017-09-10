@@ -68,21 +68,24 @@ function actionPhotoInDB(req,res,actionType){
            
             if(req.query.user_id!=req.query.uploaded_by){
             req.query.photo_vr=true;
+            photo_vr_msg="APPROVED";
         }
         else{
              req.query.photo_vr=false;
+             photo_vr_msg="PENDING_APPROVAL";
         }
 
 var photoDetails={
     user_id:req.query.user_id,
     photo_type:req.query.photo_type,
     photo_vr:req.query.photo_vr,
-    photo_path:req.headers.host + "/userphoto/" + req.file.filename,
+    photo_vr_msg:req.query.photo_vr_msg,
+    photo_path:req.file.filename,
     uploaded_on:new Date(),
     photo_visibility_status:req.query.photo_visibility_status,
     uploaded_by:req.query.uploaded_by
 };
-console.log(req.headers.host)
+
 if(actionType==="SAVE"){
 saveUserPhoto(photoDetails,res)
 }
@@ -112,7 +115,8 @@ function updateUserPhoto(photo,res){
     var data={    "photo_path":photo.photo_path,
                   "photo_vr":photo.photo_vr,
                   "photo_visibility_status" :photo.photo_visibility_status,
-                  "uploaded_by":photo.uploaded_by, 
+                  "uploaded_by":photo.uploaded_by,
+                  "photo_vr_msg":photo.photo_vr_msg,
                   "uploaded_on" : photo.uploaded_on,
                   };
 photoModel.findOneAndUpdate({"user_id":photo.user_id}, data, {upsert:true}, function(err, doc){

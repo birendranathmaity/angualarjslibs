@@ -1,6 +1,6 @@
 /* @ngInject */
 
-module.exports = function CropModalController($uibModal,$uibModalInstance,user,$location,Upload, $timeout,ServiceUrls,toastr) {
+module.exports = function CropModalController($rootScope,$uibModal,$uibModalInstance,user,$location,Upload, $timeout,ServiceUrls,toastr) {
   
     var controller = this;
     //modal close button//
@@ -110,8 +110,9 @@ $location.path(user.skip_url);
             params: {
         user_id: user.user_id,
         photo_type:user.photo_type,
+        photo_vr_msg:"PENDING_APPROVAL",
         photo_visibility_status:controller.photo_visibility_status,
-        uploaded_by:user.uploaded_by
+        uploaded_by:$rootScope.login_user_id
        
     }
         }).then(function (response) {

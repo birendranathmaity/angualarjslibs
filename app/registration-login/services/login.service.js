@@ -137,6 +137,7 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
             saveToken: function(token) {
                
                $sessionStorage.token=token;
+               var d=getUserFromToken();
             },
             getCurrentUserRole:function(success){
                 var cUser = getUserFromToken();
@@ -149,6 +150,9 @@ module.exports =function($http, $sessionStorage,$localStorage,ServiceUrls,$locat
                $location.path("/register");
              }
                        
+            },
+            getCureentUser:function(){
+ var d=getUserFromToken();
             },
             logout: function(success,error) {
                  var user=getUserFromToken();

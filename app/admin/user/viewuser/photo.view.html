@@ -1,14 +1,24 @@
 
  <div class="email-body animated flip">
+   
+        <div ng-if="ctrl.users[ctrl.ImgIndex].pic.length>0" ng-repeat="photo in ctrl.users[ctrl.ImgIndex].pic">
+            <img ng-if="photo.photo_type==='PROFILE'" water-mark="photo" class="imgPro" />
+                                           
+          </div>
+        
          
-           <img class="" water-mark="{{ctrl.imgsrc}}" >
        <div class="clearfix"></div>
        
             <span class="pull-right"> 
             <button class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept   </button> 
-            <button class="pic-reject" type="button">Reject   </button>
+            <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id})" type="button">Reject   </button>
         </span>
                   <div class="clearfix"></div>
                     <div class="clearfix"></div>                       
         
         </div>
+<style>
+    .imgPro{
+        width: 200px;
+    }
+</style>

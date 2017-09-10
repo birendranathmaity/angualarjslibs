@@ -1,5 +1,6 @@
 /* @ngInject */
-module.exports = function viewUserController($viewusers,loginservice,$admintaskservice,toastr) {
+module.exports = function viewUserDirCtrl($viewusers,loginservice,$admintaskservice,toastr) {
+
 var controller=this;
  controller.limit = 10;
  controller.total = 0;
@@ -69,55 +70,64 @@ controller.loadPageData(req);
        
     };
 
-    function setPohtoVr(index){
+//     function setPohtoVr(index){
 
 
- console.log(controller.users[index])
- var photos=controller.users[index].pic;
- var i=0;
- for(var key in photos){
+//  console.log(controller.users[index])
+//  var photos=controller.users[index].pic;
+//  var i=0;
+//  for(var key in photos){
     
-                if(photos[i].photo_type==="PROFILE"){
-                   photos[i].photo_vr=true;
+//                 if(photos[i].photo_type==="PROFILE"){
+//                    photos[i].photo_vr=true;
                    
-                }
+//                 }
 
-               i++;
-            }
-controller.users[index].pic=photos;
-console.log(controller.users);
+//                i++;
+//             }
+// controller.users[index].pic=photos;
+// console.log(controller.users);
 
-    }
+//     }
     controller.accept=function(){
-controller.userIds=[];
+// controller.userIds=[];
 
 
 
- angular.forEach(controller.users, function (user,key) {
+//  angular.forEach(controller.users, function (user,key) {
 
 
     
-           if(user.Selected) {
-controller.userIds.push(user.user_id);
- controller.users = $.grep(controller.users, function(e){ 
-     
-     return e.user_id !==user.user_id; 
-   });
-   controller.end= controller.end-1;
-  //  controller.total= controller.total-1;
-}
+//            if(user.Selected) {
+// controller.userIds.push(user.user_id);
+
+// }
            
-        });
+//         });
         var req={
             user_ids:controller.userIds,
             photo_type:"PROFILE"
 
         };
      
-// $admintaskservice.acceptPhoto(req,function(res){
-//     if(res.success)
-//  toastr.success('Successfully accepted');
-// },function(){});
+$admintaskservice.acceptPhoto(req,function(res){
+    if(res.success){
+toastr.success('Successfully accepted');
+
+angular.forEach(controller.userIds, function (user_ID) {
+
+   controller.users = $.grep(controller.users, function(e){ 
+     
+     return e.user_id !==user_ID; 
+   });
+   controller.end= controller.end-1;
+
+           
+        });
+controller.userIds=[];
+    }
+ 
+},function(){});
       
     };
      controller.reject=function(user){
@@ -133,6 +143,7 @@ $admintaskservice.openRejectModal(user);
     };
     controller.openImageUploadWindow=function(user){
 loginservice.openCropPopup(user);
+
     };
 
      controller.configScollBar= {
@@ -149,35 +160,35 @@ loginservice.openCropPopup(user);
                                    updateOnContentResize: true
                               }
     }; 
-    controller.profilepic=function(pics)
-    {
-        var img={
-              src:"dist/assets/img/emptyphoto.png",
-              watermark:false,
-              visible:false,
+//     controller.profilepic=function(pics)
+//     {
+//         var img={
+//               src:"dist/assets/img/emptyphoto.png",
+//               watermark:false,
+//               visible:false,
 
-        };
+//         };
 
-        if(pics.length>0){
-            for(var key in pics){
-                if(pics[key].photo_type==="PROFILE"){
+//         if(pics.length>0){
+//             for(var key in pics){
+//                 if(pics[key].photo_type==="PROFILE"){
                    
-                    img.src="http://"+pics[key].photo_path;
-                    img.watermark=pics[key].photo_vr;
-                    //img.visible=(pics[key].photo_vr && pics[key].photo_visibility_status) ? true :false;
-                    img.visible=pics[key].photo_visibility_status;
-                     return img;
+//                     img.src="http://"+pics[key].photo_path;
+//                     img.watermark=pics[key].photo_vr;
+//                     //img.visible=(pics[key].photo_vr && pics[key].photo_visibility_status) ? true :false;
+//                     img.visible=pics[key].photo_visibility_status;
+//                      return img;
 
-                }
+//                 }
 
                
-            }
-        }
-else{
-    return img;
-}
+//             }
+//         }
+// else{
+//     return img;
+// }
 
-    };
+//     };
 
     controller.photoView = {
    
@@ -190,5 +201,9 @@ else{
       controller.ImgIndex=index;
     
   };
-  
+
+
+
+
+
 };

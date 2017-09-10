@@ -7,6 +7,7 @@ var userPhotoSchema   = new Schema({
     photo_path:String,
     uploaded_on:Date,
     photo_visibility_status:Boolean,
+    photo_vr_msg:String,
     uploaded_by:String
 
 });

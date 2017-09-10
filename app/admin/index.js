@@ -4,9 +4,15 @@ var adminroutes = require('./admin.route');
 var adminDashboardController = require('./home/dashboard/dashboard.ctrl');
 var addUserController = require('./user/adduser/addUser.ctrl');
 var viewUserController = require('./user/viewuser/viewUser.ctrl');
+var rejectController = require('./reject-modal/reject.ctrl');
 var adminServices = require('./services');
+var viewUserDirCtrl = require('./user/viewuser/viewUserDir.ctrl');
+var userViewDirective = require('./user/viewuser/user-view-directive');
 module.exports = angular.module('app.ui.admin', [adminServices.name])
     .run(adminroutes)
     .controller('adminDashboardController', adminDashboardController)
     .controller('addUserController', addUserController)
-    .controller('viewUserController', viewUserController);
+    .controller('viewUserController', viewUserController)
+    .controller('rejectController', rejectController)
+    .controller('viewUserDirCtrl', viewUserDirCtrl)
+    .directive('userViewDirective', userViewDirective);

@@ -1,16 +1,16 @@
 /* @ngInject */
-module.exports = function ($http) {
+module.exports = function (ServiceUrls) {
     return {
         restrict: 'A',
+        scope:{
+             waterMark:"="
+        },
         controller: [
             '$scope',
             '$element',
             '$attrs',
             function ($scope, $element, $attrs) {
-              
-            }
-        ],
-        link:function($scope, $element, $attrs){
+                          
 function convertImgToBase64URL(url, callback, outputFormat){
     var img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -26,18 +26,28 @@ function convertImgToBase64URL(url, callback, outputFormat){
     };
     img.src = url;
 }
-
-convertImgToBase64URL($attrs.waterMark,function(data){
+var imgUrl=ServiceUrls.BASEURL+ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH+$scope.waterMark.photo_path;
+convertImgToBase64URL(imgUrl,function(data){
     
-    
-
-    watermark([data])
-  .image(watermark.text.lowerRight('BiruSangita', '30px Josefin Slab', '#fff', 0.5))
+   if($scope.waterMark.photo_vr){
+watermark([data])
+  .image(watermark.text.lowerRight('Dholbaaje', '30px Josefin Slab', '#ff6666', 0.5))
   .then(function (img) {
-   
    $attrs.$set('src', img.src);
-  });
+  }); 
+   }
+   else{
+        $attrs.$set('src', imgUrl);
+   }
+
+    
 },function(){});
+              
+            }
+        ],
+        link:function($scope, $element, $attrs){
+
+
 
 
         }

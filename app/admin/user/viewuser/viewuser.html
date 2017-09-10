@@ -2,110 +2,28 @@
    <div class="content">
       <div class="row">
          <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-           <search-by-id></search-by-id>
-         </div>
-         <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-            <div class="col-md-12 no-padding ">
-               <div class="grid simple" >
-                  <div class="grid-body no-border email-body" >
-                     <br>
-                     <div class="row-fluid" >
-                        <div class="row-fluid dataTables_wrapper">
-                           <div class="col-lg-4 no-padding  ">
-                              <div class="pull-left">
-                                  <div class="checkbox">
-            <label style="font-size: 1.2em; line-height: 13px;">
-                <input type="checkbox" value="" ng-model="ctrl.selectedAll" ng-click="ctrl.checkAll()">
-                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-               <span style="font-size: 12px;"> All
- </span>
-            </label>
-            <ul class="pull-right del-link">
-                                       <li>
-                                         <button ng-if="ctrl.userIds.length>0" class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Accept All Photos  </button>
-                                       </li>
-                                    </ul>
-        </div>
-                                 <!--<div class="checkbox check-success pull-left top-link-all">
-                                    <input id="checkbox72" type="checkbox" value="1" class="p-l-20" >
-                                    <label for="checkbox72"> All</label>
-                                    <ul class="pull-right del-link">
-                                       <li>
-                                          <a href="#">
-                                             Empty
-                                       </li>
-                                    </ul>
-                                 </div>-->
-                                 
-                              </div> 
-                           </div>
-                           <div class="col-lg-8">
-                           <div class="dataTables_paginate paging_bootstrap pagination pull-right">
-                           <ul>
-                           <li class="pull-left"> <div class=" hidden-xs">Showing <b>{{ctrl.start}} to {{ctrl.end}}</b> of {{ctrl.total}} entries</div> </li>
-                           <li class="prev disabled" style="margin-top: -2px;">
-                          <ul 
-                            uib-pagination 
-                            total-items="ctrl.total"
-                            max-size="ctrl.maxSize"
-                            num-pages="ctrl.pages"
-                            ng-model="ctrl.page"
-                            items-per-page="ctrl.limit"
-                            class="pagination-sm"
-                            boundary-link-numbers="true"
-  
-                           
-                            ng-change="ctrl.pageChanged()"
-                            rotate="true">
-                               </ul>
-                          <!--previous-text="&#10094;"
-                            next-text="&#10095;"-->
-                           </li>
-                              </ul>
-                           
-                           </div>
-                           </div>
-                           <div class="clearfix"></div>
-                           <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
-                              <ul>
-                                 <li class="row-fluid userlist" ng-repeat="user in ctrl.users">
-                                
-                                       <div class="col-lg-2 no-padding pull-left">
-                                          <div class="checkbox check-success pull-left">
-                                               <label > 
-                                              <input type="checkbox" ng-click="ctrl.checkBoxSelect()" value="" ng-model="user.Selected">
-                                          <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
-                                          </div>
-                                            <div class="user-profile-pic pull-left cursorpointer" popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg(ctrl.profilepic(user.pic))" popover-placement="'top'" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
-                                             <img water-mark="{{ctrl.profilepic(user.pic)}}"  alt="" width="91" height="88" />
-                                             <p> ( {{user.user_id}} )</p>
-                                          </div>
-                                       </div>
-                                       <div class="col-lg-10">
-                                          <p class="pull-right"> Created  On : <span> {{user.created_on | date:'dd-MMM-yyyy'}} </span> | <span> {{user.created_on | date:'h:mm a'}}</span>  </p>
-                                          <p class="clearfix"></p>
-                                          <p class="mailer-name"> {{user.first_name}}</p>
-                                          <p class="mailer-sub"><span>
-                                             {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Contact Request </span>
-                                           <span class="pull-right"> 
-                                            <button class="pic-accept" type="button" ng-click="user.Selected=true;ctrl.accept()">Edit   </button> 
-                                           <button class="pic-reject" type="button">Reject   </button>
-                                           </span>
-                                            </p>
-                                          <div class="clearfix"></div>
-                                          <div class=" m-t-10">
-                                             <p class="pull-left"> <span class="small-text"> 
-                                    <a href="#" ng-click="ctrl.openImageUploadWindow({user_id:user.user_id,skip_url:'/viewusers',uploaded_by:login_user_id,photo_type:'PROFILE'})"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
-                                    </div>
-                                    </div>
-                                  
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
+            <div class="grid simple mail-msg">
+               <div class="grid-title no-border">
+                  <h4 class="bold">Contact Requests</h4>
+               </div>
+               <div class="grid-body no-border pro-bord">
+                  <div class="panel-group" >
+                     <div class="list-group"> 
+                        <a href="contact-request.html" class="list-group-item "> Photo Requests <span class="badge">12</span></a>
+                        <a href="contact-request-sent.html" class="list-group-item "> Pending Profiles  <span class="badge">12</span></a>
+                        <a href="contact-request-accepted.html" class="list-group-item  active-list"> Pending Email Verification   <span class="badge">12</span></a>
+                        <a href="contact-request-rejected.html" class="list-group-item"> Completed Profiles   <span class="badge">12</span></a>
+                        <a href="contact-request-rejected.html" class="list-group-item"> Rejected   <span class="badge">12</span></a>
+                        <a href="contact-request-pending.html" class="list-group-item"> Blocked   <span class="badge">12</span></a>
                      </div>
                   </div>
                </div>
+            </div>
+            <search-by-id></search-by-id>
+         </div>
+         <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+            <div class="col-md-12 no-padding ">
+               <user-view-directive></user-view-directive>
             </div>
          </div>
       </div>
