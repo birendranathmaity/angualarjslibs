@@ -249,17 +249,14 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
 
         { $match: { user_status: "ACTIVE" } },
 
-        { $lookup: { from: "userintrests", localField: "user_id", foreignField: "user_id", as: "height" } },
 
-        { $match: { height: { "$ne": [] } } },
 
-        { $unwind: "$height" },
 
         { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
 
-        { $match: { basicinfos: { "$ne": [] } } },
+        { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
 
-        { $unwind: "$basicinfos" },
+
 
         { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
 
@@ -268,11 +265,17 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
         { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
 
         { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
+        { $lookup: { from: "userintrests", localField: "user_id", foreignField: "user_id", as: "height" } },
 
 
-        { $match: { pic: { "$ne": [] } } },
+        { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
+        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
 
-        { $unwind: "$pic" },
+        { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
         {
             "$match": {
                 "pic.photo_type": { "$eq": "PROFILE" },
@@ -280,11 +283,7 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
                 "pic.photo_vr": { "$eq": req.body.vr }
             }
         },
-        { $unwind: "$country" },
 
-        { $unwind: "$state" },
-
-        { $unwind: "$city" },
 
 
 
@@ -375,69 +374,75 @@ exports.pendingemailvrusers = function (req, res) {
 
 
 
-{$sort: { created_on: -1 }},
+        { $sort: { created_on: -1 } },
 
-{$match: { user_status: "ACTIVE" ,
-           email_vr: false} },
-
-
-
-{$lookup:{from: "userbasicinfos",localField: "user_id",foreignField: "user_id",as: "basicinfos"}},
-
-
-{ "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true }},
-
-
-{$lookup: {from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country"} },
-
-{$lookup: {from: "states", localField: "basicinfos.state", foreignField: "id", as: "state"} },
-
-{$lookup: {from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city"} },
-
-{$lookup: {from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic"} },
-{$lookup:{from: "userintrests",localField: "user_id",foreignField: "user_id",as: "height"}},
-
-
-{ "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true }},
-{ "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true }},
-
-{ "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true }},
-
-{ "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true }},
-
-{ "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true }},
-
-
-{ $project: {
-
-            "_id":1,
-
-            "user_id": "$user_id",
-
-            "first_name" :"$first_name",
-
-            "last_name":"$last_name",
-
-            "age":"$age",
-
-            "height": "$height.height",
-
-            "country": "$country.name",
-
-            "state": "$state.name",
-
-            "city": "$city.name",
-
-            "pic":"$pic",
-            "created_on":"$created_on"
-
-    } }
+        {
+            $match: {
+                user_status: "ACTIVE",
+                email_vr: false
+            }
+        },
 
 
 
- 
+        { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
 
-]);
+
+        { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+
+
+        { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
+
+        { $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
+
+        { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
+
+        { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
+        { $lookup: { from: "userintrests", localField: "user_id", foreignField: "user_id", as: "height" } },
+
+
+        { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
+        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
+
+
+        {
+            $project: {
+
+                "_id": 1,
+
+                "user_id": "$user_id",
+
+                "first_name": "$first_name",
+
+                "last_name": "$last_name",
+
+                "age": "$age",
+
+                "height": "$height.height",
+
+                "country": "$country.name",
+
+                "state": "$state.name",
+
+                "city": "$city.name",
+
+                "pic": "$pic",
+                "created_on": "$created_on"
+
+            }
+        }
+
+
+
+
+
+    ]);
     var options = {
         page: req.body.page,
         limit: req.body.limit
