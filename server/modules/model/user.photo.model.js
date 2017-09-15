@@ -8,6 +8,7 @@ var userPhotoSchema   = new Schema({
     uploaded_on:Date,
     photo_visibility_status:Boolean,
     photo_vr_msg:String,
+    photo_approved_on:Date,
     uploaded_by:String
 
 });

@@ -21,9 +21,16 @@ module.exports = function(app,express,process){
  app.get(serviceConfig.GETALL_INACTIVE_USERS,admin.getallinActiveUsers);
  app.post(serviceConfig.ADMIN_ACCEPT,admin.adminAccept);
  app.post(serviceConfig.ADMIN_ACCEPT_PHOTO,adminTask.adminAcceptPhoto);
+
+ app.post(serviceConfig.GETALLUSERS_GROUPBY_PHOTO_STATUS,admin.getallusersgroupbyphotostatus);
+ app.get(serviceConfig.GETALLUSERS_GROUPBY_PHOTO_STATUS_COUNT,admin.getallusersgroupbyphotostatus_count);
+
+ app.post(serviceConfig.GETALLUSERS_GROUPBY_PENDING_EMAIL_VR,admin.pendingemailvrusers);
+ app.get(serviceConfig.GETALLUSERS_GROUPBY_PENDING_EMAIL_VR_COUNT,admin.pendingemailvrusers_count);
+ app.get(serviceConfig.PENDING_PROFILES_COUNT,admin.pendingprofiles_count);
  
 //photo//
-
+ 
  app.post(serviceConfig.USER_PROFILE_PHOTO_UPLOAD,photo.pPhotoUpload);
 // app.post('/authenticate', function(req, res) {
 //     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {

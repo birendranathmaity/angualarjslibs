@@ -6,14 +6,19 @@ PhotoModel.update(
       photo_type:req.body.photo_type,
     }, 
 
-  {$set : {photo_vr:true,photo_vr_msg:"APPROVED"}},
+  {$set : {
+    photo_vr:req.body.photo_vr,
+    photo_approved_on:new Date(),
+    photo_vr_msg:req.body.photo_vr_msg}},
  
-  {multi : true},
+  {upsert:true},
 
   function(err, docs) {
+    
    res.json({
                 success: true,
-                users:docs
+                result:docs
+               
               
             });
 });

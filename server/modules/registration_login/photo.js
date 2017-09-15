@@ -68,11 +68,12 @@ function actionPhotoInDB(req,res,actionType){
            
             if(req.query.user_id!=req.query.uploaded_by){
             req.query.photo_vr=true;
-            photo_vr_msg="APPROVED";
+
+            req.query.photo_vr_msg="APPROVED";
         }
         else{
              req.query.photo_vr=false;
-             photo_vr_msg="PENDING_APPROVAL";
+             req.query.photo_vr_msg="PENDING_APPROVAL";
         }
 
 var photoDetails={
@@ -83,6 +84,7 @@ var photoDetails={
     photo_path:req.file.filename,
     uploaded_on:new Date(),
     photo_visibility_status:req.query.photo_visibility_status,
+    photo_approved_on:new Date(),
     uploaded_by:req.query.uploaded_by
 };
 
@@ -119,7 +121,7 @@ function updateUserPhoto(photo,res){
                   "photo_vr_msg":photo.photo_vr_msg,
                   "uploaded_on" : photo.uploaded_on,
                   };
-photoModel.findOneAndUpdate({"user_id":photo.user_id}, data, {upsert:true}, function(err, doc){
+photoModel.findOneAndUpdate({"user_id":photo.user_id}, photo, {upsert:true}, function(err, doc){
     if (err) return res.send(500, { error: err });
     return  res.json({
                       success:true,

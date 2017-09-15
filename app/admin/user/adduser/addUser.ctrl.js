@@ -4,7 +4,7 @@ var controller=this;
 controller.showRegisForm=true;
 controller.showMoreInfodir=false;
 
- toastr.success('I don\'t need a title to live');
+ //toastr.success('I don\'t need a title to live');
 
         //listen from gotomorinfo modal
             $rootScope.$on('comRegViaGoMoreInfoMl', listenComRegViaGoMoreInfoMl);

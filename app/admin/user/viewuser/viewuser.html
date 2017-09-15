@@ -4,17 +4,20 @@
          <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
             <div class="grid simple mail-msg">
                <div class="grid-title no-border">
-                  <h4 class="bold">Contact Requests</h4>
+                  <h4 class="bold">User Status List</h4>
                </div>
                <div class="grid-body no-border pro-bord">
                   <div class="panel-group" >
                      <div class="list-group"> 
-                        <a href="contact-request.html" class="list-group-item "> Photo Requests <span class="badge">12</span></a>
-                        <a href="contact-request-sent.html" class="list-group-item "> Pending Profiles  <span class="badge">12</span></a>
-                        <a href="contact-request-accepted.html" class="list-group-item  active-list"> Pending Email Verification   <span class="badge">12</span></a>
-                        <a href="contact-request-rejected.html" class="list-group-item"> Completed Profiles   <span class="badge">12</span></a>
-                        <a href="contact-request-rejected.html" class="list-group-item"> Rejected   <span class="badge">12</span></a>
-                        <a href="contact-request-pending.html" class="list-group-item"> Blocked   <span class="badge">12</span></a>
+                        <a ng-repeat="status in ctrl.photoStatusCountResult" ng-click="ctrl.loadUsers('PHOTO_PENDING_APPROVAL')" ng-class="ctrl.activeClass('PHOTO_PENDING_APPROVAL')" ng-if="status._id==='PENDING_APPROVAL'" class="cursorpointer list-group-item "> Photo Requests <span class="badge">{{status.count - ctrl.actionCountPR}}</span></a>
+                        <a ng-repeat="status in ctrl.photoStatusCountResult" ng-click="ctrl.loadUsers('PHOTO_REJECTED')" ng-class="ctrl.activeClass('PHOTO_REJECTED')" ng-if="status._id==='REJECTED'" class="cursorpointer list-group-item "> Rejected Photos  <span class="badge">{{status.count + ctrl.actionCountRP}}</span></a>
+                        <a ng-repeat="status in ctrl.photoStatusCountResult" ng-click="ctrl.loadUsers('PHOTO_APPROVED')" ng-class="ctrl.activeClass('PHOTO_APPROVED')"  ng-if="status._id==='APPROVED'" class="cursorpointer list-group-item "> Approved Photos  <span class="badge">{{status.count + ctrl.actionCountAP}}</span></a>
+                        <a ng-repeat="status in ctrl.emailVrCountResult"     ng-click="ctrl.loadUsers('PENDING_EMAIL_VR')"  ng-class="ctrl.activeClass('PENDING_EMAIL_VR')" ng-if="!status._id" class=" cursorpointer list-group-item"> Pending Email Verification   <span class="badge">{{status.count + ctrl.actionCountPEV}}</span></a>
+                        <a ng-repeat="status in ctrl.pendingProfilesCountResult" ng-click="ctrl.loadUsers('INCOMPLETE_PROFILES')"  ng-class="ctrl.activeClass('INCOMPLETE_PROFILES')"  ng-if="status._id==='PENDING'" class="cursorpointer list-group-item"> Pending Profiles   <span class="badge">12</span></a>
+                        <a ng-repeat="status in ctrl.pendingProfilesCountResult" ng-click="ctrl.loadUsers('COMPLETED_PROFILES')"  ng-class="ctrl.activeClass('COMPLETED_PROFILES')" ng-if="status._id==='COMPLETED'" class="cursorpointer list-group-item"> Completed Profiles   <span class="badge">12</span></a>
+                        <a ng-click="ctrl.loadUsers('REJECTED_PROFILES')"  ng-class="ctrl.activeClass('REJECTED_PROFILES')" class="ng-hide cursorpointer list-group-item"> Rejected Profiles   <span class="badge">0</span></a>
+                        <a ng-click="ctrl.loadUsers('BLOCKED_PROFILES')"  ng-class="ctrl.activeClass('BLOCKED_PROFILES')" class="ng-hide cursorpointer list-group-item"> Blocked Profiles   <span class="badge">0</span></a>
+                        
                      </div>
                   </div>
                </div>
@@ -23,7 +26,7 @@
          </div>
          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
             <div class="col-md-12 no-padding ">
-               <user-view-directive></user-view-directive>
+               <user-view-directive view-type="ctrl.loadUserStatusType"></user-view-directive>
             </div>
          </div>
       </div>

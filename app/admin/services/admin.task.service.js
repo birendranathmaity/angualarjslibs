@@ -10,7 +10,7 @@ module.exports =function($http,ServiceUrls,$uibModal){
                          animation: true,
                          windowClass: "login-model",
                          templateUrl: './app/admin/reject-modal/reject.modal.html',
-                         controller: 'CropModalController',
+                         controller: 'rejectController',
                          controllerAs: 'ctrl',
                          size: "lg",
                          backdrop: 'static',
