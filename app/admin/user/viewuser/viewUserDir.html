@@ -5,7 +5,7 @@
                         <div class="row-fluid dataTables_wrapper">
                            <div class="col-lg-4 no-padding  ">
                               <div class="pull-left">
-                                  <div class="checkbox">
+                                  <div class="checkbox" ng-if="ctrl.users.length>0">
             <label style="font-size: 1.2em; line-height: 13px;">
                 <input type="checkbox" value="" ng-model="ctrl.selectedAll" ng-click="ctrl.checkAll()">
                 <span class="cr"><i class="cr-icon fa fa-check"></i></span>
@@ -32,7 +32,7 @@
                               </div> 
                            </div>
                            <div class="col-lg-8">
-                           <div class="dataTables_paginate paging_bootstrap pagination pull-right">
+                           <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="ctrl.users.length>0">
                            <ul>
                            <li class="pull-left"> <div class=" hidden-xs">Showing <b>{{ctrl.start}} to {{ctrl.end}}</b> of {{ctrl.total}} entries</div> </li>
                            <li class="prev disabled" style="margin-top: -2px;">
@@ -59,6 +59,7 @@
                            </div>
                            <div class="clearfix"></div>
                            <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                             <p class="noinforav" ng-if="ctrl.users.length===0">No information available </p>
                               <ul>
                                  <li class="row-fluid userlist" ng-repeat="user in ctrl.users">
                                 
@@ -104,3 +105,10 @@
                      </div>
                   </div>
                </div>
+               <style>
+               
+               .noinforav{
+                 margin: 210px 300px;
+               }
+               
+               </style>

@@ -17,10 +17,12 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.CITIES,regisLogin.getcities);
   
 //admin//////
- app.post(serviceConfig.GETALL_ACTIVE_USERS,admin.getallActiveUsers);
+ app.post(serviceConfig.GET_USERS,admin.get_users);
  app.get(serviceConfig.GETALL_INACTIVE_USERS,admin.getallinActiveUsers);
  app.post(serviceConfig.ADMIN_ACCEPT,admin.adminAccept);
  app.post(serviceConfig.ADMIN_ACCEPT_PHOTO,adminTask.adminAcceptPhoto);
+
+ app.get(serviceConfig.GET_ALL_USERS_STATUS_COUNT,admin.get_all_users_status_count);
 
  app.post(serviceConfig.GETALLUSERS_GROUPBY_PHOTO_STATUS,admin.getallusersgroupbyphotostatus);
  app.get(serviceConfig.GETALLUSERS_GROUPBY_PHOTO_STATUS_COUNT,admin.getallusersgroupbyphotostatus_count);

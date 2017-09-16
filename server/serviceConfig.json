@@ -11,7 +11,7 @@
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
     "SAVEMOREINFO":"/savemoreinfo",
-    "GETALL_ACTIVE_USERS":"/getallactiveusers",
+    "GET_USERS":"/getusers",
     "GETALL_INACTIVE_USERS":"/getallinactiveusers",
     "ADMIN_ACCEPT":"/admin_accept",
     "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload",
@@ -21,5 +21,6 @@
     "GETALLUSERS_GROUPBY_PHOTO_STATUS_COUNT":"/getall_users_groupby_photo_status_count",
     "GETALLUSERS_GROUPBY_PENDING_EMAIL_VR":"/getallusers_groupby_pending_email_vr",
     "GETALLUSERS_GROUPBY_PENDING_EMAIL_VR_COUNT":"/getallusers_groupby_pending_email_vr_count",
-    "PENDING_PROFILES_COUNT":"/pending_profiles_count"
+    "PENDING_PROFILES_COUNT":"/pending_profiles_count",
+    "GET_ALL_USERS_STATUS_COUNT":"/get_all_users_status_count"
 }

@@ -11,7 +11,7 @@ PhotoModel.update(
     photo_approved_on:new Date(),
     photo_vr_msg:req.body.photo_vr_msg}},
  
-  {upsert:true},
+  {multi:true},
 
   function(err, docs) {
     

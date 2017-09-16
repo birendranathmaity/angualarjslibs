@@ -1,6 +1,6 @@
 var User = require('./../model/user.model');
 var PhotoModel = require('./../model/user.photo.model');
-exports.getallActiveUsers = function (req, res) {
+exports.getallActiveUsersR = function (req, res) {
 
 
     //  User.find({},null,{sort: {created_on: -1 }},function(err,result){
@@ -120,86 +120,7 @@ exports.getallActiveUsers = function (req, res) {
 
 };
 
-exports.getallinActiveUsers = function (req, res) {
-    var aggregate = User.aggregate(
-        [
-            { "$sort": { created_on: -1 } },
-            {
-                "$project": {
 
-                    "user_id": "$user_id",
-                    "first_name": "$first_name",
-                    "age": "$age",
-                    "created_on": "$created_on"
-                }
-            },
-            {
-                $lookup:
-                {
-                    from: "userintrests",
-                    localField: "user_id",
-                    foreignField: "user_id",
-                    as: "height"
-                }
-            },
-            {
-                $unwind: "$height"
-            },
-            { $addFields: { "height": "$height.height" } }
-
-            //    { $match:
-            //        { 
-            //             age : {'$gte' : 40 } 
-            //        }
-            //    }
-        ]
-    );
-    // . aggregate.match({age : {'$gt' : 40 } })
-    // .aggregate.lookup({
-    //         from: "userintrests",
-    //         localField: "user_id",
-    //         foreignField: "user_id",
-    //         as: "height"
-    //     });
-    //  .aggregate.$sort( { created_on: -1 });
-    var options = {
-        page: 1,
-        limit: 5
-    };
-    User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
-        if (err) {
-            res.json(err);
-            console.err(err)
-        }
-        else {
-            var docs = {
-                docs: results,
-                pages: pageCount,
-                total: count
-
-            };
-            res.json(docs);
-        }
-    });
-
-    // User.aggregate(
-    //     [
-
-    //     {
-    //     $lookup: {
-    //            from: "userintrests",
-    //             localField: "user_id",
-    //             foreignField: "user_id",
-    //             as: "height"
-    //         }
-    // }
-    //     ],
-    //     function(err,result) {
-    //  res.json(aggregate);
-    //        // Result is an array of documents
-    //     }
-    // );
-};
 function UserProfileUpdate(userId, update, res) {
     User.findOneAndUpdate({
         user_id: userId
@@ -249,10 +170,7 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
 
         { $match: { user_status: "ACTIVE" } },
 
-
-
-
-        { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
+       { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
 
         { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
 
@@ -531,4 +449,254 @@ exports.pendingprofiles_count = function (req, res) {
         res.json(results);
     });
 
+};
+exports.get_all_users_status_count=function(req,res){
+User.aggregate([
+     
+{$sort: { created_on: -1 }},
+{$lookup: {from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic"} },
+{ "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true }},
+{ "$group": {
+        "_id": null,
+        "TOTAL_USERS": { "$sum": 1 },
+        "TOTAL_ACTIVE_USERS": {
+                "$sum": {
+                    "$cond": [ { "$eq": [ "$user_status",  "ACTIVE" ] }, 1, 0]
+                }
+            },
+            "TOTAL_INACTIVE_USERS": {
+                "$sum": {
+                    "$cond": [ { "$eq": [ "$user_status",  "INACTIVE" ] }, 1, 0]
+                }
+            },
+            "EMAIL_VR_PENDING": {$sum: { $cond: [ {$and : [ { $eq: [ "$email_vr",  false] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},
+              "PHOTO_UPLOAD_PENDING": {$sum: { $cond: [ {$and : [ { $not: [ "$pic" ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},                       
+             "PHOTO_VR_PENDING": {$sum: { $cond: [ {$and : [
+                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
+                                               { $eq: [ "$pic.photo_vr_msg",   "PENDING_APPROVAL" ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},
+              "PHOTO_VR_REJECTED": {$sum: { $cond: [ {$and : [ 
+                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
+                                               { $eq: [ "$pic.photo_vr_msg",   "REJECTED" ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},
+              "PHOTO_VR_COMPLETED": {$sum: { $cond: [ {$and : [ 
+                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
+                                               { $eq: [ "$pic.photo_vr",  true ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},
+              "COMPLETED_PROFILES": {$sum: { $cond: [ {$and : [ { $eq: [ "$profile_complete_status",  "COMPLETED" ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }},
+             "PENDING_PROFILES": {$sum: { $cond: [ {$and : [ { $eq: [ "$profile_complete_status",  "PENDING" ] },
+                                               { $eq: [ "$user_status","ACTIVE"] }
+                                     ] },
+                                     1,
+                                     0 ] }}                              
+            
+            
+        
+    }}
+
+
+    ], function (error, results) {
+
+
+  res.json(results);
+    });
+};
+exports.getallinActiveUsers = function (req, res) {
+
+};
+
+exports.get_users = function (req, res) {
+
+    var searchType=req.body.searchType;
+    var match={};
+    if(searchType=="TOTAL_USERS"){
+        match={};
+
+    }
+if(searchType=="TOTAL_ACTIVE_USERS"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            
+        };
+
+    }
+    if(searchType=="TOTAL_INACTIVE_USERS"){
+        match={
+            "user_status": { "$eq": "INACTIVE" },
+            
+        };
+
+    }
+if(searchType=="EMAIL_VR_PENDING"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "email_vr": { "$eq": false }
+        };
+
+    } 
+    if(searchType=="PHOTO_UPLOAD_PENDING"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+             "pic": { "$eq": null },
+        };
+
+    }  
+    if(searchType=="PHOTO_VR_PENDING"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "pic.photo_type": { "$eq": "PROFILE" },
+            "pic.photo_vr_msg": { "$eq": "PENDING_APPROVAL" },
+            "pic.photo_vr": { "$eq": false }
+            
+        };
+
+    } 
+    if(searchType=="PHOTO_VR_REJECTED"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "pic.photo_type": { "$eq": "PROFILE" },
+            "pic.photo_vr_msg": { "$eq": "REJECTED" },
+            "pic.photo_vr": { "$eq": false }
+            
+        };
+
+    } 
+     if(searchType=="PHOTO_VR_COMPLETED"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "pic.photo_type": { "$eq": "PROFILE" },
+            "pic.photo_vr_msg": { "$eq": "APPROVED" },
+            "pic.photo_vr": { "$eq": true }
+            
+        };
+
+    } 
+     if(searchType=="COMPLETED_PROFILES"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "profile_complete_status": { "$eq": "COMPLETED" }
+            
+            
+        };
+
+    }
+    if(searchType=="PENDING_PROFILES"){
+        match={
+            "user_status": { "$eq": "ACTIVE" },
+            "profile_complete_status": { "$eq": "PENDING" }
+            
+            
+        };
+
+    }
+    
+    var aggregate = User.aggregate([
+
+
+
+        { $sort: { created_on: -1 } },
+
+        { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
+
+
+        { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+
+
+        { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
+
+        { $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
+
+        { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
+
+        { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
+        { $lookup: { from: "userintrests", localField: "user_id", foreignField: "user_id", as: "height" } },
+
+
+        { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
+        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+
+        { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
+
+      {
+            $match: match
+        },
+
+
+
+        {
+            $project: {
+
+                "_id": 1,
+
+                "user_id": "$user_id",
+
+                "first_name": "$first_name",
+
+                "last_name": "$last_name",
+
+                "age": "$age",
+
+                "height": "$height.height",
+
+                "country": "$country.name",
+
+                "state": "$state.name",
+
+                "city": "$city.name",
+
+                "pic": "$pic",
+                "created_on": "$created_on"
+
+            }
+        }
+
+
+
+
+
+    ]);
+    var options = {
+        page: req.body.page,
+        limit: req.body.limit
+    };
+    User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
+        if (err) {
+            res.json(err);
+            console.err(err)
+        }
+        else {
+            var docs = {
+                docs: results,
+                pages: pageCount,
+                total: count
+
+            };
+            res.json(docs);
+        }
+    });
 };

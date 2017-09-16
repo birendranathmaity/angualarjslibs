@@ -45,7 +45,18 @@
   "INVALID_USER_PASSWORD_MSG":"Invalid username/password",
   "INVALIDOTP_MSG":"Invalid OTP",
   "SIGNUP":"Sign Up",
-  "SAVE":"Save"
+  "SAVE":"Save",
+  "TOTAL_USERS":"Total users",
+  "TOTAL_ACTIVE_USERS":"Total active users",
+  "TOTAL_INACTIVE_USERS":"Total inactive users",
+  "EMAIL_VR_PENDING":"Email verification pending",
+  "PHOTO_UPLOAD_PENDING":"Display photo upload pending",
+  "PHOTO_VR_PENDING":"Photo verification pending",
+  "PHOTO_VR_REJECTED":"Photo verification rejected",
+  "PHOTO_VR_COMPLETED":"Photo verification completed",
+  "COMPLETED_PROFILES":"Completed profiles",
+  "PENDING_PROFILES":"Pending profiles"
+
 
 
 

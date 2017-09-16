@@ -2,10 +2,13 @@
 module.exports =function($http,ServiceUrls){
        
     return {
-            getallActiveUsers: function(data,success, error) {
-                $http.post(ServiceUrls.BASEURL + ServiceUrls.GETALL_ACTIVE_USERS,data).success(success).error(error);
+            getUsers: function(data,success, error) {
+                $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_USERS,data).success(success).error(error);
             },
-             getallActiveUsers: function(data,success, error) {
+             get_all_users_status_count: function(success, error) {
+                $http.get(ServiceUrls.BASEURL + ServiceUrls.GET_ALL_USERS_STATUS_COUNT).success(success).error(error);
+            },
+             getallinActiveUsers: function(data,success, error) {
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.GETALL_ACTIVE_USERS,data).success(success).error(error);
             },
              getAllUsersGroupByPhotoStatus: function(data,success, error) {

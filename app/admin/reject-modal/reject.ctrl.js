@@ -36,8 +36,8 @@ module.exports = function rejectController($uibModal, $uibModalInstance, user, $
     ];
 controller.submit=function(form){
 
-     $rootScope.$emit('resetPhoto',{
-            type:"resetPhoto",
+     $rootScope.$emit('rejectPhoto',{
+          
             user_id:user.user_id
 
         });
