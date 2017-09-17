@@ -15,7 +15,7 @@ module.exports = function ($uibModal, $filter,countryService,loginservice) {
             function ($scope, $element, $attrs) {
            var controller = this;
 
-console.log($scope.userId);
+
     var formdata = require('./form-data');
 //open login modal//
     controller.openLoginModal = function(size) {
@@ -191,7 +191,7 @@ family.time_birth_hr=parseInt(family.time_birth_hr);
            "basicinfo":basicinfo,
            "educationwork":educationwork,
            "intrests":intrests,
-          "family":family
+           "family":family
         };
          loginservice.savemoreinfo(req, function(res) {
                        if(res.success){

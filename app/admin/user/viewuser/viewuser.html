@@ -30,6 +30,21 @@
          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
             <div class="col-md-12 no-padding ">
                <user-view-directive view-type="ctrl.loadUserStatusType"></user-view-directive>
+               <uib-tabset active="activeJustified" justified="true">
+    <uib-tab index="0" heading="{{'SAVE' | translate}}">
+
+<div class="full" >
+                
+                 <div class="reg-sec" style="padding:25px">
+                   <register-form is-admin="true" ></register-form>
+                    <basic-info user-id="ctrl.user_id" is-admin="true" ></basic-info>
+                 </div>
+              </div>
+
+    </uib-tab>
+    <uib-tab index="1" heading="SJ">Short Labeled Justified content</uib-tab>
+    <uib-tab index="2" heading="Long Justified">Long Labeled Justified content</uib-tab>
+  </uib-tabset>
             </div>
          </div>
       </div>

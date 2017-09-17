@@ -70,7 +70,7 @@
                                           <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
                                           </div>
                                          
-                                  <div ng-if="user.pic"   class="user-profile-pic pull-left cursorpointer"  popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)" popover-placement="'top'" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
+                                  <div ng-if="user.pic"   class="user-profile-pic pull-left cursorpointer"  popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)" popover-placement="{{ctrl.photoView.pos}}" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
                                     <img ng-if="user.pic.photo_type==='PROFILE'" water-mark="user.pic"  alt="" width="91" height="88" />
                                              <p ng-if="user.pic.photo_type==='PROFILE'"> ( {{user.user_id}} )</p>
                                   </div>

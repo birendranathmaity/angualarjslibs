@@ -700,3 +700,51 @@ if(searchType=="EMAIL_VR_PENDING"){
         }
     });
 };
+exports.get_user = function (req, res) {
+
+User.aggregate([
+
+{
+            $match: {
+                "user_id":{ "$eq": req.body.user_id }
+                
+                }
+        },
+
+        { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
+        { $lookup: { from: "usereducations", localField: "user_id", foreignField: "user_id", as: "usereducations" } },
+        { $lookup: { from: "userintrests", localField: "user_id", foreignField: "user_id", as: "userintrests" } },
+        { $lookup: { from: "userfamilies", localField: "user_id", foreignField: "user_id", as: "userfamilies" } },
+        { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
+        {
+            $project: {
+                 "_id":0,
+                 "initial": "$$ROOT",
+
+                "basicinfos": "$basicinfos",
+
+                "usereducations": "$usereducations",
+
+                "userintrests": "$userintrests",
+
+                "userfamilies": "$userfamilies",
+
+                "pic": "$pic"
+                
+
+            }
+        }
+
+
+
+
+
+    ], function (error, results) {
+
+
+        res.json(results[0]);
+    });
+
+
+
+};

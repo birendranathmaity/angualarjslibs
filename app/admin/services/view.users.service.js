@@ -2,6 +2,9 @@
 module.exports =function($http,ServiceUrls){
        
     return {
+         getUser: function(data,success, error) {
+                $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_USER,data).success(success).error(error);
+            },
             getUsers: function(data,success, error) {
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_USERS,data).success(success).error(error);
             },
@@ -25,9 +28,6 @@ module.exports =function($http,ServiceUrls){
             },
              pendingProfilesCount: function(success, error) {
                 $http.get(ServiceUrls.BASEURL + ServiceUrls.PENDING_PROFILES_COUNT).success(success).error(error);
-            },
-             accept: function(data,success, error) {
-                $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACCEPT,data).success(success).error(error);
             },
             accept: function(data,success, error) {
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACCEPT,data).success(success).error(error);

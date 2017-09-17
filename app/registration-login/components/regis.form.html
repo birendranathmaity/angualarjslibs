@@ -52,11 +52,12 @@
       <div class="col-md-6 p-l-0 p-r-7 ">
          <select class="select-btn minimal form-control"
             ng-model="form.created_by"
-            >
-            <option value="SELF" ng-if="!isAdmin"> Self</option>
-            <option value="FATHER" ng-if="!isAdmin"> Father</option>
-            <option value="MOTHER" ng-if="!isAdmin"> Mother</option>
+            > 
             <option value="ADMIN" ng-if="isAdmin"> Admin</option>
+            <option value="SELF" > Self</option>
+            <option value="FATHER" > Father</option>
+            <option value="MOTHER"> Mother</option>
+           
          </select>
       </div>
       <div class="requirements">
@@ -79,7 +80,7 @@
                required
                >
                <option value disabled > Date</option>
-               <option ng-repeat="_ in ((_ = []) && (_.length=31) && _) track by $index" value="{{$index+1}}">{{$index+1}}</option>
+               <option ng-repeat="_ in ((_ = []) && (_.length=31) && _) track by $index" ng-value="$index+1">{{$index+1}}</option>
             </select>
          </div>
          <div class=" month-birth p-r-7">
@@ -93,7 +94,7 @@
                validate-on="dirty"
                required >
                <option value disabled> Month</option>
-               <option ng-repeat="month in registerFormCtrl.monthsL" value="{{$index+1}}">{{month}}</option>
+               <option ng-repeat="month in registerFormCtrl.monthsL" ng-value="$index+1">{{month}}</option>
             </select>
          </div>
          <div class="year-birth">

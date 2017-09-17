@@ -1,13 +1,20 @@
 /* @ngInject */
-module.exports = function viewUserController($rootScope, $viewusers, loginservice, $admintaskservice, toastr) {
+module.exports = function viewUserController($rootScope, $viewusers, loginservice, $admintaskservice, toastr, $stateParams) {
     var controller = this;
-    controller.loadUserStatusType = "TOTAL_USERS";
+
     controller.actionCountPR = 0;
     controller.actionCountRP = 0;
     controller.actionCountAP = 0;
     controller.actionCountPEV = 0;
     controller.userStatusList = [];
 
+
+    if ($stateParams.userLoadType) {
+        controller.loadUserStatusType = $stateParams.userLoadType;
+    }
+    else {
+        controller.loadUserStatusType = "TOTAL_USERS";
+    }
     controller.loadusersCountList = function () {
 
 
@@ -32,10 +39,14 @@ module.exports = function viewUserController($rootScope, $viewusers, loginservic
         }
 
     };
-    $rootScope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
+    var updateUserListCountEmit = $rootScope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
 
-       controller.loadusersCountList();
+        controller.loadusersCountList();
 
 
+    });
+    $rootScope.$on('$destroy', function () {
+
+        updateUserListCountEmit();
     });
 };

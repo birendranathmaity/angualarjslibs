@@ -2,10 +2,10 @@
  * Global header partial
  */
 /* @ngInject */
-module.exports = function HeaderController( $translate,$state) {
+module.exports = function HeaderController( $translate,$state, $rootScope) {
     var controller = this;
    controller.$state = $state;
-   console.log(controller.$state.current.name);
+
 
    controller.subMenus=[];
     controller.headerMenu=[
@@ -84,24 +84,20 @@ controller.adminHeaderMenus=[{
     route:"root.viewusers"
 }];
    
-    controller.language = 'English';
-    controller.languages = ['English', 'Hindi'];
-    controller.updateLanguage = function() {
-    $translate.use(controller.language.toLowerCase());
-  };
-
+   
     /**
      * Sets listeners for toggling properties on the header
      */
     function activate() {
         //TODO - Get permissions, login details etc
         controller.user = {
-            firstName: "venkata",
-            lastName: "Adari"
+            firstName: "Biren",
+            lastName: "Maity"
         };
     }
     var isadmin=true;
 controller.loadSubmenu=function(route){
+
     if(isadmin){
         controller.headerMenu=controller.adminHeaderMenus;
     }
@@ -124,9 +120,17 @@ controller.subMenus=controller.headerMenu[i].subMenus;
         }
 
     }
-controller.loadsubmenus=function(){
 
 };
-};
 controller.loadSubmenu(controller.$state.current.name);
+ var updatesubmenu= $rootScope.$on("loadhedermenu",function(evnt,msg){
+ //controller.$state=msg;
+ controller.loadSubmenu(msg.name);
+    
+ });
+   $rootScope.$on('$destroy', function () {
+   
+    updatesubmenu();
+});
+
 };

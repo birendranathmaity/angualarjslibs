@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($translate) {
+module.exports = function ($translate,$templateCache,$state, $rootScope) {
     return {
         restrict: 'E',
         templateUrl:'./app/layouts/components/language.dropdown.html',
@@ -12,8 +12,15 @@ module.exports = function ($translate) {
                 var controller=this;
         controller.language = 'English';
     controller.languages = ['English', 'Hindi'];
+      console.log($state.current.views["@"].templateUrl)
     controller.updateLanguage = function() {
     $translate.use(controller.language.toLowerCase());
+      $rootScope.$broadcast('myEventName');
+  
+// var currentPageTemplate =$state.current.views["@"].templateUrl;
+// $templateCache.remove(currentPageTemplate);
+// $state.current.views["@"].templateUrl=$state.current.views["@"].templateUrl;
+// $state.reload();
   };
             }
         ]

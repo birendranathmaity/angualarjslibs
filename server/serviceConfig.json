@@ -11,6 +11,7 @@
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
     "SAVEMOREINFO":"/savemoreinfo",
+    "GET_USER":"/getuser",
     "GET_USERS":"/getusers",
     "GETALL_INACTIVE_USERS":"/getallinactiveusers",
     "ADMIN_ACCEPT":"/admin_accept",

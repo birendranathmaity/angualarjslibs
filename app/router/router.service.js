@@ -102,7 +102,9 @@ module.exports = function ($location, $rootScope, $state, routerConfig,loginserv
 	// 	$rootScope.animation = currRoute.animation;
 	//   });
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-          
+
+           
+          $rootScope.$broadcast("loadhedermenu",toState);
             loginservice.getCurrentUserRole(function(role){
 if(role ==="FREEUSER" && toParams.permisstion ==="ALLUSER"){
 return;

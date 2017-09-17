@@ -8,7 +8,6 @@ var moment = window.moment = require('moment');
 
 require('ui-router-extras');
 require('../node_modules/@iamadamjowett/angular-click-outside/clickoutside.directive');
-require('ng-password-strength');
 require('moment-range');
 require('ng-device-detector');
 require('ng-idle');
@@ -21,7 +20,7 @@ require('angular-toastr');
 require('ng-scrollbars');
 require('ngstorage');
 require('ng-file-upload');
-require('angular-filter');
+require('angular-chart.js');
 // App UI modules
 var LoadingBarModule = require('./loading-bar');
 var routerModule = require('./router');
@@ -44,7 +43,6 @@ angular.module('app.ui', [
     'toastr',
     'angular-click-outside',
     'ct.ui.router.extras',
-    'ngPasswordStrength',
     'ng.deviceDetector',
     'ngIdle',
     'ngMask',
@@ -52,7 +50,7 @@ angular.module('app.ui', [
     'ngScrollbars',
     'ngStorage',
     'ngFileUpload',
-    'angular.filter',
+    'chart.js',
     LoadingBarModule.name,
     translateModule.name,
     routerModule.name,

@@ -43,7 +43,8 @@ module.exports = function adminRoutes(Router) {
                     }
                 },
                 params: {
-                    permisstion: "ADMIN"
+                    permisstion: "ADMIN",
+                    userLoadType:null
                 },
                 title: 'view user'
             }

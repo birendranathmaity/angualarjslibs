@@ -18,6 +18,7 @@ module.exports = function(app,express,process){
   
 //admin//////
  app.post(serviceConfig.GET_USERS,admin.get_users);
+ app.post(serviceConfig.GET_USER,admin.get_user);
  app.get(serviceConfig.GETALL_INACTIVE_USERS,admin.getallinActiveUsers);
  app.post(serviceConfig.ADMIN_ACCEPT,admin.adminAccept);
  app.post(serviceConfig.ADMIN_ACCEPT_PHOTO,adminTask.adminAcceptPhoto);

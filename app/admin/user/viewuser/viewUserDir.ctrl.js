@@ -17,7 +17,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     };
 
     $scope.$watch('viewType', function (n, v) {
-        if (!n) return;
+        if (!n) {return;}
         controller.viewType = n;
         req.searchType = n;
         controller.loadViewType();
@@ -44,7 +44,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
         controller.page = controller.page;
 
-        req.page = controller.page
+        req.page = controller.page;
         controller.loadViewType();
 
     };
@@ -58,7 +58,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
         controller.start = (controller.page - 1) * controller.limit + 1;
         controller.end = controller.start + result.docs.length - 1;
-    };
+    }
     controller.checkAll = function () {
         controller.userIds = [];
         if (controller.selectedAll) {
@@ -124,12 +124,12 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
                     toastr.success('Successfully rejected');
                 }
                 resetUserList(users, type);
-                $rootScope.$emit('updateUserListCountEmit', {});
+                $rootScope.$broadcast('updateUserListCountEmit', {});
 
             }
 
         }, function () { });
-    };
+    }
     function resetUserList(usersIds, type) {
         controller.loadViewType();
 
@@ -148,14 +148,14 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
         }
 
 
-    };
+    }
 
     controller.reject = function (user) {
         $admintaskservice.openRejectModal(user);
 
     };
     controller.toFeet = function (ft) {
-        if (!ft) return 0;
+        if (!ft) {return "";}
         var inches = (ft * 0.393700787 * 30.48).toFixed(0);
         var feet = Math.floor(inches / 12);
         inches %= 12;
@@ -183,7 +183,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     };
 
     controller.photoView = {
-
+        pos:"right",
         templateUrl: './app/admin/user/viewuser/photo.view.html'
 
     };
@@ -194,7 +194,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
     };
 
-    $rootScope.$on('rejectPhoto', function ($event, user) {
+    var rejectPhoto=$rootScope.$on('rejectPhoto', function ($event, user) {
         var reqData = {
             user_ids: [user.user_id],
             photo_type: "PROFILE",
@@ -203,11 +203,15 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
             photo_vr_msg: "REJECTED",
 
         };
+       
         acceptPhotoToServer(reqData, [user.user_id], "SINGLE");
 
 
     });
 
-
+$rootScope.$on('$destroy', function () {
+   
+    rejectPhoto();
+});
 
 };

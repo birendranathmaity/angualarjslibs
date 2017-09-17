@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($uibModal, loginservice) {
+module.exports = function ($uibModal, loginservice,$timeout) {
     return {
         restrict: 'E',
         templateUrl: './app/registration-login/components/regis.form.html',
@@ -15,6 +15,7 @@ module.exports = function ($uibModal, loginservice) {
             '$filter',
             function ($scope, $element, $attrs, $filter) {
              
+
 
                 var controller = this;
                 controller.isAdmin=$scope.isAdmin;
@@ -156,8 +157,37 @@ module.exports = function ($uibModal, loginservice) {
 
 
                 };
-               
-         
+ $timeout( function(){
+           setEditMode();
+        }, 2000 );
+                function setEditMode(){
+ $scope.form={
+        "created_by" : "ADMIN",
+        "gender" : "FEMALE",
+        "profile_complete_status" : "PENDING",
+        "user_role" : "FREEUSER",
+        "user_status" : "ACTIVE",
+        "email" : "testuser14@gmail.com",
+        "password" : "testuser14",
+        "first_name" : "testuser14",
+        "last_name" : "testuser14",
+        "phone_number" : "6666666666",
+        "age" : 46,
+        "dob" : new Date("1970-11-29T00:00:00.000Z"),
+        "created_on" : new Date("2017-09-17T16:16:57.336Z"),
+        "user_id" : "DB22714",
+        "email_vr" : false,
+        country_code:"+91",
+        "phone_vr" : false,
+        "more_info_vr" : false};
+        var dateObj = new Date($scope.form.dob);
+$scope.form.month = dateObj.getUTCMonth(); //months from 1-12
+$scope.form.day = dateObj.getUTCDate();
+$scope.form.year = dateObj.getUTCFullYear();
+ console.log($scope.form)
+                }
+              
+        
                 // controller.openOTPModal = function (size) {
                 //     var modalInstance = $uibModal.open({
                 //         animation: true,

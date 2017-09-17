@@ -14,6 +14,7 @@ return {
     "OTPVERIFY":"/otpverify",
     "SAVEMOREINFO":"/savemoreinfo",
     "GET_USERS":"/getusers",
+    "GET_USER":"/getuser",
     "ADMIN_ACCEPT":"/admin_accept",
     "USER_PROFILE_PHOTO_UPLOAD":"/user_profile_photo_upload",
     "ADMIN_ACCEPT_PHOTO":"/admin_accept_photo",

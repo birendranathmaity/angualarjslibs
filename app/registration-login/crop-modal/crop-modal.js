@@ -128,11 +128,11 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
                 controller.result = response.data;
             });
         }, function (response) {
-            if (response.status > 0) $scope.errorMsg = response.status
-                + ': ' + response.data;
+            if (response.status > 0)
+            { $scope.errorMsg = response.status+ ': ' + response.data;}
         }, function (evt) {
             controller.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
-    }
+    };
 
 };
