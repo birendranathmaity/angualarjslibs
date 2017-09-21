@@ -13,4 +13,17 @@ module.exports = angular.module('app.ui.registr.components',[])
     .directive('profileImage', profileImage)
     .directive('basicInfo', basicInfo)
     .directive('webcam', webcam)
-    .directive('emailAvailable', emailAvailable);
+    .directive('emailAvailable', emailAvailable)
+    .directive('convertToNumber', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$parsers.push(function(val) {
+        return val != null ? parseInt(val, 10) : null;
+      });
+      ngModel.$formatters.push(function(val) {
+        return val != null ? '' + val : null;
+      });
+    }
+  };
+});

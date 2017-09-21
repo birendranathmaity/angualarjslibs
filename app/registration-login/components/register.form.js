@@ -1,12 +1,13 @@
 /* @ngInject */
-module.exports = function ($uibModal, loginservice,$timeout) {
+module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservice, $admintaskservice, $timeout) {
     return {
         restrict: 'E',
         templateUrl: './app/registration-login/components/regis.form.html',
         controllerAs: 'registerFormCtrl',
         replace: true,
-        scope:{
-                isAdmin:"@"
+        scope: {
+            isAdmin: "@",
+            isEdit: "="
         },
         controller: [
             '$scope',
@@ -14,11 +15,12 @@ module.exports = function ($uibModal, loginservice,$timeout) {
             '$attrs',
             '$filter',
             function ($scope, $element, $attrs, $filter) {
-             
+
+
 
 
                 var controller = this;
-                controller.isAdmin=$scope.isAdmin;
+                controller.isAdmin = $scope.isAdmin;
                 var formData = require('./form-data');
                 //date of birth//
                 controller.monthsL = formData.monthsL;
@@ -68,22 +70,7 @@ module.exports = function ($uibModal, loginservice,$timeout) {
                     return true;
                 };
                 //dob validation/
-                function calculate_age(birth_month, birth_day, birth_year) {
-                    today_date = new Date();
-                    today_year = today_date.getFullYear();
-                    today_month = today_date.getMonth();
-                    today_day = today_date.getDate();
-                    age = today_year - birth_year;
 
-                    if (today_month < (birth_month - 1)) {
-                        age--;
-                    }
-                    if (((birth_month - 1) === today_month) && (today_day < birth_day)) {
-                        age--;
-                    }
-                    controller.age = age;
-                    return age;
-                }
                 controller.dobValidator = function (day, month, year, gender) {
 
                     if (!day) {
@@ -103,10 +90,10 @@ module.exports = function ($uibModal, loginservice,$timeout) {
                     }
 
 
-                    if (gender === "MALE" && calculate_age(month, day, year) < 21) {
+                    if (gender === "MALE" && loginservice.calculate_age(month, day, year) < 21) {
                         return $filter('translate')('AGE_VERIFICATION_MALE');
                     }
-                    if (gender === "FEMALE" && calculate_age(month, day, year) < 18) {
+                    if (gender === "FEMALE" && loginservice.calculate_age(month, day, year) < 18) {
                         return $filter('translate')('AGE_VERIFICATION_FEMALE');
                     }
 
@@ -131,63 +118,135 @@ module.exports = function ($uibModal, loginservice,$timeout) {
                 };
 
                 controller.submitMyForm = function (form) {
-                    form.age = calculate_age(form.month, form.day, form.year);
+
+                    form.age = loginservice.calculate_age(form.month, form.day, form.year);
+                    controller.age = form.age;
                     form.dob = new Date(form.year + "-" + form.month + "-" + form.day);
                     form.created_on = new Date();
-                    loginservice.signup(form, function(res) {
-                       
-                      if(res.success){
-                
-                if(!controller.isAdmin){
-                     loginservice.saveToken(res.token);
-                       loginservice.afterloginRoute();
-                }
-                else{
-                    loginservice.openMoreInfoModal(res.user);
-                }
-                 
-                  
-                 
-               }
-                      
-                      
-                    }, function() {
+                    loginservice.signup(form, function (res) {
+
+                        if (res.success) {
+
+                            if (!controller.isAdmin) {
+                                loginservice.saveToken(res.token);
+                                loginservice.afterloginRoute();
+                            }
+                            else {
+                                loginservice.openMoreInfoModal(res.user);
+                            }
+
+
+
+                        }
+
+
+                    }, function () {
 
                     });
 
 
                 };
- $timeout( function(){
-           setEditMode();
-        }, 2000 );
-                function setEditMode(){
- $scope.form={
-        "created_by" : "ADMIN",
-        "gender" : "FEMALE",
-        "profile_complete_status" : "PENDING",
-        "user_role" : "FREEUSER",
-        "user_status" : "ACTIVE",
-        "email" : "testuser14@gmail.com",
-        "password" : "testuser14",
-        "first_name" : "testuser14",
-        "last_name" : "testuser14",
-        "phone_number" : "6666666666",
-        "age" : 46,
-        "dob" : new Date("1970-11-29T00:00:00.000Z"),
-        "created_on" : new Date("2017-09-17T16:16:57.336Z"),
-        "user_id" : "DB22714",
-        "email_vr" : false,
-        country_code:"+91",
-        "phone_vr" : false,
-        "more_info_vr" : false};
-        var dateObj = new Date($scope.form.dob);
-$scope.form.month = dateObj.getUTCMonth(); //months from 1-12
-$scope.form.day = dateObj.getUTCDate();
-$scope.form.year = dateObj.getUTCFullYear();
- console.log($scope.form)
+
+
+                //user edit mode////////
+
+
+                function setuserResetPhoto(pic) {
+                    controller.pic = pic;
+
                 }
-              
-        
+                var userPhotoBoradcastToDisplay = $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
+
+                    setuserResetPhoto(pic);
+                    $rootScope.$broadcast('updateUserListCountEmit');
+
+
+                });
+
+
+                controller.backViewUser = function () {
+
+                    $rootScope.$broadcast('backUserFromEditMode');
+                };
+                controller.openImageUploadWindow = function (user) {
+                    loginservice.openCropPopup(user);
+
+                };
+                $scope.$watch('isEdit', function (n, v) {
+                    if (!n) { return; }
+
+                    controller.userId = n;
+                    setEditMode(n);
+                });
+
+
+                function setEditMode(user_id) {
+
+                    $viewusers.getUser({ "user_id": user_id }, function (result) {
+                        var dateObj = new Date(result.user.dob);
+
+                        $scope.form = {
+                            "created_by": result.user.created_by,
+                            "gender": result.user.gender,
+                            "profile_complete_status": result.user.profile_complete_status,
+                            "user_role": result.user.user_role,
+                            "user_status": result.user.user_status,
+                            "email": result.user.email,
+                            "password": result.user.password,
+                            "first_name": result.user.first_name,
+                            "last_name": result.user.last_name,
+                            "phone_number": result.user.phone_number,
+                            "age": result.user.age,
+                            "dob": result.user.dob,
+                            "day": dateObj.getDate(),
+                            "month": dateObj.getMonth(),
+                            "year": dateObj.getFullYear(),
+                            "created_on": result.user.created_on,
+                            "user_id": result.user.user_id,
+                            "email_vr": result.user.email_vr,
+                            "country_code": result.user.country_code,
+                            "phone_vr": result.user.phone_vr,
+                            "more_info_vr": result.user.more_info_vr
+                        };
+
+                        if (result.user.pic.length > 0) {
+
+                            for (var key in result.user.pic) {
+                                if (result.user.pic[key].photo_type === "PROFILE") {
+
+                                    controller.pic = result.user.pic[key];
+                                }
+
+                            }
+                        }
+                        else {
+                            controller.pic = null;
+                        }
+
+                    }, function () {
+
+                    });
+
+                }
+                controller.accept = function (user) {
+                    controller.pic.photo_vr = true;
+                    $rootScope.$broadcast('userPhotoApprove', user);
+
+                };
+                controller.reject = function (user) {
+
+                    $admintaskservice.openRejectModal(user);
+
+                };
+                var rejectPhoto = $rootScope.$on('rejectPhoto', function ($event, user) {
+                    controller.pic.photo_vr = false;
+                });
+                $rootScope.$on('$destroy', function () {
+
+                    userPhotoBoradcastToDisplay();
+                    rejectPhoto();
+
+                });
                 // controller.openOTPModal = function (size) {
                 //     var modalInstance = $uibModal.open({
                 //         animation: true,

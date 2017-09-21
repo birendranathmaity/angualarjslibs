@@ -1,8 +1,8 @@
 
  <div class="email-body animated flip">
    
-        <div ng-if="ctrl.users[ctrl.ImgIndex].pic" >
-            <img ng-if="ctrl.users[ctrl.ImgIndex].pic.photo_type==='PROFILE'" water-mark="ctrl.users[ctrl.ImgIndex].pic" class="imgPro" />
+        <div ng-if="ctrl.users[ctrl.ImgIndex].pic[0]" >
+            <img ng-if="ctrl.users[ctrl.ImgIndex].pic[0].photo_type==='PROFILE'" water-mark="ctrl.users[ctrl.ImgIndex].pic[0]" class="imgPro" />
                                            
           </div>
         
@@ -10,15 +10,13 @@
        <div class="clearfix"></div>
        
             <span class="pull-right"> 
-            <button class="pic-accept" type="button" ng-if="!ctrl.users[ctrl.ImgIndex].pic.photo_vr" ng-click="ctrl.accept({user_id:ctrl.users[ctrl.ImgIndex].user_id})">Accept   </button> 
-            <button class="pic-reject" ng-click="ctrl.reject({user_id:ctrl.users[ctrl.ImgIndex].user_id})" type="button">Reject   </button>
+            <button class="pic-accept" type="button" ng-if="!ctrl.users[ctrl.ImgIndex].pic[0].photo_vr" ng-click="ctrl.accept({user_id:ctrl.users[ctrl.ImgIndex].user_id,reffresh:true})">Accept   </button> 
+            <button class="pic-reject" ng-click="ctrl.reject({user_id:ctrl.users[ctrl.ImgIndex].user_id,reffresh:true})" type="button">Reject   </button>
         </span>
                   <div class="clearfix"></div>
                     <div class="clearfix"></div>                       
         
         </div>
 <style>
-    .imgPro{
-        width: 200px;
-    }
+   
 </style>

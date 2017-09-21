@@ -97,10 +97,11 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
     };
     controller.skip = function () {
         controller.cancel();
-        $location.path(user.skip_url);
+       $location.path(user.skip_url);
     };
     controller.upload = function (dataUrl, name) {
-
+        
+       // $rootScope.$broadcast('userPhotoBoradcastToResetPhoto');
         Upload.upload({
             url: ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_UPLOAD,
             data: {
@@ -117,11 +118,15 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
             }
         }).then(function (response) {
 
+
             $timeout(function () {
 
                 if (response.data.error_code === 0) { //validate success
                     toastr.success('Upload Successful');
-
+                    if(user.from_sec==="userEdit"){
+                         $rootScope.$broadcast('userPhotoBoradcastToDisplay', response.data.pic);
+                    }
+                  
                 } else {
                     toastr.error('Not Uploaded', 'Error');
                 }
@@ -129,7 +134,7 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
             });
         }, function (response) {
             if (response.status > 0)
-            { $scope.errorMsg = response.status+ ': ' + response.data;}
+            { $scope.errorMsg = response.status + ': ' + response.data; }
         }, function (evt) {
             controller.progress = parseInt(100.0 * evt.loaded / evt.total);
         });

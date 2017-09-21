@@ -1,16 +1,18 @@
 var multer = require('multer');
-var photoModel=require('./../model/user.photo.model')
+var photoModel=require('./../model/user.photo.model');
+var mainPath = require('./../../setGlobal');
+const fs = require('fs');
 var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
             cb(null, './upload_user_images/');
         },
         filename: function (req, file, cb) {
          
-            
+            // + file.originalname.split('.')[file.originalname.split('.').length -1]
             var datetimestamp = Date.now();
-              cb(null, req.query.user_id + '-' + "P" + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+             // cb(null, req.query.user_id + '-' + "P" + '.jpg');
   
-           // cb(null, req.query.user_id + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+           cb(null, req.query.user_id + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
         }
     });
 
@@ -37,7 +39,7 @@ function uploadPhoto(req,res){
             
         }
         else{
-            actionPhotoInDB(req,res,"SAVE");
+            actionPhotoInDB(req,res,"SAVE",'');
         }
 
             
@@ -46,20 +48,38 @@ function uploadPhoto(req,res){
        
          if(photo.length>0){
 
-             actionPhotoInDB(req,res,"UPDATE");
+             actionPhotoInDB(req,res,"UPDATE",photo[0].photo_path);
            
             
         }
         else{
-            actionPhotoInDB(req,res,"SAVE");
+            actionPhotoInDB(req,res,"SAVE",'');
         }
     }
 
         
     });
 };
-function actionPhotoInDB(req,res,actionType){
 
+
+function actionPhotoInDB(req,res,actionType,oldPhoto){
+    
+if(actionType=="UPDATE"){
+
+var fullpath = mainPath.config.PATH + "/upload_user_images/" + oldPhoto;
+fs.unlink(fullpath, (err) => {
+  if (err) throw err;
+  console.log("deleted")
+   imgeUp();
+});
+
+}
+else{
+ imgeUp();
+
+}
+
+function imgeUp(){
      upload(req,res,function(err){
             if(err){
                  res.json({error_code:1,err_desc:err});
@@ -97,7 +117,7 @@ if(actionType==="UPDATE"){
           
         });
 
-    
+}
 
 
 };
@@ -109,6 +129,7 @@ res.json({
     success:true,
     error_code:0,
     err_desc:null,
+    pic:photo,
     msg:"uploaded successfull"
 });
             });
@@ -123,10 +144,12 @@ function updateUserPhoto(photo,res){
                   };
 photoModel.findOneAndUpdate({"user_id":photo.user_id}, photo, {upsert:true}, function(err, doc){
     if (err) return res.send(500, { error: err });
-    return  res.json({
+  
+      res.json({
                       success:true,
                       error_code:0,
                       err_desc:null,
+                      pic:photo,
                       msg:"uploaded successfull"
                   });
 });

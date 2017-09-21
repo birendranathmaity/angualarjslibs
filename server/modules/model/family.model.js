@@ -4,8 +4,8 @@ var Schema       = mongoose.Schema;
 var familySchema   = new Schema({
     "user_id": String,
     "country_code": String,
-	"beleave_hor": String,
-	"manglik": String,
+	"beleave_hor": Boolean,
+	"manglik": Boolean,
 	"father": String,
 	"father_occupation": String,
 	"mother": String,

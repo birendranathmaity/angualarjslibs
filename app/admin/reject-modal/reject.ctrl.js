@@ -36,11 +36,7 @@ module.exports = function rejectController($uibModal, $uibModalInstance, user, $
     ];
 controller.submit=function(form){
 
-     $rootScope.$broadcast('rejectPhoto',{
-          
-            user_id:user.user_id
-
-        });
+     $rootScope.$broadcast('rejectPhoto',user);
         controller.cancel();
 };
     // controller.comunicateRegisterForm=function(type){

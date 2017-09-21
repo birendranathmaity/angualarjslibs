@@ -1,7 +1,7 @@
 /* @ngInject */
 module.exports = function DashboardController(cfpLoadingBar) {
  // console.log(cfpLoadingBar);
-  cfpLoadingBar.start();
+ // cfpLoadingBar.start();
     var controller = this;
     controller.profile = {};
    

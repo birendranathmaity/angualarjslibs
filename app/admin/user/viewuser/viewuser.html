@@ -27,26 +27,43 @@
             </div>
             <search-by-id></search-by-id>
          </div>
-         <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+         <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 " >
             <div class="col-md-12 no-padding ">
-               <user-view-directive view-type="ctrl.loadUserStatusType"></user-view-directive>
-               <uib-tabset active="activeJustified" justified="true">
-    <uib-tab index="0" heading="{{'SAVE' | translate}}">
+              
+               <user-view-directive view-type="ctrl.loadUserStatusType" ng-show="!ctrl.isEditUser"></user-view-directive>
+               <uib-tabset active="activeJustified" justified="true" ng-if="ctrl.isEditUser">
+    <uib-tab index="0" heading="{{'Edit Profile' | translate}}({{ctrl.editUserId}})">
 
-<div class="full" >
+            
                 
-                 <div class="reg-sec" style="padding:25px">
-                   <register-form is-admin="true" ></register-form>
-                    <basic-info user-id="ctrl.user_id" is-admin="true" ></basic-info>
+                 <div class="reg-sec" style="padding:25px" >
+                    <register-form is-admin="true" is-edit="ctrl.editUserId" ></register-form>
+                    <basic-info user-id="ctrl.editUserId" is-moreinfo-edit="true" is-admin="true" ></basic-info>
                  </div>
-              </div>
+           
 
     </uib-tab>
-    <uib-tab index="1" heading="SJ">Short Labeled Justified content</uib-tab>
-    <uib-tab index="2" heading="Long Justified">Long Labeled Justified content</uib-tab>
+   
   </uib-tabset>
             </div>
          </div>
       </div>
    </div>
 </div>
+<style>
+
+  .nav-justified > .active {
+    
+    margin: 0px;
+    margin-bottom: 0px;
+}
+.nav-justified > li.active a {
+    background-color: #33cccc;
+    color: #fff;
+    font-size: 18px;
+    color: #fff;
+    margin: 7px;
+    padding: 10px 13px;
+    font-weight: normal;
+}
+</style>

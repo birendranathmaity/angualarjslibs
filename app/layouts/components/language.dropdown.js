@@ -12,7 +12,7 @@ module.exports = function ($translate,$templateCache,$state, $rootScope) {
                 var controller=this;
         controller.language = 'English';
     controller.languages = ['English', 'Hindi'];
-      console.log($state.current.views["@"].templateUrl)
+    
     controller.updateLanguage = function() {
     $translate.use(controller.language.toLowerCase());
       $rootScope.$broadcast('myEventName');

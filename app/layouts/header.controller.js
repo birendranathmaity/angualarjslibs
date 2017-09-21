@@ -54,14 +54,6 @@ controller.adminHeaderMenus=[{
     subMenus:[{
          translatekey:"DASHBOARD",
          route:"root.admindashboard"
-    },
-    {
-         translatekey:"NEW_USERS",
-         route:"root.newusers"
-    },
-     {
-         translatekey:"PHOTO_VERIFICATION_USERS",
-         route:"root.photoverificationusers"
     }
     
     ],
@@ -95,7 +87,12 @@ controller.adminHeaderMenus=[{
             lastName: "Maity"
         };
     }
-    var isadmin=true;
+    
+    var isadmin=false;
+    if($rootScope.login_user.user_role==="ADMIN"){
+var isadmin=true;
+    }
+    
 controller.loadSubmenu=function(route){
 
     if(isadmin){

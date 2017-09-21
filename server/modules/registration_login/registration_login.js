@@ -58,10 +58,7 @@ exports.signup = function(req, res) {
                 });
             } else {
                 if (user) {
-                    res.json({
-                        type: false,
-                        data: "User already exists!"
-                    });
+                     UpdateUser(req,res);
                 } else {
                     var userNumber = 1 + count;
                     var UserId = "DB227" + userNumber;
@@ -81,7 +78,15 @@ exports.signup = function(req, res) {
 
 
 };
+function UpdateUser(req,res){
+    User.update({ user_id: req.body.user_id},req.body,function(err,user){
 
+ res.json({
+                        success: true,
+                        data: "User updated"
+                    });
+    });
+}
 function saverUser(user,res){
 
  var userModel = new User(user);
@@ -180,6 +185,31 @@ function createOtp(user,vrType) {
 });
 
 };
+function updateMoreInfo(req,res){
+   
+basicInfo.update({ user_id: req.body.user_id},req.body.basicinfo,function(err,resultbasicinfo){
+
+education.update({ user_id: req.body.user_id},req.body.educationwork,function(err,resulteducationwork){
+
+    interest.update({ user_id: req.body.user_id},req.body.intrests,function(err,resultintrests){
+          family.update({ user_id: req.body.user_id},req.body.family,function(err,resultfamily){
+               if (err) {
+        return res.send();
+    }
+
+ res.json({
+                    success: true,
+                    msg: "User updated!"
+                });
+
+});
+});
+});
+
+
+
+});
+}
 exports.savemoreinfo = function(req, res) {
     basicInfo.findOne({
         user_id: req.body.user_id
@@ -191,10 +221,9 @@ exports.savemoreinfo = function(req, res) {
             });
         } else {
             if (user) {
-                res.json({
-                    type: false,
-                    data: "User already exists!"
-                });
+               
+                updateMoreInfo(req,res);
+               
             } else {
                 req.body.basicinfo.user_id = req.body.user_id;
                 var basicInfoModel = new basicInfo(req.body.basicinfo);

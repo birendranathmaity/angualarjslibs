@@ -17,12 +17,14 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     };
 
     $scope.$watch('viewType', function (n, v) {
-        if (!n) {return;}
+        if (!n) { return; }
         controller.viewType = n;
         req.searchType = n;
+        req.page = 1;
         controller.loadViewType();
     });
     controller.loadViewType = function () {
+        console.log("load userlist");
         controller.userIds = [];
         controller.selectedAll = false;
 
@@ -99,18 +101,18 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     controller.accept = function (user) {
 
         reqApprove.user_ids = [user.user_id];
-        acceptPhotoToServer(reqApprove, [user.user_id], "SINGLE");
+        acceptPhotoToServer(reqApprove, [user.user_id], "SINGLE", user.reffresh);
 
 
     };
     controller.acceptAll = function () {
 
         reqApprove.user_ids = controller.userIds;
-        acceptPhotoToServer(reqApprove, controller.userIds, "ALL");
+        acceptPhotoToServer(reqApprove, controller.userIds, "ALL", true);
 
 
     };
-    function acceptPhotoToServer(reqData, users, type) {
+    function acceptPhotoToServer(reqData, users, type, reffresh) {
 
         $admintaskservice.acceptPhoto(reqData, function (res) {
 
@@ -123,7 +125,10 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
                 if (reqData.photo_vr_msg === "REJECTED") {
                     toastr.success('Successfully rejected');
                 }
-                resetUserList(users, type);
+                if (reffresh) {
+                    controller.loadViewType();
+                }
+
                 $rootScope.$broadcast('updateUserListCountEmit', {});
 
             }
@@ -155,7 +160,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
     };
     controller.toFeet = function (ft) {
-        if (!ft) {return "";}
+        if (!ft) { return ""; }
         var inches = (ft * 0.393700787 * 30.48).toFixed(0);
         var feet = Math.floor(inches / 12);
         inches %= 12;
@@ -183,7 +188,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     };
 
     controller.photoView = {
-        pos:"right",
+        pos: "top",
         templateUrl: './app/admin/user/viewuser/photo.view.html'
 
     };
@@ -193,8 +198,20 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
         controller.ImgIndex = index;
 
     };
+    controller.edit = function (user_ID) {
 
-    var rejectPhoto=$rootScope.$on('rejectPhoto', function ($event, user) {
+        $rootScope.$broadcast('userEditBoradcast', user_ID);
+
+    };
+    var backUserFromEditMode = $rootScope.$on('backUserFromEditMode', function ($event, user) {
+        controller.loadViewType();
+
+    });
+    var userPhotoApprove = $rootScope.$on('userPhotoApprove', function ($event, user) {
+        controller.accept(user);
+
+    });
+    var rejectPhoto = $rootScope.$on('rejectPhoto', function ($event, user) {
         var reqData = {
             user_ids: [user.user_id],
             photo_type: "PROFILE",
@@ -203,15 +220,17 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
             photo_vr_msg: "REJECTED",
 
         };
-       
-        acceptPhotoToServer(reqData, [user.user_id], "SINGLE");
+        console.log("reject Photo");
+        acceptPhotoToServer(reqData, [user.user_id], "SINGLE", user.reffresh);
 
 
     });
 
-$rootScope.$on('$destroy', function () {
-   
-    rejectPhoto();
-});
+    $rootScope.$on('$destroy', function () {
+
+        rejectPhoto();
+        backUserFromEditMode();
+        userPhotoApprove();
+    });
 
 };

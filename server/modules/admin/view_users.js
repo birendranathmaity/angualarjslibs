@@ -170,7 +170,7 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
 
         { $match: { user_status: "ACTIVE" } },
 
-       { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
+        { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
 
         { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
 
@@ -450,76 +450,121 @@ exports.pendingprofiles_count = function (req, res) {
     });
 
 };
-exports.get_all_users_status_count=function(req,res){
-User.aggregate([
-     
-{$sort: { created_on: -1 }},
-{$lookup: {from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic"} },
-{ "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true }},
-{ "$group": {
-        "_id": null,
-        "TOTAL_USERS": { "$sum": 1 },
-        "TOTAL_ACTIVE_USERS": {
-                "$sum": {
-                    "$cond": [ { "$eq": [ "$user_status",  "ACTIVE" ] }, 1, 0]
+exports.get_all_users_status_count = function (req, res) {
+    User.aggregate([
+
+        { $sort: { created_on: -1 } },
+        { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
+        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+       
+        {
+            "$group": {
+                "_id": null,
+                "TOTAL_USERS": { "$sum": 1 },
+                "TOTAL_ACTIVE_USERS": {
+                    "$sum": {
+                        "$cond": [{ "$eq": ["$user_status", "ACTIVE"] }, 1, 0]
+                    }
+                },
+                "TOTAL_INACTIVE_USERS": {
+                    "$sum": {
+                        "$cond": [{ "$eq": ["$user_status", "INACTIVE"] }, 1, 0]
+                    }
+                },
+                "EMAIL_VR_PENDING": {
+                    $sum: {
+                        $cond: [{
+                            $and: [{ $eq: ["$email_vr", false] },
+                            { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "PHOTO_UPLOAD_PENDING": {
+                    $sum: {
+                        $cond: [{
+                            $and: [{ $not: ["$pic"] },
+                            { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "PHOTO_VR_PENDING": {
+                    $sum: {
+                        $cond: [{
+                            $and: [
+                                { $eq: ["$pic.photo_type", "PROFILE"] },
+                                { $eq: ["$pic.photo_vr_msg", "PENDING_APPROVAL"] },
+                                { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "PHOTO_VR_REJECTED": {
+                    $sum: {
+                        $cond: [{
+                            $and: [
+                                { $eq: ["$pic.photo_type", "PROFILE"] },
+                                { $eq: ["$pic.photo_vr_msg", "REJECTED"] },
+                                { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "PHOTO_VR_COMPLETED": {
+                    $sum: {
+                        $cond: [{
+                            $and: [
+                                { $eq: ["$pic.photo_type", "PROFILE"] },
+                                { $eq: ["$pic.photo_vr", true] },
+                                { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "COMPLETED_PROFILES": {
+                    $sum: {
+                        $cond: [{
+                            $and: [{ $eq: ["$profile_complete_status", "COMPLETED"] },
+                            { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
+                },
+                "PENDING_PROFILES": {
+                    $sum: {
+                        $cond: [{
+                            $and: [{ $eq: ["$profile_complete_status", "PENDING"] },
+                            { $eq: ["$user_status", "ACTIVE"] }
+                            ]
+                        },
+                            1,
+                            0]
+                    }
                 }
-            },
-            "TOTAL_INACTIVE_USERS": {
-                "$sum": {
-                    "$cond": [ { "$eq": [ "$user_status",  "INACTIVE" ] }, 1, 0]
-                }
-            },
-            "EMAIL_VR_PENDING": {$sum: { $cond: [ {$and : [ { $eq: [ "$email_vr",  false] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},
-              "PHOTO_UPLOAD_PENDING": {$sum: { $cond: [ {$and : [ { $not: [ "$pic" ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},                       
-             "PHOTO_VR_PENDING": {$sum: { $cond: [ {$and : [
-                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
-                                               { $eq: [ "$pic.photo_vr_msg",   "PENDING_APPROVAL" ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},
-              "PHOTO_VR_REJECTED": {$sum: { $cond: [ {$and : [ 
-                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
-                                               { $eq: [ "$pic.photo_vr_msg",   "REJECTED" ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},
-              "PHOTO_VR_COMPLETED": {$sum: { $cond: [ {$and : [ 
-                                               { $eq: [ "$pic.photo_type",   "PROFILE" ] },
-                                               { $eq: [ "$pic.photo_vr",  true ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},
-              "COMPLETED_PROFILES": {$sum: { $cond: [ {$and : [ { $eq: [ "$profile_complete_status",  "COMPLETED" ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }},
-             "PENDING_PROFILES": {$sum: { $cond: [ {$and : [ { $eq: [ "$profile_complete_status",  "PENDING" ] },
-                                               { $eq: [ "$user_status","ACTIVE"] }
-                                     ] },
-                                     1,
-                                     0 ] }}                              
-            
-            
-        
-    }}
+
+
+
+            }
+        }
 
 
     ], function (error, results) {
 
 
-  res.json(results);
+        res.json(results);
     });
 };
 exports.getallinActiveUsers = function (req, res) {
@@ -528,89 +573,89 @@ exports.getallinActiveUsers = function (req, res) {
 
 exports.get_users = function (req, res) {
 
-    var searchType=req.body.searchType;
-    var match={};
-    if(searchType=="TOTAL_USERS"){
-        match={};
+    var searchType = req.body.searchType;
+    var match = {};
+    if (searchType == "TOTAL_USERS") {
+        match = {};
 
     }
-if(searchType=="TOTAL_ACTIVE_USERS"){
-        match={
+    if (searchType == "TOTAL_ACTIVE_USERS") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
-            
+
         };
 
     }
-    if(searchType=="TOTAL_INACTIVE_USERS"){
-        match={
+    if (searchType == "TOTAL_INACTIVE_USERS") {
+        match = {
             "user_status": { "$eq": "INACTIVE" },
-            
+
         };
 
     }
-if(searchType=="EMAIL_VR_PENDING"){
-        match={
+    if (searchType == "EMAIL_VR_PENDING") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "email_vr": { "$eq": false }
         };
 
-    } 
-    if(searchType=="PHOTO_UPLOAD_PENDING"){
-        match={
+    }
+    if (searchType == "PHOTO_UPLOAD_PENDING") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
-             "pic": { "$eq": null },
+            "pic": { "$eq": [] },
         };
 
-    }  
-    if(searchType=="PHOTO_VR_PENDING"){
-        match={
+    }
+    if (searchType == "PHOTO_VR_PENDING") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "pic.photo_type": { "$eq": "PROFILE" },
             "pic.photo_vr_msg": { "$eq": "PENDING_APPROVAL" },
             "pic.photo_vr": { "$eq": false }
-            
+
         };
 
-    } 
-    if(searchType=="PHOTO_VR_REJECTED"){
-        match={
+    }
+    if (searchType == "PHOTO_VR_REJECTED") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "pic.photo_type": { "$eq": "PROFILE" },
             "pic.photo_vr_msg": { "$eq": "REJECTED" },
             "pic.photo_vr": { "$eq": false }
-            
+
         };
 
-    } 
-     if(searchType=="PHOTO_VR_COMPLETED"){
-        match={
+    }
+    if (searchType == "PHOTO_VR_COMPLETED") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "pic.photo_type": { "$eq": "PROFILE" },
             "pic.photo_vr_msg": { "$eq": "APPROVED" },
             "pic.photo_vr": { "$eq": true }
-            
+
         };
 
-    } 
-     if(searchType=="COMPLETED_PROFILES"){
-        match={
+    }
+    if (searchType == "COMPLETED_PROFILES") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "profile_complete_status": { "$eq": "COMPLETED" }
-            
-            
+
+
         };
 
     }
-    if(searchType=="PENDING_PROFILES"){
-        match={
+    if (searchType == "PENDING_PROFILES") {
+        match = {
             "user_status": { "$eq": "ACTIVE" },
             "profile_complete_status": { "$eq": "PENDING" }
-            
-            
+
+
         };
 
     }
-    
+
     var aggregate = User.aggregate([
 
 
@@ -634,7 +679,7 @@ if(searchType=="EMAIL_VR_PENDING"){
 
 
         { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
-        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+        // { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
 
         { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
 
@@ -642,7 +687,7 @@ if(searchType=="EMAIL_VR_PENDING"){
 
         { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
 
-      {
+        {
             $match: match
         },
 
@@ -669,7 +714,13 @@ if(searchType=="EMAIL_VR_PENDING"){
 
                 "city": "$city.name",
 
-                "pic": "$pic",
+                pic: {
+                    $filter: {
+                        input: "$pic",
+                        as: "item",
+                        cond: { $eq: ["$$item.photo_type", "PROFILE"] }
+                    }
+                },
                 "created_on": "$created_on"
 
             }
@@ -702,13 +753,13 @@ if(searchType=="EMAIL_VR_PENDING"){
 };
 exports.get_user = function (req, res) {
 
-User.aggregate([
+    User.aggregate([
 
-{
+        {
             $match: {
-                "user_id":{ "$eq": req.body.user_id }
-                
-                }
+                "user_id": { "$eq": req.body.user_id }
+
+            }
         },
 
         { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
@@ -718,19 +769,11 @@ User.aggregate([
         { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
         {
             $project: {
-                 "_id":0,
-                 "initial": "$$ROOT",
+                "_id": 0,
+                "user": "$$ROOT"
 
-                "basicinfos": "$basicinfos",
 
-                "usereducations": "$usereducations",
 
-                "userintrests": "$userintrests",
-
-                "userfamilies": "$userfamilies",
-
-                "pic": "$pic"
-                
 
             }
         }

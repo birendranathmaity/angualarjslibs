@@ -8,6 +8,8 @@ var rejectController = require('./reject-modal/reject.ctrl');
 var adminServices = require('./services');
 var viewUserDirCtrl = require('./user/viewuser/viewUserDir.ctrl');
 var userViewDirective = require('./user/viewuser/user-view-directive');
+var editUserDir = require('./user/viewuser/edit.user.directive');
+var editUserDirCtrl = require('./user/viewuser/edit.user.ctrl');
 module.exports = angular.module('app.ui.admin', [adminServices.name])
     .run(adminroutes)
     .controller('adminDashboardController', adminDashboardController)
@@ -15,4 +17,6 @@ module.exports = angular.module('app.ui.admin', [adminServices.name])
     .controller('viewUserController', viewUserController)
     .controller('rejectController', rejectController)
     .controller('viewUserDirCtrl', viewUserDirCtrl)
-    .directive('userViewDirective', userViewDirective);
+    .directive('userViewDirective', userViewDirective)
+    .controller('editUserDirCtrl', editUserDirCtrl)
+    .directive('editUserDirective', editUserDir);

@@ -1,69 +1,70 @@
 <div class="wizard">
-                  <div class="wizard-inner">
-                     <div class="connecting-line"></div>
-                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation"   ng-repeat="tab in ctrl.moreInfoTabsmenu" ng-class="tab.active?'active':'disabled'">
-                           
-                           <a ng-if="tab.id==='basic'" ng-class="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) ? 'clickDisable':'clickEnable'"
-                            ng-click="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) || ctrl.openTabContent(tab.id)" role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
+    <div class="wizard-inner" ng-if="!ctrl.editMode">
+        <div class="connecting-line"></div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-repeat="tab in ctrl.moreInfoTabsmenu" ng-class="tab.active?'active':'disabled'">
+
+                <a ng-if="tab.id==='basic'" ng-class="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) ? 'clickDisable':'clickEnable'"
+                    ng-click="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) || ctrl.openTabContent(tab.id)"
+                    role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
                            <span class="round-tab">
                            {{$index+1}}
                            </span>
                            <span class="reg-info hidden-xs"> {{tab.translateKey | translate}}</span>   
                            </a>
-                           <a ng-if="tab.id==='education'" ng-class="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) ? 'clickDisable':'clickEnable'" ng-click="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) || ctrl.openTabContent(tab.id)" role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
+                <a ng-if="tab.id==='education'" ng-class="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) ? 'clickDisable':'clickEnable'"
+                    ng-click="(moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid) || ctrl.openTabContent(tab.id)"
+                    role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
                            <span class="round-tab">
                            {{$index+1}}
                            </span>
                            <span class="reg-info hidden-xs"> {{tab.translateKey | translate}}</span>   
                            </a>
-                            <a ng-if="tab.id==='interests'" ng-class="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid) ? 'clickDisable':'clickEnable'" ng-click="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid) || ctrl.openTabContent(tab.id)" role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
+                <a ng-if="tab.id==='interests'" ng-class="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid) ? 'clickDisable':'clickEnable'"
+                    ng-click="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid) || ctrl.openTabContent(tab.id)"
+                    role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
                            <span class="round-tab">
                            {{$index+1}}
                            </span>
                            <span class="reg-info hidden-xs"> {{tab.translateKey | translate}}</span>   
                            </a>
-                           <a ng-if="tab.id==='family'" ng-class="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid) ? 'clickDisable':'clickEnable'" ng-click="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid) || ctrl.openTabContent(tab.id)" role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
+                <a ng-if="tab.id==='family'" ng-class="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid) ? 'clickDisable':'clickEnable'"
+                    ng-click="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid) || ctrl.openTabContent(tab.id)"
+                    role="tab" tooltip-placement="'top'" uib-tooltip="{{tab.translateKey | translate}}">
                            <span class="round-tab">
                            {{$index+1}}
                            </span>
                            <span class="reg-info hidden-xs"> {{tab.translateKey | translate}}</span>   
                            </a>
-                        </li>
-                     </ul>
-                  </div>
-                 
-                  <form name="moreInfo" role="form" angular-validator-submit="ctrl.submitMoreInfo(basicinfo,educationwork,intrests,family)" novalidate angular-validator>
-                     <div class="tab-content">
-                        <div class="tab-pane animated jackInTheBox" ng-class="ctrl.moreInfoTabsmenu[0].active?'active':''" role="tabpanel" id="step1" ng-show="ctrl.moreInfoTabsmenu[0].active">
-                           <div class="step1">
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <h2> Add Your Education & Work Information </h2>
-                                 </div>
-                                 
-                                 <div class="col-md-6">
-                                    <label class="required" >Maritial Status</label>
-                                    <select class="minimal form-control"
-                                       name="maritialstatus"
-                                       ng-model = "basicinfo.maritialstatus"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+            </li>
+        </ul>
+    </div>
+
+    <form name="moreInfo" role="form" angular-validator-submit="ctrl.submitMoreInfo(basicinfo,educationwork,intrests,family)"
+        novalidate angular-validator>
+        <div class="tab-content">
+            <div class="tab-pane animated jackInTheBox" ng-class="ctrl.moreInfoTabsmenu[0].active?'active':''" role="tabpanel" id="step1"
+                ng-show="ctrl.moreInfoTabsmenu[0].active">
+                <div class="step1">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Education & Work Information </h2>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="required">Maritial Status</label>
+                            <select class="minimal form-control" name="maritialstatus" ng-model="basicinfo.maritialstatus" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="SINGLE">Single</option>
                                        <option value="MARRIED">Married</option>
                                     </select>
-                                 </div>
-                             
-                                 <div class="col-md-6">
-                                    <label class="required" >Mother Tounge</label>
-                                    <select class="minimal form-control"
-                                       name="mothertounge"
-                                       ng-model = "basicinfo.mothertounge"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="required">Mother Tounge</label>
+                            <select class="minimal form-control" name="mothertounge" ng-model="basicinfo.mothertounge" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="AF">Afrikanns</option>
                                        <option value="SQ">Albanian</option>
@@ -138,19 +139,13 @@
                                        <option value="CY">Welsh</option>
                                        <option value="XH">Xhosa</option>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label class="required" >Religion</label>
-                                    <select class="minimal form-control"
-                                       name="religion"
-                                       ng-model="basicinfo.religion" 
-                                       ng-change="ctrl.loadCaste(basicinfo.religion);basicinfo.caste=''"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required
-                                       >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="required">Religion</label>
+                            <select class="minimal form-control" name="religion" ng-model="basicinfo.religion" ng-change="ctrl.loadCaste(basicinfo.religion);basicinfo.caste=''"
+                                required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="African Traditional &amp; Diasporic">African Traditional &amp; Diasporic</option>
                                        <option value="Agnostic">Agnostic</option>
@@ -178,99 +173,76 @@
                                        <option value="primal-indigenous">primal-indigenous</option>
                                        <option value="Other">Other</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label class="required" >Caste</label>
-                                    <select class="minimal form-control"
-                                       name="caste"
-                                       ng-disabled="!basicinfo.religion" 
-                                       ng-model="basicinfo.caste" 
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="required">Caste</label>
+                            <select class="minimal form-control" name="caste" ng-disabled="!basicinfo.religion" ng-model="basicinfo.caste" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your Caste</option>
                                        <option ng-repeat="caste in ctrl.casteData" value="{{caste}}">{{caste}}</option>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label >Sub Caste</label>
-                                    <input type="text" placeholder="Enter Your Sub Caste" ng-model="basicinfo.subcaste">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Gothram </label>
-                                    <input type="text" placeholder="Enter Your Gothram" ng-model="basicinfo.gothram" />
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label class="required">Country Living In</label>
-                                    <select class="minimal form-control"
-                                       name="country"
-                                       ng-model="basicinfo.country"
-                                       ng-change="ctrl.loadState(basicinfo.country);basicinfo.state=''"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Sub Caste</label>
+                            <input type="text" placeholder="Enter Your Sub Caste" ng-model="basicinfo.subcaste">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Gothram </label>
+                            <input type="text" placeholder="Enter Your Gothram" ng-model="basicinfo.gothram" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="required">Country Living In</label>
+                            <select class="minimal form-control" name="country" ng-model="basicinfo.country" ng-change="ctrl.loadState(basicinfo.country);basicinfo.state=''"
+                                required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your Country</option>
                                        <option ng-repeat="ct in ctrl.countrys" value="{{ct.id}}">{{ct.name}}</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label class="required" >State Living In</label>
-                                    <select class="minimal form-control"
-                                       name="state"
-                                       ng-model="basicinfo.state" 
-                                       ng-disabled="!basicinfo.country"
-                                       ng-change="ctrl.loadCity(basicinfo.state);basicinfo.city=''"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="required">State Living In</label>
+                            <select class="minimal form-control" name="state" ng-model="basicinfo.state" ng-disabled="!basicinfo.country" ng-change="ctrl.loadCity(basicinfo.state);basicinfo.city=''"
+                                required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your State</option>
                                        <option ng-repeat="state in ctrl.states"  value="{{state.id}}">{{state.name}}</option>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label class="required" >City Living In</label>
-                                    <select class="minimal form-control"
-                                       name="city" 
-                                       ng-model="basicinfo.city" 
-                                       ng-disabled="!basicinfo.state"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="required">City Living In</label>
+                            <select class="minimal form-control" name="city" ng-model="basicinfo.city" ng-disabled="!basicinfo.state" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your city</option>
                                        <option ng-repeat="city in ctrl.cities"  value="{{city.id}}">{{city.name}}</option>
                                     </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <ul class="list-inline pull-left">
-                              <li>
-                                 <button type="button" ng-click="ctrl.openTabContent('education')" ng-disabled="moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid" class="button  raised hoverable next-step">
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-inline pull-left" ng-if="!ctrl.editMode">
+                    <li>
+                        <button type="button" ng-click="ctrl.openTabContent('education')" ng-disabled="moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid"
+                            class="button  raised hoverable next-step">
                                     <div class="anim"></div>
                                     <span>Continue!</span>
                                  </button>
-                              </li>
-                           </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane animated jackInTheBox" role="tabpanel" id="step2" ng-class="ctrl.moreInfoTabsmenu[1].active?'active':''"
+                ng-show="ctrl.moreInfoTabsmenu[1].active">
+                <div class="step2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Education & Work Information </h2>
                         </div>
-                        <div class="tab-pane animated jackInTheBox" role="tabpanel" id="step2" ng-class="ctrl.moreInfoTabsmenu[1].active?'active':''" ng-show="ctrl.moreInfoTabsmenu[1].active">
-                           <div class="step2">
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <h2> Add Your Education & Work Information </h2>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label class="required" >Highest Education</label>
-                                    <select class="minimal form-control"
-                                       name="highest_education" 
-                                       ng-model="educationwork.high_edu" 
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        <div class="col-md-6">
+                            <label class="required">Highest Education</label>
+                            <select class="minimal form-control" name="highest_education" ng-model="educationwork.high_edu" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="No formal education">No formal education</option>
                                        <option value="Primary education">Primary education</option>
@@ -281,10 +253,10 @@
                                        <option value="Master's degree">Master's degree</option>
                                        <option value="Doctorate or higher">Doctorate or higher</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Filed Of Study</label>
-                                    <select class="minimal" ng-model="educationwork.filed_study" >
+                        </div>
+                        <div class="col-md-6">
+                            <label>Filed Of Study</label>
+                            <select class="minimal" ng-model="educationwork.filed_study">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="12.1">Agriculture</option>
                                        <option value="12.2">Automobile</option>
@@ -314,17 +286,13 @@
                                        <option value="12.26">Other Engineering</option>
                                        <option value="12.9999">Other</option>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label class="required" >Occupation</label>
-                                    <select class="minimal form-control"
-                                       name="occupation" 
-                                       ng-model="educationwork.occupation" 
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="required">Occupation</label>
+                            <select class="minimal form-control" name="occupation" ng-model="educationwork.occupation" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <optgroup label="Healthcare Practitioners and Technical Occupations:">
                                           <option value="1">-  Chiropractor</option>
@@ -421,73 +389,71 @@
                                           <option value="72">-  Not Applicable</option>
                                        </optgroup>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Company Name</label>
-                                    <input type="text" placeholder="Enter Company Name"  ng-model="educationwork.company" >
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <label >Designation</label>
-                                    <input type="text" placeholder="Enter Your Designation" ng-model="educationwork.designation">
-                                 </div>
-                              </div>
-                              <!--<div class="row ng-hide">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Company Name</label>
+                            <input type="text" placeholder="Enter Company Name" ng-model="educationwork.company">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Designation</label>
+                            <input type="text" placeholder="Enter Your Designation" ng-model="educationwork.designation">
+                        </div>
+                    </div>
+                    <!--<div class="row ng-hide">
                                  <div class="col-md-12">
                                     <label >Express Yourself </label>
                                     <textarea class="expressurself" rows="4" cols="50" ng-model="educationwork.express_yourself"></textarea>
                                  </div>
                               </div>-->
-                           </div>
-                           <!--<ul class="list-inline pull-left ng-hide">
+                </div>
+                <!--<ul class="list-inline pull-left ng-hide">
                               <li><button type="button" ng-click="ctrl.OpenHelpMeWorkModal('lg')" class="btn btn-default write-d"> Help Me To Write This <i class="fa fa-pencil" aria-hidden="true"></i>
                                  </button>
                               </li>
                           </ul>-->
-                           <div class="clearfix"></div>
-                           <ul class="list-inline pull-left">
-                              <li>
-                                 <button type="button" ng-click="ctrl.openTabContent('interests')" ng-disabled="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid)" class="button  raised hoverable next-step">
+                <div class="clearfix"></div>
+                <ul class="list-inline pull-left" ng-if="!ctrl.editMode">
+                    <li>
+                        <button type="button" ng-click="ctrl.openTabContent('interests')" ng-disabled="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid)"
+                            class="button  raised hoverable next-step">
                                     <div class="anim"></div>
                                     <span>Continue!</span>
                                  </button>
-                              </li>
-                           </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane animated jackInTheBox" role="tabpanel" id="step3" ng-class="ctrl.moreInfoTabsmenu[2].active?'active':''"
+                ng-show="ctrl.moreInfoTabsmenu[2].active">
+                <div class="step3">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Appearence And Intrest Information Details </h2>
                         </div>
-                        <div class="tab-pane animated jackInTheBox" role="tabpanel" id="step3" ng-class="ctrl.moreInfoTabsmenu[2].active?'active':''" ng-show="ctrl.moreInfoTabsmenu[2].active">
-                           <div class="step3">
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <h2> Add Your Appearence And Intrest Information Details </h2>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <label class="required" >Height</label>
-                                          <select class="minimal form-control"
-                                             name="height" 
-                                             ng-model="intrests.height" 
-                                             required-message="ctrl.required('REQUIRED')"
-                                             validate-on="dirty"
-                                             required>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="required">Height</label>
+                                    <select class="minimal form-control" name="height" ng-model="intrests.height" required-message="ctrl.required('REQUIRED')"
+                                        validate-on="dirty" required>
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                             <option ng-repeat="_ in ((_ = []) && (_.length=30) && _) track by $index" value="{{(4.0+0.1*$index).toFixed(1)}}">{{(4.0+0.1*$index).toFixed(1)}} ft</option>
+                                             <option ng-repeat="_ in ((_ = []) && (_.length=30) && _) track by $index" ng-value="(4.0+0.1*$index).toFixed(1)">{{(4.0+0.1*$index).toFixed(1)}} ft</option>
                                           </select>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <label >Weight</label>
-                                          <select class="minimal" ng-model="intrests.weight">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Weight</label>
+                                    <select class="minimal" ng-model="intrests.weight">
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                              <option ng-repeat="_ in ((_ = []) && (_.length=70) && _) track by $index" value="{{30+$index}}">{{30+$index}} kg</option>
                                              <option value="NOT_INTERESTED">Not interested</option>
                                           </select>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Complexion</label>
-                                    <select class="minimal" ng-model="intrests.complexion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Complexion</label>
+                            <select class="minimal" ng-model="intrests.complexion">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="LIGHT">Light</option>
                                        <option value="FAIR">Fair</option>
@@ -495,10 +461,10 @@
                                        <option value="WHEATISH">wheatish</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Body Type</label>
-                                    <select class="minimal" ng-model="intrests.body_type">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Body Type</label>
+                            <select class="minimal" ng-model="intrests.body_type">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="SLIM">Slim</option>
                                        <option value="FAT">Fat</option>
@@ -506,159 +472,145 @@
                                        <option value="AVERAGE">Maximum</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label class="required" >Physical Status</label>
-                                    <select class="minimal form-control"
-                                       name="physical_status"  
-                                       ng-model="intrests.physical_status"
-                                       required-message="ctrl.required('REQUIRED')"
-                                       validate-on="dirty"
-                                       required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="required">Physical Status</label>
+                            <select class="minimal form-control" name="physical_status" ng-model="intrests.physical_status" required-message="ctrl.required('REQUIRED')"
+                                validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="NORMAL">Normal</option>
                                        <option value="PHYSICALLY_CHALLENGED">Physically challenged </option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Hobbies</label>
-                                    <select class="minimal"
-                                       name="expectation"  
-                                       ng-model="intrests.hobbie">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Hobbies</label>
+                            <select class="minimal" name="expectation" ng-model="intrests.hobbie">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option ng-repeat="hobbie in ctrl.hobbies" value="{{hobbie}}">{{hobbie}}</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Expectation</label>
-                                    <select class="minimal"
-                                       name="expectation"  
-                                       ng-model="intrests.expectation">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Expectation</label>
+                            <select class="minimal" name="expectation" ng-model="intrests.expectation">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="ONLYMUMBAI">Only Mumbai</option>
                                        <option value="READY_TO_RELOCATE_OF_INDIA">Ready to relocate of India</option>
                                        <option value="NO_CRITERIA_FOR_PLACE">No criteria for place</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="clearfix"></div>
-                           <ul class="list-inline pull-left">
-                              <li>
-                                 <button type="button" ng-click="ctrl.openTabContent('family')" ng-disabled="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid)" class="button  raised hoverable next-step">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <ul class="list-inline pull-left" ng-if="!ctrl.editMode">
+                    <li>
+                        <button type="button" ng-click="ctrl.openTabContent('family')" ng-disabled="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid)"
+                            class="button  raised hoverable next-step">
                                     <div class="anim"></div>
                                     <span>Continue!</span>
                                  </button>
-                              </li>
-                           </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane animated jackInTheBox" role="tabpanel" id="complete" ng-class="ctrl.moreInfoTabsmenu[3].active?'active':''"
+                ng-show="ctrl.moreInfoTabsmenu[3].active">
+                <div class="complete">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Family Background And Horoscope </h2>
                         </div>
-                        <div class="tab-pane animated jackInTheBox" role="tabpanel" id="complete" ng-class="ctrl.moreInfoTabsmenu[3].active?'active':''" ng-show="ctrl.moreInfoTabsmenu[3].active">
-                           <div class="complete">
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <h2> Add Your Family Background And Horoscope </h2>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Father Name</label>
-                                    <input type="text" placeholder="Enter your father name" ng-model="family.father">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Father Occupation</label>
-                                    <input type="text" placeholder="Enter your father occupation" ng-model="family.father_occupation">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Mother Name</label>
-                                    <input type="text" placeholder="Enter your mother name" ng-model="family.mother">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Siblings</label>
-                                    <input type="text" placeholder="Enter your text" ng-model="family.siblings">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Mosal</label>
-                                    <input type="text" placeholder="Enter your sibilings"  ng-model="family.mosal">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Family Address</label>
-                                    <textarea rows="4" cols="50" ng-model="family.address"> </textarea>
-                                 </div>
-                                 <div class="col-md-6 ">
-                                    <label class="required" >Family Contact Number</label>
-                                    <div class="row phoneNumber">
-                                       <div class="col-md-3 p-r-0">
-                                          <div ng-init="family.country_code='+91'"></div>
-                                          <select class="minimal form-control" ng-model="family.country_code">
+                        <div class="col-md-6">
+                            <label>Father Name</label>
+                            <input type="text" placeholder="Enter your father name" ng-model="family.father">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Father Occupation</label>
+                            <input type="text" placeholder="Enter your father occupation" ng-model="family.father_occupation">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mother Name</label>
+                            <input type="text" placeholder="Enter your mother name" ng-model="family.mother">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Siblings</label>
+                            <input type="text" placeholder="Enter your text" ng-model="family.siblings">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mosal</label>
+                            <input type="text" placeholder="Enter your sibilings" ng-model="family.mosal">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Family Address</label>
+                            <textarea rows="4" cols="50" ng-model="family.address"> </textarea>
+                        </div>
+                        <div class="col-md-6 ">
+                            <label class="required">Family Contact Number</label>
+                            <div class="row phoneNumber pull-right">
+                                <div class="col-md-3 p-r-0">
+                                    <div ng-init="family.country_code='+91'"></div>
+                                    <select class="minimal form-control" style="min-width:100px;" ng-model="family.country_code">
                                              <option ng-repeat="(key, value) in ctrl.countriesCodes" value="{{ value }}">{{ value }}</option>
                                           </select>
-                                       </div>
-                                       <div class="col-md-9 p-l-0"> 
-                                          <input class="input-btn form-control" type="text"
-                                             name="phone_number" 
-                                             placeholder="999 999 9999"
-                                             ng-model = "family.phone_number"
-                                             validator = "ctrl.phoneValidator(family.phone_number) === true"
-                                             invalid-message = "ctrl.phoneValidator(family.phone_number)"
-                                             required-message="ctrl.required('REQUIRED')"
-                                             validate-on="dirty"
-                                             append-message=".phoneNumber"
-                                             required
-                                             />
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >City</label>
-                                    <input type="text" placeholder="Enter your city" ng-model="family.city">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Native Place</label>
-                                    <input type="text" placeholder="Enter your place" ng-model="family.native_place">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Time Of Birth</label>
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <select class="minimal" ng-model="family.time_birth_hr">
+                                </div>
+                                <div class="col-md-9 p-l-0">
+                                    <input class="input-btn form-control" type="text" name="phone_number" placeholder="999 999 9999" ng-model="family.phone_number"
+                                        validator="ctrl.phoneValidator(family.phone_number) === true" invalid-message="ctrl.phoneValidator(family.phone_number)"
+                                        required-message="ctrl.required('REQUIRED')" validate-on="dirty" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>City</label>
+                            <input type="text" placeholder="Enter your city" ng-model="family.city">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Native Place</label>
+                            <input type="text" placeholder="Enter your place" ng-model="family.native_place">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Time Of Birth</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="minimal" ng-model="family.time_birth_hr">
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                             <option ng-repeat="_ in ((_ = []) && (_.length=25) && _) track by $index" value="{{$index}}">{{$index}} (hours)</option>
+                                             <option ng-repeat="_ in ((_ = []) && (_.length=25) && _) track by $index" ng-value="$index+1">{{$index}} (hours)</option>
                                              <option value="NOT_INTERESTED">Not interested</option>
                                           </select>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <select class="minimal" ng-model="family.time_birth_min">
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="minimal" ng-model="family.time_birth_min">
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                             <option ng-repeat="_ in ((_ = []) && (_.length=61) && _) track by $index" value="{{$index}}">{{$index}} (minutes)</option>
+                                             <option ng-repeat="_ in ((_ = []) && (_.length=61) && _) track by $index" ng-value="$index+1">{{$index}} (minutes)</option>
                                              <option value="NOT_INTERESTED">Not interested</option>
                                           </select>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Place Of Birth</label>
-                                    <input type="text" placeholder="Enter your text" ng-model="family.place_birth">
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Horoscope Details</label>
-                                    <select class="minimal" ng-model="family.horoscope">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Place Of Birth</label>
+                            <input type="text" placeholder="Enter your text" ng-model="family.place_birth">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Horoscope Details</label>
+                            <select class="minimal" ng-model="family.horoscope">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="CLAIRE">Claire</option>
                                        <option value="LIGHT_MANGAL">Light Mangal</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Zodiac</label>
-                                    <select class="minimal" ng-model="family.zodiac">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Zodiac</label>
+                            <select class="minimal" ng-model="family.zodiac">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option ng-repeat="zodiac in ctrl.zodiac" value="{{zodiac}}">{{zodiac}}</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <label >Anal Income</label>
-                                    <select class="minimal" ng-model="family.aincome">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Anal Income</label>
+                            <select class="minimal" ng-model="family.aincome">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="1_2">0-2 Lakhs</option>
                                        <option value="3_5">3-5 Lakhs</option>
@@ -667,13 +619,15 @@
                                        <option value="10_A">Above 10 Lakhs</option>
                                        <option value="NOT_INTERESTED">Not interested</option>
                                     </select>
-                                 </div>
-                                 <div class="clearfix"></div>
-                                 <div class="col-md-6">
-                                    <div class="all-do">
-                                       <div ng-init="family.beleave_hor='YES'"></div>
-                                       <label  class="pull-left">Do You Beleave In Horoscope</label>
-                                       <div class="wiz-raido pull-right">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6">
+                            <div class="all-do">
+                                <div ng-init="family.beleave_hor=true"></div>
+                                <label class="pull-left">Do You Beleave In Horoscope</label>
+                                <div class="wiz-raido pull-right">
+                                    <switch id="enabled" name="enabled" ng-model="family.beleave_hor" on="Yes" off="No" class=" wide pripubsw"></switch>
+                                    <!--                                     
                                           <div class="wiz-label">
                                              Yes
                                           </div>
@@ -681,42 +635,59 @@
                                           <div class="wiz-label">
                                              NO
                                           </div>
-                                          <input type="radio" name="beleave_hor" value="NO" ng-model="family.beleave_hor">
-                                       </div>
-                                    </div>
-                                    <div class="all-do">
-                                       <div ng-init="family.manglik='NO'"></div>
-                                       <label  class="pull-left">Are You Manglik?</label>
-                                       <div class="wiz-raido pull-right">
-                                          <div class="wiz-label">
+                                          <input type="radio" name="beleave_hor" value="NO" ng-model="family.beleave_hor">-->
+                                </div>
+                            </div>
+                            <div class="all-do">
+                                <div ng-init="family.manglik=false"></div>
+                                <label class="pull-left">Are You Manglik?</label>
+                                <div class="wiz-raido pull-right">
+                                    <switch id="enabled" name="enabled" ng-model="family.manglik" on="Yes" off="No" class=" wide pripubsw"></switch>
+                                    <!--<div class="wiz-label">
                                              Yes
                                           </div>
                                           <input type="radio" name="manglik" value="YES" ng-model="family.manglik">
                                           <div class="wiz-label">
                                              NO
                                           </div>
-                                          <input type="radio" name="manglik" value="NO" ng-model="family.manglik">
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="clearfix"></div>
-                              <ul class="list-inline pull-left">
-                                 <li>
-                                    <button type="submit" ng-disabled="moreInfo.phone_number.$invalid"  class="button  raised hoverable next-step" >
+                                          <input type="radio" name="manglik" value="NO" ng-model="family.manglik">-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ul class="list-inline pull-left">
+                        <li>
+                            <button type="submit" ng-disabled="moreInfo.phone_number.$invalid" ng-if="!ctrl.editMode" class="button  raised hoverable next-step">
                                        <div class="anim"></div>
-                                       <span>Proceed</span>
+                                       <span>{{ctrl.editMode ? 'Update' : 'Proceed'}}</span>
                                     </button>
-                                 </li>
-                              </ul>
-                              <!--<textarea>{{basicinfo}}</textarea>
+
+                            <button type="submit" ng-disabled="!(moreInfo.$valid && ctrl.registerform.$valid)" ng-if="ctrl.editMode" class="button  raised hoverable next-step">
+                                       <div class="anim"></div>
+                                       <span>{{ctrl.editMode ? 'Update' : ''}}</span>
+                                    </button>
+                        </li>
+                    </ul>
+                    <!--<textarea>{{basicinfo}}</textarea>
                               <textarea>{{educationwork}}</textarea>
                               <textarea>{{intrests}}</textarea>
                               <textarea>{{family}}</textarea>-->
-                           </div>
-                        </div>
-                      
-                        <div class="clearfix"></div>
-                     </div>
-                  </form>
-               </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</div>
+<style>
+    .moreInfoH2 {
+        background-color: #efefef;
+        padding: 0.8% 1.6%;
+        font-size: 14px !important;
+        color: #009999;
+        text-align: center;
+        font-weight: 400;
+        margin: 10px 0;
+    }
+</style>

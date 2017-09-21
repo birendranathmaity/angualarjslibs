@@ -8,7 +8,7 @@ module.exports = function viewUserController($rootScope, $viewusers, loginservic
     controller.actionCountPEV = 0;
     controller.userStatusList = [];
 
-
+controller.isEditUser=false;
     if ($stateParams.userLoadType) {
         controller.loadUserStatusType = $stateParams.userLoadType;
     }
@@ -30,6 +30,7 @@ module.exports = function viewUserController($rootScope, $viewusers, loginservic
     controller.loadusersCountList();
     controller.setUserType = function (userStatus) {
         controller.loadUserStatusType = userStatus;
+        controller.isEditUser=false;
 
 
     };
@@ -39,6 +40,24 @@ module.exports = function viewUserController($rootScope, $viewusers, loginservic
         }
 
     };
+    
+    var backUserFromEditMode = $rootScope.$on('backUserFromEditMode', function ($event, userId) {
+
+       controller.editUserId="";
+       controller.isEditUser=false;
+       //controller.loadusersCountList();
+      // controller.loadUserStatusType=controller.loadUserStatusType;
+       
+
+    });
+    var userEditBoradcast = $rootScope.$on('userEditBoradcast', function ($event, userId) {
+
+       controller.editUserId=userId;
+       controller.isEditUser=true;
+       
+
+    });
+
     var updateUserListCountEmit = $rootScope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
 
         controller.loadusersCountList();
@@ -48,5 +67,7 @@ module.exports = function viewUserController($rootScope, $viewusers, loginservic
     $rootScope.$on('$destroy', function () {
 
         updateUserListCountEmit();
+        userEditBoradcast();
+        backUserFromEditMode();
     });
 };

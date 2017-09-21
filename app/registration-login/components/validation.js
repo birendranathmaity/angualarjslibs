@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function () {
+module.exports = function ($rootScope) {
 
      return {
             restrict: 'A',
@@ -22,6 +22,7 @@ module.exports = function () {
                 // Watch form length to add watches for new form elements
                 scope.$watch(function(){return Object.keys(scopeForm).length;}, function(){
                     // Destroy all the watches
+                    
                     // This is cleaner than figuring out which items are already being watched and only un-watching those.
                     angular.forEach(watches, function(watch){watch();});
                     setupWatches(DOMForm);
@@ -34,6 +35,7 @@ module.exports = function () {
                     scope.$apply(function() {
                         scopeForm.submitted = true;
                     });
+                   
 
                     // If the form is valid then call the function that is declared in the angular-validator-submit attribute on the form element
                     if (scopeForm.$valid) {
@@ -86,7 +88,10 @@ module.exports = function () {
                             return elementToWatch.value + elementToWatch.required + scopeForm.submitted + checkElementValidity(elementToWatch) + getDirtyValue(scopeForm[elementToWatch.name]) + getValidValue(scopeForm[elementToWatch.name]);
                         },
                         function() {
-                           
+                            
+                            if(scopeForm.$name==="regisForm"){
+                          $rootScope.$broadcast('regisFormSubmitStatus',scopeForm);
+                            }
                             if (scopeForm.submitted){
                                 updateValidationMessage(elementToWatch);
                                 updateValidationClass(elementToWatch);

@@ -70,11 +70,11 @@
                                           <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
                                           </div>
                                          
-                                  <div ng-if="user.pic"   class="user-profile-pic pull-left cursorpointer"  popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)" popover-placement="{{ctrl.photoView.pos}}" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
-                                    <img ng-if="user.pic.photo_type==='PROFILE'" water-mark="user.pic"  alt="" width="91" height="88" />
-                                             <p ng-if="user.pic.photo_type==='PROFILE'"> ( {{user.user_id}} )</p>
+                                  <div ng-if="user.pic.length>0"   class="user-profile-pic pull-left cursorpointer"  popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)" popover-placement="{{ctrl.photoView.pos}}" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
+                                    <img ng-if="user.pic[0].photo_type==='PROFILE'" water-mark="user.pic[0]"  alt="" width="91" height="88" />
+                                             <p ng-if="user.pic[0].photo_type==='PROFILE'"> ( {{user.user_id}} )</p>
                                   </div>
-                                  <div ng-if="!user.pic" class="user-profile-pic pull-left">
+                                  <div ng-if="user.pic.length===0" class="user-profile-pic pull-left">
                                     <img  src="dist/assets/img/emptyphoto.png"  alt="" width="91" height="88" />
                                              <p> ( {{user.user_id}} )</p>
                                   </div>
@@ -87,8 +87,8 @@
                                              {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Photo Request
                                              </span>
                                            <span class="pull-right"> 
-                                            <button class="pic-accept" type="button" ng-click="ctrl.edit()">Edit   </button> 
-                                           <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id})" type="button">Reject   </button>
+                                            <button class="pic-accept" type="button" ng-click="ctrl.edit(user.user_id)">Edit   </button> 
+                                           <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id,reffresh:true})" type="button">Reject   </button>
                                            </span>
                                             </p>
                                           <div class="clearfix"></div>
