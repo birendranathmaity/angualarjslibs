@@ -68,8 +68,22 @@
               </div>
               <div class="grid-body  p-detl-body no-border">
 
+{{ctrl.text}}
+<label ng-repeat="class in ['fade', 'fadeup', 'zoom', 'slide', 'pop', 'revolve']">
+			<input type="radio" name="imgAnim" ng-model="conf.imgAnim" ng-value="class"/> {{class}}
+		</label>
+    <button ng-click="openGallery()">Open Gallery</button>
+		<button ng-click="addPhoto()">Add Photo</button>
+		<button ng-click="removePhoto()">Remove Photo</button>
+		
+		<br/>
+		<br/>
 
-           
+		<button ng-click="toggleThumbnails()">Enable/Disable Thumbnails</button>
+		<button ng-click="toggleInline()">Modal/Inline Gallery</button>
+		<button ng-click="toggleBubbles()">{{(bubbles) ? 'Switch off' : 'Switch on'}} bubbles</button>
+		<button ng-click="toggleImgBubbles()">{{(imgBubbles) ? 'Switch off' : 'Switch on'}} Image bubbles</button>
+           <ng-image-gallery images="images" methods="methods" conf="conf" thumbnails="thumbnails" thumb-size="thumbSize" inline="inline" bubbles="bubbles" bubble-size="bubbleSize" img-bubbles="imgBubbles" bg-close="bgClose" piracy="true" on-open="opened();" on-close="closed();" on-delete="delete(img, cb)" bg-close="false"></ng-image-gallery>
                   <div class="row"> 
                     
                     <div class="col-md-4 p-r-0 "> 
