@@ -453,16 +453,25 @@ exports.pendingprofiles_count = function (req, res) {
 exports.get_all_users_status_count = function (req, res) {
     User.aggregate([
 
-        { $sort: { created_on: -1 } },
+       // { $sort: { created_on: -1 } },
         { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
-        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
-       
+         { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+         { $match: { $or: [ { 'pic.photo_type': { $eq: "PROFILE", $exists: true } },{'pic':{$exists: false}} ] } },
         {
             "$group": {
                 "_id": null,
-                "TOTAL_USERS": { "$sum": 1 },
+//                 "TOTAL_USERS": {
+//                      "$sum": {
+//                         "$cond": [{
+//                             $or: [{ $eq: ["$pic.photo_type", "PROFILE"] },
+//                             { $not: ["$pic"]}
+//                             ]
+//                         }, 1, 0]
+//                     }
+//                    },
+                    "TOTAL_USERS": { "$sum": 1 },
                 "TOTAL_ACTIVE_USERS": {
-                    "$sum": {
+                   "$sum": {
                         "$cond": [{ "$eq": ["$user_status", "ACTIVE"] }, 1, 0]
                     }
                 },
@@ -603,7 +612,7 @@ exports.get_users = function (req, res) {
     if (searchType == "PHOTO_UPLOAD_PENDING") {
         match = {
             "user_status": { "$eq": "ACTIVE" },
-            "pic": { "$eq": [] },
+            "pic": { "$exists": false },
         };
 
     }
@@ -660,7 +669,7 @@ exports.get_users = function (req, res) {
 
 
 
-        { $sort: { created_on: -1 } },
+      
 
         { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },
 
@@ -686,12 +695,14 @@ exports.get_users = function (req, res) {
         { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
 
         { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
+        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
+         { $match: { $or: [ { 'pic.photo_type': { $eq: "PROFILE", $exists: true } },{'pic':{$exists: false}} ] } },
 
         {
             $match: match
         },
 
-
+        { $sort: { created_on: -1 } },
 
         {
             $project: {
@@ -713,14 +724,14 @@ exports.get_users = function (req, res) {
                 "state": "$state.name",
 
                 "city": "$city.name",
-
-                pic: {
-                    $filter: {
-                        input: "$pic",
-                        as: "item",
-                        cond: { $eq: ["$$item.photo_type", "PROFILE"] }
-                    }
-                },
+                "pic":"$pic",
+                // pic: {
+                //     $filter: {
+                //         input: "$pic",
+                //         as: "item",
+                //         cond: { $eq: ["$$item.photo_type", "PROFILE"] }
+                //     }
+                // },
                 "created_on": "$created_on"
 
             }

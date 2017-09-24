@@ -20,7 +20,8 @@ var familySchema   = new Schema({
 	"time_birth_hr": Number,
 	"zodiac": String,
 	"horoscope": String,
-	"aincome": String
+	"aincome": String,
+	"updated_on":Date
 });
 
 module.exports = mongoose.model('userfamilies',familySchema);

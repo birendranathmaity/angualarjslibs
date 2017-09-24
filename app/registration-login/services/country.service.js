@@ -11,7 +11,11 @@ module.exports =function($http,ServiceUrls){
             },
             getCities: function(data,success, error) {
                 $http.get(ServiceUrls.BASEURL + ServiceUrls.CITIES+"/"+data).success(success).error(error);
+            },
+            getUserLoc:function(data,success,error){
+                 $http.get(ServiceUrls.BASEURL + ServiceUrls.GET_USER_LOC+"/"+data.cn+"/"+data.st+"/"+data.ci).success(success).error(error);
             }
             
         };
     };
+   

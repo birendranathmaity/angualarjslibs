@@ -21,6 +21,7 @@ require('ng-scrollbars');
 require('ngstorage');
 require('ng-file-upload');
 require('angular-chart.js');
+require('angular-filter');
 // App UI modules
 var LoadingBarModule = require('./loading-bar');
 var routerModule = require('./router');
@@ -51,6 +52,7 @@ angular.module('app.ui', [
     'ngStorage',
     'ngFileUpload',
     'chart.js',
+    'angular.filter',
     LoadingBarModule.name,
     translateModule.name,
     routerModule.name,
@@ -61,3 +63,6 @@ angular.module('app.ui', [
     adminModule.name
   
 ]);
+// angular.element(document).ready(function() {
+//     angular.bootstrap(document, ['app.ui']);
+// });

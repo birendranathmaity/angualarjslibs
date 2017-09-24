@@ -32,7 +32,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
                 });
 
-                var formdata = require('./form-data');
+                
+                controller.formdata=loginservice.getFiledsData();
                 //open login modal//
                 controller.openLoginModal = function (size) {
                     var modalInstance = $uibModal.open({
@@ -89,9 +90,9 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 controller.openTabContent('basic');
 
                 //load basic info data//
-                var hindu = formdata.rhindu;
-                var muslim = formdata.rmuslim;
-                var christian = formdata.rchristian;
+                var hindu = controller.formdata.rhindu;
+                var muslim = controller.formdata.rmuslim;
+                var christian = controller.formdata.rchristian;
 
                 var noCaste = new Array("Any", "caste no Bar");
                 controller.loadCaste = function (rel) {
@@ -137,7 +138,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     return newArr;
                 };
                 //load country details//
-                controller.countriesCodes = formdata.countriesWithCode;
+                controller.countriesCodes = controller.formdata.countriesWithCode;
                 countryService.getCountries(function (res) {
                     controller.countrys = res;
                 }, function () { });
@@ -170,8 +171,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     });
                 };
                 //hobbies
-                controller.hobbies = formdata.hobbies;
-                controller.zodiac = formdata.zodiac;
+                controller.hobbies = controller.formdata.hobbies;
+                controller.zodiac = controller.formdata.zodiac;
 
                 //phone validation//
                 controller.phoneValidator = function (phone) {

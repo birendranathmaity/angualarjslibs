@@ -9,7 +9,8 @@ var intrestSchema   = new Schema({
 	"complexion": String,
 	"body_type": String,
 	"hobbie": String,
-	"expectation": String
+	"expectation": String,
+	"updated_on":Date
 });
 
 module.exports = mongoose.model('userintrests',intrestSchema);

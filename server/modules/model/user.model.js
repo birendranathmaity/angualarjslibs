@@ -21,7 +21,9 @@ var UserSchema   = new Schema({
     phone_vr: Boolean,
     more_info_vr: Boolean,
     created_on:Date,
-    created_by:String
+    created_by:String,
+    updated_on:Date
+
 
 });
 

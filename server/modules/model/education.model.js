@@ -7,7 +7,8 @@ var educationSchema   = new Schema({
 	"filed_study": String,
 	"occupation": String,
 	"company": String,
-	"designation": String
+	"designation": String,
+	"updated_on":Date
 });
 
 module.exports = mongoose.model('usereducations',educationSchema);

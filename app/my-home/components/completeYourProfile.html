@@ -1,116 +1,112 @@
-<div class="grid simple main-profile my-profile animated rollIn" ng-if="completeYourProfile.profileType=='myprofile'">
-            <div class="grid-title no-border">
-              <h4 class="bold">Dharma Bharam <span class="normal-text">(T3725063)</span></h4>
+<div class="grid simple main-profile my-profile animated rollIn" ng-if="completeYourProfile.profileType==='myprofile'">
+  <div class="grid-title no-border">
+    <h4 class="bold">{{completeYourProfile.user.first_name}} <span class="normal-text">({{completeYourProfile.user.user_id}})</span></h4>
+  </div>
+  <div class="grid-body no-border pro-bord">
+    <div class="row">
+      <div class="no-padding">
+        <div class="user-profile-pic ">
+          <img water-mark="completeYourProfile.pic" alt="" width="91" height="88">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class=" p-setting-list">
+    <div class="no-padding addbtn-list">
+      <ul>
+        <li ng-repeat="ac in completeYourProfile.ACTIONS_USER_BIG" ng-click="completeYourProfile.goToUserAction(ac)"><a class="cursorpointer pro-btn">{{ac | translate}}</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+  <div class="profile-Completion">
+
+
+    <div class="progress-prof ">
+      <div class="row">
+        <div class="col-md-12 no-padding">
+          <h4 class="large-text">Complete your Profile </h4>
+          <div class="progress transparent progress-small no-radius no-margin">
+            <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="100%" ng-style="completeYourProfile.ProfilePercentage"></div>
+          </div>
+          <div class="pull-right">
+            <div class="details-status">
+              <span class="animate-number" data-value="86" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
             </div>
-            <div class="grid-body no-border pro-bord">
-                 <div class="row">
-                     <div class="no-padding">
-                       <div class="user-profile-pic ">  
-                          <img data-src-retina="assets/img/profiles/dharma.jpg" data-src="assets/img/profiles/dharma.jpg" src="assets/img/profiles/dharma.jpg" alt="" width="91" height="88">
-                       </div>
-                     </div>
-                  
-                  </div>
-             </div>
-              <div class=" p-setting-list">
-                 <div class="no-padding addbtn-list">
-                      <ul>
-                        <li class=""><a href="edit-my-profile.html" class="pro-btn" >Edit My Profile </a></li>
-                        <li class=""><a href="edit-contact-details.html" class="pro-btn" >Edit Contact Details </a></li>
-                        <li class=""><a href="addphotos.html" class="pro-btn" >Add Photos </a></li>
-                        <li class=""><a href="edit-partner-preference.html" class="pro-btn" >Edit Partner Preferences </a></li>
-                        
-                      </ul>
-                    </div> 
+          </div>
+          <p class="p-t-4 last-edit">Last Edited On :<span class=""> {{completeYourProfile.user.updated_on | date:'dd-MMM-yyyy'}} </span></p>
 
-              </div>
-              <div class="profile-Completion">
-        
-          
-            <div class="progress-prof ">
-              <div class="row">
-                <div class="col-md-12 no-padding">
-                  <h4 class="large-text">Complete your Profile </h4>
-                  <div class="progress transparent progress-small no-radius no-margin">
-                    <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div> 
-                  </div>
-                  <div class="pull-right">
-                    <div class="details-status">
-                      <span class="animate-number" data-value="86" data-animation-duration="560">86</span>%
-                    </div>  
-                  </div>
-                  <p class="p-t-4 last-edit">Last Edited On :<span class=""> 20-06-17 </span></p>
+          <!--<div class="percent-total">
+            <ul class="">
+              <li> <a href="#"><i class="fa fa-comments fa-fw" aria-hidden="true"></i> Express Yourself   <span class="pull-right">+ 25%</span> </a></li>
+              <li> <a href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Your Appearence   <span class="pull-right">+ 25%</span> </a></li>
+              <li> <a href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i> Occupation & Education   <span class="pull-right">+ 25%</span> </a></li>
+              <li><a href="#"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> Upload Photos  <span class="pull-right">+ 25%</span> </a></li>
 
-                  <div class="percent-total">
-                      <ul class="">
-                        <li> <a href="#"><i class="fa fa-comments fa-fw" aria-hidden="true"></i> Express Yourself   <span class="pull-right">+ 25%</span> </a></li>
-                         <li> <a href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Your Appearence   <span class="pull-right">+ 25%</span> </a></li>
-                          <li> <a href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i> Occupation & Education   <span class="pull-right">+ 25%</span> </a></li>
-                           <li><a href="#"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> Upload Photos  <span class="pull-right">+ 25%</span> </a></li>
-                        
-                      </ul>
+            </ul>
 
 
-                  </div>
+          </div>-->
 
-               
-                  
-                    
-                  </div>
-              </div>
-          
-            </div>  
- </div>  </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 <div class="grid simple main-profile animated rollIn" ng-if="completeYourProfile.profileType=='dashboard'">
-            <div class="grid-title no-border">
-               
-              <h4 class="bold">ccc {{ 'HELLO' | translate }}  <span class="normal-text">(T3725063)</span></h4>
-            </div> 
-            <div class="grid-body no-border pro-bord">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="row">
-                     <div class="pull-left no-padding">
-                       <div class="user-profile-pic pull-left">  
-                          <img data-src-retina="assets/img/profiles/dharma.jpg" data-src="assets/img/profiles/dharma.jpg" src="assets/img/profiles/dharma.jpg" alt="" width="91" height="88">
-                       </div>
-                     </div>
-                    <div class="no-padding addbtn-list">
-                      <ul>
-                        <li class=""><input class="pro-btn" type="button" value="Add Photo"></li>
-                        <li class=""><input class="pro-btn" type="button" value="Edit Profile"></li>
-                        <li class=""><input class="pro-btn" type="button" value="Setings"></li>
-                        <li class=" clearfix"></li>
-                        <li class=""><input class="pro-btn" type="button" value="Edit Partner Preferences"></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>                  
-              </div>
-             </div>
-            <div class="grid-title no-border">
-              <h4 class="large-text">{{'COMPLETE_YOUR_PROFILE' | translate}} </h4>
-            </div>
-            <div class="grid-body no-border  progress-prof  pro-bord">
-              <div class="row">
-                <div class="col-md-12">
-             <a href="edit-profile.html" class="tip" data-toggle="tooltip" title="Edit Profile">  
-                  <div class="progress transparent progress-small no-radius no-margin">
-                    <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div> 
-                  </div>
+  <div class="grid-title no-border">
 
-               
-                  <div class="pull-right">
-                    <div class="details-status">
-                      <span class="animate-number" data-value="86" data-animation-duration="560">86</span>%
-                    </div>  
-                  </div>
-                    <p class="p-t-4">Last Updated :<span class=""> 20-06-17 </span></p>
-                    </a>
-                  </div>
-              </div>
-             </div>
-            <!--<div class="grid-body no-border  progress-prof ">
+    <h4 class="bold">{{completeYourProfile.user.first_name}} <span class="normal-text">({{completeYourProfile.user.user_id}})</span></h4>
+  </div>
+  <div class="grid-body no-border pro-bord">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="pull-left no-padding">
+            <div class="user-profile-pic pull-left">
+              <img water-mark="completeYourProfile.pic" alt="" width="91" height="88">
+            </div>
+          </div>
+          <div class="no-padding addbtn-list">
+            <ul>
+              <!--<li ng-repeat="ac in completeYourProfile.ACTIONS_USER"></li>-->
+              <li ng-repeat="ac in completeYourProfile.ACTIONS_USER" ng-click="completeYourProfile.goToUserAction(ac)"><input class="pro-btn" type="button" value="{{ac | translate}}"></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-title no-border">
+    <h4 class="large-text">{{'COMPLETE_YOUR_PROFILE' | translate}} </h4>
+  </div>
+  <div class="grid-body no-border  progress-prof  pro-bord">
+    <div class="row">
+      <div class="col-md-12">
+        <a class="tip" data-toggle="tooltip" title="Edit Profile">
+          <div class="progress transparent progress-small no-radius no-margin">
+            <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="100%" ng-style="completeYourProfile.ProfilePercentage"></div>
+          </div>
+
+
+          <div class="pull-right">
+            <div class="details-status">
+              <span class="animate-number" data-value="9" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
+            </div>
+          </div>
+          <p class="p-t-4">Last Updated :<span class="">  {{completeYourProfile.user.updated_on | date:'dd-MMM-yyyy'}} </span></p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--<div class="grid-body no-border  progress-prof ">
          
               <div class="row">              
                 <div class="col-md-12">                
@@ -154,4 +150,4 @@
             </div>
             </div>
             </div>    -->
-          </div>
+</div>

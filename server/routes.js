@@ -15,6 +15,7 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.COUNTRIES,regisLogin.getcountries);
    app.get(serviceConfig.STATES,regisLogin.getstates);
    app.get(serviceConfig.CITIES,regisLogin.getcities);
+    app.get(serviceConfig.GET_USER_LOC,regisLogin.getUserLocation);
   
 //admin//////
  app.post(serviceConfig.GET_USERS,admin.get_users);

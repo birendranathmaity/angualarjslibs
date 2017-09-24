@@ -11,7 +11,8 @@ var basicInfoSchema   = new Schema({
 	"gothram": String,
 	"country": String,
 	"state": String,
-	"city": String
+	"city": String,
+	"updated_on":Date
 });
 
 module.exports = mongoose.model('userbasicinfos', basicInfoSchema);

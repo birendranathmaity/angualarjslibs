@@ -79,6 +79,7 @@ exports.signup = function(req, res) {
 
 };
 function UpdateUser(req,res){
+    req.body.updated_on=new Date();
     User.update({ user_id: req.body.user_id},req.body,function(err,user){
 
  res.json({
@@ -186,7 +187,10 @@ function createOtp(user,vrType) {
 
 };
 function updateMoreInfo(req,res){
-   
+   req.body.basicinfo.updated_on=new Date();
+   req.body.educationwork.updated_on=new Date();
+   req.body.intrests.updated_on=new Date();
+   req.body.family.updated_on=new Date();
 basicInfo.update({ user_id: req.body.user_id},req.body.basicinfo,function(err,resultbasicinfo){
 
 education.update({ user_id: req.body.user_id},req.body.educationwork,function(err,resulteducationwork){
@@ -199,7 +203,7 @@ education.update({ user_id: req.body.user_id},req.body.educationwork,function(er
 
  res.json({
                     success: true,
-                    msg: "User updated!"
+                    msg: "User moreinfo updated!"
                 });
 
 });
@@ -507,6 +511,52 @@ exports.getcities = function(req, res) {
             if (cities) {
 
                 res.json(cities);
+            }
+
+        }
+    });
+};
+exports.getUserLocation = function(req, res) {
+    country.aggregate([
+        {
+            "$match": {
+                "id": { "$eq": req.params.country_id }
+
+            }
+        },
+        { $lookup: { from: "states", localField: "id", foreignField: "country_id", as: "state" } },
+        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+        
+       
+
+ {
+            "$match": {
+                "state.id": { "$eq": req.params.state_id }
+
+            }
+        },
+        { $lookup: { from: "cities", localField: "state.id", foreignField: "state_id", as: "city" } },
+         { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
+{
+            "$match": {
+                "city.id": { "$eq": req.params.city_id }
+
+            }
+        },
+
+    ], function(err, location) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            if (location.length>0) {
+
+                res.json(location[0]);
+            }
+            else{
+                 res.json(null);
             }
 
         }

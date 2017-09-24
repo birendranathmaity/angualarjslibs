@@ -66,79 +66,8 @@
                             <select class="minimal form-control" name="mothertounge" ng-model="basicinfo.mothertounge" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option value="AF">Afrikanns</option>
-                                       <option value="SQ">Albanian</option>
-                                       <option value="AR">Arabic</option>
-                                       <option value="HY">Armenian</option>
-                                       <option value="EU">Basque</option>
-                                       <option value="BN">Bengali</option>
-                                       <option value="BG">Bulgarian</option>
-                                       <option value="CA">Catalan</option>
-                                       <option value="KM">Cambodian</option>
-                                       <option value="ZH">Chinese (Mandarin)</option>
-                                       <option value="HR">Croation</option>
-                                       <option value="CS">Czech</option>
-                                       <option value="DA">Danish</option>
-                                       <option value="NL">Dutch</option>
-                                       <option value="EN">English</option>
-                                       <option value="ET">Estonian</option>
-                                       <option value="FJ">Fiji</option>
-                                       <option value="FI">Finnish</option>
-                                       <option value="FR">French</option>
-                                       <option value="KA">Georgian</option>
-                                       <option value="DE">German</option>
-                                       <option value="EL">Greek</option>
-                                       <option value="GU">Gujarati</option>
-                                       <option value="HE">Hebrew</option>
-                                       <option value="HI">Hindi</option>
-                                       <option value="HU">Hungarian</option>
-                                       <option value="IS">Icelandic</option>
-                                       <option value="ID">Indonesian</option>
-                                       <option value="GA">Irish</option>
-                                       <option value="IT">Italian</option>
-                                       <option value="JA">Japanese</option>
-                                       <option value="JW">Javanese</option>
-                                       <option value="KO">Korean</option>
-                                       <option value="LA">Latin</option>
-                                       <option value="LV">Latvian</option>
-                                       <option value="LT">Lithuanian</option>
-                                       <option value="MK">Macedonian</option>
-                                       <option value="MS">Malay</option>
-                                       <option value="ML">Malayalam</option>
-                                       <option value="MT">Maltese</option>
-                                       <option value="MI">Maori</option>
-                                       <option value="MR">Marathi</option>
-                                       <option value="MN">Mongolian</option>
-                                       <option value="NE">Nepali</option>
-                                       <option value="NO">Norwegian</option>
-                                       <option value="FA">Persian</option>
-                                       <option value="PL">Polish</option>
-                                       <option value="PT">Portuguese</option>
-                                       <option value="PA">Punjabi</option>
-                                       <option value="QU">Quechua</option>
-                                       <option value="RO">Romanian</option>
-                                       <option value="RU">Russian</option>
-                                       <option value="SM">Samoan</option>
-                                       <option value="SR">Serbian</option>
-                                       <option value="SK">Slovak</option>
-                                       <option value="SL">Slovenian</option>
-                                       <option value="ES">Spanish</option>
-                                       <option value="SW">Swahili</option>
-                                       <option value="SV">Swedish </option>
-                                       <option value="TA">Tamil</option>
-                                       <option value="TT">Tatar</option>
-                                       <option value="TE">Telugu</option>
-                                       <option value="TH">Thai</option>
-                                       <option value="BO">Tibetan</option>
-                                       <option value="TO">Tonga</option>
-                                       <option value="TR">Turkish</option>
-                                       <option value="UK">Ukranian</option>
-                                       <option value="UR">Urdu</option>
-                                       <option value="UZ">Uzbek</option>
-                                       <option value="VI">Vietnamese</option>
-                                       <option value="CY">Welsh</option>
-                                       <option value="XH">Xhosa</option>
-                                    </select>
+                                       <option ng-repeat="mt in ctrl.formdata.mother_tongues" value="{{mt.value}}">{{mt.name}}</option>
+                                        </select>
                         </div>
                     </div>
                     <div class="row">
@@ -147,32 +76,8 @@
                             <select class="minimal form-control" name="religion" ng-model="basicinfo.religion" ng-change="ctrl.loadCaste(basicinfo.religion);basicinfo.caste=''"
                                 required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option value="African Traditional &amp; Diasporic">African Traditional &amp; Diasporic</option>
-                                       <option value="Agnostic">Agnostic</option>
-                                       <option value="Atheist">Atheist</option>
-                                       <option value="Bahai">Baha'i</option>
-                                       <option value="Buddhism">Buddhism</option>
-                                       <option value="Cao Dai">Cao Dai</option>
-                                       <option value="Chinese traditional religion">Chinese traditional religion</option>
-                                       <option value="Christianity">Christianity</option>
-                                       <option value="Hinduism">Hinduism</option>
-                                       <option value="Islam">Islam</option>
-                                       <option value="Jainism">Jainism</option>
-                                       <option value="Juche">Juche</option>
-                                       <option value="Judaism">Judaism</option>
-                                       <option value="Neo-Paganism">Neo-Paganism</option>
-                                       <option value="Nonreligious">Nonreligious</option>
-                                       <option value="Rastafarianism">Rastafarianism</option>
-                                       <option value="Secular">Secular</option>
-                                       <option value="Shinto">Shinto</option>
-                                       <option value="Sikhism">Sikhism</option>
-                                       <option value="Spiritism">Spiritism</option>
-                                       <option value="Tenrikyo">Tenrikyo</option>
-                                       <option value="Unitarian-Universalism">Unitarian-Universalism</option>
-                                       <option value="Zoroastrianism">Zoroastrianism</option>
-                                       <option value="primal-indigenous">primal-indigenous</option>
-                                       <option value="Other">Other</option>
-                                    </select>
+                                        <option ng-repeat="rl in ctrl.formdata.religions" value="{{rl.value}}">{{rl.name}}</option>
+                                       </select>
                         </div>
                         <div class="col-md-6">
                             <label class="required">Caste</label>
@@ -244,48 +149,15 @@
                             <select class="minimal form-control" name="highest_education" ng-model="educationwork.high_edu" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option value="No formal education">No formal education</option>
-                                       <option value="Primary education">Primary education</option>
-                                       <option value="Secondary education">Secondary education or high school</option>
-                                       <option value="GED">GED</option>
-                                       <option value="Vocational qualification">Vocational qualification</option>
-                                       <option value="Bachelor's degree">Bachelor's degree</option>
-                                       <option value="Master's degree">Master's degree</option>
-                                       <option value="Doctorate or higher">Doctorate or higher</option>
+                                       <option ng-repeat="ed in ctrl.formdata.educations" value="{{ed.value}}">{{ed.name}}</option>
                                     </select>
                         </div>
                         <div class="col-md-6">
                             <label>Filed Of Study</label>
                             <select class="minimal" ng-model="educationwork.filed_study">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option value="12.1">Agriculture</option>
-                                       <option value="12.2">Automobile</option>
-                                       <option value="12.3">Aviation</option>
-                                       <option value="12.4">Bio-Chemistry/Bio-Technology</option>
-                                       <option value="12.5">Biomedical</option>
-                                       <option value="12.6">Ceramics</option>
-                                       <option value="12.7">Chemical</option>
-                                       <option value="12.8">Civil</option>
-                                       <option value="12.9" >Computers</option>
-                                       <option value="12.10">Electrical</option>
-                                       <option value="12.11">Electronics/Telecommunication</option>
-                                       <option value="12.12">Energy</option>
-                                       <option value="12.13">Environmental</option>
-                                       <option value="12.14">Instrumentation</option>
-                                       <option value="12.15">Marine</option>
-                                       <option value="12.16">Mechanical</option>
-                                       <option value="12.17">Metallurgy</option>
-                                       <option value="12.18">Mineral</option>
-                                       <option value="12.19">Mining</option>
-                                       <option value="12.20">Nuclear</option>
-                                       <option value="12.21">Paint/Oil</option>
-                                       <option value="12.22">Petroleum</option>
-                                       <option value="12.23">Plastics</option>
-                                       <option value="12.24">Production/Industrial</option>
-                                       <option value="12.25">Textile</option>
-                                       <option value="12.26">Other Engineering</option>
-                                       <option value="12.9999">Other</option>
-                                    </select>
+                                        <option ng-repeat="sd in ctrl.formdata.studies" value="{{sd.value}}">{{sd.name}}</option>
+                                       </select>
                         </div>
                     </div>
                     <div class="row">
@@ -294,100 +166,7 @@
                             <select class="minimal form-control" name="occupation" ng-model="educationwork.occupation" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <optgroup label="Healthcare Practitioners and Technical Occupations:">
-                                          <option value="1">-  Chiropractor</option>
-                                          <option value="2">-  Dentist</option>
-                                          <option value="3">-  Dietitian or Nutritionist</option>
-                                          <option value="4">-  Optometrist</option>
-                                          <option value="5">-  Pharmacist</option>
-                                          <option value="6">-  Physician</option>
-                                          <option value="7">-  Physician Assistant</option>
-                                          <option value="8">-  Podiatrist</option>
-                                          <option value="9">-  Registered Nurse</option>
-                                          <option value="10">-  Therapist</option>
-                                          <option value="11">-  Veterinarian</option>
-                                          <option value="12">-  Health Technologist or Technician</option>
-                                          <option value="13">-  Other Healthcare Practitioners and Technical Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Healthcare Support Occupations:">
-                                          <option value="14">-  Nursing, Psychiatric, or Home Health Aide</option>
-                                          <option value="15">-  Occupational and Physical Therapist Assistant or Aide</option>
-                                          <option value="16">-  Other Healthcare Support Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Business, Executive, Management, and Financial Occupations:">
-                                          <option value="17">-  Chief Executive</option>
-                                          <option value="18">-  General and Operations Manager</option>
-                                          <option value="19">-  Advertising, Marketing, Promotions, Public Relations, and Sales Manager</option>
-                                          <option value="20">-  Operations Specialties Manager (e.g., IT or HR Manager)</option>
-                                          <option value="21">-  Construction Manager</option>
-                                          <option value="22">-  Engineering Manager</option>
-                                          <option value="23">-  Accountant, Auditor</option>
-                                          <option value="24">-  Business Operations or Financial Specialist</option>
-                                          <option value="25">-  Business Owner</option>
-                                          <option value="26">-  Other Business, Executive, Management, Financial Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Architecture and Engineering Occupations:">
-                                          <option value="27">-  Architect, Surveyor, or Cartographer</option>
-                                          <option value="28">-  Engineer</option>
-                                          <option value="29">-  Other Architecture and Engineering Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Education, Training, and Library Occupations:">
-                                          <option value="30">-  Postsecondary Teacher (e.g., College Professor)</option>
-                                          <option value="31">-  Primary, Secondary, or Special Education School Teacher</option>
-                                          <option value="32">-  Other Teacher or Instructor</option>
-                                          <option value="33">-  Other Education, Training, and Library Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Other Professional Occupations:">
-                                          <option value="34">-  Arts, Design, Entertainment, Sports, and Media Occupations</option>
-                                          <option value="35">-  Computer Specialist, Mathematical Science</option>
-                                          <option value="36">-  Counselor, Social Worker, or Other Community and Social Service Specialist</option>
-                                          <option value="37">-  Lawyer, Judge</option>
-                                          <option value="38">-  Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)</option>
-                                          <option value="39">-  Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)</option>
-                                          <option value="40">-  Religious Worker (e.g., Clergy, Director of Religious Activities or Education)</option>
-                                          <option value="41">-  Social Scientist and Related Worker</option>
-                                          <option value="42">-  Other Professional Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Office and Administrative Support Occupations:">
-                                          <option value="43">-  Supervisor of Administrative Support Workers</option>
-                                          <option value="44">-  Financial Clerk</option>
-                                          <option value="45">-  Secretary or Administrative Assistant</option>
-                                          <option value="46">-  Material Recording, Scheduling, and Dispatching Worker</option>
-                                          <option value="47">-  Other Office and Administrative Support Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Services Occupations:">
-                                          <option value="48">-  Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)</option>
-                                          <option value="49">-  Chef or Head Cook</option>
-                                          <option value="50">-  Cook or Food Preparation Worker</option>
-                                          <option value="51">-  Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)</option>
-                                          <option value="52">-  Building and Grounds Cleaning and Maintenance</option>
-                                          <option value="53">-  Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)</option>
-                                          <option value="54">-  Sales Supervisor, Retail Sales</option>
-                                          <option value="55">-  Retail Sales Worker</option>
-                                          <option value="56">-  Insurance Sales Agent</option>
-                                          <option value="57">-  Sales Representative</option>
-                                          <option value="58">-  Real Estate Sales Agent</option>
-                                          <option value="59">-  Other Services Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Agriculture, Maintenance, Repair, and Skilled Crafts Occupations:">
-                                          <option value="60">-  Construction and Extraction (e.g., Construction Laborer, Electrician)</option>
-                                          <option value="61">-  Farming, Fishing, and Forestry</option>
-                                          <option value="62">-  Installation, Maintenance, and Repair</option>
-                                          <option value="63">-  Production Occupations</option>
-                                          <option value="64">-  Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Transportation Occupations:">
-                                          <option value="65">-  Aircraft Pilot or Flight Engineer</option>
-                                          <option value="66">-  Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)</option>
-                                          <option value="67">-  Other Transportation Occupation</option>
-                                       </optgroup>
-                                       <optgroup label="Other Occupations:">
-                                          <option value="68">-  Military</option>
-                                          <option value="69">-  Homemaker</option>
-                                          <option value="70">-  Other Occupation</option>
-                                          <option value="71">-  Don't Know</option>
-                                          <option value="72">-  Not Applicable</option>
-                                       </optgroup>
+                                       <option ng-repeat="oc in ctrl.formdata.occupations" value="{{oc.value}}">{{oc.name}}</option>
                                     </select>
                         </div>
                         <div class="col-md-6">

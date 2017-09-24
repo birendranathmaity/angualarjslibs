@@ -21,7 +21,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
 
                 var controller = this;
                 controller.isAdmin = $scope.isAdmin;
-                var formData = require('./form-data');
+                var formData =loginservice.getFiledsData();
                 //date of birth//
                 controller.monthsL = formData.monthsL;
                 var year = new Date().getFullYear();

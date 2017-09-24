@@ -10,6 +10,7 @@
     "CITIES":"/cities/:state_id",
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
+    "GET_USER_LOC":"/getuserloc/:country_id/:state_id/:city_id",
     "SAVEMOREINFO":"/savemoreinfo",
     "GET_USER":"/getuser",
     "GET_USERS":"/getusers",

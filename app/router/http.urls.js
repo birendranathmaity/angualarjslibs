@@ -10,6 +10,7 @@ return {
     "COUNTRIES":"/countries",
     "STATES":"/states",
     "CITIES":"/cities",
+    "GET_USER_LOC":"/getuserloc",
     "CHECKEMAILID":"/checkemailid",
     "OTPVERIFY":"/otpverify",
     "SAVEMOREINFO":"/savemoreinfo",

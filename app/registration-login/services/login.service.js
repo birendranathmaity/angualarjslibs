@@ -1,6 +1,5 @@
 /* @ngInject */
-
-module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
+module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
 
     function changeUser(user) {
         angular.extend(currentUser, user);
@@ -32,15 +31,17 @@ module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $
             var obj = JSON.parse(urlBase64Decode(encoded));
             user = obj._doc;
             $rootScope.fname = user.first_name;
-            $rootScope.login_user=user;
+            $rootScope.login_user_role = user.user_role;
             $rootScope.login_user_id = user.user_id;
+
         }
         return user;
     }
 
-    var currentUser = getUserFromToken();
 
-    return {
+
+
+    var service = {
         signup: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.SINGUP, data).success(success).error(error);
         },
@@ -139,6 +140,8 @@ module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $
 
             $sessionStorage.token = token;
             var d = getUserFromToken();
+
+            this.getCureentUser(d.user_id);
         },
         getCurrentUserRole: function (success) {
             var cUser = getUserFromToken();
@@ -152,8 +155,51 @@ module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $
             }
 
         },
-        getCureentUser: function () {
-            var d = getUserFromToken();
+        getCureentUser: function (userId) {
+            $viewusers.getUser({ "user_id": userId }, function (result) {
+
+
+                $rootScope.current_user_de_all = result.user;
+
+
+
+            }, function () { });
+        },
+        getFiledsData: function () {
+            var formdata = require('./form-data');
+            return formdata;
+        },
+        getProfilePic: function () {
+            if ($rootScope.current_user_de_all.pic.length > 0) {
+
+                for (var key=0; key < $rootScope.current_user_de_all.pic.length; key++) {
+                    if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
+
+                        return $rootScope.current_user_de_all.pic[key];
+                    }
+
+                }
+            }
+            else {
+                return null;
+            }
+
+        },
+        setProfilePic: function (pic) {
+            if ($rootScope.current_user_de_all.pic.length > 0) {
+
+                for (var key=0; key < $rootScope.current_user_de_all.pic.length; key++) {
+                    if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
+
+                        $rootScope.current_user_de_all.pic[key]=pic;
+                    }
+
+                }
+            }
+            else{
+                $rootScope.current_user_de_all.pic.push(pic);
+            }
+
         },
         calculate_age: function (birth_month, birth_day, birth_year) {
             var today_date = new Date();
@@ -174,6 +220,7 @@ module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $
         logout: function (success, error) {
             var user = getUserFromToken();
             var data = {};
+            $rootScope.current_user_de_all = {};
             data.user_id = user.user_id;
 
             changeUser({});
@@ -181,4 +228,11 @@ module.exports = function ($http, $sessionStorage, $localStorage, ServiceUrls, $
             $http.post(ServiceUrls.BASEURL + ServiceUrls.LOGOUT, data).success(success).error(error);
         }
     };
+
+    var currentUser = getUserFromToken();
+    if (currentUser.user_id) {
+        console.log("user data")
+        service.getCureentUser(currentUser.user_id);
+    }
+    return service;
 };
