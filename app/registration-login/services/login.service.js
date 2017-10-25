@@ -140,8 +140,15 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
 
             $sessionStorage.token = token;
             var d = getUserFromToken();
+var self=this;
+            self.getCureentUser(d.user_id, function (rs) {
 
-            this.getCureentUser(d.user_id);
+                if (rs) {
+                    self.afterloginRoute();
+                }
+            });
+
+
         },
         getCurrentUserRole: function (success) {
             var cUser = getUserFromToken();
@@ -155,13 +162,13 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             }
 
         },
-        getCureentUser: function (userId) {
+        getCureentUser: function (userId, success) {
             $viewusers.getUser({ "user_id": userId }, function (result) {
 
 
                 $rootScope.current_user_de_all = result.user;
 
-
+                success(true);
 
             }, function () { });
         },
@@ -170,33 +177,44 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             return formdata;
         },
         getProfilePic: function () {
+            console.log($rootScope.current_user_de_all.pic)
+            var pics={
+                profile:null,
+                album:[]
+            }
             if ($rootScope.current_user_de_all.pic.length > 0) {
 
-                for (var key=0; key < $rootScope.current_user_de_all.pic.length; key++) {
+                for (var key = 0; key < $rootScope.current_user_de_all.pic.length; key++) {
+                    if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
+                            pics.profile=$rootScope.current_user_de_all.pic[key];
+                        //return $rootScope.current_user_de_all.pic[key];
+                    }
+                    else{
+                         var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + $rootScope.current_user_de_all.pic[key].photo_path;
+
+                        var alb={
+                            id:$rootScope.current_user_de_all.pic[key]._id,
+                            url:imgUrl
+                        }
+                        pics.album.push(alb);
+                    }
+
+                }
+            }
+            return pics;
+        },
+        setProfilePic: function (pic) {
+            if ($rootScope.current_user_de_all.pic.length > 0) {
+
+                for (var key = 0; key < $rootScope.current_user_de_all.pic.length; key++) {
                     if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
 
-                        return $rootScope.current_user_de_all.pic[key];
+                        $rootScope.current_user_de_all.pic[key] = pic;
                     }
 
                 }
             }
             else {
-                return null;
-            }
-
-        },
-        setProfilePic: function (pic) {
-            if ($rootScope.current_user_de_all.pic.length > 0) {
-
-                for (var key=0; key < $rootScope.current_user_de_all.pic.length; key++) {
-                    if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
-
-                        $rootScope.current_user_de_all.pic[key]=pic;
-                    }
-
-                }
-            }
-            else{
                 $rootScope.current_user_de_all.pic.push(pic);
             }
 
@@ -232,7 +250,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
     var currentUser = getUserFromToken();
     if (currentUser.user_id) {
         console.log("user data")
-        service.getCureentUser(currentUser.user_id);
+        service.getCureentUser(currentUser.user_id,function(){});
     }
     return service;
 };

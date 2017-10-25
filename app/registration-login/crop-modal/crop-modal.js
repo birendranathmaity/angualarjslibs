@@ -105,7 +105,7 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
         Upload.upload({
             url: ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_UPLOAD,
             data: {
-                file: Upload.dataUrltoBlob(dataUrl, name)
+                file: dataUrl
 
             },
             params: {

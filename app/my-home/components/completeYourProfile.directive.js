@@ -14,10 +14,14 @@ module.exports = function ($viewusers, loginservice, $rootScope) {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller = this;
-                controller.ACTIONS_USER = ['ADD_PHOTO', 'EDIT_PROFILE', 'SETINGS', 'EDIT_PARTNER_PREFERENCES'];
-                controller.ACTIONS_USER_BIG = ["EDIT_MY_PROFILE", "EDIT_CONTACT_DETAILS", "ADDPHOTOS", "EDIT_PARTNER_PREFERENCES"];
+                controller.ACTIONS_USER = ['Change Photo','ADD_PHOTO', 'EDIT_PROFILE', 'SETINGS', 'EDIT_PARTNER_PREFERENCES'];
+                controller.ACTIONS_USER_BIG = ['Change Photo',"EDIT_MY_PROFILE", "EDIT_CONTACT_DETAILS", "ADDPHOTOS", "EDIT_PARTNER_PREFERENCES"];
                 //ng-click="registerFormCtrl.openImageUploadWindow({user_id:form.user_id,skip_url:'/viewusers',photo_type:'PROFILE',from_sec:'userEdit'})"
+                controller.pTooltipCnfig={
+                    tpl:"./app/my-home/components/profile_photo_tooltip.html",
+                    pos:'bottom'
 
+                };
                 controller.goToUserAction = function (action) {
                     if (action === "ADD_PHOTO") {
                         var user = {
@@ -37,7 +41,8 @@ module.exports = function ($viewusers, loginservice, $rootScope) {
                // console.log($rootScope.current_user_de_all);
 
                 controller.user = $rootScope.current_user_de_all;
-                controller.pic = loginservice.getProfilePic();
+                var pics=loginservice.getProfilePic();
+                controller.pic = pics.profile;
                 controller.ProfilePercentage = {
 
                     width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"

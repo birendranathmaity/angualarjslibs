@@ -129,7 +129,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
 
                             if (!controller.isAdmin) {
                                 loginservice.saveToken(res.token);
-                                loginservice.afterloginRoute();
+                                
                             }
                             else {
                                 loginservice.openMoreInfoModal(res.user);

@@ -1,28 +1,27 @@
 /* @ngInject */
-module.exports = function AddPhotosController($location,$scope,$timeout) {
+module.exports = function AddPhotosController($location,$scope,$timeout,$rootScope,loginservice) {
     var controller = this;
-    controller.text="biru";
+    var pics=loginservice.getProfilePic();
+	console.log(pics)
+	//$scope.images =pics.album;
     $scope.images = [
 	{
 		id : 1,
-		
+			url : 'https://unsplash.it/800/600?image=227',
 		thumbUrl : 'https://unsplash.it/800/600?image=227',
-		url : 'https://unsplash.it/800/600?image=227',
-        	bubbleUrl  : 'https://unsplash.it/800/600?image=227',
-            deletable : true
+		
+          
 			},
 	{
 		id : 2,
 		url : 'https://unsplash.it/800/600?image=227',
-			bubbleUrl  : 'https://unsplash.it/800/600?image=227',
-            deletable : true
+			
 	},
 	{
 		id : 3,
-		thumbUrl : 'https://unsplash.it/800/600?image=227',
+	
 		url : 'https://unsplash.it/800/600?image=227',
-        	bubbleUrl  : 'https://unsplash.it/800/600?image=227',
-            deletable : true
+        
 	}
 ];
 $scope.conf = {
@@ -56,7 +55,7 @@ $scope.conf = {
 					$scope.inline = !$scope.inline;
 				}
 				// Bubbles
-				$scope.bubbles = true;
+				$scope.bubbles = false;
 				$scope.toggleBubbles = function(){
 					$scope.bubbles = !$scope.bubbles;
 				}
@@ -66,7 +65,7 @@ $scope.conf = {
 					$scope.imgBubbles = !$scope.imgBubbles;
 				}
 				// Background close
-				$scope.bgClose = true;
+				$scope.bgClose = false;
 				$scope.closeOnBackground = function(){
 					$scope.bgClose = !$scope.bgClose;
 				}

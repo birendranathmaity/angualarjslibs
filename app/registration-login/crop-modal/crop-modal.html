@@ -63,9 +63,11 @@
         on-streaming="ctrl.onSuccess()" 
         on-error="ctrl.onError(err)" 
         on-stream="ctrl.onStream(stream)"></webcam>
+        <img ng-src="{{ctrl.myImage | ngfDataUrl}}">
     <img-crop 
     area-type="{{ctrl.cropType}}"
     ng-if="ctrl.myImage"
+    init-max-area="true"
     image="ctrl.myImage | ngfDataUrl" 
     result-image="ctrl.myCroppedImage"
    
@@ -78,7 +80,7 @@
     
     </div>
         <div class="modal-footer" >
-            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto(ctrl.myCroppedImage,ctrl.myImage.name)"  class="button raised hoverable next-step" data-dismiss="modal">
+            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto(ctrl.myImage,ctrl.myImage.name)"  class="button raised hoverable next-step" data-dismiss="modal">
                 <div class="anim"></div>
                 <span>Save & Continue!</span>
             </button>

@@ -40,6 +40,7 @@ module.exports = function (ServiceUrls) {
                         canvas.width = this.width;
                         ctx.drawImage(this, 0, 0);
                         dataURL = canvas.toDataURL(outputFormat);
+                        console.log(dataURL)
                         callback(dataURL);
                         canvas = null;
                     };

@@ -64,7 +64,7 @@ function uploadPhoto(req, res) {
 
 function actionPhotoInDB(req, res, actionType, oldPhoto) {
 
-    if (actionType == "UPDATE") {
+    if (actionType === "UPDATE") {
 
         var fullpath = mainPath.config.PATH + "/upload_user_images/" + oldPhoto;
         fs.unlink(fullpath, (err) => {
