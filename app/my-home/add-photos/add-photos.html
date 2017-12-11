@@ -75,12 +75,12 @@
             </div>
             <div class="grid-body  p-detl-body no-border">
 
-             
-             <label ng-repeat="class in ['fade', 'fadeup', 'zoom', 'slide', 'pop', 'revolve']">
+              <button ng-click="ctrl.UploadAlbum()">Add Photo</button>
+             <!-- <label ng-repeat="class in ['fade', 'fadeup', 'zoom', 'slide', 'pop', 'revolve']">
 			<input type="radio" name="imgAnim" ng-model="conf.imgAnim" ng-value="class"/> {{class}}
 		</label>
               <button ng-click="openGallery()">Open Gallery</button>
-              <button ng-click="addPhoto()">Add Photo</button>
+             
               <button ng-click="removePhoto()">Remove Photo</button>
 
               <br/>
@@ -90,99 +90,35 @@
               <button ng-click="toggleInline()">Modal/Inline Gallery</button>
               <button ng-click="toggleBubbles()">{{(bubbles) ? 'Switch off' : 'Switch on'}} bubbles</button>
               <button ng-click="toggleImgBubbles()">{{(imgBubbles) ? 'Switch off' : 'Switch on'}} Image bubbles</button>
-              <ng-image-gallery 
-              images="images" 
-              methods="methods" 
-              conf="conf" 
-              thumbnails="thumbnails" 
-              thumb-size="thumbSize" 
-              inline="inline"
-              bubbles="bubbles" 
-              bubble-size="bubbleSize" 
-              img-bubbles="imgBubbles" 
-              bg-close="bgClose" 
-              piracy="true" 
-              on-open="opened();"
-              on-close="closed();" 
-              on-delete="delete(img, cb)" 
-              bg-close="false">
-              </ng-image-gallery>
-              <div class="row">
+               -->
+              
+              <div class="row" ng-if="images.length>0">
 
-                <div class="col-md-4 p-r-0 ">
-                  <h3 class="pic-head"> Display Pic</h3>
-
-                  <div id="image-preview">
-                    <label for="image-upload" id="image-label"><i class="fa fa-camera-retro" aria-hidden="true"></i></label>
-                    <input type="file" name="image" id="image-upload" />
-                  </div>
-
-                </div>
-                <div class="col-md-8 p-r-0 aulbum-head">
+               
+                <div class="col-md-12 p-r-0 aulbum-head">
                   <h3 class="pic-head">Album</h3>
                   <div class="row-fluid">
-
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
+                    <ng-image-gallery
+                    images="images" 
+                    methods="methods" 
+                    conf="conf" 
+                    thumbnails="thumbnails" 
+                    thumb-size="thumbSize" 
+                    inline="inline"
+                    bubbles="bubbles" 
+                    bubble-size="bubbleSize" 
+                    img-bubbles="imgBubbles" 
+                    bg-close="bgClose" 
+                    piracy="true" 
+                    on-open="opened();"
+                    on-close="closed();" 
+                    on-delete="delete(img, cb)" 
+                    bg-close="false">
+                    </ng-image-gallery>
+                  
                   </div>
                   <div class="p-t-10"></div>
-                  <div class="row-fluid">
-
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                    <div class="col-md-3 ">
-                      <div id="image-preview">
-                        <label for="image-upload" id="image-label"> <i class="fa fa-camera-retro" aria-hidden="true"></i>
-</label>
-                        <input type="file" name="image" id="image-upload" />
-                      </div>
-                    </div>
-                  </div>
+               
 
 
 
@@ -191,38 +127,7 @@
 
 
               </div>
-              <div class="row upld-total">
-
-                <div class="col-md-12">
-                  <h3 class="pull-left upload-text"> Upload Photos From </h3>
-
-                  <div class="clearfix"></div>
-                  <div class="row">
-
-                    <div class="box js col-lg-5">
-                      <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected"
-                        multiple />
-                      <label for="file-1"><i class="fa fa-desktop" aria-hidden="true"></i>
- <span> My Computer</span></label>
-                    </div>
-                    <div class="col-lg-1 no-padding text-center">
-                      <h3>or</h3>
-                    </div>
-                    <div class="col-lg-5">
-                      <div class="box face-b">
-
-                        <a href="https://www.facebook.com/" target="blank"> <i class="fa fa-facebook-square" aria-hidden="true"></i>
-
-
-            <span>Facebook </span>
-          </a>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
+           
 
 
               <div class="row">

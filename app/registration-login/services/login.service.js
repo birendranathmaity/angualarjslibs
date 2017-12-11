@@ -140,7 +140,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
 
             $sessionStorage.token = token;
             var d = getUserFromToken();
-var self=this;
+            var self = this;
             self.getCureentUser(d.user_id, function (rs) {
 
                 if (rs) {
@@ -162,6 +162,17 @@ var self=this;
             }
 
         },
+        getCurrentUserSession: function (success) {
+            var cUser = getUserFromToken();
+
+            if ($sessionStorage.token) {
+
+                success(cUser);
+            }
+            else {
+                $location.path("/register");
+            }
+        },
         getCureentUser: function (userId, success) {
             $viewusers.getUser({ "user_id": userId }, function (result) {
 
@@ -178,23 +189,23 @@ var self=this;
         },
         getProfilePic: function () {
             console.log($rootScope.current_user_de_all.pic)
-            var pics={
-                profile:null,
-                album:[]
+            var pics = {
+                profile: null,
+                album: []
             }
             if ($rootScope.current_user_de_all.pic.length > 0) {
 
                 for (var key = 0; key < $rootScope.current_user_de_all.pic.length; key++) {
                     if ($rootScope.current_user_de_all.pic[key].photo_type === "PROFILE") {
-                            pics.profile=$rootScope.current_user_de_all.pic[key];
+                        pics.profile = $rootScope.current_user_de_all.pic[key];
                         //return $rootScope.current_user_de_all.pic[key];
                     }
-                    else{
-                         var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + $rootScope.current_user_de_all.pic[key].photo_path;
+                    else {
+                        var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + $rootScope.current_user_de_all.pic[key].photo_path;
 
-                        var alb={
-                            id:$rootScope.current_user_de_all.pic[key]._id,
-                            url:imgUrl
+                        var alb = {
+                            id: $rootScope.current_user_de_all.pic[key]._id,
+                            url: imgUrl
                         }
                         pics.album.push(alb);
                     }
@@ -202,6 +213,28 @@ var self=this;
                 }
             }
             return pics;
+        },
+        getAlbumPics:function(data,success){
+           
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_ALBUM,data).success(function(res){
+               var imgs=[];
+                angular.forEach(res,function(v,i){
+                   
+                    var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + v.photo_path;
+                    var img={
+                        id:v._id,
+                        url:imgUrl
+            
+                    }
+                    imgs.push(img);
+   
+            
+            
+                });
+
+                success(imgs);
+            });
+            
         },
         setProfilePic: function (pic) {
             if ($rootScope.current_user_de_all.pic.length > 0) {
@@ -250,7 +283,7 @@ var self=this;
     var currentUser = getUserFromToken();
     if (currentUser.user_id) {
         console.log("user data")
-        service.getCureentUser(currentUser.user_id,function(){});
+        service.getCureentUser(currentUser.user_id, function () { });
     }
     return service;
 };

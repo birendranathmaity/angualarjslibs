@@ -28,9 +28,9 @@ exports.pPhotoUpload = function (req, res) {
 function uploadPhoto(req, res) {
     var userphoto = req.query;
     photoModel.find({ user_id: userphoto.user_id, photo_type: userphoto.photo_type }, function (error, photo) {
-
+console.log(photo.length)
         if (userphoto.photo_type === "ALBUM") {
-            if (photo.length > 8) {
+            if (photo.length >= 8) {
                 res.json({
                     success: false,
                     msg: "YOU CAN UPLOAD MAXIMUM 8 PHOTOS"
@@ -159,3 +159,15 @@ function updateUserPhoto(photo, res) {
 
 
 };
+
+exports.getAlbum = function (req, res) {
+  
+    photoModel.find({ user_id: req.body.user_id, photo_type: req.body.photo_type }, 
+        function (error, photos) {
+
+res.json(photos);
+        });
+        
+      
+    
+    };

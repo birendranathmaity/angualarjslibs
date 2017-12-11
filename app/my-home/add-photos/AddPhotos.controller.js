@@ -4,7 +4,17 @@ module.exports = function AddPhotosController($location,$scope,$timeout,$rootSco
     var pics=loginservice.getProfilePic();
 	console.log(pics)
 	//$scope.images =pics.album;
-    $scope.images = [
+	function getAlbumPs(){
+		loginservice.getCurrentUserSession(function(userDe){
+			
+			loginservice.getAlbumPics({user_id:userDe.user_id,photo_type: 'ALBUM'},function(ps){
+	console.log(ps)
+	$scope.images=ps;
+			});
+				});
+	}
+	getAlbumPs();
+    $scope.images1 = [
 	{
 		id : 1,
 			url : 'https://unsplash.it/800/600?image=227',
@@ -25,11 +35,32 @@ module.exports = function AddPhotosController($location,$scope,$timeout,$rootSco
 	}
 ];
 $scope.conf = {
-					imgAnim : 'fadeup'
+					imgAnim : 'revolve'
 				};
 				/*****************************************************/
-				
-				
+				controller.UploadAlbum = function () {
+                   
+					loginservice.getCurrentUserSession(function(userDe){
+						//console.log(userDe)
+						var user = {
+                            user_id: userDe.user_id,
+                            skip_url: '/addphotos',
+							photo_type: 'ALBUM',
+							from_sec: 'userAlbum'
+                           
+                        };
+					loginservice.openCropPopup(user);
+							});
+                };
+				$scope.$on('userAlbumPhotoBoradcastToDisplay', function ($event,photo){
+
+					getAlbumPs();
+
+var img={
+	id:photo._id,
+	
+}
+				});
 				$scope.addPhoto = function(){
 					var n = Math.floor(Math.random() * 13) + 1;
 					$scope.images.push(
@@ -55,17 +86,17 @@ $scope.conf = {
 					$scope.inline = !$scope.inline;
 				}
 				// Bubbles
-				$scope.bubbles = false;
+				$scope.bubbles = true;
 				$scope.toggleBubbles = function(){
 					$scope.bubbles = !$scope.bubbles;
 				}
 				// Image bubbles
-				$scope.imgBubbles = false;
+				$scope.imgBubbles = true;
 				$scope.toggleImgBubbles = function(){
 					$scope.imgBubbles = !$scope.imgBubbles;
 				}
 				// Background close
-				$scope.bgClose = false;
+				$scope.bgClose = true;
 				$scope.closeOnBackground = function(){
 					$scope.bgClose = !$scope.bgClose;
 				}

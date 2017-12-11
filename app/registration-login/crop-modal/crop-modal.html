@@ -36,12 +36,12 @@
     </a>
           </li>
           <div ng-init="ctrl.cropType='circle'"></div>
-            <li class="list-group-item cursorpointer" ng-if="ctrl.myImage" ng-class="ctrl.cropType==='circle' ? 'active':''" ng-click="ctrl.cropType='circle'"> 
+            <li class="list-group-item cursorpointer" ng-if="ctrl.myImage && ctrl.Iscrop" ng-class="ctrl.cropType==='circle' ? 'active':''" ng-click="ctrl.cropType='circle'"> 
                <a href="#" class="">
       <span class="glyphicon glyphicon-record"></span> 
     </a>
           </li>
-             <li class="list-group-item cursorpointer" ng-if="ctrl.myImage" ng-class="ctrl.cropType==='square' ? 'active':''" ng-click="ctrl.cropType='square'">
+             <li class="list-group-item cursorpointer" ng-if="ctrl.myImage && ctrl.Iscrop" ng-class="ctrl.cropType==='square' ? 'active':''" ng-click="ctrl.cropType='square'">
                   <a href="#" class="">
       <span class="glyphicon glyphicon-retweet"></span> 
     </a>
@@ -49,6 +49,10 @@
                   <li class="list-group-item cursorpointer" style="border:none;" ng-if="ctrl.myImage" >
                  <switch id="enabled" name="enabled" ng-model="ctrl.photo_visibility_status" on="Public" off="Private" class="green wide pripubsw"></switch>
                  </li>
+                
+                 <li class="list-group-item cursorpointer" style="border:none;" ng-if="ctrl.myImage" >
+                    <switch id="enabled" name="enabled" ng-model="ctrl.Iscrop" on="Crop" off="Crop" class="green wide pripubsw"></switch>
+                    </li>
         </ul>
 
          
@@ -63,24 +67,26 @@
         on-streaming="ctrl.onSuccess()" 
         on-error="ctrl.onError(err)" 
         on-stream="ctrl.onStream(stream)"></webcam>
-        <img ng-src="{{ctrl.myImage | ngfDataUrl}}">
+        <img ng-src="{{ctrl.myImage | ngfDataUrl}}" ng-if="!ctrl.Iscrop">
     <img-crop 
     area-type="{{ctrl.cropType}}"
-    ng-if="ctrl.myImage"
+    ng-if="ctrl.myImage && ctrl.Iscrop"
     init-max-area="true"
     image="ctrl.myImage | ngfDataUrl" 
     result-image="ctrl.myCroppedImage"
    
     ></img-crop>
+
+    
   </div>
 <canvas id="snapshot" style="display:none" width="300" height="300"></canvas>
   <div ng-if="ctrl.myCroppedImage">Preview :</div>
 
-  <div ng-if="ctrl.myCroppedImage"  style="text-align: center;"><img ng-class="ctrl.cropType==='circle'?'cropCircle':'cropSquare'"  ng-src="{{ctrl.myCroppedImage}}" /></div>
+  <div ng-if="ctrl.myCroppedImage && ctrl.Iscrop"  style="text-align: center;"><img ng-class="ctrl.cropType==='circle'?'cropCircle':'cropSquare'"  ng-src="{{ctrl.myCroppedImage}}" /></div>
     
     </div>
         <div class="modal-footer" >
-            <button type="button" ng-disabled="!ctrl.myCroppedImage" ng-click="ctrl.savePhoto(ctrl.myImage,ctrl.myImage.name)"  class="button raised hoverable next-step" data-dismiss="modal">
+            <button type="button" ng-disabled="!ctrl.myImage" ng-click="ctrl.savePhoto(ctrl.myImage,ctrl.myImage.name)"  class="button raised hoverable next-step" data-dismiss="modal">
                 <div class="anim"></div>
                 <span>Save & Continue!</span>
             </button>

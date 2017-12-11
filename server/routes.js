@@ -36,6 +36,8 @@ module.exports = function(app,express,process){
 //photo//
  
  app.post(serviceConfig.USER_PROFILE_PHOTO_UPLOAD,photo.pPhotoUpload);
+ app.post(serviceConfig.GET_ALBUM,photo.getAlbum);
+ 
 // app.post('/authenticate', function(req, res) {
 //     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
 //         if (err) {

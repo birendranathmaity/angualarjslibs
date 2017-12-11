@@ -11,6 +11,7 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
     controller.myImage = '';
     controller.myCroppedImage = '';
     controller.photo_visibility_status = true;
+    controller.Iscrop=true;
 
     //camera //
     controller.clicked = false;
@@ -92,6 +93,7 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
 
         // $location.path(user.skip_url);
         //  controller.cancel();
+       
         controller.upload(dataUrl, name);
 
     };
@@ -100,12 +102,16 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
        $location.path(user.skip_url);
     };
     controller.upload = function (dataUrl, name) {
-        
+        var uploadFile=controller.myImage;
+        if(controller.Iscrop){
+            uploadFile= Upload.dataUrltoBlob(controller.myCroppedImage);
+           // uploadFile=controller.myCroppedImage;
+        }
        // $rootScope.$broadcast('userPhotoBoradcastToResetPhoto');
         Upload.upload({
             url: ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_UPLOAD,
             data: {
-                file: dataUrl
+                file: uploadFile
 
             },
             params: {
@@ -126,9 +132,12 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
                     if(user.from_sec==="userEdit"){
                          $rootScope.$broadcast('userPhotoBoradcastToDisplay', response.data.pic);
                     }
+                    if(user.from_sec==="userAlbum"){
+                        $rootScope.$broadcast('userAlbumPhotoBoradcastToDisplay', response.data.pic);
+                   }
                   
                 } else {
-                    toastr.error('Not Uploaded', 'Error');
+                    toastr.error(response.data.msg);
                 }
                 controller.result = response.data;
             });

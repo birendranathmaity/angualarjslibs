@@ -85,7 +85,7 @@
                         <select convert-to-number class="select-btn minimal form-control" name="day" ng-model="form.day" validator="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
                               invalid-message="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)" required-message="registerFormCtrl.required('REQUIRED')"
                               append-message=".dobfield" validate-on="dirty" required>
-               <option value disabled > Date</option>
+               <option value disabled > Day</option>
                <option ng-repeat="_ in ((_ = []) && (_.length=31) && _) track by $index" value="{{$index+1}}">{{$index+1}}</option>
             </select>
                   </div>

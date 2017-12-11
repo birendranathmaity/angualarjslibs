@@ -55,9 +55,12 @@
                             <label class="required">Maritial Status</label>
                             <select class="minimal form-control" name="maritialstatus" ng-model="basicinfo.maritialstatus" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
-                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
+                                       <option value="" selected="selected" disabled="disabled">-- Select one --</option>
                                        <option value="SINGLE">Single</option>
-                                       <option value="MARRIED">Married</option>
+                                       <option value="Divorsed">Divorsed</option>
+                                       <option value="GOL_DHANA_FOLK">Gol Dhana Folk</option>
+                                      <option value="Widow">Widow</option>
+                                       <option value="Annulled">Annulled</option>
                                     </select>
                         </div>
 
@@ -245,15 +248,28 @@
                             <label>Body Type</label>
                             <select class="minimal" ng-model="intrests.body_type">
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option value="SLIM">Slim</option>
+                                       <!-- <option value="SLIM">Slim</option>
                                        <option value="FAT">Fat</option>
                                        <option value="AVERAGE">Average</option>
                                        <option value="AVERAGE">Maximum</option>
-                                       <option value="NOT_INTERESTED">Not interested</option>
+                                       <option value="NOT_INTERESTED">Not interested</option> -->
+
+                                      <option value="1">Slim</option>
+                                      <option value="2">Slender</option>
+                                      <option value="3">Average</option>
+                                      <option value="4">Fit</option>
+                                      <option value="5">Smart</option>
+                                      <option value="6">Athletic</option>
+                                      <option value="7">Muscular</option>
+                                      <option value="8">Thick</option>
+                                      <option value="9">Fatty</option>
+                                      <option value="10">Voluptuous</option>
+                                      <option value="11">Large</option>
                                     </select>
                         </div>
                         <div class="col-md-6">
                             <label class="required">Physical Status</label>
+                            <p ng-init="intrests.physical_status='NORMAL'"></p>
                             <select class="minimal form-control" name="physical_status" ng-model="intrests.physical_status" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -352,14 +368,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <select class="minimal" ng-model="family.time_birth_hr">
-                                             <option value="" selected="selected" disabled="disabled">-- Select one --</option>
+                                             <option value="" selected="selected" disabled="disabled">-- Hr --</option>
                                              <option ng-repeat="_ in ((_ = []) && (_.length=25) && _) track by $index" ng-value="$index+1">{{$index}} (hours)</option>
                                              <option value="NOT_INTERESTED">Not interested</option>
                                           </select>
                                 </div>
                                 <div class="col-md-6">
                                     <select class="minimal" ng-model="family.time_birth_min">
-                                             <option value="" selected="selected" disabled="disabled">-- Select one --</option>
+                                             <option value="" selected="selected" disabled="disabled">-- Min --</option>
                                              <option ng-repeat="_ in ((_ = []) && (_.length=61) && _) track by $index" ng-value="$index+1">{{$index}} (minutes)</option>
                                              <option value="NOT_INTERESTED">Not interested</option>
                                           </select>
@@ -402,10 +418,10 @@
                         <div class="clearfix"></div>
                         <div class="col-md-6">
                             <div class="all-do">
-                                <div ng-init="family.beleave_hor=true"></div>
+                                <div ng-init="family.beleave_hor=false"></div>
                                 <label class="pull-left">Do You Beleave In Horoscope</label>
                                 <div class="wiz-raido pull-right">
-                                    <switch id="enabled" name="enabled" ng-model="family.beleave_hor" on="Yes" off="No" class=" wide pripubsw"></switch>
+                                    <switch id="enabled0" name="enabled0" ng-model="family.beleave_hor" on="Yes" off="No" class=" wide pripubsw"></switch>
                                     <!--                                     
                                           <div class="wiz-label">
                                              Yes
@@ -421,7 +437,7 @@
                                 <div ng-init="family.manglik=false"></div>
                                 <label class="pull-left">Are You Manglik?</label>
                                 <div class="wiz-raido pull-right">
-                                    <switch id="enabled" name="enabled" ng-model="family.manglik" on="Yes" off="No" class=" wide pripubsw"></switch>
+                                    <switch id="enabled1" name="enabled1" ng-model="family.manglik" on="Yes" off="No" class=" wide pripubsw"></switch>
                                     <!--<div class="wiz-label">
                                              Yes
                                           </div>

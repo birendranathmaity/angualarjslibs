@@ -3,7 +3,7 @@ var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var notify = require('gulp-notify');
 var filesize = require('gulp-filesize');
-var sass = require('gulp-sass');
+//var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 
@@ -19,26 +19,26 @@ var SASS_SRC = 'scss/**/*.scss';
 var SASS_DEST = 'dist/styles';
 
 // Sass
-gulp.task('sass', function () {
-    return gulp.src(SASS_SRC)
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass({noCache: true}).on('error', sass.logError))
-        .pipe(autoprefixer())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(SASS_DEST))
-        .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}))
-        .on('error', gutil.log);
-});
+// gulp.task('sass', function () {
+//     return gulp.src(SASS_SRC)
+//         .pipe(plumber())
+//         .pipe(sourcemaps.init())
+//         .pipe(sass({noCache: true}).on('error', sass.logError))
+//         .pipe(autoprefixer())
+//         .pipe(sourcemaps.write('./'))
+//         .pipe(gulp.dest(SASS_DEST))
+//         .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}))
+//         .on('error', gutil.log);
+// });
 // Release build minifies CSS after compiling Sass
-gulp.task('sass-min', function () {
-    return gulp.src(SASS_SRC)
-        .pipe(plumber())
-        .pipe(sass({
-            noCache: true,
-            outputStyle: 'compressed'
-        }))
-        .pipe(autoprefixer())
-        .pipe(gulp.dest(SASS_DEST))
-        .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}));
-});
+// gulp.task('sass-min', function () {
+//     return gulp.src(SASS_SRC)
+//         .pipe(plumber())
+//         .pipe(sass({
+//             noCache: true,
+//             outputStyle: 'compressed'
+//         }))
+//         .pipe(autoprefixer())
+//         .pipe(gulp.dest(SASS_DEST))
+//         .pipe(notify({title: 'Sass', message: 'Created <%= file.relative %>.'}));
+// });
