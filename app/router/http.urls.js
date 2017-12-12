@@ -1,7 +1,7 @@
 /* @ngInject */
 module.exports =  function(){
 return {
-    "BASEURL":"http://localhost:4000",
+  "BASEURL":"http://192.169.136.224:4000",
     "LOGIN":"/login",
     "AUTHENTICATE":"/authenticate",
     "LOGOUT":"/logout",
