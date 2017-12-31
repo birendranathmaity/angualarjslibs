@@ -39,7 +39,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
     }
 
 
-
+   
 
     var service = {
         signup: function (data, success, error) {
@@ -154,7 +154,12 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             var cUser = getUserFromToken();
 
             if ($sessionStorage.token) {
-
+               
+                if(!$rootScope.current_user_de_all){
+                  
+                    this.getCureentUser(cUser.user_id, function () { });
+                    
+                }
                 success(cUser.user_role);
             }
             else {
@@ -167,6 +172,9 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
 
             if ($sessionStorage.token) {
 
+
+               
+
                 success(cUser);
             }
             else {
@@ -176,7 +184,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
         getCureentUser: function (userId, success) {
             $viewusers.getUser({ "user_id": userId }, function (result) {
 
-
+console.log(result)
                 $rootScope.current_user_de_all = result.user;
 
                 success(true);
@@ -188,7 +196,22 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             return formdata;
         },
         getProfilePic: function () {
-            console.log($rootScope.current_user_de_all.pic)
+
+            var cUser = getUserFromToken();
+            
+                        if ($sessionStorage.token) {
+                           
+                            if(!$rootScope.current_user_de_all){
+                              
+                                this.getCureentUser(cUser.user_id, function () { });
+                                
+                            }
+                           
+                        }
+                        else {
+                            $location.path("/register");
+                        }
+          
             var pics = {
                 profile: null,
                 album: []
@@ -280,10 +303,6 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
         }
     };
 
-    var currentUser = getUserFromToken();
-    if (currentUser.user_id) {
-        console.log("user data")
-        service.getCureentUser(currentUser.user_id, function () { });
-    }
+    
     return service;
 };

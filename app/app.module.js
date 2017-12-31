@@ -32,6 +32,7 @@ var translateModule = require('./translate');
 var myHomeModule = require('./my-home');
 var registrationLoginModule = require('./registration-login');
 var adminModule = require('./admin');
+var matchesModule = require('./matches');
 
 
 angular.module('app.ui', [
@@ -62,7 +63,8 @@ angular.module('app.ui', [
     layoutsModule.name,
     myHomeModule.name,
     registrationLoginModule.name,
-    adminModule.name
+    adminModule.name,
+    matchesModule.name
   
 ]);
 // angular.element(document).ready(function() {

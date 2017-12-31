@@ -31,8 +31,15 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
         {
             name: "",
             translatekey: "MATCHES",
-            subMenus: [],
-            route: "MATCHES"
+            subMenus: [{
+                translatekey: "PRE_MATCHES",
+                route: "root.pre_matches"
+            },
+            {
+                translatekey: "DAILYMATCHES",
+                route: "root.dailymatches"
+            }],
+            route: "root.pre_matches"
 
         },
         {
