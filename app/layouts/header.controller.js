@@ -51,8 +51,15 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
         {
             name: "",
             translatekey: "MESSAGES",
-            subMenus: [],
-            route: "MESSAGES"
+            subMenus: [{
+                translatekey: "MAIL",
+                route: "root.mail"
+            },
+            {
+                translatekey: "PHOTO_REQUEST",
+                route: "root.photo_request"
+            }],
+            route: "root.mail"
         }
     ];
     controller.adminHeaderMenus = [{

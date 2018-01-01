@@ -29,7 +29,11 @@ return {
     "GETALLUSERS_GROUPBY_PENDING_EMAIL_VR_COUNT":"/getallusers_groupby_pending_email_vr_count",
     "PENDING_PROFILES_COUNT":"/pending_profiles_count",
     "GET_ALL_USERS_STATUS_COUNT":"/get_all_users_status_count",
-    "GET_ALBUM":"/getalbum"
+    "GET_ALBUM":"/getalbum",
+    "GET_PRE_MATCHES":"/get_pre_matches",
+    "SEND_MESSAGE":"/send_message",
+    "GET_MESSAGES":"/get_messages",
+    "CHANGE_MESSAGE_STATUS":"change_message_status"
       };
     
 

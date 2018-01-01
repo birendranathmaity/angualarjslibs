@@ -11,8 +11,9 @@ var interest = require('./../model/intrest.model');
 var family = require('./../model/family.model');
 
 exports.get_pre_matches = function (req, res) {
-
-    var reqData = {
+    console.log(req.body)
+var reqData=req.body.condition;
+    var reqData2 = {
         age: [20, 50],
         height: 5.1,
         gender: "FEMALE",
@@ -89,7 +90,7 @@ exports.get_pre_matches = function (req, res) {
 
 
     }
-    console.log(obj)
+   // console.log(obj)
     var aggregate = User.aggregate([
 
 
@@ -186,8 +187,8 @@ exports.get_pre_matches = function (req, res) {
 
     ]);
     var options = {
-        page: 1,
-        limit: 100
+        page: req.body.page,
+        limit: req.body.limit
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {

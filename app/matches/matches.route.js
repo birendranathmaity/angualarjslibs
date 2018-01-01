@@ -8,7 +8,7 @@ module.exports = function myHomeRoutes(Router) {
                 views: {
                     '@': {
                         templateUrl: "app/matches/pre_matches/pre_matches.html",
-                        controller: "PreMatchesController as ctrl"
+                        controller: "PreMatchesController as $ctrl"
                     }
                 },
                 params: {

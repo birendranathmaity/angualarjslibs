@@ -26,7 +26,7 @@ module.exports = function (ServiceUrls) {
                         $attrs.$set('src', " dist/assets/img/emptyphoto.png");
                         return;
                     }
-                  
+                
                     $scope.waterMark = newVal;
                     loadImage();
                 }, true);

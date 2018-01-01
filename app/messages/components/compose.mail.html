@@ -1,0 +1,48 @@
+<div class="  compose-all-p">
+    <div class="">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+         
+             <div class="row">
+              <div class="col-lg-12 profile-img"> 
+             
+               <span class="pull-left">
+                
+               <img class="pull-left m-r-20" water-mark="$ctrl.photo" width="35" height="35">
+
+               </span>
+              <span class="pull-left"> <h4 class="compose-p-h"> {{$ctrl.user.first_name}} {{$ctrl.user.last_name}} <span class="small-text"> ( {{$ctrl.user.user_id}} ) </span></h4>
+              <span class="prof-id pull-left p-r-20 small-text"> {{$ctrl.user.age}} years, {{$ctrl.user.userintrests[0].height}} Inc, {{$ctrl.userLocation.city.name}} </span>  </span>
+              
+                </div>
+
+              </div>
+      
+        </div>
+        <div class="modal-body mail-pop-all">
+          <div class="row send-to">
+
+          <div class="col-lg-2 p-r-0 send-n">Send To :</div>
+          <div class="col-lg-10 no-padding send-text"> <input type="text" placeholder="Ex - DB123456"> </div>
+       
+
+       </div>
+       <div class="row send-to">
+        <div class="col-lg-12"> <textarea rows="7"></textarea>
+
+         <p>Max <span>4000 </span> Charecters</p> 
+        </div>
+       
+       </div>
+
+        </div>
+        <div class="modal-footer">
+         <button type="button " class="btn btn-primary yes-btn">Send</button>
+         <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>   

@@ -1,0 +1,138 @@
+<div class="grid simple profile-detail photo-details " >
+    
+
+        <div class="prof-title no-border">
+          <div class="pull-left">
+    
+              <p class="profile-text">   {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}  <span> ({{$ctrl.user.user_id}})</span> </p> 
+      
+          </div>
+          <div class="pull-right">
+            <div class="add-like">
+                  <ul class="">
+               <li> 
+  
+                <a href="#" class="tip" data-toggle="tooltip" title="Add To Compare"> <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> </a> </li>
+               <li> 
+  
+                <a href="#" class="tip" data-toggle="tooltip" title="Wish List"> <i class="fa fa-heart fa-lg" aria-hidden="true"></i> </a> </li>
+               
+                <li> 
+  
+                <a href="#" class="tip" data-toggle="tooltip" title="Viewed Profile"> <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i> </a> </li>
+                 <li> 
+  
+                <a href="#" class="tip" data-toggle="tooltip" title="Close Profile"> <i class="fa fa-times fa-lg" aria-hidden="true"></i> </a> </li>
+
+            
+              </ul>
+            </div>
+          </div>
+        </div>
+              <div class="grid-body  p-match-body no-border">
+            <div class="row" >
+            <div>
+              <div class="col-lg-4 col-md-4 col-md-4 col-md-4  no-padding full-p" onclick="myprofile()">
+                
+                  <div class="user-profile-pic  match-p-h">  <img water-mark="$ctrl.user.pic"  alt="" >
+                 </div>
+                
+                 <div class="req-pic" ng-if="!$ctrl.user.pic">  
+                   <p class="req-text"> 
+                    <a href="#">  Request Photo </a>
+                  </p> 
+                 </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row"> 
+              <div class="col-lg-6 col-lg-6 col-lg-6 col-lg-6 p-r-0">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                      <div class="bmd-list-group-col">
+                        <p class="list-group-item-left pull-left">Age</p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.age}} Yrs</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Height</p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.height}} inch</p>
+                      
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Marital Status</p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.maritualstatus}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Mother Tongue</p>
+                        <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.mother_tongues | filterBy: ['value']:$ctrl.user.mothertounge ">{{edu.name}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Religion </p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.religion}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Caste </p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.caste}}</p>
+                        <p class="clearfix"></p>
+                       
+                      </div>
+                  </li>
+                </ul> 
+              </div>
+              <div class="col-lg-6 col-lg-6 col-lg-6 col-lg-6  p-r-0">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                      <div class="bmd-list-group-col">
+
+
+                        
+
+                     
+                        <p class="list-group-item-left pull-left">Country Living </p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.country}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">State Living</p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.state}}</p>
+                        <p class="clearfix"></p>
+                        
+                        <p class="list-group-item-left pull-left">City Living In</p>
+                       
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.city}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Physical Status </p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.physical_status}}</p>
+                      </div>
+                  </li>
+                </ul>
+
+              </div>
+
+              
+
+            </div>
+
+            <div class="row"> 
+              <div class=" col-lg-5 p-r-0"><a class="btn match-btn" href="#"> 
+                <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
+Send Message </a>
+              </div>
+              <div class="col-lg-5 p-r-0"><a class="btn match-contact" href="#"> 
+               <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+Contact Details</a>
+              </div>
+            </div>
+
+            <div class="req-pic">
+              <div class="row">
+                <div class="col-lg-4 no-padding"> <img src="assets/img/verifiednumber.png"></div>
+                <div class="col-lg-4 no-padding"><img src="assets/img/verifiedmessages.png"></div>
+                <div class="col-lg-4 no-padding" > <p class="posted-m"> Posted By :  <span> {{$ctrl.user.created_by}} </span> </p></div>
+              </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

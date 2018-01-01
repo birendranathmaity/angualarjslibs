@@ -150,6 +150,10 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
 
 
         },
+
+        getUserShrotInfo:function(data){
+
+        },
         getCurrentUserRole: function (success) {
             var cUser = getUserFromToken();
 

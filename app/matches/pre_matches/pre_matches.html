@@ -9,7 +9,7 @@
       <div class="row">
   
         <!------------------------ Left Strat -------------------------->
-        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 matches-l-all">
         
             <div class="grid simple profile-detail photo-details">
                 
@@ -29,18 +29,43 @@
         </div>
         <!------------------------------------------------ profile End ------------------------------------------------>
         <!------------------------------------------------ you maylike Strat ------------------------------------------------>
-        <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-          <div class="col-md-8 no-padding ">
-            <div class="grid simple profile-detail photo-details">
-             
-              <div class="grid-body  p-detl-body no-border">
-  
-            
-              </div>
-              <!----------------profile Detials End---------------->
-  
-  
+        <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 matches-c-all no-padding">
+          <h4> Please broaden your partner preference slightly to receive more matches  in this list Modify </h4>
+             <div class="col-lg-9 col-xs-12 col-sm-12 no-padding dataTables_wrapper">
+              <div class="col-lg-8 ">
+              <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.users.length>0">
+                <ul>
+                <li > <div class=" hidden-xs">Showing <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div> </li>
+                <li class="prev disabled" style="margin-top: -2px;">
+               <ul 
+               
+                 uib-pagination 
+                 total-items="$ctrl.total"
+                 max-size="$ctrl.maxSize"
+                 num-pages="$ctrl.pages"
+                 ng-model="$ctrl.page"
+                 items-per-page="$ctrl.limit"
+                 class="pagination-sm"
+                 boundary-link-numbers="true"
+
+                
+                 ng-change="$ctrl.pageChanged()"
+                 rotate="true">
+                    </ul>
+               <!--previous-text="&#10094;"
+                 next-text="&#10095;"-->
+                </li>
+                   </ul>
+                
+                </div>
+                </div>
+                <div class="clearfix"></div>
+            <!---------------- profile match start ------------------------>
+            <div ng-repeat="user in $ctrl.users">
+
+              <profile-view user="user"></profile-view>
             </div>
+         
   
   
           </div>
@@ -48,7 +73,7 @@
           <!---------------------------------------------Center  End ------------------------------------------>
   
           <!---------------------------------------------Calender Veiw start ---------------------------------->
-          <div class="col-md-4 col-lg-4 col-sm-12  col-xs-12  ">
+          <div class="col-md-12 col-lg-3 col-sm-12  col-xs-12  p-r-0 ">
   
   
   
