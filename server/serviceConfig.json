@@ -29,5 +29,6 @@
     "GET_PRE_MATCHES":"/get_pre_matches",
     "SEND_MESSAGE":"/send_message",
     "GET_MESSAGES":"/get_messages",
-    "CHANGE_MESSAGE_STATUS":"change_message_status"
+    "CHANGE_MESSAGE_STATUS":"/change_message_status",
+    "GET_MESSAGEs_COUNT":"/get_messages_count"
 }

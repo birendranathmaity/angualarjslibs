@@ -1,8 +1,9 @@
+<form name="composemail">
 <div class="  compose-all-p">
     <div class="">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" class="close" ng-click="$ctrl.cancel()" aria-hidden="true">×</button>
          
              <div class="row">
               <div class="col-lg-12 profile-img"> 
@@ -23,26 +24,34 @@
         <div class="modal-body mail-pop-all">
           <div class="row send-to">
 
-          <div class="col-lg-2 p-r-0 send-n">Send To :</div>
-          <div class="col-lg-10 no-padding send-text"> <input type="text" placeholder="Ex - DB123456"> </div>
+          <div class="col-lg-2 p-r-0 send-n">{{$ctrl.config.type==="NEW" ? 'Send To :' : 'From :'}}</div>
+          <div class="col-lg-10 no-padding send-text"> 
+            <input type="text" ng-disabled="$ctrl.config.type!=='NEW'" ng-model="$ctrl.messageModel.send_to" required placeholder="Ex - DB123456"> </div>
        
 
        </div>
-       <div class="row send-to">
-        <div class="col-lg-12"> <textarea rows="7"></textarea>
+       
+          <div class="form-group" ng-if="$ctrl.config.type!=='NEW'">
+            <label for="exampleInputEmail1">Message :</label>
+         {{$ctrl.config.msg}}
+          </div>
+       
 
-         <p>Max <span>4000 </span> Charecters</p> 
+       <div class="row send-to">
+        <div class="col-lg-12"> <textarea rows="10" style="height:100px;"  ng-model="$ctrl.messageModel.message" maxlength="400" required></textarea>
+
+         <p>Max <span>400 </span> Charecters</p> 
         </div>
        
        </div>
 
         </div>
         <div class="modal-footer">
-         <button type="button " class="btn btn-primary yes-btn">Send</button>
+         <button type="button " ng-disabled="composemail.$invalid" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">{{$ctrl.config.type==="NEW" || $ctrl.config.type==="SENT" ? 'Send' : 'Reply'}}</button>
          <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
       </div>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-  </div>   
+  </div>   </form>

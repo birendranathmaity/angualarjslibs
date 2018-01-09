@@ -5,9 +5,9 @@ module.exports = function () {
         scope:{
              viewType:"="
         },
-        templateUrl: './app/admin/user/viewuser/viewUserDir.html',
-        controller: 'viewUserDirCtrl',
-        controllerAs:'ctrl',
+        templateUrl: './app/messages/components/messages.view.directive.html',
+        controller: 'messagesViewDirCtrl',
+        controllerAs:'$ctrl',
         link:function($scope, $element, $attrs){
 
 

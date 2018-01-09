@@ -4,7 +4,7 @@ var photo=require('./modules/registration_login/photo');
 var admin=require('./modules/admin/view_users');
 var adminTask=require('./modules/admin/admin.task');
 var matches=require('./modules/matches/matches');
-var matches=require('./modules/messages/message');
+var messages=require('./modules/messages/message');
 module.exports = function(app,express,process){
    app.use(serviceConfig.USER_PROFILE_PHOTO_DISPLAY_PATH, express.static(__dirname + '/upload_user_images'));
    app.post(serviceConfig.AUTHENTICATE,regisLogin.authenticate);
@@ -19,10 +19,12 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.CITIES,regisLogin.getcities);
     app.get(serviceConfig.GET_USER_LOC,regisLogin.getUserLocation);
 
-    //messages///
-    app.post(serviceConfig.GET_PRE_MATCHES,matches.get_pre_matches);
-
-
+    //messages//
+    app.post(serviceConfig.GET_MESSAGES,messages.getMessagesByType);
+    app.post(serviceConfig.CHANGE_MESSAGE_STATUS,messages.updateMessage);
+    app.post(serviceConfig.SEND_MESSAGE,messages.saveMessage);
+    
+    app.post(serviceConfig.GET_MESSAGEs_COUNT,messages.getMessagesCount);
     //matches//
 
     app.post(serviceConfig.GET_PRE_MATCHES,matches.get_pre_matches);

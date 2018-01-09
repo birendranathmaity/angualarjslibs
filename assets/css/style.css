@@ -9940,14 +9940,7 @@ a#next:hover {
     margin: 0;
     padding: 2px 0px;
 }
-.inbox-mail ul li {
-    list-style: none;
-    overflow: auto;
-    padding: 0.5em 0.4em;
-    background-color: #edf7fc;
-    clear: both;
-    margin-bottom: 3px;
-}
+
 .inbox-mail ul li:hover {
     background-color: #eff0f0;
 }
@@ -15711,4 +15704,7 @@ animation: loading-bar-spinner 400ms linear infinite;
   padding: 20px;
   background: #fff;
   min-height: 460px;
+}
+.hand{
+    cursor: pointer;
 }

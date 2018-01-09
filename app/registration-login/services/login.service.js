@@ -307,6 +307,6 @@ console.log(result)
         }
     };
 
-    
+    var currentUser= getUserFromToken();
     return service;
 };
