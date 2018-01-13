@@ -33,6 +33,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             $rootScope.fname = user.first_name;
             $rootScope.login_user_role = user.user_role;
             $rootScope.login_user_id = user.user_id;
+            $rootScope.login_user_gender = user.gender;
 
         }
         return user;

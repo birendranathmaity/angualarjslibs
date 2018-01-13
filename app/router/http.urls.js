@@ -34,7 +34,13 @@ return {
     "SEND_MESSAGE":"/send_message",
     "GET_MESSAGES":"/get_messages",
     "CHANGE_MESSAGE_STATUS":"/change_message_status",
-    "GET_MESSAGEs_COUNT":"/get_messages_count"
+    "GET_MESSAGES_COUNT":"/get_messages_count",
+    "CHECK_USER_CURRENTUSER":"/check_user_currentuser",
+    "SEND_REQUEST":"/send_request",
+    "UPDATE_REQUEST":"/update_request",
+    "CHANGE_TOUSER_STATUS":"/change_touser_status"
+    
+    
       };
     
 

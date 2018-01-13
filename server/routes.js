@@ -24,7 +24,10 @@ module.exports = function(app,express,process){
     app.post(serviceConfig.CHANGE_MESSAGE_STATUS,messages.updateMessage);
     app.post(serviceConfig.SEND_MESSAGE,messages.saveMessage);
     
-    app.post(serviceConfig.GET_MESSAGEs_COUNT,messages.getMessagesCount);
+    app.post(serviceConfig.GET_MESSAGES_COUNT,messages.getMessagesCount);
+    app.post(serviceConfig.CHECK_USER_CURRENTUSER,messages.checkSendTouser);
+    
+
     //matches//
 
     app.post(serviceConfig.GET_PRE_MATCHES,matches.get_pre_matches);

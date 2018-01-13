@@ -13,7 +13,11 @@ var service={
         $http.post(ServiceUrls.BASEURL + ServiceUrls.CHANGE_MESSAGE_STATUS, data).success(success).error(error);
     },
     get_messages_count: function (data, success, error) {
-        $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_MESSAGEs_COUNT, data).success(success).error(error);
+        $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_MESSAGES_COUNT, data).success(success).error(error);
+    },
+   
+    check_user_currentuser: function (data, success, error) {
+        $http.post(ServiceUrls.BASEURL + ServiceUrls.CHECK_USER_CURRENTUSER, data).success(success).error(error);
     },
 toaster_msg:function(msg){
     toastr.success(msg);
@@ -27,6 +31,8 @@ toaster_msg:function(msg){
         controller: 'composeMailController',
         controllerAs: '$ctrl',
         size: "lg",
+        backdrop: 'static',
+        keyboard: false,
         resolve: {
             config: function () {
                 return config;
