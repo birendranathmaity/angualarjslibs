@@ -38,8 +38,11 @@ return {
     "CHECK_USER_CURRENTUSER":"/check_user_currentuser",
     "SEND_REQUEST":"/send_request",
     "UPDATE_REQUEST":"/update_request",
-    "CHANGE_TOUSER_STATUS":"/change_touser_status"
-    
+    "CREATE_USER_BLOCK":"/create_user_block",
+    "UPDATE_USER_BLOCK":"/update_user_block",
+    "GET_REQUESTS_COUNT":"/get_requests_count",
+    "GET_REQUESTS":"/get_requests",
+    "UPDATE_REQUESTS":"/update_requests"
     
       };
     

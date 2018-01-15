@@ -58,6 +58,12 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
             {
                 translatekey: "PHOTO_REQUEST",
                 route: "root.photo_request"
+            },{
+                translatekey: "MESSAGE_REQUEST",
+                route: "root.message_request"
+            },{
+                translatekey: "CONTACT_REQUEST",
+                route: "root.contact_request"
             }],
             route: "root.mail"
         }

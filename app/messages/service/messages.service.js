@@ -15,7 +15,15 @@ var service={
     get_messages_count: function (data, success, error) {
         $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_MESSAGES_COUNT, data).success(success).error(error);
     },
-   
+    get_requests_count: function (data, success, error) {
+        $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_REQUESTS_COUNT, data).success(success).error(error);
+    },
+    get_requests: function (data, success, error) {
+        $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_REQUESTS, data).success(success).error(error);
+    },
+    update_requests: function (data, success, error) {
+        $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_REQUESTS, data).success(success).error(error);
+    },
     check_user_currentuser: function (data, success, error) {
         $http.post(ServiceUrls.BASEURL + ServiceUrls.CHECK_USER_CURRENTUSER, data).success(success).error(error);
     },

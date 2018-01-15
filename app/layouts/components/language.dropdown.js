@@ -11,11 +11,13 @@ module.exports = function ($translate,$templateCache,$state, $rootScope) {
             function ($scope, $element, $attrs) {
                 var controller=this;
         controller.language = 'English';
-    controller.languages = ['English', 'Hindi'];
+    controller.languages = ['English', 'Hindi','Gujarati'];
+  //  $translate.use(controller.language.toLowerCase());
+    
     
     controller.updateLanguage = function() {
     $translate.use(controller.language.toLowerCase());
-      $rootScope.$broadcast('myEventName');
+    
   
 // var currentPageTemplate =$state.current.views["@"].templateUrl;
 // $templateCache.remove(currentPageTemplate);

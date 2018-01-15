@@ -5,6 +5,8 @@ var admin=require('./modules/admin/view_users');
 var adminTask=require('./modules/admin/admin.task');
 var matches=require('./modules/matches/matches');
 var messages=require('./modules/messages/message');
+var request=require('./modules/messages/request');
+var useractions=require('./modules/useraction');
 module.exports = function(app,express,process){
    app.use(serviceConfig.USER_PROFILE_PHOTO_DISPLAY_PATH, express.static(__dirname + '/upload_user_images'));
    app.post(serviceConfig.AUTHENTICATE,regisLogin.authenticate);
@@ -19,6 +21,14 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.CITIES,regisLogin.getcities);
     app.get(serviceConfig.GET_USER_LOC,regisLogin.getUserLocation);
 
+
+    //user actions//
+
+    app.post(serviceConfig.SEND_REQUEST,useractions.sendRequest);
+   // app.post(serviceConfig.UPDATE_REQUEST,useractions.updateRequest);
+    app.post(serviceConfig.CREATE_USER_BLOCK,useractions.CreateUserBlock);
+    app.post(serviceConfig.UPDATE_USER_BLOCK,useractions.updateUserBlock);
+
     //messages//
     app.post(serviceConfig.GET_MESSAGES,messages.getMessagesByType);
     app.post(serviceConfig.CHANGE_MESSAGE_STATUS,messages.updateMessage);
@@ -26,7 +36,12 @@ module.exports = function(app,express,process){
     
     app.post(serviceConfig.GET_MESSAGES_COUNT,messages.getMessagesCount);
     app.post(serviceConfig.CHECK_USER_CURRENTUSER,messages.checkSendTouser);
-    
+
+    //requests//
+    app.post(serviceConfig.GET_REQUESTS_COUNT,request.getRequestsCount);
+    app.post(serviceConfig.UPDATE_REQUESTS,request.updateRequests);
+    app.post(serviceConfig.GET_REQUESTS,request.getRequestsByType);
+
 
     //matches//
 

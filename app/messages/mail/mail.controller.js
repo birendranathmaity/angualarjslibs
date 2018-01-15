@@ -1,61 +1,61 @@
 /* @ngInject */
-module.exports = function mailController($location,$scope,$timeout,$rootScope,loginservice,messagesservice) {
+module.exports = function mailController($location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
 
-    controller.viewType="INBOX";
+    controller.viewType = "INBOX";
 
-    function loadCounts(){
+    function loadCounts() {
 
-        var reqCount={
-            user_id:$rootScope.login_user_id
-            
+        var reqCount = {
+            user_id: $rootScope.login_user_id
+
         }
-        messagesservice.get_messages_count(reqCount,function(result){
-    
-            if(result.length>0){
-                controller.msgCounts=result[0];
+        messagesservice.get_messages_count(reqCount, function (result) {
+
+            if (result.length > 0) {
+                controller.msgCounts = result[0];
             }
-            
-    
-           
-        },function(error){
-    
+
+
+
+        }, function (error) {
+
         });
-    
-    
+
+
     }
     loadCounts();
-    controller.composemail=function(){
+    controller.composemail = function () {
 
-        var config={
+        var config = {
 
-            type:"NEW"
+            type: "NEW"
 
         }
-        
-                            messagesservice.composemail(config);
-                        }
-    controller.loadType=function(type){
-        controller.viewType=type;
+
+        messagesservice.composemail(config);
+    }
+    controller.loadType = function (type) {
+        controller.viewType = type;
     }
 
     var userMessageDeleteBroadcast = $rootScope.$on('userMessageDeleteBroadcast', function ($event, get_messages_count) {
-        
-        loadCounts();
-        
-        
-            });
 
-            var userSendMessageBroadcast= $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
-                
-                loadCounts();
-                
-                
-                    });
-            $rootScope.$on('$destroy', function () {
-        
-                userMessageBroadcast();
-                userSendMessageBroadcast();
-               
-            });
+        loadCounts();
+
+
+    });
+
+    var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
+
+        loadCounts();
+
+
+    });
+    $rootScope.$on('$destroy', function () {
+
+        userMessageBroadcast();
+        userSendMessageBroadcast();
+
+    });
 }

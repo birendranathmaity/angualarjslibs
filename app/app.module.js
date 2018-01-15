@@ -34,7 +34,7 @@ var registrationLoginModule = require('./registration-login');
 var adminModule = require('./admin');
 var matchesModule = require('./matches');
 var messages = require('./messages');
-
+var common = require('./common');
 angular.module('app.ui', [
     uiRouter,
     ngCookies,
@@ -61,11 +61,13 @@ angular.module('app.ui', [
     routerModule.name,
     publicModule.name,
     layoutsModule.name,
+    common.name,
     myHomeModule.name,
     registrationLoginModule.name,
     adminModule.name,
     matchesModule.name,
     messages.name
+
   
 ]);
 // angular.element(document).ready(function() {

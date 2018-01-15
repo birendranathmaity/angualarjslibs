@@ -70,14 +70,20 @@ isRequest:function(data,success){
             });
         } else {
             if (user.length>0) {
-                success(true);
+
+                if(user[0].request_status=="ACCEPTED"){
+                    success(true,'YES');
+                }
+                else{
+                    success(false,'REMIND');
+                }
            
                 
             }
             else{
 
 
-                success(false);
+                success(false,'YES');
 
                
 

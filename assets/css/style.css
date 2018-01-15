@@ -9867,7 +9867,19 @@ a#next:hover {
     border: none;
     color: #fff;
 }
-.inner-msg {} .inner-msg .inner-top {
+.email-body .pic-notnow {
+    background-color: #ad9b1f;
+    padding: 3px 10px;
+    border: none;
+    color: #fff;
+}
+.email-body .pic-delete {
+    background-color: #ff2b09;
+    padding: 3px 10px;
+    border: none;
+    color: #fff;
+}
+ .inner-msg .inner-top {
     border-bottom: 1px solid #ccc;
     overflow: auto;
     margin: 2%;

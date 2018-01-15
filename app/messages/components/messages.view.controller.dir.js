@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function messagesViewDirCtrl($scope,$uibModal, $rootScope, messagesservice, loginservice, toastr) {
+module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, messagesservice, loginservice, toastr) {
 
     var controller = this;
     controller.limit = 10;
@@ -33,7 +33,7 @@ module.exports = function messagesViewDirCtrl($scope,$uibModal, $rootScope, mess
 
 
         messagesservice.get_messages(req, function (result) {
-           
+
             setMessagesData(result);
 
         }, function () {
@@ -132,11 +132,11 @@ module.exports = function messagesViewDirCtrl($scope,$uibModal, $rootScope, mess
 
     };
 
-function broadcastComplete(){
-    controller.loadViewType();
-    $rootScope.$broadcast('userMessageDeleteBroadcast', {});
-}
-    controller.delete= function (target) {
+    function broadcastComplete() {
+        controller.loadViewType();
+        $rootScope.$broadcast('userMessageDeleteBroadcast', {});
+    }
+    controller.delete = function (target) {
         var req = {
             ids: controller.messageIds,
             fields: {}
@@ -166,19 +166,19 @@ function broadcastComplete(){
 
             }
         }
-        
+
         var modalInstance = $uibModal.open({
             animation: true,
             windowClass: "",
             templateUrl: './app/popuptemplates/delete.modal.html',
-            controller: function($scope){
-              var main=this;
-              main.yes=function(){
-                finalDelete();
-              }
-              main.no=function(){
-                modalInstance.dismiss('cancel');
-            }
+            controller: function ($scope) {
+                var main = this;
+                main.yes = function () {
+                    finalDelete();
+                }
+                main.no = function () {
+                    modalInstance.dismiss('cancel');
+                }
 
 
             },
@@ -187,88 +187,88 @@ function broadcastComplete(){
             backdrop: 'static',
             keyboard: false,
             resolve: {
-               
+
             }
 
         });
 
-        function finalDelete(){
- messagesservice.update_message_status(req, function (result) {
-    if(result.success){
-        messagesservice.toaster_msg("Successfully Deleted");
-        modalInstance.dismiss('cancel');
-        broadcastComplete();
+        function finalDelete() {
+            messagesservice.update_message_status(req, function (result) {
+                if (result.success) {
+                    messagesservice.toaster_msg("Successfully Deleted");
+                    modalInstance.dismiss('cancel');
+                    broadcastComplete();
+                }
+
+
+            }, function () {
+
+            });
+
+        }
+
     }
+    controller.markRead = function (type) {
+        var req = {
+            ids: controller.messageIds,
+            fields: {
+                message_status: "READ"
+            }
+
+
+        };
+        messagesservice.update_message_status(req, function (result) {
+            if (result.success) {
+                messagesservice.toaster_msg("Successfully Marked");
+                controller.loadViewType();
+            }
 
 
         }, function () {
 
         });
 
-        }
-     
     }
-controller.markRead=function(type){
-    var req = {
-        ids: controller.messageIds,
-        fields: {
-            message_status:"READ"
-        }
+    controller.viewMessage = function (config, msgId) {
 
-
-    };
-    messagesservice.update_message_status(req, function (result) {
-        if(result.success){
-            messagesservice.toaster_msg("Successfully Marked");
-            controller.loadViewType();
-        }
-    
-    
-            }, function () {
-    
-            });
-
-}
-controller.viewMessage=function(config,msgId){
-
-    if(controller.viewType==="SENT"){
-        messagesservice.composemail(config);
-        return;
-    }
-
-    var req = {
-        ids: [msgId],
-        fields: {
-            message_status:"READ"
-        }
-
-
-    };
-    messagesservice.update_message_status(req, function (result) {
-        if(result.success){
+        if (controller.viewType === "SENT") {
             messagesservice.composemail(config);
-           // messagesservice.toaster_msg("Successfully Marked");
-           // controller.loadViewType();
+            return;
         }
-    
-    
-            }, function () {
-    
-            });
+
+        var req = {
+            ids: [msgId],
+            fields: {
+                message_status: "READ"
+            }
 
 
-}
-    var userSendMessageBroadcast= $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
-        
+        };
+        messagesservice.update_message_status(req, function (result) {
+            if (result.success) {
+                messagesservice.composemail(config);
+                // messagesservice.toaster_msg("Successfully Marked");
+                // controller.loadViewType();
+            }
+
+
+        }, function () {
+
+        });
+
+
+    }
+    var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
+
         controller.loadViewType();
-        
-        
-            });
+
+
+    });
     $rootScope.$on('$destroy', function () {
 
-        
+
         userSendMessageBroadcast();
-       
+
     });
 
 

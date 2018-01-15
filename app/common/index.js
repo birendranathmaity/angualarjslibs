@@ -4,6 +4,6 @@ var angular = require('angular');
 //services//
 var userAction=require('./user.actions.service');
 
-module.exports = angular.module('app.ui.common.services', [])
+module.exports = angular.module('app.ui.common', [])
 
-.factory("useraction",userAction);
+.factory("useractions",userAction);

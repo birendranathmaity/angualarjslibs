@@ -1,0 +1,171 @@
+<div class="grid simple">
+    <div class="grid-body no-border email-body">
+        <br>
+        <div class="row-fluid">
+            <div class="row-fluid dataTables_wrapper">
+                <div class="col-lg-6 no-padding  ">
+                    <div class="pull-left">
+                        <div class="checkbox" ng-if="$ctrl.requests.length>0">
+                            <label style="font-size: 1.2em; line-height: 13px;">
+                                <input type="checkbox" value="" ng-model="$ctrl.selectedAll" ng-click="$ctrl.checkAll()">
+                                <span class="cr">
+                                    <i class="cr-icon fa fa-check"></i>
+                                </span>
+                                <span style="font-size: 12px;"> All
+                                </span>
+                            </label>
+                            <ul class="pull-right del-link">
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFOREVRYONE',$ctrl.requestIds)">Delete for everyone </button>
+                                </li>
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFORME',$ctrl.requestIds)">Delete for me </button>
+
+                                </li>
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType!='SENT'" class="pic-delete" type="button" ng-click="$ctrl.action('DELETE',$ctrl.requestIds)">Delete </button>
+
+                                </li>
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED')"
+                                        class="pic-accept" type="button" ng-click="$ctrl.action('ACCEPTED',$ctrl.requestIds)">Accept </button>
+
+                                </li>
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED')"
+                                        class="pic-reject" type="button" ng-click="$ctrl.action('REJECTED',$ctrl.requestIds)">Reject </button>
+
+                                </li>
+                                <li>
+                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='RECEIVED')" class="pic-notnow" type="button" ng-click="$ctrl.action('PENDING',$ctrl.requestIds)">Not Now </button>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <!--<div class="checkbox check-success pull-left top-link-all">
+                        <input id="checkbox72" type="checkbox" value="1" class="p-l-20" >
+                        <label for="checkbox72"> All</label>
+                        <ul class="pull-right del-link">
+                           <li>
+                              <a href="#">
+                                 Empty
+                           </li>
+                        </ul>
+                     </div>-->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.requests.length>0">
+                        <ul>
+                            <li class="pull-left">
+                                <div class=" hidden-xs">Showing
+                                    <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div>
+                            </li>
+                            <li class="prev disabled" style="margin-top: -2px;">
+                                <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"
+                                    class="pagination-sm" boundary-link-numbers="true" ng-change="$ctrl.pageChanged()" rotate="true">
+                                </ul>
+                                <!--previous-text="&#10094;"
+                next-text="&#10095;"-->
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="$ctrl.configScollBar">
+                    <p class="noinforav" ng-if="$ctrl.requests.length===0">No information available </p>
+                    <ul>
+                        <li class="row-fluid userlist" ng-repeat="req in $ctrl.requests" ng-class="{'unread' : req.request_status==='UNREAD' ,'reqselected':req.Selected}">
+
+                            <div class="col-lg-2 no-padding pull-left">
+                                <div class="checkbox check-success pull-left">
+                                    <label>
+                                        <input type="checkbox" ng-click="req.Sleceted=!req.Sleceted;$ctrl.checkBoxSelect()" value="" ng-model="req.Selected">
+                                        <span class="cr">
+                                            <i class="cr-icon fa fa-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div ng-if="req.user.pic" class="user-profile-pic pull-left cursorpointer">
+                                    <img ng-if="req.user.pic.photo_type==='PROFILE'" water-mark="req.user.pic" alt="" width="91" height="88" />
+                                    <p ng-if="req.user.pic.photo_type==='PROFILE'"> ( {{req.user.user_id}} )</p>
+                                </div>
+                                <div ng-if="!req.user.pic" class="user-profile-pic pull-left">
+                                    <img src="dist/assets/img/emptyphoto.png" alt="" width="91" height="88" />
+                                    <p> ( {{req.user.user_id}} )</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 hand">
+                                <p class="pull-right">
+                                    {{$ctrl.viewType==='SENT' ? 'Sent On : ' : ''}} {{$ctrl.viewType==='REJECTED' ? 'Rejected On : ' : ''}} {{$ctrl.viewType==='ACCEPTED'
+                                    ? 'Accepted On : ' : ''}} {{$ctrl.viewType==='PENDING' ? 'Request On : ' : ''}}
+                                    <span> {{req.created_on | date:'dd-MMM-yyyy'}} </span> |
+                                    <span> {{req.created_on | date:'h:mm a'}}</span>
+                                </p>
+                                <p class="clearfix"></p>
+                                <p class="mailer-name"> {{req.user.first_name}}</p>
+                                <p class="mailer-sub">
+                                    <span>
+                                        {{req.user.age}} Years. {{req.user.height}} ft, {{req.user.first_name}}, {{req.user.last_name}}.
+                                    </span>
+                                    <span ng-if="$ctrl.requestType==='PHOTO'">
+                                        <strong ng-if="$ctrl.viewType==='SENT'">
+                                            You have sent Photo Request
+                                        </strong>
+                                        <strong ng-if="$ctrl.viewType!=='SENT'">
+                                            Has Sent You Photo Request
+                                        </strong>
+                                    </span>
+                                    <span ng-if="$ctrl.requestType==='MESSAGE'">
+                                        <strong ng-if="$ctrl.viewType==='SENT'">
+                                            You have sent Message Request
+                                        </strong>
+                                        <strong ng-if="$ctrl.viewType!=='SENT'">
+                                            Has Sent You Message Request
+                                        </strong>
+                                    </span>
+                                    <span ng-if="$ctrl.requestType==='CONTACT'">
+                                        <strong ng-if="$ctrl.viewType==='SENT'">
+                                            You have sent Contact Request
+                                        </strong>
+                                        <strong ng-if="$ctrl.viewType!=='SENT'">
+                                            Has Sent You Contact Request
+                                        </strong>
+                                    </span>
+                                    <span class="pull-right">
+                                        <button class="pic-accept" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED'"
+                                            type="button" ng-click="$ctrl.action('ACCEPTED',[req._id])">Accept</button>
+                                        <button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING',[req._id])">Not Now</button>
+                                        <button class="pic-reject" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED'"
+                                            type="button" ng-click="$ctrl.action('REJECTED',[req._id])">Reject</button>
+                                    </span>
+                                </p>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .noinforav {
+        margin: 210px 300px;
+    }
+
+    .unread {
+        background-color: #fff !important;
+        border: 1px solid #ddd;
+    }
+
+    .reqselected {
+        background-color: #cffbfb !important
+    }
+</style>

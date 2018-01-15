@@ -1,72 +1,73 @@
 <div class="page-content">
-    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-  
-    <div class="clearfix"></div>
-    <div class="content">
-  
-  
-  
-      <div class="row">
-  
-        <!------------------------ Left Strat -------------------------->
-        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+  <div class="clearfix"></div>
+  <div class="content">
+
+
+
+    <div class="row">
+
+      <!------------------------ Left Strat -------------------------->
+      <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
         
-            <div class="grid simple profile-detail photo-details">
-                
-                 <div class="grid-body  p-detl-body no-border">
-     
-               
-                 </div>
-                 <!----------------profile Detials End---------------->
-     
-     
-               </div>
-  
-  
-  
-  
-  
-        </div>
-        <!------------------------------------------------ profile End ------------------------------------------------>
-        <!------------------------------------------------ you maylike Strat ------------------------------------------------>
-        <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-          <div class="col-md-8 no-padding ">
-            <div class="grid simple profile-detail photo-details">
-             
-              <div class="grid-body  p-detl-body no-border">
-  
-            
-              </div>
-              <!----------------profile Detials End---------------->
-  
-  
+          <ul class="breadcrumb">
+      <li>
+        <p>Photo Request</p>
+      </li>
+      <li><a href="#" class="active">{{$ctrl.viewType}}</a> </li>
+    </ul>
+      
+          <!-- <mail-count view-type="$ctrl.viewType"></mail-count> -->
+
+          <div class="grid simple mail-msg">
+            <div class="grid-title no-border">
+              <h4 class="bold">Photo Request</h4>
             </div>
-  
-  
-          </div>
-  
-          <!---------------------------------------------Center  End ------------------------------------------>
-  
-          <!---------------------------------------------Calender Veiw start ---------------------------------->
-          <div class="col-md-4 col-lg-4 col-sm-12  col-xs-12  ">
-  
-  
-  
-  
-            <div class="grid simple  searchdhole">
-              
-              <div class="grid-body  no-border">
-                
-              </div>
-            </div>
-  
-  
+            <div class="grid-body no-border pro-bord">  
+                <div class="panel-group" >
           
         
-  
-  
+                 <div class="list-group"> 
+                  <a ng-click="$ctrl.loadType('RECEIVED')" ng-class="$ctrl.viewType==='RECEIVED' ? 'active-list ' : ''" class="list-group-item disabled hand">RECEIVED<span class="badge">{{$ctrl.reqCounts.RECEIVED}}</span></a>
+                  <a  ng-click="$ctrl.loadType('SENT')"  ng-class="$ctrl.viewType==='SENT' ? 'active-list ' : ''" class="list-group-item hand">SENT <span class="badge">{{$ctrl.reqCounts.SENT}}</span></a>
+                 
+                          <a ng-click="$ctrl.loadType('ACCEPTED')" ng-class="$ctrl.viewType==='ACCEPTED' ? 'active-list ' : ''" class="list-group-item disabled hand">ACCEPTED<span class="badge">{{$ctrl.reqCounts.ACCEPTED}}</span></a>
+                          <a  ng-click="$ctrl.loadType('REJECTED')"  ng-class="$ctrl.viewType==='REJECTED' ? 'active-list ' : ''" class="list-group-item hand">REJECTED<span class="badge">{{$ctrl.reqCounts.REJECTED}}</span></a>
+                           
+                          <a  ng-click="$ctrl.loadType('PENDING')"  ng-class="$ctrl.viewType==='PENDING' ? 'active-list ' : ''" class="list-group-item hand">PENDING<span class="badge">{{$ctrl.reqCounts.PENDING}}</span></a>
+                          
+                        </div>
+                  
+      
+      
+      
+      </div>
+            </div> 
           </div>
+
+
+
+      </div>
+      <!------------------------------------------------ profile End ------------------------------------------------>
+      <!------------------------------------------------ you maylike Strat ------------------------------------------------>
+      <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+        
+           <h3 class="mail-head">{{$ctrl.viewType}}</h3>
+      <div class="row"  id="inbox-wrapper">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+         <requests-view view-type="$ctrl.viewType" request-type="$ctrl.requestType"></requests-view>
+      
+
         </div>
+
+        <!---------------------------------------------Center  End ------------------------------------------>
+
+        <!---------------------------------------------Calender Veiw start ---------------------------------->
+       
       </div>
     </div>
   </div>
+</div>

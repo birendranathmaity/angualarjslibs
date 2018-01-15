@@ -24,14 +24,49 @@ module.exports = function myHomeRoutes(Router) {
                 views: {
                     '@': {
                         templateUrl: "app/messages/photo_request/photo_request.html",
-                        controller: "photoRequestController as ctrl"
+                        controller: "photoRequestController as $ctrl"
                     }
                 },
                 params: {
-                    permisstion: "ALLUSER"
+                    permisstion: "ALLUSER",
+                    requestType:"PHOTO"
                 },
                 title: 'photo_request'
             }
-        }
+        },
+        {
+            name: "root.message_request",
+            config: {
+                url: '/message_request',
+                views: {
+                    '@': {
+                        templateUrl: "app/messages/photo_request/photo_request.html",
+                        controller: "photoRequestController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    requestType:"MESSAGE"
+                },
+                title: 'message_request'
+            }
+        },
+        {
+            name: "root.contact_request",
+            config: {
+                url: '/contact_request',
+                views: {
+                    '@': {
+                        templateUrl: "app/messages/photo_request/photo_request.html",
+                        controller: "photoRequestController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    requestType:"CONTACT"
+                },
+                title: 'contact_request'
+            }
+        },
     ]);
 };
