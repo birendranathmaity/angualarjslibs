@@ -1,66 +1,34 @@
   
-                    <div class="note-top">
+                    <div class="note-top ">
                        <div class="pull-left notifics">Notifications</div>
-                        <div class="pull-right markas-rd"> <a href="#"> Mark All As Read </a></div>
+                        <div class="pull-right markas-rd"> <a href="#"> View All </a></div>
                       </div> 
                       <div ng-scrollbars ng-scrollbars-config="hdnm.configScollBar" class="animated flip">
-                      <div class="notification-messages info">
+                      <div class="notification-messages info" ng-repeat="user in hdnm.notifications.docs">
                        
                       <span class="pull-right clickable" data-effect="slideUp"><i class="fa fa-times"></i></span>
                         <div class="user-profile">
-                            <img src="assets/img/profiles/d.jpg"  alt="" data-src="assets/img/profiles/dharma.jpg" data-src-retina="assets/img/profiles/dharma.jpg" width="35" height="35">
-                        </div>
+                         
+                            <img ng-if="user.user.pic.view==='EMPTY' || user.user.pic.view==='CONFIRM'" water-mark="user.user.pic.displaypic"   width="35" height="35">
+                        
+                            <img ng-if="user.user.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"   width="35" height="35">
+                            
+                          </div>
                         <div class="message-wrapper">
                           <div class="heading">
-                            Swetha - Commented on your wall
+                            {{user.user.first_name}} - Commented on your wall
                           </div>
                           <div class="description">
-                                        Meeting postponed to tomorrow
+                                       {{user.request_type}}
                           </div>
                           <div class="date pull-left">
-                                        A min ago
+                              {{ user.date}}
                           </div>
                         </div>
                         <div class="clearfix"></div>
                       </div>
-                      <div class="notification-messages info">
-                       
+                     
                       
-                        <div class="user-profile">
-                            <img src="assets/img/profiles/d.jpg"  alt="" data-src="assets/img/profiles/dharma.jpg" data-src-retina="assets/img/profiles/dharma.jpg" width="35" height="35">
-                        </div>
-                        <div class="message-wrapper">
-                          <div class="heading">
-                            Swetha - messaged you
-                          </div>
-                          <div class="description">
-                                        xxxxx x xx x xxxxxx
-                          </div>
-                          <div class="date pull-left">
-                                        A min ago
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <div class="notification-messages info">
-                       
-                      
-                        <div class="user-profile">
-                            <img src="assets/img/profiles/d.jpg"  alt="" data-src="assets/img/profiles/dharma.jpg" data-src-retina="assets/img/profiles/dharma.jpg" width="35" height="35">
-                        </div>
-                        <div class="message-wrapper">
-                          <div class="heading">
-                             Sravani - messaged you
-                          </div>
-                          <div class="description">
-                                        Meeting postponed to tomorrow
-                          </div>
-                          <div class="date pull-left">
-                                        A min ago
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
 
          
                      </div>

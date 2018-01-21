@@ -106,8 +106,7 @@ exports.checkSendTouser = function (req, res) {
                                 }
                                 check.api.isRequest(dataReq, function (isrequested, remind) {
 
-                                    console.log(isrequested)
-                                    console.log(remind)
+                                   
                                     if (isrequested && remind == "YES") {
                                         res.json({
                                             success: true,
@@ -183,6 +182,8 @@ exports.saveMessage = function (req, res) {
 
 
     function addMsg(data) {
+
+        data.send_on=new Date();
         var messageModel = new message(data);
         messageModel.save(function (err, msg) {
             res.json({
@@ -259,6 +260,7 @@ exports.updateMessage = function (req, res) {
     //         data: "ms gupdated"
     //     });
     // });
+    req.body.fields.recived_on=new Date();
     message.update(
         {
             _id: { $in: req.body.ids }

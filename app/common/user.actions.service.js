@@ -14,6 +14,9 @@ module.exports = function ($http,toastr, $sessionStorage, $localStorage, Service
         update_user_block: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_USER_BLOCK, data).success(success).error(error);
         },
+        get_notifications: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_NOTIFICATIONS, data).success(success).error(error);
+        },
        
     toaster_msg:function(msg){
         toastr.success(msg);

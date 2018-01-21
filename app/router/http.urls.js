@@ -42,7 +42,8 @@ return {
     "UPDATE_USER_BLOCK":"/update_user_block",
     "GET_REQUESTS_COUNT":"/get_requests_count",
     "GET_REQUESTS":"/get_requests",
-    "UPDATE_REQUESTS":"/update_requests"
+    "UPDATE_REQUESTS":"/update_requests",
+    "GET_NOTIFICATIONS":"/get_notifications"
     
       };
     

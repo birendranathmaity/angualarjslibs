@@ -21,6 +21,9 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.CITIES,regisLogin.getcities);
     app.get(serviceConfig.GET_USER_LOC,regisLogin.getUserLocation);
 
+//user notification///
+app.post(serviceConfig.GET_NOTIFICATIONS,useractions.getNotifications);
+
 
     //user actions//
 

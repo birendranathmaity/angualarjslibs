@@ -104,6 +104,7 @@
                                 <p class="pull-right">
                                     {{$ctrl.viewType==='SENT' ? 'Sent On : ' : ''}} {{$ctrl.viewType==='REJECTED' ? 'Rejected On : ' : ''}} {{$ctrl.viewType==='ACCEPTED'
                                     ? 'Accepted On : ' : ''}} {{$ctrl.viewType==='PENDING' ? 'Request On : ' : ''}}
+                                    {{$ctrl.viewType==='RECEIVED' ? 'Request On : ' : ''}}
                                     <span> {{req.created_on | date:'dd-MMM-yyyy'}} </span> |
                                     <span> {{req.created_on | date:'h:mm a'}}</span>
                                 </p>
@@ -144,6 +145,8 @@
                                         <button class="pic-reject" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED'"
                                             type="button" ng-click="$ctrl.action('REJECTED',[req._id])">Reject</button>
                                     </span>
+                                    <p class="pull-right" ng-if="$ctrl.viewType==='SENT' && req.request_action"> Status: <span>{{req.request_action}} </span>  </p>
+                                    
                                 </p>
                                 <div class="clearfix"></div>
                             </div>

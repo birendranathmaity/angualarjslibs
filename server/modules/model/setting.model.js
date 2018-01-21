@@ -3,9 +3,9 @@ var Schema       = mongoose.Schema;
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 var settingSchema   = new Schema({
     "user_id": String,
-    "messgae": String,
-    "contact":String,
-    "photo":String,
+    "messgae": Boolean,
+    "contact":Boolean,
+    "photo":Boolean,
     "create_on":Date
     
 });

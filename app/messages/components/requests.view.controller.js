@@ -130,36 +130,36 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
             if (target === "ACCEPTED") {
                 req.fields = {
-                    "request_status": "ACCEPTED",
-                    "created_on":new Date()
+                    "request_action": "ACCEPTED",
+                    "recived_on":new Date()
     
                 }
             }
             if (target === "PENDING") {
                 req.fields = {
-                    "request_status": "PENDING",
-                    "created_on":new Date()
+                    "request_action": "PENDING",
+                    "recived_on":new Date()
     
                 }
             }
             if (target === "REJECTED") {
                 req.fields = {
-                    "request_status": "REJECTED",
-                    "created_on":new Date()
+                    "request_action": "REJECTED",
+                    "recived_on":new Date()
     
                 }
             }
             if (target === "DELETEFOREVRYONE") {
                 req.fields = {
                     "creater_response": "DELETEFOREVRYONE",
-                    "created_on":new Date()
+                    "recived_on":new Date()
     
                 }
             }
             if (target === "DELETEFORME") {
                 req.fields = {
                     "creater_response": "DELETEFORME",
-                    "created_on":new Date()
+                    "recived_on":new Date()
     
                 }
             }
@@ -169,7 +169,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
                 req.fields = {
                     "reciver_response": "DELETE",
-                    "created_on":new Date()
+                    "recived_on":new Date()
     
                 }
             }

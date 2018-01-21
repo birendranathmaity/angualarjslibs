@@ -5364,12 +5364,14 @@ ul.progress-list li .progress {
     border-width: 11px
 }
 .msgPopover {
-    top: 40px !important;
+    top: 30px !important;
     left: -129px !important;
+    box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.4);
 }
 .notiPopover {
-    top: 40px !important;
+    top: 30px !important;
     left: -129px !important;
+    box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.4);
 }
 select option {
     color: black;

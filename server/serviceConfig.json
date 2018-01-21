@@ -37,6 +37,7 @@
     "SEND_REQUEST":"/send_request",
     "UPDATE_REQUESTS":"/update_requests",
     "CREATE_USER_BLOCK":"/create_user_block",
-    "UPDATE_USER_BLOCK":"/update_user_block"
+    "UPDATE_USER_BLOCK":"/update_user_block",
+    "GET_NOTIFICATIONS":"/get_notifications"
    
 }

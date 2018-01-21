@@ -6,6 +6,7 @@ var requestSchema   = new Schema({
     "request_user_id": String,
     "request_status":String,
     "request_type":String,
+    "request_action":String,
     "creater_response":String,
     "reciver_response":String,
     "created_on":Date,

@@ -1,4 +1,5 @@
 var request = require('./../model/request.model');
+//console.log(new Date())
 
 exports.getRequestsCount = function (req, res) {
 
@@ -57,7 +58,7 @@ exports.getRequestsCount = function (req, res) {
                                 "$and": [
                                     { "$eq": ["$request_user_id", user_id] },
                                     { "$eq": ["$request_type", request_type] },
-                                    { "$eq": ["$request_status", "ACCEPTED"] },
+                                    { "$eq": ["$request_action", "ACCEPTED"] },
                                     { "$ne": ["$reciver_response", "DELETE"] }
                                     // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
 
@@ -77,7 +78,8 @@ exports.getRequestsCount = function (req, res) {
                                 "$and": [
                                     { "$eq": ["$request_user_id", user_id] },
                                     { "$eq": ["$request_type", request_type] },
-                                    { "$eq": ["$request_status", "REJECTED"] },
+                                    { "$eq": ["$request_action", "REJECTED"] },
+                                  
                                     { "$ne": ["$reciver_response", "DELETE"] }
                                     // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
 
@@ -97,7 +99,8 @@ exports.getRequestsCount = function (req, res) {
                                 "$and": [
                                     { "$eq": ["$request_user_id", user_id] },
                                     { "$eq": ["$request_type", request_type] },
-                                    { "$eq": ["$request_status", "PENDING"] },
+                                    { "$eq": ["$request_action", "PENDING"] },
+                                  
                                     { "$ne": ["$reciver_response", "DELETE"] }
                                     // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
 
@@ -129,8 +132,8 @@ exports.updateRequests = function (req, res) {
         query = {
             request_status: "UNREAD",
             request_user_id: req.body.user_id,
-            request_type: req.body.request_type
-
+            request_type: req.body.request_type,
+            request_action:{$nin: ["ACCEPTED","REJECTED","PENDING"]}
         };
 
         fields = {
@@ -143,6 +146,8 @@ exports.updateRequests = function (req, res) {
         query = {
             _id: { $in: req.body.ids }
         };
+        req.body.fields.request_status="UNREAD";
+        req.body.fields.recived_on=new Date();
         fields = req.body.fields;
     }
     request.update(
@@ -172,6 +177,7 @@ exports.getRequestsByType = function (req, res) {
 
     };
     var field;
+    var dateType;
     if (searchType == "RECEIVED") {
         match = {
 
@@ -182,39 +188,43 @@ exports.getRequestsByType = function (req, res) {
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };
         field = "user_id";
+        dateType="created_on";
     }
     if (searchType == "ACCEPTED") {
         match = {
 
             "request_user_id": { "$eq": req.body.user_id },
-            "request_status":{ "$eq": "ACCEPTED" },
+            "request_action":{ "$eq": "ACCEPTED" },
             "request_type":{ "$eq": req.body.request_type }, 
             "reciver_response":{ "$ne": "DELETE" },
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };
         field = "user_id";
+        dateType="recived_on";
     }
     if (searchType == "REJECTED") {
         match = {
 
             "request_user_id": { "$eq": req.body.user_id },
-            "request_status":{ "$eq": "REJECTED" },
+            "request_action":{ "$eq": "REJECTED" },
             "request_type":{ "$eq": req.body.request_type }, 
             "reciver_response":{ "$ne": "DELETE" },
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };
         field = "user_id";
+        dateType="recived_on";
     }
     if (searchType == "PENDING") {
         match = {
 
             "request_user_id": { "$eq": req.body.user_id },
-            "request_status":{ "$eq": "PENDING" },
+            "request_action":{ "$eq": "PENDING" },
             "request_type":{ "$eq": req.body.request_type }, 
             "reciver_response":{ "$ne": "DELETE" },
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };
         field = "user_id";
+        dateType="created_on";
     }
     if (searchType == "SENT") {
         match = {
@@ -224,6 +234,7 @@ exports.getRequestsByType = function (req, res) {
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };
         field = "request_user_id";
+        dateType="created_on";
     }
     // if (searchType == "INBOX") {
 
@@ -236,9 +247,12 @@ exports.getRequestsByType = function (req, res) {
     //     };
     //     field = "user_id";
     // }
+    
+    var date={};
+    date[dateType]=-1;
     var aggregate = request.aggregate([
 
-        { $sort: { created_on: -1 } },
+        { $sort: date },
         {
             $match: match
         },
@@ -282,6 +296,7 @@ exports.getRequestsByType = function (req, res) {
                 "_id": 1,
                 "request_status": "$request_status",
                 "request_type": "$request_type",
+                "request_action": "$request_action",
                 "user": {
 
                     "user_id": "$" + field,
@@ -302,7 +317,7 @@ exports.getRequestsByType = function (req, res) {
                     "pic": "$pic"
                 },
 
-                "created_on": "$created_on"
+                "created_on": "$" + dateType,
 
 
 
