@@ -91,9 +91,9 @@
                 </div>
               </div>
               <div class="col-lg-10 hand" ng-click="$ctrl.viewMessage({type:$ctrl.viewType,msg:msg.message,user_id:msg.user.user_id},msg._id);$ctrl.viewType==='INBOX'? msg.message_status='READ':''">
-                <p class="pull-right"> Sent On :
-                  <span> {{msg.send_on | date:'dd-MMM-yyyy'}} </span> |
-                  <span> {{msg.send_on | date:'h:mm a'}}</span>
+                <p class="pull-right"> Sent On :  <date-parse date="msg.send_on"></date-parse>
+                  <!-- <span> {{msg.send_on | date:'dd-MMM-yyyy'}} </span> |
+                  <span> {{msg.send_on | date:'h:mm a'}}</span> -->
                 </p>
                 <p class="clearfix"></p>
                 <p class="mailer-name"> {{msg.user.first_name}}</p>

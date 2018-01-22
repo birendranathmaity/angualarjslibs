@@ -14,7 +14,7 @@
          
         </li>   
           <li class="">
-          <a href="#"   popover-placement="{{hdnm.notifn.position}}" popover-class="notiPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.notiUrl" >
+          <a class="hand" ng-click="hdnm.isOpenNotiBox()" popover-enable="hdnm.isOpenNoti" popover-is-open="hdnm.isOpenNoti"  popover-placement="{{hdnm.notifn.position}}" popover-class="notiPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.notiUrl" >
                  <span class=" fa fa-bell"></span> 
                  <span class="badge badge-notify">{{hdnm.notifications.total}}</span>
                 </a> 

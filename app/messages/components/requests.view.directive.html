@@ -105,8 +105,9 @@
                                     {{$ctrl.viewType==='SENT' ? 'Sent On : ' : ''}} {{$ctrl.viewType==='REJECTED' ? 'Rejected On : ' : ''}} {{$ctrl.viewType==='ACCEPTED'
                                     ? 'Accepted On : ' : ''}} {{$ctrl.viewType==='PENDING' ? 'Request On : ' : ''}}
                                     {{$ctrl.viewType==='RECEIVED' ? 'Request On : ' : ''}}
-                                    <span> {{req.created_on | date:'dd-MMM-yyyy'}} </span> |
-                                    <span> {{req.created_on | date:'h:mm a'}}</span>
+                                    <!-- <span> {{req.created_on | date:'dd-MMM-yyyy'}} </span> |
+                                    <span> {{req.created_on | date:'h:mm a'}}</span> -->
+                                    <date-parse date="req.created_on"></date-parse>
                                 </p>
                                 <p class="clearfix"></p>
                                 <p class="mailer-name"> {{req.user.first_name}}</p>

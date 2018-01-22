@@ -1,35 +1,76 @@
-  
-                    <div class="note-top ">
-                       <div class="pull-left notifics">Notifications</div>
-                        <div class="pull-right markas-rd"> <a href="#"> View All </a></div>
-                      </div> 
-                      <div ng-scrollbars ng-scrollbars-config="hdnm.configScollBar" class="animated flip">
-                      <div class="notification-messages info" ng-repeat="user in hdnm.notifications.docs">
-                       
-                      <span class="pull-right clickable" data-effect="slideUp"><i class="fa fa-times"></i></span>
-                        <div class="user-profile">
-                         
-                            <img ng-if="user.user.pic.view==='EMPTY' || user.user.pic.view==='CONFIRM'" water-mark="user.user.pic.displaypic"   width="35" height="35">
-                        
-                            <img ng-if="user.user.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"   width="35" height="35">
-                            
-                          </div>
-                        <div class="message-wrapper">
-                          <div class="heading">
-                            {{user.user.first_name}} - Commented on your wall
-                          </div>
-                          <div class="description">
-                                       {{user.request_type}}
-                          </div>
-                          <div class="date pull-left">
-                              {{ user.date}}
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                     
-                      
+<div class="note-top ">
+  <div class="pull-left notifics">Notifications</div>
 
-         
-                     </div>
-                     
+  <div class="pull-right markas-rd">
+    <a href="#"> View All </a>
+  </div>
+
+
+</div>
+<div ng-scrollbars ng-scrollbars-config="hdnm.configScollBar" class="animated flip">
+  <div class="notification-messages info" ng-repeat="user in hdnm.notifications.docs">
+
+   
+    <div class="user-profile">
+
+      <img ng-if="user.user.pic.view==='EMPTY' || user.user.pic.view==='CONFIRM'" water-mark="user.user.pic.displaypic" width="35"
+        height="35">
+
+      <img ng-if="user.user.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"
+        width="35" height="35">
+
+    </div>
+    <div class="message-wrapper">
+      <div class="heading">
+        {{user.user.first_name}} ({{user.user.user_id}})
+      </div>
+      <div class="description" ng-if="user.request_type==='PHOTO'">
+        <p ng-if="user.request_action==='ACCEPTED'">Accepted your photo request</p>
+        <p ng-if="user.request_action==='REJECTED'">Rejected your photo request</p>
+        <p ng-if="!user.request_action">Has sent you photo request</p>
+
+      </div>
+      <div class="description" ng-if="user.request_type==='CONTACT'">
+        <p ng-if="user.request_action==='ACCEPTED'">Accepted your contact request</p>
+        <p ng-if="user.request_action==='REJECTED'">Rejected your contact request</p>
+        <p ng-if="!user.request_action">Has sent you contact request</p>
+
+
+      </div>
+      <div class="description" ng-if="user.request_type==='MESSAGE'">
+        <p ng-if="user.request_action==='ACCEPTED'">Accepted your message request</p>
+        <p ng-if="user.request_action==='REJECTED'">Rejected your message request</p>
+        <p ng-if="!user.request_action">Has sent you message request</p>
+
+
+      </div>
+      <div class="description" ng-if="user.request_type==='LIKE'">
+        Has liked your profile
+
+      </div>
+      <div class="description" ng-if="user.request_type==='VIEWED_PROFILE'">
+        Has viewed your profile
+
+      </div>
+      <div class="description" ng-if="user.request_type==='ADMIN_APPROVAL'">
+        <p ng-if="user.request_action==='ACCEPTED'"> Admin approved your photo</p>
+        <p ng-if="user.request_action==='REJECTED'">Admin Rejected your photo </p>
+
+      </div>
+      <div class="date pull-left">
+
+        <date-parse date="user.date"></date-parse>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+
+
+
+</div>
+<style>
+  .notification-messages {
+    width: 265px;
+  }
+</style>
