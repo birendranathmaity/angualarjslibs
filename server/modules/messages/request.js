@@ -1,5 +1,5 @@
 var request = require('./../model/request.model');
-//console.log(new Date())
+var check = require('./../check_user');
 
 exports.getRequestsCount = function (req, res) {
 
@@ -261,32 +261,26 @@ exports.getRequestsByType = function (req, res) {
         { $lookup: { from: "dbusers", localField: field, foreignField: "user_id", as: "user" } },
 
         { "$unwind": { "path": "$user", "preserveNullAndEmptyArrays": true } },
-        { $lookup: { from: "userbasicinfos", localField: "user.user_id", foreignField: "user_id", as: "basicinfos" } },
+  //basic info//
+  { $lookup: { from: "userbasicinfos", localField: "user.user_id", foreignField: "user_id", as: "basicinfos" } },
+  { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+  { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
+  { $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
+  { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
 
+  { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
+  { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+  { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
 
-        { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+  //user setting//
+  { $lookup: { from: "settings", localField: "user.user_id", foreignField: "user_id", as: "setting" } },
+  { "$unwind": { "path": "$setting", "preserveNullAndEmptyArrays": true } },
 
-
-        { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
-
-        { $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
-
-        { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
-
-        { $lookup: { from: "userphotos", localField: "user.user_id", foreignField: "user_id", as: "pic" } },
-        { $lookup: { from: "userintrests", localField: "user.user_id", foreignField: "user_id", as: "height" } },
-
-
-        { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
-        // { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
-        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
-        { $match: { $or: [{ 'pic.photo_type': { $eq: "PROFILE", $exists: true } }, { 'pic': { $exists: false } }] } },
+  //user photos//
+  { $lookup: { from: "userphotos", localField: "user.user_id", foreignField: "user_id", as: "pic" } },
+  //user height
+  { $lookup: { from: "userintrests", localField: "user.user_id", foreignField: "user_id", as: "height" } },
+  { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
 
 
 
@@ -297,27 +291,43 @@ exports.getRequestsByType = function (req, res) {
                 "request_status": "$request_status",
                 "request_type": "$request_type",
                 "request_action": "$request_action",
-                "user": {
-
+                 "user": {
                     "user_id": "$" + field,
-
                     "first_name": "$user.first_name",
-
                     "last_name": "$user.last_name",
-
                     "age": "$user.age",
-
                     "height": "$height.height",
-
                     "country": "$country.name",
-
                     "state": "$state.name",
-
                     "city": "$city.name",
-                    "pic": "$pic"
-                },
+                    "pic": "$pic",
+                    "setting": "$setting"
 
-                "created_on": "$" + dateType,
+                },
+                // "request_status": "$request_status",
+                // "request_type": "$request_type",
+                // "request_action": "$request_action",
+                // "user": {
+
+                //     "user_id": "$" + field,
+
+                //     "first_name": "$user.first_name",
+
+                //     "last_name": "$user.last_name",
+
+                //     "age": "$user.age",
+
+                //     "height": "$height.height",
+
+                //     "country": "$country.name",
+
+                //     "state": "$state.name",
+
+                //     "city": "$city.name",
+                //     "pic": "$pic"
+                // },
+
+                "date": "$" + dateType,
 
 
 
@@ -339,13 +349,22 @@ exports.getRequestsByType = function (req, res) {
             console.err(err)
         }
         else {
-            var docs = {
-                docs: results,
-                pages: pageCount,
-                total: count
 
-            };
-            res.json(docs);
+            
+            check.api.getFinalUsersData(results,req.body.user_id,function(users){
+                
+                                var docs = {
+                                    docs: users,
+                                    pages: pageCount,
+                                    total: count
+                    
+                                };
+                               
+                                res.json(docs);
+                
+                
+                            });
+           
         }
     });
 

@@ -169,14 +169,18 @@ exports.getNotifications = function (req, res) {
                                 { "$eq": ["$user_id", req.body.user_id] },
 
                                 { "$eq": ["$request_status", req.body.status] },
+                                {
 
-                                { "$ne": ["$request_action", "PENDING"] }
-
-
-
-
+                                    "$or":[
+                                        { "$eq": ["$request_action", "ACCEPTED"] },
+                                        { "$eq": ["$request_action", "REJECTED"] }
+                                    ]
+                                }
+                               
 
                             ]
+                           
+
 
 
 
@@ -191,6 +195,7 @@ exports.getNotifications = function (req, res) {
                         "then": {
 
                             id: "$request_user_id",
+                            whosent:"SENT",
 
                             date: "$recived_on"
 
@@ -213,9 +218,8 @@ exports.getNotifications = function (req, res) {
                                     "$and": [
 
                                         { "$eq": ["$request_user_id", req.body.user_id] },
-
-                                        { "$eq": ["$request_status", req.body.status] }
-
+                                        { "$eq": ["$request_status", req.body.status] },
+                                        { "$ne": ["$request_action", "PENDING"] }
 
                                     ]
 
@@ -232,7 +236,7 @@ exports.getNotifications = function (req, res) {
                                 "then": {
 
                                     id: "$user_id",
-
+                                    whosent:"FROM",
                                     date: "$created_on"
 
 
@@ -313,6 +317,7 @@ exports.getNotifications = function (req, res) {
                 "request_type": "$request_type",
                 "request_action": "$request_action",
                 "date": "$customfield.date",
+                "whosent":"$customfield.whosent",
                 "user": {
                     "user_id": "$customfield.id",
                     "first_name": "$user.first_name",
@@ -342,37 +347,19 @@ exports.getNotifications = function (req, res) {
         }
         else {
             
-
-            var total = results.length;
-            var count = 0;
-            
-            for(var i = 0; i < total; i++){
-                (function(index){
-                   
-                    check.api.checkPhotoVisibiltyUser(results[index].user,req.body.user_id,function(user){
-                        
-                          results[index].user=user;
-                          count++;
-                          if (count > total - 1) done();
-                     });
-
-                }(i));
-            }
-            
-            // You can guarantee that this function will not be called until ALL of the
-            // asynchronous functions have completed.
-            function done() {
+            check.api.getFinalUsersData(results,req.body.user_id,function(users){
 
                 var docs = {
-                    docs: results,
+                    docs: users,
                     pages: pageCount,
                     total: count
     
                 };
                 res.json(docs);
-                
-            }
-        
+
+
+            });
+           
 
 
             

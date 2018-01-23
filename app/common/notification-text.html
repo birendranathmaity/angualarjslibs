@@ -1,0 +1,36 @@
+<span class="description" ng-if="$ctrl.notification.request_type==='PHOTO'">
+    <span  ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='ACCEPTED' && $ctrl.whoSent==='SENT'">Accepted your photo request</span>
+    <span ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='REJECTED' && $ctrl.whoSent==='SENT'">Rejected your photo request</span>
+    <span ng-if="$ctrl.whoSent==='FROM'">Has sent you photo request</span>
+    <span ng-if="$ctrl.section==='REQUEST' && $ctrl.whoSent==='SENT'">You have sent photo request</span>
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='CONTACT'">
+    <span ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='ACCEPTED' && $ctrl.whoSent==='SENT'">Accepted your contact request</span>
+    <span ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='REJECTED' && $ctrl.whoSent==='SENT'">Rejected your contact request</span>
+    <span ng-if="$ctrl.whoSent==='FROM'">Has sent you contact request</span>
+    <span ng-if="$ctrl.section==='REQUEST' && $ctrl.whoSent==='SENT'">You have sent contact request</span>
+
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='MESSAGE'">
+    <span ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='ACCEPTED' && $ctrl.whoSent==='SENT'">Accepted your message request</span>
+    <span ng-if="$ctrl.section==='NOTI' && $ctrl.notification.request_action==='REJECTED' && $ctrl.whoSent==='SENT'">Rejected your message request</span>
+    <span ng-if="$ctrl.whoSent==='FROM'">Has sent you message request</span>
+    <span ng-if="$ctrl.section==='REQUEST' && $ctrl.whoSent==='SENT'">You have sent message request</span>
+
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='LIKE'">
+    Has liked your profile
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='VIEWED_PROFILE'">
+    Has viewed your profile
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='ADMIN_APPROVAL'">
+    <span ng-if="$ctrl.notification.request_action==='ACCEPTED'"> Admin approved your photo</span>
+    <span ng-if="$ctrl.notification.request_action==='REJECTED'">Admin Rejected your photo </span>
+
+  </span>

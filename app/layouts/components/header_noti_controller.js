@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function headerNotiController($scope, $location,$uibModal, $rootScope, useractions, loginservice, toastr) {
+module.exports = function headerNotiController($scope, $state, $location,$uibModal, $rootScope, useractions, loginservice, toastr) {
 
     var controller = this;
 
@@ -108,10 +108,24 @@ module.exports = function headerNotiController($scope, $location,$uibModal, $roo
     controller.isOpenNoti=false;
 
     controller.isOpenNotiBox=function(){
-        //controller.isOpenNoti=true;
-        $location.path("/notifications");
+
+        if(controller.notifications.total===0){
+            $location.path("/notifications");
+            controller.isOpenNoti=false;
+        }
+        else{
+            controller.isOpenNoti=true;
+        }
+      
+     //   
     }
+controller.viewall=function(){
+    $location.path("/notifications"); 
+    controller.isOpenNoti=false;
+}
+controller.openReq=function(noti){
+    useractions.openReq(noti);
 
-
+}
 
 }

@@ -1,0 +1,24 @@
+<!-- <button class="pic-accept" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED'"
+type="button" ng-click="$ctrl.action('ACCEPTED')">Accept</button>
+<button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING')">Not Now</button>
+<button class="pic-reject" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED'"
+type="button" ng-click="$ctrl.action('REJECTED')">Reject</button> -->
+
+<div ng-if="($ctrl.noti.request_type==='PHOTO' || $ctrl.noti.request_type==='CONTACT' || $ctrl.noti.request_type==='MESSAGE') && !$ctrl.noti.request_action" >
+    <button class="pic-accept" type="button" ng-if="$ctrl.whoSent==='FROM'" ng-click="$ctrl.action('ACCEPTED')">Accept</button>
+    <button class="pic-notnow" type="button" ng-if="$ctrl.whoSent==='FROM'" ng-click="$ctrl.action('PENDING')">Not Now</button>
+    <button class="pic-reject" type="button" ng-if="$ctrl.whoSent==='FROM'" ng-click="$ctrl.action('REJECTED')">Reject</button>
+</div>
+<div ng-if="($ctrl.noti.request_type==='PHOTO' || $ctrl.noti.request_type==='CONTACT' || $ctrl.noti.request_type==='MESSAGE') && $ctrl.noti.request_action==='ACCEPTED'" >
+
+    <button class="pic-reject" type="button" ng-if="$ctrl.whoSent==='FROM'" ng-click="$ctrl.action('REJECTED')">Reject</button>
+</div>
+<div ng-if="($ctrl.noti.request_type==='PHOTO' || $ctrl.noti.request_type==='CONTACT' || $ctrl.noti.request_type==='MESSAGE') && $ctrl.noti.request_action==='REJECTED'" >
+    
+    <button class="pic-accept" type="button" ng-if="$ctrl.whoSent==='FROM'" ng-click="$ctrl.action('ACCEPTED')">Accept</button>
+</div>
+<div ng-if="($ctrl.noti.request_type==='PHOTO' || $ctrl.noti.request_type==='CONTACT' || $ctrl.noti.request_type==='MESSAGE') && $ctrl.noti.request_action==='PENDING'" >
+    
+    <button class="pic-accept" ng-if="$ctrl.whoSent==='FROM'" type="button" ng-click="$ctrl.action('ACCEPTED')">Accept</button>
+    <button class="pic-reject" ng-if="$ctrl.whoSent==='FROM'" type="button" ng-click="$ctrl.action('REJECTED')">Reject</button>
+</div>

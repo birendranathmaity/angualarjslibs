@@ -3,7 +3,7 @@ module.exports = function photoRequestController($state,$location, $scope, $time
     var controller = this;
 
 
-    controller.viewType = "RECEIVED";
+    controller.viewType = $state.params.viewType;
     controller.requestType = $state.params.requestType;
 
     function loadCounts() {

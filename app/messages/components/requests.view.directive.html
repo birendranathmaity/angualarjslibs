@@ -68,8 +68,7 @@
                                 <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"
                                     class="pagination-sm" boundary-link-numbers="true" ng-change="$ctrl.pageChanged()" rotate="true">
                                 </ul>
-                                <!--previous-text="&#10094;"
-                next-text="&#10095;"-->
+                               
                             </li>
                         </ul>
 
@@ -91,23 +90,15 @@
                                     </label>
                                 </div>
 
-                                <div ng-if="req.user.pic" class="user-profile-pic pull-left cursorpointer">
-                                    <img ng-if="req.user.pic.photo_type==='PROFILE'" water-mark="req.user.pic" alt="" width="91" height="88" />
-                                    <p ng-if="req.user.pic.photo_type==='PROFILE'"> ( {{req.user.user_id}} )</p>
-                                </div>
-                                <div ng-if="!req.user.pic" class="user-profile-pic pull-left">
-                                    <img src="dist/assets/img/emptyphoto.png" alt="" width="91" height="88" />
-                                    <p> ( {{req.user.user_id}} )</p>
-                                </div>
+                                <user-img user="req.user" is-noti="false"></user-img>
                             </div>
                             <div class="col-lg-10 hand">
                                 <p class="pull-right">
                                     {{$ctrl.viewType==='SENT' ? 'Sent On : ' : ''}} {{$ctrl.viewType==='REJECTED' ? 'Rejected On : ' : ''}} {{$ctrl.viewType==='ACCEPTED'
                                     ? 'Accepted On : ' : ''}} {{$ctrl.viewType==='PENDING' ? 'Request On : ' : ''}}
                                     {{$ctrl.viewType==='RECEIVED' ? 'Request On : ' : ''}}
-                                    <!-- <span> {{req.created_on | date:'dd-MMM-yyyy'}} </span> |
-                                    <span> {{req.created_on | date:'h:mm a'}}</span> -->
-                                    <date-parse date="req.created_on"></date-parse>
+                                   
+                                    <date-parse date="req.date"></date-parse>
                                 </p>
                                 <p class="clearfix"></p>
                                 <p class="mailer-name"> {{req.user.first_name}}</p>
@@ -115,30 +106,8 @@
                                     <span>
                                         {{req.user.age}} Years. {{req.user.height}} ft, {{req.user.first_name}}, {{req.user.last_name}}.
                                     </span>
-                                    <span ng-if="$ctrl.requestType==='PHOTO'">
-                                        <strong ng-if="$ctrl.viewType==='SENT'">
-                                            You have sent Photo Request
-                                        </strong>
-                                        <strong ng-if="$ctrl.viewType!=='SENT'">
-                                            Has Sent You Photo Request
-                                        </strong>
-                                    </span>
-                                    <span ng-if="$ctrl.requestType==='MESSAGE'">
-                                        <strong ng-if="$ctrl.viewType==='SENT'">
-                                            You have sent Message Request
-                                        </strong>
-                                        <strong ng-if="$ctrl.viewType!=='SENT'">
-                                            Has Sent You Message Request
-                                        </strong>
-                                    </span>
-                                    <span ng-if="$ctrl.requestType==='CONTACT'">
-                                        <strong ng-if="$ctrl.viewType==='SENT'">
-                                            You have sent Contact Request
-                                        </strong>
-                                        <strong ng-if="$ctrl.viewType!=='SENT'">
-                                            Has Sent You Contact Request
-                                        </strong>
-                                    </span>
+                                    <notification-text section="'REQUEST'" notification="req" who-sent="$ctrl.whosent"></notification-text>
+                                   
                                     <span class="pull-right">
                                         <button class="pic-accept" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED'"
                                             type="button" ng-click="$ctrl.action('ACCEPTED',[req._id])">Accept</button>

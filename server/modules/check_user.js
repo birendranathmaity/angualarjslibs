@@ -3,6 +3,32 @@ var block = require('./model/block.model');
 var setting = require('./model/setting.model');
 var request = require('./model/request.model');
 exports.api={
+getFinalUsersData:function(results,user_id,success){
+    if(results.length==0){
+        success(results);
+    }
+
+    var total = results.length;
+    var count = 0;
+    var main=this;
+    for(var i = 0; i < total; i++){
+        (function(index){
+           
+           main.checkPhotoVisibiltyUser(results[index].user,user_id,function(user){
+                
+                  results[index].user=user;
+                  count++;
+                  if (count > total - 1) success(results);
+             });
+
+        }(i));
+    }
+    
+    
+
+
+},
+
 checkPhotoVisibiltyUser:function(user,user_id,success){
     
    var pic=this.isPhotoUploaded(user.pic);

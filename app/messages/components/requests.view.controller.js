@@ -2,6 +2,7 @@
 module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, messagesservice, loginservice, toastr) {
     
         var controller = this;
+        controller.whosent="FROM";
         controller.limit = 10;
         controller.total = 0;
         controller.page = 1;
@@ -26,6 +27,11 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             controller.requestType=$scope.requestType;
             req.searchType = n;
             req.page = 1;
+            if(n==="SENT"){
+                controller.whosent="SENT";
+            }else{
+                controller.whosent="FROM";
+            }
             controller.loadViewType();
         });
         controller.loadViewType = function () {

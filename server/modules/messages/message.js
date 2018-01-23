@@ -171,15 +171,7 @@ exports.checkSendTouser = function (req, res) {
 exports.saveMessage = function (req, res) {
 
 
-    var query1 = {
-        user_id: req.body.user_id,
-        block_user_id: req.body.send_to
-    }
-    var query2 = {
-        user_id: req.body.send_to,
-        block_user_id: req.body.user_id
-    }
-
+   
 
     function addMsg(data) {
 
@@ -195,59 +187,8 @@ exports.saveMessage = function (req, res) {
         });
 
     }
-    function isBlock(query) {
-        block.find(query, function (err, user) {
-            if (err) {
-                res.json({
-                    type: false,
-                    data: "Error occured: " + err
-                });
-            } else {
-                if (user.length > 0) {
-
-                    req.body.message_type = "BLOCK";
-
-                    addMsg(req.body);
-
-
-                }
-                else {
-
-                    addMsg(req.body);
-
-
-                }
-            }
-        });
-    }
-    block.find(query1, function (err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-            if (user.length > 0) {
-
-
-                return res.json({
-                    success: false,
-                    msg: "Please unblock this user"
-                });
-
-            }
-            else {
-
-
-                isBlock(query2);
-
-
-
-            }
-        }
-    });
-
-
+    
+    addMsg(req.body);
 
 }
 exports.updateMessage = function (req, res) {
@@ -322,34 +263,26 @@ exports.getMessagesByType = function (req, res) {
         { $lookup: { from: "dbusers", localField: field, foreignField: "user_id", as: "user" } },
 
         { "$unwind": { "path": "$user", "preserveNullAndEmptyArrays": true } },
-        { $lookup: { from: "userbasicinfos", localField: "user.user_id", foreignField: "user_id", as: "basicinfos" } },
+//basic info//
+{ $lookup: { from: "userbasicinfos", localField: "user.user_id", foreignField: "user_id", as: "basicinfos" } },
+{ "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+{ $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
+{ $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
+{ $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
 
+{ "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
+{ "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
+{ "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
 
-        { "$unwind": { "path": "$basicinfos", "preserveNullAndEmptyArrays": true } },
+//user setting//
+{ $lookup: { from: "settings", localField: "user.user_id", foreignField: "user_id", as: "setting" } },
+{ "$unwind": { "path": "$setting", "preserveNullAndEmptyArrays": true } },
 
-
-        { $lookup: { from: "countries", localField: "basicinfos.country", foreignField: "id", as: "country" } },
-
-        { $lookup: { from: "states", localField: "basicinfos.state", foreignField: "id", as: "state" } },
-
-        { $lookup: { from: "cities", localField: "basicinfos.city", foreignField: "id", as: "city" } },
-
-        { $lookup: { from: "userphotos", localField: "user.user_id", foreignField: "user_id", as: "pic" } },
-        { $lookup: { from: "userintrests", localField: "user.user_id", foreignField: "user_id", as: "height" } },
-
-
-        { "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
-        // { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$country", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$state", "preserveNullAndEmptyArrays": true } },
-
-        { "$unwind": { "path": "$city", "preserveNullAndEmptyArrays": true } },
-        { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
-        { $match: { $or: [{ 'pic.photo_type': { $eq: "PROFILE", $exists: true } }, { 'pic': { $exists: false } }] } },
-
-
+//user photos//
+{ $lookup: { from: "userphotos", localField: "user.user_id", foreignField: "user_id", as: "pic" } },
+//user height
+{ $lookup: { from: "userintrests", localField: "user.user_id", foreignField: "user_id", as: "height" } },
+{ "$unwind": { "path": "$height", "preserveNullAndEmptyArrays": true } },
 
         {
             $project: {
@@ -374,10 +307,11 @@ exports.getMessagesByType = function (req, res) {
                     "state": "$state.name",
 
                     "city": "$city.name",
-                    "pic": "$pic"
+                    "pic": "$pic",
+                    "setting": "$setting"
                 },
 
-                "send_on": "$send_on"
+                "date": "$send_on"
 
 
 
@@ -399,13 +333,19 @@ exports.getMessagesByType = function (req, res) {
             console.err(err)
         }
         else {
-            var docs = {
-                docs: results,
-                pages: pageCount,
-                total: count
-
-            };
-            res.json(docs);
+            check.api.getFinalUsersData(results,req.body.user_id,function(users){
+                
+                                var docs = {
+                                    docs: users,
+                                    pages: pageCount,
+                                    total: count
+                    
+                                };
+                               
+                                res.json(docs);
+                
+                
+                            });
         }
     });
 

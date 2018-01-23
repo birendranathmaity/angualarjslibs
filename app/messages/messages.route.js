@@ -29,7 +29,8 @@ module.exports = function myHomeRoutes(Router) {
                 },
                 params: {
                     permisstion: "ALLUSER",
-                    requestType:"PHOTO"
+                    requestType:"PHOTO",
+                    viewType:"RECEIVED"
                 },
                 title: 'photo_request'
             }
@@ -46,7 +47,8 @@ module.exports = function myHomeRoutes(Router) {
                 },
                 params: {
                     permisstion: "ALLUSER",
-                    requestType:"MESSAGE"
+                    requestType:"MESSAGE",
+                    viewType:"RECEIVED"
                 },
                 title: 'message_request'
             }
@@ -63,7 +65,8 @@ module.exports = function myHomeRoutes(Router) {
                 },
                 params: {
                     permisstion: "ALLUSER",
-                    requestType:"CONTACT"
+                    requestType:"CONTACT",
+                    viewType:"RECEIVED"
                 },
                 title: 'contact_request'
             }

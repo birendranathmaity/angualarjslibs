@@ -90,9 +90,9 @@ module.exports = function composeMailController(useractions, config, $scope, log
 
   //   });
   controller.send = function () {
-
+console.log(controller.UserType)
     if (controller.UserType === "USER_BY_BLOCK") {
-      var reqBlcok = {
+      var reqBlock = {
         user_id: controller.user.user_id,
         block_user_id: controller.messageModel.send_to,
         fields: {
@@ -102,7 +102,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
       }
 
 
-      useractions.update_user_block(req, function (result) {
+      useractions.update_user_block(reqBlock, function (result) {
         if (result.success) {
           messagesservice.toaster_msg('Successfully unbloked');
           controller.onBlur();
