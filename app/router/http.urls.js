@@ -43,8 +43,8 @@ return {
     "GET_REQUESTS_COUNT":"/get_requests_count",
     "GET_REQUESTS":"/get_requests",
     "UPDATE_REQUESTS":"/update_requests",
-    "GET_NOTIFICATIONS":"/get_notifications"
-    
+    "GET_NOTIFICATIONS":"/get_notifications",
+    "UPDATE_NOTIFICATIONS":"/update_notifications"
       };
     
 

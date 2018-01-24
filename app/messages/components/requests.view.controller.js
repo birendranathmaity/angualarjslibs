@@ -137,6 +137,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (target === "ACCEPTED") {
                 req.fields = {
                     "request_action": "ACCEPTED",
+                    "request_status":"UNREAD",
                     "recived_on":new Date()
     
                 }
@@ -144,6 +145,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (target === "PENDING") {
                 req.fields = {
                     "request_action": "PENDING",
+                    "request_status":"READ",
                     "recived_on":new Date()
     
                 }
@@ -151,6 +153,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (target === "REJECTED") {
                 req.fields = {
                     "request_action": "REJECTED",
+                    "request_status":"UNREAD",
                     "recived_on":new Date()
     
                 }
@@ -158,6 +161,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (target === "DELETEFOREVRYONE") {
                 req.fields = {
                     "creater_response": "DELETEFOREVRYONE",
+                    "request_status":"READ",
                     "recived_on":new Date()
     
                 }
@@ -165,6 +169,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (target === "DELETEFORME") {
                 req.fields = {
                     "creater_response": "DELETEFORME",
+                    "request_status":"READ",
                     "recived_on":new Date()
     
                 }
@@ -175,6 +180,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
                 req.fields = {
                     "reciver_response": "DELETE",
+                    "request_status":"READ",
                     "recived_on":new Date()
     
                 }

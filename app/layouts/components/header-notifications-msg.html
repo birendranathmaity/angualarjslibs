@@ -7,16 +7,16 @@
             
 
             <li class="">
-          <a href="#" popover-placement="{{'auto ' + hdnm.notifn.position}}" popover-class="msgPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.msgUrl" >
+          <a class="hand" ng-click="hdnm.isOpenMsgBox()" popover-placement="{{'auto ' + hdnm.notifn.position}}" popover-enable="hdnm.isOpenMsg" popover-is-open="hdnm.isOpenMsg" popover-class="msgPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.msgUrl" >
             <span class="glyphicon glyphicon-envelope"></span>
-            <span class="badge badge-notify">3</span>
+            <span class="badge badge-notify" ng-if="hdnm.messages.total>0">{{hdnm.messages.total}}</span>
             </a>
-         
+            
         </li>   
           <li class="">
           <a class="hand" ng-click="hdnm.isOpenNotiBox()" popover-enable="hdnm.isOpenNoti" popover-is-open="hdnm.isOpenNoti"  popover-placement="{{hdnm.notifn.position}}" popover-class="notiPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.notiUrl" >
                  <span class=" fa fa-bell"></span> 
-                 <span class="badge badge-notify">{{hdnm.notifications.total}}</span>
+                 <span class="badge badge-notify" ng-if="hdnm.notifications.total>0">{{hdnm.notifications.total}}</span>
                 </a> 
                 
         </li> 

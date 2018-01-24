@@ -14,6 +14,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
         user_id: $rootScope.login_user_id,
         page: controller.page,
         limit: controller.limit,
+        dataType:"ALL",
         searchType: ""
     };
 
@@ -221,6 +222,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
             if (result.success) {
                 messagesservice.toaster_msg("Successfully Marked");
                 controller.loadViewType();
+                
             }
 
 
@@ -235,29 +237,8 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
             messagesservice.composemail(config);
             return;
         }
-
-        var req = {
-            ids: [msgId],
-            fields: {
-                message_status: "READ"
-            }
-
-
-        };
-        messagesservice.update_message_status(req, function (result) {
-            if (result.success) {
-                messagesservice.composemail(config);
-                // messagesservice.toaster_msg("Successfully Marked");
-                // controller.loadViewType();
-            }
-
-
-        }, function () {
-
-        });
-
-
-    }
+        messagesservice.readMsg(config, msgId);
+   }
     var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
 
         controller.loadViewType();

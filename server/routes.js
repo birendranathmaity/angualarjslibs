@@ -23,8 +23,7 @@ module.exports = function(app,express,process){
 
 //user notification///
 app.post(serviceConfig.GET_NOTIFICATIONS,useractions.getNotifications);
-
-
+app.post(serviceConfig.UPDATE_NOTIFICATIONS,useractions.readNotifications);
     //user actions//
 
     app.post(serviceConfig.SEND_REQUEST,useractions.sendRequest);

@@ -8,7 +8,27 @@ var service={
    get_messages: function (data, success, error) {
         $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_MESSAGES, data).success(success).error(error);
     },
+readMsg:function(config,msgId){
 
+    var req = {
+        ids: [msgId],
+        fields: {
+            message_status: "READ"
+        }
+
+
+    };
+    var main=this;
+    main.update_message_status(req, function (result) {
+        if (result.success) {
+            main.composemail(config);
+            $rootScope.$broadcast('userMessageReadBroadcast', {});
+            
+        }
+
+
+    }, function () {});
+},
     update_message_status: function (data, success, error) {
         $http.post(ServiceUrls.BASEURL + ServiceUrls.CHANGE_MESSAGE_STATUS, data).success(success).error(error);
     },

@@ -13,7 +13,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
         user_id: $rootScope.login_user_id,
         page: controller.page,
         limit: controller.limit,
-        status: "UNREAD"
+        status: "READ"
        
     };
     controller.loadViewType = function () {

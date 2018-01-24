@@ -1,4 +1,3 @@
-var message = require('./model/message.model');
 var block = require('./model/block.model');
 var setting = require('./model/setting.model');
 var request = require('./model/request.model');
@@ -141,6 +140,33 @@ exports.updateUserBlock = function (req, res) {
 }
 
 exports.getNotifications = function (req, res) {
+    var and = [];
+    if (req.body.status == "READ") {
+        and = [
+            { "$eq": ["$request_user_id", req.body.user_id] },
+            { "$ne": ["$request_status", "BLOCK"] },
+            { "$ne": ["$request_action", "PENDING"] },
+            // { "$ne": ["$request_action", "ACCEPTED"] },
+            // { "$ne": ["$request_action", "REJECTED"] },
+            { "$ne": ["$reciver_response", "DELETE"] },
+            { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+        ];
+
+    }
+    if(req.body.status == "UNREAD"){
+
+        and = [
+            { "$eq": ["$request_user_id", req.body.user_id] },
+            { "$eq": ["$request_status", req.body.status] },
+            { "$ne": ["$request_action", "PENDING"] },
+            { "$ne": ["$request_action", "ACCEPTED"] },
+            { "$ne": ["$request_action", "REJECTED"] },
+            { "$ne": ["$reciver_response", "DELETE"] },
+            { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+        ];
+    }
 
 
     var aggregate = request.aggregate([
@@ -169,17 +195,20 @@ exports.getNotifications = function (req, res) {
                                 { "$eq": ["$user_id", req.body.user_id] },
 
                                 { "$eq": ["$request_status", req.body.status] },
+                                { "$ne": ["$request_action", "PENDING"] },
+                                { "$ne": ["$creater_response", "DELETEFORME"] },
+                                { "$ne": ["$creater_response", "DELETEFOREVRYONE"] },
                                 {
 
-                                    "$or":[
+                                    "$or": [
                                         { "$eq": ["$request_action", "ACCEPTED"] },
                                         { "$eq": ["$request_action", "REJECTED"] }
                                     ]
                                 }
-                               
+
 
                             ]
-                           
+
 
 
 
@@ -195,7 +224,7 @@ exports.getNotifications = function (req, res) {
                         "then": {
 
                             id: "$request_user_id",
-                            whosent:"SENT",
+                            whosent: "SENT",
 
                             date: "$recived_on"
 
@@ -215,14 +244,7 @@ exports.getNotifications = function (req, res) {
 
 
 
-                                    "$and": [
-
-                                        { "$eq": ["$request_user_id", req.body.user_id] },
-                                        { "$eq": ["$request_status", req.body.status] },
-                                        { "$ne": ["$request_action", "PENDING"] }
-
-                                    ]
-
+                                    "$and": and
 
 
 
@@ -236,8 +258,9 @@ exports.getNotifications = function (req, res) {
                                 "then": {
 
                                     id: "$user_id",
-                                    whosent:"FROM",
-                                    date: "$created_on"
+                                    whosent: "FROM",
+                                    date: "$created_on" 
+                                    // date: "$recived_on" ? "$recived_on" : "$created_on" 
 
 
 
@@ -317,7 +340,7 @@ exports.getNotifications = function (req, res) {
                 "request_type": "$request_type",
                 "request_action": "$request_action",
                 "date": "$customfield.date",
-                "whosent":"$customfield.whosent",
+                "whosent": "$customfield.whosent",
                 "user": {
                     "user_id": "$customfield.id",
                     "first_name": "$user.first_name",
@@ -346,27 +369,93 @@ exports.getNotifications = function (req, res) {
             console.err(err)
         }
         else {
-            
-            check.api.getFinalUsersData(results,req.body.user_id,function(users){
+
+            check.api.getFinalUsersData(results, req.body.user_id, function (users) {
 
                 var docs = {
                     docs: users,
                     pages: pageCount,
                     total: count
-    
+
                 };
                 res.json(docs);
 
 
             });
-           
 
 
-            
-           
+
+
+
         }
     });
 
 
 
+}
+
+exports.readNotifications = function (req, res) {
+
+
+    var query = {
+        $or: [{
+            "$and": [
+
+                { "user_id": { "$eq": req.body.user_id } },
+
+                { "request_status": { "$eq": "UNREAD" } },
+                { "request_action": { "$ne": "PENDING" } },
+                {
+
+                    "$or": [
+                        { "request_action": { "$eq": "ACCEPTED" } },
+                        { "request_action": { "$eq": "REJECTED" } },
+
+                    ]
+                }
+
+
+            ]
+        }, {
+            "$and": [
+
+                { "request_user_id": { "$eq": req.body.user_id } },
+
+                { "request_status": { "$eq": "UNREAD" } },
+                { "request_action": { "$ne": "PENDING" } },
+                { "request_action": { "$ne": "ACCEPTED" } },
+                { "request_action": { "$ne": "REJECTED" } }
+
+            ]
+
+        }
+
+        ]
+
+
+
+    }
+    request.update(
+        query,
+
+        {
+            $set: {
+                request_status: "READ"
+
+            }
+
+        },
+
+        { multi: true },
+
+        function (err, docs) {
+
+            res.json({
+                success: true,
+                msg: "UPDATE_SUCCESS"
+
+
+
+            });
+        });
 }

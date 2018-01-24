@@ -20,6 +20,9 @@ exports.getRequestsCount = function (req, res) {
                                     { "$eq": ["$request_user_id", user_id] },
                                     { "$eq": ["$request_type", request_type] },
                                     { "$eq": ["$request_status", "READ"] },
+                                    { "$ne": ["$request_action", "ACCEPTED"] },
+                                    { "$ne": ["$request_action", "REJECTED"] },
+                                    { "$ne": ["$request_action", "PENDING"] },
                                     { "$ne": ["$reciver_response", "DELETE"] },
                                     { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
 
@@ -146,7 +149,7 @@ exports.updateRequests = function (req, res) {
         query = {
             _id: { $in: req.body.ids }
         };
-        req.body.fields.request_status="UNREAD";
+       // req.body.fields.request_status="UNREAD";
         req.body.fields.recived_on=new Date();
         fields = req.body.fields;
     }
@@ -184,6 +187,7 @@ exports.getRequestsByType = function (req, res) {
             "request_user_id": { "$eq": req.body.user_id },
             "request_status":{ "$eq": "READ" },
             "request_type":{ "$eq": req.body.request_type }, 
+            "request_action":{"$nin": ["ACCEPTED","REJECTED","PENDING"]},
             "reciver_response":{ "$ne": "DELETE" },
             "creater_response": { "$nin": ["DELETEFORME", "DELETEFOREVRYONE"] }
         };

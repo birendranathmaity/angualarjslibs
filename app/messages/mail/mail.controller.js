@@ -9,7 +9,7 @@ module.exports = function mailController($location, $scope, $timeout, $rootScope
         var reqCount = {
             user_id: $rootScope.login_user_id
 
-        }
+        };
         messagesservice.get_messages_count(reqCount, function (result) {
 
             if (result.length > 0) {

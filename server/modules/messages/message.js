@@ -227,10 +227,7 @@ exports.updateMessage = function (req, res) {
 
 exports.getMessagesByType = function (req, res) {
     var searchType = req.body.searchType;
-    var match = {
-
-
-    };
+    var match = {};
     var field;
     if (searchType == "SENT") {
         match = {
@@ -250,6 +247,9 @@ exports.getMessagesByType = function (req, res) {
             "creater_response": { "$nin": ["DELETEFOREVRYONE"] },
             "reciver_response": { "$ne": "DELETE" },
         };
+        if(req.body.dataType=="UNREADMSG"){
+            match.message_status="UNREAD";
+        }
         field = "user_id";
     }
     var aggregate = message.aggregate([

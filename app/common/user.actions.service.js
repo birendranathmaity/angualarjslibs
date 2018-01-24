@@ -17,6 +17,9 @@ module.exports = function ($http,toastr, $state, ServiceUrls) {
         get_notifications: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_NOTIFICATIONS, data).success(success).error(error);
         },
+        update_notifications: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_NOTIFICATIONS, data).success(success).error(error);
+        },
         openReq:function(noti){
             if(noti.request_type==="MESSAGE"){
                 if(noti.whosent==="SENT"){
