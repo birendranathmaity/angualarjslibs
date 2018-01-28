@@ -32,8 +32,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
                 });
 
-                
-                controller.formdata=loginservice.getFiledsData();
+
+                controller.formdata = loginservice.getFiledsData();
                 //open login modal//
                 controller.openLoginModal = function (size) {
                     var modalInstance = $uibModal.open({
@@ -94,24 +94,24 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 var muslim = controller.formdata.rmuslim;
                 var christian = controller.formdata.rchristian;
 
-                var noCaste = new Array("Any", "caste no Bar");
+                var noCaste = [ {
+                    "name": "Any",
+                    "value": "ANYONE"
+                }];
                 controller.loadCaste = function (rel) {
-                    if (rel === "Hinduism") {
+                    if (rel === "HINDU") {
                         controller.casteData = hindu;
                         return;
                     }
-                    if (rel === "Islam") {
+                    if (rel === "ISLAM") {
                         controller.casteData = muslim;
                         return;
                     }
-                    if (rel === "Christianity") {
+                    if (rel === "CHR") {
                         controller.casteData = christian;
                         return;
                     }
-                    if (rel === "Hinduism") {
-                        controller.casteData = hindu;
-                        return;
-                    }
+                   
                     controller.casteData = noCaste;
 
                 };
@@ -153,7 +153,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 controller.loadCity = function (stateId) {
                     countryService.getCities(stateId, function (res) {
                         controller.cities = res;
-                        controller.cities.push({ id: "other", name: "Other" });
+                        // controller.cities.push({ id: "other", name: "Other" });
                     }, function () { });
                 };
 
@@ -214,7 +214,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 controller.submitMoreInfo = function (basicinfo, educationwork, intrests, family) {
 
                     intrests.height = parseFloat(intrests.height);
-                    
+
                     // if (family.beleave_hor) {
                     //     family.beleave_hor = "YES";
                     // }
@@ -242,7 +242,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     loginservice.savemoreinfo(req, function (res) {
 
                         if (res.success && !controller.editMode) {
-                           toastr.success('Saved Successfully');
+                            toastr.success('Saved Successfully');
                             if ($scope.isAdmin) {
 
                                 res.skip_url = "/viewusers";
@@ -254,8 +254,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                             }
 
                             res.user_id = controller.userId;
-                            res.from_sec='userEntry';
-                            res.photo_type="PROFILE";
+                            res.from_sec = 'userEntry';
+                            res.photo_type = "PROFILE";
                             loginservice.openCropPopup(res);
 
 

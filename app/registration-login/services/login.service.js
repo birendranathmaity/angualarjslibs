@@ -189,7 +189,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
         getCureentUser: function (userId, success) {
             $viewusers.getUser({ "user_id": userId }, function (result) {
 
-console.log(result)
+
                 $rootScope.current_user_de_all = result.user;
 
                 success(true);
@@ -220,7 +220,7 @@ console.log(result)
             var pics = {
                 profile: null,
                 album: []
-            }
+            };
             if ($rootScope.current_user_de_all.pic.length > 0) {
 
                 for (var key = 0; key < $rootScope.current_user_de_all.pic.length; key++) {
@@ -234,7 +234,7 @@ console.log(result)
                         var alb = {
                             id: $rootScope.current_user_de_all.pic[key]._id,
                             url: imgUrl
-                        }
+                        };
                         pics.album.push(alb);
                     }
 
@@ -253,7 +253,7 @@ console.log(result)
                         id:v._id,
                         url:imgUrl
             
-                    }
+                    };
                     imgs.push(img);
    
             

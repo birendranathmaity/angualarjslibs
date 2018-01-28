@@ -98,7 +98,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         });
 
 
-    }
+    };
     controller.getnotifications = function () {
 
         var reqNoti = {
@@ -121,9 +121,12 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         });
 
 
-    }
+    };
     controller.getnotifications();
     controller.getUnreadMessages();
+    var pics = loginservice.getProfilePic();
+
+    controller.pic = pics.profile;
     controller.isOpenNoti = false;
     controller.isOpenMsg = false;
 
@@ -139,7 +142,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
 
         }
 
-    }
+    };
     controller.isOpenNotiBox = function () {
         var req = {
             user_id: $rootScope.login_user_id
@@ -150,11 +153,14 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         }
         else {
             controller.isOpenNoti = true;
-            useractions.update_notifications(req, function (notifications) { }, function (error) { });
+            useractions.update_notifications(req, function (notifications) {
+
+                controller.notifications.total = 0;
+            }, function (error) { });
 
         }
 
-    }
+    };
     controller.viewall = function (TYPE) {
         if (TYPE === "NOTI") {
             $location.path("/notifications");
@@ -167,27 +173,32 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         }
 
         controller.isOpenNoti = false;
-    }
+    };
     controller.openReq = function (noti) {
         useractions.openReq(noti);
 
-    }
+    };
     controller.viewMessage = function (config, msgId) {
         controller.isOpenMsg = false;
 
         messagesservice.readMsg(config, msgId);
-    }
+    };
     var userMessageReadBroadcast = $rootScope.$on('userMessageReadBroadcast', function ($event, get_messages_count) {
 
         controller.getUnreadMessages();
 
 
     });
+    var updateNotificationsCount = $rootScope.$on('updateNotificationsCount', function ($event, get_messages_count) {
+
+        controller.getnotifications();
+
+    });
     $rootScope.$on('$destroy', function () {
 
 
         userMessageReadBroadcast();
-
+        updateNotificationsCount();
     });
 
-}
+};

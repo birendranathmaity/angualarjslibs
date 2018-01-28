@@ -8,6 +8,7 @@ var educationSchema   = new Schema({
 	"occupation": String,
 	"company": String,
 	"designation": String,
+	"created_on":Date,
 	"updated_on":Date
 });
 

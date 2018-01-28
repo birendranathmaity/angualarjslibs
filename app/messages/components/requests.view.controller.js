@@ -140,7 +140,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"UNREAD",
                     "recived_on":new Date()
     
-                }
+                };
             }
             if (target === "PENDING") {
                 req.fields = {
@@ -148,7 +148,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"READ",
                     "recived_on":new Date()
     
-                }
+                };
             }
             if (target === "REJECTED") {
                 req.fields = {
@@ -156,7 +156,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"UNREAD",
                     "recived_on":new Date()
     
-                }
+                };
             }
             if (target === "DELETEFOREVRYONE") {
                 req.fields = {
@@ -164,7 +164,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"READ",
                     "recived_on":new Date()
     
-                }
+                };
             }
             if (target === "DELETEFORME") {
                 req.fields = {
@@ -172,7 +172,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"READ",
                     "recived_on":new Date()
     
-                }
+                };
             }
     
             if (target === "DELETE") {
@@ -183,7 +183,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     "request_status":"READ",
                     "recived_on":new Date()
     
-                }
+                };
             }
     
             var modalInstance = $uibModal.open({
@@ -194,10 +194,10 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                     var main = this;
                     main.yes = function () {
                         finalaction();
-                    }
+                    };
                     main.no = function () {
                         modalInstance.dismiss('cancel');
-                    }
+                    };
     
     
                 },
@@ -226,7 +226,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
             }
     
-        }
+        };
        
      
     

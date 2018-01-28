@@ -8,7 +8,7 @@
 
     <div class="row">
 
-      <!------------------------ Left Strat -------------------------->
+      <!--Left Strat -->
       <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
        
          
@@ -16,8 +16,8 @@
 
 
       </div>
-      <!------------------------------------------------ profile End ------------------------------------------------>
-      <!------------------------------------------------ you maylike Strat ------------------------------------------------>
+      <!-- profile End -->
+      <!--you maylike Strat -->
       <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
         
            <h3 class="mail-head">Notifications</h3>
@@ -53,7 +53,7 @@
                             <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="$ctrl.configScollBar">
                                 <p class="noinforav" ng-if="$ctrl.notificatins.length===0">No information available </p>
                                 <ul>
-                                    <li class="row-fluid userlist" ng-repeat="noti in $ctrl.notificatins" ng-click="$ctrl.openReq(noti)" ng-class="{'unread' : noti.request_status==='UNREAD' ,'reqselected':noti.Selected}">
+                                    <li class="row-fluid userlist" ng-repeat="noti in $ctrl.notificatins" ng-click="$ctrl.openReq(noti)" ng-class="{'read' : noti.request_status==='UNREAD' ,'reqselected':noti.Selected}">
             
                                         <div class="col-lg-2 no-padding pull-left">
                                           
@@ -91,27 +91,14 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .noinforav {
-                    margin: 210px 300px;
-                }
-            
-                .unread {
-                    background-color: #fff !important;
-                    border: 1px solid #ddd;
-                }
-            
-                .reqselected {
-                    background-color: #cffbfb !important
-                }
-            </style>
+          
       
 
         </div>
 
-        <!---------------------------------------------Center  End ------------------------------------------>
+        <!---Center  End -->
 
-        <!---------------------------------------------Calender Veiw start ---------------------------------->
+        <!---Calender Veiw start -->
        
       </div>
     </div>

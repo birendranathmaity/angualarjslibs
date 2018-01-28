@@ -1,0 +1,609 @@
+<div class="page-content">
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div class="clearfix"></div>
+    <div class="content">
+
+
+
+        <div class="row">
+
+            <!--Left Strat-->
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+
+
+                ggggggg
+
+
+            </div>
+            <!--- profile End -->
+            <!--you maylike Strat-->
+            <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+                <div class="grid simple search-all">
+
+
+
+                    <div class="basic-pro-detl">
+                        <div class="grid simple">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="myProfileEdit">
+                                    <div class="row ">
+
+
+
+
+
+
+                                        <div class="col-md-12">
+                                            <!--  <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h3> -->
+                                            <h4 class="semi-bold clearfix">Basic Details</h4>
+                                            {{$ctrl.serachModel | json}}
+                                            <div class="hr-line"> </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+                                                                <p class="list-group-item-left pull-left">Age</p>
+
+                                                                <div class="list-group-item-right pull-right">
+
+                                                                    <select class="minimal sear-drop">
+                                                                        <option>22</option>
+                                                                    </select>
+
+                                                                    <span class="select-half"> To </span>
+
+                                                                    <select class="minimal sear-drop">
+                                                                        <option>27</option>
+                                                                    </select>
+
+                                                                </div>
+
+
+
+
+                                                                <p class="clearfix"></p>
+
+                                                                <p class="list-group-item-left pull-left"> Marital Status </p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                    <!-- <ui-select ng-model="$ctrl.multipleDemo.colors" theme="bootstrap" ng-disabled="$ctrl.disabled" style="width: 220px;" title="Choose a color">
+                                                                        <ui-select-match placeholder="Select colors...">{{$select.selected}}</ui-select-match>
+                                                                        <ui-select-choices repeat="ms.value as ms in $ctrl.formdata.MaritialStatus | filter:$select.search">
+                                                                            {{color}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select> -->
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.maritialstatus" on-select="$ctrl.onSelectCallback($item, $model,'maritialstatus')"
+                                                                        theme="bootstrap" style="width: 220px;">
+                                                                        <ui-select-match placeholder="Select maritial status...">{{$item.name}}</ui-select-match>
+                                                                        <ui-select-choices repeat="ms.value as ms in $ctrl.formdata.MaritialStatus | propsFilter: {name: $select.search}">
+                                                                            <div ng-bind-html="ms.name | highlight: $select.search"></div>
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+
+                                                                </div>
+                                                                <p class="clearfix"></p>
+
+                                                                <p class="list-group-item-left pull-left"> Mother Tounge </p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.mothertounge" on-select="$ctrl.onSelectCallback($item, $model,'mothertounge')"
+                                                                        theme="bootstrap" style="width: 220px;">
+                                                                        <ui-select-match placeholder="Select mother tounge...">{{$item.name}}</ui-select-match>
+                                                                        <ui-select-choices repeat="mt.value as mt in $ctrl.formdata.mother_tongues | propsFilter: {name: $select.search}">
+                                                                            <div ng-bind-html="mt.name | highlight: $select.search"></div>
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+                                                                <p class="list-group-item-left pull-left"> Country Living IN </p>
+
+                                                                <div class="list-group-item-right pull-right">
+
+
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.country" on-remove="$ctrl.removedCountry($item, $model,'country')" close-on-select="false" on-select="$ctrl.onSelectCallbackCounry($item, $model,'country')"
+                                                                        theme="bootstrap" style="width: 220px;">
+                                                                        <ui-select-match placeholder="Choose country...">{{$item.name}}</ui-select-match>
+                                                                        <ui-select-choices repeat="cn.id as cn in $ctrl.countrys | propsFilter: {name: $select.search}">
+                                                                            <div ng-bind-html="cn.name | highlight: $select.search"></div>
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+
+                                                                </div>
+
+
+
+
+
+                                                                <p class="clearfix"></p>
+
+                                                                <p class="list-group-item-left pull-left"> State Living IN </p>
+
+                                                                <div class="list-group-item-right pull-right">
+
+
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.state" on-remove="$ctrl.removedCountry($item, $model,'state')" close-on-select="false" ng-disabled="$ctrl.DisabledState" on-select="$ctrl.onSelectCallbackState($item, $model,'state')"
+                                                                        theme="bootstrap" style="width: 220px;">
+                                                                        <ui-select-match placeholder="Choose state...">{{$item.name}}</ui-select-match>
+                                                                        <ui-select-choices group-by="'cname'" repeat="st in $ctrl.states | propsFilter: {name: $select.search}">
+                                                                            <div ng-bind-html="st.name | highlight: $select.search"></div>
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+
+                                                                </div>
+                                                                <p class="clearfix"></p>
+
+                                                                <p class="list-group-item-left pull-left"> City Living IN </p>
+
+                                                                <div class="list-group-item-right pull-right">
+
+
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.city" ng-disabled="$ctrl.DisabledCity" close-on-select="false" on-select="$ctrl.onSelectCallback($item, $model,'city')"
+                                                                    theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose city...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices group-by="'sname'" repeat="ct in $ctrl.cities | propsFilter: {name: $select.search}">
+                                                                        <div ng-bind-html="ct.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                                                                </div>
+
+                                                                <p class="clearfix"></p>
+
+                                                                <p class="list-group-item-left pull-left">Religion </p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                 
+                                                                    <ui-select multiple ng-model="$ctrl.serachModel.religion" on-remove="$ctrl.removedRL($item, $model,'religion')" close-on-select="false"  on-select="$ctrl.onSelectCallbackRelgion($item, $model,'religion')"
+                                                                    theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose religion...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices  repeat="rl.value as rl in $ctrl.formdata.religions | propsFilter: {name: $select.search}">
+                                                                        <div ng-bind-html="rl.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+
+                                                                </div>
+                                                                <p class="clearfix"></p>
+
+
+                                                                <p class="list-group-item-left pull-left">Caste</p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                <ui-select multiple ng-model="$ctrl.serachModel.caste"  close-on-select="false" ng-disabled="$ctrl.casteDisabled"  on-select="$ctrl.onSelectCallback($item, $model,'caste')"
+                                                                    theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose Caste...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices group-by="'rname'" repeat="cs in $ctrl.casteData | propsFilter: {name: $select.search}">
+                                                                        <div ng-bind-html="cs.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+
+
+
+
+
+
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold clearfix"></h4>
+
+                                            <h4 class="semi-bold clearfix">Educaiton & Work Information</h4>
+
+                                            <div class="hr-line"> </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+
+                                                                <p class="list-group-item-left pull-left">Heighest Education </p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                    <ui-select ng-model="$ctrl.multipleDemo.colors" theme="bootstrap" ng-disabled="$ctrl.disabled" style="width: 220px;" title="Choose a color">
+                                                                        <ui-select-match placeholder="Select colors...">{{$select.selected}}</ui-select-match>
+                                                                        <ui-select-choices repeat="color in $ctrl.availableColors | filter:$select.search">
+                                                                            {{color}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+
+                                                                <p class="list-group-item-left pull-left">Occupation </p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd">IT</option>
+                                                                        <option value="dd">Business</option>
+
+
+                                                                    </select>
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+
+                                                                <p class="list-group-item-left pull-left">Annual Income</p>
+
+                                                                <div class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd">10,00000</option>
+                                                                        <option value="dd">5,000000</option>
+
+
+                                                                    </select>
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold clearfix"></h4>
+
+                                            <h4 class="semi-bold clearfix"> Appearence & Interests</h4>
+
+                                            <div class="hr-line"> </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+
+
+                                                                <p class="list-group-item-left pull-left">Height </p>
+
+                                                                <p class="list-group-item-right pull-right">
+
+                                                                    <select class="minimal sear-drop">
+                                                                        <option>5.2 inc</option>
+                                                                    </select>
+
+                                                                    <span class="select-half"> To </span>
+
+                                                                    <select class="minimal sear-drop">
+                                                                        <option>5.2 inc</option>
+                                                                    </select>
+
+                                                                </p>
+                                                                <p class="clearfix"> </p>
+                                                                <p class="list-group-item-left pull-left">Physical Status</p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd"> Normal</option>
+                                                                        <option value="dd">Physical Chalenge</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+
+                                                                <p class="clearfix"> </p>
+                                                                <p class="list-group-item-left pull-left">Expertation</p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd"> Normal</option>
+                                                                        <option value="dd">Physical Chalenge</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+
+                                                                <p class="clearfix"> </p>
+                                                                <p class="list-group-item-left pull-left">Willing To Mary</p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd"> Normal</option>
+                                                                        <option value="dd">Physical Chalenge</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+
+                                                                <p class="clearfix"> </p>
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+
+                                                <div class="col-lg-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="bmd-list-group-col">
+
+                                                                <p class="list-group-item-left pull-left">Complection </p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd">Fair</option>
+                                                                        <option value="dd">Normal</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+                                                                <p class="clearfix"></p>
+                                                                <p class="list-group-item-left pull-left">Body Type </p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd">Medium</option>
+                                                                        <option value="dd">Normal</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+                                                                <p class="clearfix"></p>
+                                                                <p class="list-group-item-left pull-left">Horoscope Details </p>
+
+                                                                <p class="list-group-item-right pull-right">
+                                                                    <select id="source2" class="select-searc minimal">
+                                                                        <option value="dd">------</option>
+                                                                        <option value="dd">-----</option>
+
+
+                                                                    </select>
+
+                                                                </p>
+                                                                <p class="clearfix"></p>
+                                                                <!--        <p class="list-group-item-left pull-left">Are you a Celebrity </p>
+                                                      
+                                                       <p class="list-group-item-right pull-right">
+                                          <select id="source2" class="select-searc minimal">
+                                            <option value="dd">No</option>
+                                            <option value="dd">Yes</option>
+                                             
+                         
+                                           </select>
+                         
+                                           </p>
+                                           <p class="clearfix"></p> -->
+
+
+
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold clearfix"></h4>
+
+                                            <div class="hr-line"> </div>
+                                            <div class="row">
+
+
+
+
+
+                                                <div class="clearfix"></div>
+
+                                                <div class="col-lg-12">
+
+                                                    <div class="list-group-item-left pull-left " style="width: 22%">Email Me New Results </div>
+
+                                                    <div class="list-group-item-right pull-left" style="line-height: 38px;">
+
+                                                        <div class="radio radio-success">
+                                                            <input id="yes" name="optionyes" value="yes" type="radio">
+                                                            <label for="yes">Daily</label>
+                                                            <input id="twice-week" name="optionyes" value="no" checked="checked" type="radio">
+                                                            <label for="twice-week">Twice Week</label>
+                                                            <input id="once-week" name="optionyes" value="no" checked="checked" type="radio">
+                                                            <label for="once-week">Once a Week</label>
+                                                            <input id="never" name="optionyes" value="no" checked="checked" type="radio">
+                                                            <label for="never">Newer</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold clearfix"></h4>
+                                            <div class="hr-line"> </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+
+                                            <div class="list-group-item-left pull-left " style="width: 22%">Show Profile </div>
+
+                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
+
+                                                <div class="checkbox check-default">
+
+                                                    <input id="withphoto" type="checkbox" value="1">
+                                                    <label for="withphoto">With Photo</label>
+                                                    <input id="onlinenow" type="checkbox" value="1">
+                                                    <label for="onlinenow">Online Right Now</label>
+                                                    <input id="premiummem" type="checkbox" value="1">
+                                                    <label for="premiummem">Premium Members</label>
+                                                    <!--   <input id="freemem" type="checkbox" value="1">
+                          <label for="freemem">Free Members</label> -->
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-lg-12">
+
+                                            <div class="list-group-item-left pull-left " style="width: 22%">Posted By </div>
+
+                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
+
+                                                <div class="checkbox check-default">
+
+                                                    <input id="doesmater" type="checkbox" value="1">
+                                                    <label for="doesmater">Doesn't matter</label>
+                                                    <input id="slefp" type="checkbox" value="1">
+                                                    <label for="slefp">Self</label>
+                                                    <input id="parentsp" type="checkbox" value="1">
+                                                    <label for="parentsp"> Parents</label>
+                                                    <input id="siblingsp" type="checkbox" value="1">
+                                                    <label for="siblingsp">Siblings</label>
+                                                    <input id="marriageb" type="checkbox" value="1">
+                                                    <label for="marriageb">Marriage Bureau</label>
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-lg-12">
+
+                                            <div class="list-group-item-left pull-left " style="width: 22%">Photo Settings </div>
+
+                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
+
+                                                <div class="checkbox check-default">
+
+                                                    <input id="visibleto" type="checkbox" value="1">
+                                                    <label for="visibleto">Visible to all</label>
+                                                    <input id="protectedpic" type="checkbox" value="1">
+                                                    <label for="protectedpic">Protected</label>
+
+
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-lg-12">
+
+                                            <div class="list-group-item-left pull-left " style="width: 22%">Don't Show </div>
+
+                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
+
+                                                <div class="checkbox check-default">
+
+                                                    <input id="igonoredp" type="checkbox" value="1">
+                                                    <label for="igonoredp">Ignored Profiles</label>
+
+                                                    <input id="a-contacted" type="checkbox" value="1">
+                                                    <label for="a-contacted">Already contacted</label>
+
+                                                    <input id="wishlisted" type="checkbox" value="1">
+                                                    <label for="wishlisted">wish listed</label>
+                                                    <input id="viewedprof" type="checkbox" value="1">
+                                                    <label for="viewedprof">viewed Profiles</label>
+
+                                                    <input id="withmypartner" type="checkbox" value="1">
+                                                    <label for="withmypartner">profile don't match with my partner preference.</label>
+
+
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="clearfix"></div>
+                                        <div class="col-xs-12 clearfix">
+                                            <button type="button" class="btn btn-primary btn-cons search-by-btn m-t-30  col-md-offset-4 col-lg-4">
+                                                <i class="fa fa-search"></i>&nbsp;search</button>
+                                            <div class="m-t-30">
+                                                <a href="#" class="reset-se" data-original-title="" title=""> Reset</a>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

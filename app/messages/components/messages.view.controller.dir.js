@@ -150,13 +150,13 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
             req.fields = {
                 "creater_response": "DELETEFOREVRYONE",
 
-            }
+            };
         }
         if (target === "DELETEFORME") {
             req.fields = {
                 "creater_response": "DELETEFORME",
 
-            }
+            };
         }
 
         if (target === "DELETE") {
@@ -165,7 +165,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
             req.fields = {
                 "reciver_response": "DELETE",
 
-            }
+            };
         }
 
         var modalInstance = $uibModal.open({
@@ -176,10 +176,10 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
                 var main = this;
                 main.yes = function () {
                     finalDelete();
-                }
+                };
                 main.no = function () {
                     modalInstance.dismiss('cancel');
-                }
+                };
 
 
             },
@@ -208,7 +208,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
 
         }
 
-    }
+    };
     controller.markRead = function (type) {
         var req = {
             ids: controller.messageIds,
@@ -230,7 +230,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
 
         });
 
-    }
+    };
     controller.viewMessage = function (config, msgId) {
 
         if (controller.viewType === "SENT") {
@@ -238,7 +238,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
             return;
         }
         messagesservice.readMsg(config, msgId);
-   }
+   };
     var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
 
         controller.loadViewType();

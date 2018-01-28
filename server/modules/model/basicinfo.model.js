@@ -12,6 +12,7 @@ var basicInfoSchema   = new Schema({
 	"country": String,
 	"state": String,
 	"city": String,
+	"created_on":Date,
 	"updated_on":Date
 });
 

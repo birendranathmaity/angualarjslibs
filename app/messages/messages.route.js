@@ -23,8 +23,8 @@ module.exports = function myHomeRoutes(Router) {
                 url: '/photo_request',
                 views: {
                     '@': {
-                        templateUrl: "app/messages/photo_request/photo_request.html",
-                        controller: "photoRequestController as $ctrl"
+                        templateUrl: "app/messages/request/request.html",
+                        controller: "RequestController as $ctrl"
                     }
                 },
                 params: {
@@ -41,8 +41,8 @@ module.exports = function myHomeRoutes(Router) {
                 url: '/message_request',
                 views: {
                     '@': {
-                        templateUrl: "app/messages/photo_request/photo_request.html",
-                        controller: "photoRequestController as $ctrl"
+                        templateUrl: "app/messages/request/request.html",
+                        controller: "RequestController as $ctrl"
                     }
                 },
                 params: {
@@ -59,8 +59,8 @@ module.exports = function myHomeRoutes(Router) {
                 url: '/contact_request',
                 views: {
                     '@': {
-                        templateUrl: "app/messages/photo_request/photo_request.html",
-                        controller: "photoRequestController as $ctrl"
+                        templateUrl: "app/messages/request/request.html",
+                        controller: "RequestController as $ctrl"
                     }
                 },
                 params: {

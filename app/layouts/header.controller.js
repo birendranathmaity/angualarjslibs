@@ -45,8 +45,15 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
         {
             name: "",
             translatekey: "SEARCH",
-            subMenus: [],
-            route: "SEARCH"
+            subMenus: [{
+                translatekey: "SEARCHBY",
+                route: "root.searchby"
+            },
+            {
+                translatekey: "SEARCH_HISTORY",
+                route: "root.search_history"
+            }],
+            route: "root.searchby"
         },
         {
             name: "",
@@ -58,10 +65,10 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
             {
                 translatekey: "PHOTO_REQUEST",
                 route: "root.photo_request"
-            },{
+            }, {
                 translatekey: "MESSAGE_REQUEST",
                 route: "root.message_request"
-            },{
+            }, {
                 translatekey: "CONTACT_REQUEST",
                 route: "root.contact_request"
             }],

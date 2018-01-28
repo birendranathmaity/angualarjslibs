@@ -1,0 +1,50 @@
+'use strict';
+var angular = require('angular');
+// var registercomponents = require('./components');
+ var searchRoutes = require('./search.route');
+ var searchByController = require('./searchby/searchby.controller');
+ var searchHistoryController = require('./search_history/search.history.controller');
+// var ForgetPasswordController = require('./forget-password/forgetPassword.controller');
+// var MoreInfoController = require('./more-info/moreInfo.controller');
+// var OtpVrController = require('./otp-verification/otp.controller');
+// var HelpMeWriteController = require('./help-me-write/help-me-write');
+// var CropModalController = require('./crop-modal/crop-modal');
+// var cropDirective = require('./crop-modal/ng-img-crop');
+// var goToMoreController=require('./goto-moreinfo-modal/goto-moreinfo-modal');
+//services//
+// var registrationLoginServices = require('./services');
+module.exports = angular.module('app.ui.srarch', [])
+    .run(searchRoutes)
+    .controller('searchByController', searchByController)
+    .controller('searchHistoryController', searchHistoryController).filter('propsFilter', function() {
+        return function(items, props) {
+          var out = [];
+      
+          if (angular.isArray(items)) {
+            var keys = Object.keys(props);
+      
+            items.forEach(function(item) {
+              var itemMatches = false;
+      
+              for (var i = 0; i < keys.length; i++) {
+                var prop = keys[i];
+                var text = props[prop].toLowerCase();
+                if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                  itemMatches = true;
+                  break;
+                }
+              }
+      
+              if (itemMatches) {
+                out.push(item);
+              }
+            });
+          } else {
+            // Let the output be the input untouched
+            out = items;
+          }
+      
+          return out;
+        };
+      });
+    

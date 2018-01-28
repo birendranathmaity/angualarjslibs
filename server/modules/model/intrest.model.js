@@ -8,8 +8,9 @@ var intrestSchema   = new Schema({
 	"weight": String,
 	"complexion": String,
 	"body_type": String,
-	"hobbie": String,
+	"hobbie":Array,
 	"expectation": String,
+	"created_on":Date,
 	"updated_on":Date
 });
 

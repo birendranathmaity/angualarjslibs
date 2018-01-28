@@ -2,13 +2,13 @@
 module.exports = function AddPhotosController($location,$scope,$timeout,$rootScope,loginservice) {
     var controller = this;
     var pics=loginservice.getProfilePic();
-	console.log(pics)
+	
 	//$scope.images =pics.album;
 	function getAlbumPs(){
 		loginservice.getCurrentUserSession(function(userDe){
 			
 			loginservice.getAlbumPics({user_id:userDe.user_id,photo_type: 'ALBUM'},function(ps){
-	console.log(ps)
+	
 	$scope.images=ps;
 			});
 				});
@@ -59,7 +59,7 @@ $scope.conf = {
 var img={
 	id:photo._id,
 	
-}
+};
 				});
 				$scope.addPhoto = function(){
 					var n = Math.floor(Math.random() * 13) + 1;
@@ -70,36 +70,36 @@ var img={
 							bubbleUrl : '/demo/demo-images/bubbles/' + n + '.jpg'
 						}
 					);
-				}
+				};
 				
 				$scope.removePhoto = function(){
-					if($scope.images.length > 1) $scope.images.pop();
-				}
+					if($scope.images.length > 1) {$scope.images.pop();}
+				};
 				// Thumbnails
 				$scope.thumbnails = true;
 				$scope.toggleThumbnails = function(){
 					$scope.thumbnails = !$scope.thumbnails;
-				}
+				};
 				// Inline
 				$scope.inline = false;
 				$scope.toggleInline = function(){
 					$scope.inline = !$scope.inline;
-				}
+				};
 				// Bubbles
 				$scope.bubbles = true;
 				$scope.toggleBubbles = function(){
 					$scope.bubbles = !$scope.bubbles;
-				}
+				};
 				// Image bubbles
 				$scope.imgBubbles = true;
 				$scope.toggleImgBubbles = function(){
 					$scope.imgBubbles = !$scope.imgBubbles;
-				}
+				};
 				// Background close
 				$scope.bgClose = true;
 				$scope.closeOnBackground = function(){
 					$scope.bgClose = !$scope.bgClose;
-				}
+				};
 				// Gallery methods gateway
 				$scope.methods = {};
 				$scope.openGallery = function(){
@@ -108,12 +108,12 @@ var img={
 				// Gallery callbacks
 				$scope.opened = function(){
 					console.info('Gallery opened!');
-				}
+				};
 				$scope.closed = function(){
 					console.warn('Gallery closed!');
-				}
+				};
 				$scope.delete = function(img, cb){
 					cb();
-				}
+				};
 
 };

@@ -75,7 +75,7 @@
            <div class="pull-left topnav">
               <div class="demo-2">
                 <ul class="">
-                  <li ng-repeat="smenu in ctrl.subMenus" ng-class="{active: ctrl.$state.includes(smenu.route)}">  <a ui-sref="{{smenu.route}}" >  {{ smenu.translatekey | translate }}</a></li>
+                  <li ng-repeat="smenu in ctrl.subMenus" ng-class="{active: ctrl.$state.includes(smenu.route)}"> <a ui-sref="{{smenu.route}}" >  <img  ng-if="ctrl.$state.includes(smenu.route)" src="assets/logo/32x32.png"/> {{ smenu.translatekey | translate }}</a></li>
                   <!--<li ng-class="{active: ctrl.$state.includes('root.myprofile')}"> <a ui-sref="root.myprofile" class="biliboard"> My Profile</a> </li>
                   <li ng-class="{active: ctrl.$state.includes('root.addphotos')}"> <a ui-sref="root.addphotos"> Add Photos </a></li>   
                                    -->

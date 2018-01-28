@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function photoRequestController($state,$location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
+module.exports = function RequestController($state,$location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
 
 
@@ -12,7 +12,7 @@ module.exports = function photoRequestController($state,$location, $scope, $time
             user_id: $rootScope.login_user_id,
             request_type: controller.requestType
 
-        }
+        };
         messagesservice.get_requests_count(reqCount, function (result) {
            
             if (result.length > 0) {
@@ -35,11 +35,14 @@ module.exports = function photoRequestController($state,$location, $scope, $time
             fields: {
 
             }
-        }
+        };
 
         messagesservice.update_requests(reqUpdate, function (result) {
             
 
+if(result.result.nModified>0){
+    $rootScope.$broadcast('updateNotificationsCount', {});
+}
             loadCounts();
 
         }, function (error) {
@@ -50,7 +53,7 @@ module.exports = function photoRequestController($state,$location, $scope, $time
     readall();
     controller.loadType = function (type) {
         controller.viewType = type;
-    }
+    };
 
     var userRequestsBroadcastUpdate = $rootScope.$on('userRequestsBroadcastUpdate', function ($event, get_messages_count) {
 
@@ -66,4 +69,4 @@ module.exports = function photoRequestController($state,$location, $scope, $time
        
 
     });
-}
+};

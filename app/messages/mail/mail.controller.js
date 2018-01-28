@@ -31,13 +31,13 @@ module.exports = function mailController($location, $scope, $timeout, $rootScope
 
             type: "NEW"
 
-        }
+        };
 
         messagesservice.composemail(config);
-    }
+    };
     controller.loadType = function (type) {
         controller.viewType = type;
-    }
+    };
 
     var userMessageDeleteBroadcast = $rootScope.$on('userMessageDeleteBroadcast', function ($event, get_messages_count) {
 
@@ -58,4 +58,4 @@ module.exports = function mailController($location, $scope, $timeout, $rootScope
         userSendMessageBroadcast();
 
     });
-}
+};

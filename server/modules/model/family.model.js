@@ -21,6 +21,7 @@ var familySchema   = new Schema({
 	"zodiac": String,
 	"horoscope": String,
 	"aincome": String,
+	"created_on":Date,
 	"updated_on":Date
 });
 

@@ -140,6 +140,11 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
                     toastr.error(response.data.msg);
                 }
                 controller.result = response.data;
+                controller.cancel();
+                if(user.skip_url){
+                    $location.path(user.skip_url);
+                }
+               
             });
         }, function (response) {
             if (response.status > 0)

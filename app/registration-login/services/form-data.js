@@ -1,11 +1,179 @@
 /* @ngInject */
 module.exports = {
   monthsL: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  rhindu: ["Any","Nikhil ar..", "AdiDravida", "Arunthathiyar", "Boyer", "Brahmin", "Brahmin-Grukkal", "Brahmin-Iyer", "Chettiar", "Devendra Kula Vellalar", "Goundar", "Intercaste", "Maruthuvar", "Meenavar", "Mudhaliyar", "Mukkulathor", "Caste No Bar"],
-  rmuslim: ["Any", "Ansari", "Arain", "Awan", "Bohra", "Dekkani", "Dudekula", "Hanafi", "Jat", "Khoja", "Lebbai", "Malik", "Mapila", "Maraicar", "Memon", "Mugal", "Pathan", "Qureshi", "Rajput", "Rowther", "caste no Bar"],
-  rchristian: ["Any", "Born Again", "Bretheren", "Church of South India", "Evangelist", "Jacobite", "Knanaya", "Malankara", "Marthoma", "Pentacost", "Roman catholic", "Syrian Catholic", "caste no Bar"],
-  hobbies: ["3D printing", "amateur radio", "scrapbook", "Amateur radio", "Acting", "Baton twirling", "Board games", "Book restoration", "Cabaret", "Calligraphy", "Candle making", "Computer programming", "Coffee roasting", "Cooking", "Coloring", "Cosplaying", "Couponing", "Creative writing", "Crocheting", "Cryptography", "Dance", "Digital arts", "Drama", "Drawing", "Do it yourself", "Electronics", "Embroidery", "Fashion", "Flower arranging", "Foreign language learning", "Gaming", "tabletop games", "role-playing games", "Gambling", "Genealogy", "Glassblowing", "Gunsmithing", "Homebrewing", "Ice skating", "Jewelry making", "Jigsaw puzzles", "Juggling", "Knapping", "Knitting", "Kabaddi", "Knife making", "Lacemaking", "Lapidary", "Leather crafting", "Lego building", "Lockpicking", "Machining", "Macrame", "Metalworking", "Magic", "Model building", "Listening to music", "Origami", "Painting", "Playing musical instruments", "Pet", "Poi", "Pottery", "Puzzles", "Quilting", "Reading", "Scrapbooking", "Sculpting", "Sewing", "Singing", "Sketching", "Soapmaking", "Sports", "Stand-up comedy", "Sudoku", "Table tennis", "Taxidermy", "Video gaming", "Watching movies", "Web surfing", "Whittling", "Wood carving", "Woodworking", "Worldbuilding", "Writing", "Yoga", "Yo-yoing", "Air sports", "Archery", "Astronomy", "Backpacking", "BASE jumping", "Baseball", "Basketball", "Beekeeping", "Bird watching", "Blacksmithing", "Board sports", "Bodybuilding", "Brazilian jiu-jitsu", "Community", "Cycling", "Dowsing", "Driving", "Fishing", "Flag Football", "Flying", "Flying disc", "Foraging", "Gardening", "Geocaching", "Ghost hunting", "Graffiti", "Handball", "Hiking", "Hooping", "Horseback riding", "Hunting", "Inline skating", "Jogging", "Kayaking", "Kite flying", "Kitesurfing", "LARPing", "Letterboxing", "Metal detecting", "Motor sports", "Mountain biking", "Mountaineering", "Mushroom hunting", "Mycology", "Netball", "Nordic skating", "Orienteering", "Paintball", "Parkour", "Photography", "Polo", "Rafting", "Rappelling", "Rock climbing", "Roller skating", "Rugby", "Running", "Sailing", "Sand art", "Scouting", "Scuba diving", "Sculling", "Rowing", "Shooting", "Shopping", "Skateboarding", "Skiing", "Skimboarding", "Skydiving", "Slacklining", "Snowboarding", "Stone skipping", "Surfing", "Swimming", "Taekwondo", "Tai chi", "Urban exploration", "Vacation", "Vehicle restoration", "Water sports"],
-  zodiac: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
+  //rhindu: ["AdiDravida", "Arunthathiyar", "Boyer", "Brahmin", "Brahmin-Grukkal", "Brahmin-Iyer", "Chettiar", "Devendra Kula Vellalar", "Goundar", "Intercaste", "Maruthuvar", "Meenavar", "Mudhaliyar", "Mukkulathor", "Caste No Bar"],
+ // rmuslim: ["Ansari", "Arain", "Awan", "Bohra", "Dekkani", "Dudekula", "Hanafi", "Jat", "Khoja", "Lebbai", "Malik", "Mapila", "Maraicar", "Memon", "Mugal", "Pathan", "Qureshi", "Rajput", "Rowther", "Caste no Bar"],
+ // rchristian: ["Any", "Born Again", "Bretheren", "Church of South India", "Evangelist", "Jacobite", "Knanaya", "Malankara", "Marthoma", "Pentacost", "Roman catholic", "Syrian Catholic", "Caste no Bar"],
+ // hobbies: ["3D printing", "amateur radio", "scrapbook", "Acting", "Baton twirling", "Board games", "Book restoration", "Cabaret", "Calligraphy", "Candle making", "Computer programming", "Coffee roasting", "Cooking", "Coloring", "Cosplaying", "Couponing", "Creative writing", "Crocheting", "Cryptography", "Dance", "Digital arts", "Drama", "Drawing", "Do it yourself", "Electronics", "Embroidery", "Fashion", "Flower arranging", "Foreign language learning", "Gaming", "tabletop games", "role-playing games", "Gambling", "Genealogy", "Glassblowing", "Gunsmithing", "Homebrewing", "Ice skating", "Jewelry making", "Jigsaw puzzles", "Juggling", "Knapping", "Knitting", "Kabaddi", "Knife making", "Lacemaking", "Lapidary", "Leather crafting", "Lego building", "Lockpicking", "Machining", "Macrame", "Metalworking", "Magic", "Model building", "Listening to music", "Origami", "Painting", "Playing musical instruments", "Pet", "Poi", "Pottery", "Puzzles", "Quilting", "Reading", "Scrapbooking", "Sculpting", "Sewing", "Singing", "Sketching", "Soapmaking", "Sports", "Stand-up comedy", "Sudoku", "Table tennis", "Taxidermy", "Video gaming", "Watching movies", "Web surfing", "Whittling", "Wood carving", "Woodworking", "Worldbuilding", "Writing", "Yoga", "Yo-yoing", "Air sports", "Archery", "Astronomy", "Backpacking", "BASE jumping", "Baseball", "Basketball", "Beekeeping", "Bird watching", "Blacksmithing", "Board sports", "Bodybuilding", "Brazilian jiu-jitsu", "Community", "Cycling", "Dowsing", "Driving", "Fishing", "Flag Football", "Flying", "Flying disc", "Foraging", "Gardening", "Geocaching", "Ghost hunting", "Graffiti", "Handball", "Hiking", "Hooping", "Horseback riding", "Hunting", "Inline skating", "Jogging", "Kayaking", "Kite flying", "Kitesurfing", "LARPing", "Letterboxing", "Metal detecting", "Motor sports", "Mountain biking", "Mountaineering", "Mushroom hunting", "Mycology", "Netball", "Nordic skating", "Orienteering", "Paintball", "Parkour", "Photography", "Polo", "Rafting", "Rappelling", "Rock climbing", "Roller skating", "Rugby", "Running", "Sailing", "Sand art", "Scouting", "Scuba diving", "Sculling", "Rowing", "Shooting", "Shopping", "Skateboarding", "Skiing", "Skimboarding", "Skydiving", "Slacklining", "Snowboarding", "Stone skipping", "Surfing", "Swimming", "Taekwondo", "Tai chi", "Urban exploration", "Vacation", "Vehicle restoration", "Water sports"],
+ rhindu:[{
+	"name": "AdiDravida",
+	"value": "HIN0"
+}, {
+	"name": "Arunthathiyar",
+	"value": "HIN1"
+}, {
+	"name": "Boyer",
+	"value": "HIN2"
+}, {
+	"name": "Brahmin",
+	"value": "HIN3"
+}, {
+	"name": "Brahmin-Grukkal",
+	"value": "HIN4"
+}, {
+	"name": "Brahmin-Iyer",
+	"value": "HIN5"
+}, {
+	"name": "Chettiar",
+	"value": "HIN6"
+}, {
+	"name": "Devendra Kula Vellalar",
+	"value": "HIN7"
+}, {
+	"name": "Goundar",
+	"value": "HIN8"
+}, {
+	"name": "Intercaste",
+	"value": "HIN9"
+}, {
+	"name": "Maruthuvar",
+	"value": "HIN10"
+}, {
+	"name": "Meenavar",
+	"value": "HIN11"
+}, {
+	"name": "Mudhaliyar",
+	"value": "HIN12"
+}, {
+	"name": "Mukkulathor",
+	"value": "HIN13"
+}, {
+	"name": "Other",
+	"value": "HINOTH"
+}],
+ rmuslim:[{
+	"name": "Ansari",
+	"value": "MUS0"
+}, {
+	"name": "Arain",
+	"value": "MUS1"
+}, {
+	"name": "Awan",
+	"value": "MUS2"
+}, {
+	"name": "Bohra",
+	"value": "MUS3"
+}, {
+	"name": "Dekkani",
+	"value": "MUS4"
+}, {
+	"name": "Dudekula",
+	"value": "MUS5"
+}, {
+	"name": "Hanafi",
+	"value": "MUS6"
+}, {
+	"name": "Jat",
+	"value": "MUS7"
+}, {
+	"name": "Khoja",
+	"value": "MUS8"
+}, {
+	"name": "Lebbai",
+	"value": "MUS9"
+}, {
+	"name": "Malik",
+	"value": "MUS10"
+}, {
+	"name": "Mapila",
+	"value": "MUS11"
+}, {
+	"name": "Maraicar",
+	"value": "MUS12"
+}, {
+	"name": "Memon",
+	"value": "MUS13"
+}, {
+	"name": "Mugal",
+	"value": "MUS14"
+}, {
+	"name": "Pathan",
+	"value": "MUS15"
+}, {
+	"name": "Qureshi",
+	"value": "MUS16"
+}, {
+	"name": "Rajput",
+	"value": "MUS17"
+}, {
+	"name": "Rowther",
+	"value": "MUS18"
+}, {
+	"name": "Other",
+	"value": "MUSOTH"
+}],
+ rchristian:[{
+	"name": "Born Again",
+	"value": "CH0"
+}, {
+	"name": "Bretheren",
+	"value": "CH1"
+}, {
+	"name": "Church of South India",
+	"value": "CH2"
+}, {
+	"name": "Evangelist",
+	"value": "CH3"
+}, {
+	"name": "Jacobite",
+	"value": "CH4"
+}, {
+	"name": "Knanaya",
+	"value": "CH5"
+}, {
+	"name": "Malankara",
+	"value": "CH6"
+}, {
+	"name": "Marthoma",
+	"value": "CH7"
+}, {
+	"name": "Pentacost",
+	"value": "CH8"
+}, {
+	"name": "Roman catholic",
+	"value": "CH9"
+}, {
+	"name": "Syrian Catholic",
+	"value": "CH10"
+}, {
+	"name": "Other",
+	"value": "CHOTH"
+}],
+ hobbies:[{
+  "name": "3D printing",
+  "value": "3DP"
+},
+{
+  "name": "Amateur radio",
+  "value": "AMR"
+},
+{
+  "name": "Scrapbook",
+  "value": "SCR"
+},
+{
+  "name": "Acting",
+  "value": "ACT"
+},
+{
+  "name": "Baton twirling",
+  "value": "BATW"
+},
+{
+  "name": "Board games",
+  "value": "BOG"
+}],
+ zodiac: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
   countriesWithCode: {
     'Afghanistan': '+93',
     'Albania': '+355',
@@ -476,403 +644,529 @@ module.exports = {
   }],
   religions: [{
     "name": "African Traditional & Diasporic",
-    "value": "African Traditional & Diasporic"
+    "value": "AFT"
   }, {
     "name": "Agnostic",
-    "value": "Agnostic"
+    "value": "AGN"
   }, {
     "name": "Atheist",
-    "value": "Atheist"
+    "value": "ATH"
   }, {
     "name": "Baha'i",
-    "value": "Bahai"
+    "value": "BAHI"
   }, {
     "name": "Buddhism",
-    "value": "Buddhism"
+    "value": "BUDH"
   }, {
     "name": "Cao Dai",
-    "value": "Cao Dai"
+    "value": "CAD"
   }, {
     "name": "Chinese traditional religion",
-    "value": "Chinese traditional religion"
+    "value": "CTR"
   }, {
     "name": "Christianity",
-    "value": "Christianity"
+    "value": "CHR"
   }, {
     "name": "Hinduism",
-    "value": "Hinduism"
+    "value": "HINDU"
   }, {
     "name": "Islam",
-    "value": "Islam"
+    "value": "ISLAM"
   }, {
     "name": "Jainism",
-    "value": "Jainism"
+    "value": "JAIN"
   }, {
     "name": "Juche",
-    "value": "Juche"
+    "value": "JUCHE"
   }, {
     "name": "Judaism",
-    "value": "Judaism"
+    "value": "JUD"
   }, {
     "name": "Neo-Paganism",
-    "value": "Neo-Paganism"
+    "value": "NEOP"
   }, {
     "name": "Nonreligious",
-    "value": "Nonreligious"
+    "value": "NOR"
   }, {
     "name": "Rastafarianism",
-    "value": "Rastafarianism"
+    "value": "RASF"
   }, {
     "name": "Secular",
-    "value": "Secular"
+    "value": "SECL"
   }, {
     "name": "Shinto",
-    "value": "Shinto"
+    "value": "SHIN"
   }, {
     "name": "Sikhism",
-    "value": "Sikhism"
+    "value": "SIKH"
   }, {
     "name": "Spiritism",
-    "value": "Spiritism"
+    "value": "SPIR"
   }, {
     "name": "Tenrikyo",
-    "value": "Tenrikyo"
+    "value": "TEN"
   }, {
     "name": "Unitarian-Universalism",
-    "value": "Unitarian-Universalism"
+    "value": "UNIU"
   }, {
     "name": "Zoroastrianism",
-    "value": "Zoroastrianism"
+    "value": "ZORO"
   }, {
     "name": "primal-indigenous",
-    "value": "primal-indigenous"
+    "value": "PRIN"
   }, {
     "name": "Other",
-    "value": "Other"
+    "value": "OTH"
   }],
   educations: [{
     "name": "No formal education",
-    "value": "No formal education"
+    "value": "NFE"
   }, {
     "name": "Primary education",
-    "value": "Primary education"
+    "value": "PE"
   }, {
     "name": "Secondary education or high school",
-    "value": "Secondary education"
+    "value": "SE"
   }, {
     "name": "GED",
     "value": "GED"
   }, {
     "name": "Vocational qualification",
-    "value": "Vocational qualification"
+    "value": "VQ"
   }, {
     "name": "Bachelor's degree",
-    "value": "Bachelor's degree"
+    "value": "BD"
   }, {
     "name": "Master's degree",
-    "value": "Master's degree"
+    "value": "MD"
   }, {
     "name": "Doctorate or higher",
-    "value": "Doctorate or higher"
+    "value": "DH"
   }],
   studies: [{
     "name": "Agriculture",
-    "value": "12.1"
+    "value": "AG"
   }, {
     "name": "Automobile",
-    "value": "12.2"
+    "value": "AU"
   }, {
     "name": "Aviation",
-    "value": "12.3"
+    "value": "AV"
   }, {
     "name": "Bio-Chemistry/Bio-Technology",
-    "value": "12.4"
+    "value": "BIOC"
   }, {
     "name": "Biomedical",
-    "value": "12.5"
+    "value": "BIOD"
   }, {
     "name": "Ceramics",
-    "value": "12.6"
+    "value": "CER"
   }, {
     "name": "Chemical",
-    "value": "12.7"
+    "value": "CHEM"
   }, {
     "name": "Civil",
-    "value": "12.8"
+    "value": "CIVIL"
   }, {
     "name": "Computers",
-    "value": "12.9"
+    "value": "COM"
   }, {
     "name": "Electrical",
-    "value": "12.10"
+    "value": "ELC"
   }, {
     "name": "Electronics/Telecommunication",
-    "value": "12.11"
+    "value": "ELCT"
   }, {
     "name": "Energy",
-    "value": "12.12"
+    "value": "ENG"
   }, {
     "name": "Environmental",
-    "value": "12.13"
+    "value": "ENV"
   }, {
     "name": "Instrumentation",
-    "value": "12.14"
+    "value": "INS"
   }, {
     "name": "Marine",
-    "value": "12.15"
+    "value": "MARINE"
   }, {
     "name": "Mechanical",
-    "value": "12.16"
+    "value": "MCH"
   }, {
     "name": "Metallurgy",
-    "value": "12.17"
+    "value": "MET"
   }, {
     "name": "Mineral",
-    "value": "12.18"
+    "value": "MIN"
   }, {
     "name": "Mining",
-    "value": "12.19"
+    "value": "MINI"
   }, {
     "name": "Nuclear",
-    "value": "12.20"
+    "value": "NUC"
   }, {
     "name": "Paint/Oil",
-    "value": "12.21"
+    "value": "PAINT"
   }, {
     "name": "Petroleum",
-    "value": "12.22"
+    "value": "PETRO"
   }, {
     "name": "Plastics",
-    "value": "12.23"
+    "value": "PLASTIC"
   }, {
     "name": "Production/Industrial",
-    "value": "12.24"
+    "value": "PROUD"
   }, {
     "name": "Textile",
-    "value": "12.25"
+    "value": "TEXTILE"
   }, {
     "name": "Other Engineering",
-    "value": "12.26"
+    "value": "OTHE"
   }, {
     "name": "Other",
-    "value": "12.9999"
+    "value": "OTH"
   }],
+  MaritialStatus:[
+    {
+      "name": "Single",
+      "value": "SINGLE"
+    },
+    {
+      "name": "Divorsed",
+      "value": "DIVORSED"
+    },{
+      "name": "Gol Dhana Folk",
+      "value": "GDF"
+    },{
+      "name": "Widow",
+      "value": "WIDOW"
+    },{
+      "name": "Annulled",
+      "value": "ANNULLED"
+    }
+  ],
+  complexion:[
+    {
+      "name": "Light",
+      "value": "LIGHT"
+    },
+    {
+      "name": "Fair",
+      "value": "FAIR"
+    },{
+      "name": "Dark",
+      "value": "FAIR"
+    },{
+      "name": "Wheatish",
+      "value": "WHEATISH"
+    }
+  ],
+  BodyType:[
+    {
+      "name": "Slim",
+      "value": "SLIM"
+    },
+    {
+      "name": "Slender",
+      "value": "SLENDER"
+    },{
+      "name": "Average",
+      "value": "AVERAGE"
+    },{
+      "name": "Smart",
+      "value": "SMART"
+    },{
+      "name": "Athletic",
+      "value": "ATHLETIC"
+    },{
+      "name": "Muscular",
+      "value": "MUSCULAR"
+    },{
+      "name": "Thick",
+      "value": "THICK"
+    },{
+      "name": "Fatty",
+      "value": "FATTY"
+    },{
+      "name": "Voluptuous",
+      "value": "VOLUPTUOUS"
+    },{
+      "name": "Large",
+      "value": "LARGE"
+    }
+  ],
+  PhysicalStatus:[
+    {
+      "name": "Normal",
+      "value": "NOR"
+    },
+    {
+      "name": "Physically challenged",
+      "value": "PC"
+    }
+
+  ],
   occupations: [{
-    "name": "-  Chiropractor",
+    "name": "Chiropractor",
     "value": "1"
   }, {
-    "name": "-  Dentist",
+    "name": "Dentist",
     "value": "2"
   }, {
-    "name": "-  Dietitian or Nutritionist",
+    "name": "Dietitian or Nutritionist",
     "value": "3"
   }, {
-    "name": "-  Optometrist",
+    "name": "Optometrist",
     "value": "4"
   }, {
-    "name": "-  Pharmacist",
+    "name": "Pharmacist",
     "value": "5"
   }, {
-    "name": "-  Physician",
+    "name": "Physician",
     "value": "6"
   }, {
-    "name": "-  Physician Assistant",
+    "name": "Physician Assistant",
     "value": "7"
   }, {
-    "name": "-  Podiatrist",
+    "name": "Podiatrist",
     "value": "8"
   }, {
-    "name": "-  Registered Nurse",
+    "name": "Registered Nurse",
     "value": "9"
   }, {
-    "name": "-  Therapist",
+    "name": "Therapist",
     "value": "10"
   }, {
-    "name": "-  Veterinarian",
+    "name": "Veterinarian",
     "value": "11"
   }, {
-    "name": "-  Health Technologist or Technician",
+    "name": "Health Technologist or Technician",
     "value": "12"
   }, {
-    "name": "-  Other Healthcare Practitioners and Technical Occupation",
+    "name": "Other Healthcare Practitioners and Technical Occupation",
     "value": "13"
   }, {
-    "name": "-  Nursing, Psychiatric, or Home Health Aide",
+    "name": "Nursing, Psychiatric, or Home Health Aide",
     "value": "14"
   }, {
-    "name": "-  Occupational and Physical Therapist Assistant or Aide",
+    "name": "Occupational and Physical Therapist Assistant or Aide",
     "value": "15"
   }, {
-    "name": "-  Other Healthcare Support Occupation",
+    "name": "Other Healthcare Support Occupation",
     "value": "16"
   }, {
-    "name": "-  Chief Executive",
+    "name": "Chief Executive",
     "value": "17"
   }, {
-    "name": "-  General and Operations Manager",
+    "name": "General and Operations Manager",
     "value": "18"
   }, {
-    "name": "-  Advertising, Marketing, Promotions, Public Relations, and Sales Manager",
+    "name": "Advertising, Marketing, Promotions, Public Relations, and Sales Manager",
     "value": "19"
   }, {
-    "name": "-  Operations Specialties Manager (e.g., IT or HR Manager)",
+    "name": "Operations Specialties Manager (e.g., IT or HR Manager)",
     "value": "20"
   }, {
-    "name": "-  Construction Manager",
+    "name": "Construction Manager",
     "value": "21"
   }, {
-    "name": "-  Engineering Manager",
+    "name": "Engineering Manager",
     "value": "22"
   }, {
-    "name": "-  Accountant, Auditor",
+    "name": "Accountant, Auditor",
     "value": "23"
   }, {
-    "name": "-  Business Operations or Financial Specialist",
+    "name": "Business Operations or Financial Specialist",
     "value": "24"
   }, {
-    "name": "-  Business Owner",
+    "name": "Business Owner",
     "value": "25"
   }, {
-    "name": "-  Other Business, Executive, Management, Financial Occupation",
+    "name": "Other Business, Executive, Management, Financial Occupation",
     "value": "26"
   }, {
-    "name": "-  Architect, Surveyor, or Cartographer",
+    "name": "Architect, Surveyor, or Cartographer",
     "value": "27"
   }, {
-    "name": "-  Engineer",
+    "name": "Engineer",
     "value": "28"
   }, {
-    "name": "-  Other Architecture and Engineering Occupation",
+    "name": "Other Architecture and Engineering Occupation",
     "value": "29"
   }, {
-    "name": "-  Postsecondary Teacher (e.g., College Professor)",
+    "name": "Postsecondary Teacher (e.g., College Professor)",
     "value": "30"
   }, {
-    "name": "-  Primary, Secondary, or Special Education School Teacher",
+    "name": "Primary, Secondary, or Special Education School Teacher",
     "value": "31"
   }, {
-    "name": "-  Other Teacher or Instructor",
+    "name": "Other Teacher or Instructor",
     "value": "32"
   }, {
-    "name": "-  Other Education, Training, and Library Occupation",
+    "name": "Other Education, Training, and Library Occupation",
     "value": "33"
   }, {
-    "name": "-  Arts, Design, Entertainment, Sports, and Media Occupations",
+    "name": "Arts, Design, Entertainment, Sports, and Media Occupations",
     "value": "34"
   }, {
-    "name": "-  Computer Specialist, Mathematical Science",
+    "name": "Computer Specialist, Mathematical Science",
     "value": "35"
   }, {
-    "name": "-  Counselor, Social Worker, or Other Community and Social Service Specialist",
+    "name": "Counselor, Social Worker, or Other Community and Social Service Specialist",
     "value": "36"
   }, {
-    "name": "-  Lawyer, Judge",
+    "name": "Lawyer, Judge",
     "value": "37"
   }, {
-    "name": "-  Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)",
+    "name": "Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)",
     "value": "38"
   }, {
-    "name": "-  Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)",
+    "name": "Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)",
     "value": "39"
   }, {
-    "name": "-  Religious Worker (e.g., Clergy, Director of Religious Activities or Education)",
+    "name": "Religious Worker (e.g., Clergy, Director of Religious Activities or Education)",
     "value": "40"
   }, {
-    "name": "-  Social Scientist and Related Worker",
+    "name": "Social Scientist and Related Worker",
     "value": "41"
   }, {
-    "name": "-  Other Professional Occupation",
+    "name": "Other Professional Occupation",
     "value": "42"
   }, {
-    "name": "-  Supervisor of Administrative Support Workers",
+    "name": "Supervisor of Administrative Support Workers",
     "value": "43"
   }, {
-    "name": "-  Financial Clerk",
+    "name": "Financial Clerk",
     "value": "44"
   }, {
-    "name": "-  Secretary or Administrative Assistant",
+    "name": "Secretary or Administrative Assistant",
     "value": "45"
   }, {
-    "name": "-  Material Recording, Scheduling, and Dispatching Worker",
+    "name": "Material Recording, Scheduling, and Dispatching Worker",
     "value": "46"
   }, {
-    "name": "-  Other Office and Administrative Support Occupation",
+    "name": "Other Office and Administrative Support Occupation",
     "value": "47"
   }, {
-    "name": "-  Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)",
+    "name": "Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)",
     "value": "48"
   }, {
-    "name": "-  Chef or Head Cook",
+    "name": "Chef or Head Cook",
     "value": "49"
   }, {
-    "name": "-  Cook or Food Preparation Worker",
+    "name": "Cook or Food Preparation Worker",
     "value": "50"
   }, {
-    "name": "-  Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)",
+    "name": "Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)",
     "value": "51"
   }, {
-    "name": "-  Building and Grounds Cleaning and Maintenance",
+    "name": "Building and Grounds Cleaning and Maintenance",
     "value": "52"
   }, {
-    "name": "-  Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)",
+    "name": "Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)",
     "value": "53"
   }, {
-    "name": "-  Sales Supervisor, Retail Sales",
+    "name": "Sales Supervisor, Retail Sales",
     "value": "54"
   }, {
-    "name": "-  Retail Sales Worker",
+    "name": "Retail Sales Worker",
     "value": "55"
   }, {
-    "name": "-  Insurance Sales Agent",
+    "name": "Insurance Sales Agent",
     "value": "56"
   }, {
-    "name": "-  Sales Representative",
+    "name": "Sales Representative",
     "value": "57"
   }, {
-    "name": "-  Real Estate Sales Agent",
+    "name": "Real Estate Sales Agent",
     "value": "58"
   }, {
-    "name": "-  Other Services Occupation",
+    "name": "Other Services Occupation",
     "value": "59"
   }, {
-    "name": "-  Construction and Extraction (e.g., Construction Laborer, Electrician)",
+    "name": "Construction and Extraction (e.g., Construction Laborer, Electrician)",
     "value": "60"
   }, {
-    "name": "-  Farming, Fishing, and Forestry",
+    "name": "Farming, Fishing, and Forestry",
     "value": "61"
   }, {
-    "name": "-  Installation, Maintenance, and Repair",
+    "name": "Installation, Maintenance, and Repair",
     "value": "62"
   }, {
-    "name": "-  Production Occupations",
+    "name": "Production Occupations",
     "value": "63"
   }, {
-    "name": "-  Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation",
+    "name": "Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation",
     "value": "64"
   }, {
-    "name": "-  Aircraft Pilot or Flight Engineer",
+    "name": "Aircraft Pilot or Flight Engineer",
     "value": "65"
   }, {
-    "name": "-  Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)",
+    "name": "Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)",
     "value": "66"
   }, {
-    "name": "-  Other Transportation Occupation",
+    "name": "Other Transportation Occupation",
     "value": "67"
   }, {
-    "name": "-  Military",
+    "name": "Military",
     "value": "68"
   }, {
-    "name": "-  Homemaker",
+    "name": "Homemaker",
     "value": "69"
   }, {
-    "name": "-  Other Occupation",
+    "name": "Other Occupation",
     "value": "70"
   }, {
-    "name": "-  Don't Know",
+    "name": "Don't Know",
     "value": "71"
   }, {
-    "name": "-  Not Applicable",
+    "name": "Not Applicable",
     "value": "72"
-  }]
+  }],
+  Expectation:[
+    {
+      "name": "Only Mumbai",
+      "value": "ONM"
+    },
+    {
+      "name": "Ready to relocate of India",
+      "value": "RTRI"
+    },
+    {
+      "name": "No criteria for place",
+      "value": "NCFP"
+    }
+  ],
+  Horoscope:[
+    {
+      "name": "Claire",
+      "value": "CL"
+    },
+    {
+      "name": "Light Mangal",
+      "value": "LM"
+    }
+  ],
+  aincome:[
+    {
+      "name": "0-2 Lakhs",
+      "value": "0T2L"
+    },
+    {
+      "name": "3-5 Lakhs",
+      "value": "3T5L"
+    },
+    {
+      "name": "5-8 Lakhs",
+      "value": "5T8L"
+    },
+    {
+      "name": "8-10 Lakhs",
+      "value": "8T10L"
+    },
+    {
+      "name": "Above 10 Lakhs",
+      "value": "A10L"
+    }
+  ]
 
 };

@@ -180,6 +180,6 @@ module.exports = function notificationController($location,useractions,$scope,$t
     controller.openReq=function(noti){
         useractions.openReq(noti);
     
-    }
+    };
 
-}
+};
