@@ -2059,6 +2059,18 @@ select,
 textarea {
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+::-webkit-input-placeholder { /* WebKit browsers */
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 label {
     display: block;
     margin-bottom: 5px;

@@ -16,7 +16,16 @@ var angular = require('angular');
 module.exports = angular.module('app.ui.srarch', [])
     .run(searchRoutes)
     .controller('searchByController', searchByController)
-    .controller('searchHistoryController', searchHistoryController).filter('propsFilter', function() {
+    .controller('searchHistoryController', searchHistoryController).
+    filter('height', function () {
+      return function (item) {
+        var ht=item.toString().split(".");
+        var ht1=ht[0]+" ft ";
+     
+        var ht2=(parseInt(ht[1])===0  ? '' :parseInt(ht[1]) +" inc");
+          return ht1+ht2;
+      };
+    }).filter('propsFilter', function() {
         return function(items, props) {
           var out = [];
       

@@ -4,8 +4,16 @@ module.exports = function searchByController($rootScope, countryService, loginse
     controller.user = $rootScope.current_user_de_all;
     console.log(controller.user);
     controller.serachModel = {
-        age: [],
-        height: [],
+        age: {
+
+            from:18,
+            to:50
+        },
+        height: {
+
+            from:4.1,
+            to:6.11
+        },
         maritialstatus: ["SINGLE"],
         mothertounge: ["ANY"],
         religion: [],
@@ -16,20 +24,23 @@ module.exports = function searchByController($rootScope, countryService, loginse
         physical_status: [],
         complexion: [],
         occupation: [],
+        aincome:[],
         expectation: [],
         high_edu: [],
-        hobbie: []
+        hobbie: [],
+        body_type:[],
+        horoscope:[]
     };
     var empty = [{
-        name: "All",
+        name: "Doesn't matter",
         value: "ANY"
     }];
     var empty2 = [{
-        name: "All",
+        name: "Doesn't matter",
         id: "ANY"
     }];
     var allObj = {
-        name: "All",
+        name: "Doesn't matter",
         id: "ANY"
     };
     function isInArray(value, array) {
@@ -146,7 +157,7 @@ module.exports = function searchByController($rootScope, countryService, loginse
         }
     }
     controller.onSelectCallbackState = function (item, model, g) {
-        if (model.id === "ANY") {
+        if (item.id === "ANY") {
             controller.serachModel[g] = [allObj];
             // controller.serachModel.state = ["ANY"];
             controller.serachModel.city = [allObj];
@@ -157,11 +168,9 @@ module.exports = function searchByController($rootScope, countryService, loginse
         }
         else {
 
-            if (isInArray(allObj, controller.serachModel[g])) {
-                var index = controller.serachModel[g].indexOf(allObj);
-                controller.serachModel[g].splice(index, 1);
-
-            }
+            controller.serachModel.state = $.grep(controller.serachModel.state, function (e) {
+                return e.id != "ANY";
+            });
 
 
             controller.DisabledCity = false;
@@ -222,7 +231,21 @@ module.exports = function searchByController($rootScope, countryService, loginse
 
 
     }
+controller.onSelectCallbackCity= function (item, model, g) {
+   
+    if (item.id === "ANY") {
+        controller.serachModel[g] = [allObj];
+       }
+    else {
 
+        controller.serachModel.city = $.grep(controller.serachModel.city, function (e) {
+            return e.id != "ANY";
+        });
+
+
+    }
+
+};
     //relegion caste//
     controller.casteDisabled = true;
     controller.onSelectCallbackRelgion = function (item, model, g) {
@@ -317,5 +340,23 @@ module.exports = function searchByController($rootScope, countryService, loginse
 
 
     };
-
+    controller.onSelectCallbackCaste= function (item, model, g) {
+        
+         if (item.value === "ANY") {
+            
+             controller.serachModel.caste = empty.concat([]);
+            }
+         else {
+   
+             controller.serachModel.caste = $.grep(controller.serachModel.caste, function (e) {
+                
+               return e.value != "ANY";
+            
+             });
+     
+     
+         }
+     
+     };
+    
 };

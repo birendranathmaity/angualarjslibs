@@ -1,6 +1,7 @@
 /* @ngInject */
 module.exports = {
   monthsL: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  height:[4.00, 4.01,  4.02, 4.03, 4.04, 4.05, 4.06, 4.07, 4.08, 4.09,4.10, 4.11, 5.00, 5.01,  5.02, 5.03, 5.04, 5.05, 5.06, 5.07, 5.08, 5.09, 5.10,5.11, 6.00, 6.01,  6.02, 6.03, 6.04, 6.05, 6.06, 6.07, 6.08, 6.09,6.10, 6.11],
   //rhindu: ["AdiDravida", "Arunthathiyar", "Boyer", "Brahmin", "Brahmin-Grukkal", "Brahmin-Iyer", "Chettiar", "Devendra Kula Vellalar", "Goundar", "Intercaste", "Maruthuvar", "Meenavar", "Mudhaliyar", "Mukkulathor", "Caste No Bar"],
  // rmuslim: ["Ansari", "Arain", "Awan", "Bohra", "Dekkani", "Dudekula", "Hanafi", "Jat", "Khoja", "Lebbai", "Malik", "Mapila", "Maraicar", "Memon", "Mugal", "Pathan", "Qureshi", "Rajput", "Rowther", "Caste no Bar"],
  // rchristian: ["Any", "Born Again", "Bretheren", "Church of South India", "Evangelist", "Jacobite", "Knanaya", "Malankara", "Marthoma", "Pentacost", "Roman catholic", "Syrian Catholic", "Caste no Bar"],
