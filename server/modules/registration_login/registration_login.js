@@ -67,6 +67,7 @@ exports.signup = function (req, res) {
                     req.body.email_vr = false;
                     req.body.phone_vr = false;
                     req.body.more_info_vr = false;
+                    req.body.user_status = "INPROGRESS";
                     saverUser(req.body, res);
                 }
             }
@@ -251,7 +252,9 @@ exports.savemoreinfo = function (req, res) {
                             familyModel.save(function (err, family) {
                                 var update = {
 
-                                    more_info_vr: true
+                                    more_info_vr: true,
+                                    user_status:"ACTIVE",
+                                    created_on:new Date()
                                 };
 
 

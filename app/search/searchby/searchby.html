@@ -255,8 +255,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <h4 class="semi-bold clearfix"></h4>
+                                    <h4 class="semi-bold clearfix">More</h4>
+                                    <div class="hr-line"> </div>
                                     <div class="row ">
-                                        <div class="col-md-12">
+                                           
+                                        <div class="col-md-12 ng-hide">
                                             <h4 class="semi-bold clearfix"></h4>
                                             <div class="hr-line"> </div>
                                             <div class="row">
@@ -269,36 +273,47 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <h4 class="semi-bold clearfix"></h4>
-                                            <div class="hr-line"> </div>
-                                        </div>
+                                        
                                         <div class="col-lg-12">
                                             <div class="list-group-item-left pull-left " style="width: 22%">Show Profile </div>
-                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
-                                                <div class="checkbox check-default"> <input id="withphoto" type="checkbox" value="1"> <label for="withphoto">With Photo</label> <input id="onlinenow" type="checkbox" value="1"> <label for="onlinenow">Online Right Now</label> <input id="premiummem" type="checkbox" value="1"> <label for="premiummem">Premium Members</label>
-                                                    <!-- <input id="freemem" type="checkbox" value="1"> <label for="freemem">Free Members</label> --></div>
+                                            <div class="list-group-item-right pull-left" style="line-height: 38px;width:63%">
+                                                <div class="checkbox check-default">
+                                                   
+                                                    <span ng-repeat="item in $ctrl.showProfile" ng-click="$ctrl.check(item,$ctrl.showProfile,'ANY_1')">
+
+                                                            <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                            
+                                                    </span>
+                                                   
+                                                    </div>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="col-lg-12">
                                             <div class="list-group-item-left pull-left " style="width: 22%">Posted By </div>
                                             <div class="list-group-item-right pull-left" style="line-height: 38px;">
-                                                <div class="checkbox check-default"> <input id="doesmater" type="checkbox" value="1"> <label for="doesmater">Doesn't matter</label> <input id="slefp" type="checkbox" value="1"> <label for="slefp">Self</label> <input id="parentsp" type="checkbox" value="1"> <label for="parentsp"> Parents</label> <input id="siblingsp" type="checkbox" value="1"> <label for="siblingsp">Siblings</label> <input id="marriageb" type="checkbox" value="1"> <label for="marriageb">Marriage Bureau</label> </div>
+                                                <div class="checkbox check-default"> 
+                                                        <span ng-repeat="item in $ctrl.PostedBy" ng-click="$ctrl.check(item,$ctrl.PostedBy,'ANY_2')">
+                                                                
+                                                         <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                                                                                            
+                                                                                                                    </span> 
+                                                    </div>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="col-lg-12">
-                                            <div class="list-group-item-left pull-left " style="width: 22%">Photo Settings </div>
-                                            <div class="list-group-item-right pull-left" style="line-height: 38px;">
-                                                <div class="checkbox check-default"> <input id="visibleto" type="checkbox" value="1"> <label for="visibleto">Visible to all</label> <input id="protectedpic" type="checkbox" value="1"> <label for="protectedpic">Protected</label> </div>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="clearfix"></div>
                                         <div class="col-lg-12">
                                             <div class="list-group-item-left pull-left " style="width: 22%">Don't Show </div>
                                             <div class="list-group-item-right pull-left" style="line-height: 38px;">
-                                                <div class="checkbox check-default"> <input id="igonoredp" type="checkbox" value="1"> <label for="igonoredp">Ignored Profiles</label> <input id="a-contacted" type="checkbox" value="1"> <label for="a-contacted">Already contacted</label> <input id="wishlisted" type="checkbox" value="1"> <label for="wishlisted">wish listed</label> <input id="viewedprof" type="checkbox" value="1"> <label for="viewedprof">viewed Profiles</label> <input id="withmypartner" type="checkbox" value="1"> <label for="withmypartner">profile don't match with my partner preference.</label> </div>
+                                                <div class="checkbox check-default"> 
+                                                        <span ng-repeat="item in $ctrl.dontShow" ng-click="$ctrl.check(item,$ctrl.dontShow,'ANY_3')">
+                                                                
+                                                         <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                                                                                            
+                                                          </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>

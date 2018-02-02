@@ -13556,7 +13556,7 @@ textarea[class*="span"] {
 .radio.radio-danger input[type=radio]:checked + label:before {
     border: 1px solid #F35958;
 }
-/*.checkbox label {
+.checkbox label {
 	display: inline-block;
 	cursor: pointer;
 	position: relative;
@@ -13567,7 +13567,7 @@ textarea[class*="span"] {
 	color: #777a80;
 	transition: border 0.2s linear 0s,color 0.2s linear 0s;
 }
-*/
+
 
 table td .checkbox label {
     padding-left: 0px;
@@ -13603,7 +13603,7 @@ table th .checkbox label {
 .star input[type=checkbox]:checked + label:before {
     color: #ffd200;
 }
-.checkbox label:before {
+/* .checkbox label:before {
     content: "";
     display: inline-block;
     width: 17px;
@@ -13616,7 +13616,7 @@ table th .checkbox label {
     border: 1px solid #c2c6cb;
     border-radius: 3px;
     transition: border 0.2s linear 0s, color 0.2s linear 0s;
-}
+} */
 .checkbox label::after {
     display: inline-block;
     width: 16px;
@@ -15178,11 +15178,11 @@ span.round-tab:hover {
     font-size: 20px;
     font-weight: 500;
 }
-.checkbox label:after {
+/* .checkbox label:after {
     content: '';
     display: none;
     clear: both;
-}
+} */
 .checkbox .cr {
     position: relative;
     display: inline-block;
@@ -15193,8 +15193,8 @@ span.round-tab:hover {
     float: left;
     margin-right: .5em;
 }
-.checkbox label::before {
-    display: none;
+.loginchk label::before {
+display: none;
 }
 .checkbox .cr .cr-icon {
     position: absolute;

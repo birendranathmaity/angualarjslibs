@@ -21,12 +21,16 @@
 
 
   </span>
-  <span class="description" ng-if="$ctrl.notification.request_type==='LIKE'">
+  <span class="description" ng-if="$ctrl.notification.request_type==='LIKED'">
     Has liked your profile
 
   </span>
   <span class="description" ng-if="$ctrl.notification.request_type==='VIEWED_PROFILE'">
     Has viewed your profile
+
+  </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='CONTACTED'">
+    Has viewed your contact no
 
   </span>
   <span class="description" ng-if="$ctrl.notification.request_type==='ADMIN_APPROVAL'">

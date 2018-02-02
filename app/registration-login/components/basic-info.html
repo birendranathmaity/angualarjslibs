@@ -217,7 +217,7 @@
                                     <select class="minimal form-control" name="height" ng-model="intrests.height" required-message="ctrl.required('REQUIRED')"
                                         validate-on="dirty" required>
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                             <option ng-repeat="h in $ctrl.formdata.height" ng-value="h.toFixed(2)">{{h.toFixed(2) | height}}</option>
+                                             <option ng-repeat="h in ctrl.formdata.height" ng-value="h.toFixed(2)">{{h.toFixed(2) | height}}</option>
                                           </select>
                                 </div>
                                 <div class="col-md-6">

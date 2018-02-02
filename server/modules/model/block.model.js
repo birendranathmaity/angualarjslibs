@@ -5,7 +5,8 @@ var blockSchema   = new Schema({
     "user_id": String,
     "block_status": String,
     "block_user_id":String,
-    "created_on":Date
+    "created_on":Date,
+    "updated_on":Date
     
 });
 blockSchema.plugin(mongooseAggregatePaginate);
