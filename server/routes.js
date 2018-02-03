@@ -7,6 +7,7 @@ var matches=require('./modules/matches/matches');
 var messages=require('./modules/messages/message');
 var request=require('./modules/messages/request');
 var useractions=require('./modules/useraction');
+var search=require('./modules/search');
 module.exports = function(app,express,process){
    app.use(serviceConfig.USER_PROFILE_PHOTO_DISPLAY_PATH, express.static(__dirname + '/upload_user_images'));
    app.post(serviceConfig.AUTHENTICATE,regisLogin.authenticate);
@@ -20,7 +21,10 @@ module.exports = function(app,express,process){
    app.get(serviceConfig.STATES,regisLogin.getstates);
    app.get(serviceConfig.CITIES,regisLogin.getcities);
     app.get(serviceConfig.GET_USER_LOC,regisLogin.getUserLocation);
-
+    //SEARCH//
+    
+    app.post(serviceConfig.SET_SEARCH,search.saveSearch);
+    app.post(serviceConfig.GET_SEARCH,search.getSearch);
 //user notification///
 app.post(serviceConfig.GET_NOTIFICATIONS,useractions.getNotifications);
 app.post(serviceConfig.UPDATE_NOTIFICATIONS,useractions.readNotifications);

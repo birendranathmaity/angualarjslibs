@@ -12,6 +12,7 @@
                                     <div class="row ">
                                         <div class="col-md-12">
                                             <h4 class="semi-bold clearfix">Basic Details</h4>
+                                            {{$ctrl.serachModel}}
                                             <div class="hr-line"> </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -317,7 +318,7 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="col-xs-12 clearfix"> <button type="button" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4"> <i class="fa fa-search"></i>&nbsp;search</button>
+                                        <div class="col-xs-12 clearfix"> <button type="button" ng-click="$ctrl.search()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4"> <i class="fa fa-search"></i>&nbsp;search</button>
                                             <div class="m-t-30"> <a href="#" class="reset-se" data-original-title="" title=""> Reset</a> </div>
                                         </div>
                                     </div>

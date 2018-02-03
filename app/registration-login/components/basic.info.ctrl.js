@@ -112,7 +112,12 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                         return;
                     }
                    
-                    controller.casteData = noCaste;
+                    controller.casteData = [{
+                       
+                        name: "Other",
+                        value: rel + "OTH"
+        
+                    }];
 
                 };
                 controller.required = function (key) {

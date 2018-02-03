@@ -12,9 +12,10 @@ var angular = require('angular');
 // var cropDirective = require('./crop-modal/ng-img-crop');
 // var goToMoreController=require('./goto-moreinfo-modal/goto-moreinfo-modal');
 //services//
-// var registrationLoginServices = require('./services');
+var searchService = require('./search.service');
 module.exports = angular.module('app.ui.srarch', [])
     .run(searchRoutes)
+    .factory("searchService",searchService)
     .controller('searchByController', searchByController)
     .controller('searchHistoryController', searchHistoryController).
     filter('height', function () {
