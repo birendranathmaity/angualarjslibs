@@ -6,6 +6,7 @@ exports.api = {
     getFinalUsersData: function (results, user_id, success) {
         if (results.length == 0) {
             success(results);
+            return;
         }
 
         var total = results.length;
@@ -18,7 +19,7 @@ exports.api = {
 
                     results[index].user = user;
                     count++;
-                    if (count > total - 1) success(results);
+                    if (count > total - 1) success(results);return;
                 });
 
             }(i));
@@ -42,7 +43,7 @@ exports.api = {
 
                     user.pic = pic;
                     success(user);
-
+                    return;
                 }
                 else {
 
@@ -61,6 +62,7 @@ exports.api = {
                         if (isrequested) {
                             user.pic = pic;
                             success(user);
+                            return;
                         }
                         else {
 
@@ -70,6 +72,7 @@ exports.api = {
 
                             }
                             success(user);
+                            return;
                         }
 
 
@@ -83,12 +86,14 @@ exports.api = {
             else {
                 user.pic = pic;
                 success(user);
+                return;
             }
 
         }
         else {
             user.pic = pic;
             success(user);
+            return;
         }
 
 
@@ -151,14 +156,14 @@ exports.api = {
                 if (user.length > 0) {
 
                     success(true);
-
+                    return;
 
                 }
                 else {
 
 
                     success(false);
-
+                    return;
 
 
                 }
@@ -176,9 +181,11 @@ exports.api = {
                 if (user.length > 0) {
                     if (user[0].message) {
                         success(true);
+                        return;
                     }
                     else {
                         success(false);
+                        return;
                     }
 
 
@@ -189,7 +196,7 @@ exports.api = {
 
 
                     success(true);
-
+                    return;
 
 
                 }
@@ -208,9 +215,11 @@ exports.api = {
 
                     if (user[0].request_action == "ACCEPTED") {
                         success(true, 'YES');
+                        return;
                     }
                     else {
                         success(false, 'REMIND');
+                        return;
                     }
 
 
@@ -219,6 +228,7 @@ exports.api = {
 
 
                     success(false, 'YES');
+                    return;
 
 
 

@@ -101,18 +101,21 @@ function saverUser(user, res) {
 
 };
 function afterUserSave(user, res) {
-
-    if (user.created_by === "ADMIN") {
-
+  
+    if (user.uploaded_by === "SELF" || 
+     user.uploaded_by === "PARENTS" || 
+     user.uploaded_by === "SIBLINGS" || 
+     user.uploaded_by === "OTHER") {
+        createToken(res, user);
+        createOtp(user, "PHONE_NUMBER_VR");
+        // otpConfig.sendOtpNumber("917330734341");
+        
+    }
+    else {
         res.json({
             success: true,
             user: user
         });
-    }
-    else {
-        createToken(res, user);
-        createOtp(user, "PHONE_NUMBER_VR");
-        // otpConfig.sendOtpNumber("917330734341");
     }
 
 };

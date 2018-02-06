@@ -18,12 +18,24 @@ module.exports = angular.module('app.ui.registr.components',[])
   return {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(val) {
-        return val !== null ? parseInt(val, 10) : null;
-      });
-      ngModel.$formatters.push(function(val) {
-        return val !== null ? '' + val : null;
-      });
+
+      if(attrs.convertToNumber==="height"){
+        ngModel.$parsers.push(function(val) {
+          console.log(parseFloat(val))
+          return val !== null ? parseFloat(val) : null;
+        });
+        ngModel.$formatters.push(function(val) {
+          return val !== null ? '' + parseFloat(val) : null;
+        });
+      }else{
+        ngModel.$parsers.push(function(val) {
+          return val !== null ? parseInt(val, 10) : null;
+        });
+        ngModel.$formatters.push(function(val) {
+          return val !== null ? '' + val : null;
+        });
+      }
+     
     }
   };
 });

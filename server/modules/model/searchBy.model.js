@@ -21,7 +21,7 @@ var searchbySchema = new Schema({
     body_type: Array,
     horoscope: Array,
     showprofile: Array,
-    postedby: Array,
+    created_by: Array,
     dontshow: Array,
     created_on: Date,
     updated_on: Date

@@ -46,7 +46,8 @@ return {
     "GET_NOTIFICATIONS":"/get_notifications",
     "UPDATE_NOTIFICATIONS":"/update_notifications",
     "SET_SEARCH":"/set_search",
-    "GET_SEARCH":"/get_search"
+    "GET_SEARCH":"/get_search",
+    "GET_SEARCH_RESULT":"/get_search_result"
       };
     
 

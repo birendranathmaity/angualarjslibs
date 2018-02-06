@@ -8,8 +8,11 @@ module.exports =function($http,ServiceUrls){
          },
          getSearch: function(data,success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SEARCH,data).success(success).error(error);
+        },
+        getSearchResult: function(data,success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SEARCH_RESULT,data).success(success).error(error);
         }
-         
+        
          
      };
  };

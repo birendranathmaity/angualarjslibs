@@ -60,17 +60,16 @@
             </div>
       </div>
       <div class="row marg-b15">
-            <div ng-init="isAdmin==='true'? form.created_by='ADMIN' : form.created_by='SELF'"></div>
+            <div ng-init="form.created_by='SELF'"></div>
             <div class="col-md-6  p-l-10">
                   <label for="email">Profile Created By </label>
             </div>
             <div class="col-md-6 p-l-0 p-r-7 ">
                   <select class="select-btn minimal form-control" name="created_by" ng-model="form.created_by"> 
-            <option value="ADMIN" ng-if="isAdmin"> Admin</option>
-            <option value="SELF" > Self</option>
-            <option value="FATHER" > Father</option>
-            <option value="MOTHER"> Mother</option>
-           
+            <option value="SELF" > Self </option>
+            <option value="PARENTS" > Parents </option>
+            <option value="SIBLINGS"> Siblings </option>
+            <option value="OTHER"> Other </option>
          </select>
             </div>
             <div class="requirements">

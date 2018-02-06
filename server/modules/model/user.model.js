@@ -22,7 +22,8 @@ var UserSchema   = new Schema({
     more_info_vr: Boolean,
     created_on:Date,
     created_by:String,
-    updated_on:Date
+    updated_on:Date,
+    uploaded_by:String
 
 
 });

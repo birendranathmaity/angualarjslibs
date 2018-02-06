@@ -123,6 +123,12 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                     controller.age = form.age;
                     form.dob = new Date(form.year + "-" + form.month + "-" + form.day);
                     form.created_on = new Date();
+                    if (controller.isAdmin) {
+                     form.uploaded_by=$rootScope.login_user_id;
+                    }
+                    else{
+                        form.uploaded_by=form.created_by;
+                    }
                     loginservice.signup(form, function (res) {
 
                         if (res.success) {

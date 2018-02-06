@@ -25,6 +25,7 @@ module.exports = function(app,express,process){
     
     app.post(serviceConfig.SET_SEARCH,search.saveSearch);
     app.post(serviceConfig.GET_SEARCH,search.getSearch);
+    app.post(serviceConfig.GET_SEARCH_RESULT,search.getSearchResult);
 //user notification///
 app.post(serviceConfig.GET_NOTIFICATIONS,useractions.getNotifications);
 app.post(serviceConfig.UPDATE_NOTIFICATIONS,useractions.readNotifications);

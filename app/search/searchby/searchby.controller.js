@@ -1,11 +1,11 @@
 /* @ngInject */
-module.exports = function searchByController($rootScope, countryService, loginservice,searchService) {
+module.exports = function searchByController($rootScope, countryService, loginservice, searchService) {
     var controller = this;
     controller.user = $rootScope.current_user_de_all;
     console.log(controller.user);
     console.log(searchService)
     controller.serachModel = {
-        user_id:$rootScope.login_user_id,
+        user_id: $rootScope.login_user_id,
         age: {
 
             from: 0,
@@ -32,7 +32,7 @@ module.exports = function searchByController($rootScope, countryService, loginse
         body_type: [],
         horoscope: [],
         showprofile: ["ANY_1"],
-        postedby: ["ANY_2"],
+        created_by: ["ANY_2"],
         dontshow: ["ANY_3"]
     };
     controller.showProfile = [
@@ -40,7 +40,7 @@ module.exports = function searchByController($rootScope, countryService, loginse
             id: "0",
             value: "ANY_1",
             name: "Doesn't matter"
-           
+
         },
         {
 
@@ -64,7 +64,7 @@ module.exports = function searchByController($rootScope, countryService, loginse
             id: "1",
             value: "ANY_2",
             name: "Doesn't matter"
-           
+
         },
         {
 
@@ -80,7 +80,11 @@ module.exports = function searchByController($rootScope, countryService, loginse
 
             value: "SIBLINGS",
             name: "Siblings"
-        }
+        },
+        {
+            value: "OTHER",
+            name: "Other"
+         }
 
     ];
     controller.dontShow = [
@@ -88,7 +92,7 @@ module.exports = function searchByController($rootScope, countryService, loginse
             id: "1",
             value: "ANY_3",
             name: "Doesn't matter"
-           
+
         },
         {
 
@@ -170,20 +174,20 @@ module.exports = function searchByController($rootScope, countryService, loginse
         controller.serachModel.maritialstatus = [basic.maritialstatus];
         controller.serachModel.mothertounge = [basic.mothertounge];
         controller.serachModel.religion = [basic.religion];
-        setRelegionAndCaste(basic.religion, basic.caste,true);
+        setRelegionAndCaste(basic.religion, basic.caste, true);
 
 
     }
-    function setRelegionAndCaste(rel, caste,type) {
+    function setRelegionAndCaste(rel, caste, type) {
         angular.forEach(controller.formdata.religions, function (item, value) {
 
             if (item.value === rel) {
 
                 controller.loadCaste(item);
-                if(type){
+                if (type) {
                     setCasteValue(caste, item);
                 }
-               
+
             }
 
         });
@@ -311,11 +315,11 @@ module.exports = function searchByController($rootScope, countryService, loginse
         }
 
         if (any === "ANY_2") {
-            controller.serachModel.postedby = [];
+            controller.serachModel.created_by = [];
             angular.forEach(data, function (item, value) {
 
                 if (item.selected) {
-                    controller.serachModel.postedby.push(item.value);
+                    controller.serachModel.created_by.push(item.value);
 
                 }
 
@@ -487,15 +491,18 @@ module.exports = function searchByController($rootScope, countryService, loginse
     };
 
     function loadST(target) {
-
+        controller.DisabledState = false;
+        controller.DisabledCity = true;
         if (controller.serachModel.country.length === 0) {
             controller.DisabledState = true;
             controller.serachModel.state = [];
             controller.serachModel.city = [];
             return;
         }
-        controller.DisabledState = false;
-        controller.DisabledCity = true;
+
+        if (controller.serachModel.city.length === 0) {
+            controller.DisabledCity = true;
+        }
         var code = target.id;
         var cname = target.name;
         countryService.getStates(code, function (res) {
@@ -666,98 +673,194 @@ module.exports = function searchByController($rootScope, countryService, loginse
         }
 
     };
-  function setMore(){
-   
-    angular.forEach( controller.serachModel.postedby, function (item, value) {
-        angular.forEach( controller.PostedBy, function (itm, value) {
+    function setMore() {
+        angular.forEach(controller.PostedBy, function (itm, value) {
 
-            if (itm.value===item) {
-                itm.selected=true
-    
-            }
+            itm.selected = false;
+        });
+        angular.forEach(controller.serachModel.created_by, function (item, value) {
+            angular.forEach(controller.PostedBy, function (itm, value) {
+
+                if (itm.value === item) {
+                    itm.selected = true;
+
+                }
+                else {
+                    //  itm.selected=false;
+                }
+
+            });
+
 
         });
-        
+        angular.forEach(controller.showProfile, function (itm, value) {
 
-    });
-    angular.forEach( controller.serachModel.showprofile, function (item, value) {
-        angular.forEach( controller.showProfile, function (itm, value) {
+            itm.selected = false;
+        });
+        angular.forEach(controller.serachModel.showprofile, function (item, value) {
+            angular.forEach(controller.showProfile, function (itm, value) {
 
-            if (itm.value===item) {
-                itm.selected=true
-    
-            }
+                if (itm.value === item) {
+                    itm.selected = true
+
+                } else {
+                    //  itm.selected=false;
+                }
+
+            });
+
 
         });
-        
+        angular.forEach(controller.dontShow, function (itm, value) {
 
-    });
-    angular.forEach( controller.serachModel.dontshow, function (item, value) {
-        angular.forEach( controller.dontShow, function (itm, value) {
+            itm.selected = false;
+        });
+        angular.forEach(controller.serachModel.dontshow, function (item, value) {
+            angular.forEach(controller.dontShow, function (itm, value) {
 
-            if (itm.value===item) {
-                itm.selected=true
-    
-            }
+                if (itm.value === item) {
+                    itm.selected = true
+
+                }
+                else {
+                    //  itm.selected=false;
+                }
+            });
+
 
         });
-        
-
-    });
-  }
-  function loadlocationAndCaste(){
-    angular.forEach( controller.serachModel.religion, function (itm, value) {
-        
-        setRelegionAndCaste(itm,"",false);
-        
-                });
-                angular.forEach( controller.serachModel.country, function (cn, value) {
-                    
-                  
-                    angular.forEach( controller.countrys, function (item, value) {
-                        
-                      
-                        if(item.id===cn){
-                            var coun = {
-                                id: item.id,
-                                name: item.name,
-                                sortname: item.sortname
-                            };
-                            loadST(coun);
-                        }
-                        
-                                });
-                    
-                            });
-                            angular.forEach( controller.serachModel.state, function (state, value) {
-
-                                loadCT(state);
-
-                            });
+    }
+    function loadlocationAndCaste() {
+        angular.forEach(controller.serachModel.religion, function (itm, value) {
+            if(itm==="ANY"){
                
+                controller.casteDisabled = true;
+            }
+else{
+    setRelegionAndCaste(itm, "", false);
+}
+           
 
-  }
-    controller.search=function(){
+        });
+        angular.forEach(controller.serachModel.country, function (cn, value) {
+            if(cn==="ANY"){
+            
+                controller.DisabledState = true;
+                controller.DisabledCity = true;
+              
+            }
+
+               else{
+            angular.forEach(controller.countrys, function (item, value) {
+
+
+                if (item.id === cn) {
+                    var coun = {
+                        id: item.id,
+                        name: item.name,
+                        sortname: item.sortname
+                    };
+                    loadST(coun);
+                }
+
+            });
+        }
+        });
+        controller.DisabledState = false;
+        angular.forEach(controller.serachModel.state, function (state, value) {
+            if(state.id==="ANY"){
+                
+                    controller.DisabledState = true;
+                    controller.DisabledCity = true;
+                  
+                }else{
+                    loadCT(state);
+                }
+           
+
+        });
+
+
+    }
+  
+    controller.search = function () {
+       searchService.getSearchResult(controller.serachModel,function(result){
+
+            console.log(result)
+        },function(error){});
+
+        //         angular.forEach(controller.serachModel,function(value,key){
+
+        //             if(key==="country"){
+
+
+        //             }
+        //             console.log(key)
+        // console.log(value);
+
+        //         });
         searchService.saveSearch(controller.serachModel,function(result){
 
             console.log(result)
         },function(error){});
 
     }
-    searchService.getSearch({user_id:$rootScope.login_user_id},function(result){
-        
-                   if(result){
 
-                    controller.serachModel=result;
-                    setMore();
-                    loadlocationAndCaste();
-                   }
-                   else{
-                    setUserAgeHeightInformation();
-                    setUserBasciInfo();
-                    setOtherInfo();
-                    setLocation();
-                    setMore();
-                   }
-                },function(error){});
+    controller.reset = function () {
+        controller.serachModel = {
+            user_id: $rootScope.login_user_id,
+            age: {
+
+                from: 18,
+                to: 60
+            },
+            height: {
+
+                from: 4,
+                to: 6.11
+            },
+            maritialstatus: ["ANY"],
+            mothertounge: ["ANY"],
+            religion: ["ANY"],
+            caste: empty,
+            country: ["ANY"],
+            state: empty2,
+            city: empty2,
+            physical_status: ["ANY"],
+            complexion: ["ANY"],
+            occupation: ["ANY"],
+            aincome: ["ANY"],
+            expectation: ["ANY"],
+            high_edu: ["ANY"],
+            body_type: ["ANY"],
+            horoscope: ["ANY"],
+            showprofile: ["ANY_1"],
+            created_by: ["ANY_2"],
+            dontshow: ["ANY_3"]
+        };
+        setMore();
+        controller.DisabledState = true;
+        controller.DisabledCity = true;
+        controller.casteDisabled = true;
+    };
+    searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
+
+        if (result) {
+
+            controller.serachModel = result;
+            setMore();
+            loadlocationAndCaste();
+
+
+
+        }
+        else {
+            setUserAgeHeightInformation();
+            setUserBasciInfo();
+            setOtherInfo();
+            setLocation();
+            setMore();
+
+        }
+    }, function (error) { });
 };

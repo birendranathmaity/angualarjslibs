@@ -12,7 +12,7 @@
                                     <div class="row ">
                                         <div class="col-md-12">
                                             <h4 class="semi-bold clearfix">Basic Details</h4>
-                                            {{$ctrl.serachModel}}
+                                            <!-- {{$ctrl.serachModel}} -->
                                             <div class="hr-line"> </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -20,12 +20,12 @@
                                                         <li class="list-group-item">
                                                             <div class="bmd-list-group-col">
                                                                 <p class="list-group-item-left pull-left">Age</p>
-                                                                <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.age.from"> 
+                                                                <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.age.from" convert-to-number> 
                                                                  
-                                                                    <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" ng-value="(18+$index)">{{18+$index}} Yrs</option>
+                                                                    <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(18+$index)}}" >{{18+$index}} Yrs</option>
                                                                 </select>
-                                                                     <span class="select-half"> To </span> <select class="minimal sear-drop"  ng-model="$ctrl.serachModel.age.to"> 
-                                                                            <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" ng-value="(21+$index)">{{21+$index}} Yrs</option>
+                                                                     <span class="select-half"> To </span> <select class="minimal sear-drop"  ng-model="$ctrl.serachModel.age.to" convert-to-number> 
+                                                                            <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(21+$index)}}">{{21+$index}} Yrs</option>
                                                                         </select> </div>
                                                                 <p class="clearfix"></p>
                                                                 <p class="list-group-item-left pull-left"> Marital Status </p>
@@ -184,11 +184,11 @@
                                                         <li class="list-group-item">
                                                             <div class="bmd-list-group-col">
                                                                 <p class="list-group-item-left pull-left">Height </p>
-                                                                <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.from"> 
-                                                                        <option ng-repeat="h in $ctrl.formdata.height" ng-value="h">{{h.toFixed(2) | height}}</option>
+                                                                <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.from" convert-to-number="height"> 
+                                                                        <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
                                                                      </select>
-                                                                     <span class="select-half"> To </span> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.to">
-                                                                            <option ng-repeat="h in $ctrl.formdata.height" ng-value="h">{{h.toFixed(2) | height}}</option>
+                                                                     <span class="select-half"> To </span> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.to" convert-to-number="height">
+                                                                            <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
                                                                          </select> </div>
                                                                 <p class="clearfix"> </p>
                                                                 <p class="list-group-item-left pull-left">Physical Status</p>
@@ -319,7 +319,7 @@
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="col-xs-12 clearfix"> <button type="button" ng-click="$ctrl.search()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4"> <i class="fa fa-search"></i>&nbsp;search</button>
-                                            <div class="m-t-30"> <a href="#" class="reset-se" data-original-title="" title=""> Reset</a> </div>
+                                            <div class="m-t-30"> <a class="hand" ng-click="$ctrl.reset()" class="reset-se" data-original-title="" title=""> Reset</a> </div>
                                         </div>
                                     </div>
                                 </div>
