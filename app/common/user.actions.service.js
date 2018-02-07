@@ -23,7 +23,7 @@ module.exports = function ($http,toastr, $state, ServiceUrls) {
         openReq:function(noti){
             if(noti.request_type==="MESSAGE"){
                 if(noti.whosent==="SENT"){
-                    $state.go('root.message_request', { 'requestType': "MESSAGE",'viewType':'SENT'})
+                    $state.go('root.message_request', { 'requestType': "MESSAGE",'viewType':'SENT'});
                 }
                 else if(noti.request_action){
                     $state.go('root.message_request', { 'requestType': "MESSAGE",'viewType':noti.request_action});

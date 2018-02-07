@@ -66,10 +66,8 @@
             </div>
             <div class="col-md-6 p-l-0 p-r-7 ">
                   <select class="select-btn minimal form-control" name="created_by" ng-model="form.created_by"> 
-            <option value="SELF" > Self </option>
-            <option value="PARENTS" > Parents </option>
-            <option value="SIBLINGS"> Siblings </option>
-            <option value="OTHER"> Other </option>
+                        <option ng-repeat="crt in ctrl.formdata.created_by" value="{{crt.value}}">{{crt.name}}</option>
+                       
          </select>
             </div>
             <div class="requirements">

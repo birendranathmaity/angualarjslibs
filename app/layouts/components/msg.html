@@ -10,7 +10,7 @@
 <div ng-scrollbars ng-scrollbars-config="hdnm.configScollBar" class="animated flip">
   <div class="notification-messages info" ng-repeat="msg in hdnm.messages.docs"  ng-click="hdnm.viewMessage({type:'INBOX',msg:msg.message,user_id:msg.user.user_id},msg._id)">
 
-    <user-img user="msg.user" is-noti="true"></user-img>
+    <user-img user="msg.user" is-noti="NOID"></user-img>
    
     <div class="message-wrapper">
       <div class="heading">

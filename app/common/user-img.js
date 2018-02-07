@@ -5,7 +5,7 @@ module.exports = function () {
         templateUrl:'./app/common/user-img.html',
         controllerAs:'$ctrl',
         scope:{
-            isNoti:"=",
+            isNoti:"@",
             user:"="
 
         },
@@ -16,9 +16,18 @@ module.exports = function () {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
+                controller.user=$scope.user;
                 controller.isNoti=$scope.isNoti;
-                controller.pic=$scope.user.pic;
-               controller.user=$scope.user;
+
+                if(controller.isNoti==="BIGPHOTO"){
+                    controller.pic=controller.user.photo;
+                    
+                }else{
+                    controller.pic=controller.user.pic;
+                }
+               
+             
+
 
             }]
         }

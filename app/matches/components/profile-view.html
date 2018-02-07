@@ -10,19 +10,19 @@
           <div class="pull-right">
             <div class="add-like">
                   <ul class="">
-               <li> 
+               <li class="ng-hide"> 
   
                 <a href="#" class="tip" data-toggle="tooltip" title="Add To Compare"> <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> </a> </li>
-               <li> 
+               <li class="ng-hide"> 
   
                 <a href="#" class="tip" data-toggle="tooltip" title="Wish List"> <i class="fa fa-heart fa-lg" aria-hidden="true"></i> </a> </li>
                
                 <li> 
   
-                <a href="#" class="tip" data-toggle="tooltip" title="Viewed Profile"> <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i> </a> </li>
+                <a href="#" class="tip" data-toggle="tooltip" title="Viewed Profile"> <i ng-class="{'fa fa-eye-slash fa-lg':!$ctrl.user.is_viewed_profile,'fa fa-eye fa-lg':$ctrl.user.is_viewed_profile}" aria-hidden="true"></i> </a> </li>
                  <li> 
   
-                <a href="#" class="tip" data-toggle="tooltip" title="Close Profile"> <i class="fa fa-times fa-lg" aria-hidden="true"></i> </a> </li>
+                <a href="#" class="tip" data-toggle="tooltip" title="Close Profile"> <i style="color:#0abd20" class="fa fa-circle fa-lg" aria-hidden="true"></i> </a> </li>
 
             
               </ul>
@@ -34,12 +34,11 @@
             <div>
               <div class="col-lg-4 col-md-4 col-md-4 col-md-4  no-padding full-p" onclick="myprofile()">
                 
-                  <div class="user-profile-pic  match-p-h">  <img water-mark="$ctrl.user.pic"  alt="" >
-                 </div>
+                 <user-img is-noti="BIGPHOTO" user="$ctrl.user"></user-img>
                 
                  <div class="req-pic" ng-if="!$ctrl.user.pic">  
                    <p class="req-text"> 
-                    <a href="#">  Request Photo </a>
+                   <photo-button user="$ctrl.user"></photo-button>
                   </p> 
                  </div>
               </div>
@@ -55,23 +54,23 @@
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Height</p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.height}} inch</p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.height | height}}</p>
                       
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Marital Status</p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.maritualstatus}}</p>
+                        <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | filterBy: ['value']:$ctrl.user.maritialstatus">{{mt.name}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Mother Tongue</p>
-                        <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.mother_tongues | filterBy: ['value']:$ctrl.user.mothertounge ">{{edu.name}}</p>
+                        <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.mother_tongues | filterBy: ['value']:$ctrl.user.mothertounge">{{edu.name}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Religion </p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.religion}}</p>
+                        <p class="list-group-item-right pull-right" ng-repeat="rl in $ctrl.formdata.religions | filterBy: ['value']:$ctrl.user.religion">{{rl.name}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Caste </p>
-                       
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.caste}}</p>
+                       <p ng-init="$ctrl.loadCaste($ctrl.user.religion)"></p>
+                        <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | filterBy: ['value']:$ctrl.user.caste">{{cs.name}}</p>
                         <p class="clearfix"></p>
                        
                       </div>
@@ -89,19 +88,19 @@
                      
                         <p class="list-group-item-left pull-left">Country Living </p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.country}}</p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.country}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">State Living</p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.state}}</p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.state}}</p>
                         <p class="clearfix"></p>
                         
                         <p class="list-group-item-left pull-left">City Living In</p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.city}}</p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Physical Status </p>
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.physical_status}}</p>
+                        <p class="list-group-item-right pull-right" ng-repeat="ph in $ctrl.formdata.PhysicalStatus | filterBy: ['value']:$ctrl.user.physical_status">{{ph.name}}</p>
                       </div>
                   </li>
                 </ul>
@@ -113,21 +112,15 @@
             </div>
 
             <div class="row"> 
-              <div class=" col-lg-5 p-r-0"><a class="btn match-btn" href="#"> 
-                <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
-Send Message </a>
-              </div>
-              <div class="col-lg-5 p-r-0"><a class="btn match-contact" href="#"> 
-               <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
-Contact Details</a>
-              </div>
+              <message-button user="$ctrl.user"></message-button>
+             <contact-button user="$ctrl.user"></contact-button>
             </div>
 
             <div class="req-pic">
               <div class="row">
-                <div class="col-lg-4 no-padding"> <img src="assets/img/verifiednumber.png"></div>
-                <div class="col-lg-4 no-padding"><img src="assets/img/verifiedmessages.png"></div>
-                <div class="col-lg-4 no-padding" > <p class="posted-m"> Posted By :  <span> {{$ctrl.user.created_by}} </span> </p></div>
+                <div class="col-lg-4 no-padding"> </div>
+                <div class="col-lg-4 no-padding "><like-button user="$ctrl.user"></like-button></div>
+                <div class="col-lg-4 no-padding" > <p class="posted-m"> Posted By :  <span ng-repeat="crt in $ctrl.formdata.created_by | filterBy: ['value']:$ctrl.user.created_by"> {{crt.name}} </span> </p></div>
               </div>  
             </div>
           </div>

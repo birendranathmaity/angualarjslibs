@@ -81,7 +81,7 @@
                   </label>
                 </div>
 
-                <user-img user="msg.user" is-noti="false"></user-img>
+                <user-img user="msg.user" is-noti="WITHID"></user-img>
               </div>
               <div class="col-lg-10 hand" ng-click="$ctrl.viewMessage({type:$ctrl.viewType,msg:msg.message,user_id:msg.user.user_id},msg._id);$ctrl.viewType==='INBOX'? msg.message_status='READ':''">
                 <p class="pull-right"> Sent On :  <date-parse date="msg.date"></date-parse>

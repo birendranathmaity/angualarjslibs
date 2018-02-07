@@ -1,0 +1,713 @@
+
+                                <!--- messages accordian Start-->
+
+                                <div class="grid simple ">
+                                        <div class="grid-title no-border">
+                                          <h4 class="bold">Search Basic Details</h4>
+                                        </div>
+                                        <div class="grid-body no-border pro-bord">  
+                                          
+                           
+                              
+                                
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse3">
+                                                   Age
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse3" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                 
+                                                     
+                            
+                                                 
+                                                      
+                                                            <div class="form-group searc-p" >
+                                                                     <div class="clearfix "></div>
+                                                      <div class="controls">
+                                                            <select class="minimal sear-drop" ng-model="$ctrl.serachModel.age.from" convert-to-number> 
+                                                                    
+                                                                       <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(18+$index)}}" >{{18+$index}} Yrs</option>
+                                                                   </select>
+                                                         <span class="select-half"> To </span>
+                                                      
+                                                        <select class="sear-drop minimal"  ng-model="$ctrl.serachModel.age.to" convert-to-number> 
+                                                                <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(21+$index)}}">{{21+$index}} Yrs</option>
+                                                            </select>
+                                                      </div>
+                                                    </div>
+                                                        
+                            
+                                                 
+                            
+                                          
+                                  
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse4">
+                                                   Height
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse4" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                 
+                                                     
+                            
+                                                 
+                                                      
+                                                            <div class="form-group searc-p" >
+                                                                     <div class="clearfix "></div>
+                                                      <div class="controls">
+                                                            <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.from" convert-to-number="height"> 
+                                                                    <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
+                                                                 </select>
+                                                         <span class="select-half"> To </span>
+                                                         <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.to" convert-to-number="height">
+                                                                <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
+                                                             </select>
+                                                      </div>
+                                                    </div>
+                                                        
+                            
+                                                 
+                            
+                                          
+                                  
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapsetwo">
+                                                Maritial Status
+                                              </a>
+                                            </h4>
+                                          </div>
+                                          <div id="collapsetwo" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                             
+                                                <div class="input-group">
+                                                  
+                                              </div>
+                                                 <div class="row-fluid contact-list">
+                      
+                                                      <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.maritialstatus" on-select="$ctrl.onSelectCallback($item, $model,'maritialstatus')" theme="" style="width: 220px;">
+                                                              <ui-select-match placeholder="Select maritial status...">{{$item.name}}</ui-select-match>
+                                                              <ui-select-choices repeat="ms.value as ms in $ctrl.formdata.MaritialStatus | propsFilter:{name: $select.search}">
+                                                                  <div ng-bind-html="ms.name | highlight: $select.search"></div>
+                                                              </ui-select-choices>
+                                                          </ui-select>
+                      
+                                        </div>
+                                    
+                                     
+                                    
+                                              </div>
+                                            </div>
+                      
+                      
+                                            
+                                          </div>
+                      
+                          </div>
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse5">
+                                                      Country Living In
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse5" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                        
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                            
+                                                            <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.country" on-remove="$ctrl.removedCountry($item, $model,'country')" close-on-select="false" on-select="$ctrl.onSelectCallbackCounry($item, $model,'country')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose country...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices repeat="cn.id as cn in $ctrl.countrys | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="cn.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse6">
+                                                      State Living In
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse6" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                       
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                            
+                                                            <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.state" on-remove="$ctrl.removedCountry($item, $model,'state')" close-on-select="false" ng-disabled="$ctrl.DisabledState" on-select="$ctrl.onSelectCallbackState($item, $model,'state')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose state...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices group-by="'cname'" repeat="st in $ctrl.states | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="st.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse7">
+                                                   City Living In
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse7" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                       
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                            
+                                                            <ui-select multiple append-to-body="true" ng-model="$ctrl.serachModel.city" ng-disabled="$ctrl.DisabledCity" close-on-select="false" on-select="$ctrl.onSelectCallbackCity($item, $model,'city')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose city...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices group-by="'sname'" repeat="ct in $ctrl.cities | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="ct.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse8">
+                                                   Mother Tounge
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse8" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                       
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                                                            <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.mothertounge" on-select="$ctrl.onSelectCallback($item, $model,'mothertounge')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Select mother tounge...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices repeat="mt.value as mt in $ctrl.formdata.mother_tongues | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="mt.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                                 <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse9">
+                                                  Religion
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse9" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                      
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                                                            <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.religion" on-remove="$ctrl.removedRL($item, $model,'religion')" close-on-select="false" on-select="$ctrl.onSelectCallbackRelgion($item, $model,'religion')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose religion...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices repeat="rl.value as rl in $ctrl.formdata.religions | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="rl.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                             <div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                                                   Caste
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse11" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                       
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                                                            <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.caste" close-on-select="false" ng-disabled="$ctrl.casteDisabled" on-select="$ctrl.onSelectCallbackCaste($item, $model,'caste')" theme="bootstrap" style="width: 220px;">
+                                                                    <ui-select-match placeholder="Choose Caste...">{{$item.name}}</ui-select-match>
+                                                                    <ui-select-choices group-by="'rname'" repeat="cs in $ctrl.casteData | propsFilter:{name: $select.search}">
+                                                                        <div ng-bind-html="cs.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                            
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                                                    Heighest Education
+                                              </a>
+                                            </h4>
+                                          </div>
+                                          <div id="collapse11" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                             
+                                                <div class="input-group">
+                                                 
+                                              </div>
+                                                 <div class="row-fluid contact-list">
+                                                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.high_edu" on-select="$ctrl.onSelectCallback($item, $model,'high_edu')" theme="bootstrap" style="width: 220px;">
+                                                                <ui-select-match placeholder="Select education...">{{$item.name}}</ui-select-match>
+                                                                <ui-select-choices repeat="ed.value as ed in $ctrl.formdata.educations | propsFilter:{name: $select.search}">
+                                                                    <div ng-bind-html="ed.name | highlight: $select.search"></div>
+                                                                </ui-select-choices>
+                                                            </ui-select>
+                      
+                                        </div>
+                                    
+                                     
+                                    
+                                              </div>
+                                            </div>
+                      
+                      
+                                            
+                                          </div>
+                      
+                          </div>
+                          <div class="panel-group" id="accordion" data-toggle="">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                                            Occupation
+                                      </a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse11" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                     
+                                        <div class="input-group">
+                                         
+                                      </div>
+                                         <div class="row-fluid contact-list">
+                                                <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.occupation" on-select="$ctrl.onSelectCallback($item, $model,'occupation')" theme="bootstrap" style="width: 220px;">
+                                                        <ui-select-match placeholder="Select occupation...">{{$item.name}}</ui-select-match>
+                                                        <ui-select-choices repeat="oc.value as oc in $ctrl.formdata.occupations | propsFilter:{name: $select.search}">
+                                                            <div ng-bind-html="oc.name | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+              
+                                </div>
+                            
+                             
+                            
+                                      </div>
+                                    </div>
+              
+              
+                                    
+                                  </div>
+              
+                  </div>
+                  <div class="panel-group" id="accordion" data-toggle="">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                                    Annual Income
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse11" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                             
+                                <div class="input-group">
+                                 
+                              </div>
+                                 <div class="row-fluid contact-list">
+                                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.aincome" on-select="$ctrl.onSelectCallback($item, $model,'aincome')" theme="bootstrap" style="width: 220px;">
+                                                <ui-select-match placeholder="Select anal income...">{{$item.name}}</ui-select-match>
+                                                <ui-select-choices repeat="ai.value as ai in $ctrl.formdata.aincome | propsFilter:{name: $select.search}">
+                                                    <div ng-bind-html="ai.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+      
+                        </div>
+                    
+                     
+                    
+                              </div>
+                            </div>
+      
+      
+                            
+                          </div>
+      
+          </div>
+          <div class="panel-group" id="accordion" data-toggle="">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                            Physical Status
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse11" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                     
+                        <div class="input-group">
+                         
+                      </div>
+                         <div class="row-fluid contact-list">
+                                <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.physical_status" on-select="$ctrl.onSelectCallback($item, $model,'physical_status')" theme="bootstrap" style="width: 220px;">
+                                        <ui-select-match placeholder="Select Physical Status...">{{$item.name}}</ui-select-match>
+                                        <ui-select-choices repeat="ph.value as ph in $ctrl.formdata.PhysicalStatus | propsFilter:{name: $select.search}">
+                                            <div ng-bind-html="ph.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                </div>
+            
+             
+            
+                      </div>
+                    </div>
+
+
+                    
+                  </div>
+
+  </div>
+  <div class="panel-group" id="accordion" data-toggle="">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                    Expectation
+              </a>
+            </h4>
+          </div>
+          <div id="collapse11" class="panel-collapse collapse in">
+            <div class="panel-body">
+             
+                <div class="input-group">
+                 
+              </div>
+                 <div class="row-fluid contact-list">
+                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.expectation" on-select="$ctrl.onSelectCallback($item, $model,'expectation')" theme="bootstrap" style="width: 220px;">
+                                <ui-select-match placeholder="Select expectation...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="itm.value as itm in $ctrl.formdata.Expectation | propsFilter:{name: $select.search}">
+                                    <div ng-bind-html="itm.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+
+        </div>
+    
+     
+    
+              </div>
+            </div>
+
+
+            
+          </div>
+
+</div>
+<div class="panel-group" id="accordion" data-toggle="">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                    Complection
+              </a>
+            </h4>
+          </div>
+          <div id="collapse11" class="panel-collapse collapse in">
+            <div class="panel-body">
+             
+                <div class="input-group">
+                 
+              </div>
+                 <div class="row-fluid contact-list">
+                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.complexion" on-select="$ctrl.onSelectCallback($item, $model,'complexion')" theme="bootstrap" style="width: 220px;">
+                                <ui-select-match placeholder="Select complexion...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="itm.value as itm in $ctrl.formdata.complexion | propsFilter:{name: $select.search}">
+                                    <div ng-bind-html="itm.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+        </div>
+    
+     
+    
+              </div>
+            </div>
+
+
+            
+          </div>
+
+</div>
+<div class="panel-group" id="accordion" data-toggle="">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                    Body Type
+              </a>
+            </h4>
+          </div>
+          <div id="collapse11" class="panel-collapse collapse in">
+            <div class="panel-body">
+             
+                <div class="input-group">
+                 
+              </div>
+                 <div class="row-fluid contact-list">
+                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.body_type" on-select="$ctrl.onSelectCallback($item, $model,'body_type')" theme="bootstrap" style="width: 220px;">
+                                <ui-select-match placeholder="Select body type...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="itm.value as itm in $ctrl.formdata.BodyType | propsFilter:{name: $select.search}">
+                                    <div ng-bind-html="itm.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+        </div>
+    
+     
+    
+              </div>
+            </div>
+
+
+            
+          </div>
+
+</div>
+<div class="panel-group" id="accordion" data-toggle="">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse11">
+                    Horoscope Details
+              </a>
+            </h4>
+          </div>
+          <div id="collapse11" class="panel-collapse collapse in">
+            <div class="panel-body">
+             
+                <div class="input-group">
+                 
+              </div>
+                 <div class="row-fluid contact-list">
+                        <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.horoscope" on-select="$ctrl.onSelectCallback($item, $model,'horoscope')" theme="bootstrap" style="width: 220px;">
+                                <ui-select-match placeholder="Select horoscope...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="itm.value as itm in $ctrl.formdata.Horoscope | propsFilter:{name: $select.search}">
+                                    <div ng-bind-html="itm.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+        </div>
+    
+     
+    
+              </div>
+            </div>
+
+
+            
+          </div>
+
+</div>                                           
+<div class="panel-group" id="accordion" data-toggle="">
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapse13">
+                                                            Show Profile
+                                                    </a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapse13" class="panel-collapse collapse in">
+                                                  <div class="panel-body">
+                                                   
+                                                      <div class="input-group">
+                                                     
+                                                    </div>
+                                                       <div class="row-fluid contact-list">
+                                                            <div class="checkbox check-default">
+                                                                    
+                                                                     <span ng-repeat="item in $ctrl.showProfile" ng-click="$ctrl.check(item,$ctrl.showProfile,'ANY_1')">
+                                 
+                                                                             <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                                             
+                                                                     </span>
+                                                                    
+                                                                     </div>
+                            
+                                              </div>
+                                          
+                                           
+                                          
+                                                    </div>
+                                                  </div>
+                            
+                            
+                                                  
+                                                </div>
+                            
+                                </div>
+                                <div class="panel-group" id="accordion" data-toggle="">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                              <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapseOne">
+                                                Posted By
+                                              </a>
+                                            </h4>
+                                          </div>
+                                          <div id="collapseOne" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                             
+                                                <div class="input-group">
+                                                 
+                                              </div>
+                                                 <div class="row-fluid contact-list">
+                      
+                                                      <div class="checkbox check-default"> 
+                                                              <span ng-repeat="item in $ctrl.PostedBy" ng-click="$ctrl.check(item,$ctrl.PostedBy,'ANY_2')">
+                                                                      
+                                                               <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                                                                                                  
+                                                                                                                          </span> 
+                                                          </div>
+                                        </div>
+                                    
+                                     
+                                    
+                                              </div>
+                                            </div>
+                      
+                      
+                                            
+                                          </div>
+                      
+                          </div>
+                                <!---end search -->
+                                        </div> 
+                                      </div>                   
+                                    

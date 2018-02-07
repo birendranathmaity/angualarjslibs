@@ -34,6 +34,23 @@ module.exports = function searchRoutes(Router) {
                 },
                 title: 'search_history'
             }
+        },
+        {
+            name: "root.search_result",
+            config: {
+                url: '/search_result',
+                views: {
+                    '@': {
+                        templateUrl: "app/search/search_result/search_result.html",
+                        controller: "searchResultController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    fields:null
+                },
+                title: 'search_result'
+            }
         }
     ]);
 };

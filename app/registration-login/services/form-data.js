@@ -1,180 +1,201 @@
 /* @ngInject */
 module.exports = {
   monthsL: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  height:[4.00, 4.01,  4.02, 4.03, 4.04, 4.05, 4.06, 4.07, 4.08, 4.09,4.10, 4.11, 5.00, 5.01,  5.02, 5.03, 5.04, 5.05, 5.06, 5.07, 5.08, 5.09, 5.10,5.11, 6.00, 6.01,  6.02, 6.03, 6.04, 6.05, 6.06, 6.07, 6.08, 6.09,6.10, 6.11],
+  height: [4.00, 4.01, 4.02, 4.03, 4.04, 4.05, 4.06, 4.07, 4.08, 4.09, 4.10, 4.11, 5.00, 5.01, 5.02, 5.03, 5.04, 5.05, 5.06, 5.07, 5.08, 5.09, 5.10, 5.11, 6.00, 6.01, 6.02, 6.03, 6.04, 6.05, 6.06, 6.07, 6.08, 6.09, 6.10, 6.11],
+  created_by: [{
+
+    value: "SELF",
+    name: "Self"
+  },
+  {
+
+    value: "PARENTS",
+    name: "Parents"
+  },
+  {
+
+    value: "SIBLINGS",
+    name: "Siblings"
+  },
+  {
+    value: "OTHER",
+    name: "Other"
+  }
+
+  ],
   //rhindu: ["AdiDravida", "Arunthathiyar", "Boyer", "Brahmin", "Brahmin-Grukkal", "Brahmin-Iyer", "Chettiar", "Devendra Kula Vellalar", "Goundar", "Intercaste", "Maruthuvar", "Meenavar", "Mudhaliyar", "Mukkulathor", "Caste No Bar"],
- // rmuslim: ["Ansari", "Arain", "Awan", "Bohra", "Dekkani", "Dudekula", "Hanafi", "Jat", "Khoja", "Lebbai", "Malik", "Mapila", "Maraicar", "Memon", "Mugal", "Pathan", "Qureshi", "Rajput", "Rowther", "Caste no Bar"],
- // rchristian: ["Any", "Born Again", "Bretheren", "Church of South India", "Evangelist", "Jacobite", "Knanaya", "Malankara", "Marthoma", "Pentacost", "Roman catholic", "Syrian Catholic", "Caste no Bar"],
- // hobbies: ["3D printing", "amateur radio", "scrapbook", "Acting", "Baton twirling", "Board games", "Book restoration", "Cabaret", "Calligraphy", "Candle making", "Computer programming", "Coffee roasting", "Cooking", "Coloring", "Cosplaying", "Couponing", "Creative writing", "Crocheting", "Cryptography", "Dance", "Digital arts", "Drama", "Drawing", "Do it yourself", "Electronics", "Embroidery", "Fashion", "Flower arranging", "Foreign language learning", "Gaming", "tabletop games", "role-playing games", "Gambling", "Genealogy", "Glassblowing", "Gunsmithing", "Homebrewing", "Ice skating", "Jewelry making", "Jigsaw puzzles", "Juggling", "Knapping", "Knitting", "Kabaddi", "Knife making", "Lacemaking", "Lapidary", "Leather crafting", "Lego building", "Lockpicking", "Machining", "Macrame", "Metalworking", "Magic", "Model building", "Listening to music", "Origami", "Painting", "Playing musical instruments", "Pet", "Poi", "Pottery", "Puzzles", "Quilting", "Reading", "Scrapbooking", "Sculpting", "Sewing", "Singing", "Sketching", "Soapmaking", "Sports", "Stand-up comedy", "Sudoku", "Table tennis", "Taxidermy", "Video gaming", "Watching movies", "Web surfing", "Whittling", "Wood carving", "Woodworking", "Worldbuilding", "Writing", "Yoga", "Yo-yoing", "Air sports", "Archery", "Astronomy", "Backpacking", "BASE jumping", "Baseball", "Basketball", "Beekeeping", "Bird watching", "Blacksmithing", "Board sports", "Bodybuilding", "Brazilian jiu-jitsu", "Community", "Cycling", "Dowsing", "Driving", "Fishing", "Flag Football", "Flying", "Flying disc", "Foraging", "Gardening", "Geocaching", "Ghost hunting", "Graffiti", "Handball", "Hiking", "Hooping", "Horseback riding", "Hunting", "Inline skating", "Jogging", "Kayaking", "Kite flying", "Kitesurfing", "LARPing", "Letterboxing", "Metal detecting", "Motor sports", "Mountain biking", "Mountaineering", "Mushroom hunting", "Mycology", "Netball", "Nordic skating", "Orienteering", "Paintball", "Parkour", "Photography", "Polo", "Rafting", "Rappelling", "Rock climbing", "Roller skating", "Rugby", "Running", "Sailing", "Sand art", "Scouting", "Scuba diving", "Sculling", "Rowing", "Shooting", "Shopping", "Skateboarding", "Skiing", "Skimboarding", "Skydiving", "Slacklining", "Snowboarding", "Stone skipping", "Surfing", "Swimming", "Taekwondo", "Tai chi", "Urban exploration", "Vacation", "Vehicle restoration", "Water sports"],
- rhindu:[{
-	"name": "AdiDravida",
-	"value": "HIN0"
-}, {
-	"name": "Arunthathiyar",
-	"value": "HIN1"
-}, {
-	"name": "Boyer",
-	"value": "HIN2"
-}, {
-	"name": "Brahmin",
-	"value": "HIN3"
-}, {
-	"name": "Brahmin-Grukkal",
-	"value": "HIN4"
-}, {
-	"name": "Brahmin-Iyer",
-	"value": "HIN5"
-}, {
-	"name": "Chettiar",
-	"value": "HIN6"
-}, {
-	"name": "Devendra Kula Vellalar",
-	"value": "HIN7"
-}, {
-	"name": "Goundar",
-	"value": "HIN8"
-}, {
-	"name": "Intercaste",
-	"value": "HIN9"
-}, {
-	"name": "Maruthuvar",
-	"value": "HIN10"
-}, {
-	"name": "Meenavar",
-	"value": "HIN11"
-}, {
-	"name": "Mudhaliyar",
-	"value": "HIN12"
-}, {
-	"name": "Mukkulathor",
-	"value": "HIN13"
-}, {
-	"name": "Other",
-	"value": "HINOTH"
-}],
- rmuslim:[{
-	"name": "Ansari",
-	"value": "MUS0"
-}, {
-	"name": "Arain",
-	"value": "MUS1"
-}, {
-	"name": "Awan",
-	"value": "MUS2"
-}, {
-	"name": "Bohra",
-	"value": "MUS3"
-}, {
-	"name": "Dekkani",
-	"value": "MUS4"
-}, {
-	"name": "Dudekula",
-	"value": "MUS5"
-}, {
-	"name": "Hanafi",
-	"value": "MUS6"
-}, {
-	"name": "Jat",
-	"value": "MUS7"
-}, {
-	"name": "Khoja",
-	"value": "MUS8"
-}, {
-	"name": "Lebbai",
-	"value": "MUS9"
-}, {
-	"name": "Malik",
-	"value": "MUS10"
-}, {
-	"name": "Mapila",
-	"value": "MUS11"
-}, {
-	"name": "Maraicar",
-	"value": "MUS12"
-}, {
-	"name": "Memon",
-	"value": "MUS13"
-}, {
-	"name": "Mugal",
-	"value": "MUS14"
-}, {
-	"name": "Pathan",
-	"value": "MUS15"
-}, {
-	"name": "Qureshi",
-	"value": "MUS16"
-}, {
-	"name": "Rajput",
-	"value": "MUS17"
-}, {
-	"name": "Rowther",
-	"value": "MUS18"
-}, {
-	"name": "Other",
-	"value": "MUSOTH"
-}],
- rchristian:[{
-	"name": "Born Again",
-	"value": "CH0"
-}, {
-	"name": "Bretheren",
-	"value": "CH1"
-}, {
-	"name": "Church of South India",
-	"value": "CH2"
-}, {
-	"name": "Evangelist",
-	"value": "CH3"
-}, {
-	"name": "Jacobite",
-	"value": "CH4"
-}, {
-	"name": "Knanaya",
-	"value": "CH5"
-}, {
-	"name": "Malankara",
-	"value": "CH6"
-}, {
-	"name": "Marthoma",
-	"value": "CH7"
-}, {
-	"name": "Pentacost",
-	"value": "CH8"
-}, {
-	"name": "Roman catholic",
-	"value": "CH9"
-}, {
-	"name": "Syrian Catholic",
-	"value": "CH10"
-}, {
-	"name": "Other",
-	"value": "CHOTH"
-}],
- hobbies:[{
-  "name": "3D printing",
-  "value": "3DP"
-},
-{
-  "name": "Amateur radio",
-  "value": "AMR"
-},
-{
-  "name": "Scrapbook",
-  "value": "SCR"
-},
-{
-  "name": "Acting",
-  "value": "ACT"
-},
-{
-  "name": "Baton twirling",
-  "value": "BATW"
-},
-{
-  "name": "Board games",
-  "value": "BOG"
-}],
- zodiac: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
+  // rmuslim: ["Ansari", "Arain", "Awan", "Bohra", "Dekkani", "Dudekula", "Hanafi", "Jat", "Khoja", "Lebbai", "Malik", "Mapila", "Maraicar", "Memon", "Mugal", "Pathan", "Qureshi", "Rajput", "Rowther", "Caste no Bar"],
+  // rchristian: ["Any", "Born Again", "Bretheren", "Church of South India", "Evangelist", "Jacobite", "Knanaya", "Malankara", "Marthoma", "Pentacost", "Roman catholic", "Syrian Catholic", "Caste no Bar"],
+  // hobbies: ["3D printing", "amateur radio", "scrapbook", "Acting", "Baton twirling", "Board games", "Book restoration", "Cabaret", "Calligraphy", "Candle making", "Computer programming", "Coffee roasting", "Cooking", "Coloring", "Cosplaying", "Couponing", "Creative writing", "Crocheting", "Cryptography", "Dance", "Digital arts", "Drama", "Drawing", "Do it yourself", "Electronics", "Embroidery", "Fashion", "Flower arranging", "Foreign language learning", "Gaming", "tabletop games", "role-playing games", "Gambling", "Genealogy", "Glassblowing", "Gunsmithing", "Homebrewing", "Ice skating", "Jewelry making", "Jigsaw puzzles", "Juggling", "Knapping", "Knitting", "Kabaddi", "Knife making", "Lacemaking", "Lapidary", "Leather crafting", "Lego building", "Lockpicking", "Machining", "Macrame", "Metalworking", "Magic", "Model building", "Listening to music", "Origami", "Painting", "Playing musical instruments", "Pet", "Poi", "Pottery", "Puzzles", "Quilting", "Reading", "Scrapbooking", "Sculpting", "Sewing", "Singing", "Sketching", "Soapmaking", "Sports", "Stand-up comedy", "Sudoku", "Table tennis", "Taxidermy", "Video gaming", "Watching movies", "Web surfing", "Whittling", "Wood carving", "Woodworking", "Worldbuilding", "Writing", "Yoga", "Yo-yoing", "Air sports", "Archery", "Astronomy", "Backpacking", "BASE jumping", "Baseball", "Basketball", "Beekeeping", "Bird watching", "Blacksmithing", "Board sports", "Bodybuilding", "Brazilian jiu-jitsu", "Community", "Cycling", "Dowsing", "Driving", "Fishing", "Flag Football", "Flying", "Flying disc", "Foraging", "Gardening", "Geocaching", "Ghost hunting", "Graffiti", "Handball", "Hiking", "Hooping", "Horseback riding", "Hunting", "Inline skating", "Jogging", "Kayaking", "Kite flying", "Kitesurfing", "LARPing", "Letterboxing", "Metal detecting", "Motor sports", "Mountain biking", "Mountaineering", "Mushroom hunting", "Mycology", "Netball", "Nordic skating", "Orienteering", "Paintball", "Parkour", "Photography", "Polo", "Rafting", "Rappelling", "Rock climbing", "Roller skating", "Rugby", "Running", "Sailing", "Sand art", "Scouting", "Scuba diving", "Sculling", "Rowing", "Shooting", "Shopping", "Skateboarding", "Skiing", "Skimboarding", "Skydiving", "Slacklining", "Snowboarding", "Stone skipping", "Surfing", "Swimming", "Taekwondo", "Tai chi", "Urban exploration", "Vacation", "Vehicle restoration", "Water sports"],
+  rhindu: [{
+    "name": "AdiDravida",
+    "value": "HIN0"
+  }, {
+    "name": "Arunthathiyar",
+    "value": "HIN1"
+  }, {
+    "name": "Boyer",
+    "value": "HIN2"
+  }, {
+    "name": "Brahmin",
+    "value": "HIN3"
+  }, {
+    "name": "Brahmin-Grukkal",
+    "value": "HIN4"
+  }, {
+    "name": "Brahmin-Iyer",
+    "value": "HIN5"
+  }, {
+    "name": "Chettiar",
+    "value": "HIN6"
+  }, {
+    "name": "Devendra Kula Vellalar",
+    "value": "HIN7"
+  }, {
+    "name": "Goundar",
+    "value": "HIN8"
+  }, {
+    "name": "Intercaste",
+    "value": "HIN9"
+  }, {
+    "name": "Maruthuvar",
+    "value": "HIN10"
+  }, {
+    "name": "Meenavar",
+    "value": "HIN11"
+  }, {
+    "name": "Mudhaliyar",
+    "value": "HIN12"
+  }, {
+    "name": "Mukkulathor",
+    "value": "HIN13"
+  }, {
+    "name": "Other",
+    "value": "HINOTH"
+  }],
+  rmuslim: [{
+    "name": "Ansari",
+    "value": "MUS0"
+  }, {
+    "name": "Arain",
+    "value": "MUS1"
+  }, {
+    "name": "Awan",
+    "value": "MUS2"
+  }, {
+    "name": "Bohra",
+    "value": "MUS3"
+  }, {
+    "name": "Dekkani",
+    "value": "MUS4"
+  }, {
+    "name": "Dudekula",
+    "value": "MUS5"
+  }, {
+    "name": "Hanafi",
+    "value": "MUS6"
+  }, {
+    "name": "Jat",
+    "value": "MUS7"
+  }, {
+    "name": "Khoja",
+    "value": "MUS8"
+  }, {
+    "name": "Lebbai",
+    "value": "MUS9"
+  }, {
+    "name": "Malik",
+    "value": "MUS10"
+  }, {
+    "name": "Mapila",
+    "value": "MUS11"
+  }, {
+    "name": "Maraicar",
+    "value": "MUS12"
+  }, {
+    "name": "Memon",
+    "value": "MUS13"
+  }, {
+    "name": "Mugal",
+    "value": "MUS14"
+  }, {
+    "name": "Pathan",
+    "value": "MUS15"
+  }, {
+    "name": "Qureshi",
+    "value": "MUS16"
+  }, {
+    "name": "Rajput",
+    "value": "MUS17"
+  }, {
+    "name": "Rowther",
+    "value": "MUS18"
+  }, {
+    "name": "Other",
+    "value": "MUSOTH"
+  }],
+  rchristian: [{
+    "name": "Born Again",
+    "value": "CH0"
+  }, {
+    "name": "Bretheren",
+    "value": "CH1"
+  }, {
+    "name": "Church of South India",
+    "value": "CH2"
+  }, {
+    "name": "Evangelist",
+    "value": "CH3"
+  }, {
+    "name": "Jacobite",
+    "value": "CH4"
+  }, {
+    "name": "Knanaya",
+    "value": "CH5"
+  }, {
+    "name": "Malankara",
+    "value": "CH6"
+  }, {
+    "name": "Marthoma",
+    "value": "CH7"
+  }, {
+    "name": "Pentacost",
+    "value": "CH8"
+  }, {
+    "name": "Roman catholic",
+    "value": "CH9"
+  }, {
+    "name": "Syrian Catholic",
+    "value": "CH10"
+  }, {
+    "name": "Other",
+    "value": "CHOTH"
+  }],
+  hobbies: [{
+    "name": "3D printing",
+    "value": "3DP"
+  },
+  {
+    "name": "Amateur radio",
+    "value": "AMR"
+  },
+  {
+    "name": "Scrapbook",
+    "value": "SCR"
+  },
+  {
+    "name": "Acting",
+    "value": "ACT"
+  },
+  {
+    "name": "Baton twirling",
+    "value": "BATW"
+  },
+  {
+    "name": "Board games",
+    "value": "BOG"
+  }],
+  zodiac: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
   countriesWithCode: {
     'Afghanistan': '+93',
     'Albania': '+355',
@@ -826,7 +847,7 @@ module.exports = {
     "name": "Other",
     "value": "OTH"
   }],
-  MaritialStatus:[
+  MaritialStatus: [
     {
       "name": "Single",
       "value": "SINGLE"
@@ -834,18 +855,18 @@ module.exports = {
     {
       "name": "Divorsed",
       "value": "DIVORSED"
-    },{
+    }, {
       "name": "Gol Dhana Folk",
       "value": "GDF"
-    },{
+    }, {
       "name": "Widow",
       "value": "WIDOW"
-    },{
+    }, {
       "name": "Annulled",
       "value": "ANNULLED"
     }
   ],
-  complexion:[
+  complexion: [
     {
       "name": "Light",
       "value": "LIGHT"
@@ -853,15 +874,15 @@ module.exports = {
     {
       "name": "Fair",
       "value": "FAIR"
-    },{
+    }, {
       "name": "Dark",
       "value": "FAIR"
-    },{
+    }, {
       "name": "Wheatish",
       "value": "WHEATISH"
     }
   ],
-  BodyType:[
+  BodyType: [
     {
       "name": "Slim",
       "value": "SLIM"
@@ -869,33 +890,33 @@ module.exports = {
     {
       "name": "Slender",
       "value": "SLENDER"
-    },{
+    }, {
       "name": "Average",
       "value": "AVERAGE"
-    },{
+    }, {
       "name": "Smart",
       "value": "SMART"
-    },{
+    }, {
       "name": "Athletic",
       "value": "ATHLETIC"
-    },{
+    }, {
       "name": "Muscular",
       "value": "MUSCULAR"
-    },{
+    }, {
       "name": "Thick",
       "value": "THICK"
-    },{
+    }, {
       "name": "Fatty",
       "value": "FATTY"
-    },{
+    }, {
       "name": "Voluptuous",
       "value": "VOLUPTUOUS"
-    },{
+    }, {
       "name": "Large",
       "value": "LARGE"
     }
   ],
-  PhysicalStatus:[
+  PhysicalStatus: [
     {
       "name": "Normal",
       "value": "NOR"
@@ -1123,7 +1144,7 @@ module.exports = {
     "name": "Not Applicable",
     "value": "72"
   }],
-  Expectation:[
+  Expectation: [
     {
       "name": "Only Mumbai",
       "value": "ONM"
@@ -1137,7 +1158,7 @@ module.exports = {
       "value": "NCFP"
     }
   ],
-  Horoscope:[
+  Horoscope: [
     {
       "name": "Claire",
       "value": "CL"
@@ -1147,7 +1168,7 @@ module.exports = {
       "value": "LM"
     }
   ],
-  aincome:[
+  aincome: [
     {
       "name": "0-2 Lakhs",
       "value": "0T2L"

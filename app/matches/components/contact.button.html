@@ -1,0 +1,20 @@
+<div class="col-lg-5 p-r-0" ng-if="$ctrl.config.send_request"><a class="btn match-contact"> 
+    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+Request Contact</a>
+   </div>
+   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.alreadysent"><a class="btn match-contact"> 
+    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+Request sent</a>
+   </div>
+   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.decline"><a class="btn match-contact"> 
+    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+    Request declined</a>
+   </div>
+   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.view_contact && !$ctrl.isContacted"><a class="btn match-contact"> 
+    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+Contact Details</a>
+   </div>{{}}
+   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.view_contact && $ctrl.isContacted==='CONTACTED'"><a class="btn match-contact"> 
+    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+Viewed Contact</a>
+   </div>

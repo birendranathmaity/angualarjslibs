@@ -253,6 +253,7 @@ exports.query = {
             }
             if (
                 key != "user_id" &&
+                key != "gender" &&
                 key != "age" &&
                 key != "height" &&
                 key != "country" &&

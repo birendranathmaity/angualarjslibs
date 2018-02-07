@@ -4,7 +4,7 @@ var angular = require('angular');
  var searchRoutes = require('./search.route');
  var searchByController = require('./searchby/searchby.controller');
  var searchHistoryController = require('./search_history/search.history.controller');
-// var ForgetPasswordController = require('./forget-password/forgetPassword.controller');
+var searchResultController = require('./search_result/search.result');
 // var MoreInfoController = require('./more-info/moreInfo.controller');
 // var OtpVrController = require('./otp-verification/otp.controller');
 // var HelpMeWriteController = require('./help-me-write/help-me-write');
@@ -17,6 +17,7 @@ module.exports = angular.module('app.ui.srarch', [])
     .run(searchRoutes)
     .factory("searchService",searchService)
     .controller('searchByController', searchByController)
+    .controller('searchResultController', searchResultController)
     .controller('searchHistoryController', searchHistoryController).
     filter('height', function () {
       return function (item) {

@@ -43,9 +43,10 @@ exports.getSearch = function (req, res) {
 };
 exports.getSearchResult = function (req, res) {
 
-    var main_user_id = req.body.user_id;
-    var match=commonQuery.query.matchResult( req.body);
-console.log(match)
+    var main_user_id = req.body.fields.user_id;
+    console.log(req.body)
+    var match=commonQuery.query.matchResult( req.body.fields);
+
     var aggregate = User.aggregate([{
 
         $sort: {
@@ -71,7 +72,7 @@ console.log(match)
             },
            "gender": {
 
-                "$eq": "FEMALE"
+                "$eq": (req.body.gender=="MALE" ? "FEMALE": "MALE")
 
             }
 
@@ -312,6 +313,40 @@ console.log(match)
         }
 
     }, {
+        
+                $lookup: {
+        
+                    from: "usertokens",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "lastlogin"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$lastlogin",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, 
+            {
+                
+                        $sort: {
+                
+                            "lastlogin.created_on": -1
+                
+                        }
+                
+                    },
+            {
 
         $project: {
 
@@ -549,8 +584,8 @@ console.log(match)
 
     ]);
     var options = {
-        page: 1,
-        limit: 10
+        page: req.body.page,
+        limit: req.body.limit
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {
@@ -560,7 +595,7 @@ console.log(match)
         else {
 
             var docs = {
-                docs: results,
+                users: results,
                 pages: pageCount,
                 total: count
 

@@ -5,7 +5,7 @@
             <div class="row-fluid dataTables_wrapper">
                 <div class="col-lg-6 no-padding  ">
                     <div class="pull-left">
-                        <div class="checkbox" ng-if="$ctrl.requests.length>0">
+                        <div class="checkbox loginchk" ng-if="$ctrl.requests.length>0">
                             <label style="font-size: 1.2em; line-height: 13px;">
                                 <input type="checkbox" value="" ng-model="$ctrl.selectedAll" ng-click="$ctrl.checkAll()">
                                 <span class="cr">
@@ -81,8 +81,8 @@
                         <li class="row-fluid userlist" ng-repeat="req in $ctrl.requests" ng-class="{'unread' : req.request_status==='UNREAD' ,'reqselected':req.Selected}">
 
                             <div class="col-lg-2 no-padding pull-left">
-                                <div class="checkbox check-success pull-left">
-                                    <label>
+                                <div class="checkbox check-success pull-left loginchk">
+                                    <label class="imgchk">
                                         <input type="checkbox" ng-click="req.Sleceted=!req.Sleceted;$ctrl.checkBoxSelect()" value="" ng-model="req.Selected">
                                         <span class="cr">
                                             <i class="cr-icon fa fa-check"></i>
@@ -90,7 +90,7 @@
                                     </label>
                                 </div>
 
-                                <user-img user="req.user" is-noti="false"></user-img>
+                                <user-img user="req.user" is-noti="WITHID"></user-img>
                             </div>
                             <div class="col-lg-10 hand">
                                 <p class="pull-right">

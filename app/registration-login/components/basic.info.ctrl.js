@@ -324,7 +324,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                             $scope.educationwork = result.user.usereducations[0];
                             $scope.intrests = result.user.userintrests[0];
                             $scope.family = result.user.userfamilies[0];
-                            $scope.intrests.height = $scope.intrests.height.toFixed(1);
+                            $scope.intrests.height = $scope.intrests.height;
 
                         }
 
