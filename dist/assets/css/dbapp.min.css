@@ -15705,6 +15705,10 @@ animation: loading-bar-spinner 400ms linear infinite;
     padding: 10px 13px;
     font-weight: normal;
 }
+.buttonDisabled input{
+    background: #ddd !important;
+    cursor:not-allowed;
+}
 .userMsg{
     text-align: center;
   }

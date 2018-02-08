@@ -92,7 +92,7 @@
                 <p class="mailer-name"> {{msg.user.first_name}}</p>
                 <p class="mailer-sub">
                   <span >
-                    {{msg.user.age}} Years. {{$ctrl.toFeet(msg.user.height)}}, {{msg.user.first_name}}, {{msg.user.last_name}}.
+                    {{msg.user.age}} Years. {{ msg.user.height | height }}, {{msg.user.first_name}}, {{msg.user.last_name}}.
                   </span>
                   <strong ng-if="$ctrl.viewType==='SENT'">
                    You have sent message

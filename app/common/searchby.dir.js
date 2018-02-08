@@ -15,7 +15,8 @@ if(attrs.type==="SM"){
         scope:{
            
          getFields:"&",
-         type:"@"
+         type:"@",
+         fields:"="
         },
         
         controller: "serachByController"

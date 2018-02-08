@@ -1,7 +1,7 @@
 /* @ngInject */
-module.exports = function searchResultController($rootScope,$state, countryService, loginservice, searchService) {
+module.exports = function searchResultController($rootScope,$state, countryService, loginservice,messagesservice, searchService) {
     var controller = this;
-    var fields=$state.params.fields;
+    controller.fields=$state.params.fields;
      controller.limit = 10;
     controller.total = 0;
     controller.page = 1;
@@ -14,9 +14,14 @@ module.exports = function searchResultController($rootScope,$state, countryServi
         page: controller.page,
         limit: controller.limit,
         gender:$rootScope.login_user_gender,
-        fields:fields
+        fields:controller.fields
         };
-    
+    controller.searchFields=function(fields){
+        controller.fields=fields;
+        req.fields=fields;
+        req.gender=$rootScope.login_user_gender;
+        serachResult();
+    };
     controller.pageChanged = function () {
         
                 controller.selectedAll = false;
@@ -36,7 +41,7 @@ function serachResult(){
 }
             controller.loadViewType = function () {
 
-                if(fields){
+                if(controller.fields){
                     serachResult();
                 }
                
@@ -45,6 +50,7 @@ function serachResult(){
                 searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
                     if (result) {
                         req.fields=result;
+                        controller.fields=result;
                         req.gender=$rootScope.login_user_gender;
                         serachResult();
                     }
@@ -66,5 +72,25 @@ function serachResult(){
     }
 
     controller.loadViewType();
+    controller.saveResult={
+            user_id: $rootScope.login_user_id,
+            name:"",
+            fields:controller.fields
+    };
+    controller.saveNameDisbaled=function(){
+
+if(!controller.saveResult.name){
+return true;
+}
+    };
+    controller.saveSearchResult=function(){
+        controller.saveResult.fields=controller.fields;
+        searchService.saveSearchResult(controller.saveResult,function(result){
+            controller.saveResult.name="";
+            messagesservice.toaster_msg("Successfully saved");
+
+
+                     },function(error){});
+    };
 
     };

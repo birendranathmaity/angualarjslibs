@@ -11,6 +11,12 @@ module.exports =function($http,ServiceUrls){
         },
         getSearchResult: function(data,success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SEARCH_RESULT,data).success(success).error(error);
+        },
+       saveSearchResult: function(data,success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SAVE_SEARCH_RESULT,data).success(success).error(error);
+        },
+        getSearchResults: function(data,success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SAVED_SEARCH_RESULT,data).success(success).error(error);
         }
         
          

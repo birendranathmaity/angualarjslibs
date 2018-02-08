@@ -1,6 +1,57 @@
 var searchBy = require('./model/searchBy.model');
 var User = require('./model/user.model');
+var searchResultModel = require('./model/search.result.model');
 var commonQuery = require('./common.query');
+exports.getSavedSearchResults = function (req, res) {
+   
+    var aggregate = searchResultModel.aggregate([{
+        
+                $sort: {
+        
+                    created_on: -1
+        
+                }
+        
+            },{
+                $match:{
+                    user_id:{$eq:req.body.user_id}
+                }
+            }]);
+            var options = {
+                page: req.body.page,
+                limit: req.body.limit
+            };
+            searchResultModel.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
+                if (err) {
+                    res.json(err);
+                    console.err(err)
+                }
+            else{
+                var docs = {
+                    searchResults: results,
+                    pages: pageCount,
+                    total: count
+    
+                };
+    
+                res.json(docs);
+
+            }
+            });
+
+};
+exports.saveSearchResult = function (req, res) {
+    req.body.created_on=new Date();
+
+    var ResultModel = new searchResultModel(req.body);
+    ResultModel.save(function (err, result) {
+
+        res.json({ success: true })
+    });
+
+
+
+};
 exports.saveSearch = function (req, res) {
     searchBy.findOne({
         user_id: req.body.user_id

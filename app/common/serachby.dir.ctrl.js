@@ -1,9 +1,8 @@
 /* @ngInject */
-module.exports = function serachByController($scope,$rootScope, countryService, loginservice, searchService) {
+module.exports = function serachByController($scope, $state,$rootScope, countryService, loginservice, searchService) {
     var controller = this;
     controller.user = $rootScope.current_user_de_all;
-    console.log(controller.user);
-    console.log(searchService)
+    
     controller.serachModel = {
         user_id: $rootScope.login_user_id,
         age: {
@@ -376,11 +375,14 @@ module.exports = function serachByController($scope,$rootScope, countryService, 
     controller.cities = [];
     controller.DisabledState = true;
     controller.DisabledCity = true;
-    countryService.getCountries(function (res) {
-        controller.countrys = empty2.concat(res);
-        controller.states = empty2.concat([]);
-        controller.cities = empty2.concat([]);
-    }, function () { });
+    function loadCountries(){
+        countryService.getCountries(function (res) {
+            controller.countrys = empty2.concat(res);
+            controller.states = empty2.concat([]);
+            controller.cities = empty2.concat([]);
+        }, function () { });
+    }
+    
     controller.onSelectCallbackCounry = function (item, model, g) {
 
         if (model === "ANY") {
@@ -712,27 +714,7 @@ module.exports = function serachByController($scope,$rootScope, countryService, 
 
         });
     }
-    function getStateForCountry(cn){
-        countryService.getCountries(function (res) {
-           
-            for(var j=0;j<res.length;j++) {
-                var item=res[j];
-
-              if (item.id === cn) {
-                  var coun = {
-                      id: item.id,
-                      name: item.name,
-                      sortname: item.sortname
-                  };
-                 
-                  loadST(coun);
-                 
-              }
-
-          }
-        }, function () { });
-               
-            }
+   
     function loadlocationAndCaste() {
        for(var kj=0;kj<controller.serachModel.religion.length;kj++) {
            var itm=controller.serachModel.religion[kj];
@@ -746,7 +728,29 @@ else{
            
 
         }
-        for(var i=0;i<controller.serachModel.country.length;i++) {
+        countryService.getCountries(function (res) {
+            controller.countrys = empty2.concat(res);
+            controller.states = empty2.concat([]);
+            controller.cities = empty2.concat([]);
+            controller.DisabledState = false;
+            function getStateForCountry(cid){
+            for(var j=0;j<res.length;j++) {
+                var item=res[j];
+
+              if (item.id === cid) {
+                  var coun = {
+                      id: item.id,
+                      name: item.name,
+                      sortname: item.sortname
+                  };
+                 
+                  loadST(coun);
+                 
+              }
+
+          }
+        }
+          for(var i=0;i<controller.serachModel.country.length;i++) {
             var cn=controller.serachModel.country[i];
             if(cn==="ANY"){
             
@@ -759,7 +763,9 @@ else{
                 getStateForCountry(cn);
         }
         }
-        controller.DisabledState = false;
+        }, function () { });
+       
+       
        for(var k=0;k<controller.serachModel.state.length;k++) {
            var state=controller.serachModel.state[k];
             if(state.id==="ANY"){
@@ -776,12 +782,18 @@ else{
 
 
     }
-  
+   
     controller.search = function () {
         
     
         searchService.saveSearch(controller.serachModel,function(result){
+          //  $scope.getFields({fields:controller.serachModel});
+          if($state.current.name!=="root.search_result"){
+            $state.go('root.search_result', {fields:controller.serachModel});
+          }else{
             $scope.getFields({fields:controller.serachModel});
+          }
+           
         },function(error){});
 
     }
@@ -823,25 +835,47 @@ else{
         controller.DisabledCity = true;
         controller.casteDisabled = true;
     };
-    searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
 
-        if (result) {
-
-            controller.serachModel = result;
-            setMore();
-            loadlocationAndCaste();
-
-
-
-        }
-        else {
+    $scope.$watch('fields', function (n, v) {
+        
+        if (!n) { return; }
+        if(n==="FIRST"){
+            loadCountries();
             setUserAgeHeightInformation();
             setUserBasciInfo();
             setOtherInfo();
             setLocation();
             setMore();
 
+        }else{
+            
+            controller.serachModel = n;
+            setMore();
+            loadlocationAndCaste();
+
         }
-    }, function (error) { });
+               
+            });
+    // searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
+
+    //     if (result) {
+
+    //         controller.serachModel = result;
+    //         setMore();
+    //         loadlocationAndCaste();
+
+
+
+    //     }
+    //     else {
+    //         loadCountries();
+    //         setUserAgeHeightInformation();
+    //         setUserBasciInfo();
+    //         setOtherInfo();
+    //         setLocation();
+    //         setMore();
+
+    //     }
+    // }, function (error) { });
 
 }

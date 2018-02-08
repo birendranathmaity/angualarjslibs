@@ -93,20 +93,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
 
     };
 
-
-
-
-    controller.toFeet = function (ft) {
-        if (!ft) { return ""; }
-        var inches = (ft * 0.393700787 * 30.48).toFixed(0);
-        var feet = Math.floor(inches / 12);
-        inches %= 12;
-
-        return feet + " feet " + inches + ' Inc. ';
-    };
-
-
-    controller.configScollBar = {
+controller.configScollBar = {
         autoHideScrollbar: true,
         theme: 'rounded-dark',
         axis: 'y',

@@ -11,7 +11,7 @@
       
         <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 matches-l-all">
         
-            <search-by get-fields="$ctrl.searchFields(fields)" type="SM"></search-by>
+            <search-by fields="$ctrl.fields" get-fields="$ctrl.searchFields(fields)" type="SM"></search-by>
   
   
   
@@ -61,17 +61,35 @@
           </div>
   
          
-          <div class="col-md-12 col-lg-3 col-sm-12  col-xs-12  p-r-0 ">
+          <div class="col-md-12 col-lg-3 col-sm-12  col-xs-12  p-r-0 " ng-if="$ctrl.users.length>0">
   
   
   
   
-            <div class="grid simple  searchdhole">
-              
-              <div class="grid-body  no-border">
-                
-              </div>
-            </div>
+              <div class="grid simple  searchdhole">
+                  <div class=" pref-title no-border">
+                    <h4 class="">Save Search Result</h4>
+    
+                   
+                  </div>
+                  <div class="grid-body  no-border">
+                    <div class="hr-line"> </div>
+                   
+                        <div class="row">
+                          <div class="col-xs-12">
+                          
+                            <h5 class="searchid"> Name</h5>
+    
+                              <div class="insearc"> <input class="" ng-model="$ctrl.saveResult.name"  type="text"> </div>
+                              <div class=" searchbtn" ng-class="{'buttonDisabled':$ctrl.saveNameDisbaled()}" >
+                                <input value="Save" ng-click="$ctrl.saveSearchResult()"  ng-disabled="$ctrl.saveNameDisbaled()" class="" type="button">
+    
+                              </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                  </div>
   
   
           

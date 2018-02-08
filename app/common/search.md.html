@@ -8,7 +8,10 @@
                                         <div class="grid-body no-border pro-bord">  
                                           
                            
-                              
+                                          <div class="col-xs-12 clearfix">
+                                             <button type="button" ng-click="$ctrl.search()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-2 col-lg-4"> <i class="fa fa-search"></i>&nbsp;search</button>
+                                           
+                                        </div>
                                 
                             
                                 <div class="panel-group" id="accordion" data-toggle="">
@@ -707,6 +710,42 @@
                                           </div>
                       
                           </div>
+                          <div class="panel-group" id="accordion" data-toggle="">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a class="" data-toggle="collapse" data-parent="#accordion" hyr="#collapseOne">
+                                    Don't Show
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                 
+                                    <div class="input-group">
+                                     
+                                  </div>
+                                     <div class="row-fluid contact-list">
+          
+                                          <div class="checkbox check-default"> 
+                                            <span ng-repeat="item in $ctrl.dontShow" ng-click="$ctrl.check(item,$ctrl.dontShow,'ANY_3')">
+                                              
+                                       <input id="{{item.value}}" ng-model="item.selected" type="checkbox" value="{{item.value}}"> <label for="{{item.value}}">{{item.name}}</label>
+                                                                                                          
+                                        </span>
+                                              </div>
+                            </div>
+                        
+                         
+                        
+                                  </div>
+                                </div>
+          
+          
+                                
+                              </div>
+          
+              </div>
                                 <!---end search -->
                                         </div> 
                                       </div>                   
