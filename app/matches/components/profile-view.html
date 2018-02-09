@@ -69,7 +69,7 @@
                         <p class="list-group-item-right pull-right" ng-repeat="rl in $ctrl.formdata.religions | filterBy: ['value']:$ctrl.user.religion">{{rl.name}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Caste </p>
-                       <p ng-init="$ctrl.loadCaste($ctrl.user.religion)"></p>
+                        <p ng-init="$ctrl.loadCaste($ctrl.user.religion)"></p>
                         <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | filterBy: ['value']:$ctrl.user.caste">{{cs.name}}</p>
                         <p class="clearfix"></p>
                        

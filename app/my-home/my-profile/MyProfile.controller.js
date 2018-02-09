@@ -16,12 +16,31 @@ module.exports = function MyProfileController($location, loginservice, countrySe
         controller.userLocation = result;
     }, function () { });
 
-    controller.toFeet = function (ft) {
-        if (!ft) { return ""; }
-        var inches = (ft * 0.393700787 * 30.48).toFixed(0);
-        var feet = Math.floor(inches / 12);
-        inches %= 12;
+    var hindu = controller.formdata.rhindu;
+    var muslim = controller.formdata.rmuslim;
+    var christian = controller.formdata.rchristian;
 
-        return feet + " feet " + inches + ' Inc. ';
+    controller.casteData=[];
+    controller.loadCaste = function (rel) {
+        if (rel === "HINDU") {
+            controller.casteData = hindu;
+            return;
+        }
+        if (rel === "ISLAM") {
+            controller.casteData = muslim;
+            return;
+        }
+        if (rel === "CHR") {
+            controller.casteData = christian;
+            return;
+        }
+       
+        controller.casteData = [{
+           
+            name: "Other",
+            value: rel + "OTH"
+
+        }];
+
     };
 };

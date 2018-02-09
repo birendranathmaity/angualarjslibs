@@ -39,15 +39,15 @@
                                           <div class="bmd-list-group-col">
                                               <p class="list-group-item-left pull-left">Age</p>
 
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.age}}</p>
+                                              <p class="list-group-item-right pull-right">{{current_user_de_all.age}} Yrs</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Height</p>
-                                              <p class="list-group-item-right pull-right">{{ctrl.toFeet(current_user_de_all.userintrests[0].height)}}</p>
+                                              <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
 
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Marital Status</p>
 
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].maritialstatus}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | filterBy: ['value']:current_user_de_all.basicinfos[0].maritialstatus">{{mt.name}}</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Mother Tongue</p>
 
@@ -66,8 +66,9 @@
                                           <div class="bmd-list-group-col">
 
                                               <p class="list-group-item-left pull-left">Caste </p>
-
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].caste}}</p>
+                                              <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | filterBy: ['value']:current_user_de_all.basicinfos[0].caste">{{cs.name}}</p>
+                                              
                                               <p class="clearfix"></p>
 
                                               <p class="list-group-item-left pull-left">Highest Education</p>
@@ -86,8 +87,8 @@
                                               <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Posted By </p>
-
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.created_by}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | filterBy: ['value']:current_user_de_all.created_by"> {{crt.name}} </p>
+                                              
                                           </div>
                                       </li>
                                   </ul>
@@ -120,11 +121,12 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Age</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{ctrl.toFeet(current_user_de_all.userintrests[0].height)}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.age}} Yrs</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Marital Status</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].maritialstatus}}</p>
+
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | filterBy: ['value']:current_user_de_all.basicinfos[0].maritialstatus">{{mt.name}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Religion</p>
 
@@ -149,7 +151,9 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Caste</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].caste}} </p>
+                                                                          <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | filterBy: ['value']:current_user_de_all.basicinfos[0].caste">{{cs.name}}</p>
+                                                                          
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Sub Caste</p>
 
@@ -166,8 +170,8 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Posted By </p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.created_by}}</p>
-                                                                      </div>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | filterBy: ['value']:current_user_de_all.created_by"> {{crt.name}} </p>
+                                                                        </div>
                                                                   </li>
                                                               </ul>
 
@@ -221,7 +225,7 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Annual Income</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].aincome }} lakhs</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].aincome }} </p>
 
                                                                       </div>
                                                                   </li>
@@ -244,7 +248,8 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">height</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{ctrl.toFeet(current_user_de_all.userintrests[0].height)}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
+                                                                          
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Complection</p>
 

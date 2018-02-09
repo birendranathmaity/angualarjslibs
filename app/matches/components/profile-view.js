@@ -15,7 +15,6 @@ user:"="
                
                 var controller=this;
                 controller.formdata = loginservice.getFiledsData();
-                console.log($scope.user)
                 controller.user=$scope.user;
                 var hindu = controller.formdata.rhindu;
                 var muslim = controller.formdata.rmuslim;
