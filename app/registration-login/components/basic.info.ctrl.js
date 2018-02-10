@@ -6,8 +6,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
         controllerAs: 'ctrl',
         scope: {
             userId: "=",
-            isAdmin: "@",
-            isMoreinfoEdit: "@"
+            isAdmin: "=",
+            isMoreinfoEdit: "="
         },
         controller: [
             '$scope',
@@ -16,6 +16,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
             function ($scope, $element, $attrs) {
                 var controller = this;
                 controller.editMode = false;
+                controller.isAdmin = $scope.isAdmin;
+                console.log( controller.isAdmin)
                 if ($scope.isMoreinfoEdit) {
                     controller.editMode = true;
                 }
@@ -265,8 +267,10 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
 
                         }
-                        if (controller.editMode) {
+                        if (controller.editMode && $scope.isAdmin) {
                             updateRegisterForm();
+                        }else{
+                            toastr.success('Updated Successfully');
                         }
 
 

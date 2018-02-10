@@ -49,7 +49,9 @@ return {
     "GET_SEARCH":"/get_search",
     "GET_SEARCH_RESULT":"/get_search_result",
     "SAVE_SEARCH_RESULT":"/save_search_result",
-    "GET_SAVED_SEARCH_RESULT":"/get_saved_search_result"
+    "GET_SAVED_SEARCH_RESULT":"/get_saved_search_result",
+    "SAVE_PARTNER_PRE":"/save_partner_pre",
+    "GET_PARTNER_PRE":"/get_partner_pre"
       };
     
 

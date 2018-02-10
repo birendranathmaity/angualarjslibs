@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($viewusers, loginservice, $rootScope) {
+module.exports = function ($viewusers,$location, $state, loginservice, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: './app/my-home/components/completeYourProfile.html',
@@ -14,8 +14,8 @@ module.exports = function ($viewusers, loginservice, $rootScope) {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller = this;
-                controller.ACTIONS_USER = ['Change Photo','ADD_PHOTO', 'EDIT_PROFILE', 'SETINGS', 'EDIT_PARTNER_PREFERENCES'];
-                controller.ACTIONS_USER_BIG = ['Change Photo',"EDIT_MY_PROFILE", "EDIT_CONTACT_DETAILS", "ADDPHOTOS", "EDIT_PARTNER_PREFERENCES"];
+                controller.ACTIONS_USER = ['CHANGE_PHOTO','ADD_PHOTO', 'EDIT_PROFILE', 'SETINGS', 'EDIT_PARTNER_PREFERENCES'];
+                controller.ACTIONS_USER_BIG = ['CHANGE_PHOTO',"EDIT_MY_PROFILE", "EDIT_CONTACT_DETAILS", "ADDPHOTOS", "EDIT_PARTNER_PREFERENCES"];
                 //ng-click="registerFormCtrl.openImageUploadWindow({user_id:form.user_id,skip_url:'/viewusers',photo_type:'PROFILE',from_sec:'userEdit'})"
                 controller.pTooltipCnfig={
                     tpl:"./app/my-home/components/profile_photo_tooltip.html",
@@ -23,7 +23,7 @@ module.exports = function ($viewusers, loginservice, $rootScope) {
 
                 };
                 controller.goToUserAction = function (action) {
-                    if (action === "ADD_PHOTO") {
+                    if (action === "ADD_PHOTO" || action === "CHANGE_PHOTO") {
                         var user = {
                             user_id: $scope.userId,
                             skip_url: '/dashboard',
@@ -31,6 +31,26 @@ module.exports = function ($viewusers, loginservice, $rootScope) {
                             from_sec: 'userEdit'
                         };
                         loginservice.openCropPopup(user);
+                        return;
+                    }
+                    if (action === "EDIT_MY_PROFILE" || action === "EDIT_PROFILE") {
+                        $state.go('root.editprofile', {editType:0});
+                      
+                        return;
+                    }
+                    if (action === "EDIT_CONTACT_DETAILS") {
+                        $state.go('root.editprofile', {editType:1});
+                      
+                        return;
+                    }
+                    if (action === "EDIT_PARTNER_PREFERENCES") {
+                        $state.go('root.editprofile', {editType:2});
+                      
+                        return;
+                    }
+                    if (action === "ADDPHOTOS") {
+                        $state.go('root.addphotos');
+                      
                         return;
                     }
                 };

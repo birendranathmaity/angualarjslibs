@@ -854,7 +854,7 @@ span.iconset {
     margin: 0 !important;
     position: fixed;
     width: 100%;
-    z-index: 100001;
+    z-index: 1001;
     min-height: 45px;
 }
 .header .btn-navbar {
@@ -15964,6 +15964,7 @@ body > .ui-select-bootstrap.open {
   outline: none;
   height: 1.666666em;
   margin-bottom: 3px;
+  min-width: 70%;
 }
 
 .ui-select-multiple.ui-select-bootstrap .ui-select-match .close {

@@ -48,6 +48,23 @@ module.exports = function myHomeRoutes(Router) {
                 },
                 title: 'Add Photos'
             }
+        },
+        {
+            name: "root.editprofile",
+            config: {
+                url: '/editprofile',
+                views: {
+                    '@': {
+                        templateUrl: "app/my-home/edit-my-profile/edit-my-profile.html",
+                        controller: "editMyProfileController as ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    editType:0
+                },
+                title: 'editprofile'
+            }
         }
     ]);
 };

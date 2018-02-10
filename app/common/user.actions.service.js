@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($http,toastr, $state, ServiceUrls) {
+module.exports = function ($rootScope,countryService,loginservice,$http,toastr, $state, ServiceUrls) {
     var service={
     
         send_request: function (data, success, error) {
@@ -19,6 +19,187 @@ module.exports = function ($http,toastr, $state, ServiceUrls) {
         },
         update_notifications: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_NOTIFICATIONS, data).success(success).error(error);
+        },
+        get_default_search_config:function(calback){
+            var formdata = loginservice.getFiledsData();
+           var serachModel = {
+                user_id: $rootScope.login_user_id,
+                age: {
+        
+                    from: 0,
+                    to: 0
+                },
+                height: {
+        
+                    from: 0,
+                    to: 0
+                },
+                maritialstatus: [],
+                mothertounge: [],
+                religion: [],
+                caste: [],
+                country: [],
+                state: [],
+                city: [],
+                physical_status: ["ANY"],
+                complexion: ["ANY"],
+                occupation: ["ANY"],
+                aincome: ["ANY"],
+                expectation: ["ANY"],
+                high_edu: ["ANY"],
+                body_type: ["ANY"],
+                horoscope: ["ANY"],
+                showprofile: ["ANY_1"],
+                created_by: ["ANY_2"],
+                dontshow: ["ANY_3"]
+            };
+            var user = $rootScope.current_user_de_all;
+            var age = user.age;
+            var height = user.userintrests[0].height;
+            if (user.gender === "MALE") {
+               serachModel.age.from = 18;
+               serachModel.age.to = age;
+               serachModel.height.from = 4;
+               serachModel.height.to = height;
+    
+    
+            }
+            if (user.gender === "FEMALE") {
+               serachModel.age.from = age;
+               serachModel.age.to = 60;
+               serachModel.height.from = height;
+               serachModel.height.to = 6.11;
+    
+    
+            }
+            function setLocation(success) {
+                var country = $rootScope.current_user_de_all.basicinfos[0].country;
+                var state = $rootScope.current_user_de_all.basicinfos[0].state;
+                var city = $rootScope.current_user_de_all.basicinfos[0].city;
+                var loc = {
+                    cn: country,
+                    st: state,
+                    ci: city
+                };
+               serachModel.country = [country];
+                countryService.getUserLoc(loc, function (result) {
+        
+                   
+                    serachModel.state = [{
+                        id: result.state.id,
+                        name: result.state.name,
+                        country_id: result.id,
+                        cname: result.name
+                    }];
+                  
+                   
+                    serachModel.city = [{
+                        id: result.city.id,
+                        name: result.city.name,
+                        country_id: result.id,
+                        state_id: result.state.id,
+                        sname: result.state.name
+                    }];
+                    setUserBasciInfo();
+                    success();
+                }, function () { });
+            }
+            function setUserBasciInfo() {
+                var basic = user.basicinfos[0];
+        
+               serachModel.maritialstatus = [basic.maritialstatus];
+                serachModel.mothertounge = [basic.mothertounge];
+                serachModel.religion = [basic.religion];
+                setRelegionAndCaste(basic.religion, basic.caste);
+        
+        
+            }
+            function setRelegionAndCaste(rel, caste, type) {
+                angular.forEach(formdata.religions, function (item, value) {
+        
+                    if (item.value === rel) {
+        
+                        setCasteValue(caste, item);
+        
+                    }
+        
+                });
+            }
+            function setCasteValue(caste, rel) {
+                
+                        if (rel.value === "HINDU") {
+                            angular.forEach(formdata.rhindu, function (item, value) {
+                                if (item.value === caste) {
+                
+                                    serachModel.caste = [{
+                                        rname: rel.name,
+                                        religion: rel.value,
+                                        name: item.name,
+                                        value: item.value
+                
+                                    }];
+                                    return;
+                                }
+                
+                            });
+                
+                
+                        }
+                        if (rel.value === "ISLAM") {
+                            angular.forEach(formdata.rmuslim, function (item, value) {
+                                if (item.value === caste) {
+                
+                                    serachModel.caste = [{
+                                        rname: rel.name,
+                                        religion: rel.value,
+                                        name: item.name,
+                                        value: item.value
+                
+                                    }];
+                                    return;
+                                }
+                
+                            });
+                        }
+                        if (rel.value === "CHR") {
+                            angular.forEach(formdata.rchristian, function (item, value) {
+                                if (item.value === caste) {
+                
+                                    serachModel.caste = [{
+                                        rname: rel.name,
+                                        religion: rel.value,
+                                        name: item.name,
+                                        value: item.value
+                
+                                    }];
+                                    return;
+                                }
+                
+                            });
+                        }
+                
+                        if (rel.value + "OTH" === caste) {
+                            serachModel.caste = [{
+                                rname: rel.name,
+                                religion: rel.value,
+                                name: "Other",
+                                value: caste
+                
+                            }];
+                
+                        }
+                
+                
+                    }
+
+                    setLocation(function(){
+
+                       
+                        
+                        calback(serachModel)
+
+
+                    });
         },
         openReq:function(noti){
             if(noti.request_type==="MESSAGE"){

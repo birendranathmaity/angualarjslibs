@@ -23,12 +23,13 @@
           </div>
           <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
               <div class="col-md-8 no-padding ">
+                 
                   <div class="grid simple profile-detail">
                       <div class="prof-title no-border">
                           <h4 class="">Your Details</h4>
-                          <div class="u-prof">
+                          <!-- <div class="u-prof">
                               <a href="#" onclick="previewProfile()"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a>
-                          </div>
+                          </div> -->
                       </div>
                       <div class="grid-body  p-detl-body no-border">
                           <div class="hr-line"> </div>
@@ -224,9 +225,8 @@
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Annual Income</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].aincome }} </p>
-
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.aincome | filterBy: ['value']:current_user_de_all.userfamilies[0].aincome">{{oc.name}}</p>
+                                                                          
                                                                       </div>
                                                                   </li>
                                                               </ul>
@@ -252,16 +252,15 @@
                                                                           
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Complection</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].complexion}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.complexion | filterBy: ['value']:current_user_de_all.userintrests[0].complexion">{{oc.name}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Phishical Status</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].physical_status}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.PhysicalStatus | filterBy: ['value']:current_user_de_all.userintrests[0].physical_status">{{oc.name}}</p>
+                                                                          
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Expectation</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].expectation}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Expectation | filterBy: ['value']:current_user_de_all.userintrests[0].expectation">{{oc.name}}</p>
+                                                                   
                                                                           <p class="clearfix"></p>
 
                                                                       </div>
@@ -274,13 +273,15 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Weight</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].weight}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].weight}} kg</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Body Type </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].body_type}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.BodyType | filterBy: ['value']:current_user_de_all.userintrests[0].body_type">{{oc.name}}</p>
+                                                                         
                                                                           <p class="clearfix"></p>
-
+                                                                          <p class="list-group-item-left pull-left">Hobbies</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="current_user_de_all.userintrests[0].hobbie | joinnameother:', ':'name':ctrl.formdata.hobbies"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                       </div>
                                                                   </li>
                                                               </ul>
@@ -354,8 +355,9 @@
                                                                           <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].time_birth_hr}}:{{current_user_de_all.userfamilies[0].time_birth_min}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left"> Horoscope Details</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Horoscope | filterBy: ['value']:current_user_de_all.userfamilies[0].horoscope">{{oc.name}}</p>
+                                                                          
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].horoscope}}</p>
                                                                           <p class="clearfix"></p>
 
                                                                       </div>
@@ -370,9 +372,9 @@
                                                                       <div class="bmd-list-group-col">
 
                                                                           <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left fath-occ pull-left">Do you belive in Horoscope </p>
+                                                                          <p class="list-group-item-left  pull-left">Do you belive in Horoscope </p>
 
-                                                                          <p class="list-group-item-right fath-text pull-left">
+                                                                          <p class="list-group-item-right  pull-right">
                                                                               {{current_user_de_all.userfamilies[0].beleave_hor ?'Yes':'No'}}
                                                                           </p>
 
@@ -410,17 +412,17 @@
 
                                                                                   <p class="list-group-item-right pull-right">{{current_user_de_all.country_code}} {{current_user_de_all.phone_number}}</p>
                                                                                   <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left">Alternate Mobile Number</p>
+                                                                                  <p class="list-group-item-left pull-left ng-hide">Alternate Mobile Number</p>
 
-                                                                                  <p class="list-group-item-right pull-right">+91 7396723539</p>
+                                                                                  <p class="list-group-item-right pull-right ng-hide">+91 7396723539</p>
                                                                                   <p class="clearfix"></p>
                                                                                   <p class="list-group-item-left pull-left">Email ID</p>
 
                                                                                   <p class="list-group-item-right pull-right">{{current_user_de_all.email}}</p>
                                                                                   <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left">Alternate Email Id</p>
+                                                                                  <p class="list-group-item-left pull-left ng-hide">Alternate Email Id</p>
 
-                                                                                  <p class="list-group-item-right pull-right">biru_name@yahoo.com</p>
+                                                                                  <p class="list-group-item-right pull-right ng-hide">biru_name@yahoo.com</p>
                                                                                   <p class="clearfix"></p>
                                                                                   <p class="list-group-item-left pull-left">Family Contact Number</p>
 
@@ -460,23 +462,27 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Age</p>
 
-                                                                          <p class="list-group-item-right pull-right"><span class="">22 </span> <span class="small"> To </span> <span class=""> 25 </span></p>
+                                                                          <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.age.from}} </span> <span class="small"> To </span> <span class=""> {{ctrl.fieldPartnerPre.age.to}} Yrs</span></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Marital Status</p>
 
-                                                                          <p class="list-group-item-right pull-right">5.8 inch</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':ctrl.formdata.MaritialStatus"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Mother Tounge </p>
-                                                                          <p class="list-group-item-right pull-right">Telugu</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':ctrl.formdata.mother_tongues"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Religion</p>
 
-                                                                          <p class="list-group-item-right pull-right">Hindu</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':ctrl.formdata.religions"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Caste</p>
 
-                                                                          <p class="list-group-item-right pull-right">Kapu</p>
-
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.caste | joinname:', ':'name'"
+                                                                          ng-tt-chars-threshold="10"></p>
+                                                                          <!-- {{ctrl.fieldPartnerPre.caste | joinname:', ':'name'}} -->
                                                                       </div>
 
                                                                   </li>
@@ -487,25 +493,24 @@
                                                                   <li class="list-group-item">
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Country Living in</p>
-
-                                                                          <p class="list-group-item-right pull-right">India </p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.countries"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">State Living in</p>
 
-                                                                          <p class="list-group-item-right pull-right">Andhra Pradesh</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.state | joinname:', ':'name'"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">City Living in </p>
 
-                                                                          <p class="list-group-item-right pull-right"> Amaravathi</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.city | joinname:', ':'name'"
+                                                                          ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
 
                                                                           <p class="list-group-item-left pull-left">Horoscope Details</p>
-                                                                          <p class="list-group-item-right pull-right">Scorpio</p>
+                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.horoscope | joinnameother:', ':'name':ctrl.formdata.Horoscope"
+                                                                          ng-tt-chars-threshold="10"></p>
 
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Posted By</p>
-
-                                                                          <p class="list-group-item-right pull-right">Father</p>
                                                                       </div>
                                                                   </li>
                                                               </ul>
@@ -518,20 +523,22 @@
                                                               <h4 class="semi-bold"><span class="badge">2</span> Education & Work Information</h4>
 
                                                               <div class="hr-line"> </div>
-                                                              <div class="col-lg-6 no-padding">
+                                                              <div class="col-lg-8 no-padding">
                                                                   <ul class="list-group">
                                                                       <li class="list-group-item">
                                                                           <div class="bmd-list-group-col">
                                                                               <p class="list-group-item-left pull-left">Heighest Education</p>
 
-                                                                              <p class="list-group-item-right pull-right">Masters</p>
+                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':ctrl.formdata.educations"
+                                                                              ng-tt-chars-threshold="20"></p>
                                                                               <p class="clearfix"></p>
                                                                               <p class="list-group-item-left pull-left">Occupation</p>
-
-                                                                              <p class="list-group-item-right pull-right">IT</p>
+                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':ctrl.formdata.occupations"
+                                                                              ng-tt-chars-threshold="20"></p>
                                                                               <p class="clearfix"></p>
                                                                               <p class="list-group-item-left pull-left">Annual Income </p>
-                                                                              <p class="list-group-item-right pull-right">10,00000</p>
+                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.aincome | joinnameother:', ':'name':ctrl.formdata.aincome"
+                                                                              ng-tt-chars-threshold="20"></p>
 
                                                                           </div>
 
@@ -547,28 +554,22 @@
                                                               <h4 class="semi-bold"><span class="badge">3</span> Appearence & Interests</h4>
 
                                                               <div class="hr-line"> </div>
-                                                              <div class="col-lg-6   no-padding">
+                                                              <div class="col-lg-8   no-padding">
                                                                   <ul class="list-group">
                                                                       <li class="list-group-item">
                                                                           <div class="bmd-list-group-col">
                                                                               <p class="list-group-item-left pull-left">Height</p>
-
-                                                                              <p class="list-group-item-right pull-right"><span class=""> 5.3 in </span> <span class="small"> To </span> <span class=""> 5.8 in </span></p>
+                                                                              <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.height.from | height}} </span> <span class="small"> To </span> <span class=""> {{ctrl.fieldPartnerPre.height.to | height}}</span></p>
                                                                               <p class="clearfix"></p>
                                                                               <p class="list-group-item-left pull-left">Physical Status</p>
-
-                                                                              <p class="list-group-item-right pull-right">Normal</p>
+                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':ctrl.formdata.PhysicalStatus"
+                                                                              ng-tt-chars-threshold="20"></p>
                                                                               <p class="clearfix"></p>
                                                                               <p class="list-group-item-left pull-left">Expectation</p>
-                                                                              <p class="list-group-item-right pull-right"> </p>
+                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.expectation | joinnameother:', ':'name':ctrl.formdata.Expectation"
+                                                                              ng-tt-chars-threshold="20"></p>
                                                                               <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Willing to Mary</p>
-
-                                                                              <p class="list-group-item-right pull-right">Yes</p>
-                                                                              <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Are You a Celebrity</p>
-
-                                                                              <p class="list-group-item-right pull-right">No</p>
+                                                                             
 
                                                                           </div>
 
@@ -591,9 +592,9 @@
                       </div>
                       <div class="basic-pro-detl">
 
-                          <p>
+                          <!-- <p>
                               <a href="#"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a>
-                          </p>
+                          </p> -->
 
                           <div class="clearfix"></div>
                           <a href="#" class="scrollup profile-up"><img src="assets/img/top-scroll.png" width="30px;"></a>

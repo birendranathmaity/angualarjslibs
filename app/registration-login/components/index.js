@@ -21,7 +21,7 @@ module.exports = angular.module('app.ui.registr.components',[])
 
       if(attrs.convertToNumber==="height"){
         ngModel.$parsers.push(function(val) {
-          console.log(parseFloat(val))
+        
           return val !== null ? parseFloat(val) : null;
         });
         ngModel.$formatters.push(function(val) {

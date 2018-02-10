@@ -2,7 +2,7 @@
 module.exports = function serachByController($scope, $state,$rootScope, countryService, loginservice, searchService) {
     var controller = this;
     controller.user = $rootScope.current_user_de_all;
-    
+    controller.partnerPre=$scope.partnerPre;
     controller.serachModel = {
         user_id: $rootScope.login_user_id,
         age: {
@@ -22,14 +22,14 @@ module.exports = function serachByController($scope, $state,$rootScope, countryS
         country: [],
         state: [],
         city: [],
-        physical_status: [],
-        complexion: [],
-        occupation: [],
-        aincome: [],
-        expectation: [],
-        high_edu: [],
-        body_type: [],
-        horoscope: [],
+        physical_status: ["ANY"],
+        complexion: ["ANY"],
+        occupation: ["ANY"],
+        aincome: ["ANY"],
+        expectation: ["ANY"],
+        high_edu: ["ANY"],
+        body_type: ["ANY"],
+        horoscope: ["ANY"],
         showprofile: ["ANY_1"],
         created_by: ["ANY_2"],
         dontshow: ["ANY_3"]
@@ -474,17 +474,24 @@ module.exports = function serachByController($scope, $state,$rootScope, countryS
     };
 
     function loadST(target) {
-        controller.DisabledState = false;
-        controller.DisabledCity = true;
+      
+       
         if (controller.serachModel.country.length === 0) {
             controller.DisabledState = true;
+            controller.DisabledCity = true;
             controller.serachModel.state = [];
             controller.serachModel.city = [];
             return;
+        }else{
+            controller.DisabledState = false;
+            controller.DisabledCity = false;
         }
 
-        if (controller.serachModel.city.length === 0) {
+        if (controller.serachModel.state.length === 0 ) {
             controller.DisabledCity = true;
+        }
+        else{
+            controller.DisabledCity = false;
         }
         var code = target.id;
         var cname = target.name;
@@ -511,8 +518,10 @@ module.exports = function serachByController($scope, $state,$rootScope, countryS
             controller.DisabledCity = true;
             controller.serachModel.city = [];
             return;
+        }else{
+            controller.DisabledCity = false;
         }
-        controller.DisabledCity = false;
+       
         var code = target.id;
         var sname = target.name;
         var country_code = target.country_id;
@@ -770,7 +779,7 @@ else{
            var state=controller.serachModel.state[k];
             if(state.id==="ANY"){
                 
-                    controller.DisabledState = true;
+                    controller.DisabledState = false;
                     controller.DisabledCity = true;
                   
                 }else{
@@ -785,16 +794,20 @@ else{
    
     controller.search = function () {
         
-    
+    if(controller.partnerPre){
+        $scope.getFields({fields:controller.serachModel});
+    }
+    else{
         searchService.saveSearch(controller.serachModel,function(result){
-          //  $scope.getFields({fields:controller.serachModel});
-          if($state.current.name!=="root.search_result"){
-            $state.go('root.search_result', {fields:controller.serachModel});
-          }else{
-            $scope.getFields({fields:controller.serachModel});
-          }
-           
-        },function(error){});
+            if($state.current.name!=="root.search_result"){
+                $state.go('root.search_result', {fields:controller.serachModel});
+              }else{
+                $scope.getFields({fields:controller.serachModel});
+              }
+               
+            },function(error){});
+    }
+      
 
     }
 
@@ -845,14 +858,28 @@ else{
             setUserBasciInfo();
             setOtherInfo();
             setLocation();
-            setMore();
+           
 
-        }else{
+        }
+
+        if(n==="PARTNER_PRE_FIRST" && controller.partnerPre){
+            loadCountries();
+            setUserAgeHeightInformation();
+            setUserBasciInfo();
+            //setOtherInfo();
+            setLocation();
+           // setMore();
+          
+
+        }
+        if(n !== null && typeof n === 'object'){
             
             controller.serachModel = n;
-            setMore();
             loadlocationAndCaste();
 
+        }
+        if(!controller.partnerPre){
+            setMore();
         }
                
             });

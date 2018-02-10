@@ -6,7 +6,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
         controllerAs: 'registerFormCtrl',
         replace: true,
         scope: {
-            isAdmin: "@",
+            isAdmin: "=",
             isEdit: "="
         },
         controller: [

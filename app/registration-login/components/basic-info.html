@@ -48,7 +48,7 @@
                 <div class="step1">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Education & Work Information </h2>
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Basic Information </h2>
                         </div>
 
                         <div class="col-md-6">
@@ -217,7 +217,7 @@
                                     <select class="minimal form-control" name="height" ng-model="intrests.height" required-message="ctrl.required('REQUIRED')"
                                         validate-on="dirty" required>
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                             <option ng-repeat="h in ctrl.formdata.height" ng-value="{{h.toFixed(2)}}">{{h.toFixed(2) | height}}</option>
+                                             <option ng-repeat="h in ctrl.formdata.height" ng-value="{{h}}">{{h | height}}</option>
                                           </select>
                                 </div>
                                 <div class="col-md-6">
@@ -390,7 +390,7 @@
                                     </select>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="all-do">
                                 <div ng-init="family.beleave_hor=false"></div>
                                 <label class="pull-left">Do You Beleave In Horoscope</label>
@@ -407,6 +407,8 @@
                                           <input type="radio" name="beleave_hor" value="NO" ng-model="family.beleave_hor">-->
                                 </div>
                             </div>
+                        </div>    <div class="clearfix"></div>
+                        <div class="col-md-8">
                             <div class="all-do">
                                 <div ng-init="family.manglik=false"></div>
                                 <label class="pull-left">Are You Manglik?</label>
@@ -425,17 +427,22 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <ul class="list-inline pull-left">
+                    <ul class="list-inline pull-right">
                         <li>
                             <button type="submit" ng-disabled="moreInfo.phone_number.$invalid" ng-if="!ctrl.editMode" class="button  raised hoverable next-step">
                                        <div class="anim"></div>
                                        <span>{{ctrl.editMode ? 'Update' : 'Proceed'}}</span>
                                     </button>
 
-                            <button type="submit" ng-disabled="!(moreInfo.$valid && ctrl.registerform.$valid)" ng-if="ctrl.editMode" class="button  raised hoverable next-step">
+                            <button type="submit" ng-disabled="!(moreInfo.$valid && ctrl.registerform.$valid)" ng-if="(ctrl.editMode && ctrl.isAdmin)" class="button  raised hoverable next-step">
                                        <div class="anim"></div>
                                        <span>{{ctrl.editMode ? 'Update' : ''}}</span>
                                     </button>
+                                   
+                                    <button type="submit" ng-disabled="!moreInfo.$valid" ng-if="(ctrl.editMode && !ctrl.isAdmin)" class="button  raised hoverable next-step">
+                                            <div class="anim"></div>
+                                            <span>{{ctrl.editMode ? 'Update' : ''}}</span>
+                                         </button>
                         </li>
                     </ul>
                     <!--<textarea>{{basicinfo}}</textarea>

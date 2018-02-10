@@ -1,9 +1,33 @@
 /* @ngInject */
-module.exports = function MyProfileController($location, loginservice, countryService, $rootScope) {
+module.exports = function MyProfileController(useractions,$location,$scope, matcheservice, $timeout,loginservice, countryService, $rootScope) {
     var controller = this;
-    controller.text = "biru";
-    controller.formdata = loginservice.getFiledsData();
-    console.log(controller.formdata);
+   controller.formdata = loginservice.getFiledsData();
+   
+
+    function loadCoun(array){
+        countryService.getCountries(function (res) {
+            
+            var arr = [];
+            for (var i = 0; i < array.length; i++) {
+                var itm = array[i];
+    
+                for (var j = 0; j < res.length; j++) {
+    
+                    if (itm === res[j].id) {
+    
+                        arr.push(res[j]);
+                    }
+                }
+    
+            }
+            var prop = "name";
+    
+            controller.countries= (!!prop ? arr.map(function (item) {
+                return item[prop];
+            }) : arr).join(", ");
+        }, function () { });
+    }
+ 
     var country = $rootScope.current_user_de_all.basicinfos[0].country;
     var state = $rootScope.current_user_de_all.basicinfos[0].state;
     var city = $rootScope.current_user_de_all.basicinfos[0].city;
@@ -43,4 +67,23 @@ module.exports = function MyProfileController($location, loginservice, countrySe
         }];
 
     };
+    matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {
+        
+                if (result) {
+       
+                    controller.fieldPartnerPre = result.fields;
+                    loadCoun(controller.fieldPartnerPre.country);
+        
+                }
+                else{
+                   
+    useractions.get_default_search_config(function(fields){
+       
+        controller.fieldPartnerPre = fields;
+        loadCoun(controller.fieldPartnerPre.country);
+            });
+                   
+                }
+            }, function (error) { });
+
 };

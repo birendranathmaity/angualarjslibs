@@ -5,9 +5,9 @@ module.exports = function () {
         templateUrl:function(elem,attrs){
           
 if(attrs.type==="SM"){
-    return './app/common/search.md.html';
+    return './app/common/search.sm.html';
 }if(attrs.type==="LG"){
-    return './app/common/searchby.dir.html';
+    return './app/common/searchby.lg.html';
 }
            
         },
@@ -16,7 +16,8 @@ if(attrs.type==="SM"){
            
          getFields:"&",
          type:"@",
-         fields:"="
+         fields:"=",
+         partnerPre:"="
         },
         
         controller: "serachByController"

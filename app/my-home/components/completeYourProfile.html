@@ -5,7 +5,7 @@
   <div class="grid-body no-border pro-bord">
     <div class="row">
       <div class="no-padding">
-        <div class="user-profile-pic " tooltip-placement="{{completeYourProfile.pTooltipCnfig.pos}}" uib-tooltip-template="completeYourProfile.pTooltipCnfig.tpl">
+        <div class="user-profile-pic ">
           <img water-mark="completeYourProfile.pic" alt="" width="91" height="88" >
         </div>
       </div>
@@ -36,7 +36,7 @@
               <span class="animate-number" data-value="86" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
             </div>
           </div>
-          <p class="p-t-4 last-edit">Last Edited On :<span class=""> {{completeYourProfile.user.updated_on | date:'dd-MMM-yyyy'}} </span></p>
+          <p class="p-t-4 last-edit">Last Edited On :<span class=""><date-parse date="completeYourProfile.user.basicinfos[0].updated_on ? completeYourProfile.user.basicinfos[0].updated_on : completeYourProfile.user.basicinfos[0].created_on"></date-parse> </span></p>
 
           <!--<div class="percent-total">
             <ul class="">
@@ -100,8 +100,8 @@
             <div class="details-status">
               <span class="animate-number" data-value="9" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
             </div>
-          </div>
-          <p class="p-t-4">Last Updated :<span class="">  {{completeYourProfile.user.updated_on | date:'dd-MMM-yyyy'}} </span></p>
+          </div>{{completeYourProfile.user.updated_on}}
+          <p class="p-t-4">Last Updated :<span class=""> <date-parse date="completeYourProfile.user.basicinfos[0].updated_on ? completeYourProfile.user.basicinfos[0].updated_on : completeYourProfile.user.basicinfos[0].created_on"></date-parse>  </span></p>
         </a>
       </div>
     </div>

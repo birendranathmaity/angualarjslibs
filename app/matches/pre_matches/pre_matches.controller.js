@@ -1,7 +1,8 @@
 /* @ngInject */
-module.exports = function PreMatchesController($location,$scope,$timeout,$rootScope,loginservice,matcheservice) {
+module.exports = function PreMatchesController($location,searchService,$scope,useractions,$timeout,$rootScope,loginservice,matcheservice) {
     var controller = this;
-    controller.limit = 10;
+    controller.fields={};
+     controller.limit = 10;
     controller.total = 0;
     controller.page = 1;
     controller.pages = 0;
@@ -12,17 +13,10 @@ module.exports = function PreMatchesController($location,$scope,$timeout,$rootSc
     var req = {
         page: controller.page,
         limit: controller.limit,
-        condition:{
-            age: [20, 50],
-            height: 5.1,
-            gender: "FEMALE",
-            mother_tounge: ["BN"],
-            religion: ["Hinduism"]
-
-
-        }
-    };
-    
+        gender:$rootScope.login_user_gender,
+        fields:controller.fields
+        };
+   
     controller.pageChanged = function () {
         
                 controller.selectedAll = false;
@@ -35,12 +29,28 @@ module.exports = function PreMatchesController($location,$scope,$timeout,$rootSc
             };
 
             controller.loadViewType = function () {
+
+                searchService.getSearchResult(req,function(result){
+                    
+                     setUserData(result)
+                             },function(error){});
+
+            //     if(controller.fields){
+            //         serachResult();
+            //     }
                
-                matcheservice.get_pre_matches(req,function(response){
-                    setUserData(response);
-                
-                },function(eror){});
                
+            //    else{
+            //     searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
+            //         if (result) {
+            //             req.fields=result;
+            //             controller.fields=result;
+            //             req.gender=$rootScope.login_user_gender;
+            //             serachResult();
+            //         }
+                        
+            //             },function(error){});
+            //    }
         
             };
 
@@ -55,7 +65,24 @@ module.exports = function PreMatchesController($location,$scope,$timeout,$rootSc
         controller.end = controller.start + result.users.length - 1;
     }
 
-    controller.loadViewType();
+    
+    matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {
+        
+                if (result) {
+       req.fields=result.fields;
+       controller.loadViewType();       
+        
+                }
+                else{
+                   
+    useractions.get_default_search_config(function(fields){
+       
+        req.fields = fields;
+        controller.loadViewType();
+            });
+                   
+                }
+            }, function (error) { });
 
 
-}
+};

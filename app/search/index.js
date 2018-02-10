@@ -21,10 +21,16 @@ module.exports = angular.module('app.ui.srarch', [])
     .controller('searchHistoryController', searchHistoryController).
     filter('height', function () {
       return function (item) {
+       
+       if(!item){
+         return;
+       }
+      item=item.toFixed(2);
+      
         var ht=item.toString().split(".");
         var ht1=ht[0]+" ft ";
      
-        var ht2=(parseInt(ht[1])===0  ? '' :parseInt(ht[1]) +" inc");
+        var ht2=(parseInt(ht[1])===0  ? '' :parseInt(ht[1]) +" in");
           return ht1+ht2;
       };
     }).filter('propsFilter', function() {

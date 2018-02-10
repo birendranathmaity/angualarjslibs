@@ -82,11 +82,11 @@
                                                                      <div class="clearfix "></div>
                                                       <div class="controls">
                                                             <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.from" convert-to-number="height"> 
-                                                                    <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
+                                                                    <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h | height}}</option>
                                                                  </select>
                                                          <span class="select-half"> To </span>
                                                          <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.to" convert-to-number="height">
-                                                                <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h.toFixed(2) | height}}</option>
+                                                                <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h | height}}</option>
                                                              </select>
                                                       </div>
                                                     </div>

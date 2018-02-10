@@ -1,7 +1,49 @@
 var searchBy = require('./model/searchBy.model');
 var User = require('./model/user.model');
 var searchResultModel = require('./model/search.result.model');
+var partnerPreModel = require('./model/partnerpre.model');
 var commonQuery = require('./common.query');
+
+exports.getPartnerPre = function (req, res) {
+    partnerPreModel.findOne(req.body, { _id: 0 }, function (err, result) {
+
+        res.json(result);
+    });
+
+
+};
+exports.savePartnerPre = function (req, res) {
+    partnerPreModel.findOne({
+        user_id: req.body.user_id
+
+    }, function (err, partner) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            if (partner) {
+                req.body.updated_on = new Date();
+                partnerPreModel.update({ user_id: req.body.user_id }, req.body, function (err, user) {
+
+                    res.json({
+                        success: true,
+                        data: "partner updated"
+                    });
+                });
+            } else {
+                req.body.created_on = new Date();
+                var partnerPre = new partnerPreModel(req.body);
+                partnerPre.save(function (err, result) {
+
+                    res.json({ success: true })
+                });
+
+            }
+        }
+    });
+};
 exports.getSavedSearchResults = function (req, res) {
    
     var aggregate = searchResultModel.aggregate([{
