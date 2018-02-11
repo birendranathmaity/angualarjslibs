@@ -660,6 +660,7 @@ exports.getSearchResult = function (req, res) {
              "caste": "$user.caste",
              "created_by": "$user.created_by",
              "physical_status": "$user.physical_status",
+             "occupation": "$user.occupation",
              is_liked_profile:"$is_liked_profile",
              is_viewed_profile:"$is_viewed_profile",
              is_contacted:"$is_contacted",

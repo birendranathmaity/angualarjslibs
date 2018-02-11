@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-6 p-l-0 p-r-7 ">
                   <select class="select-btn minimal form-control" name="created_by" ng-model="form.created_by"> 
-                        <option ng-repeat="crt in ctrl.formdata.created_by" value="{{crt.value}}">{{crt.name}}</option>
+                        <option ng-repeat="crt in registerFormCtrl.formdata.created_by" value="{{crt.value}}">{{crt.name}}</option>
                        
          </select>
             </div>
@@ -78,7 +78,10 @@
                   <label for="email">Date Of Birth  </label>
             </div>
             <div class="col-md-6 p-l-0 p-r-7 dobfield pull-right">
+                        <p ng-init="form.day=''"></p>
+                        <p ng-init="form.month=''"></p>
                   <div class="date-birth p-r-7">
+                      
                         <select convert-to-number class="select-btn minimal form-control" name="day" ng-model="form.day" validator="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
                               invalid-message="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)" required-message="registerFormCtrl.required('REQUIRED')"
                               append-message=".dobfield" validate-on="dirty" required>

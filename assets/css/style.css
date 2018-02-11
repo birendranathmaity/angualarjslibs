@@ -15947,7 +15947,7 @@ body > .select2-container.open {
 }
 
 body > .ui-select-bootstrap.open {
-  z-index: 1000; /* Standard Bootstrap dropdown z-index */
+  z-index: 10000; /* Standard Bootstrap dropdown z-index */
 }
 
 .ui-select-multiple.ui-select-bootstrap {

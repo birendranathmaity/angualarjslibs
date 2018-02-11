@@ -54,34 +54,28 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                         return;
                     }
                 };
-                $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
-                    controller.pic = pic;
-                    loginservice.setProfilePic(pic);
-                });
-               // console.log($rootScope.current_user_de_all);
-
-                controller.user = $rootScope.current_user_de_all;
+               
+               controller.user = $rootScope.current_user_de_all;
                 var pics=loginservice.getProfilePic();
                 controller.pic = pics.profile;
                 controller.ProfilePercentage = {
 
                     width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
                 };
-
-                // $viewusers.getUser({ "user_id": $scope.userId }, function (result) {
-
-
-                //     controller.user = result.user;
-                //     controller.pic = result.user.pic[0];
-                //     controller.ProfilePercentage = {
-
-                //         width: calculateProfilePercentage(controller.user) + "%"
-                //     };
-
-
-
-
-                // }, function () { });
+                controller.LastUpdateDate=(controller.user.basicinfos[0].updated_on ? controller.user.basicinfos[0].updated_on : controller.user.basicinfos[0].created_on);
+                var userPhotoBoradcastToDisplay= $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
+                    controller.pic = pic;
+                    loginservice.setProfilePic(pic);
+                });
+                var userProfileUpdate=$rootScope.$on('userProfileUpdate', function ($event, msg) {
+                    controller.user = $rootScope.current_user_de_all;
+                    controller.LastUpdateDate=(controller.user.basicinfos[0].updated_on ? controller.user.basicinfos[0].updated_on : controller.user.basicinfos[0].created_on);
+                    
+                    controller.ProfilePercentage = {
+                        width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
+                        
+                       };
+                });
                 function calculateProfilePercentage(user) {
                     var p = 0;
 
@@ -181,6 +175,14 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                     return p;
                 }
                 controller.profileType = $scope.profileType;
+
+                $rootScope.$on('$destroy', function () {
+                    
+                    
+                    userPhotoBoradcastToDisplay();
+                    userProfileUpdate();
+                    
+                                    });
 
 
             }

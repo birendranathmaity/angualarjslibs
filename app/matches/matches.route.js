@@ -12,7 +12,8 @@ module.exports = function myHomeRoutes(Router) {
                     }
                 },
                 params: {
-                    permisstion: "ALLUSER"
+                    permisstion: "ALLUSER",
+                    result:null
                 },
                 title: 'Matches'
             }

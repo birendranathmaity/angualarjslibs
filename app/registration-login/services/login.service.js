@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
+module.exports = function ($http, $viewusers, $state, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
 
     function changeUser(user) {
         angular.extend(currentUser, user);
@@ -40,7 +40,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
     }
 
 
-   
+
 
     var service = {
         signup: function (data, success, error) {
@@ -62,30 +62,56 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
         },
 
-        afterloginRoute: function () {
+        afterloginRoute: function (role, state) {
+           var user = $rootScope.current_user_de_all;
+          console.log("hh")
+          //  var pic = this.getProfilePic();
+            if (role === "ADMIN") {
 
-            var logindata = getUserFromToken();
-
-            var user = logindata;
-
-
-
-            if (!user.phone_vr) {
-                this.openotpPopup();
-                return;
+                if (state === "HOME" || state === "/register" || state === "/login") {
+                    $location.path('/admin');
+                    return;
+                }
+                else {
+                    $location.path(state);
+                    return;
+                }
             }
-            if (!user.more_info_vr) {
-                $location.path('/moreinfo');
-                return;
+           if (role === "FREEUSER") {
+
+                if (!user.phone_vr) {
+                    this.openotpPopup();
+                    return;
+                }
+                if (!user.more_info_vr) {
+                    $location.path('/moreinfo');
+                    return;
+                }
+                // if (!pic.profile) {
+                //     var config = {
+                //         user_id: user.user_id,
+                //         from_sec: 'userEntry',
+                //         photo_type: 'PROFILE'
+                //     };
+
+                //     this.openCropPopup(config);
+                //     return;
+
+                // }
+                if (state === "HOME" || state === "/register" || state === "/login") {
+                    $location.path('/dashboard');
+                    return;
+                }
+                else {
+                   
+                    $location.path(state);
+                    return;
+                }
+
+
             }
-            if (user.user_role === "ADMIN") {
-                $location.path('/admin');
-                return;
-            }
-            if (user.user_role === "FREEUSER") {
-                $location.path('/dashboard');
-                return;
-            }
+
+
 
         },
         openCropPopup: function (user) {
@@ -145,27 +171,34 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             self.getCureentUser(d.user_id, function (rs) {
 
                 if (rs) {
-                    self.afterloginRoute();
+                    self.afterloginRoute(d.user_role, "HOME");
                 }
             });
 
 
         },
 
-        getUserShrotInfo:function(data){
+        getUserShrotInfo: function (data) {
 
         },
         getCurrentUserRole: function (success) {
-            var cUser = getUserFromToken();
+
 
             if ($sessionStorage.token) {
-               
-                if(!$rootScope.current_user_de_all){
-                  
-                    this.getCureentUser(cUser.user_id, function () { });
-                    
+                var cUser = getUserFromToken();
+                if ($rootScope.current_user_de_all) {
+
+                    success(cUser.user_role);
+                    return;
                 }
-                success(cUser.user_role);
+                else {
+                    this.getCureentUser(cUser.user_id, function (result) {
+
+                        success(cUser.user_role);
+                        return;
+                    });
+                }
+
             }
             else {
                 $location.path("/register");
@@ -178,7 +211,7 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             if ($sessionStorage.token) {
 
 
-               
+
 
                 success(cUser);
             }
@@ -201,22 +234,6 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             return formdata;
         },
         getProfilePic: function () {
-
-            var cUser = getUserFromToken();
-            
-                        if ($sessionStorage.token) {
-                           
-                            if(!$rootScope.current_user_de_all){
-                              
-                                this.getCureentUser(cUser.user_id, function () { });
-                                
-                            }
-                           
-                        }
-                        else {
-                            $location.path("/register");
-                        }
-          
             var pics = {
                 profile: null,
                 album: []
@@ -242,27 +259,27 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
             }
             return pics;
         },
-        getAlbumPics:function(data,success){
-           
-            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_ALBUM,data).success(function(res){
-               var imgs=[];
-                angular.forEach(res,function(v,i){
-                   
+        getAlbumPics: function (data, success) {
+
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_ALBUM, data).success(function (res) {
+                var imgs = [];
+                angular.forEach(res, function (v, i) {
+
                     var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + v.photo_path;
-                    var img={
-                        id:v._id,
-                        url:imgUrl
-            
+                    var img = {
+                        id: v._id,
+                        url: imgUrl
+
                     };
                     imgs.push(img);
-   
-            
-            
+
+
+
                 });
 
                 success(imgs);
             });
-            
+
         },
         setProfilePic: function (pic) {
             if ($rootScope.current_user_de_all.pic.length > 0) {
@@ -308,6 +325,6 @@ module.exports = function ($http, $viewusers, $sessionStorage, $localStorage, Se
         }
     };
 
-    var currentUser= getUserFromToken();
+    var currentUser = getUserFromToken();
     return service;
 };

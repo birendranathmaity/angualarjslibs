@@ -102,15 +102,18 @@ module.exports = function ($location, $rootScope, $state, routerConfig,loginserv
 	// 	$rootScope.animation = currRoute.animation;
 	//   });
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-
+        loginservice.getCurrentUserRole(function(role){
+            $rootScope.$broadcast("loadhedermenu",toState);
            
-          $rootScope.$broadcast("loadhedermenu",toState);
-            loginservice.getCurrentUserRole(function(role){
 if(role ==="FREEUSER" && toParams.permisstion ==="ALLUSER"){
-return;
+   loginservice.afterloginRoute(role,toState.url);
+   
+   return;
 }
 if(role ===toParams.permisstion){
-return;
+    loginservice.afterloginRoute(role,toState.name);
+   
+   return;
 }
 
 if(role !==toParams.permisstion){

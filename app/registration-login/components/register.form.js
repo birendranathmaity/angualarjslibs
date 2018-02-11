@@ -23,6 +23,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                 controller.isAdmin = $scope.isAdmin;
                 var formData =loginservice.getFiledsData();
                 //date of birth//
+                controller.formdata=formData;
                 controller.monthsL = formData.monthsL;
                 var year = new Date().getFullYear();
                 var range = [];
@@ -133,12 +134,12 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
 
                         if (res.success) {
 
-                            if (!controller.isAdmin) {
-                                loginservice.saveToken(res.token);
-                                
+                            if (controller.isAdmin) {
+                               
+                                loginservice.openMoreInfoModal(res.user);
                             }
                             else {
-                                loginservice.openMoreInfoModal(res.user);
+                                loginservice.saveToken(res.token);
                             }
 
 

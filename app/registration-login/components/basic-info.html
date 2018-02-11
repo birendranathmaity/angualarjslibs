@@ -232,6 +232,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Complexion</label>
+                            <p ng-init="intrests.complexion='LIGHT'"></p>
                             <select class="minimal" ng-model="intrests.complexion">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="com in ctrl.formdata.complexion" value="{{com.value}}">{{com.name}}</option>
@@ -240,20 +241,13 @@
                         </div>
                         <div class="col-md-6">
                             <label>Body Type</label>
+                            <p ng-init="intrests.body_type='AVERAGE'"></p>
                             <select class="minimal" ng-model="intrests.body_type">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="bd in ctrl.formdata.BodyType" value="{{bd.value}}">{{bd.name}}</option>
                                     </select>
                         </div>
-                        <div class="col-md-6">
-                            <label class="required">Physical Status</label>
-                            <p ng-init="intrests.physical_status='NOR'"></p>
-                            <select class="minimal form-control" name="physical_status" ng-model="intrests.physical_status" required-message="ctrl.required('REQUIRED')"
-                                validate-on="dirty" required>
-                                       <option value="" selected="selected" disabled="disabled">-- Select one --</option>
-                                       <option ng-repeat="pc in ctrl.formdata.PhysicalStatus" value="{{pc.value}}">{{pc.name}}</option>
-                                    </select>
-                        </div>
+                        
                         <div class="col-md-6">
                             <label>Hobbies</label>
                             <!-- <select class="minimal" name="expectation" ng-model="intrests.hobbie">
@@ -267,9 +261,18 @@
                                           <div ng-bind-html="hobbie.name | highlight: $select.search"></div>
                                        </ui-select-choices>
                                       </ui-select>
-                        </div>
+                        </div><div class="col-md-6">
+                                <label class="required">Physical Status</label>
+                                <p ng-init="intrests.physical_status='NOR'"></p>
+                                <select class="minimal form-control" name="physical_status" ng-model="intrests.physical_status" required-message="ctrl.required('REQUIRED')"
+                                    validate-on="dirty" required>
+                                           <option value="" selected="selected" disabled="disabled">-- Select one --</option>
+                                           <option ng-repeat="pc in ctrl.formdata.PhysicalStatus" value="{{pc.value}}">{{pc.name}}</option>
+                                        </select>
+                            </div>
                         <div class="col-md-6">
                             <label>Expectation</label>
+                            <p ng-init="intrests.expectation='NCFP'"></p>
                             <select class="minimal" name="expectation" ng-model="intrests.expectation">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="ex in ctrl.formdata.Expectation" value="{{ex.value}}">{{ex.name}}</option>
@@ -368,6 +371,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Horoscope Details</label>
+                            <p ng-init="family.horoscope='CL'"></p>
                             <select class="minimal" ng-model="family.horoscope">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="hr in ctrl.formdata.Horoscope" value="{{hr.value}}">{{hr.name}}</option>
@@ -376,6 +380,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Zodiac</label>
+                            <p ng-init="family.zodiac='Taurus'"></p>
                             <select class="minimal" ng-model="family.zodiac">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="zodiac in ctrl.zodiac" value="{{zodiac}}">{{zodiac}}</option>
@@ -384,6 +389,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Anal Income</label>
+                            <p ng-init="family.aincome='0T2L'"></p>
                             <select class="minimal" ng-model="family.aincome">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="ai in ctrl.formdata.aincome" value="{{ai.value}}">{{ai.name}}</option>

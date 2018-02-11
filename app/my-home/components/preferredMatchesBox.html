@@ -2,27 +2,26 @@
               <div class=" pref-title no-border">
                 <h4 class="">{{title | translate}}</h4>
 
-                <div class="vewall"> <a href="#">{{'VIEW_ALL' | translate}} </a></div>
+                <div class="vewall" ng-if="preferredMatchesBox.users.length>0"> <a ui-sref="root.pre_matches({result:preferredMatchesBox.result})">{{'VIEW_ALL' | translate}} </a></div>
               </div>
               <div class="grid-body  no-border">
                 <div class="hr-line"> </div>
                   <div class="scroller" data-height="230px" ng-scrollbars ng-scrollbars-config="preferredMatchesBox.config">
                     <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-6 p-r-0" ng-repeat="preMatch in preferredMatchesBox.preferredMatchesBoxData">
+                      <div class="col-lg-6 col-md-6 col-sm-6 p-r-0" ng-repeat="preMatch in preferredMatchesBox.users">
                         <div class="li-profile">
                            <a href="#">
                               <div class="pull-left no-padding">
-                                <div class="user-profile-pic">  
-                                  <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />  
-                                </div>
+                                  <user-img is-noti="MDPHOTO" user="preMatch"></user-img>
                               </div>
                               <div class="pull-left no-padding">
                                 <ul>
                                   <li> {{preMatch.user_id}} </li>
-                                  <li> {{preMatch.user_name}}</li>
-                                  <li> {{preMatch.user_age}}, {{preMatch.user_height}}  <br>
-                                      {{preMatch.user_prof}}, {{preMatch.user_location}}
+                                  <li> {{preMatch.first_name}} {{preMatch.last_name}}</li>
+                                  <li> {{preMatch.age}} Yrs, {{preMatch.height | height}}  <br>
+                                    <span  ng-repeat="oc in preferredMatchesBox.formdata.occupations |  where:{value: preMatch.occupation}">{{oc.name}}</span>, {{preMatch.location_name.city}}
                                   </li>
+                                 
                                 </ul>                    
                               </div>
                             </a>

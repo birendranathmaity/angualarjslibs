@@ -48,14 +48,14 @@
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Marital Status</p>
 
-                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | filterBy: ['value']:current_user_de_all.basicinfos[0].maritialstatus">{{mt.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Mother Tongue</p>
 
-                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.mother_tongues | filterBy: ['value']:current_user_de_all.basicinfos[0].mothertounge ">{{mt.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.mother_tongues |  where:{value:current_user_de_all.basicinfos[0].mothertounge}">{{mt.name}}</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Religion </p>
-                                              <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | filterBy: ['value']:current_user_de_all.basicinfos[0].religion ">{{rt.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
 
                                           </div>
                                       </li>
@@ -68,18 +68,18 @@
 
                                               <p class="list-group-item-left pull-left">Caste </p>
                                               <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
-                                              <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | filterBy: ['value']:current_user_de_all.basicinfos[0].caste">{{cs.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | where:{value:current_user_de_all.basicinfos[0].caste}">{{cs.name}}</p>
                                               
                                               <p class="clearfix"></p>
 
                                               <p class="list-group-item-left pull-left">Highest Education</p>
 
-                                              <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | filterBy: ['value']:current_user_de_all.usereducations[0].high_edu ">{{edu.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | where:{value:current_user_de_all.usereducations[0].high_edu}">{{edu.name}}</p>
 
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Occupation</p>
 
-                                              <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.occupations | filterBy: ['value']:current_user_de_all.usereducations[0].occupation ">{{oc.name}}</p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.occupations | where:{value:current_user_de_all.usereducations[0].occupation}">{{oc.name}}</p>
 
                                               <p class="clearfix"></p>
 
@@ -88,7 +88,7 @@
                                               <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
                                               <p class="clearfix"></p>
                                               <p class="list-group-item-left pull-left">Posted By </p>
-                                              <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | filterBy: ['value']:current_user_de_all.created_by"> {{crt.name}} </p>
+                                              <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by |  where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
                                               
                                           </div>
                                       </li>
@@ -127,11 +127,11 @@
                                                                           <p class="list-group-item-left pull-left">Marital Status</p>
 
 
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | filterBy: ['value']:current_user_de_all.basicinfos[0].maritialstatus">{{mt.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Religion</p>
 
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | filterBy: ['value']:current_user_de_all.basicinfos[0].religion ">{{rt.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Country Living in</p>
@@ -153,7 +153,7 @@
                                                                           <p class="list-group-item-left pull-left">Caste</p>
 
                                                                           <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | filterBy: ['value']:current_user_de_all.basicinfos[0].caste">{{cs.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | where:{value:current_user_de_all.basicinfos[0].caste}">{{cs.name}}</p>
                                                                           
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Sub Caste</p>
@@ -171,7 +171,7 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Posted By </p>
 
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | filterBy: ['value']:current_user_de_all.created_by"> {{crt.name}} </p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
                                                                         </div>
                                                                   </li>
                                                               </ul>
@@ -194,12 +194,12 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Heighest Education</p>
 
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | filterBy: ['value']:current_user_de_all.usereducations[0].high_edu ">{{edu.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | where:{value:current_user_de_all.usereducations[0].high_edu}">{{edu.name}}</p>
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Occupation</p>
 
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.occupations | filterBy: ['value']:current_user_de_all.usereducations[0].occupation ">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.occupations | where:{value:current_user_de_all.usereducations[0].occupation}">{{oc.name}}</p>
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Designation</p>
@@ -216,7 +216,7 @@
                                                                   <li class="list-group-item">
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Field of Study</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="ft in ctrl.formdata.studies | filterBy: ['value']:current_user_de_all.usereducations[0].filed_study ">{{ft.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="ft in ctrl.formdata.studies | where:{value:current_user_de_all.usereducations[0].filed_study}">{{ft.name}}</p>
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Company Name</p>
@@ -225,7 +225,7 @@
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Annual Income</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.aincome | filterBy: ['value']:current_user_de_all.userfamilies[0].aincome">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.aincome | where:{value:current_user_de_all.userfamilies[0].aincome}">{{oc.name}}</p>
                                                                           
                                                                       </div>
                                                                   </li>
@@ -252,14 +252,14 @@
                                                                           
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Complection</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.complexion | filterBy: ['value']:current_user_de_all.userintrests[0].complexion">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.complexion | where:{value:current_user_de_all.userintrests[0].complexion}">{{oc.name}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Phishical Status</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.PhysicalStatus | filterBy: ['value']:current_user_de_all.userintrests[0].physical_status">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.PhysicalStatus | where:{value:current_user_de_all.userintrests[0].physical_status}">{{oc.name}}</p>
                                                                           
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Expectation</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Expectation | filterBy: ['value']:current_user_de_all.userintrests[0].expectation">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Expectation | where:{value:current_user_de_all.userintrests[0].expectation}">{{oc.name}}</p>
                                                                    
                                                                           <p class="clearfix"></p>
 
@@ -276,7 +276,7 @@
                                                                           <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].weight}} kg</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Body Type </p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.BodyType | filterBy: ['value']:current_user_de_all.userintrests[0].body_type">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.BodyType | where:{value:current_user_de_all.userintrests[0].body_type}">{{oc.name}}</p>
                                                                          
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Hobbies</p>
@@ -355,7 +355,7 @@
                                                                           <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].time_birth_hr}}:{{current_user_de_all.userfamilies[0].time_birth_min}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left"> Horoscope Details</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Horoscope | filterBy: ['value']:current_user_de_all.userfamilies[0].horoscope">{{oc.name}}</p>
+                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Horoscope | where:{value:current_user_de_all.userfamilies[0].horoscope}">{{oc.name}}</p>
                                                                           
 
                                                                           <p class="clearfix"></p>
@@ -470,7 +470,7 @@
                                                                           ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Mother Tounge </p>
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':ctrl.formdata.mother_tongues"
+                                                                          <p class="list-group-item-right pull-right bold" ng-text-truncate="ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':ctrl.formdata.mother_tongues"
                                                                           ng-tt-chars-threshold="10"></p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Religion</p>

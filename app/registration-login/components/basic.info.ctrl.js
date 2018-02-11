@@ -17,19 +17,37 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 var controller = this;
                 controller.editMode = false;
                 controller.isAdmin = $scope.isAdmin;
-                console.log( controller.isAdmin)
-                if ($scope.isMoreinfoEdit) {
+               if ($scope.isMoreinfoEdit) {
                     controller.editMode = true;
                 }
 
-
+                function setUserData(user){
+                    if (user.basicinfos.length > 0) {
+                        
+                                                    var countryId = user.basicinfos[0].country;
+                                                    var stateId = user.basicinfos[0].state;
+                                                    var religion = user.basicinfos[0].religion;
+                                                    controller.loadCaste(religion);
+                                                    controller.loadState(countryId);
+                                                    controller.loadCity(stateId);
+                                                    $scope.basicinfo = user.basicinfos[0];
+                                                    $scope.educationwork = user.usereducations[0];
+                                                    $scope.intrests = user.userintrests[0];
+                                                    $scope.family = user.userfamilies[0];
+                                                    $scope.intrests.height = $scope.intrests.height;
+                        
+                                                }
+                }
 
                 $scope.$watch('userId', function (n, v) {
                     if (!n) { return; }
 
                     controller.userId = n;
-                    if (controller.editMode) {
+                    if (controller.editMode && controller.isAdmin) {
                         controller.loaduserDetails(n);
+                    }
+                    if(controller.editMode && !controller.isAdmin){
+                        setUserData($rootScope.current_user_de_all);
                     }
 
                 });
@@ -247,7 +265,8 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     };
 
                     loginservice.savemoreinfo(req, function (res) {
-
+                        console.log(controller.userId)
+                       
                         if (res.success && !controller.editMode) {
                             toastr.success('Saved Successfully');
                             if ($scope.isAdmin) {
@@ -259,17 +278,29 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
                                 res.skip_url = "/dashboard";
                             }
-
-                            res.user_id = controller.userId;
-                            res.from_sec = 'userEntry';
-                            res.photo_type = "PROFILE";
-                            loginservice.openCropPopup(res);
-
+                            
+                              var config={
+                                user_id: controller.userId,
+                                from_sec:'userEntry',
+                                photo_type:'PROFILE'
+                              };
+                            
+                            loginservice.openCropPopup(config);
+                            
 
                         }
                         if (controller.editMode && $scope.isAdmin) {
                             updateRegisterForm();
-                        }else{
+                        }
+                        if(controller.editMode && !$scope.isAdmin){
+                            loginservice.getCureentUser(controller.userId,function(result){
+                                
+                                $rootScope.$broadcast('userProfileUpdate');
+                                
+                                                       });
+
+                        }
+                        if(controller.editMode){
                             toastr.success('Updated Successfully');
                         }
 
@@ -312,29 +343,14 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     }, function () { });
                 }
 
+
+                
                 controller.loaduserDetails = function (userId) {
                     $viewusers.getUser({ user_id: userId }, function (result) {
 
-
-                        if (result.user.basicinfos.length > 0) {
-
-                            var countryId = result.user.basicinfos[0].country;
-                            var stateId = result.user.basicinfos[0].state;
-                            var religion = result.user.basicinfos[0].religion;
-                            controller.loadCaste(religion);
-                            controller.loadState(countryId);
-                            controller.loadCity(stateId);
-                            $scope.basicinfo = result.user.basicinfos[0];
-                            $scope.educationwork = result.user.usereducations[0];
-                            $scope.intrests = result.user.userintrests[0];
-                            $scope.family = result.user.userfamilies[0];
-                            $scope.intrests.height = $scope.intrests.height;
-
-                        }
-
-
-
-                    }, function () {
+                        setUserData(result.user);
+                       
+                     }, function () {
 
                     });
                 };

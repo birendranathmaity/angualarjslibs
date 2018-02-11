@@ -7,7 +7,7 @@ var completeYourProfile = require('./completeYourProfile.directive');
 var calendarBox = require('./calendarBox.directive');
 var preferredMatchesBox = require('./preferredMatchesBox.directive');
 var userActionsTabs = require('./userActionsTabs.directive');
-module.exports = angular.module('app.ui.myhome.components',[])
+module.exports = angular.module('app.ui.myhome.components',['angular.filter'])
     .directive('searchById', searchById)
     .directive('messagesBox', messagesBox)
     .directive('basicSearchBox', basicSearchBox)

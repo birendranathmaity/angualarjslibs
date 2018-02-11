@@ -1,8 +1,9 @@
 /* @ngInject */
-module.exports = function PreMatchesController($location,searchService,$scope,useractions,$timeout,$rootScope,loginservice,matcheservice) {
+module.exports = function PreMatchesController($state, $location, searchService, $scope, useractions, $timeout, $rootScope, loginservice, matcheservice) {
     var controller = this;
-    controller.fields={};
-     controller.limit = 10;
+    controller.result = $state.params.result;
+    controller.fields = {};
+    controller.limit = 10;
     controller.total = 0;
     controller.page = 1;
     controller.pages = 0;
@@ -13,50 +14,50 @@ module.exports = function PreMatchesController($location,searchService,$scope,us
     var req = {
         page: controller.page,
         limit: controller.limit,
-        gender:$rootScope.login_user_gender,
-        fields:controller.fields
-        };
-   
+        gender: $rootScope.login_user_gender,
+        fields: controller.fields
+    };
+
     controller.pageChanged = function () {
-        
-                controller.selectedAll = false;
-        
-                controller.page = controller.page;
-        
-                req.page = controller.page;
-                controller.loadViewType();
-        
-            };
 
-            controller.loadViewType = function () {
+        controller.selectedAll = false;
 
-                searchService.getSearchResult(req,function(result){
-                    
-                     setUserData(result)
-                             },function(error){});
+        controller.page = controller.page;
 
-            //     if(controller.fields){
-            //         serachResult();
-            //     }
-               
-               
-            //    else{
-            //     searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
-            //         if (result) {
-            //             req.fields=result;
-            //             controller.fields=result;
-            //             req.gender=$rootScope.login_user_gender;
-            //             serachResult();
-            //         }
-                        
-            //             },function(error){});
-            //    }
-        
-            };
+        req.page = controller.page;
+        controller.loadViewType();
 
-            
+    };
+
+    controller.loadViewType = function () {
+
+        searchService.getSearchResult(req, function (result) {
+
+            setUserData(result)
+        }, function (error) { });
+
+        //     if(controller.fields){
+        //         serachResult();
+        //     }
+
+
+        //    else{
+        //     searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
+        //         if (result) {
+        //             req.fields=result;
+        //             controller.fields=result;
+        //             req.gender=$rootScope.login_user_gender;
+        //             serachResult();
+        //         }
+
+        //             },function(error){});
+        //    }
+
+    };
+
+
     function setUserData(result) {
-        controller.users = [];
+
         controller.pages = result.pages;
         controller.total = result.total;
         controller.users = result.users;
@@ -65,24 +66,31 @@ module.exports = function PreMatchesController($location,searchService,$scope,us
         controller.end = controller.start + result.users.length - 1;
     }
 
-    
-    matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {
-        
-                if (result) {
-       req.fields=result.fields;
-       controller.loadViewType();       
-        
-                }
-                else{
-                   
-    useractions.get_default_search_config(function(fields){
-       
-        req.fields = fields;
-        controller.loadViewType();
-            });
-                   
-                }
-            }, function (error) { });
+    function loadDefualt() {
+        matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {
 
+            if (result) {
+                req.fields = result.fields;
+                controller.loadViewType();
+
+            }
+            else {
+
+                useractions.get_default_search_config(function (fields) {
+
+                    req.fields = fields;
+                    controller.loadViewType();
+                });
+
+            }
+        }, function (error) { });
+
+
+    }
+    if (controller.result) {
+        setUserData(controller.result);
+    } else {
+        loadDefualt();
+    }
 
 };

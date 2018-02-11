@@ -32,11 +32,11 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
             name: "",
             translatekey: "MATCHES",
             subMenus: [{
-                translatekey: "PRE_MATCHES",
+                translatekey: "PREFERRED_MATCHES",
                 route: "root.pre_matches"
             },
             {
-                translatekey: "DAILYMATCHES",
+                translatekey: "DAILY_MATCHES",
                 route: "root.dailymatches"
             }],
             route: "root.pre_matches"

@@ -15,15 +15,25 @@ module.exports = function () {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
-
+                
                 moment.fn.fromNowOrNow = function (a) {
                     if (Math.abs(moment().diff(this)) < 25000) { // 25 seconds before or after now
                         return 'just now';
                     }
                     return this.fromNow(a);
                 }
+                $scope.$watch('date', function (newVal, oldVal) {
+
+                    if(!newVal){
+                        return;
+                    }
+                   
+                    controller.date=moment(newVal).fromNowOrNow();
+
+                });
+
                
-                controller.date=moment($scope.date).fromNowOrNow();
+               
 
             }]
         }

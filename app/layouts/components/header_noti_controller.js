@@ -194,9 +194,15 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         controller.getnotifications();
 
     });
+    var userPhotoBoradcastToDisplay = $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, msg) {
+        
+        controller.pic=msg;
+        
+            })
+    
     $rootScope.$on('$destroy', function () {
 
-
+        userPhotoBoradcastToDisplay();
         userMessageReadBroadcast();
         updateNotificationsCount();
     });
