@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function OtpVrController($uibModal,$uibModalInstance,loginservice,$filter,  $location) {
+module.exports = function OtpVrController($uibModal,$uibModalInstance,loginservice,$filter, $rootScope, $location) {
   
     var controller = this;
       controller.invalidOtp=false;
@@ -20,14 +20,15 @@ loginservice.verifyOtp(req, function(res) {
                      controller.invalidOtp=false;
                      if(res.success){
                           controller.cancel();
-                          if(!res.user.more_info_vr){
-                                 $location.path("/moreinfo");
-                          }
-                          else{
-                               $location.path("/dashboard");
-                          }
+                          $rootScope.current_user_de_all.phone_vr=true;
+                        //   if(!res.user.more_info_vr){
+                        //          $location.path("/moreinfo");
+                        //   }
+                        //   else{
+                        //        $location.path("/dashboard");
+                        //   }
                           
-                        //  loginservice.afterloginRoute();
+                         loginservice.afterloginRoute(res.user.user_role,"/moreinfo");
                      }
                      else{
                          controller.invalidOtp=true;

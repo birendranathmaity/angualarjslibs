@@ -63,8 +63,13 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
         },
 
         afterloginRoute: function (role, state) {
+
+            if (!$sessionStorage.token) {
+
+                $location.path("/login");
+               }
            var user = $rootScope.current_user_de_all;
-          console.log("hh")
+         
           //  var pic = this.getProfilePic();
             if (role === "ADMIN") {
 

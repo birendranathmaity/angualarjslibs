@@ -71,7 +71,7 @@
                                             <p class="mailer-name"> {{noti.user.first_name}}</p>
                                             <p class="mailer-sub">
                                                 <span>
-                                                    {{noti.user.age}} Years. {{noti.user.height}} ft, {{noti.user.first_name}}, {{req.user.last_name}}.
+                                                    {{noti.user.age}} Years. {{noti.user.height | height}}, {{noti.user.first_name}}, {{noti.user.last_name}}.
                                                 </span>
                                                 <notification-text section="'NOTI'" notification="noti" who-sent="noti.whosent"></notification-text>
                                                 <span class="pull-right">

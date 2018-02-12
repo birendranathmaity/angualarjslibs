@@ -1,16 +1,16 @@
-<div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_msg"><a class="btn match-btn"> 
+<div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_msg"><a class="btn match-btn" ng-click="$ctrl.sendMsg()"> 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
 Send Message </a>
   </div>
-  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.alreadysent"><a class="btn match-btn" > 
+  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.alreadysent"><a disabled class="btn match-btn btn-success" > 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
 Request sent</a>
   </div>
-  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.decline"><a class="btn match-btn" > 
+  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.decline"><a disabled class="btn match-btn btn-danger" > 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
    Request declined </a>
   </div>
-  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_request"><a class="btn match-btn" > 
+  <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_request"><a class="btn match-btn" ng-click="$ctrl.sendReq()"> 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
    Send Request </a>
   </div>

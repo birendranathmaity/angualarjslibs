@@ -141,6 +141,7 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
                 }
                 controller.result = response.data;
                 controller.cancel();
+                console.log(user.skip_url)
                 if(user.skip_url){
                     $location.path(user.skip_url);
                 }

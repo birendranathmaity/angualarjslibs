@@ -5350,6 +5350,10 @@ ul.progress-list li .progress {
     left: -140px !important;
     box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.4);
 }
+.contactPopover{
+    box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.4);
+    width:100%; 
+}
 select option {
     color: black;
 }
@@ -15200,6 +15204,12 @@ span.round-tab:hover {
 }
 .loginchk label::before {
 display: none;
+}
+.check-success label::before{
+    display: none;
+}
+.check-success label{
+  padding-left: 0;
 }
 .checkbox .cr .cr-icon {
     position: absolute;

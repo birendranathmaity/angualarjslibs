@@ -60,6 +60,10 @@ toaster_msg:function(msg){
     toastr.success(msg);
 
 },
+toaster_msg_error:function(msg){
+    toastr.error(msg);
+
+},
     composemail:function (config) {
         var modalInstance = $uibModal.open({
         animation: true,

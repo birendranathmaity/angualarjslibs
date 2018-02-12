@@ -266,23 +266,24 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
                     loginservice.savemoreinfo(req, function (res) {
                         console.log(controller.userId)
-                       
+                        var skip_url="";
                         if (res.success && !controller.editMode) {
                             toastr.success('Saved Successfully');
                             if ($scope.isAdmin) {
 
-                                res.skip_url = "/viewusers";
+                                skip_url = "/viewusers";
 
                             }
                             else {
 
-                                res.skip_url = "/dashboard";
+                                skip_url = "/dashboard";
                             }
                             
                               var config={
                                 user_id: controller.userId,
                                 from_sec:'userEntry',
-                                photo_type:'PROFILE'
+                                photo_type:'PROFILE',
+                                skip_url:skip_url
                               };
                             
                             loginservice.openCropPopup(config);
