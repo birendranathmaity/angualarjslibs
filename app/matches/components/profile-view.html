@@ -101,6 +101,10 @@
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Physical Status </p>
                         <p class="list-group-item-right pull-right" ng-repeat="ph in $ctrl.formdata.PhysicalStatus | where:{value:$ctrl.user.physical_status}">{{ph.name}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Occupation </p>
+                        <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
+                     
                       </div>
                   </li>
                 </ul>

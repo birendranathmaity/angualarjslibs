@@ -220,6 +220,12 @@ exports.query = {
                         if (arrTemp[i] === "GOLDUSER") {
                             finalmatch["user_role"] = { "$eq": "GOLDUSER" }
                         }
+                        if (arrTemp[i] === "VIEWED_PROFILE") {
+                            finalmatch["is_viewed_profile"] = { "$eq": "VIEWED_PROFILE" }
+                        }
+                        if (arrTemp[i] === "LIKED") {
+                            finalmatch["is_liked_profile"] = { "$eq": "LIKED" }
+                        }
                     }
 
                   
@@ -342,7 +348,42 @@ exports.query = {
         };
 
     },
+    is_visitor_profile: function (main_user_id) {
+        return {
 
+            $filter: {
+
+                input: "$visitor",
+
+                as: "item",
+
+                cond: {
+
+                    $and: [{
+
+                        "$eq": ["$$item.user_id", "$user_id"]
+
+                    }, {
+                        
+                                                "$eq": ["$$item.request_user_id", main_user_id]
+                        
+                                            },{
+                                                
+                                                                        "$ne": ["$$item.request_status", "BLOCK"]
+                                                
+                                                                    },{
+
+                        "$eq": ["$$item.request_type", "VIEWED_PROFILE"]
+
+                    },]
+
+                }
+
+            }
+
+        };
+
+    },
     is_liked_profile: function (main_user_id) {
         return {
 

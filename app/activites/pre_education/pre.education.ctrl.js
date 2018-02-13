@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function PreMatchesController($state, $location, searchService, $scope, useractions, $timeout, $rootScope, loginservice, matcheservice) {
+module.exports = function PreEducationController($state, $location, searchService, $scope, useractions, $timeout, $rootScope, loginservice, matcheservice) {
     var controller = this;
     controller.result = $state.params.result;
     controller.fields = {};
@@ -67,23 +67,12 @@ module.exports = function PreMatchesController($state, $location, searchService,
     }
 
     function loadDefualt() {
-        matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {
+        useractions.get_default_search_config("LOCATION",function (fields) {
+           
 
-            if (result) {
-                req.fields = result.fields;
-                controller.loadViewType();
-
-            }
-            else {
-
-                useractions.get_default_search_config("DEFAULT_PARTNER_PRE",function (fields) {
-
-                    req.fields = fields;
-                    controller.loadViewType();
-                });
-
-            }
-        }, function (error) { });
+            req.fields = fields;
+            controller.loadViewType();
+        });
 
 
     }

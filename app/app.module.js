@@ -36,6 +36,7 @@ var matchesModule = require('./matches');
 var messages = require('./messages');
 var common = require('./common');
 var search = require('./search');
+var activites = require('./activites');
 angular.module('app.ui', [
     uiRouter,
     ngCookies,
@@ -68,7 +69,8 @@ angular.module('app.ui', [
     adminModule.name,
     matchesModule.name,
     messages.name,
-    search.name
+    search.name,
+    activites.name
 
   
 ]);

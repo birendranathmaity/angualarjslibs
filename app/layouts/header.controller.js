@@ -73,6 +73,31 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
                 route: "root.contact_request"
             }],
             route: "root.mail"
+        },
+        {
+            name: "",
+            translatekey: "ACTIVITES",
+            subMenus: [{
+                translatekey: "PREFERRED_LOCATION",
+                route: "root.pre_location"
+            },{
+                translatekey: "PREFERRED_EDUCATION",
+                route: "root.pre_education"
+            },
+            {
+                translatekey: "PREFERRED_OCCUATION",
+                route: "root.pre_occupation"
+            },
+            {
+                translatekey: "VIEWED_PROFILES",
+                route: "root.viewed_profiles"
+            },
+            {
+                translatekey: "LIKED_PROFILES",
+                route: "root.liked_profiles"
+            }
+        ],
+            route: "root.pre_location"
         }
     ];
     controller.adminHeaderMenus = [{

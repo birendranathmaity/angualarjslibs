@@ -10,14 +10,15 @@ module.exports = function ($httpProvider) {
                        
                         config.headers.Authorization = 'Bearer ' + $sessionStorage.token;
                     }
+                   
                     return config;
                 },
                 'responseError': function(response) {
-                     
+                    console.log(response.status)
                     if(response.status === 401 || response.status === 403) {
                      
-                       
-                        $location.path('/register');
+                     
+                        $location.path('/404');
                     }
                     return $q.reject(response);
                 }

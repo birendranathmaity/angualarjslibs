@@ -20,10 +20,14 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
         update_notifications: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_NOTIFICATIONS, data).success(success).error(error);
         },
-        get_default_search_config:function(calback){
+        get_default_search_config:function(target,calback){
             var formdata = loginservice.getFiledsData();
+            var user = $rootScope.current_user_de_all;
+            var basic = user.basicinfos[0];
+            var edu = user.usereducations[0];
+            var interest = user.userintrests[0];
            var serachModel = {
-                user_id: $rootScope.login_user_id,
+                user_id: user.user_id,
                 age: {
         
                     from: 0,
@@ -41,9 +45,9 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
                 country: [],
                 state: [],
                 city: [],
-                physical_status: ["ANY"],
+                physical_status: [],
+                occupation: [],
                 complexion: ["ANY"],
-                occupation: ["ANY"],
                 aincome: ["ANY"],
                 expectation: ["ANY"],
                 high_edu: ["ANY"],
@@ -52,10 +56,11 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
                 showprofile: ["ANY_1"],
                 created_by: ["ANY_2"],
                 dontshow: ["ANY_3"]
+               
             };
-            var user = $rootScope.current_user_de_all;
+           
             var age = user.age;
-            var height = user.userintrests[0].height;
+            var height = interest.height;
             if (user.gender === "MALE") {
                serachModel.age.from = 18;
                serachModel.age.to = age;
@@ -72,10 +77,10 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
     
     
             }
-            function setLocation(success) {
-                var country = $rootScope.current_user_de_all.basicinfos[0].country;
-                var state = $rootScope.current_user_de_all.basicinfos[0].state;
-                var city = $rootScope.current_user_de_all.basicinfos[0].city;
+            function setLocation(otherinfo,success) {
+                var country = basic.country;
+                var state =basic.state;
+                var city = basic.city;
                 var loc = {
                     cn: country,
                     st: state,
@@ -100,16 +105,21 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
                         state_id: result.state.id,
                         sname: result.state.name
                     }];
-                    setUserBasciInfo();
+                    if(otherinfo){
+                        setUserBasciInfo();
+                    }
+                   
                     success();
                 }, function () { });
             }
             function setUserBasciInfo() {
-                var basic = user.basicinfos[0];
-        
-               serachModel.maritialstatus = [basic.maritialstatus];
+               
+                serachModel.maritialstatus = [basic.maritialstatus];
                 serachModel.mothertounge = [basic.mothertounge];
                 serachModel.religion = [basic.religion];
+                serachModel.high_edu = [edu.high_edu];
+                serachModel.occupation = [edu.occupation];
+                serachModel.physical_status = [interest.physical_status];
                 setRelegionAndCaste(basic.religion, basic.caste);
         
         
@@ -191,15 +201,62 @@ module.exports = function ($rootScope,countryService,loginservice,$http,toastr, 
                 
                 
                     }
+if(target==="DEFAULT_PARTNER_PRE"){
+    setLocation(true,function(){
+                               
+ calback(serachModel);
+        
+        
+                            });
 
-                    setLocation(function(){
+}
+if(target==="LOCATION"){
+    setLocation(false,function(){
+        var location={
+            user_id: user.user_id,
+            country:serachModel.country,
+            state: serachModel.state,
+            city: serachModel.city,
+        };
+         calback(location);
 
-                       
-                        
-                        calback(serachModel)
+
+     });
 
 
-                    });
+}
+if(target==="EDUCATION"){
+  
+    var EDUCATION={
+        user_id: user.user_id,
+        high_edu: [edu.high_edu],
+    };
+    calback(EDUCATION);
+ }  
+ if(target==="OCCUPATION"){
+    
+      var OCCUPATION={
+          user_id: user.user_id,
+          occupation : [edu.occupation],
+      };
+      calback(OCCUPATION);
+   }  
+   if(target==="VIEWED_PROFILE"){
+    
+      var VIEWED_PROFILE={
+          user_id: user.user_id,
+          showprofile : ["VIEWED_PROFILE"],
+      };
+      calback(VIEWED_PROFILE);
+   }   
+    if(target==="LIKED"){
+    
+      var LIKED={
+          user_id: user.user_id,
+          showprofile : ["LIKED"],
+      };
+      calback(LIKED);
+   }           
         },
         openReq:function(noti){
             if(noti.request_type==="MESSAGE"){

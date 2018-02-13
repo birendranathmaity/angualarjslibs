@@ -34,17 +34,18 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                         return;
                     }
                     if (action === "EDIT_MY_PROFILE" || action === "EDIT_PROFILE") {
-                        $state.go('root.editprofile', {editType:0});
-                      
+                      $state.go('root.editprofile', {editType:0});
+                  //      $location.path("/editprofile/editType=0")
                         return;
                     }
                     if (action === "EDIT_CONTACT_DETAILS") {
-                        $state.go('root.editprofile', {editType:1});
-                      
+                     $state.go('root.editprofile', {editType:1});
+                    //  $location.path("/editprofile/editType=1")
                         return;
                     }
                     if (action === "EDIT_PARTNER_PREFERENCES") {
-                        $state.go('root.editprofile', {editType:2});
+                       $state.go('root.editprofile', {editType:2});
+                    // $location.path("/editprofile/editType=2")
                       
                         return;
                     }

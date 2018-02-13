@@ -77,7 +77,7 @@ module.exports = function MyProfileController(useractions,$location,$scope, matc
                 }
                 else{
                    
-    useractions.get_default_search_config(function(fields){
+    useractions.get_default_search_config("DEFAULT_PARTNER_PRE",function(fields){
        
         controller.fieldPartnerPre = fields;
         loadCoun(controller.fieldPartnerPre.country);

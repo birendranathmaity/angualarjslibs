@@ -34,6 +34,16 @@ module.exports = function BaseRoutes(Router) {
                     }
                 }
             }
+        },
+        
+        {
+            name: '404',
+            config: {
+                url: '/404',
+                abstract: true,
+                templateUrl: 'app/layouts/404.html'
+                
+            }
         }
         
       

@@ -52,7 +52,7 @@ module.exports = function (searchService ,loginservice,matcheservice,useractions
                 }
                 else{
                    
-    useractions.get_default_search_config(function(fields){
+    useractions.get_default_search_config("DEFAULT_PARTNER_PRE",function(fields){
        
         req.fields = fields;
         controller.loadViewType();

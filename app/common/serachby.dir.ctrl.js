@@ -598,7 +598,7 @@ module.exports = function serachByController($scope, $state,$rootScope, countryS
     var christian = controller.formdata.rchristian;
     controller.casteData = empty.concat([]);
     controller.loadCaste = function (item) {
-
+        controller.casteData = empty.concat([]);
         if (controller.serachModel.religion.length === 0) {
             controller.casteDisabled = true;
             return;

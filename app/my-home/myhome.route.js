@@ -59,9 +59,11 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "editMyProfileController as ctrl"
                     }
                 },
+               
                 params: {
                     permisstion: "ALLUSER",
                     editType:0
+                  
                 },
                 title: 'editprofile'
             }
