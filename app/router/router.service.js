@@ -37,7 +37,7 @@ module.exports = function ($location, $rootScope, $state, routerConfig,loginserv
             stateProvider.state(route.name, route.config);
         });
 
-        urlRouterProvider.otherwise('/');
+        urlRouterProvider.otherwise('/404');
     }
 
     /**
@@ -66,10 +66,11 @@ module.exports = function ($location, $rootScope, $state, routerConfig,loginserv
 
                 $rootScope.showGlobalLoader = false;
                 handlingRouteChangeError = true;
+               
                 //var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) || 'unknown target';
                 //var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
                 //logger.error(msg, [current]);
-                $location.path('/');
+                $location.path('/404');
             }
         );
     }
@@ -106,14 +107,20 @@ module.exports = function ($location, $rootScope, $state, routerConfig,loginserv
             $rootScope.$broadcast("loadhedermenu",toState);
            
 if(role ==="FREEUSER" && toParams.permisstion ==="ALLUSER"){
-   loginservice.afterloginRoute(role,toState.url);
+//   loginservice.afterloginRoute(role,toState.url,function(){
+//     $location.path("/dashboard");
+
+//   });
    
    return;
 }
 if(role ===toParams.permisstion){
-    loginservice.afterloginRoute(role,toState.name);
+    return;
+//   loginservice.afterloginRoute(role,toState.name,function(){
+//     return;
+//   });
    
-   return;
+  // 
 }
 
 if(role !==toParams.permisstion){

@@ -51,7 +51,8 @@ return {
     "SAVE_SEARCH_RESULT":"/save_search_result",
     "GET_SAVED_SEARCH_RESULT":"/get_saved_search_result",
     "SAVE_PARTNER_PRE":"/save_partner_pre",
-    "GET_PARTNER_PRE":"/get_partner_pre"
+    "GET_PARTNER_PRE":"/get_partner_pre",
+    "GET_CONTACTNO":"/get_contactno"
       };
     
 

@@ -2,9 +2,7 @@
 module.exports = function MyProfileController(useractions,$location,$scope, matcheservice, $timeout,loginservice, countryService, $rootScope) {
     var controller = this;
    controller.formdata = loginservice.getFiledsData();
-   
-
-    function loadCoun(array){
+  function loadCoun(array){
         countryService.getCountries(function (res) {
             
             var arr = [];

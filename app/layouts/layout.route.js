@@ -35,17 +35,22 @@ module.exports = function BaseRoutes(Router) {
                 }
             }
         },
-        
         {
-            name: '404',
+            name: "root.404",
             config: {
                 url: '/404',
-                abstract: true,
-                templateUrl: 'app/layouts/404.html'
-                
+                views: {
+                    '@': {
+                        templateUrl: 'app/layouts/404.html'
+                        
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER"
+                },
+                title: 'fullprofile'
             }
         }
-        
       
     ]);
 };

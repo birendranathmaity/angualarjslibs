@@ -10,11 +10,11 @@ Request sent</a>
     <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
     Request declined</a>
    </div>
-   <div class="col-lg-5 p-r-0"   ng-if="$ctrl.config.view_contact && !$ctrl.isContacted"><a popover-enable="$ctrl.isOpen" popover-is-open="$ctrl.isOpen"  popover-placement="{{$ctrl.contactpop.pos}}" popover-class="contactPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="$ctrl.contactpop.templateUrl" class="btn match-contact" ng-click="$ctrl.viewContact(true)"> 
+   <div class="col-lg-5 p-r-0"   ng-if="$ctrl.config.view_contact && !$ctrl.isContacted"><a popover-enable="$ctrl.isOpen" popover-append-to-body ="true" popover-is-open="$ctrl.isOpen"  popover-placement="{{$ctrl.contactpop.pos}}" popover-class="contactPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="$ctrl.contactpop.templateUrl" class="btn match-contact" ng-click="$ctrl.viewContact(true)"> 
     <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
 Contact Details</a>
    </div>
-   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.view_contact && $ctrl.isContacted==='CONTACTED'"><a popover-enable="$ctrl.isOpen" popover-is-open="$ctrl.isOpen"  popover-placement="{{$ctrl.contactpop.pos}}" popover-class="contactPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="$ctrl.contactpop.templateUrl"  class="btn match-contact" ng-click="$ctrl.viewContact(false)"> 
+   <div class="col-lg-5 p-r-0" ng-if="$ctrl.config.view_contact && $ctrl.isContacted==='CONTACTED'"><a popover-enable="$ctrl.isOpen" popover-append-to-body ="true" popover-is-open="$ctrl.isOpen"  popover-placement="{{$ctrl.contactpop.pos}}" popover-class="contactPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="$ctrl.contactpop.templateUrl"  class="btn match-contact" ng-click="$ctrl.viewContact(false)"> 
     <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
 Viewed Contact</a>
    </div>

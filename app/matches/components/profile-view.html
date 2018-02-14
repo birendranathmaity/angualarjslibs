@@ -34,7 +34,7 @@
             <div>
               <div class="col-lg-4 col-md-4 col-md-4 col-md-4  no-padding full-p">
                 
-                 <user-img is-noti="BIGPHOTO" user="$ctrl.user"></user-img>
+                 <user-img is-noti="BIGPHOTO" user="$ctrl.user" ui-sref="root.fullprofile({ id: $ctrl.user.user_id})"></user-img>
                 
                  <div class="req-pic" ng-if="!$ctrl.user.pic">  
                    <p class="req-text"> 

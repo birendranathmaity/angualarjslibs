@@ -62,7 +62,7 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
             $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
         },
 
-        afterloginRoute: function (role, state) {
+        afterloginRoute: function (role) {
 
             if (!$sessionStorage.token) {
 
@@ -72,26 +72,30 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
          
           //  var pic = this.getProfilePic();
             if (role === "ADMIN") {
-
-                if (state === "HOME" || state === "/register" || state === "/login") {
-                    $location.path('/admin');
-                    return;
-                }
-                else {
-                    $location.path(state);
-                    return;
-                }
+                $location.path('/admin');
+                // if (state === "HOME" || state === "/register" || state === "/login") {
+                //     $location.path('/admin');
+                    
+                // }
+                // else {
+                //   //  $location.path(state);
+                //     return;
+                // }
+               
             }
            if (role === "FREEUSER") {
 
                 if (!user.phone_vr) {
                     this.openotpPopup();
+                   
                     return;
                 }
                 if (!user.more_info_vr) {
                     $location.path('/moreinfo');
+                   
                     return;
                 }
+                $location.path('/dashboard');
                 // if (!pic.profile) {
                 //     var config = {
                 //         user_id: user.user_id,
@@ -103,20 +107,22 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
                 //     return;
 
                 // }
-                if (state === "HOME" || state === "/register" || state === "/login") {
-                    $location.path('/dashboard');
-                    return;
-                }
-                else {
+                // if (state === "HOME" || state === "/register" || state === "/login") {
+                //     console.log("hh")
+                //     $location.path('/dashboard');
+                //     success();
+                //     //return;
+                // }
+                // else {
                    
-                    $location.path(state);
-                    return;
-                }
+                //   //  $location.path(state);
+                   
+                // }
 
-
+               
             }
 
-
+          
 
         },
         openCropPopup: function (user) {
@@ -176,7 +182,7 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
             self.getCureentUser(d.user_id, function (rs) {
 
                 if (rs) {
-                    self.afterloginRoute(d.user_role, "HOME");
+                    self.afterloginRoute(d.user_role);
                 }
             });
 

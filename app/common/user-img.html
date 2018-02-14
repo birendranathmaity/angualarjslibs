@@ -1,4 +1,4 @@
-<div class="user-profile" ng-if="$ctrl.isNoti==='NOID'">
+<div class="user-profile" ng-if="$ctrl.isNoti==='NOID'" >
     
           <img ng-if="$ctrl.pic.view==='EMPTY' || $ctrl.pic.view==='CONFIRM'" water-mark="$ctrl.pic.displaypic" width="35"
             height="35">
@@ -18,3 +18,11 @@
 <div class="user-profile-pic" ng-if="$ctrl.isNoti==='MDPHOTO'">  
     <img water-mark="$ctrl.pic.displaypic"  alt="" width="91" height="88" />  
   </div>
+  <div class="user-profile-pic pull-left" ng-if="$ctrl.isNoti==='MD2PHOTO'">  
+    <img water-mark="$ctrl.pic.displaypic"  alt="" height="99" width="120">
+ </div>
+ <div class="user-profile-pic " ng-if="$ctrl.isNoti==='BIG2PHOTO'">  
+  <a class="lightbox thumbnail" title=""> 
+  <img  water-mark="$ctrl.pic.displaypic" alt="" ></a>
+
+</div>

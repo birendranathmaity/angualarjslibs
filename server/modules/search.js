@@ -137,6 +137,24 @@ exports.getSearch = function (req, res) {
 exports.getSearchResult = function (req, res) {
 
     var main_user_id = req.body.fields.user_id;
+
+    console.log(main_user_id)
+    var blockprofile=false;
+    var searchUserIdMatch={};
+    var userallinfo=false;
+    if(req.body.fields.blockprofile){
+        blockprofile=true;
+
+    }
+    if(req.body.search_user_id){
+        userallinfo=true;
+        searchUserIdMatch["user_id"]={
+            
+                            "$eq": req.body.search_user_id
+            
+                        };
+
+    }
    
     var match=commonQuery.query.matchResult( req.body.fields);
     console.log(match)
@@ -148,6 +166,11 @@ exports.getSearchResult = function (req, res) {
 
         }
 
+    },{
+
+        $match: searchUserIdMatch
+    
+    
     }, {
 
         $match: {
@@ -449,6 +472,7 @@ exports.getSearchResult = function (req, res) {
             "user_status": "$user_status",
             "first_name": "$first_name",
             "last_name": "$last_name",
+            "dob": "$dob",
             "age": "$age",
             "height": "$interest.height",
             "location_name":{
@@ -456,6 +480,7 @@ exports.getSearchResult = function (req, res) {
                 state:"$st.name",
                 city:"$ct.name"
             },
+            phone_number:"$phone_number",
             "country": "$basic.country",
             "state": "$basic.state",
             "city": "$basic.city",
@@ -482,6 +507,15 @@ exports.getSearchResult = function (req, res) {
             "is_viewed_profile": commonQuery.query.is_viewed_profile(main_user_id),
             "is_liked_profile": commonQuery.query.is_liked_profile(main_user_id),
             "block": commonQuery.query.block(main_user_id),
+             userinfo:{
+                 "pics":"$pics",
+                "basic":"$basic",
+                "education":"$education",
+                "interest":"$interest",
+                "family":"$family",
+             }
+            
+
 
         }
 
@@ -501,7 +535,7 @@ exports.getSearchResult = function (req, res) {
 
             "block": {
 
-                $exists: false
+                $exists: blockprofile
 
             }
 
@@ -685,6 +719,7 @@ exports.getSearchResult = function (req, res) {
              "first_name": "$user.first_name",
              "last_name": "$user.last_name",
              "age": "$user.age",
+             dob:"$user.dob",
              "height": "$user.height",
              "maritialstatus": "$user.maritialstatus",
              "mothertounge": "$user.mothertounge",
@@ -697,9 +732,10 @@ exports.getSearchResult = function (req, res) {
              is_viewed_profile:"$is_viewed_profile",
              is_contacted:"$is_contacted",
              photo_btn: commonQuery.query.photo_request_btn(),
-             photo: commonQuery.query.photo(),
+             pic: commonQuery.query.photo(),
              message_btn: commonQuery.query.message_btn(),
-             contact_btn: commonQuery.query.contact_btn()
+             contact_btn: commonQuery.query.contact_btn(),
+             userinfo:(userallinfo ? "$user.userinfo" :null)
         }
     },
     {

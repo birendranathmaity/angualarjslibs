@@ -16,15 +16,14 @@ module.exports = function () {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
-                controller.user=$scope.user;
-                controller.isNoti=$scope.isNoti;
-
-                if(controller.isNoti==="BIGPHOTO"){
-                    controller.pic=controller.user.photo;
-                    
-                }else{
+                $scope.$watch('user', function (newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
+                    controller.user=$scope.user;
+                    controller.isNoti=$scope.isNoti;
                     controller.pic=controller.user.pic;
-                }
+                });
                
              
 

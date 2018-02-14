@@ -14,10 +14,14 @@ module.exports = function (messagesservice,useractions,$rootScope) {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
+                $scope.$watch('user', function (newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
+                    controller.config=$scope.user.contact_btn;
+                    controller.isContacted=$scope.user.is_contacted;
+                });
               
-               var user= $rootScope.current_user_de_all;
-               controller.personal_number=user.phone_number;
-               controller.family_number=user.userfamilies[0].phone_number;
                 controller.isOpen=false;
                 controller.contactpop = {
                    pos:"top",
@@ -25,8 +29,7 @@ module.exports = function (messagesservice,useractions,$rootScope) {
                    
                   };
                 
-                controller.config=$scope.user.contact_btn;
-                controller.isContacted=$scope.user.is_contacted;
+               
                 function callReq(request_type){
                     var reqContact= {
                         user_id: $rootScope.login_user_id,

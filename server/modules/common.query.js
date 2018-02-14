@@ -226,6 +226,9 @@ exports.query = {
                         if (arrTemp[i] === "LIKED") {
                             finalmatch["is_liked_profile"] = { "$eq": "LIKED" }
                         }
+                        if (arrTemp[i] === "VISITOR") {
+                            finalmatch["is_visitor_profile"] = { "$eq": "VIEWED_PROFILE" }
+                        }
                     }
 
                   
@@ -270,6 +273,8 @@ exports.query = {
                 key != "showprofile" &&
                 key != "dontshow" &&
                 key != "updated_on" &&
+                key !="blockprofile" &&
+                key !="search_user_id" &&
                 key != "__v" &&
                 key != "created_on"
 
@@ -1132,9 +1137,9 @@ exports.query = {
                 then: {
 
                     view_contact: true,
-
+                    personal:"$user.phone_number",
+                    family:"$user.userinfo.family.phone_number",
                     send_request: false,
-
                     alreadysent: false,
 
                     decline: false
@@ -1245,7 +1250,7 @@ exports.query = {
 
                                             decline: true,
 
-                                            send_msg: false,
+                                            view_contact: false,
 
                                             send_request: false
 

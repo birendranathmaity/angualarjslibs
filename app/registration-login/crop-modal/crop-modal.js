@@ -1,6 +1,6 @@
 /* @ngInject */
 
-module.exports = function CropModalController($rootScope, $uibModal, $uibModalInstance, user, $location, Upload, $timeout, ServiceUrls, toastr) {
+module.exports = function CropModalController($rootScope,loginservice, $uibModal, $uibModalInstance, user, $location, Upload, $timeout, ServiceUrls, toastr) {
 
     var controller = this;
     //modal close button//
@@ -141,7 +141,10 @@ module.exports = function CropModalController($rootScope, $uibModal, $uibModalIn
                 }
                 controller.result = response.data;
                 controller.cancel();
-                console.log(user.skip_url)
+               if(user.from_sec && user.from_sec==="userEntry"){
+                loginservice.getCureentUser(user.user_id,function(result){});
+
+               }
                 if(user.skip_url){
                     $location.path(user.skip_url);
                 }

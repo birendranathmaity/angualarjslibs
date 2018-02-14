@@ -8,6 +8,7 @@ var userImg=require('./user-img');
 var notiAction=require('./noti-action');
 var searchBy=require('./searchby.dir.js');
 var notificationController = require('./notifications/notifications.ctrl');
+var fullprofileController = require('./fullprofile/fullprofile.ctrl');
 var serachByController = require('./serachby.dir.ctrl');
 module.exports = angular.module('app.ui.common', [])
 .run(routes)
@@ -16,5 +17,6 @@ module.exports = angular.module('app.ui.common', [])
 .directive('notiAction', notiAction)
 .directive('searchBy', searchBy)
 .controller('notificationController', notificationController) 
+.controller('fullprofileController', fullprofileController) 
 .controller('serachByController', serachByController) 
 .factory("useractions",userAction);

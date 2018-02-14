@@ -95,6 +95,14 @@ module.exports = function HeaderController($translate, $state, $rootScope) {
             {
                 translatekey: "LIKED_PROFILES",
                 route: "root.liked_profiles"
+            },
+            {
+                translatekey: "PROFILE_VISITORS",
+                route: "root.visitor_profiles"
+            },
+            {
+                translatekey: "BLOCKED_PROFILES",
+                route: "root.blocked_profiles"
             }
         ],
             route: "root.pre_location"

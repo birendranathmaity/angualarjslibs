@@ -89,6 +89,42 @@ module.exports = function activitesRoutes(Router) {
                 },
                 title: 'liked_profiles'
             }
+        },
+        {
+            name: "root.visitor_profiles",
+            config: {
+                url: '/visitor_profiles',
+                views: {
+                    '@': {
+                        templateUrl: "app/activites/pre_location/pre_location.html",
+                        controller: "PreLocationController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    result:null,
+                    activityType:"VISITOR"
+                },
+                title: 'visitor_profiles'
+            }
+        },
+        {
+            name: "root.blocked_profiles",
+            config: {
+                url: '/blocked_profiles',
+                views: {
+                    '@': {
+                        templateUrl: "app/activites/pre_location/pre_location.html",
+                        controller: "PreLocationController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    result:null,
+                    activityType:"BLOCKED"
+                },
+                title: 'blocked_profiles'
+            }
         }
     ]);
 };

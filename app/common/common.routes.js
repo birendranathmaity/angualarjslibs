@@ -16,6 +16,22 @@ module.exports = function commonroutes(Router) {
                 },
                 title: 'notifications'
             }
+        },
+        {
+            name: "root.fullprofile",
+            config: {
+                url: '/fullprofile/:id',
+                views: {
+                    '@': {
+                        templateUrl: "app/common/fullprofile/fullprofile.html",
+                        controller: "fullprofileController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER"
+                },
+                title: 'fullprofile'
+            }
         }
     ]);
 };
