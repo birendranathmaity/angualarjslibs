@@ -462,6 +462,32 @@ exports.getSearchResult = function (req, res) {
                         }
                 
                     },
+                    {
+                        
+                                $lookup: {
+                        
+                                    from: "partnerpreferences",
+                        
+                                    localField: "user_id",
+                        
+                                    foreignField: "user_id",
+                        
+                                    as: "partner_pre"
+                        
+                                }
+                        
+                            }, {
+                        
+                                "$unwind": {
+                        
+                                    "path": "$partner_pre",
+                        
+                                    "preserveNullAndEmptyArrays": true
+                        
+                                }
+                        
+                            }, 
+                        
             {
 
         $project: {
@@ -508,11 +534,12 @@ exports.getSearchResult = function (req, res) {
             "is_liked_profile": commonQuery.query.is_liked_profile(main_user_id),
             "block": commonQuery.query.block(main_user_id),
              userinfo:{
-                 "pics":"$pics",
+                "albums":commonQuery.query.albums(),
                 "basic":"$basic",
                 "education":"$education",
                 "interest":"$interest",
                 "family":"$family",
+                "partner_pre":"$partner_pre"
              }
             
 

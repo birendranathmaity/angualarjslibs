@@ -9,6 +9,7 @@ var libraries = {
         'assets/plugins/jquery-1.8.3.min.js',
         'assets/plugins/jquery.mCustomScrollbar.concat.min.js',
         'assets/plugins/watermark.min.js',
+        'assets/plugins/aes/aes.js',
         'node_modules/chart.js/Chart.min.js'
     //     'assets/jquery-ui/jquery-ui-1.10.1.custom.min.js',
     //     'assets/plugins/boostrapv3/js/bootstrap.min.js',

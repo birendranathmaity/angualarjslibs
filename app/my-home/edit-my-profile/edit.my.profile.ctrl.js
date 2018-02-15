@@ -14,7 +14,7 @@ module.exports = function editMyProfileController(useractions,messagesservice, $
             
                     }
                     else {
-                        useractions.get_default_search_config("DEFAULT_PARTNER_PRE",function(fields){
+                        useractions.get_default_search_config("DEFAULT_PARTNER_PRE","LOGIN_USER",function(fields){
                            
                            // controller.fields = "PARTNER_PRE_FIRST";
                            controller.fields =fields;

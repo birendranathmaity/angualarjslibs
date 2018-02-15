@@ -1,4 +1,4 @@
-<div class="page-content">
+<div class="page-content" ng-if="$ctrl.user">
     <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
   
     <div class="clearfix"></div>
@@ -27,28 +27,7 @@
                       
                   <user-img user="$ctrl.user" is-noti="BIG2PHOTO"></user-img>
            
-<div class="row-fluid">
-                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 no-padding">
-                   <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=239" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=239" alt="Flying is life" /></a>
-                </div>
-                     <div class="col-lg-2 no-padding">
-                      <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=227" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=227" alt="Life is like climbing a mountain" /></a>
-
-                      </div>
-                 <div class="col-lg-2 no-padding">
-                      <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=193" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=193" alt="Skiing, flying in white" /></a>
-                   </div>
-
-  <div class="col-lg-2 no-padding">
-          <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=193" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=193" alt="Skiing, flying in white" /></a>
-         </div>
-           <div class="col-lg-2 no-padding">
-          <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=193" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=193" alt="Skiing, flying in white" /></a>
-         </div>
-           <div class="col-lg-2 no-padding">
-          <a class="lightbox thumbnail" href="https://unsplash.it/800/600?image=193" data-littlelightbox-group="gallery" title=""><img src="https://unsplash.it/800/600?image=193" alt="Skiing, flying in white" /></a>
-         </div>
-         </div>
+                  <album-galary album="$ctrl.albums"></album-galary>
                    
                   
              
@@ -890,7 +869,7 @@
       <div class="row-fluid">
         
             <div class="col-lg-9 p-r-0">
-                  <div class="full-profile ">
+                  <div class="full-profile " ng-if="$ctrl.fieldPartnerPre">
                 <div class="grid simple daily-right" style="margin-bottom: 72px;">
                       <div class="prof-title no-border">
       He Is Looking For
@@ -903,8 +882,8 @@
                 <user-img user="$ctrl.user" is-noti="MD2PHOTO"></user-img>
                </div>
                <div class="col-lg-8"> 
-                <div class="prof-match"> Your Profile Matches <span class="number-m"> 19/22</span> With <br>
-                 <b>DB1234 </b> Preference </div>
+                <div class="prof-match"> Your Profile Matches <span class="number-m"> {{$ctrl.matchCount}}/12</span> With <br>
+                 <b>{{$ctrl.user.user_id}} </b> Preference </div>
 
                </div>
                 <div class="col-lg-2">
@@ -917,69 +896,63 @@
                         <h4> <i class="fa fa-file-text" aria-hidden="true"></i>  Basic Information</h4>
                             <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Age</p>
-                             
-                              <p class="list-group-item-right pull-left">27 <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                             {{$ctrl.count}}
+                              <p class="list-group-item-right pull-left">{{$ctrl.fieldPartnerPre.age.from}}  <span class="small"> To </span> {{$ctrl.fieldPartnerPre.age.to}} Yrs<span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.age,'age') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                                                            
                             </div>
                             <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Height</p>
                              
-                              <p class="list-group-item-right pull-right">5.8 inc   <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right">{{$ctrl.fieldPartnerPre.height.from | height}}  <span class="small"> To </span> {{$ctrl.fieldPartnerPre.height.to | height}}  <span class="pull-right " ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.height,'height') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                               </div>
 
                                <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Marital Status</p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':$ctrl.formdata.MaritialStatus" ng-tt-chars-threshold="60"></span><span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.maritialstatus,'maritialstatus') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                              
-                              <p class="list-group-item-right pull-right">Never Married <span class="pull-right tick-not"> <i class="fa fa-check-circle"></i> </span></p>
                               </div>
                               <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Mother Tongue</p>
                              
-                              <p class="list-group-item-right pull-right">Telugu <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':$ctrl.formdata.mother_tongues" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.mothertounge,'mothertounge') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                               </div>
                               <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Religion </p>
                              
-                              <p class="list-group-item-right pull-right">Hindu <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':$ctrl.formdata.religions" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.religion,'religion') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
 
                               </div>
                                <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Caste </p>
                              
-                              <p class="list-group-item-right pull-right">Kapu <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.caste | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>  <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.caste,'caste') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
 
                               </div>
                                <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Country Living IN </p>
                              
-                              <p class="list-group-item-right pull-right">India <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.countries" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.country,'country') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
 
                               </div>
                               <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">State Living IN </p>
                              
-                              <p class="list-group-item-right pull-right">TElangana <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.state | joinname:', ':'name'" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.state,'state') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
 
                               </div>
                               <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">City  Living IN </p>
                              
-                              <p class="list-group-item-right pull-right">Hyderabad <span class="pull-right tick-not"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.city | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>  <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.city,'city') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
 
                               </div>
+                            
                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Horoscope Details</p>
-                             
-                              <p class="list-group-item-right pull-right">Clear <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
-
+                                <p class="list-group-item-left pull-left">Physical Status </p>
+                               
+                                <p class="list-group-item-right pull-left"><span ng-text-truncate="$ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':$ctrl.formdata.PhysicalStatus" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.physical_status,'physical_status') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
+                                                             
                               </div>
-                              <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Posted By</p>
-                             
-                              <p class="list-group-item-right pull-right">Father <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-
                         </li>
 
 
@@ -993,50 +966,17 @@
                             <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Heighest Education </p>
                              
-                              <p class="list-group-item-right pull-left">Masters <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-left"><span ng-text-truncate="$ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':$ctrl.formdata.educations" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.high_edu,'high_edu') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                                                            
                             </div>
                             <div class="bmd-list-group-col">
                               <p class="list-group-item-left pull-left">Occupation</p>
                              
-                              <p class="list-group-item-right pull-right">Software Engineer <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
+                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':$ctrl.formdata.occupations" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.occupation,'occupation') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
                               </div>
-
-                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Annual Income</p>
-                             
-                              <p class="list-group-item-right pull-right">10,00000 <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
-                              </div>
-                             
-
-
- 
 
                         </li>
-                        <li class="list-group-item">
-                        <h4> <i class="fa fa-male" aria-hidden="true"></i>  Appearence & Interests</h4>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Physical Status </p>
-                             
-                              <p class="list-group-item-right pull-left">Normal <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
-                                                           
-                            </div>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Expectation</p>
-                             
-                              <p class="list-group-item-right pull-right">No Criteria for Place <span class="pull-right tick-ok"> <i class="fa fa-check-circle"></i> </span></p>
-                              </div>
-
-                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Are You a Celebrity </p>
-                             
-                              <p class="list-group-item-right pull-right">No <span class="pull-right tick-not"> <i class="fa fa-check-circle"></i> </span></p>
-
-
-                              </div>
-                                  <div class="m-t-30 clearfix"></div>
-
-                        </li>
+                       
                       </ul> 
                     </div>
                  

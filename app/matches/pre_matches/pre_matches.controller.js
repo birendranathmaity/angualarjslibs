@@ -76,7 +76,7 @@ module.exports = function PreMatchesController($state, $location, searchService,
             }
             else {
 
-                useractions.get_default_search_config("DEFAULT_PARTNER_PRE",function (fields) {
+                useractions.get_default_search_config("DEFAULT_PARTNER_PRE","LOGIN_USER",function (fields) {
 
                     req.fields = fields;
                     controller.loadViewType();

@@ -270,6 +270,7 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
             }
             return pics;
         },
+        
         getAlbumPics: function (data, success) {
 
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_ALBUM, data).success(function (res) {

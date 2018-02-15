@@ -13,9 +13,10 @@
                       
                         <h5 class="searchid"> {{'PROFILE_ID'|translate}}</h5>
 
-                          <div class="insearc"> <Input type="text" class="" placeholder="Eg:D123456" /> </div>
-                          <div class=" searchbtn">
-                            <input type="button" value="Search" class=""  />
+                          <div class="insearc"> <Input type="text" ng-model="searchValue" class="" placeholder="Eg:D123456" /> </div>
+                          
+                          <div class="searchbtn" ng-class="{'buttonDisabled':disabled()}" >
+                            <input value="Search" ng-click="search()" ng-disabled="disabled()" class="" type="button">
 
                           </div>
                         </div>

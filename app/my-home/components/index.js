@@ -7,8 +7,10 @@ var completeYourProfile = require('./completeYourProfile.directive');
 var calendarBox = require('./calendarBox.directive');
 var preferredMatchesBox = require('./preferredMatchesBox.directive');
 var userActionsTabs = require('./userActionsTabs.directive');
-module.exports = angular.module('app.ui.myhome.components',['angular.filter'])
+var albumGalary = require('./album.galary');
+module.exports = angular.module('app.ui.myhome.components',[])
     .directive('searchById', searchById)
+    .directive('albumGalary', albumGalary)
     .directive('messagesBox', messagesBox)
     .directive('basicSearchBox', basicSearchBox)
     .directive('myPocket', myPocket)

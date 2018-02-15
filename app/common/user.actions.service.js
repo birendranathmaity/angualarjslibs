@@ -23,12 +23,48 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
        get_contactno: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_CONTACTNO, data).success(success).error(error);
         },
-        get_default_search_config: function (target, calback) {
+        genarateAlbumPics:function(pics,success){
+            var imgs = [];
+            if(pics.length===0){
+                success(imgs);
+                return imgs;
+            }
+            angular.forEach(pics, function (v, i) {
+
+                var imgUrl = ServiceUrls.BASEURL + ServiceUrls.USER_PROFILE_PHOTO_DISPLAY_PATH + v.photo_path;
+                var img = {
+                    id: v._id,
+                    url: imgUrl
+
+                };
+                imgs.push(img);
+
+
+
+            });
+            success(imgs);
+        },
+        get_default_search_config: function (target,who,calback) {
             var formdata = loginservice.getFiledsData();
-            var user = $rootScope.current_user_de_all;
-            var basic = user.basicinfos[0];
-            var edu = user.usereducations[0];
-            var interest = user.userintrests[0];
+            var user ={};
+            var basic={};
+            var edu={};
+            var interest={};
+            if(who==="LOGIN_USER"){
+               user = $rootScope.current_user_de_all;
+               basic = user.basicinfos[0];
+               edu = user.usereducations[0];
+               interest = user.userintrests[0];
+            }
+            if(who !== null && typeof who === 'object'){
+                user=who;
+                basic = user.userinfo.basic;
+                edu = user.userinfo.education;
+                interest = user.userinfo.interest;
+                user.gender="FEMALE";
+            }
+           
+            
             var serachModel = {
                 user_id: user.user_id,
                 age: {

@@ -302,6 +302,29 @@ exports.query = {
 
         };
     },
+    albums: function () {
+        return {
+
+            $filter: {
+
+                input: "$pics",
+
+                as: "item",
+
+                cond: {
+
+                    $and: [{
+
+                        "$eq": ["$$item.photo_type", "ALBUM"]
+
+                    }]
+
+                }
+
+            }
+
+        };
+    },
     isPhotoUploaded: function () {
         return {
 

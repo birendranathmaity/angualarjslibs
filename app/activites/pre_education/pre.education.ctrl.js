@@ -67,7 +67,7 @@ module.exports = function PreEducationController($state, $location, searchServic
     }
 
     function loadDefualt() {
-        useractions.get_default_search_config("LOCATION",function (fields) {
+        useractions.get_default_search_config("LOCATION","LOGIN_USER",function (fields) {
            
 
             req.fields = fields;

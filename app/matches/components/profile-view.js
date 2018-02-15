@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function (loginservice) {
+module.exports = function (loginservice,$crypto,$state) {
     return {
         restrict: 'E',
         scope:{
@@ -14,6 +14,9 @@ user:"="
             function ($scope, $element, $attrs) {
                
                 var controller=this;
+                controller.goToFullProfile=function(id){
+                    $state.go("root.fullprofile",{id: $crypto.encrypt(id)});
+                  };
                 controller.formdata = loginservice.getFiledsData();
                 controller.user=$scope.user;
                 var hindu = controller.formdata.rhindu;

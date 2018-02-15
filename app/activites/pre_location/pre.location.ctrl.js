@@ -69,7 +69,7 @@ module.exports = function PreLocationController($state,$stateParams, $location, 
     }
 
     function loadDefualt() {
-        useractions.get_default_search_config(controller.activityType,function (fields) {
+        useractions.get_default_search_config(controller.activityType,"LOGIN_USER",function (fields) {
            
 
             req.fields = fields;

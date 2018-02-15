@@ -24,6 +24,10 @@ exports.sendRequest = function (req, res) {
 
         }
         else {
+            res.json({
+                success: true,
+                msg: "SEND_SUCCESS"
+            });
             // request.update(
             //     query,
 
