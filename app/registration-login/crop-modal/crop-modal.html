@@ -67,7 +67,7 @@
         on-streaming="ctrl.onSuccess()" 
         on-error="ctrl.onError(err)" 
         on-stream="ctrl.onStream(stream)"></webcam>
-        <img ng-src="{{ctrl.myImage | ngfDataUrl}}" ng-if="!ctrl.Iscrop">
+        <img ng-src="{{ctrl.myImage | ngfDataUrl}}" ng-if="!ctrl.Iscrop" ng-style="!ctrl.Iscrop ? ctrl.style :''">
     <img-crop 
     area-type="{{ctrl.cropType}}"
     ng-if="ctrl.myImage && ctrl.Iscrop"

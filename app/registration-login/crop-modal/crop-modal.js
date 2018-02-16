@@ -3,6 +3,12 @@
 module.exports = function CropModalController($rootScope,loginservice, $uibModal, $uibModalInstance, user, $location, Upload, $timeout, ServiceUrls, toastr) {
 
     var controller = this;
+    controller.style = {
+        width: "100%",
+        height: "100%",
+        display: "block",
+       "object-fit": "cover"
+    }
     //modal close button//
     controller.cancel = function () {
         $uibModalInstance.dismiss('cancel');

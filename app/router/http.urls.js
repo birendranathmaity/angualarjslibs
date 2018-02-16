@@ -4,7 +4,8 @@ module.exports =  function(){
 
 
 return {
-  "BASEURL":"http://localhost:4000",
+ // "BASEURL":"http://localhost:4000",
+    "BASEURL":"http://192.169.136.224:4000",
     "LOGIN":"/login",
     "AUTHENTICATE":"/authenticate",
     "LOGOUT":"/logout",
@@ -52,7 +53,9 @@ return {
     "GET_SAVED_SEARCH_RESULT":"/get_saved_search_result",
     "SAVE_PARTNER_PRE":"/save_partner_pre",
     "GET_PARTNER_PRE":"/get_partner_pre",
-    "GET_CONTACTNO":"/get_contactno"
+    "GET_CONTACTNO":"/get_contactno",
+    "SAVE_SETTINGS":"/save_settings",
+    "GET_SETTINGS":"/get_settings"
       };
     
 

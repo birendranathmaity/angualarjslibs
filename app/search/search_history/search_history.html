@@ -63,8 +63,9 @@
                                             </div>
                                           </div>
                                           <div class="clearfix"></div>
+                                          <noinformation type="SEARCH_HISTORY" ng-if="$ctrl.searchResults.length===0"></noinformation>
                                           <div class="inbox-mail">
-                                            <p class="noinforav" ng-if="$ctrl.searchResults.length===0">No information available </p>
+                                          
                                             <ul>
                                               <li class="row-fluid userlist"  ng-repeat="srs in $ctrl.searchResults">
                                   

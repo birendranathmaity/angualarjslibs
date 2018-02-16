@@ -1,0 +1,137 @@
+<div class="noinformation">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template" ng-if="$ctrl.type==='BLOCKED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any blocked profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='VISITOR'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any visitor profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='LIKED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any liked profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='VIEWED_PROFILE'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any viewed profile profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='OCCUPATION'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any preferred occupation profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='EDUCATION'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any preferred education profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='LOCATION'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any preferred location profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='PARTNER_PRE'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, no matches found based on your partner preference</h5>
+                <div class="error-details" ui-sref="root.editprofile({editType:2})">
+                    Click here to edit partner preference and find new matches
+                </div>
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='SEARCH_HISTORY'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not saved any search result</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='SEARCH_RESULT'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, No profiles found based on your search criteria</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='MSG_SENT'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not sent any messages</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='MSG_INBOX'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You dont have any messages</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='REQ_SENT'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not sent any requests</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='REQ_RECEIVED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not received any requests</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='REQ_PENDING'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You dont have any pending requests</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='REQ_ACCEPTED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You dont have any accepted requests</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='REQ_REJECTED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You dont have any rejected requests</h5>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .noinformation {
+        text-align: center;
+    }
+
+    .error-details {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>

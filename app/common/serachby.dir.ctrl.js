@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function serachByController($scope, $state,$rootScope, countryService, loginservice, searchService) {
+module.exports = function serachByControllerDir($scope, $state,$rootScope, countryService, loginservice, searchService) {
     var controller = this;
     controller.user = $rootScope.current_user_de_all;
     controller.partnerPre=$scope.partnerPre;

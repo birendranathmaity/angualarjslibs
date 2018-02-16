@@ -67,7 +67,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="$ctrl.configScollBar">
-          <p class="noinforav" ng-if="$ctrl.messages.length===0">No information available </p>
+            <noinformation type="MSG_{{$ctrl.viewType}}" ng-if="$ctrl.messages.length===0"></noinformation>
           <ul>
             <li class="row-fluid userlist"  ng-repeat="msg in $ctrl.messages" ng-class="{'unread' : msg.message_status==='UNREAD' ,'msgselected':msg.Selected}">
 

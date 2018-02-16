@@ -2,13 +2,10 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/noti-action.html',
+        templateUrl:'./app/common/noinformation.html',
         controllerAs:'$ctrl',
         scope:{
-            data:"=",
-            whoSent:"="
-           
-
+           type:"@"
         },
         
         controller: [
@@ -17,8 +14,13 @@ module.exports = function () {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
-                controller.noti=$scope.data;
-                controller.whoSent=$scope.whoSent;
+                $scope.$watch('type', function (newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
+                    
+                    controller.type = newVal;
+                });
                 
 
             }]

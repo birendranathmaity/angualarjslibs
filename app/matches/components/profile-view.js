@@ -15,7 +15,11 @@ user:"="
                
                 var controller=this;
                 controller.goToFullProfile=function(id){
-                    $state.go("root.fullprofile",{id: $crypto.encrypt(id)});
+                   
+                    $state.go("root.fullprofile",{
+                        id: $crypto.encrypt(id),
+                        isblock:controller.user.is_blocked_profile
+                    });
                   };
                 controller.formdata = loginservice.getFiledsData();
                 controller.user=$scope.user;

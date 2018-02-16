@@ -54,6 +54,11 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                       
                         return;
                     }
+                    if (action === "SETINGS") {
+                        $state.go('root.settings');
+                      
+                        return;
+                    }
                 };
                
                controller.user = $rootScope.current_user_de_all;

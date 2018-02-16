@@ -20,6 +20,6 @@ if(attrs.type==="SM"){
          partnerPre:"="
         },
         
-        controller: "serachByController"
+        controller: "serachByControllerDir"
         }
     }

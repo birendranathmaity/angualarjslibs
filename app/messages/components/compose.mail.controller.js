@@ -90,15 +90,12 @@ module.exports = function composeMailController(useractions, config, $scope, log
 
   //   });
   controller.send = function () {
-console.log(controller.UserType)
+
     if (controller.UserType === "USER_BY_BLOCK") {
       var reqBlock = {
         user_id: controller.user.user_id,
-        block_user_id: controller.messageModel.send_to,
-        fields: {
-          block_status: "UNBLOCK"
-        }
-
+        block_user_id: controller.messageModel.send_to
+        
       }
 
 

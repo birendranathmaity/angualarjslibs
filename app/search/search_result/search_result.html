@@ -50,7 +50,7 @@
                 </div>
                 </div>
                 <div class="clearfix"></div>
-          
+                <noinformation type="SEARCH_RESULT" ng-if="$ctrl.users.length===0"></noinformation>
             <div ng-repeat="user in $ctrl.users">
 
               <profile-view user="user"></profile-view>

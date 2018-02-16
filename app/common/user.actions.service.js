@@ -23,6 +23,12 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
        get_contactno: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_CONTACTNO, data).success(success).error(error);
         },
+         save_settings: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SAVE_SETTINGS, data).success(success).error(error);
+        },
+        get_settings: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SETTINGS, data).success(success).error(error);
+        },
         genarateAlbumPics:function(pics,success){
             var imgs = [];
             if(pics.length===0){

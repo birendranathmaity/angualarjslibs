@@ -8,6 +8,8 @@ var controller = this;
          templateUrl: './app/registration-login/login-modal/login.html',
          controller: 'LoginController',
          controllerAs: 'ctrl',
+         backdrop: 'static',
+         keyboard: false,
          size: size
      
     });

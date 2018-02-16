@@ -86,7 +86,7 @@ exports.updateRequest = function (re, res) {
 
 
 }
-exports.CreateUserBlock = function (re, res) {
+exports.CreateUserBlock = function (req, res) {
 
     var query = {
         user_id: req.body.user_id,
@@ -98,6 +98,7 @@ exports.CreateUserBlock = function (re, res) {
         if (!result) {
 
             req.body.created_on = new Date();
+            req.body.block_status="BLOCK";
             var blockModel = new block(req.body);
             blockModel.save(function (result) {
                 res.json({
@@ -107,6 +108,37 @@ exports.CreateUserBlock = function (re, res) {
             });
 
         }
+        else{
+            block.update(
+                {
+        
+                    user_id: req.body.user_id,
+                    block_user_id: req.body.block_user_id
+        
+                },
+        
+                {
+                    $set: {
+                        block_status:req.body.block_status,
+                        updated_on:new Date()
+                    }
+        
+                },
+        
+        
+        
+                function (err, docs) {
+        
+                    res.json({
+                        success: true,
+                        msg: "UPDATE_SUCCESS",
+                        result: docs
+        
+        
+                    });
+                });
+
+        }
 
     });
 
@@ -114,7 +146,7 @@ exports.CreateUserBlock = function (re, res) {
 
 }
 exports.updateUserBlock = function (req, res) {
-    req.body.fields.recived_on = new Date();
+   
     block.update(
         {
 
@@ -124,7 +156,10 @@ exports.updateUserBlock = function (req, res) {
         },
 
         {
-            $set: req.body.fields
+            $set: {
+                block_status:"UNBLOCK",
+                updated_on:new Date()
+            }
 
         },
 
@@ -463,3 +498,67 @@ exports.readNotifications = function (req, res) {
             });
         });
 }
+exports.get_settings=function(req,res){
+    var query = {
+        user_id: req.body.user_id
+        
+    }
+    setting.findOne(query, {_id:0},function (err, result) {
+        res.json({
+            success: true,
+            settings: result
+        })
+
+
+    });
+};
+exports.save_settings=function(req,res){
+    req.body.created_on = new Date();
+    var query = {
+        user_id: req.body.user_id
+        
+    }
+    setting.findOne(query, function (err, result) {
+
+        if (!result) {
+
+            var settingModel = new setting(req.body);
+            settingModel.save(function (result) {
+                res.json({
+                    success: true,
+                    msg: "SAVE_SUCCESS"
+                });
+            });
+
+        }
+        else {
+            req.body.updated_on=new Date();
+            res.json({
+                success: true,
+                msg: "SEND_SUCCESS"
+            });
+            setting.update(
+                query,
+
+                {
+                    $set: req.body
+
+                },
+
+
+
+                function (err, docs) {
+
+                    res.json({
+                        success: true,
+                        msg:"UPDATE_SUCCESS",
+                        result: docs
+
+
+                    });
+                });
+
+        }
+
+    });
+};

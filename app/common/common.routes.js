@@ -28,9 +28,26 @@ module.exports = function commonroutes(Router) {
                     }
                 },
                 params: {
-                    permisstion: "ALLUSER"
+                    permisstion: "ALLUSER",
+                    isblock:false,
                 },
                 title: 'fullprofile'
+            }
+        },
+        {
+            name: "root.settings",
+            config: {
+                url: '/settings',
+                views: {
+                    '@': {
+                        templateUrl: "app/common/settings/settings.html",
+                        controller: "AccountSettingsController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER"
+                },
+                title: 'settings'
             }
         }
     ]);

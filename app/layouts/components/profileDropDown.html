@@ -23,7 +23,14 @@
         
               
                     </ul>-->
-                    <ul class="list-group animated bounceIn" style="min-width:250px">
-  <li class="list-group-item" ng-repeat="pro in hdnm.profileSettingsData" ng-click="hdnm.logout()">{{pro.translateKey | translate}} <span class="{{pro.icon}} pull-right"></span></li>
+<ul class="list-group animated bounceIn" style="min-width:250px">
+  <li class="list-group-item hand" 
+  ng-repeat="pro in hdnm.profileSettingsData"  ui-sref="{{pro.route}}"
+  ng-if="pro.translateKey!=='LOG_OUT'">{{pro.translateKey | translate}} 
+  <span class="{{pro.icon}} pull-right"></span></li>
+  <li class="list-group-item hand" 
+  ng-repeat="pro in hdnm.profileSettingsData"  ui-sref="{{pro.route}}"
+  ng-if="pro.translateKey==='LOG_OUT'" ng-click="hdnm.logout()">{{pro.translateKey | translate}} 
+  <span class="{{pro.icon}} pull-right"></span></li>
  
 </ul>

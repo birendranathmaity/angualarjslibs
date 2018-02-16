@@ -37,7 +37,8 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         search_user_id: id,
         fields: {
 
-            user_id: $rootScope.login_user_id
+            user_id: $rootScope.login_user_id,
+            blockprofile:($state.params.isblock==="BLOCK" ? true : false)
         }
     };
     controller.formdata = loginservice.getFiledsData();

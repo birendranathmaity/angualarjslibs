@@ -6,6 +6,8 @@ var settingSchema   = new Schema({
     "message": Boolean,
     "contact":Boolean,
     "photo":Boolean,
+    "email":Boolean,
+    notification:Boolean,
     "created_on":Date,
     "updated_on":Date
 });

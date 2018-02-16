@@ -13,43 +13,44 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
     controller.profileSettingsData = [{
         name: "",
         translateKey: "MY_PROFILE",
-        route: "",
+        route: "root.myprofile",
         icon: "glyphicon glyphicon-user"
     },
     {
         name: "",
         translateKey: "ADD_PHOTO",
-        route: "",
+        route: "root.addphotos",
+        
         icon: "glyphicon glyphicon-picture"
     },
     {
         name: "",
         translateKey: "ACCOUNT_SETTINGS",
-        route: "",
+        route: "root.settings",
         icon: "glyphicon glyphicon-cog"
     },
     {
         name: "",
         translateKey: "CHANGE_PASSWORD",
-        route: "",
+        route: "root.changepassword",
         icon: "glyphicon glyphicon-lock"
     },
-    {
-        name: "",
-        translateKey: "WHO_CAN_VIEW_MY_PROFILE",
-        route: "",
-        icon: "glyphicon glyphicon-eye-open"
-    },
-    {
-        name: "",
-        translateKey: "COMPLETE_YOUR_PROFILE",
-        route: "",
-        icon: "glyphicon glyphicon-star"
-    },
+    // {
+    //     name: "",
+    //     translateKey: "WHO_CAN_VIEW_MY_PROFILE",
+    //     route: "",
+    //     icon: "glyphicon glyphicon-eye-open"
+    // },
+    // {
+    //     name: "",
+    //     translateKey: "COMPLETE_YOUR_PROFILE",
+    //     route: "",
+    //     icon: "glyphicon glyphicon-star"
+    // },
     {
         name: "",
         translateKey: "LOG_OUT",
-        route: "",
+        route: "root.logout",
 
         icon: "glyphicon glyphicon-log-out"
     }
@@ -59,7 +60,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         loginservice.logout(function (res) {
 
             if (res.success) {
-                $location.path('/');
+                $location.path('/login');
             }
 
         }, function () {

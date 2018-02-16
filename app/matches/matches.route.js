@@ -17,22 +17,23 @@ module.exports = function myHomeRoutes(Router) {
                 },
                 title: 'Matches'
             }
-        },
-          {
-            name: "root.dailymatches",
-            config: {
-                url: '/dailymatches',
-                views: {
-                    '@': {
-                        templateUrl: "app/matches/dailymatches/dailymatches.html",
-                        controller: "DailyMatchesController as ctrl"
-                    }
-                },
-                params: {
-                    permisstion: "ALLUSER"
-                },
-                title: 'daily matches'
-            }
-        }
+         }
+         //,
+        //   {
+        //     name: "root.dailymatches",
+        //     config: {
+        //         url: '/dailymatches',
+        //         views: {
+        //             '@': {
+        //                 templateUrl: "app/matches/dailymatches/dailymatches.html",
+        //                 controller: "DailyMatchesController as ctrl"
+        //             }
+        //         },
+        //         params: {
+        //             permisstion: "ALLUSER"
+        //         },
+        //         title: 'daily matches'
+        //     }
+        // }
     ]);
 };

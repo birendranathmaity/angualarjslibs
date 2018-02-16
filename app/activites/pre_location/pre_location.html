@@ -9,7 +9,8 @@
    </div>
    <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 matches-c-all no-padding">
           <h4 class=""> Please broaden your partner preference slightly to receive more matches  in this list Modify </h4>
-             <div class="col-lg-9 col-xs-12 col-sm-12 no-padding dataTables_wrapper">
+           
+          <div class="col-lg-9 col-xs-12 col-sm-12 no-padding dataTables_wrapper">
               <div class="col-lg-8 ">
               <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.users.length>0">
                 <ul>
@@ -38,7 +39,7 @@
                 </div>
                 </div>
                 <div class="clearfix"></div>
-          
+                <noinformation type="{{$ctrl.activityType}}" ng-if="$ctrl.users.length===0"></noinformation>
             <div ng-repeat="user in $ctrl.users">
   
               <profile-view user="user"></profile-view>

@@ -662,6 +662,11 @@ exports.getSearchResult = function (req, res) {
 
         $project: {
             is_visitor_profile:commonQuery.query.is_visitor_profile(main_user_id),
+            is_blocked_profile:{
+                
+                                $ifNull: ["$block.block_status", false]
+                
+                            },
             isphotorequest: {
 
                 $ifNull: ["$isphotorequest", null]
@@ -742,6 +747,7 @@ exports.getSearchResult = function (req, res) {
                                 $ifNull: ["$is_visitor_profile.request_type", false]
                 
                             },
+             is_blocked_profile:"$is_blocked_profile",
              location_name:"$user.location_name",
              "first_name": "$user.first_name",
              "last_name": "$user.last_name",
