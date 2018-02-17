@@ -1,5 +1,5 @@
 
-<form name="regisForm"  class="animated flip" angular-validator-submit="registerFormCtrl.submitMyForm(form)" novalidate angular-validator>
+<form name="regisForm" autocomplete="off" class="animated flip" angular-validator-submit="registerFormCtrl.submitMyForm(form)" novalidate angular-validator>
   
       <div class="row profile" ng-if="registerFormCtrl.userId">
             <div class="col-md-3"><button type="button" class="btn btn-warning btn-sm" ng-click="registerFormCtrl.backViewUser()">Back</button></div>
@@ -25,7 +25,7 @@
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-success btn-sm" ng-if="!registerFormCtrl.pic.photo_vr && registerFormCtrl.pic !=null" ng-click="registerFormCtrl.accept({user_id:form.user_id,reffresh:false})">Accept</button>
 					<button type="button" class="btn btn-danger btn-sm" ng-if="registerFormCtrl.pic.photo_vr && registerFormCtrl.pic !=null" ng-click="registerFormCtrl.reject({user_id:form.user_id,reffresh:false})">Reject</button>
-                              <button type="button" ng-click="registerFormCtrl.openImageUploadWindow({user_id:form.user_id,skip_url:'/viewusers',photo_type:'PROFILE',from_sec:'userEdit'})" class="btn btn-info btn-sm">Change Photo</button>
+                              <button type="button" ng-click="registerFormCtrl.openImageUploadWindow({user_id:form.user_id,skip_url:'root.viewusers',photo_type:'PROFILE',from_sec:'userEdit'})" class="btn btn-info btn-sm">Change Photo</button>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
@@ -38,13 +38,13 @@
       <div class="row marg-b15">
             <div class="col-md-6 p-l-0 p-r-7">
 
-                  <input class="input-btn form-control" type="text" ng-disabled="registerFormCtrl.userId" name="email" ng-model="form.email"
+                  <input dont-fill class="input-btn form-control" type="text" ng-disabled="registerFormCtrl.userId" name="email" ng-model="form.email"
                         placeholder="Email" email-available validator="registerFormCtrl.emailValidator(form.email) === true" invalid-message="registerFormCtrl.emailValidator(form.email)"
                         required-message="registerFormCtrl.required('REQUIRED')" validate-on="dirty" required />
 
             </div>
             <div class="col-md-6 p-l-0 p-r-7">
-                  <input class="input-btn form-control" type="password" name="password" placeholder="Password" ng-model="form.password" validator="registerFormCtrl.passwordValidator(form.password) === true"
+                  <input autocomplete="off" class="input-btn form-control" type="password" name="password" placeholder="Password" ng-model="form.password" validator="registerFormCtrl.passwordValidator(form.password) === true"
                         invalid-message="registerFormCtrl.passwordValidator(form.password)" required-message="registerFormCtrl.required('REQUIRED')"
                         validate-on="dirty" required/>
             </div>

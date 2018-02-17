@@ -39,8 +39,7 @@ module.exports = function adminDashboardController($viewusers, $translate,$locat
 
   });
   vm.loadurl=function(key){
-// $location.path("/viewusers");
-// console.log(this.$router);
+
  $state.go('root.viewusers',{"userLoadType":key});
          // this.$router.navigate(['/viewusers']);
 

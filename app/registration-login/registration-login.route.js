@@ -19,6 +19,34 @@ module.exports = function regisLoginRoutes(Router) {
                 title: 'register'
             }
         },
+        {
+            name: 'login',
+            config: {
+                url: '/login',
+               
+                views: {
+                    'header': {
+                        templateUrl: 'app/layouts/login-header.html'
+                        
+                    },
+                     'leftsidebar': {
+                        templateUrl: 'app/layouts/sidebar.html',
+                       
+                    },
+                   
+                    '@': {
+                        templateUrl: 'app/layouts/auth.html',
+                        controller:"loginCtrl as ctrl"
+                       
+                        
+                    },
+                     'footer': {
+                        templateUrl: 'app/layouts/footer.html'
+                       
+                    }
+                }
+            }
+        },
           {
             name: "moreinfo",
             config: {

@@ -106,8 +106,12 @@ function afterUserSave(user, res) {
      user.uploaded_by === "PARENTS" || 
      user.uploaded_by === "SIBLINGS" || 
      user.uploaded_by === "OTHER") {
-        createToken(res, user);
-        createOtp(user, "PHONE_NUMBER_VR");
+      
+        createOtp(user, "PHONE_NUMBER_VR",function(){
+            createToken(res, user);
+
+        });
+
         // otpConfig.sendOtpNumber("917330734341");
         
     }
@@ -158,7 +162,7 @@ function createToken(res, user) {
     });
 };
 
-function createOtp(user, vrType) {
+function createOtp(user, vrType,success) {
     var otp = 12345;
     //172595AQbcw8YLo59a90f6d
     var otpDetails = {
@@ -185,7 +189,9 @@ function createOtp(user, vrType) {
 
             if (!otpData) {
                 var OTPMODEL = new OTP(otpDetails);
-                OTPMODEL.save(function (err, details) { });
+                OTPMODEL.save(function (err, details) { 
+                    success();
+                });
             }
         }
 

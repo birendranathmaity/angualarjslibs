@@ -1,6 +1,6 @@
 /* @ngInject */
 module.exports = function LoginController($uibModal,$uibModalInstance,loginservice,$location,$filter) {
-  
+  console.log()
     var controller = this;
         controller.invaliduser=false;
    controller.cancel = function () {
@@ -52,7 +52,7 @@ controller.forgetPwdModal = function (size) {
 
        controller.logout = function() {
             loginservice.logout(function() {
-                $location.path('/');
+                $location.path('/login');
             }, function() {
                 
             });

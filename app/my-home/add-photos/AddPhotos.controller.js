@@ -22,7 +22,7 @@ module.exports = function AddPhotosController($location,$scope,$timeout,$rootSco
 						//console.log(userDe)
 						var user = {
                             user_id: userDe.user_id,
-                            skip_url: '/addphotos',
+                            skip_url: 'root.addphotos',
 							photo_type: 'ALBUM',
 							from_sec: 'userAlbum'
                            

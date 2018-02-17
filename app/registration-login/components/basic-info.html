@@ -40,7 +40,7 @@
         </ul>
     </div>
 
-    <form name="moreInfo" role="form" angular-validator-submit="ctrl.submitMoreInfo(basicinfo,educationwork,intrests,family)"
+    <form name="moreInfo" role="form" autocomplete="off" angular-validator-submit="ctrl.submitMoreInfo(basicinfo,educationwork,intrests,family)"
         novalidate angular-validator>
         <div class="tab-content">
             <div class="tab-pane animated jackInTheBox" ng-class="ctrl.moreInfoTabsmenu[0].active?'active':''" role="tabpanel" id="step1"

@@ -21,8 +21,10 @@
                 
         </li> 
         <li class="dropdown prof-setg">
+         
                     <a  href="#" id="user-options" popover-placement="{{hdnm.notifn.proPos}}" popover-class="proPopover" popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="hdnm.notifn.proUrl">
-                       <img water-mark="hdnm.pic" width="35" height="35" />
+                       <img water-mark="hdnm.pic" ng-if="login_user_role!=='ADMIN'" width="35" height="35" />
+                       <img ng-if="login_user_role==='ADMIN'" src="assets/img/admin.png" width="35" height="35" />
                        <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                  

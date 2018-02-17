@@ -2,7 +2,10 @@
 module.exports = function headerNotiController($scope, $state, $location, $uibModal, $rootScope, useractions, messagesservice, loginservice, toastr) {
 
     var controller = this;
+controller.goState=function(state){
+    $state.go(state);
 
+};
     controller.notifn = {
         notiUrl: './app/layouts/components/noti.html',
         msgUrl: "./app/layouts/components/msg.html",
@@ -60,7 +63,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
         loginservice.logout(function (res) {
 
             if (res.success) {
-                $location.path('/login');
+                $state.go('login');
             }
 
         }, function () {
@@ -134,7 +137,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
     controller.isOpenMsgBox = function () {
 
         if (controller.messages.total === 0) {
-            $location.path("/mail");
+            $state.go("root.mail");
             controller.isOpenMsg = false;
         }
         else {
@@ -149,7 +152,7 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
             user_id: $rootScope.login_user_id
         };
         if (controller.notifications.total === 0) {
-            $location.path("/notifications");
+            $state.go("root.notifications");
             controller.isOpenNoti = false;
         }
         else {
@@ -164,12 +167,12 @@ module.exports = function headerNotiController($scope, $state, $location, $uibMo
     };
     controller.viewall = function (TYPE) {
         if (TYPE === "NOTI") {
-            $location.path("/notifications");
+            $state.go("root.notifications");
 
         }
         if (TYPE === "MSG") {
 
-            $location.path("/mail");
+            $state.go("root.mail");
 
         }
 

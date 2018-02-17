@@ -4,7 +4,7 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
 
     var id = $crypto.decrypt($state.params.id);
   if(!id){
-    $location.path("/404");
+    $state.go("root.404");
     return;  
   }
     function loadCoun(array) {
@@ -398,7 +398,7 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
     searchService.getSearchResult(req, function (result) {
         if(result.users.length===0){
 
-            $location.path("/404");
+            $state.go("root.404");
             return;
         }
         else{
@@ -428,12 +428,14 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
             controller.fieldPartnerPre = controller.user.userinfo.partner_pre.fields;
             loadCoun(controller.fieldPartnerPre.country);
             for(var key in  controller.fieldPartnerPre){
+               
                 controller.getMatchCount(controller.fieldPartnerPre[key],key);
             }
         }
         else {
+           
             useractions.get_default_search_config("DEFAULT_PARTNER_PRE", controller.user, function (fields) {
-
+              
                 controller.fieldPartnerPre = fields;
                 loadCoun(controller.fieldPartnerPre.country);
                 for(var key in  controller.fieldPartnerPre){

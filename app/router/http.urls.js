@@ -2,10 +2,10 @@
 module.exports =  function(){
   //"BASEURL":"http://192.169.136.224:4000",
 
-
+var url="http://192.169.136.224:4000";
+//var url="http://localhost:4000";
 return {
- // "BASEURL":"http://localhost:4000",
-    "BASEURL":"http://192.169.136.224:4000",
+    "BASEURL":url,
     "LOGIN":"/login",
     "AUTHENTICATE":"/authenticate",
     "LOGOUT":"/logout",

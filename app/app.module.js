@@ -73,7 +73,14 @@ angular.module('app.ui', [
     activites.name
 
   
-]).config(['$cryptoProvider', function($cryptoProvider){
+]).run(
+    ['$rootScope', '$state', '$stateParams',
+      function ($rootScope, $state, $stateParams) {
+          $rootScope.$state = $state;
+          $rootScope.$stateParams = $stateParams;
+          
+      }
+    ]).config(['$cryptoProvider', function($cryptoProvider){
     $cryptoProvider.setCryptographyKey('DHOLBAAJE.COM');
 }]).provider('$crypto', function CryptoKeyProvider() {
     var cryptoKey;

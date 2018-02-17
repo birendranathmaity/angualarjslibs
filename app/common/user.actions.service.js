@@ -61,13 +61,14 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
                basic = user.basicinfos[0];
                edu = user.usereducations[0];
                interest = user.userintrests[0];
+               user.gender=user.gender;
             }
             if(who !== null && typeof who === 'object'){
                 user=who;
                 basic = user.userinfo.basic;
                 edu = user.userinfo.education;
                 interest = user.userinfo.interest;
-                user.gender="FEMALE";
+                user.gender=user.gender;
             }
            
             

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function addUserController(toastr,$rootScope,$location) {
+module.exports = function addUserController(toastr, $state,$rootScope,$location) {
 var controller=this;
 controller.showRegisForm=true;
 controller.showMoreInfodir=false;
@@ -13,7 +13,7 @@ controller.showMoreInfodir=false;
       controller.user_id=msg.user_id;
 
          if(msg.type==="SKIP"){
-           $location.path("/viewusers");
+          $state.go("root.viewusers");
         }
         if(msg.type==="ADDMOREINFO"){
            controller.showRegisForm=false;

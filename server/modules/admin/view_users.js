@@ -452,7 +452,17 @@ exports.pendingprofiles_count = function (req, res) {
 };
 exports.get_all_users_status_count = function (req, res) {
     User.aggregate([
-
+        {
+            
+                    $match: {
+            
+                        "user_role": {
+            
+                            "$nin": ["ADMIN", "MARRAGE_BUREAU"]
+            
+                        }
+                    }
+                },
        // { $sort: { created_on: -1 } },
         { $lookup: { from: "userphotos", localField: "user_id", foreignField: "user_id", as: "pic" } },
          { "$unwind": { "path": "$pic", "preserveNullAndEmptyArrays": true } },
@@ -668,7 +678,17 @@ exports.get_users = function (req, res) {
     var aggregate = User.aggregate([
 
 
-
+        {
+            
+                    $match: {
+            
+                        "user_role": {
+            
+                            "$nin": ["ADMIN", "MARRAGE_BUREAU"]
+            
+                        }
+                    }
+                },
       
 
         { $lookup: { from: "userbasicinfos", localField: "user_id", foreignField: "user_id", as: "basicinfos" } },

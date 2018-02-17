@@ -31,7 +31,7 @@ controller.today = function() {
  
 //   if(res.data.success){
 //      sessionStorage.setItem('token', res.data.token);
-//       $location.path("/"+res.data.role);
+//      
 //   }
 //   else{
 //     controller.error="Invalid username or password";

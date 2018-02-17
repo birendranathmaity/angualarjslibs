@@ -271,12 +271,12 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                             toastr.success('Saved Successfully');
                             if ($scope.isAdmin) {
 
-                                skip_url = "/viewusers";
+                                skip_url = "root.viewusers";
 
                             }
                             else {
 
-                                skip_url = "/dashboard";
+                                skip_url = "root.dashboard";
                             }
                             
                               var config={

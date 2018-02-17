@@ -1,10 +1,10 @@
 /* @ngInject */
-module.exports = function ($http, $viewusers, $state, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
+module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
 
     function changeUser(user) {
         angular.extend(currentUser, user);
     }
-
+   
     function urlBase64Decode(str) {
         var output = str.replace('-', '+').replace('_', '/');
         switch (output.length % 4) {
@@ -58,12 +58,16 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
         },
         verifyOtp: function (data, success, error) {
             var user = getUserFromToken();
-            data.user_id = user.user_id;
-            $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
+           // data.user_id = user.user_id;
+           var req= {
+            user_id:user.user_id,
+              otp:data.otp
+            }
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, req).success(success).error(error);
         },
 
         afterloginRoute: function (role) {
-
+console.log("kk")
             if (!$sessionStorage.token) {
 
                 $location.path("/login");
@@ -177,6 +181,7 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
         saveToken: function (token) {
 
             $sessionStorage.token = token;
+           
             var d = getUserFromToken();
             var self = this;
             self.getCureentUser(d.user_id, function (rs) {
@@ -200,13 +205,13 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
                 if ($rootScope.current_user_de_all) {
 
                     success(cUser.user_role);
-                    return;
+                    ///return;
                 }
                 else {
                     this.getCureentUser(cUser.user_id, function (result) {
 
                         success(cUser.user_role);
-                        return;
+                      //  return;
                     });
                 }
 
@@ -308,6 +313,77 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
                 $rootScope.current_user_de_all.pic.push(pic);
             }
 
+        }, getAuthObject: function () {
+            var deferred = $q.defer();
+           //var loginuser=$rootScope.current_user_de_all;
+            // later we can use this quick way -
+            // - once user is already loaded
+            if ($sessionStorage.token) {
+                var cUser = getUserFromToken();
+               
+
+            }
+            else {
+                $location.path("/register");
+            }
+            if ($rootScope.current_user_de_all) {
+                return $q.when($rootScope.current_user_de_all);
+            }
+
+            // server fake call, in action would be $http
+            $timeout(function () {
+                // server returned UN authenticated user
+               // loginuser = {isAuthenticated: false };
+                // $http.get("./albums.ms")
+                // .success(function(data) {
+                //     deferred.resolve(loginuser)
+                //     def.resolve(data);
+                // })
+                // .error(function() {
+                //     def.reject("Failed to get albums");
+                // });
+                $viewusers.getUser({ "user_id": cUser.user_id }, function (result) {
+                    
+                    
+                                    $rootScope.current_user_de_all = result.user;
+                                    deferred.resolve(result.user)
+                                   
+                    
+                                }, function () { });
+               
+            }, 500)
+
+            return deferred.promise;
+        },
+
+        // sync, quick way how to check IS authenticated...
+        isAuthenticated: function () {
+             if($sessionStorage.token){
+
+                if ($rootScope.current_user_de_all){
+
+                    return{
+                        role:$rootScope.current_user_de_all.user_role,
+                        isAuth:true
+                    }
+                }
+                else{
+                    return{
+                        role:null,
+                        isAuth:true
+                    }
+                }
+                
+
+            }
+            else{
+                
+               
+                return{
+                    role:null,
+                    isAuth:false
+                }
+            }
         },
         calculate_age: function (birth_month, birth_day, birth_year) {
             var today_date = new Date();
@@ -327,9 +403,11 @@ module.exports = function ($http, $viewusers, $state, $sessionStorage, $localSto
         },
         logout: function (success, error) {
             var user = getUserFromToken();
-            var data = {};
+            var data = {
+                user_id:user.user_id
+            };
             $rootScope.current_user_de_all = {};
-            data.user_id = user.user_id;
+           
 
             changeUser({});
             delete $sessionStorage.token;

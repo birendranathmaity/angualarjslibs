@@ -26,7 +26,7 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                     if (action === "ADD_PHOTO" || action === "CHANGE_PHOTO") {
                         var user = {
                             user_id: $scope.userId,
-                            skip_url: '/dashboard',
+                            skip_url: 'root.dashboard',
                             photo_type: 'PROFILE',
                             from_sec: 'userEdit'
                         };
@@ -35,17 +35,17 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                     }
                     if (action === "EDIT_MY_PROFILE" || action === "EDIT_PROFILE") {
                       $state.go('root.editprofile', {editType:0});
-                  //      $location.path("/editprofile/editType=0")
+             
                         return;
                     }
                     if (action === "EDIT_CONTACT_DETAILS") {
                      $state.go('root.editprofile', {editType:1});
-                    //  $location.path("/editprofile/editType=1")
+                 
                         return;
                     }
                     if (action === "EDIT_PARTNER_PREFERENCES") {
                        $state.go('root.editprofile', {editType:2});
-                    // $location.path("/editprofile/editType=2")
+                   
                       
                         return;
                     }

@@ -46,9 +46,9 @@ module.exports = function BaseRoutes(Router) {
                     }
                 },
                 params: {
-                    permisstion: "ALLUSER"
+                    permisstion: "NOACTION"
                 },
-                title: 'fullprofile'
+                title: '404'
             }
         }
       

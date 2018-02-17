@@ -1,6 +1,6 @@
 /* @ngInject */
 
-module.exports = function CropModalController($rootScope,loginservice, $uibModal, $uibModalInstance, user, $location, Upload, $timeout, ServiceUrls, toastr) {
+module.exports = function CropModalController($rootScope,loginservice, $state, $uibModal, $uibModalInstance, user, $location, Upload, $timeout, ServiceUrls, toastr) {
 
     var controller = this;
     controller.style = {
@@ -105,7 +105,7 @@ module.exports = function CropModalController($rootScope,loginservice, $uibModal
     };
     controller.skip = function () {
         controller.cancel();
-       $location.path(user.skip_url);
+        $state.go(user.skip_url);
     };
     controller.upload = function (dataUrl, name) {
         var uploadFile=controller.myImage;
@@ -135,7 +135,8 @@ module.exports = function CropModalController($rootScope,loginservice, $uibModal
 
                 if (response.data.error_code === 0) { //validate success
                     toastr.success('Upload Successful');
-                    if(user.from_sec==="userEdit"){
+                   
+                    if(user.from_sec==="userEdit" || user.from_sec==="userEntry"){
                          $rootScope.$broadcast('userPhotoBoradcastToDisplay', response.data.pic);
                     }
                     if(user.from_sec==="userAlbum"){
@@ -152,7 +153,7 @@ module.exports = function CropModalController($rootScope,loginservice, $uibModal
 
                }
                 if(user.skip_url){
-                    $location.path(user.skip_url);
+                    $state.go(user.skip_url);
                 }
                
             });
