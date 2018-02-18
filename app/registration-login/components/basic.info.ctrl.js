@@ -265,7 +265,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     };
 
                     loginservice.savemoreinfo(req, function (res) {
-                        console.log(controller.userId)
+                       
                         var skip_url="";
                         if (res.success && !controller.editMode) {
                             toastr.success('Saved Successfully');
@@ -293,7 +293,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                         if (controller.editMode && $scope.isAdmin) {
                             updateRegisterForm();
                         }
-                        if(controller.editMode && !$scope.isAdmin){
+                        if(!$scope.isAdmin){
                             loginservice.getCureentUser(controller.userId,function(result){
                                 
                                 $rootScope.$broadcast('userProfileUpdate');

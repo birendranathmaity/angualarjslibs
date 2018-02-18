@@ -141,6 +141,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
             templateUrl: './app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
+                main.type="PROCEED";
                 main.yes = function () {
                     finalaction();
                 }

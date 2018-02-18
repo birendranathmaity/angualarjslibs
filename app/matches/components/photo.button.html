@@ -1,3 +1,3 @@
-<a class="hand" ng-if="$ctrl.config.send_request" ng-click="$ctrl.requestPhotom()">  Request Photo </a>
+<a class="hand" ng-if="$ctrl.config.send_request  && !$ctrl.is_user_by_block" ng-click="$ctrl.checkBlock()">  Request Photo </a>
 <a  ng-if="$ctrl.config.decline">  photo request declined </a>
 <a  ng-if="$ctrl.config.alreadysent">Request sent </a>

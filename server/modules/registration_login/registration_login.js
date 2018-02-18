@@ -14,7 +14,11 @@ var otpConfig = require('./otp');
 //
 exports.authenticate = function (req, res) {
     User.findOne({
-        email: req.body.email,
+        "$or": [{
+            "email": req.body.email
+        }, {
+            "user_id": req.body.email
+        }],
         password: req.body.password
     }, function (err, user) {
         if (err) {
@@ -397,7 +401,11 @@ function UserProfileUpdate(userId, update, res) {
 exports.signin = function (req, res) {
 
     User.findOne({
-        email: req.body.email,
+        "$or": [{
+            "email": req.body.email
+        }, {
+            "user_id": req.body.email.toUpperCase()
+        }],
         password: req.body.password
     }, function (err, user) {
         if (err) {

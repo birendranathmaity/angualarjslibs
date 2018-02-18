@@ -408,7 +408,7 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
                 user_id: $rootScope.login_user_id,
                 request_user_id: controller.user.user_id,
                 request_type: "VIEWED_PROFILE",
-                request_status: "UNREAD"
+                request_status: (controller.user.is_user_by_block ==="BLOCK" ? "BLOCK" : "UNREAD")
         
               };
         if(!controller.user.is_viewed_profile){

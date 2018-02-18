@@ -68,15 +68,27 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
 
                     width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
                 };
-                controller.LastUpdateDate=(controller.user.basicinfos[0].updated_on ? controller.user.basicinfos[0].updated_on : controller.user.basicinfos[0].created_on);
+                if(controller.user.basicinfos[0] && controller.user.basicinfos[0].updated_on){
+                    controller.LastUpdateDate=controller.user.basicinfos[0].updated_on;
+
+                }
+                else{
+                    controller.LastUpdateDate=controller.user.basicinfos[0].created_on;
+                }
+                controller.LastUpdateDate=controller.user.basicinfos[0].updated_on || controller.user.basicinfos[0].created_on;
                 var userPhotoBoradcastToDisplay= $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
                     controller.pic = pic;
                     loginservice.setProfilePic(pic);
                 });
                 var userProfileUpdate=$rootScope.$on('userProfileUpdate', function ($event, msg) {
                     controller.user = $rootScope.current_user_de_all;
-                    controller.LastUpdateDate=(controller.user.basicinfos[0].updated_on ? controller.user.basicinfos[0].updated_on : controller.user.basicinfos[0].created_on);
-                    
+                    if(controller.user.basicinfos[0] && controller.user.basicinfos[0].updated_on){
+                        controller.LastUpdateDate=controller.user.basicinfos[0].updated_on;
+    
+                    }
+                    else{
+                        controller.LastUpdateDate=controller.user.basicinfos[0].created_on;
+                    } 
                     controller.ProfilePercentage = {
                         width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
                         

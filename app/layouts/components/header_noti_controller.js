@@ -156,9 +156,9 @@ controller.goState=function(state){
             controller.isOpenNoti = false;
         }
         else {
-            controller.isOpenNoti = true;
+           
             useractions.update_notifications(req, function (notifications) {
-
+                controller.isOpenNoti = true;
                 controller.notifications.total = 0;
             }, function (error) { });
 

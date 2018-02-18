@@ -31,6 +31,7 @@ module.exports = function ($uibModal,messagesservice,useractions,$rootScope) {
                         templateUrl: './app/popuptemplates/delete.modal.html',
                         controller: function ($scope) {
                             var main = this;
+                            main.type="BLOCK";
                             main.yes = function () {
                                 finalcall();
                                 modalInstance.dismiss('cancel');
@@ -64,7 +65,7 @@ function finalcall(){
       useractions.create_user_block(reqBlock, function (result) {
         if (result.success) {
           messagesservice.toaster_msg('Successfully bloked');
-          
+          $rootScope.$broadcast('userBlockUnblock',{block:true});
           controller.is_blocked_profile="BLOCK";
         }
 
@@ -86,12 +87,24 @@ function finalcall(){
                         if (result.success) {
                           messagesservice.toaster_msg('Successfully unbloked');
                           controller.is_blocked_profile=false;
+                          $rootScope.$broadcast('userBlockUnblock',{block:false});
                 
                         }
                 
                 
                       }, function (error) { });
                 };
+                var userUnblock = $rootScope.$on('userUnblock', function ($event, msg) {
+                    controller.is_blocked_profile=false;
+                    $rootScope.$broadcast('userBlockUnblock',{block:false}); 
+                    
+                        });
+                       
+                        $rootScope.$on('$destroy', function () {
+                    
+                            userUnblock();
+                          
+                        });
 
             }]
         };

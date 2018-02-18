@@ -376,6 +376,37 @@ exports.query = {
         };
 
     },
+    isBlockByUser: function (main_user_id) {
+        return {
+
+            $filter: {
+
+                input: "$userbyblock",
+
+                as: "item",
+
+                cond: {
+
+                    $and: [{
+
+                        "$eq": ["$$item.block_user_id", main_user_id]
+
+                    },{
+                        "$eq": ["$$item.user_id", "$user_id"]
+                        
+                      }, {
+
+                        "$eq": ["$$item.block_status", "BLOCK"]
+
+                    }]
+
+                }
+
+            }
+
+        };
+
+    },
     is_visitor_profile: function (main_user_id) {
         return {
 

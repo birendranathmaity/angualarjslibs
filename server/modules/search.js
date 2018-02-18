@@ -45,45 +45,45 @@ exports.savePartnerPre = function (req, res) {
     });
 };
 exports.getSavedSearchResults = function (req, res) {
-   
-    var aggregate = searchResultModel.aggregate([{
-        
-                $sort: {
-        
-                    created_on: -1
-        
-                }
-        
-            },{
-                $match:{
-                    user_id:{$eq:req.body.user_id}
-                }
-            }]);
-            var options = {
-                page: req.body.page,
-                limit: req.body.limit
-            };
-            searchResultModel.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
-                if (err) {
-                    res.json(err);
-                    console.err(err)
-                }
-            else{
-                var docs = {
-                    searchResults: results,
-                    pages: pageCount,
-                    total: count
-    
-                };
-    
-                res.json(docs);
 
-            }
-            });
+    var aggregate = searchResultModel.aggregate([{
+
+        $sort: {
+
+            created_on: -1
+
+        }
+
+    }, {
+        $match: {
+            user_id: { $eq: req.body.user_id }
+        }
+    }]);
+    var options = {
+        page: req.body.page,
+        limit: req.body.limit
+    };
+    searchResultModel.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
+        if (err) {
+            res.json(err);
+            console.err(err)
+        }
+        else {
+            var docs = {
+                searchResults: results,
+                pages: pageCount,
+                total: count
+
+            };
+
+            res.json(docs);
+
+        }
+    });
 
 };
 exports.saveSearchResult = function (req, res) {
-    req.body.created_on=new Date();
+    req.body.created_on = new Date();
 
     var ResultModel = new searchResultModel(req.body);
     ResultModel.save(function (err, result) {
@@ -136,27 +136,37 @@ exports.getSearch = function (req, res) {
 };
 exports.getSearchResult = function (req, res) {
 
+    // request format for search
+    //{ 
+     //   gender:"",
+      //  fields:{  
+       //   user_id:""
+        
+        //}
+    
+    //}
+
     var main_user_id = req.body.fields.user_id;
 
     console.log(main_user_id)
-    var blockprofile=false;
-    var searchUserIdMatch={};
-    var userallinfo=false;
-    if(req.body.fields.blockprofile){
-        blockprofile=true;
+    var blockprofile = false;
+    var searchUserIdMatch = {};
+    var userallinfo = false;
+    if (req.body.fields.blockprofile) {
+        blockprofile = true;
 
     }
-    if(req.body.search_user_id){
-        userallinfo=true;
-        searchUserIdMatch["user_id"]={
-            
-                            "$eq": req.body.search_user_id
-            
-                        };
+    if (req.body.search_user_id) {
+        userallinfo = true;
+        searchUserIdMatch["user_id"] = {
+
+            "$eq": req.body.search_user_id
+
+        };
 
     }
-   
-    var match=commonQuery.query.matchResult( req.body.fields);
+
+    var match = commonQuery.query.matchResult(req.body.fields);
     console.log(match)
     var aggregate = User.aggregate([{
 
@@ -166,11 +176,11 @@ exports.getSearchResult = function (req, res) {
 
         }
 
-    },{
+    }, {
 
         $match: searchUserIdMatch
-    
-    
+
+
     }, {
 
         $match: {
@@ -186,9 +196,9 @@ exports.getSearchResult = function (req, res) {
                 "$eq": "ACTIVE"
 
             },
-           "gender": {
+            "gender": {
 
-                "$eq": (req.body.gender=="MALE" ? "FEMALE": "MALE")
+                "$eq": (req.body.gender == "MALE" ? "FEMALE" : "MALE")
 
             }
 
@@ -367,30 +377,30 @@ exports.getSearchResult = function (req, res) {
         }
 
     }, {
-        
-                $lookup: {
-        
-                    from: "userfamilies",
-        
-                    localField: "user_id",
-        
-                    foreignField: "user_id",
-        
-                    as: "family"
-        
-                }
-        
-            },{
-                
-                        "$unwind": {
-                
-                            "path": "$family",
-                
-                            "preserveNullAndEmptyArrays": true
-                
-                        }
-                
-                    }, {
+
+        $lookup: {
+
+            from: "userfamilies",
+
+            localField: "user_id",
+
+            foreignField: "user_id",
+
+            as: "family"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$family",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    }, {
 
         $lookup: {
 
@@ -404,7 +414,7 @@ exports.getSearchResult = function (req, res) {
 
         }
 
-    },  {
+    }, {
 
         $lookup: {
 
@@ -429,85 +439,85 @@ exports.getSearchResult = function (req, res) {
         }
 
     }, {
-        
-                $lookup: {
-        
-                    from: "usertokens",
-        
-                    localField: "user_id",
-        
-                    foreignField: "user_id",
-        
-                    as: "lastlogin"
-        
-                }
-        
-            }, {
-        
-                "$unwind": {
-        
-                    "path": "$lastlogin",
-        
-                    "preserveNullAndEmptyArrays": true
-        
-                }
-        
-            }, 
-            {
-                
-                        $sort: {
-                
-                            "lastlogin.created_on": -1
-                
-                        }
-                
-                    },
-                    {
-                        
-                                $lookup: {
-                        
-                                    from: "partnerpreferences",
-                        
-                                    localField: "user_id",
-                        
-                                    foreignField: "user_id",
-                        
-                                    as: "partner_pre"
-                        
-                                }
-                        
-                            }, {
-                        
-                                "$unwind": {
-                        
-                                    "path": "$partner_pre",
-                        
-                                    "preserveNullAndEmptyArrays": true
-                        
-                                }
-                        
-                            }, 
-                        
-            {
+
+        $lookup: {
+
+            from: "usertokens",
+
+            localField: "user_id",
+
+            foreignField: "user_id",
+
+            as: "lastlogin"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$lastlogin",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+    {
+
+        $sort: {
+
+            "lastlogin.created_on": -1
+
+        }
+
+    },
+    {
+
+        $lookup: {
+
+            from: "partnerpreferences",
+
+            localField: "user_id",
+
+            foreignField: "user_id",
+
+            as: "partner_pre"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$partner_pre",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+
+    {
 
         $project: {
 
             "_id": 1,
-            "main_user_id":main_user_id,
+            "main_user_id": main_user_id,
             "user_id": "$user_id",
             "user_status": "$user_status",
             "first_name": "$first_name",
             "last_name": "$last_name",
-            "gender":"$gender",
+            "gender": "$gender",
             "dob": "$dob",
             "age": "$age",
             "height": "$interest.height",
-            "location_name":{
-                country:"$cn.name",
-                state:"$st.name",
-                city:"$ct.name"
+            "location_name": {
+                country: "$cn.name",
+                state: "$st.name",
+                city: "$ct.name"
             },
-            phone_number:"$phone_number",
+            phone_number: "$phone_number",
             "country": "$basic.country",
             "state": "$basic.state",
             "city": "$basic.city",
@@ -534,15 +544,15 @@ exports.getSearchResult = function (req, res) {
             "is_viewed_profile": commonQuery.query.is_viewed_profile(main_user_id),
             "is_liked_profile": commonQuery.query.is_liked_profile(main_user_id),
             "block": commonQuery.query.block(main_user_id),
-             userinfo:{
-                "albums":commonQuery.query.albums(),
-                "basic":"$basic",
-                "education":"$education",
-                "interest":"$interest",
-                "family":"$family",
-                "partner_pre":"$partner_pre"
-             }
-            
+            userinfo: {
+                "albums": commonQuery.query.albums(),
+                "basic": "$basic",
+                "education": "$education",
+                "interest": "$interest",
+                "family": "$family",
+                "partner_pre": "$partner_pre"
+            }
+
 
 
         }
@@ -569,11 +579,29 @@ exports.getSearchResult = function (req, res) {
 
         }
 
-    },{
+    }, {
+
+        $match: match.match
+
+    }, 
+    {
         
-                $match: match.match
+                $lookup: {
         
-            }, {
+                    from: "userblocks",
+        
+                    localField: "main_user_id",
+        
+                    foreignField: "block_user_id",
+        
+                    as: "userbyblock"
+        
+                }
+        
+            },
+          
+    
+    {
 
         "$unwind": {
 
@@ -645,29 +673,30 @@ exports.getSearchResult = function (req, res) {
 
     },
     {
-        
-                $lookup: {
-        
-                    from: "requests",
-        
-                    localField: "main_user_id",
-        
-                    foreignField: "request_user_id",
-        
-                    as: "visitor"
-        
-                }
-        
-            },
+
+        $lookup: {
+
+            from: "requests",
+
+            localField: "main_user_id",
+
+            foreignField: "request_user_id",
+
+            as: "visitor"
+
+        }
+
+    },
     {
 
         $project: {
-            is_visitor_profile:commonQuery.query.is_visitor_profile(main_user_id),
-            is_blocked_profile:{
-                
-                                $ifNull: ["$block.block_status", false]
-                
-                            },
+            is_visitor_profile: commonQuery.query.is_visitor_profile(main_user_id),
+            is_user_by_block: commonQuery.query.isBlockByUser(main_user_id),
+            is_blocked_profile: {
+
+                $ifNull: ["$block.block_status", false]
+
+            },
             isphotorequest: {
 
                 $ifNull: ["$isphotorequest", null]
@@ -722,8 +751,19 @@ exports.getSearchResult = function (req, res) {
             contact_request_action: {
                 $ifNull: ["$is_message_request.request_action", null]
             },
-            visitor:"$visitor",
+            visitor: "$visitor",
             "user": "$$ROOT"
+
+        }
+
+    },
+    {
+
+        "$unwind": {
+
+            "path": "$is_visitor_profile",
+
+            "preserveNullAndEmptyArrays": true
 
         }
 
@@ -732,7 +772,7 @@ exports.getSearchResult = function (req, res) {
         
                 "$unwind": {
         
-                    "path": "$is_visitor_profile",
+                    "path": "$is_user_by_block",
         
                     "preserveNullAndEmptyArrays": true
         
@@ -742,42 +782,47 @@ exports.getSearchResult = function (req, res) {
     {
 
         $project: {
-             user_id:"$user.user_id",
-             is_visitor_profile: {
+            user_id: "$user.user_id",
+            is_visitor_profile: {
+
+                $ifNull: ["$is_visitor_profile.request_type", false]
+
+            },
+            is_user_by_block: {
                 
-                                $ifNull: ["$is_visitor_profile.request_type", false]
+                                $ifNull: ["$is_user_by_block.block_status", false]
                 
-                            },
-             is_blocked_profile:"$is_blocked_profile",
-             location_name:"$user.location_name",
-             "first_name": "$user.first_name",
-             "last_name": "$user.last_name",
-             "gender":"$user.gender",
-             "age": "$user.age",
-             dob:"$user.dob",
-             "height": "$user.height",
-             "maritialstatus": "$user.maritialstatus",
-             "mothertounge": "$user.mothertounge",
-             "religion": "$user.religion",
-             "caste": "$user.caste",
-             "created_by": "$user.created_by",
-             "physical_status": "$user.physical_status",
-             "occupation": "$user.occupation",
-             is_liked_profile:"$is_liked_profile",
-             is_viewed_profile:"$is_viewed_profile",
-             is_contacted:"$is_contacted",
-             photo_btn: commonQuery.query.photo_request_btn(),
-             pic: commonQuery.query.photo(),
-             message_btn: commonQuery.query.message_btn(),
-             contact_btn: commonQuery.query.contact_btn(),
-             userinfo:(userallinfo ? "$user.userinfo" :null)
+            },
+            is_blocked_profile: "$is_blocked_profile",
+            location_name: "$user.location_name",
+            "first_name": "$user.first_name",
+            "last_name": "$user.last_name",
+            "gender": "$user.gender",
+            "age": "$user.age",
+            dob: "$user.dob",
+            "height": "$user.height",
+            "maritialstatus": "$user.maritialstatus",
+            "mothertounge": "$user.mothertounge",
+            "religion": "$user.religion",
+            "caste": "$user.caste",
+            "created_by": "$user.created_by",
+            "physical_status": "$user.physical_status",
+            "occupation": "$user.occupation",
+            is_liked_profile: "$is_liked_profile",
+            is_viewed_profile: "$is_viewed_profile",
+            is_contacted: "$is_contacted",
+            photo_btn: commonQuery.query.photo_request_btn(),
+            pic: commonQuery.query.photo(),
+            message_btn: commonQuery.query.message_btn(),
+            contact_btn: commonQuery.query.contact_btn(),
+            userinfo: (userallinfo ? "$user.userinfo" : null)
         }
     },
     {
-        
-                $match: match.finalmatch
-        
-            }
+
+        $match: match.finalmatch
+
+    }
 
     ]);
     var options = {
@@ -805,331 +850,588 @@ exports.getSearchResult = function (req, res) {
     });
 
 };
+exports.getRequestsCount = function (req, res) {
+    
+        var user_id = req.body.user_id;
+        var request_type = req.body.request_type;
+    
+        requestModel.aggregate([
+    
+            {
+                "$group": {
+                    "_id": null,
+                    "VIEWED_PROFILE": {
+                        "$sum": {
+                           "$cond": [
+   
+                               {
+                                   "$and": [
+                                       { "$eq": ["$request_user_id", user_id] },
+                                       { "$eq": ["$request_type", "VIEWED_PROFILE"] },
+                                       { "$eq": ["$request_status", "READ"] },
+                                       { "$ne": ["$request_action", "ACCEPTED"] },
+                                       { "$ne": ["$request_action", "REJECTED"] },
+                                       { "$ne": ["$request_action", "PENDING"] },
+                                       { "$ne": ["$reciver_response", "DELETE"] },
+                                       { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+   
+                                   ]
+   
+   
+                               }
+   
+                               , 1, 0]
+                       }
+                   },
+                    "CONTACT_REQUEST":{
+                         "RECEIVED": {
+                         "$sum": {
+                            "$cond": [
+    
+                                {
+                                    "$and": [
+                                        { "$eq": ["$request_user_id", user_id] },
+                                        { "$eq": ["$request_type", "CONTACT"] },
+                                        { "$eq": ["$request_status", "READ"] },
+                                        { "$ne": ["$request_action", "ACCEPTED"] },
+                                        { "$ne": ["$request_action", "REJECTED"] },
+                                        { "$ne": ["$request_action", "PENDING"] },
+                                        { "$ne": ["$reciver_response", "DELETE"] },
+                                        { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+    
+                                    ]
+    
+    
+                                }
+    
+                                , 1, 0]
+                        }
+                    },
+                    "SENT": {
+                        "$sum": {
+                            "$cond": [
+    
+                                {
+                                    "$and": [
+                                        { "$eq": ["$user_id", user_id] },
+                                        { "$eq": ["$request_type", "CONTACT"] },
+                                        { "$ne": ["$creater_response", "DELETEFORME"] },
+                                        { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+    
+                                    ]
+    
+    
+                                }
+    
+                                , 1, 0]
+                        }
+                    },
+                    "ACCEPTED": {
+                        "$sum": {
+                            "$cond": [
+    
+                                {
+                                    "$and": [
+                                        { "$eq": ["$request_user_id", user_id] },
+                                        { "$eq": ["$request_type", request_type] },
+                                        { "$eq": ["$request_action", "ACCEPTED"] },
+                                        { "$ne": ["$reciver_response", "DELETE"] }
+                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+    
+                                    ]
+    
+    
+                                }
+    
+                                , 1, 0]
+                        }
+                    },
+                    "REJECTED": {
+                        "$sum": {
+                            "$cond": [
+    
+                                {
+                                    "$and": [
+                                        { "$eq": ["$request_user_id", user_id] },
+                                        { "$eq": ["$request_type", "CONTACT"] },
+                                        { "$eq": ["$request_action", "REJECTED"] },
+                                      
+                                        { "$ne": ["$reciver_response", "DELETE"] }
+                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+    
+                                    ]
+    
+    
+                                }
+    
+                                , 1, 0]
+                        }
+                    },
+                    "PENDING": {
+                        "$sum": {
+                            "$cond": [
+    
+                                {
+                                    "$and": [
+                                        { "$eq": ["$request_user_id", user_id] },
+                                        { "$eq": ["$request_type", "CONTACT"] },
+                                        { "$eq": ["$request_action", "PENDING"] },
+                                      
+                                        { "$ne": ["$reciver_response", "DELETE"] }
+                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+    
+                                    ]
+    
+    
+                                }
+    
+                                , 1, 0]
+                        }
+                    }
+    
+                },
+                "PHOTO_REQUEST":{
+                    "RECEIVED": {
+                    "$sum": {
+                       "$cond": [
+
+                           {
+                               "$and": [
+                                   { "$eq": ["$request_user_id", user_id] },
+                                   { "$eq": ["$request_type", "PHOTO"] },
+                                   { "$eq": ["$request_status", "READ"] },
+                                   { "$ne": ["$request_action", "ACCEPTED"] },
+                                   { "$ne": ["$request_action", "REJECTED"] },
+                                   { "$ne": ["$request_action", "PENDING"] },
+                                   { "$ne": ["$reciver_response", "DELETE"] },
+                                   { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+                               ]
+
+
+                           }
+
+                           , 1, 0]
+                   }
+               },
+               "SENT": {
+                   "$sum": {
+                       "$cond": [
+
+                           {
+                               "$and": [
+                                   { "$eq": ["$user_id", user_id] },
+                                   { "$eq": ["$request_type", "PHOTO"] },
+                                   { "$ne": ["$creater_response", "DELETEFORME"] },
+                                   { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+                               ]
+
+
+                           }
+
+                           , 1, 0]
+                   }
+               },
+               "ACCEPTED": {
+                   "$sum": {
+                       "$cond": [
+
+                           {
+                               "$and": [
+                                   { "$eq": ["$request_user_id", user_id] },
+                                   { "$eq": ["$request_type", "PHOTO"] },
+                                   { "$eq": ["$request_action", "ACCEPTED"] },
+                                   { "$ne": ["$reciver_response", "DELETE"] }
+                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+                               ]
+
+
+                           }
+
+                           , 1, 0]
+                   }
+               },
+               "REJECTED": {
+                   "$sum": {
+                       "$cond": [
+
+                           {
+                               "$and": [
+                                   { "$eq": ["$request_user_id", user_id] },
+                                   { "$eq": ["$request_type", "PHOTO"] },
+                                   { "$eq": ["$request_action", "REJECTED"] },
+                                 
+                                   { "$ne": ["$reciver_response", "DELETE"] }
+                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+                               ]
+
+
+                           }
+
+                           , 1, 0]
+                   }
+               },
+               "PENDING": {
+                   "$sum": {
+                       "$cond": [
+
+                           {
+                               "$and": [
+                                   { "$eq": ["$request_user_id", user_id] },
+                                   { "$eq": ["$request_type", "PHOTO"] },
+                                   { "$eq": ["$request_action", "PENDING"] },
+                                 
+                                   { "$ne": ["$reciver_response", "DELETE"] }
+                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
+
+                               ]
+
+
+                           }
+
+                           , 1, 0]
+                   }
+               }
+
+           }
+
+            }
+            }], function (error, results) {
+    
+    
+                res.json(results);
+            });
+    
+    
+    };
 // exports.getProfileVisitorsResult = function (req, res) {
-    
+
 //         var main_user_id = req.body.user_id;
-       
+
 //         var aggregate = requestModel.aggregate([{
-    
+
 //             $sort: {
-    
+
 //                 created_on: -1
-    
+
 //             }
-    
+
 //         }, {
-            
+
 //                     $match: {
 //                         "request_user_id": {
-                            
+
 //                                        "$eq": main_user_id
-                            
+
 //                                         },
 //                                         "request_type": {
-                                            
+
 //                                             "$eq": "VIEWED_PROFILE"
-                                            
+
 //                                          }
 //                     }
-                
-                
+
+
 //         },{
-    
+
 //             $match: {
-    
+
 //                 "user_role": {
-    
+
 //                     "$nin": ["ADMIN", "MARRAGE_BUREAU"]
-    
+
 //                 },
-    
+
 //                 "user_status": {
-    
+
 //                     "$eq": "ACTIVE"
-    
+
 //                 },
 //                "gender": {
-    
+
 //                     "$eq": (req.body.gender=="MALE" ? "FEMALE": "MALE")
-    
+
 //                 }
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "userblocks",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "block_user_id",
-    
+
 //                 as: "blocks"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "userbasicinfos",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "user_id",
-    
+
 //                 as: "basic"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$basic",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "countries",
-    
+
 //                 localField: "basic.country",
-    
+
 //                 foreignField: "id",
-    
+
 //                 as: "cn"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$cn",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "states",
-    
+
 //                 localField: "basic.state",
-    
+
 //                 foreignField: "id",
-    
+
 //                 as: "st"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$st",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "cities",
-    
+
 //                 localField: "basic.city",
-    
+
 //                 foreignField: "id",
-    
+
 //                 as: "ct"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$ct",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "userphotos",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "user_id",
-    
+
 //                 as: "pics"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "userintrests",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "user_id",
-    
+
 //                 as: "interest"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$interest",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "usereducations",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "user_id",
-    
+
 //                 as: "education"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$education",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-            
+
 //                     $lookup: {
-            
+
 //                         from: "userfamilies",
-            
+
 //                         localField: "user_id",
-            
+
 //                         foreignField: "user_id",
-            
+
 //                         as: "family"
-            
+
 //                     }
-            
+
 //                 },{
-                    
+
 //                             "$unwind": {
-                    
+
 //                                 "path": "$family",
-                    
+
 //                                 "preserveNullAndEmptyArrays": true
-                    
+
 //                             }
-                    
+
 //                         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "requests",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "request_user_id",
-    
+
 //                 as: "requests"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $lookup: {
-    
+
 //                 from: "settings",
-    
+
 //                 localField: "user_id",
-    
+
 //                 foreignField: "user_id",
-    
+
 //                 as: "setting"
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$setting",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-            
+
 //                     $lookup: {
-            
+
 //                         from: "usertokens",
-            
+
 //                         localField: "user_id",
-            
+
 //                         foreignField: "user_id",
-            
+
 //                         as: "lastlogin"
-            
+
 //                     }
-            
+
 //                 }, {
-            
+
 //                     "$unwind": {
-            
+
 //                         "path": "$lastlogin",
-            
+
 //                         "preserveNullAndEmptyArrays": true
-            
+
 //                     }
-            
+
 //                 }, 
 //                 {
-                    
+
 //                             $sort: {
-                    
+
 //                                 "lastlogin.created_on": -1
-                    
+
 //                             }
-                    
+
 //                         },
 //                 {
-    
+
 //             $project: {
-    
+
 //                 "_id": 1,
-    
+
 //                 "user_id": "$user_id",
 //                 "user_status": "$user_status",
 //                 "first_name": "$first_name",
@@ -1167,152 +1469,152 @@ exports.getSearchResult = function (req, res) {
 //                 "is_viewed_profile": commonQuery.query.is_viewed_profile(main_user_id),
 //                 "is_liked_profile": commonQuery.query.is_liked_profile(main_user_id),
 //                 "block": commonQuery.query.block(main_user_id),
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$block",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $match: {
-    
+
 //                 "block": {
-    
+
 //                     $exists: false
-    
+
 //                 }
-    
+
 //             }
-    
+
 //         },{
-            
+
 //                     $match: match.match
-            
+
 //                 }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$pic",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$isphotorequest",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$is_contact_request",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$is_message_request",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$is_contacted",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$is_viewed_profile",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             "$unwind": {
-    
+
 //                 "path": "$is_liked_profile",
-    
+
 //                 "preserveNullAndEmptyArrays": true
-    
+
 //             }
-    
+
 //         }, {
-    
+
 //             $project: {
 //                 isphotorequest: {
-    
+
 //                     $ifNull: ["$isphotorequest", null]
-    
+
 //                 },
 //                 is_contact_request: {
-    
+
 //                     $ifNull: ["$is_contact_request", null]
-    
+
 //                 },
 //                 is_message_request: {
-    
+
 //                     $ifNull: ["$is_message_request", null]
-    
+
 //                 },
 //                 pic: {
-    
+
 //                     $ifNull: ["$pic", null]
-    
+
 //                 },
-    
-    
+
+
 //                 setting: {
-    
+
 //                     $ifNull: ["$setting", null]
-    
+
 //                 },
-    
+
 //                 is_contacted: {
-    
+
 //                     $ifNull: ["$is_contacted.request_type", false]
-    
+
 //                 },
-    
+
 //                 is_viewed_profile: {
-    
+
 //                     $ifNull: ["$is_viewed_profile.request_type", false]
-    
+
 //                 },
-    
+
 //                 is_liked_profile: {
-    
+
 //                     $ifNull: ["$is_liked_profile.request_type", false]
-    
+
 //                 },
 //                 photo_request_action: {
 //                     $ifNull: ["$isphotorequest.request_action", null]
@@ -1323,15 +1625,15 @@ exports.getSearchResult = function (req, res) {
 //                 contact_request_action: {
 //                     $ifNull: ["$is_message_request.request_action", null]
 //                 },
-    
+
 //                 "user": "$$ROOT"
-    
+
 //             }
-    
+
 //         },
-       
+
 //         {
-    
+
 //             $project: {
 //                  user_id:"$user.user_id",
 //                  location_name:"$user.location_name",
@@ -1356,11 +1658,11 @@ exports.getSearchResult = function (req, res) {
 //             }
 //         },
 //         {
-            
+
 //                     $match: match.finalmatch
-            
+
 //                 }
-    
+
 //         ]);
 //         var options = {
 //             page: req.body.page,
@@ -1372,18 +1674,18 @@ exports.getSearchResult = function (req, res) {
 //                 console.err(err)
 //             }
 //             else {
-    
+
 //                 var docs = {
 //                     users: results,
 //                     pages: pageCount,
 //                     total: count
-    
+
 //                 };
-    
+
 //                 res.json(docs);
-    
-    
+
+
 //             }
 //         });
-    
+
 //     };

@@ -1,11 +1,13 @@
 <div>
     <div class="modal-header">
         <a href="#" data-dismiss="modal" ng-click="$ctrl.no()" aria-hidden="true" class="close">×</a>
-         <h3>Delete</h3>
+         <h3>Action</h3>
     </div>
     <div class="modal-body">
-       
-        <p>Do you want to proceed?</p>
+      
+        <p ng-if="$ctrl.type==='PROCEED'">Do you want to proceed ?</p>
+        <p ng-if="$ctrl.type==='BLOCK'">Do you want to block this user ?</p>
+        <p ng-if="$ctrl.type==='UNBLOCK'">Do you want to unblock this user ?</p>
     </div>
     <div class="modal-footer">
         <button type="button "  class="btn btn-primary yes-btn" ng-click="$ctrl.yes()">Yes</button>

@@ -91,6 +91,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
 
     var reqApprove = {
+        loginuserid:$rootScope.login_user_id,
         user_ids: [],
         photo_type: "PROFILE",
         photo_vr: true,
@@ -213,6 +214,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
     });
     var rejectPhoto = $rootScope.$on('rejectPhoto', function ($event, user) {
         var reqData = {
+            loginuserid:$rootScope.login_user_id,
             user_ids: [user.user_id],
             photo_type: "PROFILE",
             photo_vr: false,

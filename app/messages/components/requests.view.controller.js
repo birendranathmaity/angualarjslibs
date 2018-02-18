@@ -192,6 +192,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                 templateUrl: './app/popuptemplates/delete.modal.html',
                 controller: function ($scope) {
                     var main = this;
+                    main.type="PROCEED";
                     main.yes = function () {
                         finalaction();
                     };

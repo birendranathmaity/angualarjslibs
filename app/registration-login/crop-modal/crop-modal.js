@@ -147,12 +147,16 @@ module.exports = function CropModalController($rootScope,loginservice, $state, $
                     toastr.error(response.data.msg);
                 }
                 controller.result = response.data;
-                controller.cancel();
-               if(user.from_sec && user.from_sec==="userEntry"){
-                loginservice.getCureentUser(user.user_id,function(result){});
+               
+               if(user.from_sec==="userEntry"){
+                loginservice.getCureentUser(user.user_id,function(result){
+                    controller.cancel();
+                    $state.go(user.skip_url);
+                });
 
                }
-                if(user.skip_url){
+                if(user.from_sec==="userEdit"){
+                    controller.cancel();
                     $state.go(user.skip_url);
                 }
                

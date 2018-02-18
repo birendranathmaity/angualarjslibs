@@ -33,8 +33,8 @@
     Has viewed your contact no
 
   </span>
-  <span class="description" ng-if="$ctrl.notification.request_type==='ADMIN_APPROVAL'">
-    <span ng-if="$ctrl.notification.request_action==='ACCEPTED'"> Admin approved your photo</span>
-    <span ng-if="$ctrl.notification.request_action==='REJECTED'">Admin Rejected your photo </span>
+  <span class="description" ng-if="$ctrl.notification.request_type==='ADMIN_PHOTO_APPROVAL'">
+    <span ng-if="$ctrl.notification.request_action==='ACPT'"> Admin approved your photo</span>
+    <span ng-if="$ctrl.notification.request_action==='REJECT'">Admin Rejected your photo </span>
 
   </span>

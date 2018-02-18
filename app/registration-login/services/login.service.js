@@ -67,7 +67,7 @@ module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStora
         },
 
         afterloginRoute: function (role) {
-console.log("kk")
+
             if (!$sessionStorage.token) {
 
                 $location.path("/login");
