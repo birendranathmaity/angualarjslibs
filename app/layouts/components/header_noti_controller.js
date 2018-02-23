@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function headerNotiController($scope, $state, $location, $uibModal, $rootScope, useractions, messagesservice, loginservice, toastr) {
+module.exports = function headerNotiController($scope,socket, $state, $location, $uibModal, $rootScope, useractions, messagesservice, loginservice, toastr) {
 
     var controller = this;
 controller.goState=function(state){
@@ -62,11 +62,9 @@ controller.goState=function(state){
     controller.logout = function () {
         loginservice.logout(function (res) {
 
-            if (res.success) {
+            if (res) {
                 $state.go('login');
             }
-
-        }, function () {
 
         });
     };
@@ -84,6 +82,7 @@ controller.goState=function(state){
             updateOnContentResize: true
         }
     };
+  
     controller.getUnreadMessages = function () {
 
         var reqMsg = {
@@ -187,6 +186,18 @@ controller.goState=function(state){
 
         messagesservice.readMsg(config, msgId);
     };
+    controller.sounds = {};
+    
+    controller.play = function(){
+    };
+    
+  
+      //$scope.sounds.sound.play();
+    socket.on($rootScope.login_user_id+"MSG",function(data){
+        controller.getUnreadMessages();
+        controller.sounds.sound.play();
+
+    });
     var userMessageReadBroadcast = $rootScope.$on('userMessageReadBroadcast', function ($event, get_messages_count) {
 
         controller.getUnreadMessages();

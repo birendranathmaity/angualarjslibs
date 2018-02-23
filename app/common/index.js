@@ -3,6 +3,7 @@ var angular = require('angular');
 var routes = require('./common.routes');
 //services//
 var userAction=require('./user.actions.service');
+var socket=require('./socket.service');
 var notificationText=require('./notification-text');
 var userImg=require('./user-img');
 var notiAction=require('./noti-action');
@@ -24,6 +25,7 @@ module.exports = angular.module('app.ui.common', [])
 .controller('fullprofileController', fullprofileController) 
 .controller('serachByControllerDir', serachByController) 
 .factory("useractions",userAction)
+.factory("socket",socket)
 .directive('dontFill', function() {
     
       return {

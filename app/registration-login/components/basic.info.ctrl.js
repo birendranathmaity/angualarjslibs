@@ -335,7 +335,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     regisform.age = loginservice.calculate_age(regisform.month, regisform.day, regisform.year);
 
 
-                    loginservice.signup(regisform, function (res) {
+                    loginservice.updateUser(regisform, function (res) {
                         if (res.success) {
 
                             toastr.success('Updated Successfully');

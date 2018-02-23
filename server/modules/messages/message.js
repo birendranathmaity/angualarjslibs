@@ -2,6 +2,9 @@ var message = require('./../model/message.model');
 var block = require('./../model/block.model');
 var check = require('./../check_user');
 var User = require('./../model/user.model');
+//var socketEvent = require('./../../socket');
+var global = require('./../../setGlobal');
+
 exports.checkSendTouser = function (req, res) {
     var query1 = {
         user_id: req.body.user_id,
@@ -178,6 +181,8 @@ exports.saveMessage = function (req, res) {
         data.send_on=new Date();
         var messageModel = new message(data);
         messageModel.save(function (err, msg) {
+            console.log(msg)
+          global.emit(data.send_to+"MSG",msg)
             res.json({
                 success: true
 

@@ -148,7 +148,7 @@ exports.getSearchResult = function (req, res) {
 
     var main_user_id = req.body.fields.user_id;
 
-    console.log(main_user_id)
+  //  console.log(main_user_id)
     var blockprofile = false;
     var searchUserIdMatch = {};
     var userallinfo = false;

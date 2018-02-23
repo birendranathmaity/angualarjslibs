@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
+module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessionStorage, $localStorage, ServiceUrls, $location, $uibModal, $rootScope) {
 
     function changeUser(user) {
         angular.extend(currentUser, user);
@@ -45,6 +45,9 @@ module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStora
     var service = {
         signup: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.SINGUP, data).success(success).error(error);
+        },
+        updateUser: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATEUSER, data).success(success).error(error);
         },
         savemoreinfo: function (data, success, error) {
 
@@ -184,6 +187,7 @@ module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStora
            
             var d = getUserFromToken();
             var self = this;
+            
             self.getCureentUser(d.user_id, function (rs) {
 
                 if (rs) {
@@ -401,17 +405,18 @@ module.exports = function ($http,$q, $viewusers, $state, $timeout, $sessionStora
 
             return age;
         },
-        logout: function (success, error) {
+        logout: function (success) {
             var user = getUserFromToken();
             var data = {
                 user_id:user.user_id
             };
             $rootScope.current_user_de_all = {};
            
-
+            socket.emit('logout',{user_id:user.user_id});
             changeUser({});
             delete $sessionStorage.token;
-            $http.post(ServiceUrls.BASEURL + ServiceUrls.LOGOUT, data).success(success).error(error);
+            success(true)
+           // $http.post(ServiceUrls.BASEURL + ServiceUrls.LOGOUT, data).success(success).error(error);
         }
     };
 

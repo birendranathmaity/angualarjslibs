@@ -27,6 +27,7 @@ controller.forgetPwdModal = function (size) {
                if(res.success){
                   
                   controller.cancel();
+                  console.log(res)
                   loginservice.saveToken(res.token);
                  
                  

@@ -20,6 +20,8 @@ var UserSchema   = new Schema({
     email_vr: Boolean,
     phone_vr: Boolean,
     more_info_vr: Boolean,
+    online:String,
+    socket_id:String,
     created_on:Date,
     created_by:String,
     updated_on:Date,

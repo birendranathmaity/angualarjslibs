@@ -13,6 +13,7 @@ module.exports = function (app, express, process) {
     app.post(serviceConfig.AUTHENTICATE, regisLogin.authenticate);
     app.post(serviceConfig.SIGNIN, regisLogin.signin);
     app.post(serviceConfig.SIGNUP, regisLogin.signup);
+    app.post(serviceConfig.UPDATEUSER, regisLogin.UpdateUser);
     app.post(serviceConfig.LOGOUT, regisLogin.logout);
     app.post(serviceConfig.CHECKEMAILID, regisLogin.checkemail);
     app.post(serviceConfig.OTPVERIFY, regisLogin.verifyotp);

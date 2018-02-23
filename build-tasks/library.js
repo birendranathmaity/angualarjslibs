@@ -10,7 +10,8 @@ var libraries = {
         'assets/plugins/jquery.mCustomScrollbar.concat.min.js',
         'assets/plugins/watermark.min.js',
         'assets/plugins/aes/aes.js',
-        'node_modules/chart.js/Chart.min.js'
+        'node_modules/chart.js/Chart.min.js',
+        'server/node_modules/socket.io-client/dist/socket.io.js'
     //     'assets/jquery-ui/jquery-ui-1.10.1.custom.min.js',
     //     'assets/plugins/boostrapv3/js/bootstrap.min.js',
     //     'assets/plugins/breakpoints.js',

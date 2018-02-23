@@ -49,11 +49,13 @@ exports.authenticate = function (req, res) {
 exports.signup = function (req, res) {
 
     User.count().then((count) => {
-
+        var userNumber = 1 + count;
+        var UserId = "DB227" + userNumber;
 
         User.findOne({
-            email: req.body.email,
-            password: req.body.password
+           email: req.body.email,
+           // password: req.body.password,
+            user_id:UserId
         }, function (err, user) {
             if (err) {
                 res.json({
@@ -62,10 +64,9 @@ exports.signup = function (req, res) {
                 });
             } else {
                 if (user) {
-                    UpdateUser(req, res);
+                   // UpdateUser(req, res);
                 } else {
-                    var userNumber = 1 + count;
-                    var UserId = "DB227" + userNumber;
+                   
                     req.body.created_on = new Date();
                     req.body.user_id = UserId;
                     req.body.email_vr = false;
@@ -84,7 +85,7 @@ exports.signup = function (req, res) {
 
 
 };
-function UpdateUser(req, res) {
+exports.UpdateUser=function(req, res) {
     req.body.updated_on = new Date();
     User.update({ user_id: req.body.user_id }, req.body, function (err, user) {
 
@@ -398,16 +399,44 @@ function UserProfileUpdate(userId, update, res) {
 
 
 // };
+exports.isUserLoggedOut=function(userSocketId,callback){
+    
+    User.findOneAndUpdate( { socket_id: userSocketId} , {$set: {'online': 'N'}},{new: true},(error, result) => {
+      
+            if (error) {
+                callback({loggedOut:true});
+            }else{
+                if (result===null) {
+                    callback({loggedOut:true});
+                }else{
+                    if (result.online === 'Y') {
+                        callback({loggedOut:false});
+                    }else{
+                        callback({loggedOut:true});
+                    }
+                }					
+            }
+        });
+  
+}
+exports.addSocketId=function(data,callback){
+    
+        User.update( { user_id : data.user_id}, data.value ,(err, result) => {
+          
+            callback(err,result.result);
+        });
+   
+}
 exports.signin = function (req, res) {
 
-    User.findOne({
+    User.findOneAndUpdate({
         "$or": [{
             "email": req.body.email
         }, {
             "user_id": req.body.email.toUpperCase()
         }],
         password: req.body.password
-    }, function (err, user) {
+    }, {$set: {'online': 'Y'}},{new: true}, function (err, user) {
         if (err) {
             res.json({
                 type: false,
@@ -473,19 +502,22 @@ function afterSignIn(user, res) {
 //     });
 // };
 
-exports.logout = function (req, res) {
-    Token.findOneAndUpdate({ user_id: req.body.user_id }, { token_status: "INVALID" }, { new: true }, function (err, tokenData) {
+exports.logout = function (user_id,callback) {
+    Token.findOneAndUpdate({ user_id: user_id }, { token_status: "INVALID" }, { new: true }, function (err, tokenData) {
         if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
+           
         } else {
             if (tokenData) {
-                res.json({
-                    success: true
-
+                const data = {
+                    $set :{
+                        online : 'N'
+                    }
+                };
+                User.update( {user_id: user_id}, data ,(err, result) => {
+                   
+                    callback(err,result.result);
                 });
+               
             }
         }
     });
