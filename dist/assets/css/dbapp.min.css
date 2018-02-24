@@ -16116,7 +16116,10 @@ body > .ui-select-bootstrap.open {
 .ui-select-refreshing.ng-animate {
   -webkit-animation: none 0s;
 }
-
+.toast-custom{
+    padding: 0 !important;
+    opacity:100 !important;
+}
 /*** Very Large Screens **/
 @media only screen 
 and (min-width : 1824px) {	

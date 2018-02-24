@@ -58,7 +58,7 @@ var libraries = {
         'node_modules/angular-loading-bar/build/loading-bar.min.css',
         'assets/plugins/headereffects/css/component.css',
         'assets/plugins/headereffects/css/normalize.css',
-        'assets/css/angular-toastr.css',
+        'node_modules/angularjs-toaster/toaster.min.css',
         'node_modules/ng-image-gallery/dist/ng-image-gallery.min.css'
        
     ],

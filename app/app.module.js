@@ -16,7 +16,7 @@ require('angular-ui-switch');
 require('angular-ui-bootstrap');
 require('angular-sanitize');
 require('ui-select');
-require('angular-toastr');
+require('angularjs-toaster');
 require('ng-scrollbars');
 require('ngstorage');
 require('ng-file-upload');
@@ -45,7 +45,7 @@ angular.module('app.ui', [
     'ui.bootstrap',
     'ngSanitize',
     'ui.select',
-    'toastr',
+    'toaster',
     'angular-click-outside',
     'ct.ui.router.extras',
     'ng.deviceDetector',

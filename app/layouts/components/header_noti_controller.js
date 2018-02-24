@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function headerNotiController($scope,socket, $state, $location, $uibModal, $rootScope, useractions, messagesservice, loginservice, toastr) {
+module.exports = function headerNotiController($scope,socket, $state,toaster, $location, $uibModal, $rootScope, useractions, messagesservice, loginservice) {
 
     var controller = this;
 controller.goState=function(state){
@@ -192,10 +192,34 @@ controller.goState=function(state){
     };
     
   
+  
+  controller.open=function(data){
+  
+    toaster.pop({
+        type: 'custom',
+        body:JSON.stringify({
+            template: 'app/layouts/components/alert.html', 
+            data:data
+        
+        }),
+        
+        bodyOutputType: 'templateWithData',
+        timeout: 3000
+  })
+
+  //  toaster.pop('custom', "", "{template: './app/layouts/components/alert.html', data: 'MyData'}", 900000, 'templateWithData',"toast-top-center");
+
+  }
       //$scope.sounds.sound.play();
     socket.on($rootScope.login_user_id+"MSG",function(data){
-        controller.getUnreadMessages();
+    //    console.log(data)
+     //   controller.getUnreadMessages();
+     controller.messages.docs.unshift(data);
+     controller.messages.total++;
+     controller.open(data);
         controller.sounds.sound.play();
+       
+      //  toastr.pop('info', "Hi ", "{template: './app/layouts/components/alert.html', data: 'MyData'}", 15000, 'templateWithData');
 
     });
     var userMessageReadBroadcast = $rootScope.$on('userMessageReadBroadcast', function ($event, get_messages_count) {

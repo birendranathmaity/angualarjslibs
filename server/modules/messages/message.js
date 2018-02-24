@@ -171,6 +171,7 @@ exports.checkSendTouser = function (req, res) {
 
 
 }
+
 exports.saveMessage = function (req, res) {
 
 
@@ -181,8 +182,32 @@ exports.saveMessage = function (req, res) {
         data.send_on=new Date();
         var messageModel = new message(data);
         messageModel.save(function (err, msg) {
-            console.log(msg)
-          global.emit(data.send_to+"MSG",msg)
+            check.api.isOnline(data.send_to,function(isOnline){
+
+                if(isOnline){
+                    check.api.getOnlineUser(data.user_id,data.send_to,function(user){
+                        
+                        if(user){
+                            var emitdata={
+                                _id:msg._id,
+                                "message_status": msg.message_status,
+                                "message": msg.message,
+                                user:user.user,
+                                date:msg.send_on
+                            }
+                           
+                            global.emit(data.send_to+"MSG",emitdata);
+                        
+                        }
+                                      
+                                    });
+
+                }
+
+
+            });
+          
+         // 
             res.json({
                 success: true
 

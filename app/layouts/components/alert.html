@@ -1,0 +1,16 @@
+<div class="notification-messages info"  ng-click="hdnm.openReq(user)">
+      
+            <user-img user="toaster.data.user" is-noti="NOID"></user-img>
+           
+            <div class="message-wrapper">
+              <div class="heading">
+                {{toaster.data.user.first_name}} ({{toaster.data.user.user_id}})
+              </div>
+              <span>Has sent you a message</span>
+              <div class="date pull-left">
+        
+                <date-parse date="toaster.data.date"></date-parse>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
