@@ -76,11 +76,11 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                     controller.LastUpdateDate=controller.user.basicinfos[0].created_on;
                 }
                 controller.LastUpdateDate=controller.user.basicinfos[0].updated_on || controller.user.basicinfos[0].created_on;
-                var userPhotoBoradcastToDisplay= $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
+                var userPhotoBoradcastToDisplay= $scope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
                     controller.pic = pic;
                     loginservice.setProfilePic(pic);
                 });
-                var userProfileUpdate=$rootScope.$on('userProfileUpdate', function ($event, msg) {
+                var userProfileUpdate=$scope.$on('userProfileUpdate', function ($event, msg) {
                     controller.user = $rootScope.current_user_de_all;
                     if(controller.user.basicinfos[0] && controller.user.basicinfos[0].updated_on){
                         controller.LastUpdateDate=controller.user.basicinfos[0].updated_on;
@@ -194,7 +194,7 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                 }
                 controller.profileType = $scope.profileType;
 
-                $rootScope.$on('$destroy', function () {
+                $scope.$on('$destroy', function () {
                     
                     
                     userPhotoBoradcastToDisplay();

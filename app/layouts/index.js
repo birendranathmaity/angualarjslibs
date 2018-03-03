@@ -30,7 +30,7 @@ module.exports = angular.module('app.ui.layouts', [layoutcomponents.name])
             };
             
             triggerRelink();                
-            $rootScope.$on(attr.relinkEvent, triggerRelink);
+            scope.$on(attr.relinkEvent, triggerRelink);
 
         }
     };

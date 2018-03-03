@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function editMyProfileController(useractions,messagesservice, $stateParams, matcheservice, searchService, $rootScope) {
+module.exports = function editMyProfileController(useractions,$scope,messagesservice, $stateParams, matcheservice, searchService, $rootScope) {
     var controller = this;
     controller.editUserId = $rootScope.login_user_id;
     console.log($stateParams)
@@ -39,11 +39,11 @@ module.exports = function editMyProfileController(useractions,messagesservice, $
         }, function (error) { });
     };
     loadPartnerPreFields();
-    var userProfileUpdate=$rootScope.$on('userProfileUpdate', function ($event, msg) {
+    var userProfileUpdate=$scope.$on('userProfileUpdate', function ($event, msg) {
        
         loadPartnerPreFields();
     });
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
      userProfileUpdate();
         
                         });

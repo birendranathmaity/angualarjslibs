@@ -2,7 +2,7 @@
  * Global header partial
  */
 /* @ngInject */
-module.exports = function HeaderController($translate,socket, $state, $rootScope) {
+module.exports = function HeaderController($translate,socket, $state,$scope, $rootScope) {
     var controller = this;
     controller.$state = $state;
 
@@ -149,7 +149,7 @@ module.exports = function HeaderController($translate,socket, $state, $rootScope
     if ($rootScope.login_user_role === "ADMIN") {
         isadmin = true;
     }
-    socket.connect($rootScope.login_user_id);
+   
     controller.loadSubmenu = function (route) {
 
         if (isadmin) {
@@ -177,12 +177,12 @@ module.exports = function HeaderController($translate,socket, $state, $rootScope
 
     };
     controller.loadSubmenu(controller.$state.current.name);
-    var updatesubmenu = $rootScope.$on("loadhedermenu", function (evnt, msg) {
+    var updatesubmenu = $scope.$on("loadhedermenu", function (evnt, msg) {
         //controller.$state=msg;
         controller.loadSubmenu(msg.name);
 
     });
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
         updatesubmenu();
     });

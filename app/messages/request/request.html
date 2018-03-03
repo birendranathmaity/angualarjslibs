@@ -13,7 +13,7 @@
         
           <ul class="breadcrumb">
       <li>
-        <p>Photo Request</p>
+        <p>{{$ctrl.requestType}} Request</p>
       </li>
       <li><a href="#" class="active">{{$ctrl.viewType}}</a> </li>
     </ul>
@@ -22,7 +22,7 @@
 
           <div class="grid simple mail-msg">
             <div class="grid-title no-border">
-              <h4 class="bold">Photo Request</h4>
+              <h4 class="bold">{{$ctrl.requestType}} Request</h4>
             </div>
             <div class="grid-body no-border pro-bord">  
                 <div class="panel-group" >
@@ -58,7 +58,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-         <requests-view view-type="$ctrl.viewType" request-type="$ctrl.requestType"></requests-view>
+         <requests-view view-type="$ctrl.viewType"  request-type="$ctrl.requestType"></requests-view>
       
 
         </div>

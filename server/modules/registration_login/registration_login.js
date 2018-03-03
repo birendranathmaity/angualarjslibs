@@ -399,34 +399,7 @@ function UserProfileUpdate(userId, update, res) {
 
 
 // };
-exports.isUserLoggedOut=function(userSocketId,callback){
-    
-    User.findOneAndUpdate( { socket_id: userSocketId} , {$set: {'online': 'N'}},{new: true},(error, result) => {
-      
-            if (error) {
-                callback({loggedOut:true});
-            }else{
-                if (result===null) {
-                    callback({loggedOut:true});
-                }else{
-                    if (result.online === 'Y') {
-                        callback({loggedOut:false});
-                    }else{
-                        callback({loggedOut:true});
-                    }
-                }					
-            }
-        });
-  
-}
-exports.addSocketId=function(data,callback){
-    
-        User.update( { user_id : data.user_id}, data.value ,(err, result) => {
-          
-            callback(err,result.result);
-        });
-   
-}
+
 exports.signin = function (req, res) {
 
     User.findOneAndUpdate({
@@ -501,22 +474,49 @@ function afterSignIn(user, res) {
 //         }
 //     });
 // };
-
+exports.isUserLoggedOut=function(userSocketId,callback){
+    
+    Token.findOneAndUpdate( { socket_id: userSocketId} , {$set: {token_status: "INVALID",'online': 'N'}},{new: true},(error, result) => {
+      
+            if (error) {
+                callback({loggedOut:true});
+            }else{
+                if (result===null) {
+                    callback({loggedOut:true});
+                }else{
+                    if (result.online === 'Y') {
+                        callback({loggedOut:false});
+                    }else{
+                        callback({loggedOut:true});
+                    }
+                }					
+            }
+        });
+  
+}
+exports.addSocketId=function(data,callback){
+    
+    Token.update( { user_id : data.user_id}, data.value ,(err, result) => {
+          
+            callback(err,result.result);
+        });
+   
+}
 exports.logout = function (user_id,callback) {
-    Token.findOneAndUpdate({ user_id: user_id }, { token_status: "INVALID" }, { new: true }, function (err, tokenData) {
+    Token.findOneAndUpdate({ user_id: user_id }, {$set:{ token_status: "INVALID", online : 'N' }}, { new: true }, function (err, tokenData) {
         if (err) {
            
         } else {
             if (tokenData) {
-                const data = {
-                    $set :{
-                        online : 'N'
-                    }
-                };
-                User.update( {user_id: user_id}, data ,(err, result) => {
+                // const data = {
+                //     $set :{
+                //         online : 'N'
+                //     }
+                // };
+                // User.update( {user_id: user_id}, data ,(err, result) => {
                    
-                    callback(err,result.result);
-                });
+                //     callback(err,result.result);
+                // });
                
             }
         }

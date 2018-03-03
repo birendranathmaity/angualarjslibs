@@ -8,6 +8,11 @@ module.exports =function($http,ServiceUrls, $rootScope){
         socket = io.connect(ServiceUrls.BASEURL,{query: `user_id=${user_id}`});
     },
     on: function (eventName, callback) {
+
+        if(!socket){
+            this.connect($rootScope.login_user_id);
+           // socket = io.connect(ServiceUrls.BASEURL);
+        }
         socket.on(eventName, function () {  
             var args = arguments;
             $rootScope.$apply(function () {
@@ -16,14 +21,11 @@ module.exports =function($http,ServiceUrls, $rootScope){
           });
     },
     emit: function (eventName, data, callback) {
+       
           socket.emit(eventName, data, function () {
-            var args = arguments;
-            $rootScope.$apply(function () {
-                  if (callback) {
-                    callback.apply(socket, args);
-                  }
-            });
-          })
+            
+          });
+          callback(true);
     },
       getUser: function(data,success, error) {
              $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_USER,data).success(success).error(error);

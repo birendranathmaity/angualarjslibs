@@ -16,28 +16,28 @@
                             </label>
                             <ul class="pull-right del-link">
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFOREVRYONE',$ctrl.requestIds)">Delete for everyone </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFOREVRYONE',$ctrl.requestIds,[])">Delete for everyone </button>
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFORME',$ctrl.requestIds)">Delete for me </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFORME',$ctrl.requestIds,[])">Delete for me </button>
 
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType!='SENT'" class="pic-delete" type="button" ng-click="$ctrl.action('DELETE',$ctrl.requestIds)">Delete </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType!='SENT'" class="pic-delete" type="button" ng-click="$ctrl.action('DELETE',$ctrl.requestIds,[])">Delete </button>
 
                                 </li>
                                 <li>
                                     <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED')"
-                                        class="pic-accept" type="button" ng-click="$ctrl.action('ACCEPTED',$ctrl.requestIds)">Accept </button>
+                                        class="pic-accept" type="button" ng-click="$ctrl.action('ACCEPTED',$ctrl.requestIds,$ctrl.uIds)">Accept </button>
 
                                 </li>
                                 <li>
                                     <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED')"
-                                        class="pic-reject" type="button" ng-click="$ctrl.action('REJECTED',$ctrl.requestIds)">Reject </button>
+                                        class="pic-reject" type="button" ng-click="$ctrl.action('REJECTED',$ctrl.requestIds,$ctrl.uIds)">Reject </button>
 
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='RECEIVED')" class="pic-notnow" type="button" ng-click="$ctrl.action('PENDING',$ctrl.requestIds)">Not Now </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='RECEIVED')" class="pic-notnow" type="button" ng-click="$ctrl.action('PENDING',$ctrl.requestIds,[])">Not Now </button>
 
                                 </li>
 
@@ -83,7 +83,7 @@
                             <div class="col-lg-2 no-padding pull-left">
                                 <div class="checkbox check-success pull-left loginchk">
                                     <label class="imgchk">
-                                        <input type="checkbox" ng-click="req.Sleceted=!req.Sleceted;$ctrl.checkBoxSelect()" value="" ng-model="req.Selected">
+                                        <input type="checkbox" ng-click="req.Sleceted=!req.Sleceted;$ctrl.checkBoxSelect()"  ng-model="req.Selected">
                                         <span class="cr">
                                             <i class="cr-icon fa fa-check"></i>
                                         </span>
@@ -110,10 +110,10 @@
                                    
                                     <span class="pull-right">
                                         <button class="pic-accept" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED'"
-                                            type="button" ng-click="$ctrl.action('ACCEPTED',[req._id])">Accept</button>
-                                        <button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING',[req._id])">Not Now</button>
+                                            type="button" ng-click="$ctrl.action('ACCEPTED',[req._id],[req.user.user_id])">Accept</button>
+                                        <button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING',[req._id],[])">Not Now</button>
                                         <button class="pic-reject" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED'"
-                                            type="button" ng-click="$ctrl.action('REJECTED',[req._id])">Reject</button>
+                                            type="button" ng-click="$ctrl.action('REJECTED',[req._id],[req.user.user_id])">Reject</button>
                                     </span>
                                     <p class="pull-right" ng-if="$ctrl.viewType==='SENT' && req.request_action"> Status: <span>{{req.request_action}} </span>  </p>
                                     

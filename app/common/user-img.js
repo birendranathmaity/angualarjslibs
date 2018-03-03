@@ -25,9 +25,6 @@ module.exports = function () {
                     controller.pic=controller.user.pic;
                 });
                
-             
-
-
-            }]
+             }]
         }
     }

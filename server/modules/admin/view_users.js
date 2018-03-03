@@ -90,7 +90,8 @@ exports.getallActiveUsersR = function (req, res) {
     );
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {
@@ -234,7 +235,8 @@ exports.getallusersgroupbyphotostatus = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {
@@ -363,7 +365,8 @@ exports.pendingemailvrusers = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {
@@ -764,7 +767,8 @@ exports.get_users = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {

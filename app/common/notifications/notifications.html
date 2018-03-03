@@ -70,7 +70,7 @@
                                             <p class="clearfix"></p>
                                             <p class="mailer-name"> {{noti.user.first_name}}</p>
                                             <p class="mailer-sub">
-                                                <span>
+                                                <span  ng-if="noti.user.user_role !=='ADMIN'">
                                                     {{noti.user.age}} Years. {{noti.user.height | height}}, {{noti.user.first_name}}, {{noti.user.last_name}}.
                                                 </span>
                                                 <notification-text section="'NOTI'" notification="noti" who-sent="noti.whosent"></notification-text>

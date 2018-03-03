@@ -2,8 +2,8 @@
 module.exports =  function(){
   //"BASEURL":"http://192.169.136.224:4000",
 
-var url="http://192.169.136.224:4000";
-//var url="http://localhost:4000";
+//var url="http://192.169.136.224:4000";
+var url="http://localhost:4000";
 return {
     "BASEURL":url,
     "LOGIN":"/login",
@@ -56,7 +56,8 @@ return {
     "GET_CONTACTNO":"/get_contactno",
     "SAVE_SETTINGS":"/save_settings",
     "GET_SETTINGS":"/get_settings",
-    "UPDATEUSER":"/updateUser"
+    "UPDATEUSER":"/updateUser",
+    "CHECK_ONLINE":"/check_online"
       };
     
 

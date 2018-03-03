@@ -207,13 +207,13 @@ exports.saveMessage = function (req, res) {
 
             });
           
-         // 
+      
             res.json({
                 success: true
 
 
 
-            })
+            });
         });
 
     }
@@ -323,7 +323,7 @@ exports.getMessagesByType = function (req, res) {
                 "user": {
 
                     "user_id": "$" + field,
-
+                    "user_role":"$user.user_role",
                     "first_name": "$user.first_name",
 
                     "last_name": "$user.last_name",
@@ -355,7 +355,8 @@ exports.getMessagesByType = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     message.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {
@@ -399,7 +400,7 @@ exports.getMessagesCount = function (req, res) {
     var user_id = req.body.user_id;
 
 
-    message.aggregate([
+   var aggMsg= message.aggregate([
 
         {
             "$group": {
@@ -443,10 +444,16 @@ exports.getMessagesCount = function (req, res) {
                 }
 
             }
-        }], function (error, results) {
+        }]);
+        var options = { page : 0, limit : 0, allowDiskUse: true }
+        message.aggregatePaginate(aggMsg, options, function (err, results, pageCount, count) {
+            if (err) {
+                res.json(err);
+                console.err(err)
+            }
+            else {
+                res.json(results);
+            }
 
-
-            res.json(results);
         });
-
 }

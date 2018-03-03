@@ -1,6 +1,6 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
-var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
+var mongooseAggregatePaginate = require('mongoose-aggregate-paginate-allowdiskuse');
 var requestSchema   = new Schema({
     "user_id": String,
     "request_user_id": String,

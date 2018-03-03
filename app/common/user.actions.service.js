@@ -1,5 +1,7 @@
 /* @ngInject */
 module.exports = function ($rootScope, countryService, loginservice, $http, toastr, $state, ServiceUrls) {
+
+  
     var service = {
 
         send_request: function (data, success, error) {
@@ -28,6 +30,31 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
         },
         get_settings: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SETTINGS, data).success(success).error(error);
+        },
+        userEmitInfo:function(){
+            // var user = $rootScope.current_user_de_all;
+            // var pic = loginservice.getProfilePic();
+            
+            //   controller.photo = pic.profile;
+
+            //   if(pic.profile.photo_vr){
+
+
+            //   }
+            // var u={
+            //     user_id: user.user_id,
+            //     first_name: user.first_name,
+              
+            // }
+            // "user_id": "$user.user_id",
+            // "first_name": "$user.first_name",
+            // "last_name": "$user.last_name",
+            // "age": "$user.age",
+            // "height": "$height.height",
+            // "country": "$country.name",
+            // "state": "$state.name",
+            // "city": "$city.name",
+            // "pic": "$pic",
         },
         genarateAlbumPics:function(pics,success){
             var imgs = [];

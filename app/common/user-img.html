@@ -10,7 +10,7 @@
     <img ng-if="$ctrl.pic.view==='EMPTY' || $ctrl.pic.view==='CONFIRM'" water-mark="$ctrl.pic.displaypic" alt="" width="91" height="88" />
     <img ng-if="$ctrl.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"
     width="91" height="88">
-    <p > ( {{$ctrl.user.user_id}} )</p>
+    <p style="width: 105px;"> ( {{$ctrl.user.user_id}} )</p>
 </div>
 <div class="user-profile-pic  match-p-h" ng-if="$ctrl.isNoti==='BIGPHOTO'"> 
    <img water-mark="$ctrl.pic.displaypic"  alt="" >

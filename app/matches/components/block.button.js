@@ -94,13 +94,13 @@ function finalcall(){
                 
                       }, function (error) { });
                 };
-                var userUnblock = $rootScope.$on('userUnblock', function ($event, msg) {
+                var userUnblock = $scope.$on('userUnblock', function ($event, msg) {
                     controller.is_blocked_profile=false;
                     $rootScope.$broadcast('userBlockUnblock',{block:false}); 
                     
                         });
                        
-                        $rootScope.$on('$destroy', function () {
+                        $scope.$on('$destroy', function () {
                     
                             userUnblock();
                           

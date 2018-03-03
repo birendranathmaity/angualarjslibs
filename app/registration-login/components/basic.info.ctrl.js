@@ -228,7 +228,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     //         });
                 };
 
-                var regisFormSubmitStatus = $rootScope.$on('regisFormSubmitStatus', function ($event, registerform) {
+                var regisFormSubmitStatus = $scope.$on('regisFormSubmitStatus', function ($event, registerform) {
 
                     if (controller.editMode) {
                         controller.registerform = registerform;
@@ -355,7 +355,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
 
                     });
                 };
-                $rootScope.$on('$destroy', function () {
+                $scope.$on('$destroy', function () {
 
                     regisFormSubmitStatus();
 

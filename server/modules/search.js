@@ -167,16 +167,8 @@ exports.getSearchResult = function (req, res) {
     }
 
     var match = commonQuery.query.matchResult(req.body.fields);
-    console.log(match)
-    var aggregate = User.aggregate([{
-
-        $sort: {
-
-            created_on: -1
-
-        }
-
-    }, {
+    //console.log(match)
+    var aggregate = User.aggregate([ {
 
         $match: searchUserIdMatch
 
@@ -505,6 +497,7 @@ exports.getSearchResult = function (req, res) {
             "_id": 1,
             "main_user_id": main_user_id,
             "user_id": "$user_id",
+            "online":"$lastlogin.online",
             "user_status": "$user_status",
             "first_name": "$first_name",
             "last_name": "$last_name",
@@ -783,6 +776,7 @@ exports.getSearchResult = function (req, res) {
 
         $project: {
             user_id: "$user.user_id",
+            online:"$user.online",
             is_visitor_profile: {
 
                 $ifNull: ["$is_visitor_profile.request_type", false]
@@ -827,7 +821,8 @@ exports.getSearchResult = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     User.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {

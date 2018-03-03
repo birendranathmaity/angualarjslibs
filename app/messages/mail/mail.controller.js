@@ -39,22 +39,23 @@ module.exports = function mailController($location, $scope, $timeout, $rootScope
         controller.viewType = type;
     };
 
-    var userMessageDeleteBroadcast = $rootScope.$on('userMessageDeleteBroadcast', function ($event, get_messages_count) {
+    var userMessageDeleteBroadcast = $scope.$on('userMessageDeleteBroadcast', function ($event, get_messages_count) {
 
         loadCounts();
 
 
     });
 
-    var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
+    var userSendMessageBroadcast = $scope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
 
         loadCounts();
 
 
     });
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
-        userMessageBroadcast();
+       
+        userMessageDeleteBroadcast();
         userSendMessageBroadcast();
 
     });

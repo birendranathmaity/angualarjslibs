@@ -9,6 +9,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
         controller.pages = 0;
         controller.maxSize = 5;
         controller.requestIds = [];
+        controller.uIds = [];
         controller.start = 0;
         controller.end = 0;
         var req = {
@@ -37,6 +38,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
         controller.loadViewType = function () {
             
             controller.requestIds = [];
+            controller.uIds = [];
             controller.selectedAll = false;
     
     
@@ -74,6 +76,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
         }
         controller.checkAll = function () {
             controller.requestIds = [];
+            controller.uIds = [];
             if (controller.selectedAll) {
                 controller.selectedAll = true;
             } else {
@@ -83,6 +86,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
                 req.Selected = controller.selectedAll;
                 if (req.Selected) {
                     controller.requestIds.push(req._id);
+                    controller.uIds.push(req.user.user_id);
                 }
     
             });
@@ -90,9 +94,11 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
         };
         controller.checkBoxSelect = function () {
             controller.requestIds = [];
+            controller.uIds = [];
             angular.forEach(controller.requests, function (req) {
                 if (req.Selected) {
                     controller.requestIds.push(req._id);
+                    controller.uIds.push(req.user.user_id);
                 }
     
     
@@ -122,18 +128,19 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
         function broadcastComplete() {
             controller.loadViewType();
+         
             $rootScope.$broadcast('userRequestsBroadcastUpdate', {});
         }
-        controller.action = function (target,ids) {
+        controller.action = function (target,ids,uIds) {
             var req = {
                 ids: ids,
+                usersIds:uIds,
+                user_id:$rootScope.login_user_id,
                 update_type:"UPDATE",
                 request_type:$scope.requestType,
                 fields: {}
-    
-    
-            };
-    
+          };
+   
             if (target === "ACCEPTED") {
                 req.fields = {
                     "request_action": "ACCEPTED",
@@ -214,6 +221,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
     
             function finalaction() {
                 messagesservice.update_requests(req, function (result) {
+                  
                     if (result.success) {
                         messagesservice.toaster_msg("Successfully updated");
                         modalInstance.dismiss('cancel');

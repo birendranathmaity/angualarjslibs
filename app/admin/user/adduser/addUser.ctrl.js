@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function addUserController(toastr, $state,$rootScope,$location) {
+module.exports = function addUserController(toastr, $state,$scope,$rootScope,$location) {
 var controller=this;
 controller.showRegisForm=true;
 controller.showMoreInfodir=false;
@@ -7,7 +7,7 @@ controller.showMoreInfodir=false;
  //toastr.success('I don\'t need a title to live');
 
         //listen from gotomorinfo modal
-            $rootScope.$on('comRegViaGoMoreInfoMl', listenComRegViaGoMoreInfoMl);
+        $scope.$on('comRegViaGoMoreInfoMl', listenComRegViaGoMoreInfoMl);
 
   function listenComRegViaGoMoreInfoMl($event, msg){
       controller.user_id=msg.user_id;

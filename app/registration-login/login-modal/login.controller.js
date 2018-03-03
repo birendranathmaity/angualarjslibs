@@ -1,6 +1,6 @@
 /* @ngInject */
-module.exports = function LoginController($uibModal,$uibModalInstance,loginservice,$location,$filter) {
-  console.log()
+module.exports = function LoginController($uibModal,$rootScope,$uibModalInstance,loginservice,$location,$filter,socket) {
+  
     var controller = this;
         controller.invaliduser=false;
    controller.cancel = function () {
@@ -27,9 +27,9 @@ controller.forgetPwdModal = function (size) {
                if(res.success){
                   
                   controller.cancel();
-                  console.log(res)
-                  loginservice.saveToken(res.token);
                  
+                  loginservice.saveToken(res.token);
+                  socket.connect($rootScope.login_user_id);
                  
                }
                else{

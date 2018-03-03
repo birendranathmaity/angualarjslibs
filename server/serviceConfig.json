@@ -49,6 +49,7 @@
     "GET_PARTNER_PRE":"/get_partner_pre",
     "SAVE_SETTINGS":"/save_settings",
     "GET_SETTINGS":"/get_settings",
-    "UPDATEUSER":"/updateUser"
+    "UPDATEUSER":"/updateUser",
+    "CHECK_ONLINE":"/check_online"
    
 }

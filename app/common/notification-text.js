@@ -17,10 +17,15 @@ module.exports = function () {
             '$attrs',
             function ($scope, $element, $attrs) {
                 var controller=this;
+                $scope.$watch('notification', function (newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
+                    controller.notification=$scope.notification;
+                    controller.whoSent=$scope.whoSent;
+                    controller.section=$scope.section;
+                });
               
-               controller.notification=$scope.notification;
-               controller.whoSent=$scope.whoSent;
-               controller.section=$scope.section;
             }]
         }
     }

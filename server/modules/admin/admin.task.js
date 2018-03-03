@@ -1,31 +1,79 @@
 var PhotoModel=require('./../model/user.photo.model');
 var requestModel = require('./../model/request.model');
+var check = require('./../check_user');
+var global = require('./../../setGlobal');
 exports.adminAcceptPhoto=function(req,res){
-var tm=[];
-for(var i=0;i<req.body.user_ids.length;i++){
-    var item={
-      "user_id": req.body.loginuserid,
-      "request_user_id": req.body.user_ids[i],
-      "request_status":"UNREAD",
-      "request_type":"ADMIN_PHOTO_APPROVAL",
-      "request_action":"",
-      "created_on":new Date()
-    
-    }
-    if(req.body.photo_type=="PROFILE" && req.body.photo_vr_msg=="APPROVED"){
-      item.request_action="ACPT";
-      var rest=new requestModel(item);
-      rest.save(function(){});
-     // tm.push(item)
-    }
-    if(req.body.photo_type=="PROFILE" && req.body.photo_vr_msg=="REJECTED"){
-      item.request_action="REJECT";
-      var rest=new requestModel(item);
-      rest.save(function(){});
-      
-          }
-  }
+  
+  function onlineUserEmitNoti(success) {
+            var users=req.body.user_ids;
+            var total = users.length;
+            var count = 0;
+            var main = this;
+            for (var i = 0; i < total; i++) {
+                (function (index) {
+                  var item={
+                    "user_id": req.body.loginuserid,
+                    "request_user_id": users[index],
+                    "request_status":"UNREAD",
+                    "request_type":"ADMIN_PHOTO_APPROVAL",
+                    "request_action":"",
+                    "created_on":new Date()
+                  
+                  }
+                  if(req.body.photo_type=="PROFILE" && req.body.photo_vr_msg=="APPROVED"){
+                    item.request_action="ACPT";
+                   
+                  }
+                  if(req.body.photo_type=="PROFILE" && req.body.photo_vr_msg=="REJECTED"){
+                    item.request_action="REJECT";
+                   }
+                 
+                  requestModel.update({
+                    "user_id": req.body.loginuserid,
+                    "request_user_id": users[index],
+                    "request_type":"ADMIN_PHOTO_APPROVAL"
+                  
+                  },item,{upsert: true},function(err,result){});
+                 
+                  check.api.isOnline(users[index], function (isOnline) {
+                        count++;
 
+                        if (isOnline) {
+                          var emitdata = {
+                            _id: index,
+                           "request_status":"UNREAD",
+                            "request_type":"ADMIN_PHOTO_APPROVAL",
+                            request_action: item.request_action,
+                            "whosent": "SENT",
+                            user:  {
+                              "user_id": "Dholbaaje.com",
+                              "first_name": "Admin",
+                              "last_name": "",
+                              pic:{
+                                view:"CONFIRM",
+                                displaypic:{
+                                  photo_path:"admin.png",
+                                  photo_vr:true
+                                }
+                              }
+                         },
+                            date: new Date()
+                        }
+
+                        global.emit(users[index] + "NOTI", emitdata);
+    
+                        }
+    
+                        if (count > total - 1) success(true); return;
+    
+                    });
+    
+    
+                }(i));
+            }
+    
+    
+        }
 PhotoModel.update(
     { user_id : {$in: req.body.user_ids},
       photo_type:req.body.photo_type,
@@ -39,13 +87,18 @@ PhotoModel.update(
   {multi:true},
 
   function(err, docs) {
+
+    onlineUserEmitNoti(function (scc) {
+      res.json({
+        success: true,
+        result:docs
+       
+      
+    });
+
+  });
     
-   res.json({
-                success: true,
-                result:docs
-               
-              
-            });
+  
 });
 
 };

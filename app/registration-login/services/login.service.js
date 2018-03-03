@@ -410,12 +410,15 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             var data = {
                 user_id:user.user_id
             };
-            $rootScope.current_user_de_all = {};
+            $rootScope.current_user_de_all =null;
            
-            socket.emit('logout',{user_id:user.user_id});
+            
             changeUser({});
             delete $sessionStorage.token;
-            success(true)
+            socket.emit('logout',{user_id:user.user_id},function(result){
+                success(true)
+            });
+           // 
            // $http.post(ServiceUrls.BASEURL + ServiceUrls.LOGOUT, data).success(success).error(error);
         }
     };

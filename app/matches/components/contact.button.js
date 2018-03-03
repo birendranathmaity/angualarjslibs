@@ -136,7 +136,7 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
 
 
                 };
-   var userBlockUnblock = $rootScope.$on('userBlockUnblock', function ($event, msg) {
+   var userBlockUnblock =$scope.$on('userBlockUnblock', function ($event, msg) {
                     if(msg.block){
                         controller.is_blocked_profile=true;
                     }
@@ -147,7 +147,7 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                     
                         });
                        
-                        $rootScope.$on('$destroy', function () {
+                        $scope.$on('$destroy', function () {
                     
                             userBlockUnblock();
                           

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserController($rootScope, $viewusers, loginservice, $admintaskservice, toastr, $stateParams) {
+module.exports = function viewUserController($rootScope, $viewusers, $scope,loginservice, $admintaskservice, toastr, $stateParams) {
     var controller = this;
 
     controller.actionCountPR = 0;
@@ -41,7 +41,7 @@ controller.isEditUser=false;
 
     };
     
-    var backUserFromEditMode = $rootScope.$on('backUserFromEditMode', function ($event, userId) {
+    var backUserFromEditMode = $scope.$on('backUserFromEditMode', function ($event, userId) {
 
        controller.editUserId="";
        controller.isEditUser=false;
@@ -50,7 +50,7 @@ controller.isEditUser=false;
        
 
     });
-    var userEditBoradcast = $rootScope.$on('userEditBoradcast', function ($event, userId) {
+    var userEditBoradcast =$scope.$on('userEditBoradcast', function ($event, userId) {
 
        controller.editUserId=userId;
        controller.isEditUser=true;
@@ -58,13 +58,13 @@ controller.isEditUser=false;
 
     });
 
-    var updateUserListCountEmit = $rootScope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
+    var updateUserListCountEmit =$scope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
 
         controller.loadusersCountList();
 
 
     });
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
         updateUserListCountEmit();
         userEditBoradcast();

@@ -207,39 +207,44 @@ controller.goState=function(state){
         timeout: 3000
   })
 
-  //  toaster.pop('custom', "", "{template: './app/layouts/components/alert.html', data: 'MyData'}", 900000, 'templateWithData',"toast-top-center");
-
   }
-      //$scope.sounds.sound.play();
+    
     socket.on($rootScope.login_user_id+"MSG",function(data){
-    //    console.log(data)
-     //   controller.getUnreadMessages();
+     data.type="MSG";
+     console.log(data)
      controller.messages.docs.unshift(data);
      controller.messages.total++;
      controller.open(data);
-        controller.sounds.sound.play();
-       
-      //  toastr.pop('info', "Hi ", "{template: './app/layouts/components/alert.html', data: 'MyData'}", 15000, 'templateWithData');
-
+     controller.sounds.sound.play();
+     
     });
-    var userMessageReadBroadcast = $rootScope.$on('userMessageReadBroadcast', function ($event, get_messages_count) {
+    socket.on($rootScope.login_user_id+"NOTI",function(data){
+        data.type="NOTI";
+        console.log(data)
+        controller.notifications.docs.unshift(data);
+        controller.notifications.total++;
+        controller.open(data);
+        controller.sounds.sound.play();
+        
+       });
+    var userMessageReadBroadcast = $scope.$on('userMessageReadBroadcast', function ($event, get_messages_count) {
 
         controller.getUnreadMessages();
 
 
     });
-    var updateNotificationsCount = $rootScope.$on('updateNotificationsCount', function ($event, get_messages_count) {
+    var updateNotificationsCount =$scope.$on('updateNotificationsCount', function ($event, get_messages_count) {
 
         controller.getnotifications();
 
     });
-    var userPhotoBoradcastToDisplay = $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, msg) {
+    var userPhotoBoradcastToDisplay = $scope.$on('userPhotoBoradcastToDisplay', function ($event, msg) {
         
         controller.pic=msg;
         
             })
     
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
         userPhotoBoradcastToDisplay();
         userMessageReadBroadcast();

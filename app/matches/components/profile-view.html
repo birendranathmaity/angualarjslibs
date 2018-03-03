@@ -22,7 +22,7 @@
                 <a href="#" class="tip" data-toggle="tooltip" title="Viewed Profile"> <i ng-class="{'fa fa-eye-slash fa-lg':!$ctrl.user.is_viewed_profile,'fa fa-eye fa-lg':$ctrl.user.is_viewed_profile}" aria-hidden="true"></i> </a> </li>
                  <li> 
   
-                <a href="#" class="tip" data-toggle="tooltip" title="Close Profile"> <i style="color:#0abd20" class="fa fa-circle fa-lg" aria-hidden="true"></i> </a> </li>
+                <a href="#" class="tip" data-toggle="tooltip" title="Online"> <i ng-style="{ 'color' : ($ctrl.user.online == 'Y') ? '#0abd20' : 'gray' }" class="fa fa-circle fa-lg" aria-hidden="true"></i> </a> </li>
 
             
               </ul>

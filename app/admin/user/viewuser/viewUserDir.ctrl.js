@@ -204,15 +204,15 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
         $rootScope.$broadcast('userEditBoradcast', user_ID);
 
     };
-    var backUserFromEditMode = $rootScope.$on('backUserFromEditMode', function ($event, user) {
+    var backUserFromEditMode = $scope.$on('backUserFromEditMode', function ($event, user) {
         controller.loadViewType();
 
     });
-    var userPhotoApprove = $rootScope.$on('userPhotoApprove', function ($event, user) {
+    var userPhotoApprove = $scope.$on('userPhotoApprove', function ($event, user) {
         controller.accept(user);
 
     });
-    var rejectPhoto = $rootScope.$on('rejectPhoto', function ($event, user) {
+    var rejectPhoto = $scope.$on('rejectPhoto', function ($event, user) {
         var reqData = {
             loginuserid:$rootScope.login_user_id,
             user_ids: [user.user_id],
@@ -228,7 +228,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
     });
 
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
         rejectPhoto();
         backUserFromEditMode();

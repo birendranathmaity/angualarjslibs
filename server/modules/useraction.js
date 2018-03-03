@@ -3,88 +3,17 @@ var setting = require('./model/setting.model');
 var request = require('./model/request.model');
 var commonQuery = require('./common.query');
 var check = require('./check_user');
-exports.sendRequest = function (req, res) {
-    req.body.created_on = new Date();
-    var query = {
-        user_id: req.body.user_id,
-        request_user_id: req.body.request_user_id,
-        request_type: req.body.request_type
-    }
-    request.findOne(query, function (err, result) {
+exports.checkOnline=function(req,res){
+    check.api.isOnline(req.user_id,function(isOnline){
 
-        if (!result) {
-
-            var requestModel = new request(req.body);
-            requestModel.save(function (result) {
-                res.json({
-                    success: true,
-                    msg: "SEND_SUCCESS"
-                })
-            });
-
-        }
-        else {
-            res.json({
-                success: true,
-                msg: "SEND_SUCCESS"
-            });
-            // request.update(
-            //     query,
-
-            //     {
-            //         $set: req.body.fields
-
-            //     },
-
-
-
-            //     function (err, docs) {
-
-            //         res.json({
-            //             success: true,
-            //             msg:"UPDATE_SUCCESS",
-            //             result: docs
-
-
-            //         });
-            //     });
-
-        }
+if(isOnline){
+    res.json({online:true});
+}
+else{
+    res.json({online:false});
+}
 
     });
-
-
-
-}
-exports.updateRequest = function (re, res) {
-
-    request.update(
-        {
-            _id: { $in: req.body.ids }
-            // user_id:req.body.user_id,
-            // request_user_id:req.body.request_user_id,
-            // request_type:req.body.request_type
-        },
-
-        {
-            $set: req.body.fields
-
-        },
-
-        { multi: true },
-
-        function (err, docs) {
-
-            res.json({
-                success: true,
-                msg: "UPDATE_SUCCESS",
-                result: docs
-
-
-            });
-        });
-
-
 }
 exports.CreateUserBlock = function (req, res) {
 
@@ -382,6 +311,7 @@ exports.getNotifications = function (req, res) {
                 "whosent": "$customfield.whosent",
                 "user": {
                     "user_id": "$customfield.id",
+                    "user_role":"$user.user_role",
                     "first_name": "$user.first_name",
                     "last_name": "$user.last_name",
                     "age": "$user.age",
@@ -400,7 +330,8 @@ exports.getNotifications = function (req, res) {
     ]);
     var options = {
         page: req.body.page,
-        limit: req.body.limit
+        limit: req.body.limit,
+        allowDiskUse: true
     };
     request.aggregatePaginate(aggregate, options, function (err, results, pageCount, count) {
         if (err) {

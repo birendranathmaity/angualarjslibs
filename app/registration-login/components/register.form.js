@@ -162,7 +162,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                     controller.pic = pic;
 
                 }
-                var userPhotoBoradcastToDisplay = $rootScope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
+                var userPhotoBoradcastToDisplay = $scope.$on('userPhotoBoradcastToDisplay', function ($event, pic) {
 
                     setuserResetPhoto(pic);
                     $rootScope.$broadcast('updateUserListCountEmit');
@@ -245,10 +245,10 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                     $admintaskservice.openRejectModal(user);
 
                 };
-                var rejectPhoto = $rootScope.$on('rejectPhoto', function ($event, user) {
+                var rejectPhoto = $scope.$on('rejectPhoto', function ($event, user) {
                     controller.pic.photo_vr = false;
                 });
-                $rootScope.$on('$destroy', function () {
+                $scope.$on('$destroy', function () {
 
                     userPhotoBoradcastToDisplay();
                     rejectPhoto();

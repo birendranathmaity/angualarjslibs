@@ -40,8 +40,8 @@ module.exports = function (app, express, process) {
     app.post(serviceConfig.UPDATE_NOTIFICATIONS, useractions.readNotifications);
     //user actions//
 
-    app.post(serviceConfig.SEND_REQUEST, useractions.sendRequest);
-    // app.post(serviceConfig.UPDATE_REQUEST,useractions.updateRequest);
+   
+    app.post(serviceConfig.CHECK_ONLINE,useractions.checkOnline);
     app.post(serviceConfig.CREATE_USER_BLOCK, useractions.CreateUserBlock);
     app.post(serviceConfig.UPDATE_USER_BLOCK, useractions.updateUserBlock);
 
@@ -57,6 +57,7 @@ module.exports = function (app, express, process) {
     app.post(serviceConfig.GET_REQUESTS_COUNT, request.getRequestsCount);
     app.post(serviceConfig.UPDATE_REQUESTS, request.updateRequests);
     app.post(serviceConfig.GET_REQUESTS, request.getRequestsByType);
+    app.post(serviceConfig.SEND_REQUEST, request.sendRequest);
 
 
     //matches//

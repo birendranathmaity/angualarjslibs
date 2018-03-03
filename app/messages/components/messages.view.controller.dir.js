@@ -227,13 +227,13 @@ controller.configScollBar = {
         }
         messagesservice.readMsg(config, msgId);
    };
-    var userSendMessageBroadcast = $rootScope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
+    var userSendMessageBroadcast =$scope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
 
         controller.loadViewType();
 
 
     });
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
 
         userSendMessageBroadcast();

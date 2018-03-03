@@ -2,7 +2,7 @@
 module.exports = function RequestController($state,$location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
 
-
+    
     controller.viewType = $state.params.viewType;
     controller.requestType = $state.params.requestType;
 
@@ -14,14 +14,11 @@ module.exports = function RequestController($state,$location, $scope, $timeout, 
 
         };
         messagesservice.get_requests_count(reqCount, function (result) {
-           
+          
             if (result.length > 0) {
                 controller.reqCounts = result[0];
             }
-
-
-
-        }, function (error) {
+}, function (error) {
 
         });
 
@@ -55,7 +52,7 @@ if(result.result.nModified>0){
         controller.viewType = type;
     };
 
-    var userRequestsBroadcastUpdate = $rootScope.$on('userRequestsBroadcastUpdate', function ($event, get_messages_count) {
+    var userRequestsBroadcastUpdate = $scope.$on('userRequestsBroadcastUpdate', function ($event, get_messages_count) {
 
         loadCounts();
 
@@ -63,7 +60,7 @@ if(result.result.nModified>0){
     });
 
    
-    $rootScope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
 
         userRequestsBroadcastUpdate();
        

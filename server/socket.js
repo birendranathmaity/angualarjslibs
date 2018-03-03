@@ -69,12 +69,13 @@ class Socket{
             socket.on('logout',(data)=>{
 
                 const userId = data.user_id;
-                regisLogin.logout(userId , (error, result)=>{
-                    // this.io.to(socket.id).emit('logout-response',{
-                    //     error : false
-                    // });
-                    socket.disconnect();
-                }); 
+                socket.disconnect();
+                // regisLogin.logout(userId , (error, result)=>{
+                //     // this.io.to(socket.id).emit('logout-response',{
+                //     //     error : false
+                //     // });
+                //     socket.disconnect();
+                // }); 
             });
 
 

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function loginCtrl($uibModal,loginservice,$location,$filter) {
+module.exports = function loginCtrl($uibModal,socket,$rootScope,loginservice,$location,$filter) {
   
       var controller = this;
           controller.invaliduser=false;
@@ -26,7 +26,7 @@ module.exports = function loginCtrl($uibModal,loginservice,$location,$filter) {
                     
                    
                     loginservice.saveToken(res.token);
-                   
+                    socket.connect($rootScope.login_user_id);
                    
                  }
                  else{
