@@ -8,22 +8,18 @@ exports.sendRequest = function (req, res) {
         request_user_id: req.body.request_user_id,
         request_type: req.body.request_type
     }
-    request.findOne(query, function (err, result) {
-
-        if (!result) {
-
-            var requestModel = new request(req.body);
-            requestModel.save(function (error, result) {
-
-                check.api.isOnline(req.body.request_user_id, function (isOnline) {
-
+    request.update(query,req.body,{upsert:true}, function (err, resultData) {
+       
+        if (resultData) {
+       check.api.isOnline(req.body.request_user_id, function (isOnline) {
+                   
                     if (isOnline) {
                         check.api.getOnlineUser(req.body.user_id, req.body.request_user_id, function (user) {
 
                             if (user) {
                                 var emitdata = {
-                                    _id: result._id,
-                                    "request_status": result.request_status,
+                                    _id: req.body.user_id,
+                                    "request_status": req.body.request_status,
                                     "request_type": req.body.request_type,
                                     "request_action": "",
                                     "whosent": "FROM",
@@ -32,20 +28,26 @@ exports.sendRequest = function (req, res) {
                                 }
 
                                 global.emit(req.body.request_user_id + "NOTI", emitdata);
-
+                                res.json({
+                                    success: true,
+                                    msg: "SEND_SUCCESS"
+                                });
                             }
 
                         });
 
                     }
+                    else{
+                        res.json({
+                            success: true,
+                            msg: "SEND_SUCCESS"
+                        });
+                    }
 
 
                 });
-                res.json({
-                    success: true,
-                    msg: "SEND_SUCCESS"
-                })
-            });
+              
+           
 
         }
         else {

@@ -14,6 +14,46 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
     .controller('MyProfileController', MyProfileController)
     .controller('AddPhotosController', AddPhotosController)
     .controller('editMyProfileController', editMyProfileController)
+    .filter('where', function() {
+        return function (collection, object) {
+            var isDefined = angular.isDefined,
+            isUndefined = angular.isUndefined,
+            isFunction = angular.isFunction,
+            isString = angular.isString,
+            isNumber = angular.isNumber,
+            isObject = angular.isObject,
+            isArray = angular.isArray,
+            forEach = angular.forEach,
+            extend = angular.extend,
+            copy = angular.copy,
+            equals = angular.equals;
+            function toArray(object) {
+                return isArray(object) 
+                  ? object 
+                  : Object.keys(object).map(function(key) {
+                    return object[key];
+                  });
+              }
+              function objectContains(partial, object) {
+                var keys = Object.keys(partial);
+             
+                return keys.map(function(el) {
+                  return (object[el] !== undefined) && (object[el] == partial[el]);
+                }).indexOf(false) == -1;
+              
+              }
+       
+          if(isUndefined(object)) return collection;
+          collection = isObject(collection)
+            ? toArray(collection)
+            : collection;
+           
+          return collection.filter(function (elm) {
+          
+            return objectContains(object, elm);
+          });
+        }
+      })
     .filter('joinname', function () {
         return function join(array, separator, prop) {
             if (!Array.isArray(array)) {
@@ -25,11 +65,13 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
             }) : array).join(separator);
         };
     }).filter('joinnameother', function () {
+        
         return function join(array, separator, prop, values) {
+            
             if (!Array.isArray(array)) {
                 return array; // if not array return original - can also throw error
             }
-
+          
             var arr = [];
             for (var i = 0; i < array.length; i++) {
                 var itm = array[i];
@@ -44,7 +86,9 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
 
             }
 
-
+            if(arr.length===0){
+                return "Doesn't matter";
+                }
             return (!!prop ? arr.map(function (item) {
                 return item[prop];
             }) : arr).join(separator);

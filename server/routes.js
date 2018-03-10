@@ -34,6 +34,8 @@ module.exports = function (app, express, process) {
     //settings//
     app.post(serviceConfig.SAVE_SETTINGS, useractions.save_settings);
     app.post(serviceConfig.GET_SETTINGS, useractions.get_settings);
+//calender data//
+app.post(serviceConfig.GET_CALENDER_REQUESTS, search.getRequestsCount);
 
     //user notification///
     app.post(serviceConfig.GET_NOTIFICATIONS, useractions.getNotifications);

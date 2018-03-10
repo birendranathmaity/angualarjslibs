@@ -377,7 +377,7 @@
                                                  <div class="row-fluid contact-list">
                                                         <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.high_edu" on-select="$ctrl.onSelectCallback($item, $model,'high_edu')" theme="bootstrap" style="width: 220px;">
                                                                 <ui-select-match placeholder="Select education...">{{$item.name}}</ui-select-match>
-                                                                <ui-select-choices repeat="ed.value as ed in $ctrl.formdata.educations | propsFilter:{name: $select.search}">
+                                                                <ui-select-choices group-by="'gname'" repeat="ed.value as ed in $ctrl.formdata.educations | propsFilter:{name: $select.search}">
                                                                     <div ng-bind-html="ed.name | highlight: $select.search"></div>
                                                                 </ui-select-choices>
                                                             </ui-select>
@@ -412,7 +412,7 @@
                                          <div class="row-fluid contact-list">
                                                 <ui-select append-to-body="true" multiple ng-model="$ctrl.serachModel.occupation" on-select="$ctrl.onSelectCallback($item, $model,'occupation')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select occupation...">{{$item.name}}</ui-select-match>
-                                                        <ui-select-choices repeat="oc.value as oc in $ctrl.formdata.occupations | propsFilter:{name: $select.search}">
+                                                        <ui-select-choices group-by="'gname'" repeat="oc.value as oc in $ctrl.formdata.occupations | propsFilter:{name: $select.search}">
                                                             <div ng-bind-html="oc.name | highlight: $select.search"></div>
                                                         </ui-select-choices>
                                                     </ui-select>

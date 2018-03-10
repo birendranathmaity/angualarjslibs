@@ -20,6 +20,7 @@ module.exports = function (loginservice,$crypto,$state) {
                     }
                    
                     controller.user=$scope.user;
+                    controller.loadCaste(controller.user.religion);
                    
                 });
                 controller.goToFullProfile=function(id){

@@ -1,8 +1,10 @@
 /* @ngInject */
-module.exports = function PreEducationController($state, $location, searchService, $scope, useractions, $timeout, $rootScope, loginservice, matcheservice) {
+module.exports = function activityController($state, $stateParams, $location, searchService, $scope, useractions, $timeout, $rootScope, loginservice, matcheservice) {
     var controller = this;
     controller.result = $state.params.result;
-    controller.fields = {};
+    controller.activityType = $stateParams.activityType;
+
+    controller.fields = null;
     controller.limit = 10;
     controller.total = 0;
     controller.page = 1;
@@ -67,9 +69,12 @@ module.exports = function PreEducationController($state, $location, searchServic
     }
 
     function loadDefualt() {
-        useractions.get_default_search_config("LOCATION","LOGIN_USER",function (fields) {
-           
+        useractions.get_default_search_config(controller.activityType, "LOGIN_USER", function (fields) {
 
+            if ($stateParams.range) {
+                fields.range = $stateParams.range;
+
+            }
             req.fields = fields;
             controller.loadViewType();
         });

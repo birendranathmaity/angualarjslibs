@@ -1,58 +1,54 @@
 <div class="grid simple date-total animated flip">
-            
-            <div class="grid-body no-border">
-              <div class="row">
-                <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
-                   <div style="display:inline-block; ">
-      <div uib-datepicker ng-model="calendarBox.dt" class="" style="outline:0;" datepicker-options="calendarBox.options"></div>
-    </div>
-                  
-<!-- This is required for calender start-->  
-                  <div class="col-md-4" style="display: none;">                            
-                    <div class="row-fluid">
-                       <div class="slide-primary">
-                         <input type="checkbox" name="switch" class="ios" checked="checked"/>
-                       </div>
-                    <div class="slide-success">
-                      <input type="checkbox" name="switch" class="iosblue" checked="checked"/>
-                    </div>
-                  </div>
-                </div>
-<!-- This is required for calender start-->  
-                    <div class="row-fluid date-veiw">
-                    
-                        <div class="col-lg-12 ">
-                            <ul>
-                           
-                          <li>  <a href="#"> <span class="pull-left">{{'VIEWED_PROFILE' | translate}}</span> <span class="count pull-right"> 9 </span> </a></li>
-                          <li class="clearfix"></li>
 
-                           <li>  <a href="#"> <span class="pull-left">{{'PROFILE_VISITOR' | translate}}</span> <span class="count pull-right"> 22 </span> </a></li>
-                             <li class="clearfix"></li>
-                           <li>  <a href="#"> <span class="pull-left">{{'CONTACT_REQUEST' | translate}}</span> <span class="count pull-right"> 12 </span> </a></li>
-                             <li class="clearfix"></li>
-                           <li>  <a href="#"> <span class="pull-left">{{'CONTACT_ACCEPTED' | translate}}</span> <span class="count pull-right"> 3 </span> </a></li> 
-                               <li class="clearfix"></li>
-                           <li>  <a href="#"> <span class="pull-left">{{'PHOTO_REQUEST' | translate}}</span> <span class="count pull-right"> 5 </span> </a></li> 
-                               <li class="clearfix"></li>
-                          
-                  
+  <div class="grid-body no-border">
+    <div class="row">
+      <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
+        <div style="display:inline-block; ">
+          <div uib-datepicker ng-model="calendarBox.dt" ng-change="calendarBox.selectdate(calendarBox.dt)" show-weeks="false" show-button-bar="false"
+            style="outline:0;" datepicker-options="calendarBox.options"></div>
+        </div>
 
-                        
-                            </ul>
-                        </div>
-                        
+        <div class="row-fluid date-veiw">
 
-                 
-                      
+          <div class="col-lg-12 ">
+            <ul>
 
+              <li>
+                <a ng-class="{'adisabled': calendarBox.counts.viewed===0}" class="hand" ng-click="calendarBox.goActivity('VIEWED_PROFILE',calendarBox.counts.viewed)">
+                  <span class="pull-left">{{'VIEWED_PROFILE' | translate}}</span>
+                  <span class="count pull-right"> {{ calendarBox.counts.viewed}} </span>
+                </a>
+              </li>
+              <li class="clearfix"></li>
 
-                    </div>
-
-                 </div>  
-
-                 
-
-               </div>
-             </div>
+              <li>
+                <a ng-class="{'adisabled': calendarBox.counts.visitor===0}" class="hand" ng-click="calendarBox.goActivity('PROFILE_VISITOR',calendarBox.counts.visitor)">
+                  <span class="pull-left">{{'PROFILE_VISITOR' | translate}}</span>
+                  <span class="count pull-right">{{ calendarBox.counts.visitor}} </span>
+                </a>
+              </li>
+              <li class="clearfix"></li>
+              <li>
+                <a ng-class="{'adisabled': calendarBox.counts.contacted===0}" class="hand" ng-click="calendarBox.goActivity('RECENTLY_CONTACTED',calendarBox.counts.contacted)">
+                  <span class="pull-left">{{'RECENTLY_CONTACTED' | translate}}</span>
+                  <span class="count pull-right"> {{ calendarBox.counts.contacted}} </span>
+                </a>
+              </li>
+              <li class="clearfix"></li>
+              <li>
+                <a ng-class="{'adisabled': calendarBox.counts.liked===0}" class="hand" ng-click="calendarBox.goActivity('LIKED_PROFILES',calendarBox.counts.liked)">
+                  <span class="pull-left">{{'LIKED_PROFILES' | translate}}</span>
+                  <span class="count pull-right"> {{ calendarBox.counts.liked}} </span>
+                </a>
+              </li>
+              <li class="clearfix"></li>
+            </ul>
           </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

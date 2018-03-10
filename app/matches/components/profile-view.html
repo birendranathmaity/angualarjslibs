@@ -48,7 +48,7 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                       <div class="bmd-list-group-col">
-                        <p class="list-group-item-left pull-left">Age</p>
+                        <p class="list-group-item-left pull-left">{{'AGE' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right">{{$ctrl.user.age}} Yrs</p>
                         <p class="clearfix"></p>
@@ -69,7 +69,7 @@
                         <p class="list-group-item-right pull-right" ng-repeat="rl in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rl.name}}</p>
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Caste </p>
-                        <p ng-init="$ctrl.loadCaste($ctrl.user.religion)"></p>
+                       
                         <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
                         <p class="clearfix"></p>
                        
@@ -101,6 +101,10 @@
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Physical Status </p>
                         <p class="list-group-item-right pull-right" ng-repeat="ph in $ctrl.formdata.PhysicalStatus | where:{value:$ctrl.user.physical_status}">{{ph.name}}</p>
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Heighest Education </p>
+                        <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.high_edu}">{{edu.name}}</p>
+                        
                         <p class="clearfix"></p>
                         <p class="list-group-item-left pull-left">Occupation </p>
                         <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>

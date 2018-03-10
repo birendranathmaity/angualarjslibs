@@ -138,17 +138,17 @@ exports.getSearchResult = function (req, res) {
 
     // request format for search
     //{ 
-     //   gender:"",
-      //  fields:{  
-       //   user_id:""
-        
-        //}
-    
+    //   gender:"",
+    //  fields:{  
+    //   user_id:""
+
+    //}
+
     //}
 
     var main_user_id = req.body.fields.user_id;
 
-  //  console.log(main_user_id)
+    //  console.log(main_user_id)
     var blockprofile = false;
     var searchUserIdMatch = {};
     var userallinfo = false;
@@ -168,7 +168,7 @@ exports.getSearchResult = function (req, res) {
 
     var match = commonQuery.query.matchResult(req.body.fields);
     //console.log(match)
-    var aggregate = User.aggregate([ {
+    var aggregate = User.aggregate([{
 
         $match: searchUserIdMatch
 
@@ -497,7 +497,7 @@ exports.getSearchResult = function (req, res) {
             "_id": 1,
             "main_user_id": main_user_id,
             "user_id": "$user_id",
-            "online":"$lastlogin.online",
+            "online": "$lastlogin.online",
             "user_status": "$user_status",
             "first_name": "$first_name",
             "last_name": "$last_name",
@@ -576,24 +576,24 @@ exports.getSearchResult = function (req, res) {
 
         $match: match.match
 
-    }, 
+    },
     {
-        
-                $lookup: {
-        
-                    from: "userblocks",
-        
-                    localField: "main_user_id",
-        
-                    foreignField: "block_user_id",
-        
-                    as: "userbyblock"
-        
-                }
-        
-            },
-          
-    
+
+        $lookup: {
+
+            from: "userblocks",
+
+            localField: "main_user_id",
+
+            foreignField: "block_user_id",
+
+            as: "userbyblock"
+
+        }
+
+    },
+
+
     {
 
         "$unwind": {
@@ -723,16 +723,29 @@ exports.getSearchResult = function (req, res) {
                 $ifNull: ["$is_contacted.request_type", false]
 
             },
+            is_contacted_date: {
 
+                $ifNull: ["$is_contacted.created_on", false]
+
+            },
             is_viewed_profile: {
 
                 $ifNull: ["$is_viewed_profile.request_type", false]
 
             },
+            is_viewed_profile_date: {
 
+                $ifNull: ["$is_viewed_profile.created_on", false]
+
+            },
             is_liked_profile: {
 
                 $ifNull: ["$is_liked_profile.request_type", false]
+
+            },
+            is_liked_profile_date: {
+
+                $ifNull: ["$is_liked_profile.created_on", false]
 
             },
             photo_request_action: {
@@ -762,30 +775,36 @@ exports.getSearchResult = function (req, res) {
 
     },
     {
-        
-                "$unwind": {
-        
-                    "path": "$is_user_by_block",
-        
-                    "preserveNullAndEmptyArrays": true
-        
-                }
-        
-            },
+
+        "$unwind": {
+
+            "path": "$is_user_by_block",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+
     {
 
         $project: {
             user_id: "$user.user_id",
-            online:"$user.online",
+            online: "$user.online",
             is_visitor_profile: {
 
                 $ifNull: ["$is_visitor_profile.request_type", false]
 
             },
+            is_visitor_profile_date: {
+
+                $ifNull: ["$is_visitor_profile.created_on", false]
+
+            },
             is_user_by_block: {
-                
-                                $ifNull: ["$is_user_by_block.block_status", false]
-                
+
+                $ifNull: ["$is_user_by_block.block_status", false]
+
             },
             is_blocked_profile: "$is_blocked_profile",
             location_name: "$user.location_name",
@@ -802,9 +821,13 @@ exports.getSearchResult = function (req, res) {
             "created_by": "$user.created_by",
             "physical_status": "$user.physical_status",
             "occupation": "$user.occupation",
+            "high_edu": "$user.high_edu",
             is_liked_profile: "$is_liked_profile",
+            is_liked_profile_date: "$is_liked_profile_date",
             is_viewed_profile: "$is_viewed_profile",
+            is_viewed_profile_date: "$is_viewed_profile_date",
             is_contacted: "$is_contacted",
+            is_contacted_date: "$is_contacted_date",
             photo_btn: commonQuery.query.photo_request_btn(),
             pic: commonQuery.query.photo(),
             message_btn: commonQuery.query.message_btn(),
@@ -817,7 +840,6 @@ exports.getSearchResult = function (req, res) {
         $match: match.finalmatch
 
     }
-
     ]);
     var options = {
         page: req.body.page,
@@ -846,262 +868,215 @@ exports.getSearchResult = function (req, res) {
 
 };
 exports.getRequestsCount = function (req, res) {
-    
-        var user_id = req.body.user_id;
-        var request_type = req.body.request_type;
-    
-        requestModel.aggregate([
-    
-            {
-                "$group": {
-                    "_id": null,
-                    "VIEWED_PROFILE": {
-                        "$sum": {
-                           "$cond": [
-   
-                               {
-                                   "$and": [
-                                       { "$eq": ["$request_user_id", user_id] },
-                                       { "$eq": ["$request_type", "VIEWED_PROFILE"] },
-                                       { "$eq": ["$request_status", "READ"] },
-                                       { "$ne": ["$request_action", "ACCEPTED"] },
-                                       { "$ne": ["$request_action", "REJECTED"] },
-                                       { "$ne": ["$request_action", "PENDING"] },
-                                       { "$ne": ["$reciver_response", "DELETE"] },
-                                       { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-   
-                                   ]
-   
-   
-                               }
-   
-                               , 1, 0]
-                       }
-                   },
-                    "CONTACT_REQUEST":{
-                         "RECEIVED": {
-                         "$sum": {
-                            "$cond": [
-    
+
+    var user_id = req.body.user_id;
+
+    requestModel.aggregate([
+        {
+            $match: {
+                created_on: {
+                    $gte: new Date(req.body.from),
+                    $lte: new Date(req.body.to)
+                }
+            }
+
+        },
+
+        {
+            "$project": {
+                "user_id": "$user_id",
+                request_type: "$request_type",
+                request_user_id: "$request_user_id",
+
+                "customfield": {
+                    "$cond": {
+                        "if": {
+                            "$and": [
+                                { "$eq": ["$user_id", req.body.user_id] },
                                 {
-                                    "$and": [
-                                        { "$eq": ["$request_user_id", user_id] },
-                                        { "$eq": ["$request_type", "CONTACT"] },
-                                        { "$eq": ["$request_status", "READ"] },
-                                        { "$ne": ["$request_action", "ACCEPTED"] },
-                                        { "$ne": ["$request_action", "REJECTED"] },
-                                        { "$ne": ["$request_action", "PENDING"] },
-                                        { "$ne": ["$reciver_response", "DELETE"] },
-                                        { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-    
+
+                                    "$or": [
+                                        { "$eq": ["$request_type", "VIEWED_PROFILE"] },
+                                        { "$eq": ["$request_type", "LIKED"] },
+                                        { "$eq": ["$request_type", "CONTACTED"] }
                                     ]
-    
-    
                                 }
-    
-                                , 1, 0]
-                        }
-                    },
-                    "SENT": {
-                        "$sum": {
-                            "$cond": [
-    
-                                {
+
+
+                            ]
+                        },
+                        "then": {
+
+                            id: "$request_user_id"
+
+
+                        },
+                        "else": {
+
+                            "$cond": {
+
+                                "if": {
+
                                     "$and": [
-                                        { "$eq": ["$user_id", user_id] },
-                                        { "$eq": ["$request_type", "CONTACT"] },
-                                        { "$ne": ["$creater_response", "DELETEFORME"] },
-                                        { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-    
+                                        { "$eq": ["$request_user_id", req.body.user_id] },
+                                        {
+
+                                            "$or": [
+                                                { "$eq": ["$request_type", "VIEWED_PROFILE"] },
+                                                { "$eq": ["$request_type", "LIKED"] },
+                                                { "$eq": ["$request_type", "CONTACTED"] }
+                                            ]
+                                        }
+
+
                                     ]
-    
-    
-                                }
-    
-                                , 1, 0]
+
+                                },
+
+                                "then": {
+
+                                    id: "$user_id"
+
+                                },
+
+                                else: "$noval"
+
+                            }
                         }
-                    },
-                    "ACCEPTED": {
-                        "$sum": {
-                            "$cond": [
-    
-                                {
-                                    "$and": [
-                                        { "$eq": ["$request_user_id", user_id] },
-                                        { "$eq": ["$request_type", request_type] },
-                                        { "$eq": ["$request_action", "ACCEPTED"] },
-                                        { "$ne": ["$reciver_response", "DELETE"] }
-                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-    
-                                    ]
-    
-    
-                                }
-    
-                                , 1, 0]
-                        }
-                    },
-                    "REJECTED": {
-                        "$sum": {
-                            "$cond": [
-    
-                                {
-                                    "$and": [
-                                        { "$eq": ["$request_user_id", user_id] },
-                                        { "$eq": ["$request_type", "CONTACT"] },
-                                        { "$eq": ["$request_action", "REJECTED"] },
-                                      
-                                        { "$ne": ["$reciver_response", "DELETE"] }
-                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-    
-                                    ]
-    
-    
-                                }
-    
-                                , 1, 0]
-                        }
-                    },
-                    "PENDING": {
-                        "$sum": {
-                            "$cond": [
-    
-                                {
-                                    "$and": [
-                                        { "$eq": ["$request_user_id", user_id] },
-                                        { "$eq": ["$request_type", "CONTACT"] },
-                                        { "$eq": ["$request_action", "PENDING"] },
-                                      
-                                        { "$ne": ["$reciver_response", "DELETE"] }
-                                        // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-    
-                                    ]
-    
-    
-                                }
-    
-                                , 1, 0]
-                        }
+
                     }
-    
-                },
-                "PHOTO_REQUEST":{
-                    "RECEIVED": {
-                    "$sum": {
-                       "$cond": [
-
-                           {
-                               "$and": [
-                                   { "$eq": ["$request_user_id", user_id] },
-                                   { "$eq": ["$request_type", "PHOTO"] },
-                                   { "$eq": ["$request_status", "READ"] },
-                                   { "$ne": ["$request_action", "ACCEPTED"] },
-                                   { "$ne": ["$request_action", "REJECTED"] },
-                                   { "$ne": ["$request_action", "PENDING"] },
-                                   { "$ne": ["$reciver_response", "DELETE"] },
-                                   { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-
-                               ]
-
-
-                           }
-
-                           , 1, 0]
-                   }
-               },
-               "SENT": {
-                   "$sum": {
-                       "$cond": [
-
-                           {
-                               "$and": [
-                                   { "$eq": ["$user_id", user_id] },
-                                   { "$eq": ["$request_type", "PHOTO"] },
-                                   { "$ne": ["$creater_response", "DELETEFORME"] },
-                                   { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-
-                               ]
-
-
-                           }
-
-                           , 1, 0]
-                   }
-               },
-               "ACCEPTED": {
-                   "$sum": {
-                       "$cond": [
-
-                           {
-                               "$and": [
-                                   { "$eq": ["$request_user_id", user_id] },
-                                   { "$eq": ["$request_type", "PHOTO"] },
-                                   { "$eq": ["$request_action", "ACCEPTED"] },
-                                   { "$ne": ["$reciver_response", "DELETE"] }
-                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-
-                               ]
-
-
-                           }
-
-                           , 1, 0]
-                   }
-               },
-               "REJECTED": {
-                   "$sum": {
-                       "$cond": [
-
-                           {
-                               "$and": [
-                                   { "$eq": ["$request_user_id", user_id] },
-                                   { "$eq": ["$request_type", "PHOTO"] },
-                                   { "$eq": ["$request_action", "REJECTED"] },
-                                 
-                                   { "$ne": ["$reciver_response", "DELETE"] }
-                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-
-                               ]
-
-
-                           }
-
-                           , 1, 0]
-                   }
-               },
-               "PENDING": {
-                   "$sum": {
-                       "$cond": [
-
-                           {
-                               "$and": [
-                                   { "$eq": ["$request_user_id", user_id] },
-                                   { "$eq": ["$request_type", "PHOTO"] },
-                                   { "$eq": ["$request_action", "PENDING"] },
-                                 
-                                   { "$ne": ["$reciver_response", "DELETE"] }
-                                   // { "$ne": ["$creater_response", "DELETEFOREVRYONE"] }
-
-                               ]
-
-
-                           }
-
-                           , 1, 0]
-                   }
-               }
-
-           }
+                }
 
             }
-            }], function (error, results) {
-    
-    
-                res.json(results);
-            });
-    
-    
-    };
+        },
+        {
+
+            $lookup: {
+
+                from: "userblocks",
+
+                localField: "customfield.id",
+
+                foreignField: "block_user_id",
+
+                as: "blocks"
+
+            }
+
+        },
+        {
+            "$project": {
+                "block": commonQuery.query.block(user_id),
+                "request": "$$ROOT"
+
+            }
+
+        },
+
+        {
+
+            "$unwind": {
+
+                "path": "$block",
+
+                "preserveNullAndEmptyArrays": true
+
+            }
+
+        }, {
+
+            $match: {
+
+                "block": {
+
+                    $exists: false
+
+                }
+
+            }
+
+        },
+
+        {
+            "$group": {
+                "_id": null,
+                "VIEWED_PROFILE": {
+                    "$sum": {
+                        "$cond": [
+
+                            {
+                                "$and": [
+                                    { "$eq": ["$request.user_id", user_id] },
+                                    { "$eq": ["$request.request_type", "VIEWED_PROFILE"] }
+                                ]
+
+
+                            }
+
+                            , 1, 0]
+                    }
+                },
+                "PROFILE_VISITOR": {
+                    "$sum": {
+                        "$cond": [
+
+                            {
+                                "$and": [
+                                    { "$eq": ["$request.request_user_id", user_id] },
+                                    { "$eq": ["$request.request_type", "VIEWED_PROFILE"] }
+
+                                ]
+
+
+                            }
+
+                            , 1, 0]
+                    }
+                },
+                "LIKED_PROFILES": {
+                    "$sum": {
+                        "$cond": [
+
+                            {
+                                "$and": [
+                                    { "$eq": ["$request.user_id", user_id] },
+                                    { "$eq": ["$request.request_type", "LIKED"] }
+
+                                ]
+
+
+                            }
+
+                            , 1, 0]
+                    }
+                },
+                "RECENTLY_CONTACTED": {
+                    "$sum": {
+                        "$cond": [
+
+                            {
+                                "$and": [
+                                    { "$eq": ["$request.user_id", user_id] },
+                                    { "$eq": ["$request.request_type", "CONTACTED"] }
+
+                                ]
+
+
+                            }
+
+                            , 1, 0]
+                    }
+                }
+
+            }
+        }]).allowDiskUse(true).exec(function (error, results) {
+
+
+            res.json(results);
+        });
+
+
+};
 // exports.getProfileVisitorsResult = function (req, res) {
 
 //         var main_user_id = req.body.user_id;

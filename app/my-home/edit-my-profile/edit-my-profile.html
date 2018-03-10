@@ -1,19 +1,11 @@
 <div class="page-content">
-   <div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="content">
-
-
-
         <div class="row">
-
-
             <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0 matches-l-all">
-
-                    <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
-</div>
-
+                <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
+            </div>
             <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-
                 <div class="basic-pro-detl">
                     <div class="grid simple">
                         <div class="grid-body  u-prof-body no-border">
@@ -22,7 +14,7 @@
                                     <uib-tab-heading class="prf-tab tabheading">
                                         My Profile
                                     </uib-tab-heading>
-                                    <basic-info  user-id="ctrl.editUserId" is-moreinfo-edit="true" is-admin="false"></basic-info>
+                                    <basic-info user-id="ctrl.editUserId" is-moreinfo-edit="true" is-admin="false"></basic-info>
                                 </uib-tab>
                                 <uib-tab index="1">
                                     <uib-tab-heading class="cont-tab tabheading">
@@ -49,21 +41,22 @@
                                                                             <p class="list-group-item-right pull-right">{{current_user_de_all.country_code}} {{current_user_de_all.phone_number}}</p>
                                                                             <p class="clearfix"></p>
                                                                             <p class="list-group-item-left pull-left">Family Contact Number</p>
-                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}} {{current_user_de_all.userfamilies[0].phone_number}}</p>
-                                                                            
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}}
+                                                                                {{current_user_de_all.userfamilies[0].phone_number}}</p>
+
                                                                             <p class="clearfix"></p>
                                                                             <p class="list-group-item-left pull-left">Email ID</p>
 
                                                                             <p class="list-group-item-right pull-right">{{current_user_de_all.email}}</p>
                                                                             <p class="clearfix"></p>
                                                                             <p class="list-group-item-left pull-left ng-hide">Alternate Mobile Number</p>
-                                                                            
-                                                                             <p class="list-group-item-right pull-right ng-hide">+91 7396723539</p>
+
+                                                                            <p class="list-group-item-right pull-right ng-hide">+91 7396723539</p>
                                                                             <p class="list-group-item-left pull-left ng-hide">Alternate Email Id</p>
 
                                                                             <p class="list-group-item-right pull-right ng-hide ">biru_name@yahoo.com</p>
                                                                             <p class="clearfix"></p>
-                                                                            
+
                                                                         </div>
                                                                     </li>
                                                                 </ul>
@@ -84,15 +77,12 @@
                                     <uib-tab-heading class="part-tab tabheading">
                                         Partner Preference
                                     </uib-tab-heading>
-                                    <search-by  type="LG" partner-pre="true" get-fields="ctrl.savePartnerPre(fields)" fields="ctrl.fields"></search-by>
+                                    <search-by type="LG" partner-pre="true" get-fields="ctrl.savePartnerPre(fields)" fields="ctrl.fields"></search-by>
                                 </uib-tab>
                             </uib-tabset>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>

@@ -1,36 +1,25 @@
- <div class="grid simple prefered-total animated flip">
-              <div class=" pref-title no-border">
-                <h4 class="">{{title | translate}}</h4>
+<div class="grid simple prefered-total animated flip">
+  <div class=" pref-title no-border">
+    <h4 class="">{{title | translate}}</h4>
 
-                <div class="vewall" ng-if="preferredMatchesBox.users.length>0"> <a ui-sref="root.pre_matches({result:preferredMatchesBox.result})">{{'VIEW_ALL' | translate}} </a></div>
-              </div>
-              <div class="grid-body  no-border">
-                <div class="hr-line"> </div>
-                  <div class="scroller" data-height="230px" ng-scrollbars ng-scrollbars-config="preferredMatchesBox.config">
-                    <div class="row">
-                      <noinformation type="PARTNER_PRE" ng-if="preferredMatchesBox.users.length===0"></noinformation>
-                      <div class="col-lg-6 col-md-6 col-sm-6 p-r-0" ng-repeat="preMatch in preferredMatchesBox.users">
-                        <div class="li-profile" ng-click="preferredMatchesBox.goToFullProfile(preMatch.user_id)">
-                           <a href="#">
-                              <div class="pull-left no-padding">
-                                  <user-img is-noti="MDPHOTO" user="preMatch"></user-img>
-                              </div>
-                              <div class="pull-left no-padding">
-                                <ul>
-                                  <li> {{preMatch.user_id}} </li>
-                                  <li> {{preMatch.first_name}} {{preMatch.last_name}}</li>
-                                  <li> {{preMatch.age}} Yrs, {{preMatch.height | height}}  <br>
-                                    <span  ng-repeat="oc in preferredMatchesBox.formdata.occupations |  where:{value: preMatch.occupation}">{{oc.name}}</span>, {{preMatch.location_name.city}}
-                                  </li>
-                                 
-                                </ul>                    
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                    
-                      </div>
-                      
-                    </div><!--end-->
-                </div>
-              </div>
+    <div class="vewall" ng-if="preferredMatchesBox.users.length>0">
+        <input ui-sref="root.pre_matches({result:preferredMatchesBox.result})" class="pro-btn" type="button" value="{{'VIEW_ALL' | translate}}" >
+     
+    </div>
+  </div>
+  <div class="grid-body  no-border">
+    <div class="hr-line"> </div>
+    <div class="scroller" data-height="230px" ng-scrollbars ng-scrollbars-config="preferredMatchesBox.config">
+      <div class="row">
+        <noinformation type="PARTNER_PRE" ng-if="preferredMatchesBox.users.length===0"></noinformation>
+        <div class="col-lg-6 col-md-6 col-sm-6 p-r-0" ng-repeat="preMatch in preferredMatchesBox.users">
+          <user-profile type="MATCHESBOX" user="preMatch"></user-profile>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!--end-->
+  </div>
+</div>

@@ -18,3 +18,4 @@ module.exports = angular.module('app.ui.myhome.components',[])
     .directive('calendarBox', calendarBox)
     .directive('preferredMatchesBox', preferredMatchesBox)
     .directive('userActionsTabs', userActionsTabs);
+    

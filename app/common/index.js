@@ -14,9 +14,11 @@ var notificationController = require('./notifications/notifications.ctrl');
 var fullprofileController = require('./fullprofile/fullprofile.ctrl');
 var serachByController = require('./serachby.dir.ctrl');
 var noinformation = require('./noinformation');
+var userProfile = require('./user.profile');
 module.exports = angular.module('app.ui.common', [])
 .run(routes)
 .directive('notificationText', notificationText)
+.directive('userProfile', userProfile)
 .directive('userImg', userImg)
 .directive('notiAction', notiAction)
 .directive('searchBy', searchBy)

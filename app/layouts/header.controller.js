@@ -34,6 +34,20 @@ module.exports = function HeaderController($translate,socket, $state,$scope, $ro
             subMenus: [{
                 translatekey: "PREFERRED_MATCHES",
                 route: "root.pre_matches"
+            },{
+                translatekey: "PREFERRED_LOCATION",
+                route: "root.pre_location"
+            },{
+                translatekey: "PREFERRED_EDUCATION",
+                route: "root.pre_education"
+            },
+            {
+                translatekey: "PREFERRED_OCCUATION",
+                route: "root.pre_occupation"
+            },
+            {
+                translatekey: "NEW_PROFILES",
+                route: "root.new_profiles"
             }
            ],
             route: "root.pre_matches"
@@ -74,17 +88,7 @@ module.exports = function HeaderController($translate,socket, $state,$scope, $ro
         {
             name: "",
             translatekey: "ACTIVITES",
-            subMenus: [{
-                translatekey: "PREFERRED_LOCATION",
-                route: "root.pre_location"
-            },{
-                translatekey: "PREFERRED_EDUCATION",
-                route: "root.pre_education"
-            },
-            {
-                translatekey: "PREFERRED_OCCUATION",
-                route: "root.pre_occupation"
-            },
+            subMenus: [
             {
                 translatekey: "VIEWED_PROFILES",
                 route: "root.viewed_profiles"
@@ -98,11 +102,15 @@ module.exports = function HeaderController($translate,socket, $state,$scope, $ro
                 route: "root.visitor_profiles"
             },
             {
+                translatekey: "RECENTLY_CONTACTED",
+                route: "root.recently_contacted"
+            },
+            {
                 translatekey: "BLOCKED_PROFILES",
                 route: "root.blocked_profiles"
             }
         ],
-            route: "root.pre_location"
+            route: "root.viewed_profiles"
         }
     ];
     controller.adminHeaderMenus = [{

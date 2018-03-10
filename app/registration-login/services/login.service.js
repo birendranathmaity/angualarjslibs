@@ -136,7 +136,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             var modalInstance = $uibModal.open({
                 animation: true,
                 windowClass: "",
-                templateUrl: './app/registration-login/crop-modal/crop-modal.html',
+                templateUrl: 'app/registration-login/crop-modal/crop-modal.html',
                 controller: 'CropModalController',
                 controllerAs: 'ctrl',
                 size: "lg",
@@ -249,8 +249,46 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
 
             }, function () { });
         },
-        getFiledsData: function () {
+        getFiledsDataForBasicInfo: function () {
             var formdata = require('./form-data');
+            return formdata;
+        },
+        getFiledsData: function () {
+            var formdata1 = require('./form-data');
+   var formdata=angular.copy(formdata1);
+            var edus = [];
+            for (var ik = 0; ik < formdata.educations.length; ik++) {
+                var gnameedu = formdata.educations[ik].groupname;
+        
+                for (var jk = 0; jk < formdata.educations[ik].grupitems.length; jk++) {
+                    var edu = formdata.educations[ik].grupitems[jk];
+                    edu.gname = gnameedu;
+                    edus.push(edu);
+                }
+            }
+            var occ = [];
+            for (var i = 0; i < formdata.occupations.length; i++) {
+                var gname = formdata.occupations[i].groupname;
+        
+                for (var j = 0; j < formdata.occupations[i].grupitems.length; j++) {
+                    var itm = formdata.occupations[i].grupitems[j];
+                    itm.gname = gname;
+                    occ.push(itm);
+                }
+            }
+            var focc = [];
+            for (var ip = 0; ip < formdata.fatheroccupation.length; ip++) {
+                var gnamep = formdata.fatheroccupation[ip].groupname;
+        
+                for (var jp = 0; jp < formdata.fatheroccupation[ip].grupitems.length; jp++) {
+                    var itmp = formdata.fatheroccupation[ip].grupitems[jp];
+                    itmp.gname = gnamep;
+                    focc.push(itmp);
+                }
+            }
+           formdata.educations =edus;
+           formdata.occupations = occ;
+           formdata.fatheroccupation = focc;
             return formdata;
         },
         getProfilePic: function () {

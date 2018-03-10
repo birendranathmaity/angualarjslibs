@@ -21,7 +21,6 @@ require('ng-scrollbars');
 require('ngstorage');
 require('ng-file-upload');
 require('angular-chart.js');
-require('angular-filter');
 require('ng-image-gallery');
 // App UI modules
 var LoadingBarModule = require('./loading-bar');
@@ -37,6 +36,7 @@ var messages = require('./messages');
 var common = require('./common');
 var search = require('./search');
 var activites = require('./activites');
+//var date = require('./date.config');
 angular.module('app.ui', [
     uiRouter,
     ngCookies,
@@ -56,7 +56,6 @@ angular.module('app.ui', [
     'ngStorage',
     'ngFileUpload',
     'chart.js',
-    'angular.filter',
     'thatisuday.ng-image-gallery',
     LoadingBarModule.name,
     translateModule.name,
@@ -114,7 +113,9 @@ angular.module('app.ui', [
             }
         }
     }];
-});
+})
+
+//.config(['$provide', date]);
 // angular.element(document).ready(function() {
 //     angular.bootstrap(document, ['app.ui']);
 // });

@@ -57,7 +57,8 @@ return {
     "SAVE_SETTINGS":"/save_settings",
     "GET_SETTINGS":"/get_settings",
     "UPDATEUSER":"/updateUser",
-    "CHECK_ONLINE":"/check_online"
+    "CHECK_ONLINE":"/check_online",
+    "GET_CALENDER_REQUESTS":"/get_calender_requests"
       };
     
 

@@ -1,8 +1,8 @@
 /* @ngInject */
-module.exports = function serachByControllerDir($scope, $state,$rootScope, countryService, loginservice, searchService) {
+module.exports = function serachByControllerDir($scope, $state, $rootScope, countryService, loginservice, searchService) {
     var controller = this;
     controller.user = $rootScope.current_user_de_all;
-    controller.partnerPre=$scope.partnerPre;
+    controller.partnerPre = $scope.partnerPre;
     controller.serachModel = {
         user_id: $rootScope.login_user_id,
         age: {
@@ -336,13 +336,14 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
     }
     var formdata = loginservice.getFiledsData();
     controller.formdata = angular.copy(formdata);
-    controller.PostedBy=controller.PostedBy.concat(controller.formdata.created_by);
+
+    controller.PostedBy = controller.PostedBy.concat(controller.formdata.created_by);
     controller.formdata.hobbies = empty.concat(controller.formdata.hobbies);
     controller.formdata.zodiac = empty.concat(controller.formdata.zodiac);
     controller.formdata.mother_tongues = empty.concat(controller.formdata.mother_tongues);
     controller.formdata.religions = empty.concat(controller.formdata.religions);
     controller.formdata.educations = empty.concat(controller.formdata.educations);
-    controller.formdata.studies = empty.concat(controller.formdata.studies);
+   // controller.formdata.studies = empty.concat(controller.formdata.studies);
     controller.formdata.MaritialStatus = empty.concat(controller.formdata.MaritialStatus);
     controller.formdata.complexion = empty.concat(controller.formdata.complexion);
     controller.formdata.BodyType = empty.concat(controller.formdata.BodyType);
@@ -351,6 +352,7 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
     controller.formdata.Expectation = empty.concat(controller.formdata.Expectation);
     controller.formdata.Horoscope = empty.concat(controller.formdata.Horoscope);
     controller.formdata.aincome = empty.concat(controller.formdata.aincome);
+  
 
     controller.onSelectCallback = function (item, model, g) {
 
@@ -375,14 +377,14 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
     controller.cities = [];
     controller.DisabledState = true;
     controller.DisabledCity = true;
-    function loadCountries(){
+    function loadCountries() {
         countryService.getCountries(function (res) {
             controller.countrys = empty2.concat(res);
             controller.states = empty2.concat([]);
             controller.cities = empty2.concat([]);
         }, function () { });
     }
-    
+
     controller.onSelectCallbackCounry = function (item, model, g) {
 
         if (model === "ANY") {
@@ -474,28 +476,28 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
     };
 
     function loadST(target) {
-      
-       
+
+
         if (controller.serachModel.country.length === 0) {
             controller.DisabledState = true;
             controller.DisabledCity = true;
             controller.serachModel.state = [];
             controller.serachModel.city = [];
             return;
-        }else{
+        } else {
             controller.DisabledState = false;
             controller.DisabledCity = false;
         }
 
-        if (controller.serachModel.state.length === 0 ) {
+        if (controller.serachModel.state.length === 0) {
             controller.DisabledCity = true;
         }
-        else{
+        else {
             controller.DisabledCity = false;
         }
         var code = target.id;
         var cname = target.name;
-     
+
         countryService.getStates(code, function (res) {
 
             if (res.length > 0) {
@@ -518,10 +520,10 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
             controller.DisabledCity = true;
             controller.serachModel.city = [];
             return;
-        }else{
+        } else {
             controller.DisabledCity = false;
         }
-       
+
         var code = target.id;
         var sname = target.name;
         var country_code = target.country_id;
@@ -723,18 +725,18 @@ module.exports = function serachByControllerDir($scope, $state,$rootScope, count
 
         });
     }
-   
+
     function loadlocationAndCaste() {
-       for(var kj=0;kj<controller.serachModel.religion.length;kj++) {
-           var itm=controller.serachModel.religion[kj];
-            if(itm==="ANY"){
-               
+        for (var kj = 0; kj < controller.serachModel.religion.length; kj++) {
+            var itm = controller.serachModel.religion[kj];
+            if (itm === "ANY") {
+
                 controller.casteDisabled = true;
             }
-else{
-    setRelegionAndCaste(itm, "", false);
-}
-           
+            else {
+                setRelegionAndCaste(itm, "", false);
+            }
+
 
         }
         countryService.getCountries(function (res) {
@@ -742,72 +744,72 @@ else{
             controller.states = empty2.concat([]);
             controller.cities = empty2.concat([]);
             controller.DisabledState = false;
-            function getStateForCountry(cid){
-            for(var j=0;j<res.length;j++) {
-                var item=res[j];
+            function getStateForCountry(cid) {
+                for (var j = 0; j < res.length; j++) {
+                    var item = res[j];
 
-              if (item.id === cid) {
-                  var coun = {
-                      id: item.id,
-                      name: item.name,
-                      sortname: item.sortname
-                  };
-                 
-                  loadST(coun);
-                 
-              }
+                    if (item.id === cid) {
+                        var coun = {
+                            id: item.id,
+                            name: item.name,
+                            sortname: item.sortname
+                        };
 
-          }
-        }
-          for(var i=0;i<controller.serachModel.country.length;i++) {
-            var cn=controller.serachModel.country[i];
-            if(cn==="ANY"){
-            
-                controller.DisabledState = true;
+                        loadST(coun);
+
+                    }
+
+                }
+            }
+            for (var i = 0; i < controller.serachModel.country.length; i++) {
+                var cn = controller.serachModel.country[i];
+                if (cn === "ANY") {
+
+                    controller.DisabledState = true;
+                    controller.DisabledCity = true;
+
+                }
+
+                else {
+                    getStateForCountry(cn);
+                }
+            }
+        }, function () { });
+
+
+        for (var k = 0; k < controller.serachModel.state.length; k++) {
+            var state = controller.serachModel.state[k];
+            if (state.id === "ANY") {
+
+                controller.DisabledState = false;
                 controller.DisabledCity = true;
-             
+
+            } else {
+                loadCT(state);
             }
 
-               else{
-                getStateForCountry(cn);
-        }
-        }
-        }, function () { });
-       
-       
-       for(var k=0;k<controller.serachModel.state.length;k++) {
-           var state=controller.serachModel.state[k];
-            if(state.id==="ANY"){
-                
-                    controller.DisabledState = false;
-                    controller.DisabledCity = true;
-                  
-                }else{
-                    loadCT(state);
-                }
-           
 
         }
 
 
     }
-   
+
     controller.search = function () {
-        
-    if(controller.partnerPre){
-        $scope.getFields({fields:controller.serachModel});
-    }
-    else{
-        searchService.saveSearch(controller.serachModel,function(result){
-            if($state.current.name!=="root.search_result"){
-                $state.go('root.search_result', {fields:controller.serachModel});
-              }else{
-                $scope.getFields({fields:controller.serachModel});
-              }
-               
-            },function(error){});
-    }
-      
+
+        if (controller.partnerPre) {
+            $scope.getFields({ fields: controller.serachModel });
+        }
+        else {
+            searchService.saveSearch(controller.serachModel, function (result) {
+                if ($state.current.name !== "root.search_result") {
+                    $state.go('root.search_result', { fields: controller.serachModel });
+                } else {
+                    $scope.getFields({ fields: controller.serachModel });
+                }
+
+            }, function (error) { });
+        }
+
 
     }
 
@@ -850,39 +852,39 @@ else{
     };
 
     $scope.$watch('fields', function (n, v) {
-        
+
         if (!n) { return; }
-        if(n==="FIRST"){
+        if (n === "FIRST") {
             loadCountries();
             setUserAgeHeightInformation();
             setUserBasciInfo();
             setOtherInfo();
             setLocation();
-           
+
 
         }
 
-        if(n==="PARTNER_PRE_FIRST" && controller.partnerPre){
+        if (n === "PARTNER_PRE_FIRST" && controller.partnerPre) {
             loadCountries();
             setUserAgeHeightInformation();
             setUserBasciInfo();
             //setOtherInfo();
             setLocation();
-           // setMore();
-          
+            // setMore();
+
 
         }
-        if(n !== null && typeof n === 'object'){
-            
+        if (n !== null && typeof n === 'object') {
+
             controller.serachModel = n;
             loadlocationAndCaste();
 
         }
-        if(!controller.partnerPre){
+        if (!controller.partnerPre) {
             setMore();
         }
-               
-            });
+
+    });
     // searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
 
     //     if (result) {

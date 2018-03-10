@@ -7,8 +7,8 @@ module.exports = function activitesRoutes(Router) {
                 url: '/pre_location',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
@@ -25,8 +25,8 @@ module.exports = function activitesRoutes(Router) {
                 url: '/pre_education',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
@@ -43,8 +43,8 @@ module.exports = function activitesRoutes(Router) {
                 url: '/pre_occupation',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
@@ -61,13 +61,14 @@ module.exports = function activitesRoutes(Router) {
                 url: '/viewed_profiles',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
                     permisstion: "ALLUSER",
                     result:null,
+                    range:null,
                     activityType:"VIEWED_PROFILE"
                 },
                 title: 'viewed_profiles'
@@ -78,13 +79,14 @@ module.exports = function activitesRoutes(Router) {
                 url: '/liked_profiles',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
                     permisstion: "ALLUSER",
                     result:null,
+                    range:null,
                     activityType:"LIKED"
                 },
                 title: 'liked_profiles'
@@ -96,16 +98,36 @@ module.exports = function activitesRoutes(Router) {
                 url: '/visitor_profiles',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
                     permisstion: "ALLUSER",
                     result:null,
+                    range:null,
                     activityType:"VISITOR"
                 },
                 title: 'visitor_profiles'
+            }
+        },
+        {
+            name: "root.recently_contacted",
+            config: {
+                url: '/recently_contacted',
+                views: {
+                    '@': {
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    result:null,
+                    range:null,
+                    activityType:"RECENTLT_CONTACTED"
+                },
+                title: 'recently_contacted'
             }
         },
         {
@@ -114,8 +136,8 @@ module.exports = function activitesRoutes(Router) {
                 url: '/blocked_profiles',
                 views: {
                     '@': {
-                        templateUrl: "app/activites/pre_location/pre_location.html",
-                        controller: "PreLocationController as $ctrl"
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
                     }
                 },
                 params: {
@@ -124,6 +146,24 @@ module.exports = function activitesRoutes(Router) {
                     activityType:"BLOCKED"
                 },
                 title: 'blocked_profiles'
+            }
+        },
+        {
+            name: "root.new_profiles",
+            config: {
+                url: '/new_profiles',
+                views: {
+                    '@': {
+                        templateUrl: "app/activites/activity/activity.html",
+                        controller: "activityController as $ctrl"
+                    }
+                },
+                params: {
+                    permisstion: "ALLUSER",
+                    result:null,
+                    activityType:"NEWPROFILES"
+                },
+                title: 'new_profiles'
             }
         }
     ]);

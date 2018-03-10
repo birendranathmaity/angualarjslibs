@@ -1,0 +1,31 @@
+<!-- Preffered matches user view -->
+<div ng-if="$ctrl.type==='MATCHESBOX'" class="li-profile" ng-click="$ctrl.goToFullProfile($ctrl.user.user_id)">
+        <a href="#">
+           <div class="pull-left no-padding">
+               <user-img is-noti="MDPHOTO" user="user"></user-img>
+           </div>
+           <div class="pull-left no-padding">
+             <ul>
+               <li> {{$ctrl.user.user_id}} </li>
+               <li> {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}</li>
+               <li> {{$ctrl.user.age}} Yrs, {{$ctrl.user.height | height}}  <br>
+                 <span  ng-repeat="oc in $ctrl.formdata.occupations |  where:{value: $ctrl.user.occupation}">{{oc.name}}</span>, {{$ctrl.user.location_name.city}}
+               </li>
+              
+             </ul>                    
+           </div>
+         </a>
+       </div>
+       <!-- Preffered location user view -->
+       <li ng-if="$ctrl.type==='TABBOX'" class="profile-odd hand" ng-click="$ctrl.goToFullProfile($ctrl.user.user_id)">        
+            <div class="pull-left no-padding">
+                       <user-img is-noti="MDPHOTO" user="$ctrl.user"></user-img>
+                   </div>
+                   <div class="pull-left no-padding">
+                       <P class="view-name"> {{$ctrl.user.first_name}} {{$ctrl.user.last_name}} </P>
+                       <P class="view-name-sub">{{$ctrl.user.age}} Yrs. {{$ctrl.user.height | height}},<span class="list-group-item-right pull-right" ng-repeat="rt in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rt.name}}</span><br/>
+                        <span  ng-repeat="oc in $ctrl.formdata.occupations |  where:{value: $ctrl.user.occupation}">{{oc.name}}</span>, {{$ctrl.user.location_name.city}}, {{$ctrl.user.location_name.country}}</p>
+                   </div>
+                 
+               
+               </li>

@@ -26,7 +26,7 @@ module.exports = function (searchService,$crypto, $state,loginservice, matcheser
                     autoHideScrollbar: true,
                     theme: 'rounded-dark',
                     axis: 'y',
-                    setHeight: 230,
+                    setHeight: 308,
                     scrollInertia: 0,
                     scrollButtons: {
                         scrollAmount: 'auto', // scroll amount when button pressed 

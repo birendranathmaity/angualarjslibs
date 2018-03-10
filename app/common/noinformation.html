@@ -22,6 +22,20 @@
 
 
             </div>
+            <div class="error-template" ng-if="$ctrl.type==='RECENTLT_CONTACTED'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any recently contacted profiles</h5>
+
+
+            </div>
+            <div class="error-template" ng-if="$ctrl.type==='NEWPROFILES'">
+                <h1>
+                    Oops!</h1>
+                <h5> Sorry, You have not any new profiles</h5>
+
+
+            </div>
             <div class="error-template" ng-if="$ctrl.type==='VIEWED_PROFILE'">
                 <h1>
                     Oops!</h1>

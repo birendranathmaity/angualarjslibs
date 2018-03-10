@@ -53,7 +53,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 });
 
 
-                controller.formdata = loginservice.getFiledsData();
+                controller.formdata = loginservice.getFiledsDataForBasicInfo();
                 //open login modal//
                 controller.openLoginModal = function (size) {
                     var modalInstance = $uibModal.open({

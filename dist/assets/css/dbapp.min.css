@@ -14565,10 +14565,18 @@ select.minimal:focus {
 .wizard input {
     width: 100%;
     min-height: 41px;
+    color: #3028ab;
+    font-size: 14px;
+    /* font-weight: bold; */
+    font-family: 'Montserrat', sans-serif;
 }
 .wizard textarea {
     width: 100%;
     height: auto;
+    color: #3028ab;
+    font-size: 14px;
+    /* font-weight: bold; */
+    font-family: 'Montserrat', sans-serif;
 }
 .wizard input[type="radio"] {
     width: 40px;
@@ -16120,6 +16128,16 @@ body > .ui-select-bootstrap.open {
     padding: 0 !important;
     opacity:100 !important;
 }
+p span{
+    font-weight: bold;
+}
+.uib-daypicker button[disabled]{
+    background: #fff !important;
+}
+a.adisabled {
+    cursor: not-allowed;
+    opacity: .65;
+  }
 /*** Very Large Screens **/
 @media only screen 
 and (min-width : 1824px) {	

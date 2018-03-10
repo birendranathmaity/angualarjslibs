@@ -404,7 +404,7 @@
   "ADD_USER": "Add User",
   "INVALID_USER_PASSWORD_MSG": "Invalid username/password",
   "INVALIDOTP_MSG": "Invalid OTP",
- 
+  "RECENTLY_CONTACTED":"Recently Contacted",
   "TOTAL_USERS": "Total users",
   "TOTAL_ACTIVE_USERS": "Total active users",
   "TOTAL_INACTIVE_USERS": "Total inactive users",
@@ -415,7 +415,7 @@
   "PHOTO_VR_COMPLETED": "Photo verification completed",
   "COMPLETED_PROFILES": "Completed profiles",
   "PENDING_PROFILES": "Pending profiles",
-  
+  "NEW_PROFILES":"New Profiles",
   "SETINGS": "Setings",
   "EDIT_PARTNER_PREFERENCES": "Edit partner preferences",
   "EDIT_MY_PROFILE":"Edit my profile"

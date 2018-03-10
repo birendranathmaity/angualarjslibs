@@ -1,7 +1,7 @@
 /* @ngInject */
 module.exports = function ($rootScope, countryService, loginservice, $http, toastr, $state, ServiceUrls) {
 
-  
+
     var service = {
 
         send_request: function (data, success, error) {
@@ -22,19 +22,22 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
         update_notifications: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.UPDATE_NOTIFICATIONS, data).success(success).error(error);
         },
-       get_contactno: function (data, success, error) {
+        get_contactno: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_CONTACTNO, data).success(success).error(error);
         },
-         save_settings: function (data, success, error) {
+        save_settings: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.SAVE_SETTINGS, data).success(success).error(error);
         },
         get_settings: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_SETTINGS, data).success(success).error(error);
         },
-        userEmitInfo:function(){
+        get_calender_requests: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_CALENDER_REQUESTS, data).success(success).error(error);
+        },
+        userEmitInfo: function () {
             // var user = $rootScope.current_user_de_all;
             // var pic = loginservice.getProfilePic();
-            
+
             //   controller.photo = pic.profile;
 
             //   if(pic.profile.photo_vr){
@@ -44,7 +47,7 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
             // var u={
             //     user_id: user.user_id,
             //     first_name: user.first_name,
-              
+
             // }
             // "user_id": "$user.user_id",
             // "first_name": "$user.first_name",
@@ -56,9 +59,9 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
             // "city": "$city.name",
             // "pic": "$pic",
         },
-        genarateAlbumPics:function(pics,success){
+        genarateAlbumPics: function (pics, success) {
             var imgs = [];
-            if(pics.length===0){
+            if (pics.length === 0) {
                 success(imgs);
                 return imgs;
             }
@@ -77,28 +80,28 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
             });
             success(imgs);
         },
-        get_default_search_config: function (target,who,calback) {
+        get_default_search_config: function (target, who, calback) {
             var formdata = loginservice.getFiledsData();
-            var user ={};
-            var basic={};
-            var edu={};
-            var interest={};
-            if(who==="LOGIN_USER"){
-               user = $rootScope.current_user_de_all;
-               basic = user.basicinfos[0];
-               edu = user.usereducations[0];
-               interest = user.userintrests[0];
-               user.gender=user.gender;
+            var user = {};
+            var basic = {};
+            var edu = {};
+            var interest = {};
+            if (who === "LOGIN_USER") {
+                user = $rootScope.current_user_de_all;
+                basic = user.basicinfos[0];
+                edu = user.usereducations[0];
+                interest = user.userintrests[0];
+                user.gender = user.gender;
             }
-            if(who !== null && typeof who === 'object'){
-                user=who;
+            if (who !== null && typeof who === 'object') {
+                user = who;
                 basic = user.userinfo.basic;
                 edu = user.userinfo.education;
                 interest = user.userinfo.interest;
-                user.gender=user.gender;
+                user.gender = user.gender;
             }
-           
-            
+
+
             var serachModel = {
                 user_id: user.user_id,
                 age: {
@@ -318,7 +321,7 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
 
                 var VIEWED_PROFILE = {
                     user_id: user.user_id,
-                    showprofile: ["VIEWED_PROFILE"],
+                    showprofile: ["VIEWED_PROFILE"]
                 };
                 calback(VIEWED_PROFILE);
             }
@@ -331,21 +334,37 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
                 calback(LIKED);
             }
             if (target === "VISITOR") {
-                
-                                var VISITOR = {
-                                    user_id: user.user_id,
-                                    showprofile: ["VISITOR"],
-                                };
-                                calback(VISITOR);
-                            }
-                            if (target === "BLOCKED") {
-                                
-                                                var BLOCKED = {
-                                                    user_id: user.user_id,
-                                                    blockprofile: true,
-                                                };
-                                                calback(BLOCKED);
-                                            }
+
+                var VISITOR = {
+                    user_id: user.user_id,
+                    showprofile: ["VISITOR"],
+                };
+                calback(VISITOR);
+            }
+            if (target === "RECENTLT_CONTACTED") {
+
+                var RECENTLT_CONTACTED = {
+                    user_id: user.user_id,
+                    showprofile: ["RECENTLT_CONTACTED"],
+                };
+                calback(RECENTLT_CONTACTED);
+            }
+            if (target === "BLOCKED") {
+
+                var BLOCKED = {
+                    user_id: user.user_id,
+                    blockprofile: true,
+                };
+                calback(BLOCKED);
+            }
+            if (target === "NEWPROFILES") {
+
+                var NEWPROFILES = {
+                    user_id: user.user_id
+
+                };
+                calback(NEWPROFILES);
+            }
         },
         openReq: function (noti) {
             if (noti.request_type === "MESSAGE") {

@@ -1,0 +1,40 @@
+<div class="page-content">
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 matches-l-all">
+        <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
+      </div>
+      <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 matches-c-all no-padding">
+        <h4 class=""> Please broaden your partner preference slightly to receive more matches in this list Modify </h4>
+        <div class="col-lg-9 col-xs-12 col-sm-12 no-padding dataTables_wrapper">
+          <div class="col-lg-8 ">
+            <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.users.length>0">
+              <ul>
+                <li>
+                  <div class=" hidden-xs">Showing
+                    <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div>
+                </li>
+                <li class="prev disabled" style="margin-top: -2px;">
+                  <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"
+                    class="pagination-sm" boundary-link-numbers="true" ng-change="$ctrl.pageChanged()" rotate="true">
+                  </ul>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <noinformation type="{{$ctrl.activityType}}" ng-if="$ctrl.users.length===0"></noinformation>
+          <div ng-repeat="user in $ctrl.users">
+
+            <profile-view user="user"></profile-view>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-3 col-sm-12  col-xs-12  p-r-0 " ng-if="$ctrl.users.length>0">
+          <search-by-id></search-by-id>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

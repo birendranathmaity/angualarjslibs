@@ -217,21 +217,59 @@ exports.query = {
                         if (arrTemp[i] === "WITHPHOTO") {
                             finalmatch["photo.view"] = { "$eq": "CONFIRM" }
                         }
+                        if (arrTemp[i] === "ONLINE") {
+                            finalmatch["online"] = { "$eq": "Y" }
+                        }
+                        if (arrTemp[i] === "RECENTLT_CONTACTED") {
+                            finalmatch["is_contacted"] = { "$eq": "CONTACTED" };
+                            if (search["range"]) {
+                                finalmatch["is_contacted_date"] =
+                                    {
+                                        $lte: new Date(search["range"].to),
+                                        $gte: new Date(search["range"].from)
+                                    };
+
+                            }
+                        }
                         if (arrTemp[i] === "GOLDUSER") {
                             finalmatch["user_role"] = { "$eq": "GOLDUSER" }
                         }
                         if (arrTemp[i] === "VIEWED_PROFILE") {
-                            finalmatch["is_viewed_profile"] = { "$eq": "VIEWED_PROFILE" }
+                            finalmatch["is_viewed_profile"] = { "$eq": "VIEWED_PROFILE" };
+                            if (search["range"]) {
+                                finalmatch["is_viewed_profile_date"] =
+                                    {
+                                        $lte: new Date(search["range"].to),
+                                        $gte: new Date(search["range"].from)
+                                    };
+
+                            }
                         }
                         if (arrTemp[i] === "LIKED") {
-                            finalmatch["is_liked_profile"] = { "$eq": "LIKED" }
+                            finalmatch["is_liked_profile"] = { "$eq": "LIKED" };
+                            if (search["range"]) {
+                                finalmatch["is_liked_profile_date"] =
+                                    {
+                                        $lte: new Date(search["range"].to),
+                                        $gte: new Date(search["range"].from)
+                                    };
+
+                            }
                         }
                         if (arrTemp[i] === "VISITOR") {
-                            finalmatch["is_visitor_profile"] = { "$eq": "VIEWED_PROFILE" }
+                            finalmatch["is_visitor_profile"] = { "$eq": "VIEWED_PROFILE" };
+                            if (search["range"]) {
+                                finalmatch["is_visitor_profile_date"] =
+                                    {
+                                        $lte: new Date(search["range"].to),
+                                        $gte: new Date(search["range"].from)
+                                    };
+
+                            }
                         }
                     }
 
-                  
+
 
                 }
 
@@ -255,7 +293,7 @@ exports.query = {
                         }
                     }
 
-                
+
 
                 }
 
@@ -273,8 +311,9 @@ exports.query = {
                 key != "showprofile" &&
                 key != "dontshow" &&
                 key != "updated_on" &&
-                key !="blockprofile" &&
-                key !="search_user_id" &&
+                key != "blockprofile" &&
+                key != "search_user_id" &&
+                key != "range" &&
                 key != "__v" &&
                 key != "created_on"
 
@@ -297,8 +336,8 @@ exports.query = {
 
         }
         return {
-            match:match,
-            finalmatch:finalmatch
+            match: match,
+            finalmatch: finalmatch
 
         };
     },
@@ -391,10 +430,10 @@ exports.query = {
 
                         "$eq": ["$$item.block_user_id", main_user_id]
 
-                    },{
+                    }, {
                         "$eq": ["$$item.user_id", "$user_id"]
-                        
-                      }, {
+
+                    }, {
 
                         "$eq": ["$$item.block_status", "BLOCK"]
 
@@ -423,14 +462,14 @@ exports.query = {
                         "$eq": ["$$item.user_id", "$user_id"]
 
                     }, {
-                        
-                                                "$eq": ["$$item.request_user_id", main_user_id]
-                        
-                                            },{
-                                                
-                                                                        "$ne": ["$$item.request_status", "BLOCK"]
-                                                
-                                                                    },{
+
+                        "$eq": ["$$item.request_user_id", main_user_id]
+
+                    }, {
+
+                        "$ne": ["$$item.request_status", "BLOCK"]
+
+                    }, {
 
                         "$eq": ["$$item.request_type", "VIEWED_PROFILE"]
 
@@ -1191,8 +1230,8 @@ exports.query = {
                 then: {
 
                     view_contact: true,
-                    personal:"$user.phone_number",
-                    family:"$user.userinfo.family.phone_number",
+                    personal: "$user.phone_number",
+                    family: "$user.userinfo.family.phone_number",
                     send_request: false,
                     alreadysent: false,
 
@@ -1360,27 +1399,6 @@ exports.query = {
         var k = k.replace(/\\/g, "")
         return k;
 
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
+}
 
 }
