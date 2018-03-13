@@ -2,7 +2,7 @@
 module.exports = function (useractions, $rootScope,$state) {
     return {
         restrict: 'E',
-        templateUrl: './app/my-home/components/calendarBox.html',
+        templateUrl: 'app/my-home/components/calendarBox.html',
         controllerAs: 'calendarBox',
         controller: [
             '$scope',
@@ -15,7 +15,7 @@ module.exports = function (useractions, $rootScope,$state) {
                    viewed:0,
                    contacted:0,
                    visitor:0,
-               }
+               };
                var minDate=new Date($rootScope.current_user_de_all.created_on);
                 function fromDate(date,days){
                    var from = new Date(date);
@@ -27,7 +27,7 @@ module.exports = function (useractions, $rootScope,$state) {
                     user_id: $rootScope.login_user_id,
                     from: minDate,
                     to: new Date()
-                }
+                };
                 function getCounts(reqP){
                     useractions.get_calender_requests(reqP, function (data) {
                       

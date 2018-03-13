@@ -38,7 +38,7 @@
                 
                  <div class="req-pic" >  
                    <p class="req-text"> 
-                   <photo-button user="$ctrl.user"></photo-button>
+                   <photo-button user="$ctrl.user" ng-if="$ctrl.user_action"></photo-button>
                   </p> 
                  </div>
               </div>
@@ -120,14 +120,14 @@
             </div>
 
             <div class="row"> 
-              <message-button user="$ctrl.user"></message-button>
-             <contact-button user="$ctrl.user"></contact-button>
+              <message-button user="$ctrl.user" ng-if="$ctrl.user_action"></message-button>
+             <contact-button user="$ctrl.user" ng-if="$ctrl.user_action"></contact-button>
             </div>
 
             <div class="req-pic">
               <div class="row">
                 <div class="col-lg-4 no-padding"> </div>
-                <div class="col-lg-4 no-padding "><like-button user="$ctrl.user"></like-button></div>
+                <div class="col-lg-4 no-padding "><like-button user="$ctrl.user" ng-if="$ctrl.user_action"></like-button></div>
                 <div class="col-lg-4 no-padding" > <p class="posted-m"> Posted By :  <span ng-repeat="crt in $ctrl.formdata.created_by | where:{value:$ctrl.user.created_by}"> {{crt.name}} </span> </p></div>
               </div>  
             </div>

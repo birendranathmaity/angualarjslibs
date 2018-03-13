@@ -94,35 +94,35 @@ module.exports = function notificationController($location,useractions,$scope,$t
                 "request_action": "ACCEPTED",
                 "recived_on":new Date()
 
-            }
+            };
         }
         if (target === "PENDING") {
             req.fields = {
                 "request_action": "PENDING",
                 "recived_on":new Date()
 
-            }
+            };
         }
         if (target === "REJECTED") {
             req.fields = {
                 "request_action": "REJECTED",
                 "recived_on":new Date()
 
-            }
+            };
         }
         if (target === "DELETEFOREVRYONE") {
             req.fields = {
                 "creater_response": "DELETEFOREVRYONE",
                 "recived_on":new Date()
 
-            }
+            };
         }
         if (target === "DELETEFORME") {
             req.fields = {
                 "creater_response": "DELETEFORME",
                 "recived_on":new Date()
 
-            }
+            };
         }
 
         if (target === "DELETE") {
@@ -132,22 +132,22 @@ module.exports = function notificationController($location,useractions,$scope,$t
                 "reciver_response": "DELETE",
                 "recived_on":new Date()
 
-            }
+            };
         }
 
         var modalInstance = $uibModal.open({
             animation: true,
             windowClass: "",
-            templateUrl: './app/popuptemplates/delete.modal.html',
+            templateUrl: 'app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
                 main.type="PROCEED";
                 main.yes = function () {
                     finalaction();
-                }
+                };
                 main.no = function () {
                     modalInstance.dismiss('cancel');
-                }
+                };
 
 
             },
@@ -176,7 +176,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
 
         }
 
-    }
+    };
    
     controller.openReq=function(noti){
         useractions.openReq(noti);

@@ -2,7 +2,7 @@
 module.exports = function ($viewusers,$location, $state, loginservice, $rootScope) {
     return {
         restrict: 'E',
-        templateUrl: './app/my-home/components/completeYourProfile.html',
+        templateUrl: 'app/my-home/components/completeYourProfile.html',
         scope: {
             profileType: "@",
             userId: "="
@@ -18,7 +18,7 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                 controller.ACTIONS_USER_BIG = ['CHANGE_PHOTO',"EDIT_MY_PROFILE", "EDIT_CONTACT_DETAILS", "ADDPHOTOS", "EDIT_PARTNER_PREFERENCES"];
                 //ng-click="registerFormCtrl.openImageUploadWindow({user_id:form.user_id,skip_url:'/viewusers',photo_type:'PROFILE',from_sec:'userEdit'})"
                 controller.pTooltipCnfig={
-                    tpl:"./app/my-home/components/profile_photo_tooltip.html",
+                    tpl:"app/my-home/components/profile_photo_tooltip.html",
                     pos:'bottom'
 
                 };
@@ -66,7 +66,7 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                 controller.pic = pics.profile;
                 controller.ProfilePercentage = {
 
-                    width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
+                    width: calculateProfilePercentage($rootScope.current_user_de_all)
                 };
                 if(controller.user.basicinfos[0] && controller.user.basicinfos[0].updated_on){
                     controller.LastUpdateDate=controller.user.basicinfos[0].updated_on;
@@ -90,7 +90,7 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                         controller.LastUpdateDate=controller.user.basicinfos[0].created_on;
                     } 
                     controller.ProfilePercentage = {
-                        width: calculateProfilePercentage($rootScope.current_user_de_all) + "%"
+                        width: calculateProfilePercentage($rootScope.current_user_de_all)
                         
                        };
                 });
@@ -182,6 +182,9 @@ module.exports = function ($viewusers,$location, $state, loginservice, $rootScop
                         //  }
                     }
                     if (user.email_vr) {
+                        p += 25;
+                    }
+                    if (user.phone_vr) {
                         p += 25;
                     }
                     if (user.pic.length > 0) {

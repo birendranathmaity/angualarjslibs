@@ -56,7 +56,7 @@ gulp.task('lint-watch', function () {
 
 // Build blobs for unit tests and linting on file change
 gulp.task('change-watch', function () {
-    gulp.watch(['app/**/*.js','assets/css/**.css'], ['browserify-watch','app-css'])
+    gulp.watch(['app/**/*.js','assets/css/**.css','app/**/*.html'], ['browserify-watch','app-css'])
         .on('change', function (event) {
             // Only run tests for changed files
             var pathParts = event.path.split('/');

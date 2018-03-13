@@ -31,5 +31,5 @@ module.exports = angular.module('app.ui.headercomponents',[])
             scope.pkAudio = element[0];
         }
     };
-})
+});
  

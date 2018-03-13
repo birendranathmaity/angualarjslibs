@@ -1,7 +1,27 @@
 var PhotoModel=require('./../model/user.photo.model');
+var UserModel=require('./../model/user.model');
 var requestModel = require('./../model/request.model');
 var check = require('./../check_user');
 var global = require('./../../setGlobal');
+exports.admin_active_user=function(req,res){
+
+  UserModel.findOneAndUpdate({ user_id: req.body.user_id }, { $set: { user_status: "ACTIVE" } }, { new: true }, (error, result) => {
+    
+            if (error) {
+              res.json({success:false});
+            } else {
+if(result){
+  res.json({success:true});
+ 
+}
+else{
+  res.json({success:false});
+}
+            }
+          
+          });
+
+}
 exports.adminAcceptPhoto=function(req,res){
   
   function onlineUserEmitNoti(success) {

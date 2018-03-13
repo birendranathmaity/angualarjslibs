@@ -196,7 +196,7 @@ module.exports = function requestsViewDirCtrl($scope, $uibModal, $rootScope, mes
             var modalInstance = $uibModal.open({
                 animation: true,
                 windowClass: "",
-                templateUrl: './app/popuptemplates/delete.modal.html',
+                templateUrl: 'app/popuptemplates/delete.modal.html',
                 controller: function ($scope) {
                     var main = this;
                     main.type="PROCEED";

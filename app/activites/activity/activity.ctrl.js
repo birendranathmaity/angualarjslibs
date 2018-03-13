@@ -35,7 +35,7 @@ module.exports = function activityController($state, $stateParams, $location, se
 
         searchService.getSearchResult(req, function (result) {
 
-            setUserData(result)
+            setUserData(result);
         }, function (error) { });
 
         //     if(controller.fields){

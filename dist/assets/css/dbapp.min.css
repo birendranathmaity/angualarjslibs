@@ -8368,7 +8368,7 @@ a#next:hover {
 .basic-pro-detl .nav-tabs > li a {
     font-size: 18px;
     color: #fff;
-    margin: 7px;
+    margin: 0px;
     padding: 10px 13px;
     font-weight: normal;
 }

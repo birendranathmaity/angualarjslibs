@@ -28,9 +28,7 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
             copy = angular.copy,
             equals = angular.equals;
             function toArray(object) {
-                return isArray(object) 
-                  ? object 
-                  : Object.keys(object).map(function(key) {
+                return isArray(object) ? object : Object.keys(object).map(function(key) {
                     return object[key];
                   });
               }
@@ -44,15 +42,13 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
               }
        
           if(isUndefined(object)) return collection;
-          collection = isObject(collection)
-            ? toArray(collection)
-            : collection;
+          collection = isObject(collection) ? toArray(collection) : collection;
            
           return collection.filter(function (elm) {
           
             return objectContains(object, elm);
           });
-        }
+        };
       })
     .filter('joinname', function () {
         return function join(array, separator, prop) {

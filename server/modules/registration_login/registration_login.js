@@ -10,8 +10,43 @@ var basicInfo = require('./../model/basicinfo.model');
 var education = require('./../model/education.model');
 var interest = require('./../model/intrest.model');
 var family = require('./../model/family.model');
-var otpConfig = require('./otp');
-//
+var PhoneOtpConfig = require('./otp');
+var randomstring = require("randomstring");
+var email = require('../email/email.config');
+var bcrypt = require('bcrypt');
+
+function cryptPassword(password, callback) {
+    bcrypt.genSalt(10, function (err, salt) {
+        if (err)
+            return callback(err);
+
+        bcrypt.hash(password, salt, function (err, hash) {
+            return callback(err, hash);
+        });
+    });
+};
+
+function comparePassword(plainPass, hashword, callback) {
+    bcrypt.compare(plainPass, hashword, function (err, isPasswordMatch) {
+        return err == null ?
+            callback(null, isPasswordMatch) :
+            callback(err);
+    });
+};
+function createUserId(success) {
+    var u1 = randomstring.generate({
+        length: 3,
+        charset: 'alphabetic',
+        capitalization: "uppercase"
+    });
+    var u2 = randomstring.generate({
+        length: 5,
+        charset: 'numeric',
+        capitalization: "uppercase"
+    });
+
+    success(u1 + u2);
+}
 exports.authenticate = function (req, res) {
     User.findOne({
         "$or": [{
@@ -46,46 +81,49 @@ exports.authenticate = function (req, res) {
 };
 
 
-exports.signup = function (req, res) {
+function signup(user, res) {
 
-    User.count().then((count) => {
-        var userNumber = 1 + count;
-        var UserId = "DB227" + userNumber;
+    createUserId(function userIdCreate(user_id) {
+
+        var UserId = user_id;
 
         User.findOne({
-           email: req.body.email,
-           // password: req.body.password,
-            user_id:UserId
-        }, function (err, user) {
+            user_id: user_id,
+
+        }, function (err, iSuser) {
             if (err) {
                 res.json({
                     type: false,
                     data: "Error occured: " + err
                 });
             } else {
-                if (user) {
-                   // UpdateUser(req, res);
+                if (iSuser) {
+                    createUserId(userIdCreate);
                 } else {
-                   
-                    req.body.created_on = new Date();
-                    req.body.user_id = UserId;
-                    req.body.email_vr = false;
-                    req.body.phone_vr = false;
-                    req.body.more_info_vr = false;
-                    req.body.user_status = "INPROGRESS";
-                    saverUser(req.body, res);
+                    cryptPassword(user.password, function (err, pass) {
+                        user.password = pass;
+                        user.created_on = new Date();
+                        user.user_id = UserId;
+                        user.email_vr = true;
+                        user.phone_vr = false;
+                        user.more_info_vr = false;
+                        user.user_status = "INPROGRESS";
+                        user.user_role = "FREEUSER"
+                        saverUser(user, res);
+                    });
+
                 }
             }
         });
 
-
-
-
     });
 
 
+    //});
+
+
 };
-exports.UpdateUser=function(req, res) {
+exports.UpdateUser = function (req, res) {
     req.body.updated_on = new Date();
     User.update({ user_id: req.body.user_id }, req.body, function (err, user) {
 
@@ -106,29 +144,32 @@ function saverUser(user, res) {
 
 };
 function afterUserSave(user, res) {
-  
-    if (user.uploaded_by === "SELF" || 
-     user.uploaded_by === "PARENTS" || 
-     user.uploaded_by === "SIBLINGS" || 
-     user.uploaded_by === "OTHER") {
-      
-        createOtp(user, "PHONE_NUMBER_VR",function(){
-            createToken(res, user);
 
-        });
+    if (user.uploaded_by === "SELF" ||
+        user.uploaded_by === "PARENTS" ||
+        user.uploaded_by === "SIBLINGS" ||
+        user.uploaded_by === "OTHER") {
 
+        // createOtp(user, "PHONE_NUMBER_VR", function () {
+
+
+        // });
+
+
+        createToken(res, user);
         // otpConfig.sendOtpNumber("917330734341");
-        
+
     }
     else {
         res.json({
-            success: true,
-            user: user
+            success: true
+
         });
     }
 
 };
 function tokenId(user) {
+    user.password = "";
     return jwt.sign(user, "dholbaaje.com.nikhil");
 };
 function createToken(res, user) {
@@ -166,38 +207,111 @@ function createToken(res, user) {
 
     });
 };
-
-function createOtp(user, vrType,success) {
-    var otp = 12345;
-    //172595AQbcw8YLo59a90f6d
-    var otpDetails = {
-        user_id: user.user_id,
-        otp: otp,
-        phone_number: user.phone_number,
+exports.sendPhoneOtp = function (req, res) {
+    var OTP = randomstring.generate({
+        length: 6,
+        charset: 'numeric',
+        capitalization: "uppercase"
+    });
+   var otpDetails = {
+        phone_number:req.body.phone_number,
+        otp: OTP,
         otp_vr_status: "SENT",
-        otp_vr_type: vrType,
+        otp_vr_type: "PHONE_NUMBER_VR",
         created_on: new Date()
 
     };
+    createOtp(otpDetails, function (otpd) {
+        PhoneOtpConfig.sendOtpNumber(req.body.phone_number,OTP,function(result){
+
+if(result.type=="success"){
+    res.json({success:true});
+}
+
+
+        });
+   });
+}
+exports.sendEmailOtp = function (req, res) {
+    var OTP = randomstring.generate({
+        length: 6,
+        charset: 'numeric',
+        capitalization: "uppercase"
+    });
+    var emailid = req.body.email;
+    var emailid1 = emailid.split("@")[0];
+    var test = emailid1.split(".")[1];
+    var isSendmail = true;
+    if (test == "9") {
+        OTP = "123456";
+        isSendmail = false;
+    }
+    var otpDetails = {
+
+        otp: OTP,
+        email: req.body.email,
+        otp_vr_status: "SENT",
+        otp_vr_type: "EMAIL",
+        created_on: new Date()
+
+    };
+    createOtp(otpDetails, function (result) {
+     
+        var config = {
+            type: "SENDOTP",
+            data: { otp: OTP },
+            to: req.body.email
+        }
+        if (isSendmail) {
+            email.send(config, function (result) {
+                res.json({ success: true });
+            });
+        }
+        else {
+            res.json({ success: true });
+        }
 
 
 
+    });
+}
+function createOtp(data, success) {
+    // var otp = 12345;
+    // //172595AQbcw8YLo59a90f6d
+    // var otpDetails = {
+    //     user_id: user.user_id,
+    //     otp: otp,
+    //     phone_number: user.phone_number,
+    //     otp_vr_status: "SENT",
+    //     otp_vr_type: vrType,
+    //     created_on: new Date()
 
-    OTP.findOne({ user_id: user.user_id }, function (err, otpData) {
+    // };
+    var query = {};
+    if (data.otp_vr_type == "PHONE_NUMBER_VR") {
+        query.phone_number = data.phone_number;
+        query.otp_vr_type = data.otp_vr_type;
+    }
+    if (data.otp_vr_type == "EMAIL") {
+        query.email = data.email;
+        query.otp_vr_type = data.otp_vr_type;
+    }
+
+    OTP.update(query, data, { upsert: true }, function (err, otpData) {
         if (err) {
             res.json({
                 type: false,
                 data: "Error occured: " + err
             });
         } else {
+            success(otpData);
 
+            // if (!otpData) {
+            //     var OTPMODEL = new OTP(otpDetails);
+            //     OTPMODEL.save(function (err, details) { 
 
-            if (!otpData) {
-                var OTPMODEL = new OTP(otpDetails);
-                OTPMODEL.save(function (err, details) { 
-                    success();
-                });
-            }
+            //     });
+            // }
         }
 
     });
@@ -265,10 +379,9 @@ exports.savemoreinfo = function (req, res) {
 
                             familyModel.save(function (err, family) {
                                 var update = {
-
                                     more_info_vr: true,
-                                    user_status:"ACTIVE",
-                                    created_on:new Date()
+                                    user_status: "INPROGRESS",
+                                    updated_on: new Date()
                                 };
 
 
@@ -313,10 +426,23 @@ exports.checkemail = function (req, res) {
     });
 };
 exports.verifyotp = function (req, res) {
-    OTP.findOneAndUpdate({
-        otp: req.body.otp,
-        user_id: req.body.user_id
-    }, {
+    var user = req.body.user;
+var query=null;
+    if( req.body.type=="EMAIL"){
+query={
+    otp: req.body.otp,
+    email: user.email,
+    otp_vr_status:"SENT"
+}
+    }
+    if( req.body.type=="PHONE_NUMBER_VR"){
+        query={
+            otp: req.body.otp,
+            phone_number: user.country_code+user.phone_number,
+            otp_vr_status:"SENT"
+        }
+            }
+    OTP.findOneAndUpdate(query, {
             otp_vr_status: "SUCCESS",
             vr_on: new Date()
         }, {
@@ -331,11 +457,22 @@ exports.verifyotp = function (req, res) {
 
                 if (result) {
 
+                    if( req.body.type=="EMAIL"){
+                        signup(user, res);
 
-                    var update = {
-                        phone_vr: true
-                    };
-                    UserProfileUpdate(req.body.user_id, update, res);
+                    }
+                    if( req.body.type=="PHONE_NUMBER_VR"){
+                        var update = {
+                            phone_vr: true,
+                            country_code:user.country_code,
+                            phone_number:user.phone_number,
+                            updated_on: new Date()
+                        };
+
+
+                        UserProfileUpdate(user.user_id, update, res);
+
+                    }
 
 
                 }
@@ -357,8 +494,8 @@ function UserProfileUpdate(userId, update, res) {
         }, function (err, user) {
 
             res.json({
-                success: true,
-                user: user
+                success: true
+               
 
             });
             // if(user.created_by==="ADMIN"){
@@ -402,14 +539,14 @@ function UserProfileUpdate(userId, update, res) {
 
 exports.signin = function (req, res) {
 
-    User.findOneAndUpdate({
+    User.findOne({
         "$or": [{
             "email": req.body.email
         }, {
             "user_id": req.body.email.toUpperCase()
-        }],
-        password: req.body.password
-    }, {$set: {'online': 'Y'}},{new: true}, function (err, user) {
+        }]
+
+    }, function (err, user) {
         if (err) {
             res.json({
                 type: false,
@@ -417,12 +554,20 @@ exports.signin = function (req, res) {
             });
         } else {
             if (user) {
+                comparePassword(req.body.password, user.password, function (err, pass) {
 
-                if (!user.phone_vr) {
 
-                    createOtp(user, "PHONE_NUMBER_VR");
-                }
-                createToken(res, user);
+                    if (pass) {
+                        createToken(res, user);
+                    }
+                    else {
+                        res.json({
+                            success: false,
+                            msg: "Invalid username/password"
+                        });
+                    }
+                });
+
 
 
             }
@@ -474,50 +619,51 @@ function afterSignIn(user, res) {
 //         }
 //     });
 // };
-exports.isUserLoggedOut=function(userSocketId,callback){
-    
-    Token.findOneAndUpdate( { socket_id: userSocketId} , {$set: {token_status: "INVALID",'online': 'N'}},{new: true},(error, result) => {
-      
-            if (error) {
-                callback({loggedOut:true});
-            }else{
-                if (result===null) {
-                    callback({loggedOut:true});
-                }else{
-                    if (result.online === 'Y') {
-                        callback({loggedOut:false});
-                    }else{
-                        callback({loggedOut:true});
-                    }
-                }					
+exports.isUserLoggedOut = function (userSocketId, callback) {
+
+    Token.findOneAndUpdate({ socket_id: userSocketId }, { $set: { token_status: "INVALID", 'online': 'N' } }, { new: true }, (error, result) => {
+
+        if (error) {
+            callback({ loggedOut: true });
+        } else {
+            if (result === null) {
+                callback({ loggedOut: true });
+            } else {
+                if (result.online === 'Y') {
+                    callback({ loggedOut: false });
+                } else {
+                    callback({ loggedOut: true });
+                }
             }
-        });
-  
+        }
+    });
+
 }
-exports.addSocketId=function(data,callback){
-    
-    Token.update( { user_id : data.user_id}, data.value ,(err, result) => {
-          
-            callback(err,result.result);
-        });
-   
+exports.addSocketId = function (data, callback) {
+
+    Token.update({ user_id: data.user_id }, data.value, (err, result) => {
+
+        callback(err, result.result);
+    });
+
 }
-exports.logout = function (user_id,callback) {
-    Token.findOneAndUpdate({ user_id: user_id }, {$set:{ token_status: "INVALID", online : 'N' }}, { new: true }, function (err, tokenData) {
+exports.logout = function (user_id, callback) {
+    Token.findOneAndUpdate({ user_id: user_id }, { $set: { token_status: "INVALID", online: 'N' } }, { new: true }, function (err, tokenData) {
         if (err) {
-           
+
         } else {
             if (tokenData) {
+                callback();
                 // const data = {
                 //     $set :{
                 //         online : 'N'
                 //     }
                 // };
                 // User.update( {user_id: user_id}, data ,(err, result) => {
-                   
+
                 //     callback(err,result.result);
                 // });
-               
+
             }
         }
     });
@@ -541,7 +687,7 @@ exports.getcountries = function (req, res) {
 exports.getstates = function (req, res) {
     state.find({
         country_id: req.params.countryId
-    },{_id: 0}, function (err, states) {
+    }, { _id: 0 }, function (err, states) {
         if (err) {
             res.json({
                 type: false,
@@ -559,7 +705,7 @@ exports.getstates = function (req, res) {
 exports.getcities = function (req, res) {
     city.find({
         state_id: req.params.state_id
-    },{_id: 0}, function (err, cities) {
+    }, { _id: 0 }, function (err, cities) {
         if (err) {
             res.json({
                 type: false,

@@ -1,6 +1,7 @@
 var serviceConfig = require('./serviceConfig.json');
 var regisLogin = require('./modules/registration_login/registration_login');
 var photo = require('./modules/registration_login/photo');
+
 var admin = require('./modules/admin/view_users');
 var adminTask = require('./modules/admin/admin.task');
 var matches = require('./modules/matches/matches');
@@ -12,7 +13,7 @@ module.exports = function (app, express, process) {
     app.use(serviceConfig.USER_PROFILE_PHOTO_DISPLAY_PATH, express.static(__dirname + '/upload_user_images'));
     app.post(serviceConfig.AUTHENTICATE, regisLogin.authenticate);
     app.post(serviceConfig.SIGNIN, regisLogin.signin);
-    app.post(serviceConfig.SIGNUP, regisLogin.signup);
+   // app.post(serviceConfig.SIGNUP, regisLogin.signup);
     app.post(serviceConfig.UPDATEUSER, regisLogin.UpdateUser);
     app.post(serviceConfig.LOGOUT, regisLogin.logout);
     app.post(serviceConfig.CHECKEMAILID, regisLogin.checkemail);
@@ -22,6 +23,9 @@ module.exports = function (app, express, process) {
     app.get(serviceConfig.STATES, regisLogin.getstates);
     app.get(serviceConfig.CITIES, regisLogin.getcities);
     app.get(serviceConfig.GET_USER_LOC, regisLogin.getUserLocation);
+    app.post(serviceConfig.SENDEMAILOTP, regisLogin.sendEmailOtp);
+    app.post(serviceConfig.SENDEPHONEOTP, regisLogin.sendPhoneOtp);
+    
     //PARTNER//
     app.post(serviceConfig.SAVE_PARTNER_PRE, search.savePartnerPre);
     app.post(serviceConfig.GET_PARTNER_PRE, search.getPartnerPre);
@@ -72,7 +76,7 @@ app.post(serviceConfig.GET_CALENDER_REQUESTS, search.getRequestsCount);
     app.get(serviceConfig.GETALL_INACTIVE_USERS, admin.getallinActiveUsers);
     app.post(serviceConfig.ADMIN_ACCEPT, admin.adminAccept);
     app.post(serviceConfig.ADMIN_ACCEPT_PHOTO, adminTask.adminAcceptPhoto);
-
+    app.post(serviceConfig.ADMIN_ACTIVE_USER, adminTask.admin_active_user);
     app.get(serviceConfig.GET_ALL_USERS_STATUS_COUNT, admin.get_all_users_status_count);
 
     app.post(serviceConfig.GETALLUSERS_GROUPBY_PHOTO_STATUS, admin.getallusersgroupbyphotostatus);

@@ -5,11 +5,14 @@ module.exports =function($http,ServiceUrls,$uibModal){
             acceptPhoto: function(data,success, error) {
                 $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACCEPT_PHOTO,data).success(success).error(error);
             },
+            activeUser: function(data,success, error) {
+                $http.post(ServiceUrls.BASEURL + ServiceUrls.ADMIN_ACTIVE_USER,data).success(success).error(error);
+            },
             openRejectModal:function(user){
                   var modalInstance = $uibModal.open({
                          animation: true,
                          windowClass: "login-model",
-                         templateUrl: './app/admin/reject-modal/reject.modal.html',
+                         templateUrl: 'app/admin/reject-modal/reject.modal.html',
                          controller: 'rejectController',
                          controllerAs: 'ctrl',
                          size: "lg",

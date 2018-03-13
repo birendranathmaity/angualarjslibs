@@ -2,7 +2,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/noinformation.html',
+        templateUrl:'app/common/noinformation.html',
         controllerAs:'$ctrl',
         scope:{
            type:"@"
@@ -24,5 +24,5 @@ module.exports = function () {
                 
 
             }]
-        }
+        };
     };

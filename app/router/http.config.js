@@ -14,7 +14,7 @@ module.exports = function ($httpProvider) {
                     return config;
                 },
                 'responseError': function(response) {
-                    console.log(response.status)
+                  
                     if(response.status === 401 || response.status === 403) {
                      
                      

@@ -2,7 +2,7 @@
 module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservice, $admintaskservice, $timeout) {
     return {
         restrict: 'E',
-        templateUrl: './app/registration-login/components/regis.form.html',
+        templateUrl: 'app/registration-login/components/regis.form.html',
         controllerAs: 'registerFormCtrl',
         replace: true,
         scope: {
@@ -89,7 +89,10 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                         return $filter('translate')('YEAR_VALIDATION');
 
                     }
+                   if(!moment(year+" "+month+" "+day,'YYYY MM DD').isValid()){
+                    return $filter('translate')('WRONG_DATE');
 
+                   }
 
                     if (gender === "MALE" && loginservice.calculate_age(month, day, year) < 21) {
                         return $filter('translate')('AGE_VERIFICATION_MALE');
@@ -130,26 +133,28 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                     else{
                         form.uploaded_by=form.created_by;
                     }
-                    loginservice.signup(form, function (res) {
+                    form.vrtype="EMAIL";
+                    loginservice.openotpPopup(form);
+                    // loginservice.signup(form, function (res) {
 
-                        if (res.success) {
+                    //     if (res.success) {
 
-                            if (controller.isAdmin) {
+                    //         if (controller.isAdmin) {
                                
-                                loginservice.openMoreInfoModal(res.user);
-                            }
-                            else {
-                                loginservice.saveToken(res.token);
-                            }
+                    //             loginservice.openMoreInfoModal(res.user);
+                    //         }
+                    //         else {
+                    //             loginservice.saveToken(res.token);
+                    //         }
 
 
 
-                        }
+                    //     }
 
 
-                    }, function () {
+                    // }, function () {
 
-                    });
+                    // });
 
 
                 };
@@ -258,7 +263,7 @@ module.exports = function ($rootScope, $uibModal, $viewusers, toastr, loginservi
                 //     var modalInstance = $uibModal.open({
                 //         animation: true,
                 //         windowClass: "login-model",
-                //         templateUrl: './app/registration-login/otp-verification/otp.html',
+                //         templateUrl: 'app/registration-login/otp-verification/otp.html',
                 //         controller: 'OtpVrController',
                 //         controllerAs: 'ctrl',
                 //         size: size,

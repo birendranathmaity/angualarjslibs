@@ -30,7 +30,23 @@ module.exports = angular.module('app.ui.common', [])
 .factory("useractions",userAction)
 .factory("socket",socket)
 .factory('toastr',toastr)
-.directive('dontFill', function() {
+.directive('onlyLettersInput', function onlyLettersInput() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attr, ngModelCtrl) {
+      function fromUser(text) {
+        var transformedInput = text.replace(/[^a-zA-Z]/g, '');
+        //console.log(transformedInput);
+        if (transformedInput !== text) {
+          ngModelCtrl.$setViewValue(transformedInput);
+          ngModelCtrl.$render();
+        }
+        return transformedInput;
+      }
+      ngModelCtrl.$parsers.push(fromUser);
+    }
+  };
+}).directive('dontFill', function() {
     
       return {
     

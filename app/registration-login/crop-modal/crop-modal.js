@@ -8,7 +8,7 @@ module.exports = function CropModalController($rootScope,loginservice, $state, $
         height: "100%",
         display: "block",
        "object-fit": "cover"
-    }
+    };
     //modal close button//
     controller.cancel = function () {
         $uibModalInstance.dismiss('cancel');

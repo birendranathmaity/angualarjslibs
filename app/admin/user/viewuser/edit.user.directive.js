@@ -5,7 +5,7 @@ module.exports = function ($http) {
         scope:{
              viewType:"="
         },
-        templateUrl: './app/admin/user/viewuser/edit.user.html',
+        templateUrl: 'app/admin/user/viewuser/edit.user.html',
         controller: 'editUserDirCtrl',
         controllerAs:'ctrl',
         link:function($scope, $element, $attrs){

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, loginservice, $admintaskservice, toastr) {
+module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibModal, loginservice, $admintaskservice, toastr) {
 
     var controller = this;
     controller.limit = 10;
@@ -155,7 +155,51 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
 
     }
+    controller.activate = function (user_id) {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            windowClass: "",
+            templateUrl: 'app/popuptemplates/delete.modal.html',
+            controller: function ($scope) {
+                var main = this;
+                main.type="ACTIVATE";
+                main.yes = function () {
+                    finalcall();
+                    modalInstance.dismiss('cancel');
+                };
+                main.no = function () {
+                    modalInstance.dismiss('cancel');
+                };
 
+
+            },
+            controllerAs: '$ctrl',
+            size: "lg",
+            backdrop: 'static',
+            keyboard: false,
+            resolve: {
+
+            }
+
+        });
+
+function finalcall(){
+    $admintaskservice.activeUser({user_id:user_id}, function (res) {
+        
+        if(res.success)
+{
+    toastr.success('Successfully activated');
+}            
+else{
+    toastr.error('not activated');
+}
+
+
+        
+                }, function () { });
+   
+}
+    };
     controller.reject = function (user) {
         $admintaskservice.openRejectModal(user);
 
@@ -190,7 +234,7 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, logins
 
     controller.photoView = {
         pos: "top",
-        templateUrl: './app/admin/user/viewuser/photo.view.html'
+        templateUrl: 'app/admin/user/viewuser/photo.view.html'
 
     };
 

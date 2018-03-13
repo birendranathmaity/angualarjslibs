@@ -23,7 +23,7 @@ var controller = this;
          var modalInstance = $uibModal.open({
          animation: true,
          windowClass :"login-model",
-         templateUrl: './app/registration-login/login-modal/login.html',
+         templateUrl: 'app/registration-login/login-modal/login.html',
          controller: 'LoginController',
          controllerAs: 'ctrl',
          backdrop: 'static',

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function AddPhotosController($location,$scope,$timeout,$rootScope,loginservice) {
+module.exports = function AddPhotosController($location,$scope,$timeout,$rootScope,loginservice,toastr) {
     var controller = this;
     var pics=loginservice.getProfilePic();
 	
@@ -17,18 +17,24 @@ module.exports = function AddPhotosController($location,$scope,$timeout,$rootSco
    
 				/*****************************************************/
 				controller.UploadAlbum = function () {
-                   
-					loginservice.getCurrentUserSession(function(userDe){
-						//console.log(userDe)
-						var user = {
-                            user_id: userDe.user_id,
-                            skip_url: 'root.addphotos',
-							photo_type: 'ALBUM',
-							from_sec: 'userAlbum'
-                           
-                        };
-					loginservice.openCropPopup(user);
-							});
+                    if(pics.profile && pics.profile.photo_vr){
+						loginservice.getCurrentUserSession(function(userDe){
+							//console.log(userDe)
+							var user = {
+								user_id: userDe.user_id,
+								skip_url: 'root.addphotos',
+								photo_type: 'ALBUM',
+								from_sec: 'userAlbum'
+							   
+							};
+						loginservice.openCropPopup(user);
+								});
+
+					}
+					else{
+						toastr.error('Please Upload profile photo');
+					}
+					
                 };
 				$scope.$on('userAlbumPhotoBoradcastToDisplay', function ($event,photo){
 

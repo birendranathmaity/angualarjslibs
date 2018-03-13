@@ -33,25 +33,8 @@ module.exports = function PreMatchesController($state, $location, searchService,
 
         searchService.getSearchResult(req, function (result) {
 
-            setUserData(result)
+            setUserData(result);
         }, function (error) { });
-
-        //     if(controller.fields){
-        //         serachResult();
-        //     }
-
-
-        //    else{
-        //     searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
-        //         if (result) {
-        //             req.fields=result;
-        //             controller.fields=result;
-        //             req.gender=$rootScope.login_user_gender;
-        //             serachResult();
-        //         }
-
-        //             },function(error){});
-        //    }
 
     };
 

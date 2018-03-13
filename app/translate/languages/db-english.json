@@ -71,6 +71,7 @@
 "YEAR_VAL_HOME":"select year",
 "MOBILE_VAL_HOME":"enter valid mobile number",
 "LOGIN_POPUP":"Login with your Email Id",
+"WRONG_DATE":"Select a vaid date of birth",
 "KEEP_SIGNEDIN_POPUP":"keep me signed in",
 "FORGETPASSWORD_POPUP":"Forgot Password?",
   "DASHBOARD": "Dashboard",

@@ -7,9 +7,9 @@ controller.goState=function(state){
 
 };
     controller.notifn = {
-        notiUrl: './app/layouts/components/noti.html',
-        msgUrl: "./app/layouts/components/msg.html",
-        proUrl: './app/layouts/components/profileDropDown.html',
+        notiUrl: 'app/layouts/components/noti.html',
+        msgUrl: "app/layouts/components/msg.html",
+        proUrl: 'app/layouts/components/profileDropDown.html',
         position: 'bottom',
         proPos: 'bottom'
     };
@@ -91,7 +91,7 @@ controller.goState=function(state){
             user_id: $rootScope.login_user_id,
             dataType: "UNREADMSG",
             searchType: "INBOX"
-        }
+        };
         messagesservice.get_messages(reqMsg, function (messages) {
 
             controller.messages = messages;
@@ -109,7 +109,7 @@ controller.goState=function(state){
             limit: 10,
             user_id: $rootScope.login_user_id,
             status: "UNREAD"
-        }
+        };
         useractions.get_notifications(reqNoti, function (notifications) {
 
 
@@ -205,13 +205,12 @@ controller.goState=function(state){
         
         bodyOutputType: 'templateWithData',
         timeout: 3000
-  })
+  });
 
-  }
+  };
     
     socket.on($rootScope.login_user_id+"MSG",function(data){
      data.type="MSG";
-     console.log(data)
      controller.messages.docs.unshift(data);
      controller.messages.total++;
      controller.open(data);
@@ -220,8 +219,7 @@ controller.goState=function(state){
     });
     socket.on($rootScope.login_user_id+"NOTI",function(data){
         data.type="NOTI";
-        console.log(data)
-        controller.notifications.docs.unshift(data);
+       controller.notifications.docs.unshift(data);
         controller.notifications.total++;
         controller.open(data);
         controller.sounds.sound.play();
@@ -242,7 +240,7 @@ controller.goState=function(state){
         
         controller.pic=msg;
         
-            })
+            });
     
     $scope.$on('$destroy', function () {
 

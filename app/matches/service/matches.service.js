@@ -11,7 +11,7 @@ var service={
      get_partner_pre: function (data, success, error) {
         $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_PARTNER_PRE, data).success(success).error(error);
     }
-}
+};
 return service;
 
-}    
+}; 

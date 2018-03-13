@@ -5,9 +5,9 @@ module.exports = function () {
         templateUrl:function(elem,attrs){
           
 if(attrs.type==="SM"){
-    return './app/common/search.sm.html';
+    return 'app/common/search.sm.html';
 }if(attrs.type==="LG"){
-    return './app/common/searchby.lg.html';
+    return 'app/common/searchby.lg.html';
 }
            
         },
@@ -21,5 +21,5 @@ if(attrs.type==="SM"){
         },
         
         controller: "serachByControllerDir"
-        }
-    }
+        };
+    };

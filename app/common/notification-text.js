@@ -2,7 +2,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/notification-text.html',
+        templateUrl:'app/common/notification-text.html',
         controllerAs:'$ctrl',
         scope:{
             notification:"=",
@@ -27,5 +27,5 @@ module.exports = function () {
                 });
               
             }]
-        }
-    }
+        };
+    };

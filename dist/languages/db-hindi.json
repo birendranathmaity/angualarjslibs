@@ -1,0 +1,17 @@
+{
+  "HELLO": "Hello",
+  "MYHOME":"मेरा घर",
+  "MATCHES":"Matches",
+  "SEARCH":"Search",
+  "MESSAGES":"Meassages",
+  "SEARCH_BY_PROFILE_ID":"Search Profile ID",
+  "PROFILE_ID":"Profile Id",
+  "PREFERRED_MATCHES":"पसंदीदा मिलान",
+   "COMPARED_MATCHES":"तुलनात्मक मिलान",
+  "VIEW_ALL":"View All",
+  "COMPLETE_YOUR_PROFILE":"अपनी प्रोफ़ाइल पूरी करें",
+  "VIEWED_PROFILE":"Viewed Profile",
+   "LOGIN":"लॉग इन करें",
+   "REQUIRED":"यह आवश्यक है"
+
+}

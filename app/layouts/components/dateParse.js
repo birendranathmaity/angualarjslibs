@@ -21,7 +21,7 @@ module.exports = function () {
                         return 'just now';
                     }
                     return this.fromNow(a);
-                }
+                };
                 $scope.$watch('date', function (newVal, oldVal) {
 
                     if(!newVal){
@@ -36,5 +36,5 @@ module.exports = function () {
                
 
             }]
-        }
-    }
+        };
+    };

@@ -3,12 +3,12 @@
           <img ng-if="$ctrl.pic.view==='EMPTY' || $ctrl.pic.view==='CONFIRM'" water-mark="$ctrl.pic.displaypic" width="35"
             height="35">
     
-          <img ng-if="$ctrl.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"
+          <img ng-if="$ctrl.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'assets/img/blur_female.jpg':'assets/img/blur_male.jpg'}}"
             width="35" height="35">
 </div>
 <div  class="user-profile-pic pull-left cursorpointer" ng-if="$ctrl.isNoti==='WITHID'">
     <img ng-if="$ctrl.pic.view==='EMPTY' || $ctrl.pic.view==='CONFIRM'" water-mark="$ctrl.pic.displaypic" alt="" width="91" height="88" />
-    <img ng-if="$ctrl.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'dist/assets/img/blur_female.jpg':'dist/assets/img/blur_male.jpg'}}"
+    <img ng-if="$ctrl.pic.view==='BLUR'" ng-src="{{login_user_gender==='MALE'? 'assets/img/blur_female.jpg':'assets/img/blur_male.jpg'}}"
     width="91" height="88">
     <p style="width: 105px;"> ( {{$ctrl.user.user_id}} )</p>
 </div>

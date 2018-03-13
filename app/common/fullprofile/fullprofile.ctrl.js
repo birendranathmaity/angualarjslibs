@@ -1,7 +1,7 @@
 /* @ngInject */
-module.exports = function fullprofileController($crypto,countryService, $state, useractions, searchService, $location, useractions, $scope, $timeout, $rootScope, loginservice, messagesservice) {
+module.exports = function fullprofileController($crypto,countryService, $state, useractions, searchService, $location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
-
+    controller.user_action=$rootScope.user_action;
     var id = $crypto.decrypt($state.params.id);
   if(!id){
     $state.go("root.404");
@@ -103,9 +103,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "maritialstatus") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var ma = 0; ma < value.length; ma++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].maritialstatus) {
+                if (value[ma] === controller.LoginUser.basicinfos[0].maritialstatus) {
                     controller.matchCount++;
                     return true;
 
@@ -116,9 +116,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "mothertounge") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mo = 0; mo < value.length; mo++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].mothertounge) {
+                if (value[mo] === controller.LoginUser.basicinfos[0].mothertounge) {
                     controller.matchCount++;
                     return true;
 
@@ -128,9 +128,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
 
         } if (field === "religion") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mr = 0; mr < value.length; mr++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].religion) {
+                if (value[mr] === controller.LoginUser.basicinfos[0].religion) {
                     controller.matchCount++;
                     return true;
 
@@ -141,9 +141,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "caste") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mc = 0; mc < value.length; mc++) {
 
-                if (value[m].value === controller.LoginUser.basicinfos[0].caste) {
+                if (value[mc].value === controller.LoginUser.basicinfos[0].caste) {
                     controller.matchCount++;
                     return true;
 
@@ -154,9 +154,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "country") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mu = 0; mu < value.length; mu++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].country) {
+                if (value[mu] === controller.LoginUser.basicinfos[0].country) {
                     controller.matchCount++;
                     return true;
 
@@ -167,9 +167,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "state") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var ms = 0; ms < value.length; ms++) {
 
-                if (value[m].id === controller.LoginUser.basicinfos[0].state) {
+                if (value[ms].id === controller.LoginUser.basicinfos[0].state) {
                     controller.matchCount++;
                     return true;
 
@@ -180,9 +180,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "city") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mt = 0; mt < value.length; mt++) {
 
-                if (value[m].id === controller.LoginUser.basicinfos[0].city) {
+                if (value[mt].id === controller.LoginUser.basicinfos[0].city) {
                     controller.matchCount++;
                     return true;
 
@@ -192,9 +192,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
 
         } if (field === "physical_status") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mp = 0; mp < value.length; mp++) {
 
-                if (value[m] === controller.LoginUser.userintrests[0].physical_status) {
+                if (value[mp] === controller.LoginUser.userintrests[0].physical_status) {
                     controller.matchCount++;
                     return true;
 
@@ -205,9 +205,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "physical_status") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mca = 0; mca < value.length; mca++) {
 
-                if (value[m] === controller.LoginUser.userintrests[0].physical_status) {
+                if (value[mca] === controller.LoginUser.userintrests[0].physical_status) {
                     controller.matchCount++;
                     return true;
 
@@ -218,9 +218,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "high_edu") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mh = 0; mh < value.length; mh++) {
 
-                if (value[m] === controller.LoginUser.usereducations[0].high_edu) {
+                if (value[mh] === controller.LoginUser.usereducations[0].high_edu) {
                     controller.matchCount++;
                     return true;
 
@@ -231,9 +231,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "occupation") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var moc = 0; moc < value.length; moc++) {
 
-                if (value[m] === controller.LoginUser.usereducations[0].occupation) {
+                if (value[moc] === controller.LoginUser.usereducations[0].occupation) {
                     controller.matchCount++;
                     return true;
 
@@ -265,9 +265,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "maritialstatus") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var mar = 0; mar < value.length; mar++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].maritialstatus) {
+                if (value[mar] === controller.LoginUser.basicinfos[0].maritialstatus) {
                     return true;
 
                 }
@@ -277,9 +277,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "mothertounge") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m2 = 0; m2 < value.length; m2++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].mothertounge) {
+                if (value[m2] === controller.LoginUser.basicinfos[0].mothertounge) {
                     return true;
 
                 }
@@ -288,9 +288,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
 
         } if (field === "religion") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m3 = 0; m3 < value.length; m3++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].religion) {
+                if (value[m3] === controller.LoginUser.basicinfos[0].religion) {
                     return true;
 
                 }
@@ -300,9 +300,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "caste") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m4 = 0; m4 < value.length; m4++) {
 
-                if (value[m].value === controller.LoginUser.basicinfos[0].caste) {
+                if (value[m4].value === controller.LoginUser.basicinfos[0].caste) {
                     return true;
 
                 }
@@ -312,9 +312,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "country") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m5 = 0; m5 < value.length; m5++) {
 
-                if (value[m] === controller.LoginUser.basicinfos[0].country) {
+                if (value[m5] === controller.LoginUser.basicinfos[0].country) {
                     return true;
 
                 }
@@ -324,9 +324,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "state") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m6 = 0; m6 < value.length; m6++) {
 
-                if (value[m].id === controller.LoginUser.basicinfos[0].state) {
+                if (value[m6].id === controller.LoginUser.basicinfos[0].state) {
                     return true;
 
                 }
@@ -336,9 +336,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "city") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m7 = 0; m7 < value.length; m7++) {
 
-                if (value[m].id === controller.LoginUser.basicinfos[0].city) {
+                if (value[m7].id === controller.LoginUser.basicinfos[0].city) {
                     return true;
 
                 }
@@ -347,9 +347,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
 
         } if (field === "physical_status") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m8 = 0; m8 < value.length; m8++) {
 
-                if (value[m] === controller.LoginUser.userintrests[0].physical_status) {
+                if (value[m8] === controller.LoginUser.userintrests[0].physical_status) {
                     return true;
 
                 }
@@ -359,9 +359,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "physical_status") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m9 = 0; m9 < value.length; m++) {
 
-                if (value[m] === controller.LoginUser.userintrests[0].physical_status) {
+                if (value[m9] === controller.LoginUser.userintrests[0].physical_status) {
                     return true;
 
                 }
@@ -371,9 +371,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "high_edu") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m11 = 0; m11 < value.length; m11++) {
 
-                if (value[m] === controller.LoginUser.usereducations[0].high_edu) {
+                if (value[m11] === controller.LoginUser.usereducations[0].high_edu) {
                     return true;
 
                 }
@@ -383,9 +383,9 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         }
         if (field === "occupation") {
 
-            for (var m = 0; m < value.length; m++) {
+            for (var m22 = 0; m22 < value.length; m22++) {
 
-                if (value[m] === controller.LoginUser.usereducations[0].occupation) {
+                if (value[m22] === controller.LoginUser.usereducations[0].occupation) {
                     return true;
 
                 }
@@ -411,7 +411,7 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
                 request_status: (controller.user.is_user_by_block ==="BLOCK" ? "BLOCK" : "UNREAD")
         
               };
-        if(!controller.user.is_viewed_profile){
+        if(!controller.user.is_viewed_profile && $rootScope.user_action){
             useractions.send_request(reqViewed, function (result) {}, function (error) { }); 
         }
               

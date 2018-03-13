@@ -173,12 +173,7 @@ exports.checkSendTouser = function (req, res) {
 }
 
 exports.saveMessage = function (req, res) {
-
-
-   
-
-    function addMsg(data) {
-
+function addMsg(data) {
         data.send_on=new Date();
         var messageModel = new message(data);
         messageModel.save(function (err, msg) {
@@ -217,8 +212,18 @@ exports.saveMessage = function (req, res) {
         });
 
     }
+    check.api.isActveUser(req.body.user_id,function(is){
+        if(is){
+            addMsg(req.body);
+        }
+    else{
+        res.json({
+            success: false,
+            msg: "user not active"
+        });
+    }
+    });
     
-    addMsg(req.body);
 
 }
 exports.updateMessage = function (req, res) {

@@ -1,7 +1,7 @@
 /* @ngInject */
 module.exports = function (messagesservice, $rootScope, $state) {
     return {
-        templateUrl: './app/my-home/components/messagesbox.html',
+        templateUrl: 'app/my-home/components/messagesbox.html',
         replace: true,
         controllerAs: "$ctrl",
         controller: [
@@ -20,7 +20,7 @@ module.exports = function (messagesservice, $rootScope, $state) {
                 controller.msgCounts = {
                     INBOX: 0,
                     SENT: 0
-                }
+                };
                 messagesservice.get_messages_count(msgCount, function (result) {
 
                     if (result.length > 0) {
@@ -66,7 +66,7 @@ module.exports = function (messagesservice, $rootScope, $state) {
                     ACCEPTED: 0,
                     REJECTED: 0,
                     PENDING: 0
-                }
+                };
                 function loadCounts(type) {
 
                     var reqCount = {
@@ -87,7 +87,7 @@ module.exports = function (messagesservice, $rootScope, $state) {
                                 ACCEPTED: 0,
                                 REJECTED: 0,
                                 PENDING: 0
-                            }
+                            };
                         }
                     }, function (error) {
 

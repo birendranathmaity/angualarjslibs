@@ -1,12 +1,12 @@
 var OTP = require('./../model/user.otp.model');
 const SendOtp = require('sendotp');
-const sendOtp = new SendOtp('172595AQbcw8YLo59a90f6d','Dholbaaje.com for your mobile verificationnumber is {{otp}}');
+const sendOtp = new SendOtp('201808AmER6ZGlyztE5aa25775','From www.dholbaaje.com otp is {{otp}}');
 
 
-exports.sendOtpNumber=function(mobile_number){
-    sendOtp.send(mobile_number, "PRIIND", function (error, data, response) {
+exports.sendOtpNumber=function(mobile_number,otp,success){
+    sendOtp.send(mobile_number, "DHOLBAAJE",otp, function (error, data, response) {
 
-  
+      success(data);
 });
 };
 exports.verifyOtpNumber=function(mobile_number,otp){

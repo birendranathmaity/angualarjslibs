@@ -1,4 +1,5 @@
 var request = require('./../model/request.model');
+var userModel = require('./../model/user.model');
 var check = require('./../check_user');
 var global = require('./../../setGlobal');
 exports.sendRequest = function (req, res) {
@@ -8,59 +9,72 @@ exports.sendRequest = function (req, res) {
         request_user_id: req.body.request_user_id,
         request_type: req.body.request_type
     }
+  
+function sendReq(){
     request.update(query,req.body,{upsert:true}, function (err, resultData) {
-       
-        if (resultData) {
-       check.api.isOnline(req.body.request_user_id, function (isOnline) {
-                   
-                    if (isOnline) {
-                        check.api.getOnlineUser(req.body.user_id, req.body.request_user_id, function (user) {
-
-                            if (user) {
-                                var emitdata = {
-                                    _id: req.body.user_id,
-                                    "request_status": req.body.request_status,
-                                    "request_type": req.body.request_type,
-                                    "request_action": "",
-                                    "whosent": "FROM",
-                                    user: user.user,
-                                    date: req.body.created_on
-                                }
-
-                                global.emit(req.body.request_user_id + "NOTI", emitdata);
-                                res.json({
-                                    success: true,
-                                    msg: "SEND_SUCCESS"
-                                });
-                            }
-
-                        });
-
-                    }
-                    else{
-                        res.json({
-                            success: true,
-                            msg: "SEND_SUCCESS"
-                        });
-                    }
-
-
-                });
-              
-           
-
-        }
-        else {
-            res.json({
-                success: false,
-                msg: "SEND_FALIURE"
-            });
-
-
-        }
-
+        
+         if (resultData) {
+        check.api.isOnline(req.body.request_user_id, function (isOnline) {
+                    
+                     if (isOnline) {
+                         check.api.getOnlineUser(req.body.user_id, req.body.request_user_id, function (user) {
+ 
+                             if (user) {
+                                 var emitdata = {
+                                     _id: req.body.user_id,
+                                     "request_status": req.body.request_status,
+                                     "request_type": req.body.request_type,
+                                     "request_action": "",
+                                     "whosent": "FROM",
+                                     user: user.user,
+                                     date: req.body.created_on
+                                 }
+ 
+                                 global.emit(req.body.request_user_id + "NOTI", emitdata);
+                                 res.json({
+                                     success: true,
+                                     msg: "SEND_SUCCESS"
+                                 });
+                             }
+ 
+                         });
+ 
+                     }
+                     else{
+                         res.json({
+                             success: true,
+                             msg: "SEND_SUCCESS"
+                         });
+                     }
+ 
+ 
+                 });
+               
+            
+ 
+         }
+         else {
+             res.json({
+                 success: false,
+                 msg: "SEND_FALIURE"
+             });
+ 
+ 
+         }
+ 
+     });
+}
+check.api.isActveUser(req.body.user_id,function(is){
+    if(is){
+        sendReq();
+    }
+else{
+    res.json({
+        success: false,
+        msg: "user not active"
     });
-
+}
+});
 
 
 }

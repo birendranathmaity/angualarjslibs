@@ -2,7 +2,7 @@
 module.exports = function editMyProfileController(useractions,$scope,messagesservice, $stateParams, matcheservice, searchService, $rootScope) {
     var controller = this;
     controller.editUserId = $rootScope.login_user_id;
-    console.log($stateParams)
+  
     controller.active=$stateParams.editType;
  
     function loadPartnerPreFields(){

@@ -3,7 +3,8 @@ var uglify = require('gulp-uglify');
 var filesize = require('gulp-filesize');
 var concat = require('gulp-concat');
 var flatten = require('gulp-flatten');
-
+let cleanCSS = require('gulp-clean-css');
+var htmlmin = require('gulp-htmlmin');
 var libraries = {
     js: [
         'assets/plugins/jquery-1.8.3.min.js',
@@ -11,7 +12,8 @@ var libraries = {
         'assets/plugins/watermark.min.js',
         'assets/plugins/aes/aes.js',
         'node_modules/chart.js/Chart.min.js',
-       'server/node_modules/socket.io-client/dist/socket.io.js'
+       'server/node_modules/socket.io-client/dist/socket.io.js',
+       'assets/js/bluebird.min.js'
     //     'assets/jquery-ui/jquery-ui-1.10.1.custom.min.js',
     //     'assets/plugins/boostrapv3/js/bootstrap.min.js',
     //     'assets/plugins/breakpoints.js',
@@ -69,10 +71,17 @@ var libraries = {
         
         ],
     img:['assets/img/**/*.{gif,jpg,png,svg}'],
+    favicon:['assets/favicon/**.*'],
+    res:['assets/res/**/*.{gif,jpg,png,svg}'],
+    language:['languages/**.*'],
     fonts: [
         'assets/fonts/**.*'
+    ],
+    html: [
+        'app/**/*.html'
     ]
 };
+
 
 /**
  * Combines and minifies external libraries
@@ -80,18 +89,18 @@ var libraries = {
 gulp.task('libs-js', function () {
     gulp.src(libraries.js)
         .pipe(concat('dblibs.min.js'))
-      .pipe(uglify())
-        .pipe(filesize())
-        .pipe(gulp.dest('dist/assets/js'));
-});
-
-gulp.task('app-js', function () {
-    gulp.src(libraries.appjs)
-        .pipe(concat('dbapp.min.js'))
         .pipe(uglify())
         .pipe(filesize())
         .pipe(gulp.dest('dist/assets/js'));
 });
+
+// gulp.task('app-js', function () {
+//     gulp.src(libraries.appjs)
+//         .pipe(concat('dbapp.min.js'))
+//         .pipe(uglify())
+//         .pipe(filesize())
+//         .pipe(gulp.dest('dist/assets/js'));
+// });
 
 /**
  * Combines external libraries
@@ -111,6 +120,7 @@ gulp.task('libs-css', function () {
     gulp.src(libraries.css)
         .pipe(concat('dblibs.min.css'))
         .pipe(filesize())
+        // .pipe(cleanCSS())
         .pipe(gulp.dest('dist/assets/css'));
 });
 /**
@@ -121,6 +131,7 @@ gulp.task('app-css', function () {
     gulp.src(libraries.appcss)
         .pipe(concat('dbapp.min.css'))
         .pipe(filesize())
+        // .pipe(cleanCSS())
         .pipe(gulp.dest('dist/assets/css'));
 });
 /**
@@ -137,7 +148,7 @@ gulp.task('app-css', function () {
  */
 gulp.task('app-img', function () {
     gulp.src(libraries.img)
-       // .pipe(flatten())
+         //.pipe(flatten())
         .pipe(gulp.dest('dist/assets/img'));
 });
 
@@ -146,6 +157,27 @@ gulp.task('app-img', function () {
  */
 gulp.task('app-fonts', function () {
     gulp.src(libraries.fonts)
-        .pipe(flatten())
+        //.pipe(flatten())
         .pipe(gulp.dest('dist/assets/fonts'));
+});
+gulp.task('app-favicon', function () {
+    gulp.src(libraries.favicon)
+       // .pipe(flatten())
+        .pipe(gulp.dest('dist/assets/favicon'));
+});
+gulp.task('app-res', function () {
+    gulp.src(libraries.res)
+       // .pipe(flatten())
+        .pipe(gulp.dest('dist/assets/res'));
+});
+gulp.task('app-language', function () {
+    gulp.src(libraries.language)
+       // .pipe(flatten())
+        .pipe(gulp.dest('dist/languages'));
+});
+gulp.task('templates', function () {
+    gulp.src(libraries.html)
+       // .pipe(flatten())
+       .pipe(htmlmin({collapseWhitespace: true,removeComments: true,minifyCSS:true}))
+        .pipe(gulp.dest('dist/app'));
 });

@@ -10,7 +10,7 @@ gulp.task('base', ['clean-index'], function () {
     return gulp.src('./index.src.html')
         .pipe(inject.after('<head>', '\n<!-- \n  -- WARNING!!!\n  -- THIS IS A GENERATED FILE\n  -- Modify index.src.html instead. \n  -->'))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./dist'));
 });
 
 /**
@@ -26,5 +26,5 @@ gulp.task('base-cache', ['clean-index'], function () {
         }))
         .pipe(inject.after('<head>', '\n<!-- \n  -- WARNING!!!\n  -- THIS IS A GENERATED FILE\n  -- Modify index.src.html instead. \n  -->'))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./dist'));
 });

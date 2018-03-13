@@ -34,7 +34,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
     "send_to": "",
     "send_on": new Date(),
     "recived_on": new Date()
-  }
+  };
   controller.onBlur = function ($event) {
 
     if (!controller.messageModel.send_to) {
@@ -44,7 +44,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
       user_id: controller.user.user_id,
       send_to: controller.messageModel.send_to,
       gender: $rootScope.login_user_gender
-    }
+    };
     messagesservice.check_user_currentuser(req, function (result) {
       controller.messageModel.message_type = "NORMAL";
       controller.UserType = result.type;
@@ -70,7 +70,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
     }, function (error) { });
 
 
-  }
+  };
 
 
   //   $scope.$watch("$ctrl.messageModel.send_to", function(newVal, oldVal) {
@@ -96,7 +96,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
         user_id: controller.user.user_id,
         block_user_id: controller.messageModel.send_to
         
-      }
+      };
 
 
       useractions.update_user_block(reqBlock, function (result) {
@@ -119,7 +119,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
         request_type: "MESSAGE",
         request_status: "UNREAD"
 
-      }
+      };
 
       useractions.send_request(reqMsg, function (result) {
         if (result.success) {
@@ -145,7 +145,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
       }, function (error) { });
     }
 
-  }
+  };
 
   if (config.type != "NEW") {
     controller.messageModel.send_to = config.user_id;

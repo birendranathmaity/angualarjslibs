@@ -11,5 +11,5 @@ module.exports =function(toaster){
         
          toaster.error(msg);
      },
-}
+};
 };

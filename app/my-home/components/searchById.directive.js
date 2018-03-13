@@ -2,7 +2,7 @@
 module.exports = function ( $state, $crypto) {
     return {
         restrict: 'E',
-        templateUrl:'./app/my-home/components/searchById.html',
+        templateUrl:'app/my-home/components/searchById.html',
         controller: [
             '$scope',
             '$element',

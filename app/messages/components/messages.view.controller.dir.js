@@ -110,7 +110,7 @@ controller.configScollBar = {
 
     controller.photoView = {
         pos: "top",
-        templateUrl: './app/admin/user/viewuser/photo.view.html'
+        templateUrl: 'app/admin/user/viewuser/photo.view.html'
 
     };
 
@@ -158,7 +158,7 @@ controller.configScollBar = {
         var modalInstance = $uibModal.open({
             animation: true,
             windowClass: "",
-            templateUrl: './app/popuptemplates/delete.modal.html',
+            templateUrl: 'app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
                 main.type="PROCEED";

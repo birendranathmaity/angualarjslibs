@@ -48,12 +48,12 @@ readMsg:function(config,msgId){
         $http.post(ServiceUrls.BASEURL + ServiceUrls.CHECK_USER_CURRENTUSER, data).success(success).error(error);
     },
     getParameterByName:function(name, url) {
-        if (!url) {url = window.location.href};
+        if (!url) {url = window.location.href}
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
             results = regex.exec(url);
-        if (!results) {return null};
-        if (!results[2]) {return ''};
+        if (!results) {return null}
+        if (!results[2]) {return ''}
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     },
 toaster_msg:function(msg){
@@ -65,27 +65,31 @@ toaster_msg_error:function(msg){
 
 },
     composemail:function (config) {
-        var modalInstance = $uibModal.open({
-        animation: true,
-       
-        templateUrl: './app/messages/components/compose.mail.html',
-        controller: 'composeMailController',
-        controllerAs: '$ctrl',
-        size: "lg",
-        backdrop: 'static',
-        keyboard: false,
-        resolve: {
-            config: function () {
-                return config;
-            }
+        if($rootScope.user_action){
+            var modalInstance = $uibModal.open({
+                animation: true,
+               
+                templateUrl: 'app/messages/components/compose.mail.html',
+                controller: 'composeMailController',
+                controllerAs: '$ctrl',
+                size: "lg",
+                backdrop: 'static',
+                keyboard: false,
+                resolve: {
+                    config: function () {
+                        return config;
+                    }
+                }
+            
+           });
         }
-    
-   });
+        else{
+            toastr.error('Your profile is not activated to send message');
+        }
+      
  }
 
 
-}
+};
 return service;
-
-}    
-
+};

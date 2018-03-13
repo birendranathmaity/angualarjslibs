@@ -2,7 +2,7 @@ var message = require('./model/message.model');
 var block = require('./model/block.model');
 var setting = require('./model/setting.model');
 var request = require('./model/request.model');
-var user = require('./model/user.model');
+var userModel = require('./model/user.model');
 var Token = require('./model/user.token.model');
 exports.api = {
     getFinalUsersData: function (results, user_id, success) {
@@ -266,6 +266,29 @@ exports.api = {
             }
         });
     },
+    isActveUser:function(user_id,success){
+        userModel.findOne({
+            user_id: user_id,
+            user_status:"ACTIVE"
+        }, function (err, data) {
+            if (err) {
+                res.json({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                if(data){
+                    success(true);
+                }
+                else{
+                    success(false);
+                }
+        
+        
+            }
+        
+        });
+    },
     isOnline:function(user_id,success){
         Token.findOne({user_id:user_id,online:'Y'},function(err,user){
 
@@ -280,7 +303,7 @@ if(user){
     },
     getOnlineUser:function(informationId,CompareId,success){
         var main=this;
-        user.aggregate([
+        userModel.aggregate([
             
                  
                     {

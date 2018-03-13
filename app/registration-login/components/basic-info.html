@@ -91,11 +91,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Sub Caste</label>
-                            <input type="text" placeholder="Enter Your Sub Caste" ng-model="basicinfo.subcaste">
+                            <input type="text" placeholder="Enter Your Sub Caste" ng-model="basicinfo.subcaste" only-letters-input/>
                         </div>
                         <div class="col-md-6">
                             <label>Gothram </label>
-                            <input type="text" placeholder="Enter Your Gothram" ng-model="basicinfo.gothram" />
+                            <input type="text" placeholder="Enter Your Gothram" ng-model="basicinfo.gothram" only-letters-input/>
                         </div>
                     </div>
                     <div class="row">
@@ -164,7 +164,7 @@
                         </div> -->
                         <div class="col-md-6">
                             <label>Company Name</label>
-                            <input type="text" placeholder="Enter Company Name" ng-model="educationwork.company">
+                            <input type="text" placeholder="Enter Company Name" ng-model="educationwork.company" only-letters-input>
                         </div>
                     </div>
                     <div class="row">
@@ -182,7 +182,7 @@
                         
                         <div class="col-md-6">
                             <label>Designation</label>
-                            <input type="text" placeholder="Enter Your Designation" ng-model="educationwork.designation">
+                            <input type="text" placeholder="Enter Your Designation" ng-model="educationwork.designation" only-letters-input>
                         </div>
                     </div>
                    
@@ -238,7 +238,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Complexion</label>
-                            <p ng-init="intrests.complexion='LIGHT'"></p>
+                            <p ng-init="intrests.complexion='FAIR'"></p>
                             <select class="minimal" ng-model="intrests.complexion">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="com in ctrl.formdata.complexion" value="{{com.value}}">{{com.name}}</option>
@@ -306,7 +306,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Father Name</label>
-                            <input type="text" placeholder="Enter your father name" ng-model="family.father">
+                            <input type="text" placeholder="Enter your father name" ng-model="family.father" only-letters-input>
                         </div>
                         <div class="col-md-6">
                             <label>Father Occupation</label>
@@ -322,7 +322,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Mother Name</label>
-                            <input type="text" placeholder="Enter your mother name" ng-model="family.mother">
+                            <input type="text" placeholder="Enter your mother name" ng-model="family.mother" only-letters-input>
                         </div>
                         <div class="col-md-6">
                             <label>Siblings</label>
@@ -348,17 +348,17 @@
                                 <div class="col-md-8 p-l-0">
                                     <input class="input-btn form-control" type="text" name="phone_number" placeholder="999 999 9999" ng-model="family.phone_number"
                                         validator="ctrl.phoneValidator(family.phone_number) === true" invalid-message="ctrl.phoneValidator(family.phone_number)"
-                                        required-message="ctrl.required('REQUIRED')" validate-on="dirty" required />
+                                        required-message="ctrl.required('REQUIRED')" validate-on="dirty" required ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>City</label>
-                            <input type="text" placeholder="Enter your city" ng-model="family.city">
+                            <input type="text" placeholder="Enter your city" ng-model="family.city" only-letters-input>
                         </div>
                         <div class="col-md-6">
                             <label>Native Place</label>
-                            <input type="text" placeholder="Enter your place" ng-model="family.native_place">
+                            <input type="text" placeholder="Enter your place" ng-model="family.native_place" only-letters-input>
                         </div>
                         <div class="col-md-6">
                             <label>Time Of Birth</label>
@@ -381,7 +381,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Place Of Birth</label>
-                            <input type="text" placeholder="Enter your text" ng-model="family.place_birth">
+                            <input type="text" placeholder="Enter your text" ng-model="family.place_birth" only-letters-input>
                         </div>
                         <div class="col-md-6">
                             <label>Horoscope Details</label>
@@ -394,7 +394,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Zodiac</label>
-                            <p ng-init="family.zodiac='Taurus'"></p>
+                            <p ng-init="family.zodiac=''"></p>
                             <select class="minimal" ng-model="family.zodiac">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="zodiac in ctrl.zodiac" value="{{zodiac.value}}">{{zodiac.name}}</option>
@@ -403,7 +403,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Anal Income</label>
-                            <p ng-init="family.aincome='0T2L'"></p>
+                            <p ng-init="family.aincome='3T5L'"></p>
                             <select class="minimal" ng-model="family.aincome">
                                        <option value="">Not interested</option>
                                        <option ng-repeat="ai in ctrl.formdata.aincome" value="{{ai.value}}">{{ai.name}}</option>

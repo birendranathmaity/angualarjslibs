@@ -13,7 +13,7 @@ module.exports = function authController(loginservice,$location,$filter) {
 //            var modalInstance = $uibModal.open({
 //            animation: true,
 //            windowClass :"login-model",
-//            templateUrl: './app/registration-login/forget-password/forget-password.html',
+//            templateUrl: 'app/registration-login/forget-password/forget-password.html',
 //            controller: 'ForgetPasswordController',
 //            controllerAs: 'ctrl',
 //            size: size

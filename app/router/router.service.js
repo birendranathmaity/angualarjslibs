@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 /* @ngInject */
-module.exports = function ($location, $rootScope, $state,$sessionStorage, routerConfig, loginservice) {
+module.exports = function ($location, $rootScope, $state, $sessionStorage, routerConfig, loginservice) {
     var stateProvider = routerConfig.config.$stateProvider,
         urlRouterProvider = routerConfig.config.$urlRouterProvider,
         handlingRouteChangeError = false;
@@ -21,7 +21,7 @@ module.exports = function ($location, $rootScope, $state,$sessionStorage, router
      * Initializes route helper
      */
     function init() {
-       
+
         handleRoutingTransition();
         handleRoutingErrors();
         handleRoutingSuccess();
@@ -85,6 +85,7 @@ module.exports = function ($location, $rootScope, $state,$sessionStorage, router
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.showGlobalLoader = false;
             handlingRouteChangeError = false;
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             // $rootScope.title = config.appTitle + ' | ' + (toState.title || '');
             // config.previousState = config.loopCheck;
             // config.previousState = fromState;
@@ -106,125 +107,152 @@ module.exports = function ($location, $rootScope, $state,$sessionStorage, router
         var stateChangeStarted = false;
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 
-//if(toParams.permisstion === "NOACTION")
+            //if(toParams.permisstion === "NOACTION")
 
-if(toState.name==="login"){
-    console.log("hh")
-   // $location.path("/kk");
-    return;
-}
+            if (toState.name === "login") {
 
-            if(!$sessionStorage.token){
-               // event.preventDefault();
+                return;
+            }
+
+            if (!$sessionStorage.token) {
+                // event.preventDefault();
                 $location.path("/");
                 return;
 
             }
+            else{
+
+            }
             // if already authenticated...
-          
-        //  callR();
-         //  event.preventDefault();
-        //  if(!stateChangeStarted) {
-        //     stateChangeStarted = true;
-        //    // callR();
-        //    callR()
-        // }
-       
-        $rootScope.$broadcast("loadhedermenu", toState);
-        var isAuthenticated = loginservice.isAuthenticated();
-        
-         var role;
 
-         if (isAuthenticated.isAuth && isAuthenticated.role) {
+            //  callR();
+            //  event.preventDefault();
+            //  if(!stateChangeStarted) {
+            //     stateChangeStarted = true;
+            //    // callR();
+            //    callR()
+            // }
 
-             role=isAuthenticated.role;
-           
-            if (role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
-                return;
+            $rootScope.$broadcast("loadhedermenu", toState);
+            var isAuthenticated = loginservice.isAuthenticated();
 
-            }
-            if (role === "FREEUSER" && toParams.permisstion === "NOACTION") {
-                return;
+            var role;
 
-            }
-            
-            if (role === "ADMIN" && toParams.permisstion === "ADMIN") {
-               
-                   return;
-              }
-              if (role === "ADMIN" && toParams.permisstion === "NOACTION") {
-                
-                   return;
-              }
-              if (role === "ADMIN" && toParams.permisstion === "ALLUSER") {
-                
-                event.preventDefault();
-                return;
-              }
-             
-            if (role === "ADMIN" && toParams.permisstion !== "ADMIN") {
-                $location.path("/404");
-                 return;
-                
-              }
-            
-         }
-          if(!isAuthenticated.isAuth && !isAuthenticated.role){
-           // console.log("no login and no role")
-          
-            $location.path("/register");
-            return;
-        }
-        event.preventDefault();
+            if (isAuthenticated.isAuth && isAuthenticated.role) {
 
-       
-         if (isAuthenticated.isAuth && !isAuthenticated.role) {
-             
-            loginservice
-            .getAuthObject()
-            .then(function (user) {
-                if (user.user_role) {
-                  
-                    if (user.user_role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
-                        $state.go(toState, toParams);
-                        return;
-        
-                    }
-                    if (user.user_role === "FREEUSER" && toParams.permisstion === "ADMIN") {
-                       
-                        $state.go("root.404");
-                          return;
-                      }
-                    if (user.user_role === "FREEUSER" && toParams.permisstion === "NOACTION") {
-                        $state.go(toState, toParams);
-                           return;
-                      }
-                      if (user.user_role === "ADMIN" && toParams.permisstion === "ADMIN") {
-                        
-                        $state.go(toState, toParams);
-                           return;
-                      }
-                    if (user.user_role === "ADMIN" && toParams.permisstion === "ALLUSER") {
-                      
-                      $state.go("root.404");
-                         return;
-                    }
-                    if (user.user_role === "ADMIN" && toParams.permisstion === "NOACTION") {
-                        $state.go(toState, toParams);
-                           return;
-                      }
-                    if (user.user_role === "ADMIN" && toParams.permisstion !== "ALLUSER") {
-                        $state.go(toState, toParams);
-                     
-                           return;
-                      }
-                    
+                role = isAuthenticated.role;
+                if (role === "FREEUSER" && !isAuthenticated.more_info_vr) {
+                    $location.path('/moreinfo');
+                   
+                    return;
                 }
-            });
-             
+                if (role === "FREEUSER" && isAuthenticated.more_info_vr) {
+                   // $location.path('/dashboard');
+                   console.log(toState.name)
+                    return;
+                }
+                if (role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
+                  
+                    return;
 
-         }
-          
+                }
+                if (role === "FREEUSER" && toParams.permisstion === "NOACTION") {
+                    
+                    return;
+
+                }
+
+                if (role === "ADMIN" && toParams.permisstion === "ADMIN") {
+
+                    return;
+                }
+                if (role === "ADMIN" && toParams.permisstion === "NOACTION") {
+
+                    return;
+                }
+                if (role === "ADMIN" && toParams.permisstion === "ALLUSER") {
+
+                    event.preventDefault();
+                    return;
+                }
+
+                if (role === "ADMIN" && toParams.permisstion !== "ADMIN") {
+                    $location.path("/404");
+                    return;
+
+                }
+
+            }
+            if (!isAuthenticated.isAuth && !isAuthenticated.role) {
+                // console.log("no login and no role")
+
+                $location.path("/register");
+                return;
+            }
+            event.preventDefault();
+
+
+            if (isAuthenticated.isAuth && !isAuthenticated.role) {
+
+                loginservice
+                    .getAuthObject()
+                    .then(function (user) {
+                        if (user.user_role === "FREEUSER" && !user.more_info_vr) {
+                           
+                            $state.go("moreinfo", toParams);
+                            return;
+                        }
+                        if (user.user_role === "FREEUSER" && user.more_info_vr) {
+                            console.log(toState.name)
+                            if(toState.name==="moreinfo"){
+                                $state.go("root.dashboard", toParams);
+                                return;
+                            }
+                            // 
+                            
+                         }
+                        if (user.user_role) {
+
+                            if (user.user_role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
+                                $state.go(toState, toParams);
+                                return;
+
+                            }
+                            if (user.user_role === "FREEUSER" && toParams.permisstion === "ADMIN") {
+
+                                $state.go("root.404");
+                                return;
+                            }
+                            if (user.user_role === "FREEUSER" && toParams.permisstion === "NOACTION") {
+                                $state.go(toState, toParams);
+                                return;
+                            }
+                            if (user.user_role === "ADMIN" && toParams.permisstion === "ADMIN") {
+
+                                $state.go(toState, toParams);
+                                return;
+                            }
+                            if (user.user_role === "ADMIN" && toParams.permisstion === "ALLUSER") {
+
+                                $state.go("root.404");
+                                return;
+                            }
+                            if (user.user_role === "ADMIN" && toParams.permisstion === "NOACTION") {
+                                $state.go(toState, toParams);
+                                return;
+                            }
+                            if (user.user_role === "ADMIN" && toParams.permisstion !== "ALLUSER") {
+                                $state.go(toState, toParams);
+
+                                return;
+                            }
+
+                        }
+                    });
+
+
+            }
+
 
         });
     }

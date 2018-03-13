@@ -2,7 +2,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/noti-action.html',
+        templateUrl:'app/common/noti-action.html',
         controllerAs:'$ctrl',
         scope:{
             data:"=",
@@ -22,5 +22,5 @@ module.exports = function () {
                 
 
             }]
-        }
+        };
     };

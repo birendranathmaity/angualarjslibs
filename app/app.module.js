@@ -1,20 +1,12 @@
 // Import angular dependencies
 var angular = require('angular');
+require('angular-sanitize');
 var uiRouter = require('angular-ui-router');
-var ngCookies = require('angular-cookies');
-var ngAnimate = require('angular-animate');
-var ngMessages = require('angular-messages');
-var moment = window.moment = require('moment');
-
 require('ui-router-extras');
-require('../node_modules/@iamadamjowett/angular-click-outside/clickoutside.directive');
-require('moment-range');
-require('ng-device-detector');
-require('ng-idle');
-require('ng-mask');
+var ngAnimate = require('angular-animate');
+var moment = window.moment = require('moment');
 require('angular-ui-switch');
 require('angular-ui-bootstrap');
-require('angular-sanitize');
 require('ui-select');
 require('angularjs-toaster');
 require('ng-scrollbars');
@@ -39,18 +31,12 @@ var activites = require('./activites');
 //var date = require('./date.config');
 angular.module('app.ui', [
     uiRouter,
-    ngCookies,
+    'ct.ui.router.extras',
     ngAnimate,
-    ngMessages,
     'ui.bootstrap',
     'ngSanitize',
     'ui.select',
     'toaster',
-    'angular-click-outside',
-    'ct.ui.router.extras',
-    'ng.deviceDetector',
-    'ngIdle',
-    'ngMask',
     'uiSwitch',
     'ngScrollbars',
     'ngStorage',
@@ -72,14 +58,7 @@ angular.module('app.ui', [
     activites.name
 
   
-]).run(
-    ['$rootScope', '$state', '$stateParams',
-      function ($rootScope, $state, $stateParams) {
-          $rootScope.$state = $state;
-          $rootScope.$stateParams = $stateParams;
-          
-      }
-    ]).config(['$cryptoProvider', function($cryptoProvider){
+]).config(['$cryptoProvider', function($cryptoProvider){
     $cryptoProvider.setCryptographyKey('DHOLBAAJE.COM');
 }]).provider('$crypto', function CryptoKeyProvider() {
     var cryptoKey;
@@ -91,7 +70,7 @@ angular.module('app.ui', [
     this.$get = [function(){
         return {
             getCryptoKey: function() {
-                return cryptoKey
+                return cryptoKey;
             },
 
             encrypt: function(message, key) {
@@ -109,11 +88,11 @@ angular.module('app.ui', [
                     key = cryptoKey;
                 }
 
-                return CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8)
+                return CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8);
             }
-        }
+        };
     }];
-})
+});
 
 //.config(['$provide', date]);
 // angular.element(document).ready(function() {

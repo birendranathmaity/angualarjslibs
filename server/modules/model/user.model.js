@@ -1,5 +1,5 @@
 var mongoose     = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
+mongoose.Promise = global.Promise;
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate-allowdiskuse');
 var Schema       = mongoose.Schema;
 

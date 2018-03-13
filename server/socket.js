@@ -104,8 +104,8 @@ class Socket{
     socketConfig(){
 
         this.io.use(function(socket, next) {
-            console.log(socket.request._query)
-            let user_id = socket.request._query['user_id'];
+          let user_id = socket.request._query['user_id'];
+          console.log(user_id)
             let userSocketId = socket.id;
             const data = {
                 user_id : user_id,
@@ -118,7 +118,7 @@ class Socket{
             }
 
             regisLogin.addSocketId( data ,(error,response)=>{
-                console.log("ssss "+socket.id)
+                
                 next();
             });
         });

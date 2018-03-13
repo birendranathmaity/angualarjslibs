@@ -2,7 +2,7 @@
 module.exports = function ($crypto,$state,loginservice) {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/user.profile.html',
+        templateUrl:'app/common/user.profile.html',
         controllerAs:'$ctrl',
         scope:{
            type:"@",
@@ -34,5 +34,5 @@ module.exports = function ($crypto,$state,loginservice) {
                
 
             }]
-        }
+        };
     };

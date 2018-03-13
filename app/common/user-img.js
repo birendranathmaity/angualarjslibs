@@ -2,7 +2,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/common/user-img.html',
+        templateUrl:'app/common/user-img.html',
         controllerAs:'$ctrl',
         scope:{
             isNoti:"@",
@@ -26,5 +26,5 @@ module.exports = function () {
                 });
                
              }]
-        }
-    }
+        };
+    };

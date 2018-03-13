@@ -1,17 +1,23 @@
-var gulp = require('gulp');
-var inlineAngularTemplates = require('gulp-inline-angular-templates');
-
-gulp.task('templates', function () {
-    return gulp.src('app/**/*.html')
-    .pipe(inlineAngularTemplates('/index.html', {
-         base: './/app/', // (Optional) ID of the <script> tag will be relative to this folder. Default is project dir.
-         prefix: './app/',            // (Optional) Prefix path to the ID. Default is empty string.
-         selector: 'body',       // (Optional) CSS selector of the element to use to insert the templates. Default is `body`.
-         method: 'prepend',       // (Optional) DOM insert method. Default is `prepend`.
-         
-     }))
-    .pipe(gulp.dest('dist'));
-});
+// var gulp = require('gulp');
+// var inlineAngularTemplates = require('gulp-inline-angular-templates');
+// var htmlmin = require('gulp-htmlmin');
+// gulp.task('templates', function () {
+//     return gulp.src('app/**/*.html')
+//     .pipe(htmlmin({collapseWhitespace: true,removeComments: true,minifyCSS:true}))
+//     .pipe(inlineAngularTemplates('/index.html', {
+//          base: 'app/', // (Optional) ID of the <script> tag will be relative to this folder. Default is project dir.
+//          prefix: 'app/',            // (Optional) Prefix path to the ID. Default is empty string.
+//          selector: 'body',       // (Optional) CSS selector of the element to use to insert the templates. Default is `body`.
+//          method: 'prepend',       // (Optional) DOM insert method. Default is `prepend`.
+//          unescape: {             // (Optional) List of escaped characters to unescape
+//              '&lt;': '<',
+//              '&gt;': '>',
+//              '&apos;': '\'',
+//              '&amp;': '&'
+//          }
+//      }))
+//      .pipe(gulp.dest('dist'));
+// });
 // var htmlmin = require('gulp-htmlmin');
 // var angularTemplateCache = require('gulp-angular-templatecache');
 // var SCRIPTS_DEST = 'dist/scripts';

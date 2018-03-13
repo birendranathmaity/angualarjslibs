@@ -1,11 +1,11 @@
 /* @ngInject */
-module.exports = function (loginservice,$crypto,$state) {
+module.exports = function ($rootScope,loginservice,$crypto,$state) {
     return {
         restrict: 'E',
         scope:{
           user:"="
         },
-        templateUrl:'./app/matches/components/profile-view.html',
+        templateUrl:'app/matches/components/profile-view.html',
         controllerAs:'$ctrl',
         controller: [
             '$scope',
@@ -14,6 +14,7 @@ module.exports = function (loginservice,$crypto,$state) {
             function ($scope, $element, $attrs) {
                
                 var controller=this;
+                controller.user_action=$rootScope.user_action;
                 $scope.$watch('user', function (newVal, oldVal) {
                     if (!newVal) {
                         return;

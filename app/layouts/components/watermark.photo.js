@@ -23,7 +23,7 @@ module.exports = function (ServiceUrls) {
                 $scope.$watch('waterMark', function (newVal, oldVal) {
 
                     if (!newVal || Object.keys(newVal).length === 0) {
-                        $attrs.$set('src', " dist/assets/img/emptyphoto.png");
+                        $attrs.$set('src', " assets/img/emptyphoto.png");
                         return;
                     }
                 

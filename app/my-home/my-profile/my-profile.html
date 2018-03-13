@@ -159,11 +159,11 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Sub Caste</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].subcaste}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].subcaste ? current_user_de_all.basicinfos[0].subcaste:'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Gothram </p>
 
-                                                                          <p class="list-group-item-right pull-right"> {{current_user_de_all.basicinfos[0].gothram}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].gothram ? current_user_de_all.basicinfos[0].gothram:'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
 
                                                                           <p class="list-group-item-left pull-left">State Living In</p>
@@ -206,7 +206,7 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Designation</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].designation }}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].designation ? current_user_de_all.usereducations[0].designation:'Not Specified'}}</p>
 
                                                                       </div>
                                                                   </li>
@@ -223,7 +223,7 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Company Name</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].company }}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].company ? current_user_de_all.usereducations[0].company :'Not Specified'}}</p>
 
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Annual Income</p>
@@ -309,23 +309,23 @@
                                                                       <div class="bmd-list-group-col">
                                                                           <p class="list-group-item-left pull-left">Father Name</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].father}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].father ? current_user_de_all.userfamilies[0].father :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left"> Mother Name </p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mother}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mother ? current_user_de_all.userfamilies[0].mother :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Mosal </p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mosal}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mosal ? current_user_de_all.userfamilies[0].mosal :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Nagitive Place </p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].native_place}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].native_place ? current_user_de_all.userfamilies[0].native_place :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Place of birth</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].place_birth}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].place_birth ? current_user_de_all.userfamilies[0].place_birth :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left"> Zodic </p>
                                                                           <p class="list-group-item-right pull-right" ng-repeat="zo in ctrl.formdata.zodiac | where:{value:current_user_de_all.userfamilies[0].zodiac}">{{zo.name}}</p>
@@ -350,11 +350,11 @@
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Sibilings</p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].siblings}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].siblings ? current_user_de_all.userfamilies[0].siblings :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">City </p>
 
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].city}}</p>
+                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].city ? current_user_de_all.userfamilies[0].city :'Not Specified'}}</p>
                                                                           <p class="clearfix"></p>
                                                                           <p class="list-group-item-left pull-left">Time of birth</p>
                                                                           <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].time_birth_hr">Not Interested</p>

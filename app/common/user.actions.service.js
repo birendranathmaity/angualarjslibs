@@ -382,7 +382,7 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
             }
             if (noti.request_type === "PHOTO") {
                 if (noti.whosent === "SENT") {
-                    $state.go('root.photo_request', { 'requestType': "PHOTO", 'viewType': 'SENT' })
+                    $state.go('root.photo_request', { 'requestType': "PHOTO", 'viewType': 'SENT' });
                 }
                 else if (noti.request_action) {
                     $state.go('root.photo_request', { 'requestType': "PHOTO", 'viewType': noti.request_action });
@@ -393,7 +393,7 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
             }
             if (noti.request_type === "CONTACT") {
                 if (noti.whosent === "SENT") {
-                    $state.go('root.contact_request', { 'requestType': "CONTACT", 'viewType': 'SENT' })
+                    $state.go('root.contact_request', { 'requestType': "CONTACT", 'viewType': 'SENT' });
                 }
                 else if (noti.request_action) {
                     $state.go('root.contact_request', { 'requestType': "CONTACT", 'viewType': noti.request_action });
@@ -409,8 +409,7 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
         },
 
 
-    }
+    };
     return service;
 
-}
-
+};

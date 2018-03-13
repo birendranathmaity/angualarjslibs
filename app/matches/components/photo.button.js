@@ -2,7 +2,7 @@
 module.exports = function (loginservice,messagesservice,useractions, $rootScope,$uibModal) {
     return {
         restrict: 'E',
-        templateUrl:'./app/matches/components/photo.button.html',
+        templateUrl:'app/matches/components/photo.button.html',
         controllerAs:'$ctrl',
         scope:{
            user:"="
@@ -29,7 +29,7 @@ module.exports = function (loginservice,messagesservice,useractions, $rootScope,
                         block_user_id: $scope.user.user_id,
                         block_status:"UNBLOCK"
                 
-                      }
+                      };
                 
                 
                       useractions.create_user_block(reqBlock, function (result) {
@@ -47,7 +47,7 @@ module.exports = function (loginservice,messagesservice,useractions, $rootScope,
                 var modalInstance = $uibModal.open({
                     animation: true,
                     windowClass: "",
-                    templateUrl: './app/popuptemplates/delete.modal.html',
+                    templateUrl: 'app/popuptemplates/delete.modal.html',
                     controller: function ($scope) {
                         var main = this;
                         main.type="UNBLOCK";

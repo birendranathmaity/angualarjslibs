@@ -33,11 +33,12 @@
           </div>
           <div class="pull-right">
             <div class="details-status">
-              <span class="animate-number" data-value="86" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
+              <span class="animate-number" data-value="86" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}} %</span>
             </div>
           </div>
           <p class="p-t-4 last-edit">Last Edited On :<span class=""><date-parse date="completeYourProfile.LastUpdateDate"></date-parse> </span></p>
-
+          <a ui-sref="root.editprofile" style="text-decoration:underline" ng-if="completeYourProfile.ProfilePercentage.width < 100">Click here to complete your profile</a>
+          <p class="clearfix"></p>
           <!--<div class="percent-total">
             <ul class="">
               completeYourProfile.user.basicinfos[0].updated_on ? completeYourProfile.user.basicinfos[0].updated_on : completeYourProfile.user.basicinfos[0].created_on
@@ -99,11 +100,13 @@
 
           <div class="pull-right">
             <div class="details-status">
-              <span class="animate-number" data-value="9" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}}</span>
+              <span class="animate-number" data-value="9" data-animation-duration="560">{{completeYourProfile.ProfilePercentage.width}} %</span>
             </div>
           </div>
           <p class="p-t-4">Last Updated :<span class=""> <date-parse date="completeYourProfile.LastUpdateDate"></date-parse>  </span></p>
         </a>
+        <a ui-sref="root.editprofile" style="text-decoration:underline" ng-if="100>completeYourProfile.ProfilePercentage.width < 100">Click here to complete your profile</a>
+        <p class="clearfix"></p>
       </div>
     </div>
   </div>

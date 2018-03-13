@@ -11,7 +11,7 @@ module.exports = function loginCtrl($uibModal,socket,$rootScope,loginservice,$lo
            var modalInstance = $uibModal.open({
            animation: true,
            windowClass :"login-model",
-           templateUrl: './app/registration-login/forget-password/forget-password.html',
+           templateUrl: 'app/registration-login/forget-password/forget-password.html',
            controller: 'ForgetPasswordController',
            controllerAs: 'ctrl',
            size: size

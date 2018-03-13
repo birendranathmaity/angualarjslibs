@@ -29,7 +29,7 @@ module.exports = function searchResultController($rootScope, $state,searchServic
 
         searchService.getSearchResults(req, function (result) {
 
-            setUserData(result)
+            setUserData(result);
         }, function (error) { });
     }
     controller.loadViewType = function () {

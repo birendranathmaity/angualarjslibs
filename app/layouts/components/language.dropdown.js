@@ -2,7 +2,7 @@
 module.exports = function ($translate,$templateCache,$state, $rootScope) {
     return {
         restrict: 'E',
-        templateUrl:'./app/layouts/components/language.dropdown.html',
+        templateUrl:'app/layouts/components/language.dropdown.html',
         controllerAs:'lang',
         controller: [
             '$scope',

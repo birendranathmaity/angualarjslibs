@@ -261,7 +261,7 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
         if (item1.value === any && item1.selected) {
             angular.forEach(data, function (item) {
 
-                if (item.value != any) {
+                if (item.value !== any) {
                     item.selected = false;
 
                 }
@@ -357,7 +357,7 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
     controller.onSelectCallback = function (item, model, g) {
 
         if (model === "ANY") {
-            controller.serachModel[g] = ["ANY"]
+            controller.serachModel[g] = ["ANY"];
         }
         else {
 
@@ -622,17 +622,17 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
                 return temp;
             }
             if (rel === "ISLAM") {
-                for (var key in muslim) {
-                    muslim[key].rname = rname;
-                    muslim[key].religion = rel;
+                for (var key1 in muslim) {
+                    muslim[key1].rname = rname;
+                    muslim[key1].religion = rel;
                 }
                 temp = muslim;
                 return temp;
             }
             if (rel === "CHR") {
-                for (var key in christian) {
-                    christian[key].rname = rname;
-                    christian[key].religion = rel;
+                for (var key2 in christian) {
+                    christian[key2].rname = rname;
+                    christian[key2].religion = rel;
                 }
                 temp = christian;
                 return temp;
@@ -696,7 +696,7 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
             angular.forEach(controller.showProfile, function (itm, value) {
 
                 if (itm.value === item) {
-                    itm.selected = true
+                    itm.selected = true;
 
                 } else {
                     //  itm.selected=false;
@@ -714,7 +714,7 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
             angular.forEach(controller.dontShow, function (itm, value) {
 
                 if (itm.value === item) {
-                    itm.selected = true
+                    itm.selected = true;
 
                 }
                 else {
@@ -811,7 +811,7 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
         }
 
 
-    }
+    };
 
     controller.reset = function () {
         controller.serachModel = {
@@ -885,26 +885,4 @@ module.exports = function serachByControllerDir($scope, $state, $rootScope, coun
         }
 
     });
-    // searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
-
-    //     if (result) {
-
-    //         controller.serachModel = result;
-    //         setMore();
-    //         loadlocationAndCaste();
-
-
-
-    //     }
-    //     else {
-    //         loadCountries();
-    //         setUserAgeHeightInformation();
-    //         setUserBasciInfo();
-    //         setOtherInfo();
-    //         setLocation();
-    //         setMore();
-
-    //     }
-    // }, function (error) { });
-
-}
+ };

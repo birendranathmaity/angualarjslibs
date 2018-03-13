@@ -36,7 +36,7 @@ function serachResult(){
 
     searchService.getSearchResult(req,function(result){
         
-         setUserData(result)
+         setUserData(result);
                  },function(error){});
 }
             controller.loadViewType = function () {

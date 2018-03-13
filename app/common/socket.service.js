@@ -1,11 +1,11 @@
 /* @ngInject */
 module.exports =function($http,ServiceUrls, $rootScope){
-    let socket = null;
+    var socket = null;
    // io.connect('http://localhost:4000');
  return {
     connect: function(user_id){
        
-        socket = io.connect(ServiceUrls.BASEURL,{query: `user_id=${user_id}`});
+        socket = io.connect(ServiceUrls.BASEURL,{query: 'user_id='+user_id});
     },
     on: function (eventName, callback) {
 

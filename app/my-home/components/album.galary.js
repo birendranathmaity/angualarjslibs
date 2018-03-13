@@ -2,7 +2,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl:'./app/my-home/components/album.html',
+        templateUrl:'app/my-home/components/album.html',
         controllerAs:'$ctrl',
         scope:{
             album:"="
@@ -18,7 +18,7 @@ module.exports = function () {
                     if (!newVal) {
                         return;
                     }
-                    console.log(newVal)
+                    
                     controller.images=newVal;
                     
                 });

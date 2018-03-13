@@ -2,7 +2,7 @@
 module.exports = function ($rootScope, useractions,$state, searchService) {
     return {
         restrict: 'E',
-        templateUrl: './app/my-home/components/userActionsTabs.html',
+        templateUrl: 'app/my-home/components/userActionsTabs.html',
         controllerAs: 'userActionsTabs',
         scope: {
             tabType: '@'
@@ -105,7 +105,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                 }
 
                 controller.loadTab = function (index, type) {
-
+                    controller.count=null;
                     controller.loadtype = type;
                     controller.route = controller.tabs[index].route;
                     for (var i = 0; i < controller.tabs.length; i++) {

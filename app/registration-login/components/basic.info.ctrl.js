@@ -2,7 +2,7 @@
 module.exports = function ($uibModal, toastr, $viewusers, $filter, countryService, loginservice, $rootScope) {
     return {
         restrict: 'E',
-        templateUrl: './app/registration-login/components/basic-info.html',
+        templateUrl: 'app/registration-login/components/basic-info.html',
         controllerAs: 'ctrl',
         scope: {
             userId: "=",
@@ -59,7 +59,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     var modalInstance = $uibModal.open({
                         animation: true,
                         windowClass: "login-model",
-                        templateUrl: './app/registration-login/login-modal/login.html',
+                        templateUrl: 'app/registration-login/login-modal/login.html',
                         controller: 'LoginController',
                         controllerAs: 'ctrl',
                         size: size
@@ -188,7 +188,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     var modalInstance = $uibModal.open({
                         animation: true,
                         windowClass: "",
-                        templateUrl: './app/registration-login/help-me-write/help-me-write.html',
+                        templateUrl: 'app/registration-login/help-me-write/help-me-write.html',
                         controller: 'HelpMeWriteController',
                         controllerAs: 'ctrl',
                         size: size
@@ -218,7 +218,7 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                     //  var modalInstance = $uibModal.open({
                     //             animation: true,
                     //             windowClass: "",
-                    //             templateUrl: './app/registration-login/crop-modal/crop-modal.html',
+                    //             templateUrl: 'app/registration-login/crop-modal/crop-modal.html',
                     //             controller: 'CropModalController',
                     //             controllerAs: 'ctrl',
                     //             size: size,

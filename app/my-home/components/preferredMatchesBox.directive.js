@@ -2,7 +2,7 @@
 module.exports = function (searchService,$crypto, $state,loginservice, matcheservice, useractions, $rootScope) {
     return {
         restrict: 'E',
-        templateUrl: './app/my-home/components/preferredMatchesBox.html',
+        templateUrl: 'app/my-home/components/preferredMatchesBox.html',
         controllerAs: 'preferredMatchesBox',
         scope: {
             title: '='
@@ -15,7 +15,6 @@ module.exports = function (searchService,$crypto, $state,loginservice, matcheser
                 var controller = this;
                 controller.title = $scope.title;
                 controller.goToFullProfile=function(id){
-                    
                      $state.go("root.fullprofile",{
                          id: $crypto.encrypt(id),
                          isblock:false

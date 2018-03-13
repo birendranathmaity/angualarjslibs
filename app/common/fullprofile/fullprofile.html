@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 daily-match-all no-padding">
                        <div class=" daily-right" >
-                      <div class="prof-title no-border">
+                      <div class="prof-title no-border ng-hide">
         Whould You Like To Contact? <div class="pull-right"> <a class="next-prof"> Next  Profile  <i class="fa fa-caret-right" aria-hidden="true"></i>
 </a></div>
                
@@ -112,14 +112,14 @@
                     <div class="clearfix"></div>
                     <div class="row-fluid">
                       <div class="col-lg-12">
-                        <div class="contct-conect">
+                        <div class="contct-conect" ng-if="$ctrl.user_action">
                           <h3> Would You Like To Contact ?</h3>
                             <div class="clearfix"></div>
                             
-                            <message-button user="$ctrl.user"></message-button>
-                            <contact-button user="$ctrl.user"></contact-button>
+                            <message-button user="$ctrl.user" ng-if="$ctrl.user_action"></message-button>
+                            <contact-button user="$ctrl.user" ng-if="$ctrl.user_action"></contact-button>
                             <div class="clearfix"></div>
-                            <block-button user="$ctrl.user"></block-button>
+                            <block-button user="$ctrl.user" ng-if="$ctrl.user_action"></block-button>
 
                         </div>
 

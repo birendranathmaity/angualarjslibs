@@ -32,6 +32,12 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             user = obj._doc;
             $rootScope.fname = user.first_name;
             $rootScope.login_user_role = user.user_role;
+            if(user.user_status==="ACTIVE"){
+                $rootScope.user_action=true;
+            }
+            else{
+                $rootScope.user_action=false;  
+            }
             $rootScope.login_user_id = user.user_id;
             $rootScope.login_user_gender = user.gender;
 
@@ -59,14 +65,15 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
         checkemail: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.CHECKEMAILID, data).success(success).error(error);
         },
+        sendEmailOtp: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SENDEMAILOTP, data).success(success).error(error);
+        },
+        sendPhoneOtp: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SENDEPHONEOTP, data).success(success).error(error);
+        },
         verifyOtp: function (data, success, error) {
-            var user = getUserFromToken();
-           // data.user_id = user.user_id;
-           var req= {
-            user_id:user.user_id,
-              otp:data.otp
-            }
-            $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, req).success(success).error(error);
+          
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
         },
 
         afterloginRoute: function (role) {
@@ -92,11 +99,11 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             }
            if (role === "FREEUSER") {
 
-                if (!user.phone_vr) {
-                    this.openotpPopup();
+                // if (!user.phone_vr) {
+                //     this.openotpPopup();
                    
-                    return;
-                }
+                //     return;
+                // }
                 if (!user.more_info_vr) {
                     $location.path('/moreinfo');
                    
@@ -150,16 +157,32 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
 
             });
         },
-        openotpPopup: function () {
+        openotpPopup: function (user) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 windowClass: "login-model",
-                templateUrl: './app/registration-login/otp-verification/otp.html',
+                templateUrl: function(elem,attrs){
+                    console.log(user.vrtype)
+                    if (user.vrtype === "PHONE_NUMBER_VR") {
+                        return 'app/registration-login/otp-verification/phone_p.html';
+                    }
+                    if (user.vrtype === "EMAIL") {
+                        return 'app/registration-login/otp-verification/email.html';
+                    }
+                      
+                      
+                },
+               // templateUrl:user.vrtype === "EMAIL" ? './app/registration-login/otp-verification/email.html' : './app/registration-login/otp-verification/email.html',
                 controller: 'OtpVrController',
                 controllerAs: 'ctrl',
                 size: "lg",
                 backdrop: 'static',
-                keyboard: false
+                keyboard: false,
+                resolve: {
+                    user: function () {
+                        return user;
+                    }
+                }
 
             });
         },
@@ -167,7 +190,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             var modalInstance = $uibModal.open({
                 animation: true,
                 windowClass: "login-model",
-                templateUrl: './app/registration-login/goto-moreinfo-modal/goto-moreinfo.html',
+                templateUrl: 'app/registration-login/goto-moreinfo-modal/goto-moreinfo.html',
                 controller: 'goToMoreController',
                 controllerAs: 'ctrl',
                 size: "lg",
@@ -206,6 +229,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
 
             if ($sessionStorage.token) {
                 var cUser = getUserFromToken();
+               
                 if ($rootScope.current_user_de_all) {
 
                     success(cUser.user_role);
@@ -363,7 +387,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             if ($sessionStorage.token) {
                 var cUser = getUserFromToken();
                
-
+                console.log(cUser)
             }
             else {
                 $location.path("/register");
@@ -388,12 +412,12 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
                     
                     
                                     $rootScope.current_user_de_all = result.user;
-                                    deferred.resolve(result.user)
+                                    deferred.resolve(result.user);
                                    
                     
                                 }, function () { });
                
-            }, 500)
+            }, 500);
 
             return deferred.promise;
         },
@@ -406,14 +430,15 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
 
                     return{
                         role:$rootScope.current_user_de_all.user_role,
+                        more_info_vr:$rootScope.current_user_de_all.more_info_vr,
                         isAuth:true
-                    }
+                    };
                 }
                 else{
                     return{
                         role:null,
                         isAuth:true
-                    }
+                    };
                 }
                 
 
@@ -424,7 +449,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
                 return{
                     role:null,
                     isAuth:false
-                }
+                };
             }
         },
         calculate_age: function (birth_month, birth_day, birth_year) {
@@ -454,7 +479,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             changeUser({});
             delete $sessionStorage.token;
             socket.emit('logout',{user_id:user.user_id},function(result){
-                success(true)
+                success(true);
             });
            // 
            // $http.post(ServiceUrls.BASEURL + ServiceUrls.LOGOUT, data).success(success).error(error);
