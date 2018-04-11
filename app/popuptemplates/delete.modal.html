@@ -1,17 +1,17 @@
 <div>
     <div class="modal-header">
         <a href="#" data-dismiss="modal" ng-click="$ctrl.no()" aria-hidden="true" class="close">×</a>
-         <h3>Action</h3>
+         <h3>{{'DELETE_ACTION_CONFPOPHEADING'| translate}}</h3>
     </div>
     <div class="modal-body">
-            
-        <p ng-if="$ctrl.type==='PROCEED'">Do you want to proceed ?</p>
-        <p ng-if="$ctrl.type==='BLOCK'">Do you want to block this user ?</p>
-        <p ng-if="$ctrl.type==='UNBLOCK'">Do you want to unblock this user ?</p>
-        <p ng-if="$ctrl.type==='ACTIVATE'">Do you want to active this user ?</p>
+        <p ng-if="$ctrl.type==='PROCEED'">{{'DELETE_ACTION_CONFPOP'| translate}}</p>
+        <p ng-if="$ctrl.type==='BLOCK'">{{'BLOCK_ACTION_CONFPOP'| translate}}</p>
+        <p ng-if="$ctrl.type==='UNBLOCK'">{{'UNBLOCK_ACTION_CONFPOP'| translate}}</p>
+        <p ng-if="$ctrl.type==='ACTIVATE'">{{'ACTIVATE_ACTION_CONFPOP'| translate}}</p>
+        <p ng-if="$ctrl.type==='REPORT_ABUSE'">{{'Please you want to continue report abuse'| translate}}</p>
     </div>
     <div class="modal-footer">
-        <button type="button "  class="btn btn-primary yes-btn" ng-click="$ctrl.yes()">Yes</button>
-        <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.no()">No</button>
+        <button type="button "  class="btn btn-primary yes-btn" ng-click="$ctrl.yes()">{{'DELETE_CONF_YESBTN'| translate}}</button>
+        <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.no()">{{'DELETE_CONF_NOBTN'| translate}}</button>
        </div>
 </div>

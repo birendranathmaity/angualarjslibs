@@ -20,7 +20,7 @@ module.exports = function commonroutes(Router) {
         {
             name: "root.fullprofile",
             config: {
-                url: '/fullprofile/:id',
+                url: '/fullprofile?:id',
                 views: {
                     '@': {
                         templateUrl: "app/common/fullprofile/fullprofile.html",

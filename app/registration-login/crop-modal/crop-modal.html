@@ -3,7 +3,7 @@
         <button type="button" class="close" ng-click="ctrl.cancel()" aria-hidden="true">×</button>
         <div class="row">
             <div class="col-lg-12 profile-img customModalTitle">
-                <h4 class="pop-h4"> Upload Profile Photo</h4>
+                <h4 class="pop-h4"> {{ 'UPLOAD_PROPICPOP' | translate }}</h4>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                   ngf-pattern="'image/*'"
                   accept="image/*" 
                   ngf-max-size="5MB" >
-            Select Picture</button>
+            {{ 'SELECTPIC_PROPICPOP' | translate }}</button>
 
           </li>
              <li class="list-group-item cursorpointer ng-hide"  ng-click="ctrl.openCamera()">
@@ -80,7 +80,7 @@
     
   </div>
 <canvas id="snapshot" style="display:none" width="300" height="300"></canvas>
-  <div ng-if="ctrl.myCroppedImage">Preview :</div>
+  <div ng-if="ctrl.myCroppedImage">{{ 'PREVIEW_PROPICPOP' | translate }}</div>
 
   <div ng-if="ctrl.myCroppedImage && ctrl.Iscrop"  style="text-align: center;"><img ng-class="ctrl.cropType==='circle'?'cropCircle':'cropSquare'"  ng-src="{{ctrl.myCroppedImage}}" /></div>
     
@@ -88,11 +88,11 @@
         <div class="modal-footer" >
             <button type="button" ng-disabled="!ctrl.myImage" ng-click="ctrl.savePhoto(ctrl.myImage,ctrl.myImage.name)"  class="button raised hoverable next-step" data-dismiss="modal">
                 <div class="anim"></div>
-                <span>Save & Continue!</span>
+                <span>{{ 'SAVECONBTN_PROPICPOP' | translate }}</span>
             </button>
             <button type="button"  ng-click="ctrl.skip()"  class="button raised hoverable skipbtn" data-dismiss="modal">
                 <div class="anim"></div>
-                <span>Skip & Continue!</span>
+                <span>{{ 'SKIPCONBTN_PROPICPOP' | translate }}</span>
             </button>
         </div>
     </div>

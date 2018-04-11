@@ -15,8 +15,10 @@ var fullprofileController = require('./fullprofile/fullprofile.ctrl');
 var serachByController = require('./serachby.dir.ctrl');
 var noinformation = require('./noinformation');
 var userProfile = require('./user.profile');
+var timelineProfile = require('./timeline.profile');
 module.exports = angular.module('app.ui.common', [])
 .run(routes)
+.directive('timelineProfile', timelineProfile)
 .directive('notificationText', notificationText)
 .directive('userProfile', userProfile)
 .directive('userImg', userImg)

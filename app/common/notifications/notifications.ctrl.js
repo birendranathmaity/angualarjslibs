@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function notificationController($location,useractions,$scope,$timeout,$rootScope,loginservice,messagesservice) {
+module.exports = function notificationController($location, useractions, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
     controller.limit = 10;
     controller.total = 0;
@@ -14,10 +14,10 @@ module.exports = function notificationController($location,useractions,$scope,$t
         page: controller.page,
         limit: controller.limit,
         status: "READ"
-       
+
     };
     controller.loadViewType = function () {
-        
+
         controller.requestIds = [];
         controller.selectedAll = false;
 
@@ -54,7 +54,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
         controller.start = (controller.page - 1) * controller.limit + 1;
         controller.end = controller.start + result.docs.length - 1;
     }
-    
+
 
 
 
@@ -73,17 +73,17 @@ module.exports = function notificationController($location,useractions,$scope,$t
         }
     };
 
-    
+
 
     function broadcastComplete() {
         controller.loadViewType();
         $rootScope.$broadcast('userRequestsBroadcastUpdate', {});
     }
-    controller.action = function (target,ids) {
+    controller.action = function (target, ids) {
         var req = {
             ids: ids,
-            update_type:"UPDATE",
-            request_type:$scope.requestType,
+            update_type: "UPDATE",
+            request_type: $scope.requestType,
             fields: {}
 
 
@@ -92,35 +92,35 @@ module.exports = function notificationController($location,useractions,$scope,$t
         if (target === "ACCEPTED") {
             req.fields = {
                 "request_action": "ACCEPTED",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
         if (target === "PENDING") {
             req.fields = {
                 "request_action": "PENDING",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
         if (target === "REJECTED") {
             req.fields = {
                 "request_action": "REJECTED",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
         if (target === "DELETEFOREVRYONE") {
             req.fields = {
                 "creater_response": "DELETEFOREVRYONE",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
         if (target === "DELETEFORME") {
             req.fields = {
                 "creater_response": "DELETEFORME",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
@@ -130,7 +130,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
 
             req.fields = {
                 "reciver_response": "DELETE",
-                "recived_on":new Date()
+                "recived_on": new Date()
 
             };
         }
@@ -141,7 +141,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
             templateUrl: 'app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
-                main.type="PROCEED";
+                main.type = "PROCEED";
                 main.yes = function () {
                     finalaction();
                 };
@@ -164,7 +164,7 @@ module.exports = function notificationController($location,useractions,$scope,$t
         function finalaction() {
             messagesservice.update_requests(req, function (result) {
                 if (result.success) {
-                    messagesservice.toaster_msg("Successfully updated");
+                    messagesservice.toaster_msg("SUCCESSFULLY_UPDATED");
                     modalInstance.dismiss('cancel');
                     broadcastComplete();
                 }
@@ -177,10 +177,10 @@ module.exports = function notificationController($location,useractions,$scope,$t
         }
 
     };
-   
-    controller.openReq=function(noti){
+
+    controller.openReq = function (noti) {
         useractions.openReq(noti);
-    
+
     };
 
 };

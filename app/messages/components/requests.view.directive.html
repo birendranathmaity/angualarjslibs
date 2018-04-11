@@ -11,33 +11,33 @@
                                 <span class="cr">
                                     <i class="cr-icon fa fa-check"></i>
                                 </span>
-                                <span style="font-size: 12px;"> All
+                                <span style="font-size: 12px;"> {{'REQUEST_ALL'| translate}}
                                 </span>
                             </label>
                             <ul class="pull-right del-link">
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFOREVRYONE',$ctrl.requestIds,[])">Delete for everyone </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFOREVRYONE',$ctrl.requestIds,[])">{{'PICACPT_DELFOREVERYONE'| translate}} </button>
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFORME',$ctrl.requestIds,[])">Delete for me </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.action('DELETEFORME',$ctrl.requestIds,[])">{{'PICACPT_DELFORME'| translate}} </button>
 
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType!='SENT'" class="pic-delete" type="button" ng-click="$ctrl.action('DELETE',$ctrl.requestIds,[])">Delete </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && $ctrl.viewType!='SENT'" class="pic-delete" type="button" ng-click="$ctrl.action('DELETE',$ctrl.requestIds,[])">{{'PIC_DELETE'| translate}} </button>
 
                                 </li>
                                 <li>
                                     <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED')"
-                                        class="pic-accept" type="button" ng-click="$ctrl.action('ACCEPTED',$ctrl.requestIds,$ctrl.uIds)">Accept </button>
+                                        class="pic-accept" type="button" ng-click="$ctrl.action('ACCEPTED',$ctrl.requestIds,$ctrl.uIds)">{{'PIC_ACCEPTBTN'| translate}} </button>
 
                                 </li>
                                 <li>
                                     <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED')"
-                                        class="pic-reject" type="button" ng-click="$ctrl.action('REJECTED',$ctrl.requestIds,$ctrl.uIds)">Reject </button>
+                                        class="pic-reject" type="button" ng-click="$ctrl.action('REJECTED',$ctrl.requestIds,$ctrl.uIds)">{{'PIC_REJECTBTN'| translate}} </button>
 
                                 </li>
                                 <li>
-                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='RECEIVED')" class="pic-notnow" type="button" ng-click="$ctrl.action('PENDING',$ctrl.requestIds,[])">Not Now </button>
+                                    <button ng-if="$ctrl.requestIds.length>0 && ($ctrl.viewType==='RECEIVED')" class="pic-notnow" type="button" ng-click="$ctrl.action('PENDING',$ctrl.requestIds,[])">{{'PIC_NOTNOWBTN'| translate}} </button>
 
                                 </li>
 
@@ -61,8 +61,8 @@
                     <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.requests.length>0">
                         <ul>
                             <li class="pull-left">
-                                <div class=" hidden-xs">Showing
-                                    <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div>
+                                <div class=" hidden-xs"> {{'REQUESTPIC_SHOWING'| translate}}
+                                    <b>{{$ctrl.start}} {{'REQUESTPIC_TO'| translate}} {{$ctrl.end}}</b> {{'REQUESTPIC_OF'| translate}} {{$ctrl.total}} {{'REQUEST_ENTRIES'| translate}}</div>
                             </li>
                             <li class="prev disabled" style="margin-top: -2px;">
                                 <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"
@@ -110,12 +110,12 @@
                                    
                                     <span class="pull-right">
                                         <button class="pic-accept" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='REJECTED' || $ctrl.viewType==='RECEIVED'"
-                                            type="button" ng-click="$ctrl.action('ACCEPTED',[req._id],[req.user.user_id])">Accept</button>
-                                        <button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING',[req._id],[])">Not Now</button>
+                                            type="button" ng-click="$ctrl.action('ACCEPTED',[req._id],[req.user.user_id])">{{'PIC_ACCEPTBTN'| translate}}</button>
+                                        <button class="pic-notnow" ng-if="$ctrl.viewType==='RECEIVED'" type="button" ng-click="$ctrl.action('PENDING',[req._id],[])">{{'PIC_NOTNOWBTN'| translate}}</button>
                                         <button class="pic-reject" ng-if="$ctrl.viewType==='PENDING' || $ctrl.viewType==='ACCEPTED' || $ctrl.viewType==='RECEIVED'"
-                                            type="button" ng-click="$ctrl.action('REJECTED',[req._id],[req.user.user_id])">Reject</button>
+                                            type="button" ng-click="$ctrl.action('REJECTED',[req._id],[req.user.user_id])">{{'PIC_REJECTBTN'| translate}}</button>
                                     </span>
-                                    <p class="pull-right" ng-if="$ctrl.viewType==='SENT' && req.request_action"> Status: <span>{{req.request_action}} </span>  </p>
+                                    <p class="pull-right" ng-if="$ctrl.viewType==='SENT' && req.request_action"> {{'PIC_STATUS'| translate}} <span>{{req.request_action}} </span>  </p>
                                     
                                 </p>
                                 <div class="clearfix"></div>

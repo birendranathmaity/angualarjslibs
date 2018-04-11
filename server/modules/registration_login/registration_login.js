@@ -14,7 +14,7 @@ var PhoneOtpConfig = require('./otp');
 var randomstring = require("randomstring");
 var email = require('../email/email.config');
 var bcrypt = require('bcrypt');
-
+var global = require('./../../setGlobal');
 function cryptPassword(password, callback) {
     bcrypt.genSalt(10, function (err, salt) {
         if (err)
@@ -50,7 +50,7 @@ function createUserId(success) {
 exports.authenticate = function (req, res) {
     User.findOne({
         "$or": [{
-            "email": req.body.email
+            "email": req.body.email.toLowerCase()
         }, {
             "user_id": req.body.email
         }],
@@ -102,6 +102,7 @@ function signup(user, res) {
                 } else {
                     cryptPassword(user.password, function (err, pass) {
                         user.password = pass;
+                        user.email= user.email.toLowerCase();
                         user.created_on = new Date();
                         user.user_id = UserId;
                         user.email_vr = true;
@@ -170,7 +171,12 @@ function afterUserSave(user, res) {
 };
 function tokenId(user) {
     user.password = "";
-    return jwt.sign(user, "dholbaaje.com.nikhil");
+    //{
+      //  expiresIn: 10 // expires in 24 hours
+    //}
+    return jwt.sign(user, global.secret(),
+
+{expiresIn:"2d"});
 };
 function createToken(res, user) {
     var token_Id = tokenId(user);
@@ -541,7 +547,7 @@ exports.signin = function (req, res) {
 
     User.findOne({
         "$or": [{
-            "email": req.body.email
+            "email": req.body.email.toLowerCase()
         }, {
             "user_id": req.body.email.toUpperCase()
         }]

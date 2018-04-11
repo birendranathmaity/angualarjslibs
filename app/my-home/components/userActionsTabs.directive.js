@@ -15,7 +15,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                 var controller = this;
                 controller.tabs1 = [
                     {
-                        name: "Preferred Location",
+                        name: "PREFERRED_LOCATION",
                         count: 0,
                         type: "LOCATION",
                         route:"root.pre_location",
@@ -23,7 +23,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                         users: []
                     },
                     {
-                        name: "Preferred Education",
+                        name: "PREFERRED_EDUCATION",
                         count: 0,
                         type: "EDUCATION",
                         active: false,
@@ -31,7 +31,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                         users: []
                     },
                     {
-                        name: "Preferred Occupation",
+                        name: "PREFERRED_OCCUPATION",
                         count: 0,
                         type: "OCCUPATION",
                         active: false,
@@ -43,7 +43,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                 controller.tabs2 = [
                    
                     {
-                        name: "Profile Visitors",
+                        name: "PROFILE_VISITORS",
                         count: 0,
                         type: "VISITOR",
                         route:"root.visitor_profiles",
@@ -51,7 +51,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                         users: []
                     },
                     {
-                        name: "Viewed Profiles ",
+                        name: "VIEWED_PROFILES",
                         count: 0,
                         type: "VIEWED_PROFILE",
                         route:"root.viewed_profiles",
@@ -59,7 +59,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                         users: []
                     },
                     {
-                        name: "Recently liked",
+                        name: "LIKED_PROFILES",
                         count: 0,
                         type: "LIKED",
                         active: false,
@@ -67,7 +67,7 @@ module.exports = function ($rootScope, useractions,$state, searchService) {
                         users: []
                     },
                     {
-                        name: "Recently Contacted",
+                        name: "RECENTLY_CONTACTED",
                         count: 0,
                         type: "RECENTLT_CONTACTED",
                         route:"root.recently_contacted",

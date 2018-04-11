@@ -1,14 +1,14 @@
 /* @ngInject */
-module.exports =function(toaster){
+module.exports =function(toaster,$filter){
    
  return {
-    success: function(msg){
+    success: function(key){
      
-       
+        var msg= $filter('translate')(key);
         toaster.success(msg);
     },
-    error:function(msg){
-        
+    error:function(key){
+         var msg= $filter('translate')(key);
          toaster.error(msg);
      },
 };

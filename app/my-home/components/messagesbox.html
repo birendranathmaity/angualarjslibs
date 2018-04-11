@@ -1,6 +1,6 @@
 <div class="grid simple dholebaaje-msg animated rotateIn">
   <div class="grid-title no-border">
-    <h4 class="bold">Messages</h4>
+    <h4 class="bold">{{'MESSAGES' | translate}}</h4>
   </div>
   <div class="grid-body no-border pro-bord ">
 
@@ -9,7 +9,7 @@
         <uib-accordion-heading>
           <div class="panel-heading">
             <a>
-              Mail
+              {{'MAIL' | translate}}
             </a>
             <i class="pull-right glyphicon" ng-class="{'fa fa-minus-circle': $ctrl.status.open, 'fa fa-plus-circle': !$ctrl.status.open}"></i>
 
@@ -19,11 +19,11 @@
 
         <div class="panel-body">
           <div class="list-group">
-            <a ng-click="$ctrl.composemail()" class="hand list-group-item panel-compose ">Compose Mail</a>
-            <a class="list-group-item disabled">Inbox
+            <a ng-click="$ctrl.composemail()" class="hand list-group-item panel-compose ">{{'COMPOSE_MAIL' | translate}}</a>
+            <a class="list-group-item disabled">{{'INBOX' | translate}}
               <span class="badge">{{$ctrl.msgCounts.INBOX}}</span>
             </a>
-            <a class="list-group-item">Sent Mail
+            <a class="list-group-item">{{'SENT_MAIL' | translate}}
               <span class="badge">{{$ctrl.msgCounts.SENT}}</span>
             </a>
 
@@ -46,22 +46,22 @@
         <div class="panel-body">
           <div class="list-group">
             <a ng-class="{'adisabled': $ctrl.reqCounts.RECEIVED===0}" ng-click="$ctrl.goState($ctrl.reqCounts.RECEIVED,'RECEIVED',req.type)"
-              class="hand list-group-item ">Recived
+              class="hand list-group-item ">{{'RECEIVED' | translate}}
               <span class="badge">{{$ctrl.reqCounts.RECEIVED}}</span>
             </a>
-            <a ng-class="{'adisabled': $ctrl.reqCounts.SENT===0}" ng-click="$ctrl.goState($ctrl.reqCounts.SENT,'SENT',req.type)" class="hand list-group-item">Sent
+            <a ng-class="{'adisabled': $ctrl.reqCounts.SENT===0}" ng-click="$ctrl.goState($ctrl.reqCounts.SENT,'SENT',req.type)" class="hand list-group-item">{{'SENT' | translate}}
               <span class="badge">{{$ctrl.reqCounts.SENT}}</span>
             </a>
             <a ng-class="{'adisabled': $ctrl.reqCounts.ACCEPTED===0}" ng-click="$ctrl.goState($ctrl.reqCounts.ACCEPTED,'ACCEPTED',req.type)"
-              class="hand list-group-item">Accepted
+              class="hand list-group-item">{{'ACCEPTED' | translate}}
               <span class="badge">{{$ctrl.reqCounts.ACCEPTED}}</span>
             </a>
             <a ng-class="{'adisabled': $ctrl.reqCounts.REJECTED===0}" ng-click="$ctrl.goState($ctrl.reqCounts.REJECTED,'REJECTED',req.type)"
-              class="hand list-group-item">Rejected
+              class="hand list-group-item">{{'REJECTED' | translate}}
               <span class="badge">{{$ctrl.reqCounts.REJECTED}}</span>
             </a>
             <a ng-class="{'adisabled': $ctrl.reqCounts.PENDING===0}" ng-click="$ctrl.goState($ctrl.reqCounts.PENDING,'PENDING',req.type)"
-              class="hand list-group-item">Pending
+              class="hand list-group-item">{{'PENDING' | translate}}
               <span class="badge">{{$ctrl.reqCounts.PENDING}}</span>
             </a>
           </div>

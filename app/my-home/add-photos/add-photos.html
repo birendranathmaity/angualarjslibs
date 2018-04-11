@@ -65,14 +65,14 @@
         <div class="col-md-8 no-padding ">
           <div class="grid simple profile-detail photo-details">
             <div class="prof-title no-border">
-              <h3 class="">Upload Your Photo To Get More Response !</h3>
+              <h3 class="">{{'ADD_PHOTOS_MAINHEADING'| translate}}</h3>
               <div class="clearfix"></div>
-              <h4>Upload Your Profile Photo, Your Album</h4>
+              <h4>{{'ADD_PHOTOS_SUBHEADING'| translate}}</h4>
               <div class="hr-line"> </div>
             </div>
             <div class="grid-body  p-detl-body no-border">
 
-              <button ng-click="ctrl.UploadAlbum()">Add Photo</button>
+              <button ng-click="ctrl.UploadAlbum()">{{'ADDPHOTOBTN_ADDPHOTOS'| translate}}</button>
              <!-- <label ng-repeat="class in ['fade', 'fadeup', 'zoom', 'slide', 'pop', 'revolve']">
 			<input type="radio" name="imgAnim" ng-model="conf.imgAnim" ng-value="class"/> {{class}}
 		</label>
@@ -93,7 +93,7 @@
 
                
                 <div class="col-md-12 p-r-0 aulbum-head">
-                  <h3 class="pic-head">Album</h3>
+                  <h3 class="pic-head">{{'ALBUM'| translate}}</h3>
                   <album-galary album="images"></album-galary>
                   <!-- <div class="row-fluid">
                     <ng-image-gallery
@@ -131,15 +131,15 @@
               <div class="row">
                 <div class="col-lg-12 p-note-total">
 
-                  <h5 class="photo-note"> Please Note</h5>
+                  <h5 class="photo-note">{{'ADD_PHOTOS_NOTE'| translate}} </h5>
 
                   <ol>
-                    <li>You can upload 25 Photos to Your Profile </li>
-                    <li> Photo must be in JPG, GIF or PNG / Bmp format</li>
-                    <li> Photo size must be below 4MB </li>
-                    <li>can’t Upload Picture? Watsapp to 900010000 with your Profile ID & We will </li>
-                    <li>Upload then instantly </li>
-                    <li>Photos get activated in one hour </li>
+                    <li>{{'ADD_PHOTOS_POINT1'| translate}}</li>
+                    <li> {{'ADD_PHOTOS_POINT2'| translate}}</li>
+                    <li>{{'ADD_PHOTOS_POINT3'| translate}}</li>
+                    <li>{{'ADD_PHOTOS_POINT4'| translate}}</li>
+                    <li>{{'ADD_PHOTOS_POINT5'| translate}}</li>
+                    <li>{{'ADD_PHOTOS_POINT6'| translate}}</li>
 
 
 
@@ -148,13 +148,11 @@
 
                   <div class="clearfix"></div>
 
-                  <h4>Other Ways to Upload Your Photos </h4>
+                  <h4>{{'OTHERWAYS_PHOTO_UPLOAD'| translate}} </h4>
                   <ol>
-                    <li>Whatsap your photo to +91 9002010088 and mention your Profile ID</li>
-                    <li>Send Email to dholbaaje </li>
-                    <li>
-                      Email your photos to dholbaaje@dholbaaje.commention your profile ID, Name, Mobile Number in the mail Photo must be in JPG,
-                      GIF or PNG / Bmp format</li>
+                    <li>{{'OTHERWAYS_POINT1'| translate}}</li>
+                    <li>{{'OTHERWAYS_POINT2'| translate}} </li>
+                    <li>{{'OTHERWAYS_POINT3'| translate}}</li>
 
 
 
@@ -172,7 +170,7 @@
               <div class="row">
 
                 <div class="col-lg-5">
-                  <h5 class="approve-head"> <span> <img src="assets/img/right.png" width="30px"></span> Approved Photos </h5>
+                  <h5 class="approve-head"> <span> <img src="assets/img/right.png" width="30px"></span> {{'APPROVED_PHOTOS'| translate}} </h5>
 
                   <div class="clearfix"></div>
                   <div class=" approved-total">
@@ -185,7 +183,7 @@
 
                 </div>
                 <div class="col-lg-7">
-                  <h5 class="approve-head"> <span> <img src="assets/img/close.png" width="30px"></span> Disapprove Photos </h5>
+                  <h5 class="approve-head"> <span> <img src="assets/img/close.png" width="30px"></span>{{'DISAPPROVE_PHOTOS'| translate}}</h5>
 
                   <div class="clearfix"></div>
                   <div class=" approved-total">
@@ -199,7 +197,7 @@
                 </div>
               </div>
 
-              <p class="photo-info"> Need More Information? <a href="#"> Photo Guidelines  </a> | <a href="#"> Faq List </a></p>
+              <p class="photo-info">{{'MORE_PHOTOS_INFORMATION'| translate}}<a href="#">{{'PHOTO_GUIDELENES'| translate}} </a> | <a href="#"> {{'FAQ_LIST'| translate}} </a></p>
 
             </div>
             <!----------------profile Detials End---------------->
@@ -220,7 +218,7 @@
 
           <div class="grid simple  searchdhole">
             <div class=" pref-title no-border">
-              <h4 class="">Photo Settings</h4>
+              <h4 class="">{{'PHOTOSETTINGS_ADDPHOTOS'| translate}}</h4>
 
 
             </div>
@@ -236,14 +234,14 @@
                       <div class="list-search">
                         <div class="search-child">
                           <input id="checkbox1" value="1" type="checkbox">
-                          <label for="checkbox1">Visible To ALL</label>
+                          <label for="checkbox1">{{'VISIBLETOALL_ADDPHOTOS'| translate}}</label>
                         </div>
                       </div>
                       <div class="list-search">
                         <div class="search-child">
 
                           <input id="checkbox2" value="1" type="checkbox">
-                          <label for="checkbox2"> Visible Only on invitation </label>
+                          <label for="checkbox2"> {{'VISIBLEONLYONINV_ADDPHOTOS'| translate}}</label>
 
 
                         </div>
@@ -263,7 +261,7 @@
 
               </div>
               <div class=" searchbtn">
-                <input type="button" value="Save" class="" />
+                <input type="button" value="{{'SAVEBTN_PHOTOSETTINGS'| translate}}" class="" />
 
               </div>
             </div>
@@ -272,7 +270,7 @@
 
           <div class="grid simple  searchdhole">
             <div class=" pref-title no-border">
-              <h4 class="">Search By Profile ID</h4>
+              <h4 class="">{{'SEARCHBY_PROFILEID'| translate}}</h4>
 
 
             </div>
@@ -282,12 +280,12 @@
               <div class="row">
                 <div class="col-xs-12">
 
-                  <h5 class="searchid"> Profile Id</h5>
+                  <h5 class="searchid"> {{'SEBYPROFILEID_HEADINGTXT'| translate}}</h5>
 
                   <div class="insearc">
-                    <Input type="text" class="" placeholder="Eg:D123456" /> </div>
+                    <Input type="text" class="" placeholder="{{'PHSEARCHBY_PROFILEID'| translate}}" /> </div>
                   <div class=" searchbtn">
-                    <input type="button" value="Search" class="" />
+                    <input type="button" value="{{'SEARCHBTN_SEBYPROFILEID'| translate}}" class="" />
 
                   </div>
                 </div>

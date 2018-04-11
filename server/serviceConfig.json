@@ -54,6 +54,7 @@
     "GET_SETTINGS":"/get_settings",
     "UPDATEUSER":"/updateUser",
     "CHECK_ONLINE":"/check_online",
-    "GET_CALENDER_REQUESTS":"/get_calender_requests"
+    "GET_CALENDER_REQUESTS":"/get_calender_requests",
+    "CREATE_REPORT_ABUSE": "/create_report_abuse"
    
 }

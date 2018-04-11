@@ -32,7 +32,7 @@ module.exports = function AddPhotosController($location,$scope,$timeout,$rootSco
 
 					}
 					else{
-						toastr.error('Please Upload profile photo');
+						toastr.error('PLEASE_UPLOAD_PROFILE_PHOTO');
 					}
 					
                 };

@@ -21,70 +21,70 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                     controller.config = $scope.user.contact_btn;
                     controller.isContacted = $scope.user.is_contacted;
                     controller.is_user_by_block = $scope.user.is_user_by_block;
-                    controller.is_blocked_profile=$scope.user.is_blocked_profile;
+                    controller.is_blocked_profile = $scope.user.is_blocked_profile;
                 });
-                controller.unBlock=function(){
+                controller.unBlock = function () {
                     var reqBlock = {
-                        user_id:  $rootScope.login_user_id,
+                        user_id: $rootScope.login_user_id,
                         block_user_id: $scope.user.user_id,
-                        block_status:"UNBLOCK"
-                
-                      };
-                
-                
-                      useractions.create_user_block(reqBlock, function (result) {
-                        if (result.success) {
-                          messagesservice.toaster_msg('Successfully unbloked');
-                          controller.is_blocked_profile=false;
-                          $rootScope.$broadcast('userUnblock');
-                        }
-                
-                
-                      }, function (error) { });
-                };
-               function alertPopup(){
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    windowClass: "",
-                    templateUrl: 'app/popuptemplates/delete.modal.html',
-                    controller: function ($scope) {
-                        var main = this;
-                        main.type="UNBLOCK";
-                        main.yes = function () {
-                            controller.unBlock();
-                            modalInstance.dismiss('cancel');
-                        };
-                        main.no = function () {
-                            modalInstance.dismiss('cancel');
-                        };
-        
-        
-                    },
-                    controllerAs: '$ctrl',
-                    size: "lg",
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-        
-                    }
-        
-                });
-               }
-                controller.checkBlock=function(type,sendNoti){
-                   if(controller.is_blocked_profile){
-                    alertPopup();
-                    return;
-                   }
-                   else{
-                    if(type==='VIEW'){
+                        block_status: "UNBLOCK"
 
-                        controller.viewContact(sendNoti);
-                       }
-                       if(type==='REQ'){
-                        controller.requestContact();
-                       }
-                   
-                   }
+                    };
+
+
+                    useractions.create_user_block(reqBlock, function (result) {
+                        if (result.success) {
+                            messagesservice.toaster_msg('SUCCESSFULLY_UNBLOKED');
+                            controller.is_blocked_profile = false;
+                            $rootScope.$broadcast('userUnblock');
+                        }
+
+
+                    }, function (error) { });
+                };
+                function alertPopup() {
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        windowClass: "",
+                        templateUrl: 'app/popuptemplates/delete.modal.html',
+                        controller: function ($scope) {
+                            var main = this;
+                            main.type = "UNBLOCK";
+                            main.yes = function () {
+                                controller.unBlock();
+                                modalInstance.dismiss('cancel');
+                            };
+                            main.no = function () {
+                                modalInstance.dismiss('cancel');
+                            };
+
+
+                        },
+                        controllerAs: '$ctrl',
+                        size: "lg",
+                        backdrop: 'static',
+                        keyboard: false,
+                        resolve: {
+
+                        }
+
+                    });
+                }
+                controller.checkBlock = function (type, sendNoti) {
+                    if (controller.is_blocked_profile) {
+                        alertPopup();
+                        return;
+                    }
+                    else {
+                        if (type === 'VIEW') {
+
+                            controller.viewContact(sendNoti);
+                        }
+                        if (type === 'REQ') {
+                            controller.requestContact();
+                        }
+
+                    }
 
 
                 };
@@ -108,7 +108,7 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                     useractions.send_request(reqContact, function (result) {
                         if (result.success) {
                             if (request_type === "CONTACT") {
-                                messagesservice.toaster_msg('Successfully sent');
+                                messagesservice.toaster_msg('SUCCESSFULLY_SENT');
                                 controller.config = {
                                     view_contact: false,
                                     alreadysent: true,
@@ -136,22 +136,22 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
 
 
                 };
-   var userBlockUnblock =$scope.$on('userBlockUnblock', function ($event, msg) {
-                    if(msg.block){
-                        controller.is_blocked_profile=true;
+                var userBlockUnblock = $scope.$on('userBlockUnblock', function ($event, msg) {
+                    if (msg.block) {
+                        controller.is_blocked_profile = true;
                     }
-                    else{
-                        controller.is_blocked_profile=false;
+                    else {
+                        controller.is_blocked_profile = false;
                     }
-                            
-                    
-                        });
-                       
-                        $scope.$on('$destroy', function () {
-                    
-                            userBlockUnblock();
-                          
-                        });
+
+
+                });
+
+                $scope.$on('$destroy', function () {
+
+                    userBlockUnblock();
+
+                });
 
             }]
     };

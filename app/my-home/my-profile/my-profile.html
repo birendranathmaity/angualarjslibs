@@ -1,790 +1,563 @@
 <div class="page-content">
-  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-
-  <div class="clearfix"></div>
-  <div class="content">
-
-      <div class="row">
-
-       
-          <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-
-              <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
-              <messages-box></messages-box>
-              <search-by-id></search-by-id>
-              <basic-search-box></basic-search-box>
-
-              <div class="grid simple no-padding ad-here">
-                  <div class="grid-body no-border no-padding">
-                      <img src="assets/img/290x269.jpg" />
-                  </div>
-              </div>
-
-          </div>
-          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-              <div class="col-md-8 no-padding ">
-                 
-                  <div class="grid simple profile-detail">
-                      <div class="prof-title no-border">
-                          <h4 class="">Your Details</h4>
-                          <!-- <div class="u-prof">
-                              <a href="#" onclick="previewProfile()"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a>
-                          </div> -->
-                      </div>
-                      <div class="grid-body  p-detl-body no-border">
-                          <div class="hr-line"> </div>
-                          <div class="row">
-                              <div class="col-lg-6">
-                                  <ul class="list-group">
-                                      <li class="list-group-item">
-                                          <div class="bmd-list-group-col">
-                                              <p class="list-group-item-left pull-left">Age</p>
-
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.age}} Yrs</p>
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Height</p>
-                                              <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
-
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Marital Status</p>
-
-                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Mother Tongue</p>
-
-                                              <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.mother_tongues |  where:{value:current_user_de_all.basicinfos[0].mothertounge}">{{mt.name}}</p>
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Religion </p>
-                                              <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
-
-                                          </div>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <div class="col-lg-6">
-                                  <ul class="list-group">
-                                      <li class="list-group-item">
-                                          <div class="bmd-list-group-col">
-
-                                              <p class="list-group-item-left pull-left">Caste </p>
-                                              <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
-                                              
-                                              <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.basicinfos[0].caste] | joinnameother:', ':'name':ctrl.casteData"
-                                              ng-tt-chars-threshold="10" ></p>
-                                              <p class="clearfix"></p>
-
-                                              <p class="list-group-item-left pull-left">Highest Education</p>
-
-                                              <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | where:{value:current_user_de_all.usereducations[0].high_edu}">{{edu.name}}</p>
-
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Occupation</p>
-
-                                              <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].occupation] | joinnameother:', ':'name':ctrl.formdata.occupations"
-                                              ng-tt-chars-threshold="10" ></p>
-                                              <p class="clearfix"></p>
-
-                                              <p class="list-group-item-left pull-left">City Living In</p>
-
-                                              <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
-                                              <p class="clearfix"></p>
-                                              <p class="list-group-item-left pull-left">Posted By </p>
-                                              <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by |  where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
-                                              
-                                          </div>
-                                      </li>
-                                  </ul>
-
-                              </div>
-
-                          </div>
-
-                      </div>
-                   
-                      <div class="basic-pro-detl">
-                          <div class="grid simple">
-                              <div class="grid-body  u-prof-body no-border">
-                                  <uib-tabset justified="true">
-                                      <uib-tab index="0">
-                                          <uib-tab-heading class="prf-tab tabheading">
-                                              My Profile
-                                          </uib-tab-heading>
-                                          <div class="tab-pane active" id="myProfileEdit">
-                                              <div class="row ">
-
-                                                  <div class="col-md-12">
-                                                      <h4 class="semi-bold"><span class="badge">1</span> Basic Details</h4>
-
-                                                      <div class="hr-line"> </div>
-                                                      <div class="row">
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Age</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.age}} Yrs</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Marital Status</p>
-
-
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Religion</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Country Living in</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{ctrl.userLocation.name}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">City Living in</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Caste</p>
-
-                                                                          <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | where:{value:current_user_de_all.basicinfos[0].caste}">{{cs.name}}</p>
-                                                                          
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Sub Caste</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].subcaste ? current_user_de_all.basicinfos[0].subcaste:'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Gothram </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].gothram ? current_user_de_all.basicinfos[0].gothram:'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-
-                                                                          <p class="list-group-item-left pull-left">State Living In</p>
-                                                                          <p class="list-group-item-right pull-right">{{ctrl.userLocation.state.name}}</p>
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Posted By </p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <div class="clearfix"></div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+                <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
+                <messages-box></messages-box>
+                <search-by-id></search-by-id>
+                <basic-search-box></basic-search-box>
+                <div class="grid simple no-padding ad-here">
+                    <div class="grid-body no-border no-padding"> <img src="assets/img/290x269.jpg" /> </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+                <div class="col-md-8 no-padding ">
+                    <div class="grid simple profile-detail">
+                        <div class="prof-title no-border">
+                            <h4 class="">{{'MYPROFILE_YOURDETAILS'| translate}}</h4>
+                            <!-- <div class="u-prof"> <a href="#" onclick="previewProfile()"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a> </div> --></div>
+                        <div class="grid-body p-detl-body no-border">
+                            <div class="hr-line"> </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <div class="bmd-list-group-col">
+                                                <p class="list-group-item-left pull-left">{{'MYPROFILE_Age'| translate}}</p>
+                                                <p class="list-group-item-right pull-right">{{current_user_de_all.age}} {{'MYPROFILE_YEARS'| translate}}</p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'MYPROFILE_HEIGHT'| translate}}</p>
+                                                <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'MYPROFILE_MARITALSTAT'| translate}}</p>
+                                                <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'MYPROFILE_MOTHERTONGUE'| translate}}</p>
+                                                <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.mother_tongues | where:{value:current_user_de_all.basicinfos[0].mothertounge}">{{mt.name}}</p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'MYPROFILE_RELIGION'| translate}} </p>
+                                                <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <div class="bmd-list-group-col">
+                                                <p class="list-group-item-left pull-left">{{'BDCASTE'| translate}}</p>
+                                                <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
+                                                <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.basicinfos[0].caste] | joinnameother:', ':'name':ctrl.casteData" ng-tt-chars-threshold="10"></p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU'| translate}}</p>
+                                                <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].high_edu] | joinnameother:', ':'name':ctrl.formdata.educations" ng-tt-chars-threshold="10"></p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'EWOCCUPATION'| translate}}</p>
+                                                <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].occupation] | joinnameother:', ':'name':ctrl.formdata.occupations" ng-tt-chars-threshold="10"></p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'BDCITY_LIVING'| translate}}</p>
+                                                <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
+                                                <p class="clearfix"></p>
+                                                <p class="list-group-item-left pull-left">{{'PROFILE_POSTED_BY'| translate}} </p>
+                                                <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="basic-pro-detl">
+                            <div class="grid simple">
+                                <div class="grid-body u-prof-body no-border">
+                                    <uib-tabset justified="true">
+                                        <uib-tab index="0">
+                                            <uib-tab-heading class="prf-tab tabheading"> {{'MY_PROFILE'| translate}} </uib-tab-heading>
+                                            <div class="tab-pane active" id="myProfileEdit">
+                                                <div class="row ">
+                                                    <div class="col-md-12">
+                                                        <h4 class="semi-bold"><span class="badge">1</span> {{'BASIC_DETAILS'| translate}}</h4>
+                                                        <div class="hr-line"> </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'AGE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.age}} {{'YEARS'| translate}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="mt in ctrl.formdata.MaritialStatus | where:{value:current_user_de_all.basicinfos[0].maritialstatus}">{{mt.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDRELIGION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="rt in ctrl.formdata.religions | where:{value:current_user_de_all.basicinfos[0].religion}">{{rt.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDCOUNTRY_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{ctrl.userLocation.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDCITY_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{ctrl.userLocation.city.name}}</p>
                                                                         </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-                                                          <div class="clearfix"></div>
-
-                                                      </div>
-
-                                                  </div>
-                                                  <div class="col-md-12">
-                                                      <h4 class="semi-bold"><span class="badge">2</span> Education & Work Information</h4>
-
-                                                      <div class="hr-line"> </div>
-                                                      <div class="row">
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Heighest Education</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="edu in ctrl.formdata.educations | where:{value:current_user_de_all.usereducations[0].high_edu}">{{edu.name}}</p>
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Occupation</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].occupation] | joinnameother:', ':'name':ctrl.formdata.occupations"
-                                                                          ng-tt-chars-threshold="10" ></p>
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Designation</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].designation ? current_user_de_all.usereducations[0].designation:'Not Specified'}}</p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <!-- <p class="list-group-item-left pull-left">Field of Study</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="ft in ctrl.formdata.studies | where:{value:current_user_de_all.usereducations[0].filed_study}">{{ft.name}}</p> -->
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Company Name</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].company ? current_user_de_all.usereducations[0].company :'Not Specified'}}</p>
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Annual Income</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.aincome | where:{value:current_user_de_all.userfamilies[0].aincome}">{{oc.name}}</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].aincome">Not Interested</p>
-                                                                          
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-
-                                                      </div>
-
-                                                  </div>
-
-                                                  <div class="col-md-12">
-                                                      <h4 class="semi-bold"><span class="badge">4</span>Appearnce & Interests</h4>
-
-                                                      <div class="hr-line"> </div>
-                                                      <div class="row">
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">height</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
-                                                                          
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Complection</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.complexion | where:{value:current_user_de_all.userintrests[0].complexion}">{{oc.name}}</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].complexion">Not Interested</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Phishical Status</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.PhysicalStatus | where:{value:current_user_de_all.userintrests[0].physical_status}">{{oc.name}}</p>
-                                                                          
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Expectation</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Expectation | where:{value:current_user_de_all.userintrests[0].expectation}">{{oc.name}}</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].expectation">Not Interested</p>
-                                                                          <p class="clearfix"></p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Weight</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].weight">Not Interested</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="current_user_de_all.userintrests[0].weight">{{current_user_de_all.userintrests[0].weight}} kg</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Body Type </p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].body_type">Not Interested</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.BodyType | where:{value:current_user_de_all.userintrests[0].body_type}">{{oc.name}}</p>
-                                                                         
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Hobbies</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].hobbie">Not Interested</p>
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="current_user_de_all.userintrests[0].hobbie | joinnameother:', ':'name':ctrl.formdata.hobbies"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-
-                                                      </div>
-
-                                                  </div>
-
-                                                  <div class="col-md-12">
-                                                      <h4 class="semi-bold"><span class="badge">5</span>Family Background & Horoscope</h4>
-
-                                                      <div class="hr-line"> </div>
-                                                      <div class="row">
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Father Name</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].father ? current_user_de_all.userfamilies[0].father :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left"> Mother Name </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mother ? current_user_de_all.userfamilies[0].mother :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Mosal </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mosal ? current_user_de_all.userfamilies[0].mosal :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Nagitive Place </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].native_place ? current_user_de_all.userfamilies[0].native_place :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Place of birth</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].place_birth ? current_user_de_all.userfamilies[0].place_birth :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left"> Zodic </p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="zo in ctrl.formdata.zodiac | where:{value:current_user_de_all.userfamilies[0].zodiac}">{{zo.name}}</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].zodiac">Not Interested</p>
-                                                                          <p class="clearfix"></p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Father Occupation </p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.fatheroccupation | where:{value:current_user_de_all.userfamilies[0].father_occupation}">{{oc.name}}</p>
-                                                                          
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Contact Number</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}} {{current_user_de_all.userfamilies[0].phone_number}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Sibilings</p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].siblings ? current_user_de_all.userfamilies[0].siblings :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">City </p>
-
-                                                                          <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].city ? current_user_de_all.userfamilies[0].city :'Not Specified'}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Time of birth</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].time_birth_hr">Not Interested</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="current_user_de_all.userfamilies[0].time_birth_hr">{{current_user_de_all.userfamilies[0].time_birth_hr}}:{{current_user_de_all.userfamilies[0].time_birth_min}}</p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left"> Horoscope Details</p>
-                                                                          <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Horoscope | where:{value:current_user_de_all.userfamilies[0].horoscope}">{{oc.name}}</p>
-                                                                          <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].horoscope">Not Interested</p>
-
-                                                                          <p class="clearfix"></p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-                                                          <div class="clearfix"></div>
-                                                          <div class="col-lg-12">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left  pull-left">Do you belive in Horoscope </p>
-
-                                                                          <p class="list-group-item-right  pull-right">
-                                                                              {{current_user_de_all.userfamilies[0].beleave_hor ?'Yes':'No'}}
-                                                                          </p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-                                                          </div>
-
-                                                      </div>
-
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </uib-tab>
-                                      <uib-tab index="1">
-                                          <uib-tab-heading class="cont-tab tabheading">
-                                              Contact Details
-                                          </uib-tab-heading>
-                                          <div class="tab-pane" id="tab1FollowUs">
-                                              <div class="row">
-                                                  <div class="col-md-12">
-                                                      <div class="row ">
-
-                                                          <div class="col-md-12">
-                                                              <br />
-                                                              <h4 class="semi-bold"><span class="badge"></span> Please Verify Your Details</h4>
-                                                              <br />
-                                                              <div class="hr-line"> </div>
-                                                              <div class="row">
-                                                                  <div class="col-lg-8">
-                                                                      <ul class="list-group">
-                                                                          <li class="list-group-item">
-                                                                              <div class="bmd-list-group-col">
-                                                                                  <p class="list-group-item-left pull-left">Mobile Number</p>
-
-                                                                                  <p class="list-group-item-right pull-right">{{current_user_de_all.country_code}} {{current_user_de_all.phone_number}}</p>
-                                                                                  <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left ng-hide">Alternate Mobile Number</p>
-
-                                                                                  <p class="list-group-item-right pull-right ng-hide">+91 7396723539</p>
-                                                                                  <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left">Email ID</p>
-
-                                                                                  <p class="list-group-item-right pull-right">{{current_user_de_all.email}}</p>
-                                                                                  <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left ng-hide">Alternate Email Id</p>
-
-                                                                                  <p class="list-group-item-right pull-right ng-hide">biru_name@yahoo.com</p>
-                                                                                  <p class="clearfix"></p>
-                                                                                  <p class="list-group-item-left pull-left">Family Contact Number</p>
-
-                                                                                  <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}} {{current_user_de_all.userfamilies[0].phone_number}}</p>
-
-                                                                              </div>
-                                                                          </li>
-                                                                      </ul>
-                                                                  </div>
-
-                                                                  <div class="clearfix"></div>
-
-                                                              </div>
-
-                                                          </div>
-
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </uib-tab>
-                                      <uib-tab index="2">
-                                          <uib-tab-heading class="part-tab tabheading">
-                                              Partner Preference
-                                          </uib-tab-heading>
-
-                                          <div class="tab-pane" id="tab1Inspire">
-                                              <div class="row">
-                                                  <div class="col-md-12">
-                                                      <h4 class="semi-bold"><span class="badge">1</span> My Prefernces</h4>
-
-                                                      <div class="hr-line"> </div>
-                                                      <div class="row">
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Age</p>
-
-                                                                          <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.age.from}} </span> <span class="small"> To </span> <span class=""> {{ctrl.fieldPartnerPre.age.to}} Yrs</span></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Marital Status</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':ctrl.formdata.MaritialStatus"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Mother Tounge </p>
-                                                                          <p class="list-group-item-right pull-right bold" ng-text-truncate="ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':ctrl.formdata.mother_tongues"
-                                                                          ng-tt-chars-threshold="12"></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Religion</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':ctrl.formdata.religions"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">Caste</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.caste | joinname:', ':'name'" ng-tt-chars-threshold="10"></p>
-                                                                          <!-- {{ctrl.fieldPartnerPre.caste | joinname:', ':'name'}} -->
-                                                                      </div>
-
-                                                                  </li>
-                                                              </ul>
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                              <ul class="list-group">
-                                                                  <li class="list-group-item">
-                                                                      <div class="bmd-list-group-col">
-                                                                          <p class="list-group-item-left pull-left">Country Living in</p>
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.countries"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">State Living in</p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.state | joinname:', ':'name'"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                          <p class="clearfix"></p>
-                                                                          <p class="list-group-item-left pull-left">City Living in </p>
-
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.city | joinname:', ':'name'"
-                                                                          ng-tt-chars-threshold="10"></p>
-                                                                          <p class="clearfix"></p>
-
-                                                                          <p class="list-group-item-left pull-left">Horoscope Details</p>
-                                                                          <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.horoscope | joinnameother:', ':'name':ctrl.formdata.Horoscope"
-                                                                          ng-tt-chars-threshold="10"></p>
-
-                                                                      </div>
-                                                                  </li>
-                                                              </ul>
-
-                                                          </div>
-                                                      </div>
-
-                                                      <div class="row">
-                                                          <div class="col-md-12">
-                                                              <h4 class="semi-bold"><span class="badge">2</span> Education & Work Information</h4>
-
-                                                              <div class="hr-line"> </div>
-                                                              <div class="col-lg-8 no-padding">
-                                                                  <ul class="list-group">
-                                                                      <li class="list-group-item">
-                                                                          <div class="bmd-list-group-col">
-                                                                              <p class="list-group-item-left pull-left">Heighest Education</p>
-
-                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':ctrl.formdata.educations"
-                                                                              ng-tt-chars-threshold="20"></p>
-                                                                              <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Occupation</p>
-                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':ctrl.formdata.occupations"
-                                                                              ng-tt-chars-threshold="20"></p>
-                                                                              <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Annual Income </p>
-                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.aincome | joinnameother:', ':'name':ctrl.formdata.aincome"
-                                                                              ng-tt-chars-threshold="20"></p>
-
-                                                                          </div>
-
-                                                                      </li>
-                                                                  </ul>
-                                                              </div>
-                                                          </div>
-
-                                                      </div>
-
-                                                      <div class="row">
-                                                          <div class="col-md-12">
-                                                              <h4 class="semi-bold"><span class="badge">3</span> Appearence & Interests</h4>
-
-                                                              <div class="hr-line"> </div>
-                                                              <div class="col-lg-8   no-padding">
-                                                                  <ul class="list-group">
-                                                                      <li class="list-group-item">
-                                                                          <div class="bmd-list-group-col">
-                                                                              <p class="list-group-item-left pull-left">Height</p>
-                                                                              <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.height.from | height}} </span> <span class="small"> To </span> <span class=""> {{ctrl.fieldPartnerPre.height.to | height}}</span></p>
-                                                                              <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Physical Status</p>
-                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':ctrl.formdata.PhysicalStatus"
-                                                                              ng-tt-chars-threshold="20"></p>
-                                                                              <p class="clearfix"></p>
-                                                                              <p class="list-group-item-left pull-left">Expectation</p>
-                                                                              <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.expectation | joinnameother:', ':'name':ctrl.formdata.Expectation"
-                                                                              ng-tt-chars-threshold="20"></p>
-                                                                              <p class="clearfix"></p>
-                                                                             
-
-                                                                          </div>
-
-                                                                      </li>
-                                                                  </ul>
-                                                              </div>
-                                                          </div>
-
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="clearfix"></div>
-
-                                              </div>
-                                          </div>
-                                      </uib-tab>
-                                  </uib-tabset>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="basic-pro-detl">
-
-                          <!-- <p>
-                              <a href="#"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a>
-                          </p> -->
-
-                          <div class="clearfix"></div>
-                          <a href="#" class="scrollup profile-up"><img src="assets/img/top-scroll.png" width="30px;"></a>
-                          <div class="input-group send-prof-all">
-                              <input type="text" class="form-control" placeholder="Profile  Page : http://www.dholebaaje.com/myprofile.html/DH123456" aria-describedby="basic-addon2">
-                              <span class="input-group-addon" id="basic-addon2" send-p-link> <a href="" data-toggle="modal" data-target="#myModal"> <i class="fa fa-share-square-o" aria-hidden="true"></i> Send Profile Link </a></span>
-
-                              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                                              <div class="row">
-                                                  <div class="col-lg-12 profile-img"> <img class="pull-left" src="assets/img/profiles/dharma.jpg" alt="" data-src="assets/img/profiles/dharma.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35">
-                                                      <span class="prof-id pull-left"> Db13456 </span> <span class="pull-left"> <h4> Share Her Profile</h4> </span>
-
-                                                  </div>
-                                              </div>
-
-                                          </div>
-                                          <div class="modal-body ">
-                                              <div class="row form-row">
-                                                  <div class="col-lg-6">
-                                                      <div class="form-group">
-                                                          <label class="form-label">Email</label>
-                                                          <div class="controls">
-                                                              <input class="form-control" placeholder="Enter receiver Email" type="text">
-                                                          </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label class="form-label">Your Name</label>
-                                                          <div class="controls">
-                                                              <input class="form-control" placeholder="Enter Your Name" type="text">
-                                                          </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label class="form-label">Say Something</label>
-                                                          <div class="controls">
-                                                              <textarea rows="3" style="width: 100%"></textarea>
-                                                          </div>
-                                                      </div>
-
-                                                  </div>
-                                                  <div class="col-lg-6">
-                                                      <img src="assets/img/shareling-pic.png" />
-                                                  </div>
-
-                                              </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button " class="btn btn-primary yes-btn">Yes</button>
-                                              <button type="button" class="btn btn-default no-btn" data-dismiss="modal">No</button>
-
-                                          </div>
-                                      </div>
-                                      <!-- /.modal-content -->
-                                  </div>
-                                  <!-- /.modal-dialog -->
-                              </div>
-                          </div>
-                      </div>
-
-                  </div>
-</div>
-
-           
-              <div class="col-md-4 col-lg-4 col-sm-12  col-xs-12  ">
-                  <calendar-box></calendar-box>
-
-                  <my-pocket></my-pocket>
-
-                  <div class="grid simple  searchdhole attach-proof">
-                      <div class=" pref-title no-border">
-                          <h4 class="">Attach your ID & Address Proof </h4>
-
-                      </div>
-                      <div class="grid-body  no-border">
-                          <div class="hr-line"> </div>
-
-                          <div class="row">
-                              <div class="col-xs-12">
-
-                                  <h5 class="searchid"> ID Proof </h5>
-
-                                  <div class="insearc ">
-                                      <select class="minimal">
-                                          <option> Voter ID</option>
-                                          <option> Pancard</option>
-                                      </select>
-
-                                      <div class="form-group">
-                                          <input type="file" name="img[]" class="file">
-                                          <div class="input-group col-xs-12 no-padding">
-
-                                              <input type="text" class="form-control input-lg load-img" disabled placeholder="Upload Image" style="width:80%; float: left;">
-                                              <span class=" load-btn">
-      <button class="browse btn " type="button"><i class="fa fa-paperclip" aria-hidden="true"></i>
-</button>
-    </span>
-
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-
-                          </div>
-
-                          <div class="row">
-                              <div class="col-xs-12">
-
-                                  <h5 class="searchid"> Address Proof </h5>
-
-                                  <div class="insearc ">
-                                      <select class="minimal">
-                                          <option> Passport</option>
-                                          <option> Aadhar Card</option>
-                                      </select>
-
-                                      <div class="form-group">
-                                          <input type="file" name="img[]" class="file">
-                                          <div class="input-group col-xs-12 no-padding">
-
-                                              <input type="text" class="form-control input-lg load-img" disabled placeholder="Upload Image" style="width:80%; float: left;" />
-                                              <span class=" load-btn">
-      <button class="browse btn " type="button"><i class="fa fa-paperclip" aria-hidden="true"></i>
-</button>
-    </span>
-
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <div class=" searchbtn col-md-12">
-                                  <div class="pull-left id-verify">
-                                      <input type="button" value="Verify" class="" />
-                                  </div>
-                                  <div class="pull-right id-reset">
-                                      <input type="button" value="Clear" class="" />
-                                  </div>
-
-                              </div>
-                          </div>
-
-                      </div>
-                  </div>
-
-                  <div class="grid simple  searchdhole">
-                      <div class=" pref-title no-border">
-                          <h4 class="">Refer Your Friend</h4>
-
-                      </div>
-                      <div class="grid-body  no-border">
-                          <div class="hr-line"> </div>
-
-                          <div class="row">
-                              <div class="col-xs-12">
-
-                                  <h5 class="searchid"> Email</h5>
-
-                                  <div class="insearc">
-                                      <Input type="text" class="" placeholder="Eg:dharma@gmail.com" /> </div>
-                                  <div class=" searchbtn">
-                                      <input type="button" value="Send" class="" />
-
-                                  </div>
-                              </div>
-
-                          </div>
-                      </div>
-                  </div>
-                  <div class="grid simple no-padding">
-
-                      <div class="grid-body no-border no-padding">
-
-                          <div class="ad-here">
-                              <img src="assets/img/266x169.jpg" />
-
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-      </div>
-  </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'BDCASTE'| translate}}</p>
+                                                                            <p ng-init="ctrl.loadCaste(current_user_de_all.basicinfos[0].religion)"></p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="cs in ctrl.casteData | where:{value:current_user_de_all.basicinfos[0].caste}">{{cs.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDSUBCASTE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].subcaste ? current_user_de_all.basicinfos[0].subcaste:'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDGOTHRAM'| translate}} </p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.basicinfos[0].gothram ? current_user_de_all.basicinfos[0].gothram:'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDSTATE_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{ctrl.userLocation.state.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'PROFILE_POSTED_BY'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="crt in ctrl.formdata.created_by | where:{value:current_user_de_all.created_by}"> {{crt.name}} </p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <h4 class="semi-bold"><span class="badge">2</span> {{'EDUCATION_WORK'| translate}}</h4>
+                                                        <div class="hr-line"> </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].high_edu] | joinnameother:', ':'name':ctrl.formdata.educations" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'EWOCCUPATION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="[current_user_de_all.usereducations[0].occupation] | joinnameother:', ':'name':ctrl.formdata.occupations" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'EWDESIGNATION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].designation ? current_user_de_all.usereducations[0].designation:'Not Specified'}}</p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <!-- <p class="list-group-item-left pull-left">Field of Study</p> <p class="list-group-item-right pull-right" ng-repeat="ft in ctrl.formdata.studies | where:{value:current_user_de_all.usereducations[0].filed_study}">{{ft.name}}</p> -->
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'EWPHCOMPANYNAME'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.usereducations[0].company ? current_user_de_all.usereducations[0].company :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHANNUALIN'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.aincome | where:{value:current_user_de_all.userfamilies[0].aincome}">{{oc.name}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].aincome">Not Interested</p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <h4 class="semi-bold"><span class="badge">4</span>{{'LOOK_INTEREST'| translate}}</h4>
+                                                        <div class="hr-line"> </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'LIHEIGHT'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userintrests[0].height | height}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'LICOMPLEXION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.complexion | where:{value:current_user_de_all.userintrests[0].complexion}">{{oc.name}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].complexion">Not Interested</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.PhysicalStatus | where:{value:current_user_de_all.userintrests[0].physical_status}">{{oc.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'LIEXPECTATION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Expectation | where:{value:current_user_de_all.userintrests[0].expectation}">{{oc.name}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].expectation">Not Interested</p>
+                                                                            <p class="clearfix"></p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'LIWEIGHT'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].weight">Not Interested</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="current_user_de_all.userintrests[0].weight">{{current_user_de_all.userintrests[0].weight}} kg</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'LIBODYTYPE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].body_type">Not Interested</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.BodyType | where:{value:current_user_de_all.userintrests[0].body_type}">{{oc.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'LIHOBBIES'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userintrests[0].hobbie">Not Interested</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="current_user_de_all.userintrests[0].hobbie | joinnameother:', ':'name':ctrl.formdata.hobbies" ng-tt-chars-threshold="10"></p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <h4 class="semi-bold"><span class="badge">5</span>{{'FAMILY_HOROSCOPE'| translate}}</h4>
+                                                        <div class="hr-line"> </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'FBHFATHERNAME'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].father ? current_user_de_all.userfamilies[0].father :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left"> {{'FBHMOTHERNAME'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mother ? current_user_de_all.userfamilies[0].mother :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHMOSAL'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].mosal ? current_user_de_all.userfamilies[0].mosal :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHNATIVEPLACE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].native_place ? current_user_de_all.userfamilies[0].native_place :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHPLACEOFBIRTH'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].place_birth ? current_user_de_all.userfamilies[0].place_birth :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHZODIAC'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="zo in ctrl.formdata.zodiac | where:{value:current_user_de_all.userfamilies[0].zodiac}">{{zo.name}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].zodiac">Not Interested</p>
+                                                                            <p class="clearfix"></p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'FBHFATHER_OCC'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.fatheroccupation | where:{value:current_user_de_all.userfamilies[0].father_occupation}">{{oc.name}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHFAMILY_CONTACT'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}} {{current_user_de_all.userfamilies[0].phone_number}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHSIBLINGS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].siblings ? current_user_de_all.userfamilies[0].siblings :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHCITY'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].city ? current_user_de_all.userfamilies[0].city :'Not Specified'}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHTIMEOFBIRTH'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].time_birth_hr">Not Interested</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="current_user_de_all.userfamilies[0].time_birth_hr">{{current_user_de_all.userfamilies[0].time_birth_hr}}:{{current_user_de_all.userfamilies[0].time_birth_min}}</p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left"> {{'FBHHOROSCOPE_DETAILS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-repeat="oc in ctrl.formdata.Horoscope | where:{value:current_user_de_all.userfamilies[0].horoscope}">{{oc.name}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-if="!current_user_de_all.userfamilies[0].horoscope">Not Interested</p>
+                                                                            <p class="clearfix"></p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-lg-12">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHBELIEVE_HOROSCOPE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right"> {{current_user_de_all.userfamilies[0].beleave_hor ?'Yes':'No'}} </p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </uib-tab>
+                                        <uib-tab index="1">
+                                            <uib-tab-heading class="cont-tab tabheading"> {{'CONTACTDET_POPHEADING'| translate}} </uib-tab-heading>
+                                            <div class="tab-pane" id="tab1FollowUs">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <br />
+                                                                <h4 class="semi-bold"><span class="badge"></span> {{'EDITMYPROFILE_VERIFYURDETAILS'| translate}}</h4>
+                                                                <br />
+                                                                <div class="hr-line"> </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-8">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item">
+                                                                                <div class="bmd-list-group-col">
+                                                                                    <p class="list-group-item-left pull-left">{{'EDITMYPROFILE_MOBILENUMBER'| translate}}</p>
+                                                                                    <p class="list-group-item-right pull-right">{{current_user_de_all.country_code}} {{current_user_de_all.phone_number}}</p>
+                                                                                    <p class="clearfix"></p>
+                                                                                    <p class="list-group-item-left pull-left ng-hide">{{'ALTERNATE_MOBILENU'| translate}}</p>
+                                                                                    <p class="list-group-item-right pull-right ng-hide">+91 7396723539</p>
+                                                                                    <p class="clearfix"></p>
+                                                                                    <p class="list-group-item-left pull-left">{{'EMAIL'| translate}}</p>
+                                                                                    <p class="list-group-item-right pull-right">{{current_user_de_all.email}}</p>
+                                                                                    <p class="clearfix"></p>
+                                                                                    <p class="list-group-item-left pull-left ng-hide">{{'ALTERNATE_EMAIL'| translate}}</p>
+                                                                                    <p class="list-group-item-right pull-right ng-hide">biru_name@yahoo.com</p>
+                                                                                    <p class="clearfix"></p>
+                                                                                    <p class="list-group-item-left pull-left">{{'FBHFAMILY_CONTACT'| translate}}</p>
+                                                                                    <p class="list-group-item-right pull-right">{{current_user_de_all.userfamilies[0].country_code}} {{current_user_de_all.userfamilies[0].phone_number}}</p>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </uib-tab>
+                                        <uib-tab index="2">
+                                            <uib-tab-heading class="part-tab tabheading"> {{'PARTNER_PREFERENCE'| translate}} </uib-tab-heading>
+                                            <div class="tab-pane" id="tab1Inspire">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h4 class="semi-bold"><span class="badge">1</span> {{'MY_PREFERENCE'| translate}}</h4>
+                                                        <div class="hr-line"> </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'AGE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.age.from}} </span> <span class="small">{{'TO'| translate}} </span> <span class=""> {{ctrl.fieldPartnerPre.age.to}} {{'YEARS'| translate}}</span></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':ctrl.formdata.MaritialStatus" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right bold" ng-text-truncate="ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':ctrl.formdata.mother_tongues" ng-tt-chars-threshold="12"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDRELIGION'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':ctrl.formdata.religions" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDCASTE'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.caste | joinname:', ':'name'" ng-tt-chars-threshold="10"></p>
+                                                                            <!-- {{ctrl.fieldPartnerPre.caste | joinname:', ':'name'}} -->
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item">
+                                                                        <div class="bmd-list-group-col">
+                                                                            <p class="list-group-item-left pull-left">{{'BDCOUNTRY_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.countries" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDSTATE_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.state | joinname:', ':'name'" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'BDCITY_LIVING'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.city | joinname:', ':'name'" ng-tt-chars-threshold="10"></p>
+                                                                            <p class="clearfix"></p>
+                                                                            <p class="list-group-item-left pull-left">{{'FBHHOROSCOPE_DETAILS'| translate}}</p>
+                                                                            <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.horoscope | joinnameother:', ':'name':ctrl.formdata.Horoscope" ng-tt-chars-threshold="10"></p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h4 class="semi-bold"><span class="badge">2</span> {{'EDUCATION_WORK'| translate}}</h4>
+                                                                <div class="hr-line"> </div>
+                                                                <div class="col-lg-8 no-padding">
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item">
+                                                                            <div class="bmd-list-group-col">
+                                                                                <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':ctrl.formdata.educations" ng-tt-chars-threshold="20"></p>
+                                                                                <p class="clearfix"></p>
+                                                                                <p class="list-group-item-left pull-left">{{'EWOCCUPATION'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':ctrl.formdata.occupations" ng-tt-chars-threshold="20"></p>
+                                                                                <p class="clearfix"></p>
+                                                                                <p class="list-group-item-left pull-left">{{'FBHANNUALIN'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.aincome | joinnameother:', ':'name':ctrl.formdata.aincome" ng-tt-chars-threshold="20"></p>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h4 class="semi-bold"><span class="badge">3</span> {{'LOOK_INTEREST'| translate}}</h4>
+                                                                <div class="hr-line"> </div>
+                                                                <div class="col-lg-8 no-padding">
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item">
+                                                                            <div class="bmd-list-group-col">
+                                                                                <p class="list-group-item-left pull-left">{{'LIHEIGHT'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right"><span class="">{{ctrl.fieldPartnerPre.height.from | height}} </span> <span class="small"> To </span> <span class=""> {{ctrl.fieldPartnerPre.height.to | height}}</span></p>
+                                                                                <p class="clearfix"></p>
+                                                                                <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':ctrl.formdata.PhysicalStatus" ng-tt-chars-threshold="20"></p>
+                                                                                <p class="clearfix"></p>
+                                                                                <p class="list-group-item-left pull-left">{{'LIEXPECTATION'| translate}}</p>
+                                                                                <p class="list-group-item-right pull-right" ng-text-truncate="ctrl.fieldPartnerPre.expectation | joinnameother:', ':'name':ctrl.formdata.Expectation" ng-tt-chars-threshold="20"></p>
+                                                                                <p class="clearfix"></p>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </uib-tab>
+                                    </uib-tabset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="basic-pro-detl">
+                            <!-- <p> <a href="#"> <i class="fa fa-eye" aria-hidden="true"></i> Preview Your Profile </a> </p> -->
+                            <div class="clearfix"></div>
+                            <a href="#" class="scrollup profile-up"><img src="assets/img/top-scroll.png" width="30px;"></a>
+                            <div class="input-group send-prof-all">
+                                <input type="text" class="form-control" placeholder="Profile Page : http://www.dholebaaje.com/myprofile.html/DH123456" aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2" send-p-link> <a href="" data-toggle="modal" data-target="#myModal"> <i class="fa fa-share-square-o" aria-hidden="true"></i>{{'SEND_PROFILE_LINK'| translate}}</a></span>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <div class="row">
+                                                    <div class="col-lg-12 profile-img"> <img class="pull-left" src="assets/img/profiles/dharma.jpg" alt="" data-src="assets/img/profiles/dharma.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35"> <span class="prof-id pull-left"> Db13456 </span> <span class="pull-left"> <h4> {{'MYPROFILE_SHAREPROFILE'| translate}}</h4> </span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body ">
+                                                <div class="row form-row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">{{'MYPROFILE_SHAREPRO_EMAIL'| translate}}</label>
+                                                            <div class="controls">
+                                                                <input class="form-control" placeholder="Enter receiver Email" type="text"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">{{'MYPROFILE_SHAREPROFILE_YOURNAME'| translate}}</label>
+                                                            <div class="controls">
+                                                                <input class="form-control" placeholder="{{'MYPROFILE_MOTHERTONGUE'| translate}}Enter Your Name" type="text"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">{{'MYPROFILE_SHAREPROFILEPOP_MESSAGE'| translate}}</label>
+                                                            <div class="controls">
+                                                                <textarea rows="3" style="width: 100%"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6"> <img src="assets/img/shareling-pic.png" /> </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button " class="btn btn-primary yes-btn">{{'MYPROFILE_SHAREPROFILEPOP_YESBTN'| translate}}</button>
+                                                <button type="button" class="btn btn-default no-btn" data-dismiss="modal">{{'MYPROFILE_SHAREPROFILEPOP_NOBTN'| translate}}</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                    <calendar-box></calendar-box>
+                    <my-pocket></my-pocket>
+                    <div class="grid simple searchdhole attach-proof">
+                        <div class=" pref-title no-border">
+                            <h4 class="">{{'ATTACH_ID_ADDRESS_PROOF'| translate}}</h4> </div>
+                        <div class="grid-body no-border">
+                            <div class="hr-line"> </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h5 class="searchid"> {{'ATTACH_IDPROOF_HEADING'| translate}}</h5>
+                                    <div class="insearc ">
+                                        <select class="minimal">
+                                            <option>Voter ID</option>
+                                            <option>Pancard</option>
+                                        </select>
+                                        <div class="form-group">
+                                            <input type="file" name="img[]" class="file">
+                                            <div class="input-group col-xs-12 no-padding">
+                                                <input type="text" class="form-control input-lg load-img" disabled placeholder="Upload Image" style="width:80%; float: left;"> <span class=" load-btn"> <button class="browse btn " type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button> </span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h5 class="searchid">{{'ATTACH_ADDPROOF_HEADING'| translate}}</h5>
+                                    <div class="insearc ">
+                                        <select class="minimal">
+                                            <option>Passport</option>
+                                            <option>Aadhar Card</option>
+                                        </select>
+                                        <div class="form-group">
+                                            <input type="file" name="img[]" class="file">
+                                            <div class="input-group col-xs-12 no-padding">
+                                                <input type="text" class="form-control input-lg load-img" disabled placeholder="Upload Image" style="width:80%; float: left;" /> <span class=" load-btn"> <button class="browse btn " type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button> </span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" searchbtn col-md-12">
+                                    <div class="pull-left id-verify">
+                                        <input type="button" value="{{'ATTACH_ID_ADDRESS_VERIFYBTN'| translate}}" class="" /> </div>
+                                    <div class="pull-right id-reset">
+                                        <input type="button" value="{{'ATTACH_ID_ADDRESS_CLEARBTN'| translate}}" class="" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid simple searchdhole">
+                        <div class=" pref-title no-border">
+                            <h4 class="">{{'REFER_YOUR_FRIEND'| translate}}</h4> </div>
+                        <div class="grid-body no-border">
+                            <div class="hr-line"> </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h5 class="searchid"> {{'REFER_FRIENDS_EMAIL'| translate}}</h5>
+                                    <div class="insearc">
+                                        <Input type="text" class="" placeholder="Eg:dharma@gmail.com" /> </div>
+                                    <div class=" searchbtn">
+                                        <input type="button" value="{{'REFER_FRIENDS_SENDBTN'| translate}}" class="" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid simple no-padding">
+                        <div class="grid-body no-border no-padding">
+                            <div class="ad-here"> <img src="assets/img/266x169.jpg" /> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

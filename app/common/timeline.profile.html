@@ -1,0 +1,295 @@
+<ul class="cbp_tmtimeline">
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-file-text"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="grid simple daily-right">
+                <div class="prof-title no-border"> {{'BASIC_DETAILS'| translate}} </div>
+                <div class="grid-body p-match-body no-border">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="bmd-list-group-col">
+                                        <p class="list-group-item-left pull-left">{{'AGE'| translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.age}} {{'YEARS'| translate}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | where:{value:$ctrl.user.maritialstatus}">{{mt.name}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.mother_tongues | where:{value:$ctrl.user.mothertounge}">{{mt.name}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDRELIGION' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="rt in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rt.name}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDCASTE' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDSUBCASTE' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="$ctrl.user.userinfo.basic.subcaste">{{$ctrl.user.userinfo.basic.subcaste}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.basic.subcaste">not specified</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="bmd-list-group-col">
+                                        <p class="list-group-item-left pull-left">{{'BDGOTHRAM' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="$ctrl.user.userinfo.basic.gothram">{{$ctrl.user.userinfo.basic.gothram}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.basic.gothram">not specified</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDCOUNTRY_LIVING' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.country}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDSTATE_LIVING' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.state}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'BDCITY_LIVING' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'PROFILE_POSTED_BY' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="crt in $ctrl.formdata.created_by | where:{value:$ctrl.user.created_by}"> {{crt.name}} </p>
+                                        <p class="clearfix"></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </li>
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-book"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="">
+                <div class="grid simple daily-right">
+                    <div class="prof-title no-border"> {{'EDUCATION_WORK' | translate}} </div>
+                    <div class="grid-body p-match-body no-border">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.userinfo.education.high_edu}">{{edu.name}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'EWOCCUPATION' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'EWDESIGNATION' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.education.designation ? $ctrl.user.userinfo.education.designation : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left">{{'EWCOMPANY_NAME' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.education.company ? $ctrl.user.userinfo.education.company : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHANNUALIN' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.aincome | where:{value:$ctrl.user.userinfo.family.aincome}">{{oc.name}}</p>
+                                            <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.family.aincome">not specified</p>
+                                            <p class="clearfix"></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </li>
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-user"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="">
+                <div class="grid simple daily-right">
+                    <div class="prof-title no-border"> {{'ABOUT_HIM' | translate}} </div>
+                    <div class="grid-body p-match-body no-border">
+                        <div class="row-fluid">
+                            <div class="col-lg-12">
+                                <p class="large-text"> {{'BDMARITAL_STATUS' | translate}}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </li>
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-male"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="">
+                <div class="grid simple daily-right">
+                    <div class="prof-title no-border"> {{'LOOK_INTEREST' | translate}} </div>
+                    <div class="grid-body p-match-body no-border">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left">{{'LIHEIGHT' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.height | height }}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'LIWEIGHT' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-if="$ctrl.user.userinfo.interest.weight">{{$ctrl.user.userinfo.interest.weight}} kg</p>
+                                            <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.interest.weight">not specified</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'LICOMPLEXION' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.complexion | where:{value:$ctrl.user.userinfo.interest.complexion}">{{oc.name}}</p>
+                                            <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.interest.complexion">not specified</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'LIBODYTYPE' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.BodyType | where:{value:$ctrl.user.userinfo.interest.body_type}">{{oc.name}}</p>
+                                            <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.interest.body_type">not specified</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12 no-padding">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.PhysicalStatus | where:{value:$ctrl.user.userinfo.interest.physical_status}">{{oc.name}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left"> {{'LIHOBBIES' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-text-truncate="$ctrl.user.userinfo.interest.hobbie | joinnameother:', ':'name':$ctrl.formdata.hobbies" ng-tt-chars-threshold="60"></p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'LIEXPECTATION' | translate}}</p>
+                                            <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.Expectation | where:{value:$ctrl.user.userinfo.interest.expectation}">{{oc.name}}</p>
+                                            <p class="clearfix"></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </li>
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-users"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="">
+                <div class="grid simple daily-right">
+                    <div class="prof-title no-border"> {{'FAMILY_BACKGROUND' | translate}} </div>
+                    <div class="grid-body p-match-body no-border">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left"> {{'FBHFATHERNAME' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.father ? $ctrl.user.userinfo.family.father : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left"> {{'FBHMOTHERNAME' | translate}}</p>
+                                            <p class="list-group-item-right pull-right"> {{$ctrl.user.userinfo.family.mother ? $ctrl.user.userinfo.family.mother : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHFATHER_OCC' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.father_occupation ? $ctrl.user.userinfo.family.father_occupation : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHMOSAL' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.mosal ? $ctrl.user.userinfo.family.mosal : 'not specified'}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="bmd-list-group-col">
+                                            <p class="list-group-item-left pull-left">{{'CONTACT_NUMBER' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.phone_number}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHSIBLINGS' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.siblings ? $ctrl.user.userinfo.family.siblings : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHNATIVEPLACE' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.native_place ? $ctrl.user.userinfo.family.native_place : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                            <p class="list-group-item-left pull-left">{{'FBHCITY' | translate}}</p>
+                                            <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.city ? $ctrl.user.userinfo.family.city : 'not specified'}}</p>
+                                            <p class="clearfix"></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </li>
+    <li>
+        <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-star"></i> </div>
+        <div class="cbp_tmlabel">
+            <div class="grid simple daily-right">
+                <div class="prof-title no-border"> {{'HOROSCOPE_DETAILS' | translate}} </div>
+                <div class="grid-body p-match-body no-border">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="bmd-list-group-col">
+                                        <p class="list-group-item-left pull-left">{{'FBHDATEOFBIRTH' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.dob | date:'dd-MMM-yyyy'}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'FBHPLACEOFBIRTH' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.place_birth ? $ctrl.user.userinfo.family.place_birth : 'not specified'}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'FBHTIMEOFBIRTH' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="$ctrl.user.userinfo.family.time_birth_hr || $ctrl.user.userinfo.family.time_birth_min">{{$ctrl.user.userinfo.family.time_birth_hr}} : {{$ctrl.user.userinfo.family.time_birth_min}} (24H)</p>
+                                        <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.family.time_birth_hr && !$ctrl.user.userinfo.family.time_birth_min">not specified</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'FBHZODIAC' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="zo in $ctrl.formdata.zodiac | where:{value:$ctrl.user.userinfo.family.zodiac}">{{zo.name}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.family.zodiac">Not Interested</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="bmd-list-group-col">
+                                        <p class="list-group-item-left pull-left">{{'HOROSCOPE_DETAILS' | translate}}</p>
+                                        <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.Horoscope | where:{value:$ctrl.user.userinfo.family.horoscope}">{{oc.name}}</p>
+                                        <p class="list-group-item-right pull-right" ng-if="!$ctrl.user.userinfo.family.horoscope">not specified</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'FBHRUMANGLIK' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.manglik ? 'Yes' : 'No'}}</p>
+                                        <p class="clearfix"></p>
+                                        <p class="list-group-item-left pull-left">{{'FBHBELIEVE_HOROSCOPE' | translate}}</p>
+                                        <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.beleave_hor ? 'Yes' : 'No'}}</p>
+                                        <p class="clearfix"></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </li>
+</ul>

@@ -95,13 +95,13 @@ module.exports = function composeMailController(useractions, config, $scope, log
       var reqBlock = {
         user_id: controller.user.user_id,
         block_user_id: controller.messageModel.send_to
-        
+
       };
 
 
       useractions.update_user_block(reqBlock, function (result) {
         if (result.success) {
-          messagesservice.toaster_msg('Successfully unbloked');
+          messagesservice.toaster_msg('SUCCESSFULLY_UNBLOKED');
           controller.onBlur();
 
         }
@@ -123,7 +123,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
 
       useractions.send_request(reqMsg, function (result) {
         if (result.success) {
-          messagesservice.toaster_msg('Successfully sent');
+          messagesservice.toaster_msg('SUCCESSFULLY_SENT');
           controller.cancel();
 
         }
@@ -137,7 +137,7 @@ module.exports = function composeMailController(useractions, config, $scope, log
       messagesservice.send_message(controller.messageModel, function (result) {
 
         if (result.success) {
-          messagesservice.toaster_msg('Message Successfully send');
+          messagesservice.toaster_msg('SUCCESSFULLY_SENT');
           controller.cancel();
           $rootScope.$broadcast('userSendMessageBroadcast', {});
         }

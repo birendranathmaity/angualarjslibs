@@ -45,6 +45,36 @@ require('./routes')(app,express,process);
 
 new socketEvents(io).socketConfig();
 
+var nodeMailer = require('nodemailer');
+var smtpTrans = nodeMailer.createTransport({    
+    service: 'Godaddy',
+    host: "smtpout.secureserver.net",  
+    secureConnection: true,
+    port: 465,
+
+    auth: {
+        user: "info@dholbaaje.com",
+        pass: "yenrisoft" 
+    }
+});
+var mailOptions = {
+    from: 'xyz12345@dholbaaje.com',
+    to: "birendranathmaity@gmail.com",
+    subject: 'testing mail',
+    html : 'Embedded image: <img src="cid:unique@kreata.ee"/>',
+    attachments: [{
+        filename: 'admin.png',
+        path: __dirname+"/upload_user_images/admin.png",
+        cid: 'unique@kreata.ee' //same cid value as in the html img src
+    }]
+  };
+  smtpTrans.sendMail(mailOptions, function (error, response) {
+    if (error) {
+ console.log(error);
+} else {
+    console.log("email sent");
+}
+ });
 
 //console.log(global.config.io)
 // io.sockets.on("connection",function(socket){

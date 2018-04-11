@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs " id="tab-01">
     <li ng-repeat="tab in userActionsTabs.tabs" ng-class="tab.active?'active':''">
-        <a style="cursor:pointer" ng-click="userActionsTabs.loadTab($index,tab.type)">{{tab.name}}
+        <a style="cursor:pointer" ng-click="userActionsTabs.loadTab($index,tab.type)">{{tab.name | translate}}
             <span ng-if="tab.active" class="badge badge-important animated bounceIn" id="chat-message-count">{{userActionsTabs.count}}</span>
         </a>
     </li>

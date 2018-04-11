@@ -6,14 +6,14 @@
         <complete-your-profile profile-type="myprofile" user-id="login_user_id"></complete-your-profile>
       </div>
       <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 matches-c-all no-padding">
-        <h4 class=""> Please broaden your partner preference slightly to receive more matches in this list Modify </h4>
+        <h4 class="">  {{'ACTIVITY_HEADINGTXT_PLSBRODENPP'| translate}}</h4>
         <div class="col-lg-9 col-xs-12 col-sm-12 no-padding dataTables_wrapper">
           <div class="col-lg-8 ">
             <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.users.length>0">
               <ul>
                 <li>
-                  <div class=" hidden-xs">Showing
-                    <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div>
+                  <div class=" hidden-xs"> {{'SHOWING_RESULTS'| translate}}
+                    <b>{{$ctrl.start}} {{'TO_RESULTS'| translate}} {{$ctrl.end}}</b> {{'OF_RESULTS'| translate}} {{$ctrl.total}} {{'ENTRIES_RESULTS'| translate}}</div>
                 </li>
                 <li class="prev disabled" style="margin-top: -2px;">
                   <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"

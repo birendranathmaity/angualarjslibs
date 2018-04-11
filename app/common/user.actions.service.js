@@ -34,6 +34,9 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
         get_calender_requests: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_CALENDER_REQUESTS, data).success(success).error(error);
         },
+        create_report_abuse: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.CREATE_REPORT_ABUSE, data).success(success).error(error);
+        },
         userEmitInfo: function () {
             // var user = $rootScope.current_user_de_all;
             // var pic = loginservice.getProfilePic();

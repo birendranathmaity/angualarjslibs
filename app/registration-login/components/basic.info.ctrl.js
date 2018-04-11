@@ -110,34 +110,12 @@ module.exports = function ($uibModal, toastr, $viewusers, $filter, countryServic
                 controller.openTabContent('basic');
 
                 //load basic info data//
-                var hindu = controller.formdata.rhindu;
-                var muslim = controller.formdata.rmuslim;
-                var christian = controller.formdata.rchristian;
-
-                var noCaste = [ {
+              var noCaste = [ {
                     "name": "Any",
                     "value": "ANYONE"
                 }];
                 controller.loadCaste = function (rel) {
-                    if (rel === "HINDU") {
-                        controller.casteData = hindu;
-                        return;
-                    }
-                    if (rel === "ISLAM") {
-                        controller.casteData = muslim;
-                        return;
-                    }
-                    if (rel === "CHR") {
-                        controller.casteData = christian;
-                        return;
-                    }
-                   
-                    controller.casteData = [{
-                       
-                        name: "Other",
-                        value: rel + "OTH"
-        
-                    }];
+                    controller.casteData=loginservice.getCastes(rel);
 
                 };
                 controller.required = function (key) {

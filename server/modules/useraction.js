@@ -3,6 +3,7 @@ var setting = require('./model/setting.model');
 var request = require('./model/request.model');
 var commonQuery = require('./common.query');
 var check = require('./check_user');
+var reportAbuseModel = require('./model/report.abuse.model');
 exports.checkOnline=function(req,res){
     check.api.isOnline(req.user_id,function(isOnline){
 
@@ -14,6 +15,27 @@ else{
 }
 
     });
+}
+
+exports.createReportAbuse=function(req,res){
+   
+    
+    if(req.body.actionType=="CREATE"){
+        req.body.reportabuse_status="UNREAD";
+        req.body.created_on=new Date();
+    }
+    if(req.body.actionType=="UPDATE"){
+        req.body.reportabuse_status="READ";
+        req.body.recived_on=new Date();
+        req.body.action_by=req.body.action_by;
+    }
+    var query={
+        "user_id": req.body.user_id,
+        "reportabuse_user_id": req.body.reportabuse_user_id
+    }
+    reportAbuseModel.update(query,req.body,{upsert:true},function(error,result){
+        res.json({success:true})
+    });  
 }
 exports.CreateUserBlock = function (req, res) {
 

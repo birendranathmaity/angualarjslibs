@@ -1,16 +1,16 @@
 <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_msg  && !$ctrl.is_user_by_block"><a class="btn match-btn" ng-click="$ctrl.checkBlock('MSG')"> 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
-Send Message </a>
+{{'SEND_MESSAGEBTN'| translate}}</a>
   </div>
   <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.alreadysent"><a disabled class="btn match-btn btn-success" > 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
-Request sent</a>
+{{'MESSAGEREQ_SENTBTN'| translate}}</a>
   </div>
   <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.decline"><a disabled class="btn match-btn btn-danger" > 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
-   Request declined </a>
+  {{'MESSAGEREQ_DECLINEDBTN'| translate}}</a>
   </div>
   <div class=" col-lg-5 p-r-0" ng-if="$ctrl.config.send_request && !$ctrl.is_user_by_block"><a class="btn match-btn" ng-click="$ctrl.checkBlock('REQ')"> 
     <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
-   Send Request </a>
+   {{'MESSAGEREQ_BTN'| translate}}</a>
   </div>

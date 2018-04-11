@@ -24,22 +24,22 @@
         <div class="modal-body mail-pop-all">
           <div class="row send-to">
 
-          <div class="col-lg-2 p-r-0 send-n">{{$ctrl.config.type==="NEW" || $ctrl.config.type==="SENT" || $ctrl.config.type==="SEND" ? 'Send To :' : 'From :'}}</div>
+          <div class="col-lg-2 p-r-0 send-n">{{$ctrl.config.type==="NEW" || $ctrl.config.type==="SENT" || $ctrl.config.type==="SEND" ? 'SENT_TO' : 'FROM' | translate }}</div>
           <div class="col-lg-10 no-padding send-text"> 
             <input type="text" ng-disabled="$ctrl.config.type!=='NEW'" ng-model="$ctrl.messageModel.send_to" required placeholder="Ex - DB123456" ng-blur="$ctrl.onBlur($event)"> </div>
        
 
        </div>
        <div class="form-group userMsg" ng-if="$ctrl.UserType!='SEND_MESSAGE'">
-          <span ng-if="$ctrl.UserType=='USER_NOT_EXITS'">User does not extis</span>
-         <span ng-if="$ctrl.UserType=='USER_BY_BLOCK'">Please unblock this user</span>
-         <span ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST'">Please send  message request</span>
-         <span ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST_REMIND'">You have send  message request</span>
+          <span ng-if="$ctrl.UserType=='USER_NOT_EXITS'">{{'COMPOSEMAIL_USERDOESNTEX'| translate}}</span>
+         <span ng-if="$ctrl.UserType=='USER_BY_BLOCK'">{{'COMPOSEMAIL_PLSUNBLOCKUSER'| translate}}</span>
+         <span ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST'">{{'COMPOSEMAIL_PLZSENDMESREQ'| translate}}</span>
+         <span ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST_REMIND'">{{'COMPOSEMAIL_UHAVESENDMESREQ'| translate}}</span>
         
          
       </div>
           <div class="form-group" ng-if="$ctrl.config.type!=='NEW' && $ctrl.config.type!=='SEND'">
-            <label for="exampleInputEmail1">Message :</label>
+            <label for="exampleInputEmail1">{{'COMPOSEMAIL_MESSAGE'| translate}}</label>
          {{$ctrl.config.msg}}
           </div>
        
@@ -47,18 +47,18 @@
        <div class="row send-to" ng-if="$ctrl.UserType=='SEND_MESSAGE'">
         <div class="col-lg-12"> <textarea rows="10"  style="height:100px;"  ng-model="$ctrl.messageModel.message" maxlength="400" required></textarea>
 
-         <p>Max <span>400 </span> Charecters</p> 
+         <p>{{'COMPOSEMAIL_MAX'| translate}} <span>400 </span> {{'COMPOSEMAIL_CHARACTERS'| translate}}</p> 
         </div>
        
        </div>
 
         </div>
         <div class="modal-footer">
-            <button type="button " ng-if="$ctrl.UserType=='USER_BY_BLOCK'" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">Unblock</button>
-            <button type="button " ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST'" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">Send Request</button>
+            <button type="button " ng-if="$ctrl.UserType=='USER_BY_BLOCK'" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">{{'COMPOSEMAIL_UNBLOCK'| translate}}</button>
+            <button type="button " ng-if="$ctrl.UserType=='SEND_MESSAGE_REQUEST'" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">{{'COMPOSEMAIL_SENDREQ'| translate}}</button>
 
-         <button type="button " ng-if="$ctrl.UserType=='SEND_MESSAGE'"  ng-disabled="composemail.$invalid" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">{{$ctrl.config.type==="NEW" || $ctrl.config.type==="SENT" || $ctrl.config.type==="SEND" ? 'Send' : 'Reply'}}</button>
-         <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.cancel()">Cancel</button>
+         <button type="button " ng-if="$ctrl.UserType=='SEND_MESSAGE'"  ng-disabled="composemail.$invalid" class="btn btn-primary yes-btn" ng-click="$ctrl.send()">{{$ctrl.config.type==="NEW" || $ctrl.config.type==="SENT" || $ctrl.config.type==="SEND" ? 'COMPOSEMAIL_SENDBTN' : 'COMPOSEMAIL_REPLY' | translate }}</button>
+         <button type="button" class="btn btn-default no-btn" ng-click="$ctrl.cancel()">{{'COMPOSEMAIL_CANCEL'| translate}}</button>
         </div>
       </div>
       <!-- /.modal-content -->

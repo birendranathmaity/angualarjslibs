@@ -48,11 +48,11 @@
                 <div class="step1">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Basic Information </h2>
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> {{ 'BASIDETAILS_HEADING' | translate }} </h2>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="required">Maritial Status</label>
+                            <label class="required">{{ 'BDMARITAL_STATUS' | translate }}</label>
                             <select class="minimal form-control" name="maritialstatus" ng-model="basicinfo.maritialstatus" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="required">Mother Tounge</label>
+                            <label class="required">{{ 'BDMOTHER_TONGUE' | translate }}</label>
                             <select class="minimal form-control" name="mothertounge" ng-model="basicinfo.mothertounge" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="required">Religion</label>
+                            <label class="required">{{ 'BDRELIGION' | translate }}</label>
                             <select class="minimal form-control" name="religion" ng-model="basicinfo.religion" ng-change="ctrl.loadCaste(basicinfo.religion);basicinfo.caste=''"
                                 required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -80,7 +80,7 @@
                                        </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="required">Caste</label>
+                            <label class="required">{{ 'BDCASTE' | translate }}</label>
                             <select class="minimal form-control" name="caste" ng-disabled="!basicinfo.religion" ng-model="basicinfo.caste" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your Caste</option>
@@ -90,17 +90,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Sub Caste</label>
+                            <label>{{ 'BDSUBCASTE' | translate }}</label>
                             <input type="text" placeholder="Enter Your Sub Caste" ng-model="basicinfo.subcaste" only-letters-input/>
                         </div>
                         <div class="col-md-6">
-                            <label>Gothram </label>
+                            <label>{{ 'BDGOTHRAM' | translate }} </label>
                             <input type="text" placeholder="Enter Your Gothram" ng-model="basicinfo.gothram" only-letters-input/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="required">Country Living In</label>
+                            <label class="required">{{ 'BDCOUNTRY_LIVING' | translate }}</label>
                             <select class="minimal form-control" name="country" ng-model="basicinfo.country" ng-change="ctrl.loadState(basicinfo.country);basicinfo.state=''"
                                 required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your Country</option>
@@ -108,7 +108,7 @@
                                     </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="required">State Living In</label>
+                            <label class="required">{{ 'BDSTATE_LIVING' | translate }}</label>
                             <select class="minimal form-control" name="state" ng-model="basicinfo.state" ng-disabled="!basicinfo.country" ng-change="ctrl.loadCity(basicinfo.state);basicinfo.city=''"
                                 required-message="ctrl.required('REQUIRED')" validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your State</option>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="required">City Living In</label>
+                            <label class="required">{{ 'BDCITY_LIVING' | translate }}</label>
                             <select class="minimal form-control" name="city" ng-model="basicinfo.city" ng-disabled="!basicinfo.state" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">select Your city</option>
@@ -132,7 +132,7 @@
                         <button type="button" ng-click="ctrl.openTabContent('education')" ng-disabled="moreInfo.maritialstatus.$invalid || moreInfo.mothertounge.$invalid || moreInfo.religion.$invalid || moreInfo.caste.$invalid || moreInfo.country.$invalid || moreInfo.state.$invalid || moreInfo.city.$invalid"
                             class="button  raised hoverable next-step">
                                     <div class="anim"></div>
-                                    <span>Continue!</span>
+                                    <span>{{ 'BDCONTINUE' | translate }}</span>
                                  </button>
                     </li>
                 </ul>
@@ -142,10 +142,10 @@
                 <div class="step2">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Education & Work Information </h2>
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''">{{ 'EDUWORK_HEADING' | translate }}  </h2>
                         </div>
                         <div class="col-md-6">
-                            <label class="required">Highest Education</label>
+                            <label class="required">{{ 'EWHIGHEST_EDU' | translate }}</label>
                             <select class="minimal form-control" name="highest_education" ng-model="educationwork.high_edu" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
                                        <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -163,13 +163,13 @@
                                        </select>
                         </div> -->
                         <div class="col-md-6">
-                            <label>Company Name</label>
-                            <input type="text" placeholder="Enter Company Name" ng-model="educationwork.company" only-letters-input>
+                            <label>{{ 'EWCOMPANY_NAME' | translate }}</label>
+                            <input type="text" placeholder="{{ 'EWPHCOMPANYNAME' | translate }}" ng-model="educationwork.company" only-letters-input>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="required">Occupation</label>
+                            <label class="required">{{ 'EWOCCUPATION' | translate }}</label>
                             <select class="minimal form-control" name="occupation" ng-model="educationwork.occupation" required-message="ctrl.required('REQUIRED')"
                                 validate-on="dirty" required>
 
@@ -181,8 +181,8 @@
                         </div>
                         
                         <div class="col-md-6">
-                            <label>Designation</label>
-                            <input type="text" placeholder="Enter Your Designation" ng-model="educationwork.designation" only-letters-input>
+                            <label>{{ 'EWDESIGNATION' | translate }}</label>
+                            <input type="text" placeholder="{{ 'EWPHDESIGNATION' | translate }}" ng-model="educationwork.designation" only-letters-input>
                         </div>
                     </div>
                    
@@ -204,7 +204,7 @@
                         <button type="button" ng-click="ctrl.openTabContent('interests')" ng-disabled="(moreInfo.highest_education.$invalid || moreInfo.occupation.$invalid)"
                             class="button  raised hoverable next-step">
                                     <div class="anim"></div>
-                                    <span>Continue!</span>
+                                    <span>{{ 'EWCONTINUE' | translate }}</span>
                                  </button>
                     </li>
                 </ul>
@@ -214,12 +214,12 @@
                 <div class="step3">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Appearence And Intrest Information Details </h2>
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''">{{ 'LOOK_INTEREST_HEADING' | translate }} </h2>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="required">Height</label>
+                                    <label class="required">{{ 'LIHEIGHT' | translate }}</label>
                                     <select class="minimal form-control" name="height" ng-model="intrests.height" required-message="ctrl.required('REQUIRED')"
                                         validate-on="dirty" required>
                                              <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -227,7 +227,7 @@
                                           </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Weight</label>
+                                    <label>{{ 'LIWEIGHT' | translate }}</label>
                                     <select class="minimal" ng-model="intrests.weight">
                                              <option value="">Not interested</option>
                                              <option ng-repeat="_ in ((_ = []) && (_.length=70) && _) track by $index" value="{{30+$index}}">{{30+$index}} kg</option>
@@ -237,7 +237,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Complexion</label>
+                            <label>{{ 'LICOMPLEXION' | translate }}</label>
                             <p ng-init="intrests.complexion='FAIR'"></p>
                             <select class="minimal" ng-model="intrests.complexion">
                                        <option value="">Not interested</option>
@@ -246,7 +246,7 @@
                                     </select>
                         </div>
                         <div class="col-md-6">
-                            <label>Body Type</label>
+                            <label>{{ 'LIBODYTYPE' | translate }}</label>
                             <p ng-init="intrests.body_type='AVERAGE'"></p>
                             <select class="minimal" ng-model="intrests.body_type">
                                        <option value="">Not interested</option>
@@ -255,7 +255,7 @@
                         </div>
                         
                         <div class="col-md-6">
-                            <label>Hobbies</label>
+                            <label>{{ 'LIHOBBIES' | translate }}</label>
                             <!-- <select class="minimal" name="expectation" ng-model="intrests.hobbie">
                                        <option value="" selected="selected" disabled="disabled">Select one </option>
                                        <option ng-repeat="hobbie in ctrl.hobbies" value="{{hobbie}}">{{hobbie}}</option>
@@ -268,7 +268,7 @@
                                        </ui-select-choices>
                                       </ui-select>
                         </div><div class="col-md-6">
-                                <label class="required">Physical Status</label>
+                                <label class="required">{{ 'LIPHYSICAL_STATUS' | translate }}</label>
                                 <p ng-init="intrests.physical_status='NOR'"></p>
                                 <select class="minimal form-control" name="physical_status" ng-model="intrests.physical_status" required-message="ctrl.required('REQUIRED')"
                                     validate-on="dirty" required>
@@ -277,7 +277,7 @@
                                         </select>
                             </div>
                         <div class="col-md-6">
-                            <label>Expectation</label>
+                            <label>{{ 'LIEXPECTATION' | translate }}</label>
                             <p ng-init="intrests.expectation='NCFP'"></p>
                             <select class="minimal" name="expectation" ng-model="intrests.expectation">
                                        <option value="">Not interested</option>
@@ -292,7 +292,7 @@
                         <button type="button" ng-click="ctrl.openTabContent('family')" ng-disabled="(moreInfo.height.$invalid || moreInfo.physical_status.$invalid)"
                             class="button  raised hoverable next-step">
                                     <div class="anim"></div>
-                                    <span>Continue!</span>
+                                    <span>{{ 'LICONTINUE' | translate }}</span>
                                  </button>
                     </li>
                 </ul>
@@ -302,14 +302,14 @@
                 <div class="complete">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> Add Your Family Background And Horoscope </h2>
+                            <h2 ng-class="ctrl.editMode ? 'moreInfoH2':''"> {{ 'FAMILY_HOROSCOPE_HEADING' | translate }} </h2>
                         </div>
                         <div class="col-md-6">
-                            <label>Father Name</label>
+                            <label>{{ 'FBHFATHERNAME' | translate }}</label>
                             <input type="text" placeholder="Enter your father name" ng-model="family.father" only-letters-input>
                         </div>
                         <div class="col-md-6">
-                            <label>Father Occupation</label>
+                            <label>{{ 'FBHFATHER_OCC' | translate }}</label>
                             <select class="minimal form-control" name="fatheroccupation" ng-model="family.father_occupation">
 
                             <option value="" selected="selected" disabled="disabled">-- Select one --</option>
@@ -321,23 +321,23 @@
                            
                         </div>
                         <div class="col-md-6">
-                            <label>Mother Name</label>
+                            <label>{{ 'FBHMOTHERNAME' | translate }}</label>
                             <input type="text" placeholder="Enter your mother name" ng-model="family.mother" only-letters-input>
                         </div>
                         <div class="col-md-6">
-                            <label>Siblings</label>
+                            <label>{{ 'FBHSIBLINGS' | translate }}</label>
                             <input type="text" placeholder="Enter your text" ng-model="family.siblings">
                         </div>
                         <div class="col-md-6">
-                            <label>Mosal</label>
+                            <label>{{ 'FBHMOSAL' | translate }}</label>
                             <input type="text" placeholder="Enter your sibilings" ng-model="family.mosal">
                         </div>
                         <div class="col-md-6">
-                            <label>Family Address</label>
+                            <label>{{ 'FBHFAMILY_ADDRESS' | translate }}</label>
                             <textarea rows="4" cols="50" ng-model="family.address"> </textarea>
                         </div>
                         <div class="col-md-6 ">
-                            <label class="required">Family Contact Number</label>
+                            <label class="required">{{ 'FBHFAMILY_CONTACT' | translate }}</label>
                             <div class="row phoneNumber pull-right">
                                 <div class="col-md-4 p-r-0">
                                     <div ng-init="family.country_code='+91'"></div>
@@ -353,15 +353,15 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>City</label>
+                            <label>{{ 'FBHCITY' | translate }}</label>
                             <input type="text" placeholder="Enter your city" ng-model="family.city" only-letters-input>
                         </div>
                         <div class="col-md-6">
-                            <label>Native Place</label>
+                            <label>{{ 'FBHNATIVEPLACE' | translate }}</label>
                             <input type="text" placeholder="Enter your place" ng-model="family.native_place" only-letters-input>
                         </div>
                         <div class="col-md-6">
-                            <label>Time Of Birth</label>
+                            <label>{{ 'FBHTIMEOFBIRTH' | translate }}</label>
                             <div class="row">
                                 <div class="col-md-6">
                                     <select class="minimal" ng-model="family.time_birth_hr">
@@ -380,11 +380,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Place Of Birth</label>
+                            <label>{{ 'FBHPLACEOFBIRTH' | translate }}</label>
                             <input type="text" placeholder="Enter your text" ng-model="family.place_birth" only-letters-input>
                         </div>
                         <div class="col-md-6">
-                            <label>Horoscope Details</label>
+                            <label>{{ 'FBHHOROSCOPE_DETAILS' | translate }}</label>
                             <p ng-init="family.horoscope='CL'"></p>
                             <select class="minimal" ng-model="family.horoscope">
                                        <option value="">Not interested</option>
@@ -393,7 +393,7 @@
                                     </select>
                         </div>
                         <div class="col-md-6">
-                            <label>Zodiac</label>
+                            <label>{{ 'FBHZODIAC' | translate }}</label>
                             <p ng-init="family.zodiac=''"></p>
                             <select class="minimal" ng-model="family.zodiac">
                                        <option value="">Not interested</option>
@@ -402,7 +402,7 @@
                                     </select>
                         </div>
                         <div class="col-md-6">
-                            <label>Anal Income</label>
+                            <label>{{ 'FBHANNUALIN' | translate }}</label>
                             <p ng-init="family.aincome='3T5L'"></p>
                             <select class="minimal" ng-model="family.aincome">
                                        <option value="">Not interested</option>
@@ -413,7 +413,7 @@
                         <div class="col-md-8">
                             <div class="all-do">
                                 <div ng-init="family.beleave_hor=false"></div>
-                                <label class="pull-left">Do You Beleave In Horoscope</label>
+                                <label class="pull-left">{{ 'FBHBELIEVE_HOROSCOPE' | translate }}</label>
                                 <div class="wiz-raido pull-right">
                                     <switch id="enabled0" name="enabled0" ng-model="family.beleave_hor" on="Yes" off="No" class=" wide pripubsw"></switch>
                                     <!--                                     
@@ -431,7 +431,7 @@
                         <div class="col-md-8">
                             <div class="all-do">
                                 <div ng-init="family.manglik=false"></div>
-                                <label class="pull-left">Are You Manglik?</label>
+                                <label class="pull-left">{{ 'FBHRUMANGLIK' | translate }}</label>
                                 <div class="wiz-raido pull-right">
                                     <switch id="enabled1" name="enabled1" ng-model="family.manglik" on="Yes" off="No" class=" wide pripubsw"></switch>
                                     <!--<div class="wiz-label">

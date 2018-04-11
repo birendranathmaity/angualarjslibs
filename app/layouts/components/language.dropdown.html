@@ -1,7 +1,7 @@
-<div class="lang">Language : <span class="">
+<div class="lang"></div>{{ 'LANGUAGE' | translate }} : <span class="">
 <select 
-  ng-options="language | translate for language in lang.languages"
   ng-model="lang.language"
   ng-change="lang.updateLanguage()">
+  <option ng-repeat="lan in lang.languages" value="{{lan.value}}">{{lan.name}}</option>
 </select>
 </span></div> 

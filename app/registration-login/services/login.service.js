@@ -75,7 +75,32 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
           
             $http.post(ServiceUrls.BASEURL + ServiceUrls.OTPVERIFY, data).success(success).error(error);
         },
+       getCastes:function(rel){
+        var formdata = this.getFiledsData();
+        var hindu = formdata.rhindu;
+        var muslim = formdata.rmuslim;
+        var christian = formdata.rchristian;
+        var casteData=[];
+        if (rel === "HINDU") {
+            casteData = hindu;
+            return casteData;
+        }
+        if (rel === "ISLAM") {
+            casteData = muslim;
+            return casteData;
+        }
+        if (rel === "CHR") {
+           casteData = christian;
+           return casteData;
+        }
+       
+        return casteData = [{
+           
+            name: "Other",
+            value: rel + "OTH"
 
+        }];
+         },
         afterloginRoute: function (role) {
 
             if (!$sessionStorage.token) {
@@ -162,7 +187,7 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
                 animation: true,
                 windowClass: "login-model",
                 templateUrl: function(elem,attrs){
-                    console.log(user.vrtype)
+                 
                     if (user.vrtype === "PHONE_NUMBER_VR") {
                         return 'app/registration-login/otp-verification/phone_p.html';
                     }
@@ -277,9 +302,9 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
             var formdata = require('./form-data');
             return formdata;
         },
-        getFiledsData: function () {
+        getFiledsData: function (field) {
             var formdata1 = require('./form-data');
-   var formdata=angular.copy(formdata1);
+            var formdata=angular.copy(formdata1);
             var edus = [];
             for (var ik = 0; ik < formdata.educations.length; ik++) {
                 var gnameedu = formdata.educations[ik].groupname;
@@ -313,7 +338,13 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
            formdata.educations =edus;
            formdata.occupations = occ;
            formdata.fatheroccupation = focc;
-            return formdata;
+           if(field){
+            return formdata[field];
+           }
+           else{
+            return formdata; 
+           }
+           
         },
         getProfilePic: function () {
             var pics = {

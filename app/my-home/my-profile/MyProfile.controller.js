@@ -38,31 +38,8 @@ module.exports = function MyProfileController(useractions,$location,$scope, matc
         controller.userLocation = result;
     }, function () { });
 
-    var hindu = controller.formdata.rhindu;
-    var muslim = controller.formdata.rmuslim;
-    var christian = controller.formdata.rchristian;
-
-    controller.casteData=[];
-    controller.loadCaste = function (rel) {
-        if (rel === "HINDU") {
-            controller.casteData = hindu;
-            return;
-        }
-        if (rel === "ISLAM") {
-            controller.casteData = muslim;
-            return;
-        }
-        if (rel === "CHR") {
-            controller.casteData = christian;
-            return;
-        }
-       
-        controller.casteData = [{
-           
-            name: "Other",
-            value: rel + "OTH"
-
-        }];
+   controller.loadCaste = function (rel) {
+        controller.casteData=loginservice.getCastes(rel);
 
     };
     matcheservice.get_partner_pre({ user_id: $rootScope.login_user_id }, function (result) {

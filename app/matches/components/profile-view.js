@@ -12,16 +12,15 @@ module.exports = function ($rootScope,loginservice,$crypto,$state) {
             '$element',
             '$attrs',
             function ($scope, $element, $attrs) {
-               
                 var controller=this;
-                controller.user_action=$rootScope.user_action;
                 $scope.$watch('user', function (newVal, oldVal) {
                     if (!newVal) {
                         return;
                     }
-                   
+                    controller.user_action=$rootScope.user_action;
                     controller.user=$scope.user;
-                    controller.loadCaste(controller.user.religion);
+                    controller.formdata = loginservice.getFiledsData();
+                    controller.casteData=loginservice.getCastes(controller.user.religion);
                    
                 });
                 controller.goToFullProfile=function(id){
@@ -31,38 +30,7 @@ module.exports = function ($rootScope,loginservice,$crypto,$state) {
                         isblock:controller.user.is_blocked_profile
                     });
                   };
-
-               
-               
-                  controller.formdata = loginservice.getFiledsData();
-                  var hindu = controller.formdata.rhindu;
-                  var muslim = controller.formdata.rmuslim;
-                  var christian = controller.formdata.rchristian;
-                controller.casteData=[];
-                controller.loadCaste = function (rel) {
-                    if (rel === "HINDU") {
-                        controller.casteData = hindu;
-                        return;
-                    }
-                    if (rel === "ISLAM") {
-                        controller.casteData = muslim;
-                        return;
-                    }
-                    if (rel === "CHR") {
-                        controller.casteData = christian;
-                        return;
-                    }
-                   
-                    controller.casteData = [{
-                       
-                        name: "Other",
-                        value: rel + "OTH"
-        
-                    }];
-
-                };
-                
-            }
+             }
         ]
     };
 };

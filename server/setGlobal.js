@@ -14,3 +14,7 @@ exports.setIo = function (iosocket) {
 exports.emit = function (eventname,data) {
     io.emit(eventname,data);
 };
+exports.secret = function () {
+    var secret="dholbaaje.com.nikhil";
+   return secret;
+};

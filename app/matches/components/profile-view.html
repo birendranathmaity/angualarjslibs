@@ -50,25 +50,25 @@
                       <div class="bmd-list-group-col">
                         <p class="list-group-item-left pull-left">{{'AGE' | translate}}</p>
                        
-                        <p class="list-group-item-right pull-right">{{$ctrl.user.age}} Yrs</p>
+                        <p class="list-group-item-right pull-right">{{$ctrl.user.age}} {{ 'YEARS' | translate }}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Height</p>
+                        <p class="list-group-item-left pull-left">{{'HEIGHT' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right">{{$ctrl.user.height | height}}</p>
                       
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Marital Status</p>
+                        <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | where:{value: $ctrl.user.maritialstatus}">{{mt.name}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Mother Tongue</p>
+                        <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE' | translate}}</p>
                         <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.mother_tongues | where:{value:$ctrl.user.mothertounge}">{{edu.name}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Religion </p>
+                        <p class="list-group-item-left pull-left">{{'BDRELIGION' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right" ng-repeat="rl in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rl.name}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Caste </p>
+                        <p class="list-group-item-left pull-left">{{'BDCASTE' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
                         <p class="clearfix"></p>
@@ -81,32 +81,27 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                       <div class="bmd-list-group-col">
-
-
-                        
-
-                     
-                        <p class="list-group-item-left pull-left">Country Living </p>
+                       <p class="list-group-item-left pull-left">{{'BDCOUNTRY_LIVING' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.country}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">State Living</p>
+                        <p class="list-group-item-left pull-left">{{'BDSTATE_LIVING' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.state}}</p>
                         <p class="clearfix"></p>
                         
-                        <p class="list-group-item-left pull-left">City Living In</p>
+                        <p class="list-group-item-left pull-left">{{'BDCITY_LIVING' | translate}}</p>
                        
                         <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Physical Status </p>
+                        <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS' | translate}}</p>
                         <p class="list-group-item-right pull-right" ng-repeat="ph in $ctrl.formdata.PhysicalStatus | where:{value:$ctrl.user.physical_status}">{{ph.name}}</p>
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Heighest Education </p>
+                        <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU' | translate}}</p>
                         <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.high_edu}">{{edu.name}}</p>
                         
                         <p class="clearfix"></p>
-                        <p class="list-group-item-left pull-left">Occupation </p>
+                        <p class="list-group-item-left pull-left">{{'EWOCCUPATION' | translate}}</p>
                         <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
                      
                       </div>
@@ -128,7 +123,7 @@
               <div class="row">
                 <div class="col-lg-4 no-padding"> </div>
                 <div class="col-lg-4 no-padding "><like-button user="$ctrl.user" ng-if="$ctrl.user_action"></like-button></div>
-                <div class="col-lg-4 no-padding" > <p class="posted-m"> Posted By :  <span ng-repeat="crt in $ctrl.formdata.created_by | where:{value:$ctrl.user.created_by}"> {{crt.name}} </span> </p></div>
+                <div class="col-lg-4 no-padding" > <p class="posted-m"> {{'PROFILE_POSTED_BY' | translate}}<span ng-repeat="crt in $ctrl.formdata.created_by | where:{value:$ctrl.user.created_by}"> {{crt.name}} </span> </p></div>
               </div>  
             </div>
           </div>

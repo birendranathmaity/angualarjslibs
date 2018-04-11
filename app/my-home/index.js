@@ -195,15 +195,11 @@ module.exports = angular.module('app.ui.myhome', [myhomecomponents.name])
                         "<span ng-show='!open'>...</span>" +
                         "<span style='color:blue' class='btn-link ngTruncateToggleText' " +
                         "ng-click='toggleShow()'" +
-                        "ng-show='!open'>" +
-                        " " + ($scope.customMoreLabel ? $scope.customMoreLabel : "More") +
-                        "</span>" +
+                        "ng-show='!open'>{{'MORE' | translate }}</span>" +
                         "<span ng-show='open'>" +
                         $scope.text.substring(threshould) +
                         "<span style='color:blue' class='btn-link ngTruncateToggleText'" +
-                        "ng-click='toggleShow()'>" +
-                        " " + ($scope.customLessLabel ? $scope.customLessLabel : "Less") +
-                        "</span>" +
+                        "ng-click='toggleShow()'>{{'LESS' | translate }}</span>" +
                         "</span>" +
                         "</span>");
                     $compile(el)($scope);

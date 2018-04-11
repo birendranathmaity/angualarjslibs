@@ -14,7 +14,7 @@
         </div>
         <div class="clearfix"></div>
         <div ng-show="ctrl.isEmail">
-          <p>Please verify your email to send OTP</p>
+          <p>{{'EMAILVERPOP_HEADING'| translate}}</p>
           <div>
             <input  class="input-btn form-control" type="text" name="email" ng-model="ctrl.user.email" placeholder="Email" email-available
               validator="ctrl.emailValidator(ctrl.user.email) === true" invalid-message="ctrl.emailValidator(ctrl.user.email)"
@@ -27,9 +27,9 @@
 
         </div>
        <div ng-show="ctrl.isEnterOtp">
-          <p>Enter Your 6 digits OTP number</p>
+          <p>{{'EMAILVER_OTPHEADING' | translate}}</p>
           <div>
-            <input name="otpinput" type="number" placeholder="Enter OTP number" ng-model="ctrl.otpnumber" validate-on="dirty" required-message="ctrl.required('REQUIRED')"
+            <input name="otpinput" type="number" placeholder="{{'PHEMAILVER_OTPHEADING' | translate}}" ng-model="ctrl.otpnumber" validate-on="dirty" required-message="ctrl.required('REQUIRED')"
             ng-required="ctrl.isEnterOtp" >
           </div>
 
@@ -47,13 +47,13 @@
             <button type="submit" ng-if="!ctrl.isEnterOtp" ng-disabled="otpForm.$invalid" class="button  raised hoverable forget-p">
               <div class="anim"></div>
               <span>
-                Continue</span>
+                {{'CONTINUEBTN_EMAILVERPOP'| translate}} </span>
             </button>
             <button type="button" ng-if="ctrl.isEnterOtp" ng-disabled="!ctrl.otpnumber && (ctrl.otpnumber.length>6 || ctrl.otpnumber.length<6)"
               class="button  raised hoverable forget-p" ng-click="ctrl.veryFyOtp(ctrl.otpnumber)">
               <div class="anim"></div>
               <span>
-                Submit</span>
+                {{'SUBMITBTN_EMAILVERPOP'| translate}}</span>
             </button>
           </div>
         </div>

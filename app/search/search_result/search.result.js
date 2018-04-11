@@ -1,8 +1,8 @@
 /* @ngInject */
-module.exports = function searchResultController($rootScope,$state, countryService, loginservice,messagesservice, searchService) {
+module.exports = function searchResultController($rootScope, $state, countryService, loginservice, messagesservice, searchService) {
     var controller = this;
-    controller.fields=$state.params.fields;
-     controller.limit = 10;
+    controller.fields = $state.params.fields;
+    controller.limit = 10;
     controller.total = 0;
     controller.page = 1;
     controller.pages = 0;
@@ -13,54 +13,54 @@ module.exports = function searchResultController($rootScope,$state, countryServi
     var req = {
         page: controller.page,
         limit: controller.limit,
-        gender:$rootScope.login_user_gender,
-        fields:controller.fields
-        };
-    controller.searchFields=function(fields){
-        controller.fields=fields;
-        req.fields=fields;
-        req.gender=$rootScope.login_user_gender;
+        gender: $rootScope.login_user_gender,
+        fields: controller.fields
+    };
+    controller.searchFields = function (fields) {
+        controller.fields = fields;
+        req.fields = fields;
+        req.gender = $rootScope.login_user_gender;
         serachResult();
     };
     controller.pageChanged = function () {
-        
-                controller.selectedAll = false;
-        
-                controller.page = controller.page;
-        
-                req.page = controller.page;
-                controller.loadViewType();
-        
-            };
-function serachResult(){
 
-    searchService.getSearchResult(req,function(result){
-        
-         setUserData(result);
-                 },function(error){});
-}
-            controller.loadViewType = function () {
+        controller.selectedAll = false;
 
-                if(controller.fields){
+        controller.page = controller.page;
+
+        req.page = controller.page;
+        controller.loadViewType();
+
+    };
+    function serachResult() {
+
+        searchService.getSearchResult(req, function (result) {
+
+            setUserData(result);
+        }, function (error) { });
+    }
+    controller.loadViewType = function () {
+
+        if (controller.fields) {
+            serachResult();
+        }
+
+
+        else {
+            searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
+                if (result) {
+                    req.fields = result;
+                    controller.fields = result;
+                    req.gender = $rootScope.login_user_gender;
                     serachResult();
                 }
-               
-               
-               else{
-                searchService.getSearch({ user_id: $rootScope.login_user_id }, function (result) {
-                    if (result) {
-                        req.fields=result;
-                        controller.fields=result;
-                        req.gender=$rootScope.login_user_gender;
-                        serachResult();
-                    }
-                        
-                        },function(error){});
-               }
-        
-            };
 
-            
+            }, function (error) { });
+        }
+
+    };
+
+
     function setUserData(result) {
         controller.users = [];
         controller.pages = result.pages;
@@ -72,25 +72,25 @@ function serachResult(){
     }
 
     controller.loadViewType();
-    controller.saveResult={
-            user_id: $rootScope.login_user_id,
-            name:"",
-            fields:controller.fields
+    controller.saveResult = {
+        user_id: $rootScope.login_user_id,
+        name: "",
+        fields: controller.fields
     };
-    controller.saveNameDisbaled=function(){
+    controller.saveNameDisbaled = function () {
 
-if(!controller.saveResult.name){
-return true;
-}
+        if (!controller.saveResult.name) {
+            return true;
+        }
     };
-    controller.saveSearchResult=function(){
-        controller.saveResult.fields=controller.fields;
-        searchService.saveSearchResult(controller.saveResult,function(result){
-            controller.saveResult.name="";
-            messagesservice.toaster_msg("Successfully saved");
+    controller.saveSearchResult = function () {
+        controller.saveResult.fields = controller.fields;
+        searchService.saveSearchResult(controller.saveResult, function (result) {
+            controller.saveResult.name = "";
+            messagesservice.toaster_msg("SUCCESSFULLY_SAVED");
 
 
-                     },function(error){});
+        }, function (error) { });
     };
 
-    };
+};

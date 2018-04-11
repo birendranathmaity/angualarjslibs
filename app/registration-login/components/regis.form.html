@@ -39,30 +39,30 @@
             <div class="col-md-6 p-l-0 p-r-7">
 
                   <input dont-fill class="input-btn form-control" type="text" ng-disabled="registerFormCtrl.userId" name="email" ng-model="form.email"
-                        placeholder="Email" email-available validator="registerFormCtrl.emailValidator(form.email) === true" invalid-message="registerFormCtrl.emailValidator(form.email)"
+                        placeholder="{{'EMAIL' | translate}}" email-available validator="registerFormCtrl.emailValidator(form.email) === true" invalid-message="registerFormCtrl.emailValidator(form.email)"
                         required-message="registerFormCtrl.required('REQUIRED')" validate-on="dirty" required />
 
             </div>
             <div class="col-md-6 p-l-0 p-r-7">
-                  <input autocomplete="off" class="input-btn form-control" type="password" name="password" placeholder="Password" ng-model="form.password" validator="registerFormCtrl.passwordValidator(form.password) === true"
+                  <input autocomplete="off" class="input-btn form-control" type="password" name="password" placeholder="{{'PASSWORD' | translate}}" ng-model="form.password" validator="registerFormCtrl.passwordValidator(form.password) === true"
                         invalid-message="registerFormCtrl.passwordValidator(form.password)" required-message="registerFormCtrl.required('REQUIRED')"
                         validate-on="dirty" required/>
             </div>
       </div>
       <div class="row marg-b15">
             <div class="col-md-6 p-l-0 p-r-7">
-                  <input class="input-btn form-control" type="text" name="first_name" placeholder="First Name" ng-model="form.first_name" required-message="registerFormCtrl.required('REQUIRED')"
+                  <input class="input-btn form-control" type="text" name="first_name" placeholder="{{'FIRST_NAME' | translate}}" ng-model="form.first_name" required-message="registerFormCtrl.required('REQUIRED')"
                         validate-on="dirty" required only-letters-input/>
             </div>
             <div class="col-md-6 p-l-0 p-r-7">
-                  <input class="input-btn form-control" type="text" name="last_name" placeholder="Last Name" ng-model="form.last_name" required-message="registerFormCtrl.required('REQUIRED')"
+                  <input class="input-btn form-control" type="text" name="last_name" placeholder="{{'LAST_NAME' | translate}}" ng-model="form.last_name" required-message="registerFormCtrl.required('REQUIRED')"
                         validate-on="dirty" required only-letters-input/>
             </div>
       </div>
       <div class="row marg-b15">
             <div ng-init="form.created_by='SELF'"></div>
             <div class="col-md-6  p-l-10">
-                  <label for="email">Profile Created By </label>
+                  <label for="email">{{'PROFILE_CREATED_BY' | translate}}</label>
             </div>
             <div class="col-md-6 p-l-0 p-r-7 ">
                   <select class="select-btn minimal form-control" name="created_by" ng-model="form.created_by"> 
@@ -75,7 +75,7 @@
       </div>
       <div class="row marg-b15">
             <div class="col-md-6  p-l-10">
-                  <label for="email">Date Of Birth  </label>
+                  <label for="email">{{'DATE_OF_BIRTH' | translate}}</label>
             </div>
             <div class="col-md-6 p-l-0 p-r-7 dobfield pull-right">
                         <p ng-init="form.day=''"></p>
@@ -85,7 +85,7 @@
                         <select convert-to-number class="select-btn minimal form-control" name="day" ng-model="form.day" validator="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
                               invalid-message="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)" required-message="registerFormCtrl.required('REQUIRED')"
                               append-message=".dobfield" validate-on="dirty" required>
-               <option value disabled > Day</option>
+               <option value disabled > {{'DAY' | translate}}</option>
                <option ng-repeat="_ in ((_ = []) && (_.length=31) && _) track by $index" value="{{$index+1}}">{{$index+1}}</option>
             </select>
                   </div>
@@ -93,7 +93,7 @@
                         <select convert-to-number class="select-btn minimal form-control" name="month" ng-model="form.month" validator="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
                               invalid-message="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)" required-message="registerFormCtrl.required('REQUIRED')"
                               append-message=".dobfield" validate-on="dirty" required>
-               <option value disabled> Month</option>
+               <option value disabled> {{'MONTH' | translate}}</option>
                <option ng-repeat="month in registerFormCtrl.monthsL" value="{{$index+1}}">{{month}}</option>
             </select>
                   </div>
@@ -102,7 +102,7 @@
                               ng-model="form.year" validator="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender) === true"
                               invalid-message="registerFormCtrl.dobValidator(form.day,form.month,form.year,form.gender)" required-message="registerFormCtrl.required('REQUIRED')"
                               append-message=".dobfield" validate-on="dirty" required>
-               <option value disabled > Year</option>
+               <option value disabled > {{'YEAR' | translate}}</option>
             </select>
                   </div>
             </div>
@@ -111,7 +111,7 @@
       </div>
       <div class="row marg-b15">
             <div class="col-md-6  p-l-10">
-                  <label for="email">Your Mobile Number </label>
+                  <label for="email">{{'YOUR_MOBILE_NUMBER' | translate}}</label>
             </div>
             <div class="col-md-6 p-l-0 p-r-7 phoneNumber pull-right">
                   <div class="contry-code">
@@ -148,7 +148,7 @@
                validate-on="dirty"
                required
                >
-            <span> Male </span> 
+            <span> {{'MALE'| translate}} </span> 
             </label>
                         <label class="radio inline"> 
             <input type="radio" name="sex" value="FEMALE" ng-model="form.gender"
@@ -159,7 +159,7 @@
                validate-on="dirty"
                required
                >
-            <span>Female </span> 
+            <span>{{'FEMALE'| translate}}</span> 
             </label>
                   </div>
             </div>
@@ -174,7 +174,7 @@
             </div>
             <div class="col-md-6">
 
-                  <p class="pull-left note-tc"> By Clicking on Register an acount You agree to our T&C and Privacy Policy</p>
+                  <p class="pull-left note-tc">{{'TERMS_PRIVACY'| translate}}</p>
             </div>
       </div>
 </form>

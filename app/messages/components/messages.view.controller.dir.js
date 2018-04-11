@@ -14,7 +14,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
         user_id: $rootScope.login_user_id,
         page: controller.page,
         limit: controller.limit,
-        dataType:"ALL",
+        dataType: "ALL",
         searchType: ""
     };
 
@@ -93,7 +93,7 @@ module.exports = function messagesViewDirCtrl($scope, $uibModal, $rootScope, mes
 
     };
 
-controller.configScollBar = {
+    controller.configScollBar = {
         autoHideScrollbar: true,
         theme: 'rounded-dark',
         axis: 'y',
@@ -161,7 +161,7 @@ controller.configScollBar = {
             templateUrl: 'app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
-                main.type="PROCEED";
+                main.type = "PROCEED";
                 main.yes = function () {
                     finalDelete();
                 };
@@ -184,7 +184,7 @@ controller.configScollBar = {
         function finalDelete() {
             messagesservice.update_message_status(req, function (result) {
                 if (result.success) {
-                    messagesservice.toaster_msg("Successfully Deleted");
+                    messagesservice.toaster_msg("SUCCESSFULLY_DELETED");
                     modalInstance.dismiss('cancel');
                     broadcastComplete();
                 }
@@ -208,9 +208,9 @@ controller.configScollBar = {
         };
         messagesservice.update_message_status(req, function (result) {
             if (result.success) {
-                messagesservice.toaster_msg("Successfully Marked");
+                messagesservice.toaster_msg("SUCCESSFULLY_MARKED");
                 controller.loadViewType();
-                
+
             }
 
 
@@ -226,8 +226,8 @@ controller.configScollBar = {
             return;
         }
         messagesservice.readMsg(config, msgId);
-   };
-    var userSendMessageBroadcast =$scope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
+    };
+    var userSendMessageBroadcast = $scope.$on('userSendMessageBroadcast', function ($event, get_messages_count) {
 
         controller.loadViewType();
 

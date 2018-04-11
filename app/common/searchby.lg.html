@@ -5,7 +5,7 @@
                 <div class="tab-pane active" id="myProfileEdit">
                     <div class="row ">
                         <div class="col-md-12">
-                            <h4 class="semi-bold clearfix">Basic Details {{$ctrl.ok}}</h4>
+                            <h4 class="semi-bold clearfix">{{'BASIC_DETAILS'|translate}}{{$ctrl.ok}}</h4>
                             <!-- {{$ctrl.serachModel}} -->
                             <div class="hr-line"> </div>
                             <div class="row">
@@ -13,7 +13,7 @@
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left">Age</p>
+                                                <p class="list-group-item-left pull-left">{{'AGE'|translate}}</p>
                                                 <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.age.from" convert-to-number> 
                                                  
                                                     <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(18+$index)}}" >{{18+$index}} Yrs</option>
@@ -22,7 +22,7 @@
                                                             <option ng-repeat="_ in ((_ = []) && (_.length=40) && _) track by $index" value="{{(21+$index)}}">{{21+$index}} Yrs</option>
                                                         </select> </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left"> Marital Status </p>
+                                                <p class="list-group-item-left pull-left"> {{'BDMARITAL_STATUS'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                      <ui-select multiple ng-model="$ctrl.serachModel.maritialstatus" on-select="$ctrl.onSelectCallback($item, $model,'maritialstatus')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select maritial status...">{{$item.name}}</ui-select-match>
@@ -32,7 +32,7 @@
                                                     </ui-select>
                                                 </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left"> Mother Tounge </p>
+                                                <p class="list-group-item-left pull-left"> {{'BDMOTHER_TONGUE'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.mothertounge" on-select="$ctrl.onSelectCallback($item, $model,'mothertounge')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select mother tounge...">{{$item.name}}</ui-select-match>
@@ -43,7 +43,7 @@
                                                 </div>
                                                 
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left">Religion </p>
+                                                <p class="list-group-item-left pull-left">{{'BDRELIGION'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.religion" on-remove="$ctrl.removedRL($item, $model,'religion')" close-on-select="false" on-select="$ctrl.onSelectCallbackRelgion($item, $model,'religion')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Choose religion...">{{$item.name}}</ui-select-match>
@@ -60,7 +60,7 @@
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left"> Country Living IN </p>
+                                                <p class="list-group-item-left pull-left"> {{'BDCOUNTRY_LIVING'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.country" on-remove="$ctrl.removedCountry($item, $model,'country')" close-on-select="false" on-select="$ctrl.onSelectCallbackCounry($item, $model,'country')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Choose country...">{{$item.name}}</ui-select-match>
@@ -70,7 +70,7 @@
                                                     </ui-select>
                                                 </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left"> State Living IN </p>
+                                                <p class="list-group-item-left pull-left"> {{'BDSTATE_LIVING'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.state" on-remove="$ctrl.removedCountry($item, $model,'state')" close-on-select="false" ng-disabled="$ctrl.DisabledState" on-select="$ctrl.onSelectCallbackState($item, $model,'state')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Choose state...">{{$item.name}}</ui-select-match>
@@ -80,7 +80,7 @@
                                                     </ui-select>
                                                 </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left"> City Living IN </p>
+                                                <p class="list-group-item-left pull-left"> {{'BDCITY_LIVING'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.city" ng-disabled="$ctrl.DisabledCity" close-on-select="false" on-select="$ctrl.onSelectCallbackCity($item, $model,'city')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Choose city...">{{$item.name}}</ui-select-match>
@@ -110,14 +110,14 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <h4 class="semi-bold clearfix"></h4>
-                            <h4 class="semi-bold clearfix">Educaiton & Work Information</h4>
+                            <h4 class="semi-bold clearfix">{{'EDUCATION_WORK'|translate}}</h4>
                             <div class="hr-line"> </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left">Heighest Education </p>
+                                                <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.high_edu" on-select="$ctrl.onSelectCallback($item, $model,'high_edu')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select education...">{{$item.name}}</ui-select-match>
@@ -134,7 +134,7 @@
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left">Occupation </p>
+                                                <p class="list-group-item-left pull-left">{{'EWOCCUPATION'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.occupation" on-select="$ctrl.onSelectCallback($item, $model,'occupation')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select occupation...">{{$item.name}}</ui-select-match>
@@ -153,7 +153,7 @@
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left">Annual Income</p>
+                                                <p class="list-group-item-left pull-left">{{'FBHANNUALIN'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.aincome" on-select="$ctrl.onSelectCallback($item, $model,'aincome')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select anal income...">{{$item.name}}</ui-select-match>
@@ -172,14 +172,14 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <h4 class="semi-bold clearfix"></h4>
-                            <h4 class="semi-bold clearfix"> Appearence & Interests</h4>
+                            <h4 class="semi-bold clearfix"> {{'LOOK_INTEREST'|translate}}</h4>
                             <div class="hr-line"> </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
-                                                <p class="list-group-item-left pull-left">Height </p>
+                                                <p class="list-group-item-left pull-left">{{'LIHEIGHT'|translate}}</p>
                                                 <div class="list-group-item-right pull-right"> <select class="minimal sear-drop" ng-model="$ctrl.serachModel.height.from" convert-to-number="height"> 
                                                         <option ng-repeat="h in $ctrl.formdata.height" value="{{h}}">{{h | height}}</option>
                                                      </select>
@@ -188,7 +188,7 @@
                                                          </select> </div>
                                                
                                                 <p class="clearfix"> </p>
-                                                <p class="list-group-item-left pull-left">Expectation</p>
+                                                <p class="list-group-item-left pull-left">{{'LIEXPECTATION'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.expectation" on-select="$ctrl.onSelectCallback($item, $model,'expectation')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select expectation...">{{$item.name}}</ui-select-match>
@@ -198,7 +198,7 @@
                                                     </ui-select>
                                                 </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left">Horoscope Details </p>
+                                                <p class="list-group-item-left pull-left">{{'HOROSCOPE_DETAILS'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.horoscope" on-select="$ctrl.onSelectCallback($item, $model,'horoscope')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select horoscope...">{{$item.name}}</ui-select-match>
@@ -216,7 +216,7 @@
                                         <li class="list-group-item">
                                             <div class="bmd-list-group-col">
                                                    
-                                                    <p class="list-group-item-left pull-left">Physical Status</p>
+                                                    <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS'|translate}}</p>
                                                     <div class="list-group-item-right pull-right">
                                                         <ui-select multiple ng-model="$ctrl.serachModel.physical_status" on-select="$ctrl.onSelectCallback($item, $model,'physical_status')" theme="bootstrap" style="width: 220px;">
                                                             <ui-select-match placeholder="Select Physical Status...">{{$item.name}}</ui-select-match>
@@ -226,7 +226,7 @@
                                                         </ui-select>
                                                     </div>
                                                     <p class="clearfix"> </p>
-                                                <p class="list-group-item-left pull-left">Complection </p>
+                                                <p class="list-group-item-left pull-left">{{'LICOMPLEXION'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.complexion" on-select="$ctrl.onSelectCallback($item, $model,'complexion')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select complexion...">{{$item.name}}</ui-select-match>
@@ -236,7 +236,7 @@
                                                     </ui-select>
                                                 </div>
                                                 <p class="clearfix"></p>
-                                                <p class="list-group-item-left pull-left">Body Type </p>
+                                                <p class="list-group-item-left pull-left">{{'LIBODYTYPE'|translate}}</p>
                                                 <div class="list-group-item-right pull-right">
                                                     <ui-select multiple ng-model="$ctrl.serachModel.body_type" on-select="$ctrl.onSelectCallback($item, $model,'body_type')" theme="bootstrap" style="width: 220px;">
                                                         <ui-select-match placeholder="Select body type...">{{$item.name}}</ui-select-match>
@@ -257,7 +257,7 @@
                     <div class="row" ng-if="!$ctrl.partnerPre">
                             <div class="col-md-12">
                     <h4 class="semi-bold clearfix"></h4>
-                    <h4 class="semi-bold clearfix">More</h4>
+                    <h4 class="semi-bold clearfix">{{'MORE'|translate}}</h4>
                     <div class="hr-line"> </div>
                     <div class="row">
                            
@@ -276,7 +276,7 @@
                         </div> -->
                         
                         <div class="col-lg-12">
-                            <div class="list-group-item-left pull-left " style="width: 22%">Show Profile </div>
+                            <div class="list-group-item-left pull-left " style="width: 22%">{{'SHOW_PROFILE'|translate}}</div>
                             <div class="list-group-item-right pull-left" style="line-height: 38px;width:63%">
                                 <div class="checkbox check-default">
                                    
@@ -291,7 +291,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-lg-12">
-                            <div class="list-group-item-left pull-left " style="width: 22%">Posted By </div>
+                            <div class="list-group-item-left pull-left " style="width: 22%">{{'PROFILE_POSTED_BY'|translate}}</div>
                             <div class="list-group-item-right pull-left" style="line-height: 38px;">
                                 <div class="checkbox check-default"> 
                                         <span ng-repeat="item in $ctrl.PostedBy" ng-click="$ctrl.check(item,$ctrl.PostedBy,'ANY_2')">
@@ -304,7 +304,7 @@
                         </div>
                         <div class="clearfix"></div>
                        <div class="col-lg-12">
-                            <div class="list-group-item-left pull-left " style="width: 22%">Don't Show </div>
+                            <div class="list-group-item-left pull-left " style="width: 22%">{{'DONT_SHOW'|translate}}</div>
                             <div class="list-group-item-right pull-left" style="line-height: 38px;">
                                 <div class="checkbox check-default"> 
                                         <span ng-repeat="item in $ctrl.dontShow" ng-click="$ctrl.check(item,$ctrl.dontShow,'ANY_3')">
@@ -321,7 +321,7 @@
     </div>
                         <div class="clearfix"></div>
                         <div class="col-xs-12 clearfix"> <button type="button" ng-click="$ctrl.search()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4"> <i ng-class="{'fa fa-search':!$ctrl.partnerPre,'fa fa-save':$ctrl.partnerPre}"></i>&nbsp;{{$ctrl.partnerPre ? 'SAVE' : 'SEARCH' | translate}}</button>
-                            <div class="m-t-30"> <a  ng-click="$ctrl.reset()" class="btn btn-danger" type="reset"> Reset</a> </div>
+                            <div class="m-t-30"> <a  ng-click="$ctrl.reset()" class="btn btn-danger" type="reset"> {{'RESETBTN_SEARCH'|translate}}</a> </div>
                         </div>
                    
                 </div>

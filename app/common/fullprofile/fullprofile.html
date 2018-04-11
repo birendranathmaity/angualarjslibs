@@ -1,125 +1,122 @@
 <div class="page-content" ng-if="$ctrl.user">
-    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-  
-    <div class="clearfix"></div>
-    <div class="content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-   
-   
-      <div class="row-fluid">
+  <div class="clearfix"></div>
+  <div class="content">
+<div class="row-fluid">
+ <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 ">
+        <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12  no-padding">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 daily-match-all  no-padding">
+              <div class="grid simple profile-detail photo-details">
+                <div class="prof-title no-border">
+                  {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
 
-       <!------------------------ Left Strat -------------------------->
-        
-
-
-    <!------------------------------------------------ profile End ------------------------------------------------>
-    <!------------------------------------------------ you maylike Strat ------------------------------------------------>
-    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 ">
-      <div class="row">
-             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12  no-padding">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 daily-match-all  no-padding" >
-                    <div class="grid simple profile-detail photo-details">
-                      <div class="prof-title no-border">
-        {{$ctrl.user.first_name}}  {{$ctrl.user.last_name}}  
-               
-              </div>
+                </div>
                 <div class="grid-body  p-match-body no-border full-body">
-                      
+
                   <user-img user="$ctrl.user" is-noti="BIG2PHOTO"></user-img>
-           
+
                   <album-galary album="$ctrl.albums"></album-galary>
-                   
-                  
-             
-                      
-               <div class="m-t-30 clearfix"></div>
-                         </div>
-                    </div>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 daily-match-all no-padding">
-                       <div class=" daily-right" >
-                      <div class="prof-title no-border ng-hide">
-        Whould You Like To Contact? <div class="pull-right"> <a class="next-prof"> Next  Profile  <i class="fa fa-caret-right" aria-hidden="true"></i>
-</a></div>
-               
+
+
+
+
+                  <div class="m-t-30 clearfix"></div>
+                </div>
               </div>
-              <!-- {{$ctrl.user | json}} -->
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-                  <div class="col-lg-12 p-r-0">
-                    <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 daily-match-all no-padding">
+              <div class=" daily-right">
+                <div class="prof-title no-border ng-hide">
+                  {{'FULLPRO_LIKETOCONNCT'| translate}}
+                  <div class="pull-right">
+                    <a class="next-prof">{{'FULLPRO_NEXTPRO'| translate}}
+                      <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+
+                </div>
+              <div class="grid-body  p-match-body no-border">
+                  <div class="row">
+                    <div class="col-lg-12 p-r-0">
+                      <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
+                        <ul class="list-group">
+                          <li class="list-group-item">
                             <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Age</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.age}} Yrs</p>
+                              <p class="list-group-item-left pull-left">{{'AGE'| translate}}</p>
+
+                              <p class="list-group-item-right pull-right">{{$ctrl.user.age}} {{'YEARS'| translate}}</p>
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Height</p>
-                             
+                              <p class="list-group-item-left pull-left">{{'LIHEIGHT'| translate}}</p>
+
                               <p class="list-group-item-right pull-right">{{$ctrl.user.height | height }}</p>
-                            
+
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Marital Status</p>
-                             
+                              <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS'| translate}}</p>
+
                               <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | where:{value:$ctrl.user.maritialstatus}">{{mt.name}}</p>
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Mother Tongue</p>
-                             
+                              <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE'| translate}}</p>
+
                               <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.mother_tongues |  where:{value:$ctrl.user.mothertounge}">{{mt.name}}</p>
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Religion </p>
-                             
+                              <p class="list-group-item-left pull-left">{{'BDRELIGION'| translate}}</p>
+
                               <p class="list-group-item-right pull-right" ng-repeat="rt in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rt.name}}</p>
                             </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12  p-l-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-xs-12  p-l-0">
+                        <ul class="list-group">
+                          <li class="list-group-item">
                             <div class="bmd-list-group-col">
 
 
-                              <p class="list-group-item-left pull-left">Caste </p>
-                             
-                            
+                              <p class="list-group-item-left pull-left">{{'BDCASTE'| translate}}</p>
+
+
                               <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
-                             
+
                               <p class="clearfix"></p>
 
-                           
-                              <p class="list-group-item-left pull-left"> Education</p>
-                          
+
+                              <p class="list-group-item-left pull-left"> {{'EWHIGHEST_EDU'| translate}}</p>
+
                               <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.userinfo.education.high_edu}">{{edu.name}}</p>
-                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Occupation</p>
-                             
+                              <p class="clearfix"></p>
+                              <p class="list-group-item-left pull-left">{{'EWOCCUPATION'| translate}}</p>
+
                               <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">City Living In</p>
-                             
+                              <p class="list-group-item-left pull-left">{{'BDCITY_LIVING'| translate}}</p>
+
                               <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
                               <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Posted By </p>
-                              <p class="list-group-item-right pull-right" ng-repeat="crt in $ctrl.formdata.created_by |  where:{value:$ctrl.user.created_by}"> {{crt.name}} </p>
-                              
-                            </div>
-                        </li>
-                      </ul>
+                              <p class="list-group-item-left pull-left">{{'PROFILE_POSTED_BY'| translate}} </p>
+                              <p class="list-group-item-right pull-right" ng-repeat="crt in $ctrl.formdata.created_by |  where:{value:$ctrl.user.created_by}">
+                              {{crt.name}} </p>
 
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row-fluid">
-                      <div class="col-lg-12">
-                        <div class="contct-conect" ng-if="$ctrl.user_action">
-                          <h3> Would You Like To Contact ?</h3>
+                            </div>
+                          </li>
+                        </ul>
+
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="row-fluid">
+                        <div class="col-lg-12">
+                          <div class="contct-conect" ng-if="$ctrl.user_action">
+                            <h3>{{'FULLPRO_LIKETOCONNCT'| translate}}</h3>
                             <div class="clearfix"></div>
-                            
+
                             <message-button user="$ctrl.user" ng-if="$ctrl.user_action"></message-button>
                             <contact-button user="$ctrl.user" ng-if="$ctrl.user_action"></contact-button>
                             <div class="clearfix"></div>
                             <block-button user="$ctrl.user" ng-if="$ctrl.user_action"></block-button>
+                            <report-abuse-button user="$ctrl.user" ></report-abuse-button>
+
+                          </div>
 
                         </div>
 
@@ -127,885 +124,473 @@
 
                     </div>
 
-                    </div>
-                  
-                    </div>
-                   
-
-                    
-
                   </div>
-                      
-               
-                         </div>
-
-                          
-                    </div>
-
-                    <div class="clearfix"></div>
-                    <!-- profile detials -->
-                    <div class="row-fluid">
-      <h2> More Information About {{$ctrl.user.first_name}} !! </h2>
-        <div class="col-md-12 col-lg-12  p-r-0">
-
-          <ul class="cbp_tmtimeline">
-            <li>
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-file-text"></i> </div>
-              <div class="cbp_tmlabel">
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-       Basic Details
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-               
-                    <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Age</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.age}} Yrs</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">Marital Status</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | where:{value:$ctrl.user.maritialstatus}">{{mt.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Mother Tongue</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.mother_tongues |  where:{value:$ctrl.user.mothertounge}">{{mt.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Religion </p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="rt in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rt.name}}</p>
-                               <p class="clearfix"></p>
-                               <p class="list-group-item-left pull-left">Caste </p>
-                             
-                               <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
-                             <p class="clearfix"></p>
-                            <p class="list-group-item-left pull-left">Sub Caste</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.basic.subcaste}}</p>
-                              
-                             
-                            </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12  p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
 
 
-                             
-                           
-                          
-                              <p class="list-group-item-left pull-left">Gothram</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.basic.gothram}}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">Country Living IN</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.country}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">State Living In </p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.state}}</p>
-                              <p class="clearfix"></p>
 
-                           
-                              <p class="list-group-item-left pull-left">City Living In</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Posted By</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="crt in $ctrl.formdata.created_by |  where:{value:$ctrl.user.created_by}"> {{crt.name}} </p>
-                              
-                              <p class="clearfix"></p>
-                             
-                            </div>
-                        </li>
-                      </ul>
 
-                    </div>
-       
-
-                    
-
-                  </div>
-                      
-               
-                         </div>
-               
                 </div>
-                <div class="clearfix"></div>
-            
+
+
               </div>
-            </li>
-
-            <li>
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-book"></i> </div>
-              <div class="cbp_tmlabel">
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-      Education & Work Information
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-               
-                    <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Education</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.userinfo.education.high_edu}">{{edu.name}}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">Occupation</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-                             
-                                <p class="list-group-item-left pull-left">Designation </p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.education.designation}}</p>
-                              <p class="clearfix"></p>
-                            </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12  p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
 
 
-                           
+            </div>
 
-                           
-                              <p class="list-group-item-left pull-left">Field of Study</p>                             
-                              <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.studies | where:{value:$ctrl.user.userinfo.education.filed_study}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-                               <p class="list-group-item-left pull-left">Company Name </p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.education.company}}</p>
-                              <p class="clearfix"></p>
-                             
-                              <p class="list-group-item-left pull-left">Anuual Income</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.aincome | where:{value:$ctrl.user.userinfo.family.aincome}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-                            </div>
-                        </li>
-                      </ul>
+            <div class="clearfix"></div>
+            <!-- profile detials -->
+            <div class="row-fluid">
+              <h2> {{'FULLPRO_MOREINFOABOUT'| translate}} {{$ctrl.user.first_name}} !! </h2>
+              <div class="col-md-12 col-lg-12  p-r-0">
 
-                    </div>
-          
-                    <div class="clearfix"></div>
-                    
+                <timeline-profile user="$ctrl.user"></timeline-profile>
 
-           
-                    </div>
-                   
 
-                    
 
-                  </div>
-                      
-               
-                         </div>
-               
                 </div>
-                <div class="clearfix"></div>
-            
               </div>
-            </li>
-
-            <li>
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-user"></i> </div>
-              <div class="cbp_tmlabel">
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-     About Him
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row-fluid"> 
-               
-                    <div class="col-lg-12">
-                      
-                      <p class="large-text">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                      </p>
-                    </div>
-                    <div class="clearfix"></div>
-                    
-
-           
-                    </div>
-                   
-
-                    
-
-                  </div>
-                      
-               
-                         </div>
-               
-                </div>
-                <div class="clearfix"></div>
-            
-              </div>
-            </li>
-
-
-            <li >
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-male"></i> </div>
-              <div class="cbp_tmlabel">
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-      Appearnce & Interests
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-               
-                    <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Height</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.height | height }}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">Weight</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.interest.weight}} kg</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">complexion</p>
-                             
-                              <p class="list-group-item-right pull-right"  ng-repeat="oc in $ctrl.formdata.complexion | where:{value:$ctrl.user.userinfo.interest.complexion}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Body Type </p>
-                             
-                              <p class="list-group-item-right pull-right"  ng-repeat="oc in $ctrl.formdata.BodyType | where:{value:$ctrl.user.userinfo.interest.body_type}">{{oc.name}}</p>
-                             
-                            </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12  no-padding">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-
-
-                              <p class="list-group-item-left pull-left">Physical Status </p>
-                             
-                              <p class="list-group-item-right pull-right"  ng-repeat="oc in $ctrl.formdata.PhysicalStatus | where:{value:$ctrl.user.userinfo.interest.physical_status}">{{oc.name}}</p>
-                              
-                              <p class="clearfix"></p>
-
-                           
-                              <p class="list-group-item-left pull-left"> Intrested In</p>
-                             
-                              <p class="list-group-item-right pull-right" ng-text-truncate="$ctrl.user.userinfo.interest.hobbie | joinnameother:', ':'name':$ctrl.formdata.hobbies"
-                              ng-tt-chars-threshold="60"></p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Expectation</p>
-                             
-                              <p class="list-group-item-right pull-right"  ng-repeat="oc in $ctrl.formdata.Expectation | where:{value:$ctrl.user.userinfo.interest.expectation}">{{oc.name}}</p>
-                              
-                              <p class="clearfix"></p>
-                              
-                             
-                        
-                            </div>
-                        </li>
-                      </ul>
-
-                    </div>
-                    
-                    <div class="clearfix"></div>
-                    
-
-           
-                    </div>
-                   
-
-                    
-
-                  </div>
-                      
-               
-                         </div>
-               
-                </div>
-                <div class="clearfix"></div>
-            
-              </div>
-            </li>
-            
-           <li>
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-users"></i> </div>
-              <div class="cbp_tmlabel" >
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-     Family Background
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-               
-                    <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left"> Father Name</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.father}}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left"> Mother Name</p>
-                             
-                              <p class="list-group-item-right pull-right"> {{$ctrl.user.userinfo.family.mother}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Father Occupation</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.father_occupation}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Mosal </p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.mosal}}</p>
-                             
-                            </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-4 col-xs-12  p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-
-
-                              <p class="list-group-item-left pull-left">Contact Number </p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.phone_number}}</p>
-                              <p class="clearfix"></p>
-
-                           
-                              <p class="list-group-item-left pull-left">Sibilings</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.siblings}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Native Place</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.native_place}}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">City</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.city}}</p>
-                              <p class="clearfix"></p>
-                             
-                            </div>
-                        </li>
-                      </ul>
-
-                    </div>
-                    
-                    <div class="clearfix"></div>
-                    
-
-           
-                    </div>
-                   
-
-                    
-
-                  </div>
-                      
-               
-                         </div>
-               
-                </div>
-                <div class="clearfix"></div>
-            
-              </div>
-            </li>
-
-             <li >
-         
-              <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-star"></i> </div>
-              <div class="cbp_tmlabel">
-                <div class="">
-                      <div class="grid simple daily-right">
-                      <div class="prof-title no-border">
-      Horoscope Details
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row"> 
-               
-                    <div class="col-lg-6 col-md-4 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Date of Birth</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.dob | date:'dd-MMM-yyyy'}}</p>
-                              <p class="clearfix"></p>
-                              
-                              <p class="list-group-item-left pull-left">Place of Birth</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.place_birth}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Time of Birth</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.time_birth_hr}} : {{$ctrl.user.userinfo.family.time_birth_min}} (24H)</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Zodiac </p>
-                             
-                              <p class="list-group-item-right pull-right" >{{$ctrl.user.userinfo.family.zodiac}} </p>
-                             
-                            </div>
-                        </li>
-                      </ul> 
-                    </div>
-                    <div class="col-lg-6 col-md-4 col-xs-12  p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-
-
-                              <p class="list-group-item-left pull-left">Horoscope Details </p>
-                             
-                              <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.Horoscope | where:{value:$ctrl.user.userinfo.family.horoscope}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-
-                           
-                              <p class="list-group-item-left pull-left">Are You Mangilink</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.manglik ? 'Yes' : 'No'}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">Do You Belive In Horoscope</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.userinfo.family.beleave_hor ? 'Yes' : 'No'}}</p></p>
-                              <p class="clearfix"></p>
-                              
-                              
-                             
-                            </div>
-                        </li>
-                      </ul>
-
-
-                    </div>
-                    
-                    <div class="clearfix"></div>
-                    
-
-           
-                    </div>
-                   
-
-                    
-
-                  </div>
-                      
-               
-                         </div>
-               
-                </div>
-                <div class="clearfix"></div>
-            
-              </div>
-            </li>
-          </ul>
-   
-
-
-
-        </div>
-      </div>
-                    </div>
+            </div>
             <!-- right box -->
-                  
-        <div class="col-lg-3 p-r-0">
-                       
-                       <!--  <div class="daily-r-add">
+
+            <div class="col-lg-3 p-r-0">
+
+              <!--  <div class="daily-r-add">
                            
                         </div> -->
-                   
 
-<div class="grid simple success-str  searchdhole">
-              <div class=" pref-title no-border">
-                <h4 class="semi-bold">Success Stories</h4>
 
-               
-              </div>
-              <div class="grid-body  no-border">
-    
-<section id="carousel">             
- 
-    <div class="row">
-      <div class="col-md-12 no-padding">
-              
-        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-          <!-- Carousel indicators -->
-                  <ol class="carousel-indicators">
-            <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
-            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
-            <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
-                    <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
-                    <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
-                    <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
-          </ol>
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <div class="item">
-            <a href="#">
-                        <div class="profile-circle"><img src="assets/img/others/success-stories.jpg" /></div>
-              <blockquote>
-              <p class="semi-bold"> Raman & Janshi </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote> 
-              </a>
-            </div>
-            <div class="item">
-             <a href="#">
-            
-                        <div class="profile-circle" > <img src="assets/img/others/success-stories2.jpg" /></div>
-              <blockquote>
-               <p class="semi-bold"> ajay & Swetha</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote>
-              </a>
-            </div>
-            <div class="active item">
-             <a href="#">
-             
-                        <div class="profile-circle"> <img src="assets/img/others/success-stories3.jpg" /></div>
-              <blockquote>
-              <p class="semi-bold"> Rajesh & Rajini</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote>
-              </a>
-            </div>
-                    <div class="item">
-                    <a href="#">
-                        <div class="profile-circle"> <img src="assets/img/others/success-stories4.jpg" /></div>
-                <blockquote>
-                <p class="semi-bold"> Prasad & Maha</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote>
-              </a>
-            </div>
-                    <div class="item">
-                     <a href="#">
-                     
-                        <div class="profile-circle" > <img src="assets/img/others/success-stories.jpg" /></div>
-                <blockquote>
-                <p class="semi-bold"> Raviteja &  Swathi </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote>
-              </a>
-            </div>
-                    <div class="item">
-                     <a href="#">
+              <div class="grid simple success-str  searchdhole">
+                <div class=" pref-title no-border">
+                  <h4 class="semi-bold">{{'SUCCESS_STORIES_FOOTER' | translate}}</h4>
 
-                        <div class="profile-circle"><img src="assets/img/others/success-stories2.jpg" /></div>
-                <blockquote>
-                 <p class="semi-bold"> Rajesh & Rajini</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-              </blockquote>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>              
-  
-  </div>
-</section>
-               
-                 
+
+                </div>
+                <div class="grid-body  no-border">
+
+                  <section id="carousel">
+
+                    <div class="row">
+                      <div class="col-md-12 no-padding">
+
+                        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                          <!-- Carousel indicators -->
+                          <ol class="carousel-indicators">
+                            <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+                          </ol>
+                          <!-- Carousel items -->
+                          <div class="carousel-inner">
+                            <div class="item">
+                              <a href="#">
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Raman & Janshi </p>
+                                  <p>{{'SUCCESS_STORY1' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories2.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> ajay & Swetha</p>
+                                  <p>{{'SUCCESS_STORY2' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="active item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories3.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Rajesh & Rajini</p>
+                                  <p>{{'SUCCESS_STORY3' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories4.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Prasad & Maha</p>
+                                  <p>{{'SUCCESS_STORY4' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Raviteja & Swathi </p>
+                                  <p>{{'SUCCESS_STORY5' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories2.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Rajesh & Rajini</p>
+                                  <p>{{'SUCCESS_STORY6' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </section>
+
+
                 </div>
               </div>
 
 
               <div class="grid simple view-contact">
-              <div class=" pref-title no-border">
-                <h4 class=""> Similar Profile </h4>
+                <div class=" pref-title no-border">
+                  <h4 class=""> {{'SIMILAR_PROFILE' | translate}}</h4>
 
-                
-              </div>
-              <div class="grid-body  no-border">
-                <div class="hr-line"> </div>
+
+                </div>
+                <div class="grid-body  no-border">
+                  <div class="hr-line"> </div>
                   <div class="scroller" data-height="200px">
-          
-                   
+
+
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
                         <div class="li-profile">
-                           <a href="#">
-                              <div class="pull-left no-padding">
-                                <div class="user-profile-pic">  
-                                  <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />  
-                                </div>
+                          <a href="#">
+                            <div class="pull-left no-padding">
+                              <div class="user-profile-pic">
+                                <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />
                               </div>
-                              <div class="pull-left no-padding">
-                                <ul class="no-padding">
-                                  <li> T3807254 </li>
-                                  <li> Krishna Juluri Reddy,</li>
-                                  <li> <span> 02-02-2017 </span>  | <span> 10:00 PM </span>   </li>
-                                </ul>                    
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
-                        <div class="li-profile">
-                           <a href="#">
-                              <div class="pull-left no-padding">
-                                <div class="user-profile-pic">  
-                                  <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />  
-                                </div>
-                              </div>
-                              <div class="pull-left no-padding">
-                                <ul class="no-padding">
-                                  <li> T3807254 </li>
-                                  <li> Krishna Juluri Reddy,</li>
-                                  <li> 02-02-2017 | 10:00 PM   </li>
-                                </ul>                    
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
-                        <div class="li-profile">
-                           <a href="#">
-                              <div class="pull-left no-padding">
-                                <div class="user-profile-pic">  
-                                  <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />  
-                                </div>
-                              </div>
-                              <div class="pull-left no-padding">
-                                <ul class="no-padding">
-                                  <li> T3807254 </li>
-                                  <li> Krishna Juluri Reddy,</li>
-                                  <li> 02-02-2017 | 10:00 PM   </li>
-                                </ul>                    
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
-                        <div class="li-profile">
-                           <a href="#">
-                              <div class="pull-left no-padding">
-                                <div class="user-profile-pic">  
-                                  <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />  
-                                </div>
-                              </div>
-                              <div class="pull-left no-padding">
-                                <ul class="no-padding">
-                                  <li> T3807254 </li>
-                                  <li> Krishna Juluri Reddy,</li>
-                                  <li> 02-02-2017 | 10:00 PM   </li>
-                                </ul>                    
-                              </div>
-                            </a>
-                          </div>
+                            </div>
+                            <div class="pull-left no-padding">
+                              <ul class="no-padding">
+                                <li> T3807254 </li>
+                                <li> Krishna Juluri Reddy,</li>
+                                <li>
+                                  <span> 02-02-2017 </span> |
+                                  <span> 10:00 PM </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </a>
                         </div>
                       </div>
-                      
-            
-            
-                    </div>
-                </div>
-
-                
-
-
-              </div>
-
-
-                     </div>
-                 
-
-         
-                </div>
-            
-            </div>
-        
-        </div>
- 
-
-
-     
-      <div class="row-fluid">
-        
-            <div class="col-lg-9 p-r-0">
-                  <div class="full-profile " ng-if="$ctrl.fieldPartnerPre">
-                <div class="grid simple daily-right" style="margin-bottom: 72px;">
-                      <div class="prof-title no-border">
-      He Is Looking For
-               
-              </div>
-                    
-                <div class="grid-body  p-match-body no-border">
-                  <div class="row-fluid"> 
-               <div class="col-lg-2">
-                <user-img user="$ctrl.user" is-noti="MD2PHOTO"></user-img>
-               </div>
-               <div class="col-lg-8"> 
-                <div class="prof-match"> Your Profile Matches <span class="number-m"> {{$ctrl.matchCount}}/12</span> With <br>
-                 <b>{{$ctrl.user.user_id}} </b> Preference </div>
-
-               </div>
-                <div class="col-lg-2">
-                  <user-img user="$ctrl.loginuser" is-noti="MD2PHOTO"></user-img>
-               </div>
-               <div class="clearfix"></div>
-                    <div class="col-lg-12 col-md-12 col-xs-12 p-r-0">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                        <h4> <i class="fa fa-file-text" aria-hidden="true"></i>  Basic Information</h4>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Age</p>
-                             {{$ctrl.count}}
-                              <p class="list-group-item-right pull-left">{{$ctrl.fieldPartnerPre.age.from}}  <span class="small"> To </span> {{$ctrl.fieldPartnerPre.age.to}} Yrs<span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.age,'age') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                                                           
+                      <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
+                        <div class="li-profile">
+                          <a href="#">
+                            <div class="pull-left no-padding">
+                              <div class="user-profile-pic">
+                                <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />
+                              </div>
                             </div>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Height</p>
-                             
-                              <p class="list-group-item-right pull-right">{{$ctrl.fieldPartnerPre.height.from | height}}  <span class="small"> To </span> {{$ctrl.fieldPartnerPre.height.to | height}}  <span class="pull-right " ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.height,'height') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                              </div>
-
-                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Marital Status</p>
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':$ctrl.formdata.MaritialStatus" ng-tt-chars-threshold="60"></span><span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.maritialstatus,'maritialstatus') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                             
-                              </div>
-                              <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Mother Tongue</p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':$ctrl.formdata.mother_tongues" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.mothertounge,'mothertounge') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                              </div>
-                              <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Religion </p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':$ctrl.formdata.religions" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.religion,'religion') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Caste </p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.caste | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>  <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.caste,'caste') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-                               <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Country Living IN </p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.countries" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.country,'country') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-                              <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">State Living IN </p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.state | joinname:', ':'name'" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.state,'state') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-                              <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">City  Living IN </p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.city | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>  <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.city,'city') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-
-                              </div>
-                            
-                              <div class="bmd-list-group-col">
-                                <p class="list-group-item-left pull-left">Physical Status </p>
-                               
-                                <p class="list-group-item-right pull-left"><span ng-text-truncate="$ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':$ctrl.formdata.PhysicalStatus" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.physical_status,'physical_status') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                                                             
-                              </div>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="list-group-item">
-                        <h4><i class="fa fa-book" aria-hidden="true"></i>   Education & Work Information </h4>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Heighest Education </p>
-                             
-                              <p class="list-group-item-right pull-left"><span ng-text-truncate="$ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':$ctrl.formdata.educations" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.high_edu,'high_edu') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
-                                                           
+                            <div class="pull-left no-padding">
+                              <ul class="no-padding">
+                                <li> T3807254 </li>
+                                <li> Krishna Juluri Reddy,</li>
+                                <li> 02-02-2017 | 10:00 PM </li>
+                              </ul>
                             </div>
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">Occupation</p>
-                             
-                              <p class="list-group-item-right pull-right"><span ng-text-truncate="$ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':$ctrl.formdata.occupations" ng-tt-chars-threshold="60"></span> <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.occupation,'occupation') ? 'tick-ok':'tick-not'"> <i class="fa fa-check-circle"></i> </span></p>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
+                        <div class="li-profile">
+                          <a href="#">
+                            <div class="pull-left no-padding">
+                              <div class="user-profile-pic">
+                                <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />
                               </div>
-
-                        </li>
-                       
-                      </ul> 
+                            </div>
+                            <div class="pull-left no-padding">
+                              <ul class="no-padding">
+                                <li> T3807254 </li>
+                                <li> Krishna Juluri Reddy,</li>
+                                <li> 02-02-2017 | 10:00 PM </li>
+                              </ul>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 p-r-0">
+                        <div class="li-profile">
+                          <a href="#">
+                            <div class="pull-left no-padding">
+                              <div class="user-profile-pic">
+                                <img src="assets/img/profiles/dharma2x.jpg" alt="" width="91" height="88" />
+                              </div>
+                            </div>
+                            <div class="pull-left no-padding">
+                              <ul class="no-padding">
+                                <li> T3807254 </li>
+                                <li> Krishna Juluri Reddy,</li>
+                                <li> 02-02-2017 | 10:00 PM </li>
+                              </ul>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                 
-                    
-                    <div class="clearfix"></div>
-                    
 
-           
-                    </div>
-                   
 
-                    
 
                   </div>
-                      
-               
-                       </div>  </div>
+                </div>
+
+
+
 
               </div>
+
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+      <div class="row-fluid">
+
+        <div class="col-lg-9 p-r-0">
+          <div class="full-profile " ng-if="$ctrl.fieldPartnerPre">
+            <div class="grid simple daily-right" style="margin-bottom: 72px;">
+              <div class="prof-title no-border">
+                {{'HE_ISLOOKINGFOR' | translate}}
+
+              </div>
+
+              <div class="grid-body  p-match-body no-border">
+                <div class="row-fluid">
+                  <div class="col-lg-2">
+                    <user-img user="$ctrl.user" is-noti="MD2PHOTO"></user-img>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="prof-match"> {{'YOURPRO_MATCHES' | translate}}
+                      <span class="number-m"> {{$ctrl.matchCount}}/12</span> {{'YOURPRO_MATCHES_WITH' | translate}}
+                      <br>
+                      <b>{{$ctrl.user.user_id}} </b> {{'PREFERENCE' | translate}}</div>
+
+                  </div>
+                  <div class="col-lg-2">
+                    <user-img user="$ctrl.loginuser" is-noti="MD2PHOTO"></user-img>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="col-lg-12 col-md-12 col-xs-12 p-r-0">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <h4>
+                          <i class="fa fa-file-text" aria-hidden="true"></i> {{'BASIC_INFORMATION' | translate}}</h4>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'AGE' | translate}}</p>
+                          {{$ctrl.count}}
+                          <p class="list-group-item-right pull-left">{{$ctrl.fieldPartnerPre.age.from}}
+                            <span class="small"> {{'TO' | translate}} </span> {{$ctrl.fieldPartnerPre.age.to}}{{'YEARS' | translate}}
+                            <span class="pull-right"
+                              ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.age,'age') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'LIHEIGHT' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">{{$ctrl.fieldPartnerPre.height.from | height}}
+                            <span class="small"> {{'TO' | translate}} </span> {{$ctrl.fieldPartnerPre.height.to | height}}
+                            <span class="pull-right "
+                              ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.height,'height') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+                        </div>
+
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS' | translate}}</p>
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.maritialstatus | joinnameother:', ':'name':$ctrl.formdata.MaritialStatus"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.maritialstatus,'maritialstatus') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.mothertounge | joinnameother:', ':'name':$ctrl.formdata.mother_tongues"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.mothertounge,'mothertounge') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDRELIGION' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.religion | joinnameother:', ':'name':$ctrl.formdata.religions"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.religion,'religion') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDCASTE' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.caste | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.caste,'caste') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDCOUNTRY_LIVING' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.countries" ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.country,'country') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDSTATE_LIVING' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.state | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.state,'state') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'BDCITY_LIVING' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.city | joinname:', ':'name'" ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.city,'city') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'LIPHYSICAL_STATUS' | translate}}</p>
+
+                          <p class="list-group-item-right pull-left">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.physical_status | joinnameother:', ':'name':$ctrl.formdata.PhysicalStatus"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.physical_status,'physical_status') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                      </li>
+
+
+
+
+
+
+
+                      <li class="list-group-item">
+                        <h4>
+                          <i class="fa fa-book" aria-hidden="true"></i> {{'EDUCATION_WORK' | translate}}</h4>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'EWHIGHEST_EDU' | translate}}</p>
+
+                          <p class="list-group-item-right pull-left">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.high_edu | joinnameother:', ':'name':$ctrl.formdata.educations"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.high_edu,'high_edu') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+
+                        </div>
+                        <div class="bmd-list-group-col">
+                          <p class="list-group-item-left pull-left">{{'EWOCCUPATION' | translate}}</p>
+
+                          <p class="list-group-item-right pull-right">
+                            <span ng-text-truncate="$ctrl.fieldPartnerPre.occupation | joinnameother:', ':'name':$ctrl.formdata.occupations"
+                              ng-tt-chars-threshold="60"></span>
+                            <span class="pull-right" ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.occupation,'occupation') ? 'tick-ok':'tick-not'">
+                              <i class="fa fa-check-circle"></i>
+                            </span>
+                          </p>
+                        </div>
+
+                      </li>
+
+                    </ul>
+                  </div>
+
+
+                  <div class="clearfix"></div>
+
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
 
       </div>
       <!-- END PAGE -->
 
+    </div>
+
+
+    <!---------------------------------------------Center  End ------------------------------------------>
+
+    <!---------------------------------------------Calender Veiw start ---------------------------------->
+
   </div>
-
-
-<!---------------------------------------------Center  End ------------------------------------------>  
-
-<!---------------------------------------------Calender Veiw start ----------------------------------> 
-
-      </div>

@@ -1,12 +1,12 @@
 /* @ngInject */
-module.exports = function fullprofileController($crypto,countryService, $state, useractions, searchService, $location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
+module.exports = function fullprofileController($crypto, countryService, $state, useractions, searchService, $location, $scope, $timeout, $rootScope, loginservice, messagesservice) {
     var controller = this;
-    controller.user_action=$rootScope.user_action;
+    controller.user_action = $rootScope.user_action;
     var id = $crypto.decrypt($state.params.id);
-  if(!id){
-    $state.go("root.404");
-    return;  
-  }
+    if (!id) {
+        $state.go("root.404");
+        return;
+    }
     function loadCoun(array) {
         countryService.getCountries(function (res) {
 
@@ -38,7 +38,7 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         fields: {
 
             user_id: $rootScope.login_user_id,
-            blockprofile:($state.params.isblock==="BLOCK" ? true : false)
+            blockprofile: ($state.params.isblock === "BLOCK" ? true : false)
         }
     };
     controller.formdata = loginservice.getFiledsData();
@@ -49,37 +49,14 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
             displaypic: pic.profile
         }
     };
- 
-    var hindu = controller.formdata.rhindu;
-    var muslim = controller.formdata.rmuslim;
-    var christian = controller.formdata.rchristian;
 
-    controller.casteData = [];
+
     controller.loadCaste = function (rel) {
-
-        if (rel === "HINDU") {
-            controller.casteData = hindu;
-            return;
-        }
-        if (rel === "ISLAM") {
-            controller.casteData = muslim;
-            return;
-        }
-        if (rel === "CHR") {
-            controller.casteData = christian;
-            return;
-        }
-
-        controller.casteData = [{
-
-            name: "Other",
-            value: rel + "OTH"
-
-        }];
+        controller.casteData = loginservice.getCastes(rel);
 
     };
     controller.LoginUser = $rootScope.current_user_de_all;
-  controller.matchCount=0;
+    controller.matchCount = 0;
     controller.getMatchCount = function (value, field) {
         if (!value) {
             return false;
@@ -396,55 +373,55 @@ module.exports = function fullprofileController($crypto,countryService, $state, 
         return false;
     };
     searchService.getSearchResult(req, function (result) {
-        if(result.users.length===0){
+        if (result.users.length === 0) {
 
             $state.go("root.404");
             return;
         }
-        else{
+        else {
             controller.user = result.users[0];
-           
-            var reqViewed= {
+
+            var reqViewed = {
                 user_id: $rootScope.login_user_id,
                 request_user_id: controller.user.user_id,
                 request_type: "VIEWED_PROFILE",
-                request_status: (controller.user.is_user_by_block ==="BLOCK" ? "BLOCK" : "UNREAD")
-        
-              };
-        if(!controller.user.is_viewed_profile && $rootScope.user_action){
-            useractions.send_request(reqViewed, function (result) {}, function (error) { }); 
-        }
-              
-        }
-       
-       useractions.genarateAlbumPics(controller.user.userinfo.albums,function(albums){
+                request_status: (controller.user.is_user_by_block === "BLOCK" ? "BLOCK" : "UNREAD")
 
-        controller.albums=albums;
+            };
+            if (!controller.user.is_viewed_profile && $rootScope.user_action) {
+                useractions.send_request(reqViewed, function (result) { }, function (error) { });
+            }
+
+        }
+
+        useractions.genarateAlbumPics(controller.user.userinfo.albums, function (albums) {
+
+            controller.albums = albums;
         });
-        
+
         controller.loadCaste(controller.user.religion);
 
         if (controller.user.userinfo.partner_pre) {
             controller.fieldPartnerPre = controller.user.userinfo.partner_pre.fields;
             loadCoun(controller.fieldPartnerPre.country);
-            for(var key in  controller.fieldPartnerPre){
-               
-                controller.getMatchCount(controller.fieldPartnerPre[key],key);
+            for (var key in controller.fieldPartnerPre) {
+
+                controller.getMatchCount(controller.fieldPartnerPre[key], key);
             }
         }
         else {
-           
+
             useractions.get_default_search_config("DEFAULT_PARTNER_PRE", controller.user, function (fields) {
-              
+
                 controller.fieldPartnerPre = fields;
                 loadCoun(controller.fieldPartnerPre.country);
-                for(var key in  controller.fieldPartnerPre){
-                    controller.getMatchCount(controller.fieldPartnerPre[key],key);
+                for (var key in controller.fieldPartnerPre) {
+                    controller.getMatchCount(controller.fieldPartnerPre[key], key);
                 }
             });
         }
-       
-       
+
+
 
     }, function (error) { });
 };    

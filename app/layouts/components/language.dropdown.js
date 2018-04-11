@@ -1,29 +1,39 @@
 /* @ngInject */
-module.exports = function ($translate,$templateCache,$state, $rootScope) {
+module.exports = function ($translate, $localStorage) {
     return {
         restrict: 'E',
-        templateUrl:'app/layouts/components/language.dropdown.html',
-        controllerAs:'lang',
+        templateUrl: 'app/layouts/components/language.dropdown.html',
+        controllerAs: 'lang',
         controller: [
             '$scope',
             '$element',
             '$attrs',
             function ($scope, $element, $attrs) {
-                var controller=this;
-        controller.language = 'English';
-    controller.languages = ['English', 'Hindi','Gujarati'];
-  //  $translate.use(controller.language.toLowerCase());
-    
-    
-    controller.updateLanguage = function() {
-    $translate.use(controller.language.toLowerCase());
-    
-  
-// var currentPageTemplate =$state.current.views["@"].templateUrl;
-// $templateCache.remove(currentPageTemplate);
-// $state.current.views["@"].templateUrl=$state.current.views["@"].templateUrl;
-// $state.reload();
-  };
+                var controller = this;
+                controller.language = 'EN';
+                if ($localStorage.language) {
+                    controller.language = $localStorage.language;
+                }
+                controller.languages = [{
+                    name: "English",
+                    value: "EN"
+
+                },
+                {
+                    name: "Gujrati",
+                    value: "GJ"
+
+                }, {
+                    name: "Hindi",
+                    value: "HN"
+
+                }],
+
+                    controller.updateLanguage = function () {
+                        $translate.use(controller.language);
+                        $localStorage.language = controller.language;
+
+                    };
             }
         ]
     };

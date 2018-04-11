@@ -11,23 +11,23 @@
                 <span class="cr">
                   <i class="cr-icon fa fa-check"></i>
                 </span>
-                <span style="font-size: 12px;"> All
+                <span style="font-size: 12px;"> {{'MESSAGE_ALL'| translate}}
                 </span>
               </label>
               <ul class="pull-right del-link">
                 <li>
-                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETEFOREVRYONE')">Delete for everyone </button>
+                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETEFOREVRYONE')">{{'ACPTPIC_DELFOREVERYONE'| translate}} </button>
                 </li>
                 <li>
-                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETEFORME')">Delete for me </button>
+                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='SENT'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETEFORME')">{{'ACPTPIC_DELFORME'| translate}} </button>
 
                 </li>
                 <li>
-                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='INBOX'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETE')">Delete </button>
+                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='INBOX'" class="pic-accept" type="button" ng-click="$ctrl.delete('DELETE')">{{'ACPTPIC_DELETE'| translate}} </button>
 
                 </li>
                 <li>
-                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='INBOX'" class="pic-accept" type="button" ng-click="$ctrl.markRead('MARKASREAD')">Mark As Read </button>
+                  <button ng-if="$ctrl.messageIds.length>0 && $ctrl.viewType==='INBOX'" class="pic-accept" type="button" ng-click="$ctrl.markRead('MARKASREAD')">{{'ACPTPIC_MARKASREAD'| translate}} </button>
 
                 </li>
 
@@ -51,8 +51,8 @@
           <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="$ctrl.messages.length>0">
             <ul>
               <li class="pull-left">
-                <div class=" hidden-xs">Showing
-                  <b>{{$ctrl.start}} to {{$ctrl.end}}</b> of {{$ctrl.total}} entries</div>
+                <div class=" hidden-xs">{{'MESSAGE_SHOWING'| translate}}
+                  <b>{{$ctrl.start}} {{'MESSAGE_TO'| translate}} {{$ctrl.end}}</b> {{'MESSAGE_FOR'| translate}} {{$ctrl.total}} {{'MESSAGE_ENTRIES'| translate}}</div>
               </li>
               <li class="prev disabled" style="margin-top: -2px;">
                 <ul uib-pagination total-items="$ctrl.total" max-size="$ctrl.maxSize" num-pages="$ctrl.pages" ng-model="$ctrl.page" items-per-page="$ctrl.limit"
@@ -84,7 +84,7 @@
                 <user-img user="msg.user" is-noti="WITHID"></user-img>
               </div>
               <div class="col-lg-10 hand" ng-click="$ctrl.viewMessage({type:$ctrl.viewType,msg:msg.message,user_id:msg.user.user_id},msg._id);$ctrl.viewType==='INBOX'? msg.message_status='READ':''">
-                <p class="pull-right"> Sent On :  <date-parse date="msg.date"></date-parse>
+                <p class="pull-right">{{'MESSAGE_TO'| translate}} :  <date-parse date="msg.date"></date-parse>
                   <!-- <span> {{msg.send_on | date:'dd-MMM-yyyy'}} </span> |
                   <span> {{msg.send_on | date:'h:mm a'}}</span> -->
                 </p>
@@ -95,10 +95,10 @@
                     {{msg.user.age}} Years. {{ msg.user.height | height }}, {{msg.user.first_name}}, {{msg.user.last_name}}.
                   </span>
                   <strong ng-if="$ctrl.viewType==='SENT'">
-                   You have sent message
+                   {{'MESSAGE_YOUHAVESENTMES'| translate}}
                   </strong>
                   <strong ng-if="$ctrl.viewType==='INBOX'">
-                    Has sent you a Meassage
+                    {{'MESSAGE_HASSENTYOUMES'| translate}}
                    </strong>
                 </p>
                 <div class="clearfix"></div>
