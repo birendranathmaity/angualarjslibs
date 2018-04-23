@@ -1,4 +1,6 @@
 {
+  "TOTAL_INCOMPLETE_USERS":"Total Incomplete Users",
+  "TOTAL_INPROGRESS_USERS":"Total Inprogress Users",
   "LOGIN": "Login",
   "HELP": "Help",
   "LANGUAGE": "Language",

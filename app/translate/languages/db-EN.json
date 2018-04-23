@@ -1,4 +1,6 @@
 {
+  "TOTAL_INCOMPLETE_USERS":"Total Incomplete Users",
+  "TOTAL_INPROGRESS_USERS":"Total Inprogress Users",
   "SUCCESSFULLY_UPDATED":"Successfully updated",
   "SUCCESSFULLY_SAVED":"Successfully saved",
   "SUCCESSFULLY_BLOKED":"Successfully bloked",

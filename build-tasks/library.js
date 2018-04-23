@@ -60,7 +60,8 @@ var libraries = {
         'assets/plugins/headereffects/css/component.css',
         'assets/plugins/headereffects/css/normalize.css',
         'node_modules/angularjs-toaster/toaster.min.css',
-        'node_modules/ng-image-gallery/dist/ng-image-gallery.min.css'
+        'node_modules/ng-image-gallery/dist/ng-image-gallery.min.css',
+        'node_modules/angularjs-slider/dist/rzslider.css'
        
     ],
     appcss:[

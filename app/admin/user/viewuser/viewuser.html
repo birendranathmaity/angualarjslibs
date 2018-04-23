@@ -2,7 +2,8 @@
    <div class="content">
       <div class="row">
          <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-            <div class="grid simple mail-msg">
+            <search-fields load-type="ctrl.loadUserStatusType" get-fields="ctrl.searchfields(fields)"></search-fields>
+            <!-- <div class="grid simple mail-msg">
                <div class="grid-title no-border">
                   <h4 class="bold">User Status List</h4>
                </div>
@@ -15,13 +16,13 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> -->
             <search-by-id></search-by-id>
          </div>
          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 " >
             <div class="col-md-12 no-padding ">
               
-               <user-view-directive view-type="ctrl.loadUserStatusType" ng-show="!ctrl.isEditUser"></user-view-directive>
+               <user-view-directive fields="ctrl.fields" ng-show="!ctrl.isEditUser"></user-view-directive>
                <uib-tabset active="activeJustified" justified="true" ng-if="ctrl.isEditUser">
     <uib-tab index="0" heading="{{'Edit Profile' | translate}}({{ctrl.editUserId}})">
 

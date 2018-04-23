@@ -83,20 +83,30 @@ module.exports = function ($http,$q, $viewusers,socket, $state, $timeout, $sessi
         var casteData=[];
         if (rel === "HINDU") {
             casteData = hindu;
+            $.map( casteData, function( a ) {
+                return a.religion=rel;
+              });
             return casteData;
         }
         if (rel === "ISLAM") {
             casteData = muslim;
+            $.map( casteData, function( a ) {
+                return a.religion=rel;
+              });
             return casteData;
         }
         if (rel === "CHR") {
            casteData = christian;
+           $.map( casteData, function( a ) {
+            return a.religion=rel;
+          });
            return casteData;
         }
        
         return casteData = [{
            
             name: "Other",
+            religion:rel,
             value: rel + "OTH"
 
         }];

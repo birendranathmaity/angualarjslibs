@@ -1,0 +1,328 @@
+<div class="grid simple mail-msg">
+    <div class="grid-title no-border">
+        <h4 class="bold">Search</h4>
+    </div>
+   
+    <div class="grid-body no-border pro-bord">
+
+        <uib-accordion close-others="oneAtATime" class="adminfilter">
+            <div ng-init="isAge=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isAge">
+                <uib-accordion-heading>
+                    Age ({{ctrl.sliderAge.minValue}} - {{ctrl.sliderAge.maxValue}}) Yrs
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isAge, 'glyphicon-chevron-right': !isAge}"></i>
+                </uib-accordion-heading>
+                <rzslider rz-slider-model="ctrl.sliderAge.minValue" rz-slider-high="ctrl.sliderAge.maxValue" rz-slider-options="ctrl.sliderAge.options"></rzslider>
+
+            </div>
+            <div ng-init="isHeight=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isHeight">
+                <uib-accordion-heading>
+                    Height ({{ctrl.sliderHeight.minValue}} - {{ctrl.sliderHeight.maxValue}} feet)
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isHeight, 'glyphicon-chevron-right': !isHeight}"></i>
+                </uib-accordion-heading>
+                <rzslider rz-slider-model="ctrl.sliderHeight.minValue" rz-slider-high="ctrl.sliderHeight.maxValue" rz-slider-options="ctrl.sliderHeight.options"></rzslider>
+
+            </div>
+            <div ng-init="isUST=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isUST">
+                <uib-accordion-heading>
+                    User Type
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isUST, 'glyphicon-chevron-right': !isUST}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.userType">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'userType')" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div uib-accordion-group class="panel-body" is-open="isUST" ng-if="ctrl.filterdata.userType==='ACTIVE'">
+                <uib-accordion-heading>
+                    Photo Type
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isUST, 'glyphicon-chevron-right': !isUST}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.photoType">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'photoType')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isSortDate=true"></div>
+            <div ng-init="dateFrom=false"></div>
+            <div ng-init="dateTo=false"></div>
+            <div uib-accordion-group class="panel-body" is-open="isSortDate" ng-if="ctrl.filterdata.userType">
+                <uib-accordion-heading>
+                    Date Range
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isSortDate, 'glyphicon-chevron-right': !isSortDate}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.DateRangeType" ng-if="item.iSvisible">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'DateRangeType')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+                <div class="clearfix"></div>
+
+                <div class="dateRangeFilterLab">
+                    <label for="dateRangeFilter">From</label>
+                </div>
+                <div class="input-group dateRangeFilter">
+                    <input type="text" id="exampleInputEmail1" readonly class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="ctrl.filterdata.dateRange.from"
+                        is-open="dateFrom" datepicker-options="ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                        ng-change="ctrl.go(ctrl.filterdata.dateRange.from,ctrl.filterdata.dateRange.to)" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dateFrom=true">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="dateRangeFilterLab">
+                    <label for="dateRangeFilter">To</label>
+                </div>
+                <div class="input-group dateRangeFilter">
+                    <input type="text" readonly id="exampleInputEmail1" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="ctrl.filterdata.dateRange.to"
+                        is-open="dateTo" datepicker-options="ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                        ng-change="ctrl.go(ctrl.filterdata.dateRange.from,ctrl.filterdata.dateRange.to)" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dateTo=true">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="dateRangeFilterLab">
+                    <p style="color:red">{{ctrl.errMessage}}</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div ng-init="isgender=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isgender">
+                <uib-accordion-heading>
+                    Gender
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isgender, 'glyphicon-chevron-right': !isgender}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.gender">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'gender')" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}
+                    </li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isMaritialStatus=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isMaritialStatus">
+                <uib-accordion-heading>
+                    Maritual Status
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isMaritialStatus, 'glyphicon-chevron-right': !isMaritialStatus}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.MaritialStatus" id="{{item.value}}">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'MaritialStatus')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isPhysicalStatus=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="isPhysicalStatus">
+                <uib-accordion-heading>
+                    Physical Status
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isPhysicalStatus, 'glyphicon-chevron-right': !isPhysicalStatus}"></i>
+                </uib-accordion-heading>
+
+                <ul class="list-group">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.PhysicalStatus" id="{{item.value}}">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'physical_status')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="ismother_tongues=true"></div>
+            <div uib-accordion-group class="panel-body" is-open="ismother_tongues">
+                <uib-accordion-heading>
+                    Mother Tongues
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ismother_tongues, 'glyphicon-chevron-right': !ismother_tongues}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.mother_tongues | filter:searchValue" id="{{item.value}}">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'mother_tongues')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isreligions=false"></div>
+            <div uib-accordion-group class="panel-body" is-open="isreligions">
+                <uib-accordion-heading>
+                    Religions
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isreligions, 'glyphicon-chevron-right': !isreligions}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.religions | filter:searchValue" id="{{item.value}}">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'religions')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div uib-accordion-group class="panel-body" is-open="ctrl.cstAcc" ng-if="ctrl.filterdata.religions.length>0">
+                <uib-accordion-heading>
+                    Caste
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ctrl.cstAcc, 'glyphicon-chevron-right': !ctrl.cstAcc}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.casteData | filter:searchValue" id="{{item.value}}">
+                        <switch id="enabled1" ng-change="ctrl.tchange(item,'caste')" name="enabled1" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="iscountry=false"></div>
+            <div uib-accordion-group class="panel-body" is-open="iscountry">
+                <uib-accordion-heading>
+                    Country
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': iscountry, 'glyphicon-chevron-right': !iscountry}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.countrys | filter:searchValue">
+                        <switch id="enabled1" ng-change="ctrl.tchange(item,'country')" name="enabled1" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div uib-accordion-group class="panel-body" is-open="ctrl.DisabledState" ng-if="ctrl.filterdata.country.length>0">
+                <uib-accordion-heading>
+                    State
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ctrl.DisabledState, 'glyphicon-chevron-right': !ctrl.DisabledState}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.states | filter:searchValue">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'state')" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div uib-accordion-group class="panel-body" is-open="ctrl.DisabledCity" ng-if="ctrl.filterdata.state.length>0">
+                <uib-accordion-heading>
+                    City
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down':ctrl.DisabledCity, 'glyphicon-chevron-right': !ctrl.DisabledCity}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.cities | filter:searchValue">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'city')" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isedu=false"></div>
+            <div uib-accordion-group class="panel-body" is-open="isedu">
+                <uib-accordion-heading>
+                    Educations
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isedu, 'glyphicon-chevron-right': !isedu}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.educations | filter:searchValue">
+                        <switch id="enabled1" ng-change="ctrl.tchange(item,'high_edu')" name="enabled1" ng-model="item.selected" on="Y" off="N" class="pripubsw list-group-addon"></switch> {{item.name}}</li>
+
+                </ul>
+
+            </div>
+            <div ng-init="isocc=false"></div>
+            <div uib-accordion-group class="panel-body" is-open="isocc">
+                <uib-accordion-heading>
+                    Occupations
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isocc, 'glyphicon-chevron-right': !isocc}"></i>
+                </uib-accordion-heading>
+                <div class="form-group has-feedback has-search">
+                    <span class="glyphicon glyphicon-search form-control-feedback form-group-addon"></span>
+                    <input type="text" class="form-control" ng-model="searchValue" placeholder="Search">
+                </div>
+
+                <ul class="list-group" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+                    <li class="list-group-item-cust list-group-item" ng-repeat="item in ctrl.formdata.occupations | filter:searchValue">
+                        <switch id="enabled1" name="enabled1" ng-change="ctrl.tchange(item,'occupation')" ng-model="item.selected" on="Y" off="N"
+                            class="pripubsw list-group-addon"></switch>
+                        <span>{{item.name}}</span>
+                    </li>
+
+                </ul>
+
+            </div>
+        </uib-accordion>
+
+    </div>
+</div>
+<style>
+    .adminfilter li {
+        line-height: 20px;
+    }
+
+    .dateRangeFilterLab {
+        margin: 0px 20px 0px 20px;
+    }
+
+    .dateRangeFilter {
+        margin: 0px 20px 0px 20px;
+        border: 1px solid #ddd;
+    }
+
+    .dateRangeFilter input {
+        border: 0;
+    }
+
+    .has-search {
+        margin: 0px 20px 0px 20px;
+    }
+
+    .has-search .form-control-feedback {
+        right: initial;
+        left: 5px;
+        color: #ccc;
+        top: 30px;
+    }
+
+    .has-search .form-control {
+
+        padding-left: 20px !important;
+        border-radius: 20px;
+    }
+</style>

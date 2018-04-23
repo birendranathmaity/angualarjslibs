@@ -3,7 +3,7 @@ module.exports = function () {
     return {
         restrict: 'EA',
         scope:{
-             viewType:"="
+            fields:"="
         },
         templateUrl: 'app/admin/user/viewuser/viewUserDir.html',
         controller: 'viewUserDirCtrl',

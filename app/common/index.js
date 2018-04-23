@@ -9,10 +9,12 @@ var notificationText=require('./notification-text');
 var userImg=require('./user-img');
 var notiAction=require('./noti-action');
 var searchBy=require('./searchby.dir.js');
+var searchFields=require('./search.fields.js');
 var AccountSettingsController = require('./settings/settings.ctrl');
 var notificationController = require('./notifications/notifications.ctrl');
 var fullprofileController = require('./fullprofile/fullprofile.ctrl');
 var serachByController = require('./serachby.dir.ctrl');
+var serachFieldsControllerDir = require('./search.fields.ctrl');
 var noinformation = require('./noinformation');
 var userProfile = require('./user.profile');
 var timelineProfile = require('./timeline.profile');
@@ -24,11 +26,13 @@ module.exports = angular.module('app.ui.common', [])
 .directive('userImg', userImg)
 .directive('notiAction', notiAction)
 .directive('searchBy', searchBy)
+.directive('searchFields', searchFields)
 .directive('noinformation', noinformation)
 .controller('AccountSettingsController', AccountSettingsController)
 .controller('notificationController', notificationController)  
 .controller('fullprofileController', fullprofileController) 
-.controller('serachByControllerDir', serachByController) 
+.controller('serachByControllerDir', serachByController)
+.controller('serachFieldsControllerDir', serachFieldsControllerDir)
 .factory("useractions",userAction)
 .factory("socket",socket)
 .factory('toastr',toastr)

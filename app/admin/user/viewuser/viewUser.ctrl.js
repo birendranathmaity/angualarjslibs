@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserController($rootScope, $viewusers, $scope,loginservice, $admintaskservice, toastr, $stateParams) {
+module.exports = function viewUserController($rootScope, $viewusers, $scope, loginservice, $admintaskservice, toastr, $stateParams) {
     var controller = this;
 
     controller.actionCountPR = 0;
@@ -8,13 +8,18 @@ module.exports = function viewUserController($rootScope, $viewusers, $scope,logi
     controller.actionCountPEV = 0;
     controller.userStatusList = [];
 
-controller.isEditUser=false;
+    controller.isEditUser = false;
     if ($stateParams.userLoadType) {
         controller.loadUserStatusType = $stateParams.userLoadType;
     }
     else {
         controller.loadUserStatusType = "TOTAL_USERS";
     }
+    
+    controller.fields=null;
+    controller.searchfields=function(fields){
+        controller.fields=fields;
+    };
     controller.loadusersCountList = function () {
 
 
@@ -30,7 +35,7 @@ controller.isEditUser=false;
     controller.loadusersCountList();
     controller.setUserType = function (userStatus) {
         controller.loadUserStatusType = userStatus;
-        controller.isEditUser=false;
+        controller.isEditUser = false;
 
 
     };
@@ -40,25 +45,25 @@ controller.isEditUser=false;
         }
 
     };
-    
+
     var backUserFromEditMode = $scope.$on('backUserFromEditMode', function ($event, userId) {
 
-       controller.editUserId="";
-       controller.isEditUser=false;
-       //controller.loadusersCountList();
-      // controller.loadUserStatusType=controller.loadUserStatusType;
-       
+        controller.editUserId = "";
+        controller.isEditUser = false;
+        //controller.loadusersCountList();
+        // controller.loadUserStatusType=controller.loadUserStatusType;
+
 
     });
-    var userEditBoradcast =$scope.$on('userEditBoradcast', function ($event, userId) {
+    var userEditBoradcast = $scope.$on('userEditBoradcast', function ($event, userId) {
 
-       controller.editUserId=userId;
-       controller.isEditUser=true;
-       
+        controller.editUserId = userId;
+        controller.isEditUser = true;
+
 
     });
 
-    var updateUserListCountEmit =$scope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
+    var updateUserListCountEmit = $scope.$on('updateUserListCountEmit', function ($event, actionTypeCount) {
 
         controller.loadusersCountList();
 

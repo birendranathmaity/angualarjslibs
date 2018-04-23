@@ -1,24 +1,29 @@
-<div class="grid simple" >
-                  <div class="grid-body no-border email-body" >
-                     <br>
-                     <div class="row-fluid" >
-                        <div class="row-fluid dataTables_wrapper">
-                           <div class="col-lg-4 no-padding  ">
-                              <div class="pull-left">
-                                  <div class="checkbox" ng-if="ctrl.users.length>0">
-            <label style="font-size: 1.2em; line-height: 13px;">
+<div class="grid simple">
+  <div class="grid-body no-border email-body">
+    <br>
+    <div class="row-fluid">
+      <div class="row-fluid dataTables_wrapper">
+        <div class="col-lg-4 no-padding  ">
+          <div class="pull-left">
+            <div class="checkbox" ng-if="ctrl.users.length>0">
+              <label style="font-size: 1.2em; line-height: 13px;">
                 <input type="checkbox" value="" ng-model="ctrl.selectedAll" ng-click="ctrl.checkAll()">
-                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-               <span style="font-size: 12px;"> All
- </span>
-            </label>
-            <ul class="pull-right del-link">
-                                       <li>
-                                         <button ng-if="ctrl.userIds.length>0" class="pic-accept" type="button" ng-click="ctrl.acceptAll()">Accept All Photos  </button>
-                                       </li>
-                                    </ul>
-        </div>
-                                 <!--<div class="checkbox check-success pull-left top-link-all">
+                <span class="cr">
+                  <i class="cr-icon fa fa-check"></i>
+                </span>
+                <span style="font-size: 12px;"> All
+                </span>
+              </label>
+              <ul class="pull-right del-link">
+                <li>
+                  <button ng-if="ctrl.PhotoUserIds.length>0" class="pic-accept" type="button" ng-click="ctrl.acceptAll('PHOTO')">Accept All Photos </button>
+                </li>
+                <li>
+                  <button ng-if="ctrl.ActiveUserIds.length>0" class="pic-accept" type="button" ng-click="ctrl.acceptAll('ACTIVE')">Active All</button>
+                </li>
+              </ul>
+            </div>
+            <!--<div class="checkbox check-success pull-left top-link-all">
                                     <input id="checkbox72" type="checkbox" value="1" class="p-l-20" >
                                     <label for="checkbox72"> All</label>
                                     <ul class="pull-right del-link">
@@ -28,88 +33,99 @@
                                        </li>
                                     </ul>
                                  </div>-->
-                                 
-                              </div> 
-                           </div>
-                           <div class="col-lg-8">
-                           <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="ctrl.users.length>0">
-                           <ul>
-                           <li class="pull-left"> <div class=" hidden-xs">Showing <b>{{ctrl.start}} to {{ctrl.end}}</b> of {{ctrl.total}} entries</div> </li>
-                           <li class="prev disabled" style="margin-top: -2px;">
-                          <ul 
-                            uib-pagination 
-                            total-items="ctrl.total"
-                            max-size="ctrl.maxSize"
-                            num-pages="ctrl.pages"
-                            ng-model="ctrl.page"
-                            items-per-page="ctrl.limit"
-                            class="pagination-sm"
-                            boundary-link-numbers="true"
-  
-                           
-                            ng-change="ctrl.pageChanged()"
-                            rotate="true">
-                               </ul>
-                          <!--previous-text="&#10094;"
+
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="dataTables_paginate paging_bootstrap pagination pull-right" ng-if="ctrl.users.length>0">
+            <ul>
+              <li class="pull-left">
+                <div class=" hidden-xs">Showing
+                  <b>{{ctrl.start}} to {{ctrl.end}}</b> of {{ctrl.total}} entries</div>
+              </li>
+              <li class="prev disabled" style="margin-top: -2px;">
+                <ul uib-pagination total-items="ctrl.total" max-size="ctrl.maxSize" num-pages="ctrl.pages" ng-model="ctrl.page" items-per-page="ctrl.limit"
+                  class="pagination-sm" boundary-link-numbers="true" ng-change="ctrl.pageChanged()" rotate="true">
+                </ul>
+                <!--previous-text="&#10094;"
                             next-text="&#10095;"-->
-                           </li>
-                              </ul>
-                           
-                           </div>
-                           </div>
-                           <div class="clearfix"></div>
-                           <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
-                             <p class="noinforav" ng-if="ctrl.users.length===0">No information available </p>
-                              <ul>
-                                 <li class="row-fluid userlist" ng-repeat="user in ctrl.users">
-                                
-                                       <div class="col-lg-2 no-padding pull-left">
-                                          <div class="checkbox check-success pull-left">
-                                               <label > 
-                                              <input type="checkbox" ng-click="user.Sleceted=!user.Sleceted;ctrl.checkBoxSelect()" value="" ng-model="user.Selected">
-                                          <span class="cr"><i class="cr-icon fa fa-check"></i></span></label>
-                                          </div>
-                                         
-                                  <div ng-if="user.pic"   class="user-profile-pic pull-left cursorpointer"  popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)" popover-placement="{{ctrl.photoView.pos}}" popover-append-to-body='true' popover-trigger="'outsideClick'" popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
-                                    <img ng-if="user.pic.photo_type==='PROFILE'" water-mark="user.pic"  alt="" width="91" height="88" />
-                                             <p ng-if="user.pic.photo_type==='PROFILE'"> ( {{user.user_id}} )</p>
-                                  </div>
-                                  <div ng-if="!user.pic" class="user-profile-pic pull-left">
-                                    <img  src="assets/img/emptyphoto.png"  alt="" width="91" height="88" />
-                                             <p> ( {{user.user_id}} )</p>
-                                  </div>
-                                       </div>
-                                       <div class="col-lg-10">
-                                          <p class="pull-right"> Created  On : <span> {{user.created_on | date:'dd-MMM-yyyy'}} </span> | <span> {{user.created_on | date:'h:mm a'}}</span>  </p>
-                                          <p class="clearfix"></p>
-                                          <p class="mailer-name"> {{user.first_name}}</p>
-                                          <p class="mailer-sub"><span>
-                                             {{user.age}} Years. {{ctrl.toFeet(user.height)}}, {{user.first_name}}, {{user.last_name}}. Has Sent You Photo Request
-                                             </span>
-                                           <span class="pull-right"> 
-                                              <button class="pic-accept" type="button" ng-click="ctrl.activate(user.user_id)">Active</button> 
-                                            <button class="pic-accept" type="button" ng-click="ctrl.edit(user.user_id)">Edit</button> 
-                                           <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id,reffresh:true})" type="button">Reject   </button>
-                                           </span>
-                                            </p>
-                                          <div class="clearfix"></div>
-                                          <div class=" m-t-10">
-                                             <p class="pull-left"> <span class="small-text"> 
-                                    <a href="#" ng-click="ctrl.openImageUploadWindow({user_id:user.user_id,skip_url:'root.viewusers',photo_type:'PROFILE'})"> Block </a> </span> | <span class="small-text"> <a href="#"> Report Abuse </a> </span></p> 
-                                    </div>
-                                    </div>
-                                  
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <style>
-               
-               .noinforav{
-                 margin: 210px 300px;
-               }
-               
-               </style>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="inbox-mail" ng-scrollbars ng-scrollbars-config="ctrl.configScollBar">
+          <p class="noinforav" ng-if="ctrl.users.length===0">No information available </p>
+          <ul>
+            <li class="row-fluid userlist" ng-repeat="user in ctrl.users" ng-class="{'unread' : !user.Selected==='UNREAD' ,'reqselected':user.Selected}">
+
+              <div class="col-lg-2 no-padding pull-left">
+                <div class="checkbox check-success pull-left">
+                  <label>
+                    <input type="checkbox" ng-click="user.Sleceted=!user.Sleceted;ctrl.checkBoxSelect()" value="" ng-model="user.Selected">
+                    <span class="cr">
+                      <i class="cr-icon fa fa-check"></i>
+                    </span>
+                  </label>
+                </div>
+
+                <div ng-if="user.pic" class="user-profile-pic pull-left cursorpointer" popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen;ctrl.popImg($index)"
+                  popover-placement="{{ctrl.photoView.pos}}" popover-append-to-body='true' popover-trigger="'outsideClick'"
+                  popover-animation="true" uib-popover-template="ctrl.photoView.templateUrl">
+                  <img ng-if="user.pic.photo_type==='PROFILE'" water-mark="user.pic" alt="" width="91" height="88" />
+                  <p ng-if="user.pic.photo_type==='PROFILE'"> ( {{user.user_id}} )</p>
+                </div>
+                <div ng-if="!user.pic" class="user-profile-pic pull-left">
+                  <img src="assets/img/emptyphoto.png" alt="" width="91" height="88" />
+                  <p> ( {{user.user_id}} )</p>
+                </div>
+              </div>
+              <div class="col-lg-10">
+                <!-- <p class="pull-right"> {{ctrl.userDateMsg}} : <span> {{user.created_on | date:'dd-MMM-yyyy'}} </span> | <span> {{user.created_on | date:'h:mm a'}}</span>  </p> -->
+                <p class="pull-right"> {{ctrl.userDateMsg}} :
+                  <date-parse date="user.created_on"></date-parse>
+                </p>
+                <p class="clearfix"></p>
+                <p class="mailer-name"> {{user.first_name}}</p>
+                <p class="mailer-sub">
+                  <span>
+                    {{user.age}} Years. {{ user.height | height }}, {{user.first_name}}, {{user.last_name}}
+                  </span>
+                  <span style="color:blue" ng-if="ctrl.userTypeMsg">{{ctrl.userTypeMsg}}</span>
+                  <span style="color:blue" ng-if="!ctrl.userTypeMsg && user.user_status==='ACTIVE'">Active user</span>
+                  <span style="color:blue" ng-if="!ctrl.userTypeMsg && user.user_status==='INCOMPLETE'">Isncomplete user</span>
+                  <span style="color:blue" ng-if="!ctrl.userTypeMsg && user.user_status==='INPROGRESS'">Inprogress user</span>
+                  <span class="pull-right">
+                    <button class="pic-accept" type="button" ng-disabled="user.user_status==='ACTIVE'" ng-click="ctrl.activate([user.user_id])">{{user.user_status==='ACTIVE' ? 'Activated' : 'Active'}}</button>
+                    <button class="pic-accept" type="button" ng-click="ctrl.edit(user.user_id)">Edit</button>
+                    <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id,reffresh:true})" type="button">Inactive</button>
+                    <button class="pic-reject" ng-click="ctrl.reject({user_id:user.user_id,reffresh:true})" type="button">Delete</button>
+                  </span>
+                </p>
+                <div class="clearfix"></div>
+                <div class=" m-t-10">
+                  <p class="pull-left">
+                    <!-- <span class="small-text">
+                      <a href="#" ng-click="ctrl.openImageUploadWindow({user_id:user.user_id,skip_url:'root.viewusers',photo_type:'PROFILE'})">
+                      Block </a>
+                    </span> | -->
+                    <span class="small-text">
+                      <a href="#"> Report Abuse </a>
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .noinforav {
+    margin: 210px 300px;
+  }
+</style>

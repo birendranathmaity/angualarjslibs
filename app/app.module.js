@@ -14,6 +14,7 @@ require('ngstorage');
 require('ng-file-upload');
 require('angular-chart.js');
 require('ng-image-gallery');
+require('angularjs-slider');
 // App UI modules
 var LoadingBarModule = require('./loading-bar');
 var routerModule = require('./router');
@@ -43,6 +44,7 @@ angular.module('app.ui', [
     'ngFileUpload',
     'chart.js',
     'thatisuday.ng-image-gallery',
+    'rzModule',
     LoadingBarModule.name,
     translateModule.name,
     routerModule.name,

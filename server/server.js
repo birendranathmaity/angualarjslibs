@@ -68,13 +68,13 @@ var mailOptions = {
         cid: 'unique@kreata.ee' //same cid value as in the html img src
     }]
   };
-  smtpTrans.sendMail(mailOptions, function (error, response) {
-    if (error) {
- console.log(error);
-} else {
-    console.log("email sent");
-}
- });
+//   smtpTrans.sendMail(mailOptions, function (error, response) {
+//     if (error) {
+//  console.log(error);
+// } else {
+//     console.log("email sent");
+// }
+//  });
 
 //console.log(global.config.io)
 // io.sockets.on("connection",function(socket){

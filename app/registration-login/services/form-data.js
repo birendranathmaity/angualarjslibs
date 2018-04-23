@@ -1,6 +1,68 @@
 module.exports = {
     monthsL: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     height: [4, 4.01, 4.02, 4.03, 4.04, 4.05, 4.06, 4.07, 4.08, 4.09, 4.1, 4.11, 5, 5.01, 5.02, 5.03, 5.04, 5.05, 5.06, 5.07, 5.08, 5.09, 5.1, 5.11, 6, 6.01, 6.02, 6.03, 6.04, 6.05, 6.06, 6.07, 6.08, 6.09, 6.1, 6.11],
+    gender:[{
+        name:"Male",
+        value:"MALE"
+    },
+    {
+        name:"Female",
+        value:"FEMALE"
+    }],
+    DateRangeType : [{
+        name: "Created Date",
+        value: "CREATEDDATE",
+        iSvisible:true
+      },
+      {
+        name: "Activated Date",
+        value: "ACTIVATIONDATE",
+        iSvisible:true
+       
+      }, {
+        name: "Photo uploaded date",
+        value: "UPLOADED_DATE",
+        iSvisible:false
+      }, {
+        name: "Photo vr completed date",
+        value: "APPROVED_PHOTO",
+        iSvisible:false
+      }, {
+        name: "Photo vr rejected date",
+        value: "REJECTED_PHOTO",
+        iSvisible:false
+      }
+    
+      ],
+    photoType:[
+        {
+            name:"Photo upload pending",
+            value:"NOT_UPLOADED"
+        },{
+            name:"Photo verification pending",
+            value:"PENDING_APPROVAL"
+        },{
+            name:"Photo verification completed",
+            value:"APPROVED"
+        },{
+            name:"Photo verification rejected",
+            value:"REJECTED"
+        }
+
+    ],
+    
+    userType:[{
+        name:"Active",
+        value:"ACTIVE"
+    },
+    {
+        name:"Incomplete",
+        value:"INCOMPLETE"
+    },
+    {
+        name:"Inprogress",
+        value:"INPROGRESS"
+    }],
     reportAbuse: [{
         name: "Look Like Fake Profile",
         value: "LLFP"
@@ -2528,7 +2590,7 @@ module.exports = {
         value: "XH"
     }],
     religions: [{
-        name: "African Traditional & Diasporic",
+        name: "African Traditional",
         value: "AFT"
     }, {
         name: "Agnostic",
@@ -2546,7 +2608,7 @@ module.exports = {
         name: "Cao Dai",
         value: "CAD"
     }, {
-        name: "Chinese traditional religion",
+        name: "Chinese",
         value: "CTR"
     }, {
         name: "Christianity",

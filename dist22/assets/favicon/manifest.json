@@ -1,0 +1,25 @@
+{
+    "name": "dhol",
+    "id":"gg0",
+    "short_name": "dhol",
+    "description": "dhol",
+    "start_url": ".",
+    "display": "standalone",
+    "related_applications": [{
+        "platform": "web"
+    }],
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "/assets/favicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

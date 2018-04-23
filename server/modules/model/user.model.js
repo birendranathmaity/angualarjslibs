@@ -25,7 +25,8 @@ var UserSchema   = new Schema({
     created_on:Date,
     created_by:String,
     updated_on:Date,
-    uploaded_by:String
+    uploaded_by:String,
+    admin_action_on:Date
 
 
 });

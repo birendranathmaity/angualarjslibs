@@ -9,21 +9,24 @@
 
 
             <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-
-                <div class="grid simple mail-msg">
+              
+             <div class="grid simple mail-msg">
                     <div class="grid-title no-border">
                         <h4 class="bold">User Status List</h4>
                     </div>
                     <div class="grid-body no-border pro-bord">
                         <div class="panel-group">
                             <div class="list-group">
-                                <a ng-repeat="(key,value) in ctrl.userStatusList" ng-if="key!=='_id'" ng-click="ctrl.loadurl(key)" class="cursorpointer list-group-item "> {{key | translate}} <span class="badge bold">{{value}}</span></a>
+                                <a ng-repeat="(key,value) in ctrl.userStatusList" ng-if="key!=='_id'" ng-click="ctrl.loadurl(key)" class="cursorpointer list-group-item ">
+                                    {{key | translate}}
+                                    <span class="badge bold">{{value}}</span>
+                                </a>
 
-             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-               
+
 
             </div>
 
@@ -33,19 +36,15 @@
 
                 <div class="col-md-10 no-padding ">
 
-                    <canvas id="bar" class="chart chart-bar"
-                      chart-data="ctrl.data"
-                      chart-labels="ctrl.labels" 
-                      chart-colors="ctrl.colors"
-                      chart-options="ctrl.options"
-                       >
+                    <canvas id="bar" class="chart chart-bar" chart-data="ctrl.data" chart-labels="ctrl.labels" chart-colors="ctrl.colors" chart-options="ctrl.options">
                     </canvas>
                     <div class="clearfix"></div>
-                     <div class="clearfix"></div>
+                    <div class="clearfix"></div>
                     <div id="js-legend" class="chart-legend">
-                        <ul >
+                        <ul>
                             <li class="list-group-item1" ng-repeat="key in ctrl.labels">
-                                <span ng-style="{'background-color':ctrl.colors[$index] }"></span>{{key}}-<strong>{{ctrl.data[$index]}}</strong>
+                                <span ng-style="{'background-color':ctrl.colors[$index] }"></span>{{key}}-
+                                <strong>{{ctrl.data[$index]}}</strong>
                             </li>
                         </ul>
                     </div>
@@ -73,23 +72,24 @@
     </div>
 </div>
 <style>
-    .chart-legend ul li{
-list-style: none;
+   .chart-legend ul li {
+        list-style: none;
     }
+
     .chart-legend li span {
         display: inline-block;
         width: 12px;
         height: 12px;
         margin-right: 5px;
     }
-   .chart-legend ul.list-group:after {
-  clear: both;
-  display: block;
-  content: "";
-}
 
-.chart-legend .list-group-item {
-    float: left;
-}
+    .chart-legend ul.list-group:after {
+        clear: both;
+        display: block;
+        content: "";
+    }
 
+    .chart-legend .list-group-item {
+        float: left;
+    }
 </style>

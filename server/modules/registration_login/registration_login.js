@@ -108,8 +108,8 @@ function signup(user, res) {
                         user.email_vr = true;
                         user.phone_vr = false;
                         user.more_info_vr = false;
-                        user.user_status = "INPROGRESS";
-                        user.user_role = "FREEUSER"
+                        user.user_status = "INCOMPLETE";
+                        user.user_role = "FREEUSER";
                         saverUser(user, res);
                     });
 

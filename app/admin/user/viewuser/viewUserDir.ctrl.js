@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibModal, loginservice, $admintaskservice, toastr) {
+module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers, $uibModal, loginservice, $admintaskservice, toastr) {
 
     var controller = this;
     controller.limit = 10;
@@ -7,25 +7,71 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibMod
     controller.page = 1;
     controller.pages = 0;
     controller.maxSize = 5;
-    controller.userIds = [];
+    controller.ActiveUserIds = [];
+    controller.PhotoUserIds = [];
     controller.start = 0;
     controller.end = 0;
     var req = {
         page: controller.page,
         limit: controller.limit,
-        searchType: ""
+        searchType: null
     };
 
-    $scope.$watch('viewType', function (n, v) {
+    $scope.$watch('fields', function (n, v) {
         if (!n) { return; }
         controller.viewType = n;
         req.searchType = n;
         req.page = 1;
         controller.loadViewType();
+        controller.userTypeMsgFn();
     });
+    controller.userTypeMsgFn = function () {
+        controller.userTypeMsg = null;
+        controller.userDateMsg = "";
+        var type = controller.viewType.photoType;
+        if (!controller.viewType.photoType && !controller.viewType.userType) {
+            //controller.userTypeMsg =null;
+            controller.userDateMsg = "Created on";
+        }
+        if (controller.viewType.userType && !controller.viewType.photoType) {
+
+            if (controller.viewType.userType === "ACTIVE") {
+                controller.userTypeMsg = "Active user";
+                controller.userDateMsg = "Activated on";
+            }
+            if (controller.viewType.userType === "INCOMPLETE") {
+                controller.userTypeMsg = "Icomplete user";
+                controller.userDateMsg = "Created on";
+            }
+            if (controller.viewType.userType === "INPROGRESS") {
+                controller.userTypeMsg = "Inprogess user";
+                controller.userDateMsg = "Created on";
+            }
+        }
+        //  console.log(angular.isDefined(controller.viewType.photoType))
+        if (type === "NOT_UPLOADED") {
+            controller.userTypeMsg = "Profile photo not uploaded";
+            controller.userDateMsg = "Activated on";
+        }
+        if (type === "PENDING_APPROVAL") {
+            controller.userTypeMsg = "Pending for photo approval";
+            controller.userDateMsg = "Action on";
+        }
+        if (type === "APPROVED") {
+            controller.userTypeMsg = "Photo verification completed";
+            controller.userDateMsg = "Action on";
+
+        }
+        if (type === "REJECTED") {
+            controller.userTypeMsg = "Photo verification rejected";
+            controller.userDateMsg = "Action on";
+        }
+    }
     controller.loadViewType = function () {
-        console.log("load userlist");
-        controller.userIds = [];
+
+
+        controller.ActiveUserIds = [];
+        controller.PhotoUserIds = [];
         controller.selectedAll = false;
 
 
@@ -61,37 +107,58 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibMod
         controller.start = (controller.page - 1) * controller.limit + 1;
         controller.end = controller.start + result.docs.length - 1;
     }
+    function addUserIds() {
+
+        controller.ActiveUserIds = [];
+        controller.PhotoUserIds = [];
+
+        angular.forEach(controller.users, function (user) {
+            if (user.Selected) {
+                if (user.photostatus === "PENDING_APPROVAL") {
+
+                    controller.PhotoUserIds.push(user.user_id);
+
+                }
+                if (user.user_status === "INPROGRESS") {
+
+                    controller.ActiveUserIds.push(user.user_id);
+
+                }
+            }
+
+
+        });
+
+    }
     controller.checkAll = function () {
-        controller.userIds = [];
+
         if (controller.selectedAll) {
             controller.selectedAll = true;
         } else {
             controller.selectedAll = false;
         }
         angular.forEach(controller.users, function (user) {
-            user.Selected = controller.selectedAll;
-            if (user.Selected) {
-                controller.userIds.push(user.user_id);
+            if (user.photostatus === "PENDING_APPROVAL") {
+
+                user.Selected = controller.selectedAll;
+
+            }
+            if (user.user_status === "INPROGRESS") {
+                user.Selected = controller.selectedAll;
             }
 
         });
-
+        addUserIds();
     };
     controller.checkBoxSelect = function () {
-        controller.userIds = [];
-        angular.forEach(controller.users, function (user) {
-            if (user.Selected) {
-                controller.userIds.push(user.user_id);
-            }
 
-
-        });
+        addUserIds();
 
     };
 
 
     var reqApprove = {
-        loginuserid:$rootScope.login_user_id,
+        loginuserid: $rootScope.login_user_id,
         user_ids: [],
         photo_type: "PROFILE",
         photo_vr: true,
@@ -106,10 +173,18 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibMod
 
 
     };
-    controller.acceptAll = function () {
+    controller.acceptAll = function (type) {
+       
+       if (type === "PHOTO") {
+            reqApprove.user_ids = controller.PhotoUserIds;
+            acceptPhotoToServer(reqApprove,  controller.PhotoUserIds, "ALL", true);
+        }
 
-        reqApprove.user_ids = controller.userIds;
-        acceptPhotoToServer(reqApprove, controller.userIds, "ALL", true);
+        if (type === "ACTIVE") {
+            reqApprove.user_ids = controller.ActiveUserIds;
+            controller.activate(controller.ActiveUserIds);
+        }
+       
 
 
     };
@@ -150,21 +225,23 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibMod
 
         // });
         if (type === "ALL") {
-            controller.userIds = [];
+            // controller.userIds = [];
+            controller.ActiveUserIds = [];
+            controller.PhotoUserIds = [];
         }
 
 
     }
-    controller.activate = function (user_id) {
+    controller.activate = function (ids) {
         var modalInstance = $uibModal.open({
             animation: true,
             windowClass: "",
             templateUrl: 'app/popuptemplates/delete.modal.html',
             controller: function ($scope) {
                 var main = this;
-                main.type="ACTIVATE";
+                main.type = "ACTIVATE";
                 main.yes = function () {
-                    finalcall();
+                    controller.activeAll(ids);
                     modalInstance.dismiss('cancel');
                 };
                 main.no = function () {
@@ -183,35 +260,27 @@ module.exports = function viewUserDirCtrl($scope, $rootScope, $viewusers,$uibMod
 
         });
 
-function finalcall(){
-    $admintaskservice.activeUser({user_id:user_id}, function (res) {
-        
-        if(res.success)
-{
-    toastr.success('Successfully activated');
-}            
-else{
-    toastr.error('not activated');
-}
+    };
+    controller.activeAll=function(ids){
+        $admintaskservice.activeUser({ user_ids: ids }, function (res) {
+            
+                            if (res.success) {
+                                toastr.success('Successfully activated');
+                            }
+                            else {
+                                toastr.error('not activated');
+                            }
+            
+            
+            
+                        }, function () { });
 
-
-        
-                }, function () { });
-   
-}
     };
     controller.reject = function (user) {
         $admintaskservice.openRejectModal(user);
 
     };
-    controller.toFeet = function (ft) {
-        if (!ft) { return ""; }
-        var inches = (ft * 0.393700787 * 30.48).toFixed(0);
-        var feet = Math.floor(inches / 12);
-        inches %= 12;
-
-        return feet + " feet " + inches + ' Inc. ';
-    };
+   
     controller.openImageUploadWindow = function (user) {
         loginservice.openCropPopup(user);
 
@@ -258,7 +327,7 @@ else{
     });
     var rejectPhoto = $scope.$on('rejectPhoto', function ($event, user) {
         var reqData = {
-            loginuserid:$rootScope.login_user_id,
+            loginuserid: $rootScope.login_user_id,
             user_ids: [user.user_id],
             photo_type: "PROFILE",
             photo_vr: false,
