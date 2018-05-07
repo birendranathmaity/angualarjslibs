@@ -1,6 +1,6 @@
 /* @ngInject */
-module.exports = function myHomeRoutes(Router) {
-    Router.configureRoutes([
+module.exports = function myHomeRoutes(Router,loginservice) {
+Router.configureRoutes([
         {
             name: "root.dashboard",
             config: {
@@ -11,9 +11,14 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "DashboardController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+               
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
+            
                 title: ' Dashboard'
             }
         },
@@ -27,9 +32,13 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "MyProfileController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+               
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'My Profile'
             }
         },
@@ -43,9 +52,14 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "AddPhotosController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+               
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                     
+                    }
+                  },
                 title: 'Add Photos'
             }
         },
@@ -59,9 +73,14 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "editMyProfileController as ctrl"
                     }
                 },
-               
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
+                   
                     editType:0
                   
                 },

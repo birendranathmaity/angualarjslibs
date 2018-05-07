@@ -23,8 +23,6 @@ module.exports = function loginCtrl($uibModal,socket,$rootScope,loginservice,$lo
               loginservice.signin(formData, function(res) {
                 
                  if(res.success){
-                    
-                   
                     loginservice.saveToken(res.token);
                     socket.connect($rootScope.login_user_id);
                    

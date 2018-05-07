@@ -1,0 +1,187 @@
+<div class="page-content" ng-if="$ctrl.user">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+  <div class="clearfix"></div>
+  <div class="content">
+<div class="row-fluid">
+ <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 ">
+        <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12  no-padding">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 daily-match-all  no-padding">
+              <div class="grid simple profile-detail photo-details">
+                <div class="prof-title no-border">
+                  {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
+
+                </div>
+                <div class="grid-body  p-match-body no-border full-body">
+
+                  <user-img user="$ctrl.user" is-noti="BIG2PHOTO"></user-img>
+
+                  <album-galary album="$ctrl.albums"></album-galary>
+
+
+
+
+                  <div class="m-t-30 clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 daily-match-all no-padding">
+             <full-profile-basic-info user="$ctrl.user" view-type="PREVIEWPROFILE"></full-profile-basic-info>
+             
+            </div>
+
+            <div class="clearfix"></div>
+            <!-- profile detials -->
+            <div class="row-fluid">
+              <h2> {{'FULLPRO_MOREINFOABOUT'| translate}} {{$ctrl.user.first_name}} !! </h2>
+              <div class="col-md-12 col-lg-12  p-r-0">
+
+                <timeline-profile user="$ctrl.user"></timeline-profile>
+
+
+
+                </div>
+              </div>
+            </div>
+            <!-- right box -->
+
+            <div class="col-lg-3 p-r-0">
+
+              <!--  <div class="daily-r-add">
+                           
+                        </div> -->
+
+
+              <div class="grid simple success-str  searchdhole">
+                <div class=" pref-title no-border">
+                  <h4 class="semi-bold">{{'SUCCESS_STORIES_FOOTER' | translate}}</h4>
+
+
+                </div>
+                <div class="grid-body  no-border">
+
+                  <section id="carousel">
+
+                    <div class="row">
+                      <div class="col-md-12 no-padding">
+
+                        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                          <!-- Carousel indicators -->
+                          <ol class="carousel-indicators">
+                            <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                            <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+                          </ol>
+                          <!-- Carousel items -->
+                          <div class="carousel-inner">
+                            <div class="item">
+                              <a href="#">
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Raman & Janshi </p>
+                                  <p>{{'SUCCESS_STORY1' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories2.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> ajay & Swetha</p>
+                                  <p>{{'SUCCESS_STORY2' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="active item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories3.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Rajesh & Rajini</p>
+                                  <p>{{'SUCCESS_STORY3' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories4.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Prasad & Maha</p>
+                                  <p>{{'SUCCESS_STORY4' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Raviteja & Swathi </p>
+                                  <p>{{'SUCCESS_STORY5' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                            <div class="item">
+                              <a href="#">
+
+                                <div class="profile-circle">
+                                  <img src="assets/img/others/success-stories2.jpg" />
+                                </div>
+                                <blockquote>
+                                  <p class="semi-bold"> Rajesh & Rajini</p>
+                                  <p>{{'SUCCESS_STORY6' | translate}}</p>
+                                </blockquote>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </section>
+
+
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+    
+
+    </div>
+
+
+    <!---------------------------------------------Center  End ------------------------------------------>
+
+    <!---------------------------------------------Calender Veiw start ---------------------------------->
+
+  </div>

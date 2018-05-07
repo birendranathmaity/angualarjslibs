@@ -167,7 +167,7 @@ exports.getSearchResult = function (req, res) {
     }
 
     var match = commonQuery.query.matchResult(req.body.fields);
-    //console.log(match)
+
     var aggregate = User.aggregate([{
 
         $match: searchUserIdMatch
@@ -489,7 +489,31 @@ exports.getSearchResult = function (req, res) {
         }
 
     },
+    {
 
+        $lookup: {
+
+            from: "whocanviews",
+
+            localField: "user_id",
+
+            foreignField: "user_id",
+
+            as: "whocanview"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$whocanview",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
     {
 
         $project: {
@@ -497,6 +521,7 @@ exports.getSearchResult = function (req, res) {
             "_id": 1,
             "main_user_id": main_user_id,
             "user_id": "$user_id",
+            "whocanview": "$whocanview",
             "online": "$lastlogin.online",
             "user_status": "$user_status",
             "first_name": "$first_name",
@@ -680,6 +705,110 @@ exports.getSearchResult = function (req, res) {
         }
 
     },
+
+    ////////////login user info//////////
+    {
+
+        $lookup: {
+
+            from: "dbusers",
+
+            localField: "main_user_id",
+
+            foreignField: "user_id",
+
+            as: "loginuser"
+
+        }
+
+    },
+
+    {
+
+        "$unwind": {
+
+            "path": "$loginuser",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+    {
+
+        $lookup: {
+
+            from: "userbasicinfos",
+
+            localField: "main_user_id",
+
+            foreignField: "user_id",
+
+            as: "loginuser_basic"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$loginuser_basic",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    }, {
+
+        $lookup: {
+
+            from: "usereducations",
+
+            localField: "main_user_id",
+
+            foreignField: "user_id",
+
+            as: "loginuser_education"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$loginuser_education",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+    {
+
+        $lookup: {
+
+            from: "userintrests",
+
+            localField: "main_user_id",
+
+            foreignField: "user_id",
+
+            as: "loginuser_interest"
+
+        }
+
+    }, {
+
+        "$unwind": {
+
+            "path": "$loginuser_interest",
+
+            "preserveNullAndEmptyArrays": true
+
+        }
+
+    },
+    //end login user info
     {
 
         $project: {
@@ -758,7 +887,367 @@ exports.getSearchResult = function (req, res) {
                 $ifNull: ["$is_message_request.request_action", null]
             },
             visitor: "$visitor",
-            "user": "$$ROOT"
+            user: "$$ROOT",
+            login_user_age: "$loginuser.age",
+            login_user_mothertounge: "$loginuser_basic.mothertounge",
+            login_user_maritialstatus: "$loginuser_basic.maritialstatus",
+            login_user_religion: "$loginuser_basic.religion",
+            login_user_caste: "$loginuser_basic.caste",
+            login_user_country: "$loginuser_basic.country",
+            login_user_state: "$loginuser_basic.state",
+            login_user_city: "$loginuser_basic.city",
+
+            login_user_high_edu: "$loginuser_education.high_edu",
+            login_user_occupation: "$loginuser_education.occupation",
+
+            login_user_height: "$loginuser_interest.height",
+            login_user_physical_status: "$loginuser_interest.physical_status",
+            login_user_complexion: "$loginuser_interest.complexion",
+            login_user_body_type: "$loginuser_interest.body_type",
+            login_user_expectation: "$loginuser_interest.expectation",
+            isWhocanviewon: {
+
+                $ifNull: ["$whocanview", null]
+
+            },
+            view_user_age: {
+
+                $ifNull: ["$whocanview.fields.age", null]
+
+            },
+            view_user_height: {
+
+                $ifNull: ["$whocanview.fields.height", null]
+
+            },
+
+            view_user_maritialstatus: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.maritialstatus",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            },
+            view_user_mothertounge: {
+                $filter: {
+
+                    input: "$whocanview.fields.mothertounge",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }]
+
+                    }
+
+                }
+
+
+
+            },
+            view_user_religion: {
+                $filter: {
+
+                    input: "$whocanview.fields.religion",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+
+
+            },
+            view_user_caste: {
+
+                "$map": {
+                    "input": {
+                        "$filter": {
+                            "input": "$whocanview.fields.caste",
+                            "as": "item",
+                            "cond": {
+
+                                $and: [{
+
+                                    "$ne": ["$$item.value", "ANY"]
+
+                                }, {
+
+                                    "$ne": ["$$item.value", "ANY_1"]
+
+                                }]
+
+                            }
+                        }
+                    },
+                    "as": "cst",
+                    "in": "$$cst.value"
+                }
+
+
+            }, view_user_country: {
+                $filter: {
+
+                    input: "$whocanview.fields.country",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item.id", "ANY"]
+
+                        }]
+
+                    }
+
+                }
+
+
+
+            }, view_user_state: {
+                "$map": {
+                    "input": {
+                        "$filter": {
+                            "input": "$whocanview.fields.state",
+                            "as": "item",
+                            "cond": {
+
+                                $and: [{
+
+                                    "$ne": ["$$item.id", "ANY"]
+
+                                }, {
+
+                                    "$ne": ["$$item.id", "ANY_1"]
+
+                                }]
+
+                            }
+                        }
+                    },
+                    "as": "st",
+                    "in": "$$st.id"
+                }
+
+
+
+            }, view_user_city: {
+                "$map": {
+                    "input": {
+                        "$filter": {
+                            "input": "$whocanview.fields.city",
+                            "as": "item",
+                            "cond": {
+
+                                $and: [{
+
+                                    "$ne": ["$$item.id", "ANY"]
+
+                                }, {
+
+                                    "$ne": ["$$item.id", "ANY_1"]
+
+                                }]
+
+                            }
+                        }
+                    },
+                    "as": "ct",
+                    "in": "$$ct.id"
+                }
+
+
+
+            },
+            view_user_high_edu: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.high_edu",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            }, view_user_occupation: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.occupation",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            },
+            view_user_physical_status: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.physical_status",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            },
+            view_user_expectation: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.expectation",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            },
+
+            view_user_complexion: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.complexion",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            },
+
+            view_user_body_type: {
+
+                $filter: {
+
+                    input: "$whocanview.fields.body_type",
+
+                    as: "item",
+
+                    cond: {
+
+                        $and: [{
+
+                            "$ne": ["$$item", "ANY"]
+
+                        }, {
+
+                            "$ne": ["$$item", "ANY_1"]
+
+                        }]
+
+                    }
+
+                }
+
+            }
 
         }
 
@@ -832,7 +1321,447 @@ exports.getSearchResult = function (req, res) {
             pic: commonQuery.query.photo(),
             message_btn: commonQuery.query.message_btn(),
             contact_btn: commonQuery.query.contact_btn(),
-            userinfo: (userallinfo ? "$user.userinfo" : null)
+            userinfo: (userallinfo ? "$user.userinfo" : null),
+            view_user_age: {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        },  {
+
+                            "$eq": ["$login_user_age", null]
+
+                        }, 
+                        {
+                            $and:[{
+                                $lte:["$login_user_age","$view_user_age.to"]
+                                  },
+                                  {
+                                    $gte:["$login_user_age","$view_user_age.from"]
+                                     }]
+                        }
+                       ]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_height: {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        },  {
+
+                            "$eq": ["$login_user_height", null]
+
+                        }, 
+                        {
+                            $and:[{
+                                $lte:["$login_user_height","$view_user_height.to"]
+                                  },
+                                  {
+                                    $gte:["$login_user_height","$view_user_height.from"]
+                                     }]
+                        }
+                       ]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_religion:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_religion", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_religion", null]
+
+                        }, {
+
+                            "$in": ["$login_user_religion", "$view_user_religion"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_caste:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_caste", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_caste", null]
+
+                        }, {
+
+                            "$in": ["$login_user_caste", "$view_user_caste"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_country:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_country", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_country", null]
+
+                        }, {
+
+                            "$in": ["$login_user_country", "$view_user_country"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            }, view_user_state:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_state", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_state", null]
+
+                        }, {
+
+                            "$in": ["$login_user_state", "$view_user_state"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_city: {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_city", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_city", null]
+
+                        }, {
+
+                            "$in": ["$login_user_city", "$view_user_city"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+            view_user_maritialstatus:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_maritialstatus", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_maritialstatus", null]
+
+                        }, {
+
+                            "$in": ["$login_user_maritialstatus", "$view_user_maritialstatus"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INVISIBLE"
+                }
+
+
+            },
+
+            view_user_mothertounge:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_mothertounge", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_mothertounge", null]
+
+                        }, {
+
+                            "$in": ["$login_user_mothertounge", "$view_user_mothertounge"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_high_edu:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_high_edu", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_high_edu", null]
+
+                        }, {
+
+                            "$in": ["$login_user_high_edu", "$view_user_high_edu"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_occupation:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_occupation", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_occupation", null]
+
+                        }, {
+
+                            "$in": ["$login_user_occupation", "$view_user_occupation"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_physical_status:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_physical_status", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_physical_status", null]
+
+                        }, {
+
+                            "$in": ["$login_user_physical_status", "$view_user_physical_status"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_body_type:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_body_type", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_body_type", null]
+
+                        }, {
+
+                            "$in": ["$login_user_body_type", "$view_user_body_type"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_complexion:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_complexion", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_complexion", null]
+
+                        }, {
+
+                            "$in": ["$login_user_complexion", "$view_user_complexion"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            },
+            view_user_expectation:
+            {
+                "$cond": {
+                    if: {
+                        $or: [{
+
+                            "$eq": ["$isWhocanviewon", null]
+
+                        }, {
+
+                            "$eq": ["$view_user_expectation", []]
+
+                        }, {
+
+                            "$eq": ["$view_user_expectation", null]
+
+                        }, {
+
+                            "$in": ["$login_user_expectation", "$view_user_expectation"]
+
+                        }]
+                    },
+                    then: "VISIBLE",
+                    else: "INTVISIBLE"
+                }
+
+
+            }
+
+        }
+    },
+    {
+        $match:{
+            view_user_age: {"$eq": "VISIBLE"},
+            view_user_height: {"$eq": "VISIBLE"},
+            view_user_religion: {"$eq": "VISIBLE"},
+            view_user_caste: {"$eq": "VISIBLE"},
+            view_user_country: {"$eq": "VISIBLE"},
+            view_user_state: {"$eq": "VISIBLE"},
+            view_user_city: {"$eq": "VISIBLE"},
+            view_user_maritialstatus: {"$eq": "VISIBLE"},
+            view_user_mothertounge: {"$eq": "VISIBLE"},
+            view_user_high_edu: {"$eq": "VISIBLE"},
+            view_user_occupation: {"$eq": "VISIBLE"},
+            view_user_physical_status: {"$eq": "VISIBLE"},
+            view_user_body_type: {"$eq": "VISIBLE"},
+            view_user_complexion: {"$eq": "VISIBLE"},
+            view_user_expectation: {"$eq": "VISIBLE"}
+
         }
     },
     {

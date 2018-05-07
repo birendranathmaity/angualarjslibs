@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function adminRoutes(Router) {
+module.exports = function adminRoutes(Router,loginservice) {
     Router.configureRoutes([{
             name: "root.admindashboard",
             config: {
@@ -10,9 +10,12 @@ module.exports = function adminRoutes(Router) {
                         controller: "adminDashboardController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ADMIN"
-                },
+                data: {
+                    permissions: {
+                      only: ['ADMIN'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: ' Admin Dashboard'
             }
         },
@@ -26,9 +29,12 @@ module.exports = function adminRoutes(Router) {
                         controller: "addUserController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ADMIN"
-                },
+                data: {
+                    permissions: {
+                      only: ['ADMIN'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: ' User'
             }
         },
@@ -42,8 +48,13 @@ module.exports = function adminRoutes(Router) {
                         controller: "viewUserController as ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['ADMIN'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ADMIN",
                     userLoadType:null
                 },
                 title: 'view user'
@@ -59,9 +70,12 @@ module.exports = function adminRoutes(Router) {
                         controller: "newUserController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ADMIN"
-                },
+                data: {
+                    permissions: {
+                      only: ['ADMIN'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'New User'
             }
         },
@@ -75,9 +89,12 @@ module.exports = function adminRoutes(Router) {
                         controller: "PhotoVrController as ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ADMIN"
-                },
+                data: {
+                    permissions: {
+                      only: ['ADMIN'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'Photo Verification'
             }
         }

@@ -5,6 +5,7 @@ module.exports = function BaseRoutes(Router) {
             name: 'default',
             config: {
                 url: '/',
+                abstract: true,
                 deepStateRedirect: {
                     default: {
                         state: 'register'
@@ -45,9 +46,11 @@ module.exports = function BaseRoutes(Router) {
                         
                     }
                 },
-                params: {
-                    permisstion: "NOACTION"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER','GUEST','ADMIN']
+                    }
+                  },
                 title: '404'
             }
         }

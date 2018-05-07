@@ -18,7 +18,7 @@ module.exports = function ($httpProvider) {
                     if(response.status === 401 || response.status === 403) {
                      
                      
-                        $location.path('/404');
+                        $location.path('/login');
                     }
                     return $q.reject(response);
                 }

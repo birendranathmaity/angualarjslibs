@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function (messagesservice, $uibModal, useractions, $rootScope) {
+module.exports = function (messagesservice, $uibModal,loginservice,$location, useractions, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'app/matches/components/contact.button.html',
@@ -71,6 +71,11 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                     });
                 }
                 controller.checkBlock = function (type, sendNoti) {
+                    var isAuthenticated = loginservice.isAuthenticated();
+                    if (!isAuthenticated.isAuth){
+                        $location.path("/login");
+                        return;
+                    }
                     if (controller.is_blocked_profile) {
                         alertPopup();
                         return;
@@ -131,7 +136,10 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                 controller.viewContact = function (sendNoti) {
                     controller.isOpen = true;
                     if (sendNoti) {
-                        callReq("CONTACTED");
+                        if($rootScope.login_user_id!=$scope.user.user_id){
+                            callReq("CONTACTED");
+                        }
+                        
                     }
 
 

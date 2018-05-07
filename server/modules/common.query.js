@@ -176,6 +176,7 @@ exports.query = {
 
 
         var match = {};
+
         var finalmatch = {};
         for (var key in search) {
 
@@ -198,7 +199,7 @@ exports.query = {
             }
             if (key === "religion") {
                 if (relcaste.length > 0) {
-                    match["$or"] = relcaste;
+                    finalmatch["$or"] = relcaste;
 
                 }
 
@@ -954,6 +955,171 @@ exports.query = {
                                         "$eq": ["$photo_request_action", "REJECTED"]
 
                                     }]
+
+                                }]
+
+                            }],
+
+                        },
+
+                        "then": {
+
+                            view: "BLUR",
+
+                            displaypic: {},
+
+                        },
+
+                        "else": {
+
+                            "$cond": {
+
+                                "if": {
+
+                                    "$or": [{
+
+                                        "$and": [{
+
+                                            "$ne": ["$pic", null]
+
+                                        }, {
+
+                                            "$eq": ["$pic.photo_vr", false]
+
+                                        }]
+
+                                    }, {
+
+                                        "$eq": ["$pic", null]
+
+                                    },]
+
+                                },
+
+                                "then": {
+
+                                    view: "EMPTY",
+
+                                    displaypic: {},
+
+                                },
+
+                                else: "$noval"
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        };
+    },
+    photo_profile: function () {
+        return {
+
+            "$cond": {
+
+                "if": {
+
+                    "$or": [{
+
+                        "$and": [{
+
+                            "$eq": ["$setting", null]
+
+                        }, {
+
+                            "$ne": ["$pic", null]
+
+                        }, {
+
+                            "$eq": ["$pic.photo_vr", true]
+
+                        }]
+
+                    }, {
+
+                        "$and": [{
+
+                            "$eq": ["$setting.photo", true]
+
+                        }, {
+
+                            "$ne": ["$pic", null]
+
+                        }, {
+
+                            "$eq": ["$pic.photo_vr", true]
+
+                        }]
+
+                    }, {
+
+                        "$and": [{
+
+                            "$eq": ["$setting.photo", false]
+
+                        }, {
+
+                            "$ne": ["$pic", null]
+
+                        }, {
+
+                            "$eq": ["$pic.photo_vr", true]
+
+                        }]
+
+                    }]
+
+                },
+
+                "then": {
+
+                    view: "CONFIRM",
+
+                    displaypic: "$pic",
+
+                },
+
+                "else": {
+
+                    "$cond": {
+
+                        "if": {
+
+                            "$or": [{
+
+                                "$and": [{
+
+                                    "$eq": ["$setting.photo", false]
+
+                                }, {
+
+                                    "$ne": ["$pic", null]
+
+                                }, {
+
+                                    "$eq": ["$pic.photo_vr", true]
+
+                                }]
+
+                            }, {
+
+                                "$and": [{
+
+                                    "$eq": ["$setting.photo", false]
+
+                                }, {
+
+                                    "$ne": ["$pic", null]
+
+                                }, {
+
+                                    "$eq": ["$pic.photo_vr", true]
 
                                 }]
 

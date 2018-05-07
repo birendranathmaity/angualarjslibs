@@ -38,12 +38,13 @@ controller.goState=function(state){
         route: "root.changepassword",
         icon: "glyphicon glyphicon-lock"
     },
-    // {
-    //     name: "",
-    //     translateKey: "WHO_CAN_VIEW_MY_PROFILE",
-    //     route: "",
-    //     icon: "glyphicon glyphicon-eye-open"
-    // },
+   
+    {
+        name: "",
+        translateKey: "WHO_CAN_VIEW_MY_PROFILE",
+        route: "root.whocanviewmyprofile",
+        icon: "glyphicon glyphicon-eye-open"
+    },
     // {
     //     name: "",
     //     translateKey: "COMPLETE_YOUR_PROFILE",

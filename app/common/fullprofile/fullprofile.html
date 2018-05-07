@@ -27,114 +27,8 @@
               </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 daily-match-all no-padding">
-              <div class=" daily-right">
-                <div class="prof-title no-border ng-hide">
-                  {{'FULLPRO_LIKETOCONNCT'| translate}}
-                  <div class="pull-right">
-                    <a class="next-prof">{{'FULLPRO_NEXTPRO'| translate}}
-                      <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    </a>
-                  </div>
-
-                </div>
-              <div class="grid-body  p-match-body no-border">
-                  <div class="row">
-                    <div class="col-lg-12 p-r-0">
-                      <div class="col-lg-6 col-md-6 col-xs-12 p-r-0">
-                        <ul class="list-group">
-                          <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-                              <p class="list-group-item-left pull-left">{{'AGE'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.age}} {{'YEARS'| translate}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'LIHEIGHT'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.height | height }}</p>
-
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'BDMARITAL_STATUS'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.MaritialStatus | where:{value:$ctrl.user.maritialstatus}">{{mt.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'BDMOTHER_TONGUE'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right" ng-repeat="mt in $ctrl.formdata.mother_tongues |  where:{value:$ctrl.user.mothertounge}">{{mt.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'BDRELIGION'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right" ng-repeat="rt in $ctrl.formdata.religions | where:{value:$ctrl.user.religion}">{{rt.name}}</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-xs-12  p-l-0">
-                        <ul class="list-group">
-                          <li class="list-group-item">
-                            <div class="bmd-list-group-col">
-
-
-                              <p class="list-group-item-left pull-left">{{'BDCASTE'| translate}}</p>
-
-
-                              <p class="list-group-item-right pull-right" ng-repeat="cs in $ctrl.casteData | where:{value:$ctrl.user.caste}">{{cs.name}}</p>
-
-                              <p class="clearfix"></p>
-
-
-                              <p class="list-group-item-left pull-left"> {{'EWHIGHEST_EDU'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right" ng-repeat="edu in $ctrl.formdata.educations | where:{value:$ctrl.user.userinfo.education.high_edu}">{{edu.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'EWOCCUPATION'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right" ng-repeat="oc in $ctrl.formdata.occupations | where:{value:$ctrl.user.occupation}">{{oc.name}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'BDCITY_LIVING'| translate}}</p>
-
-                              <p class="list-group-item-right pull-right">{{$ctrl.user.location_name.city}}</p>
-                              <p class="clearfix"></p>
-                              <p class="list-group-item-left pull-left">{{'PROFILE_POSTED_BY'| translate}} </p>
-                              <p class="list-group-item-right pull-right" ng-repeat="crt in $ctrl.formdata.created_by |  where:{value:$ctrl.user.created_by}">
-                              {{crt.name}} </p>
-
-                            </div>
-                          </li>
-                        </ul>
-
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="row-fluid">
-                        <div class="col-lg-12">
-                          <div class="contct-conect" ng-if="$ctrl.user_action">
-                            <h3>{{'FULLPRO_LIKETOCONNCT'| translate}}</h3>
-                            <div class="clearfix"></div>
-
-                            <message-button user="$ctrl.user" ng-if="$ctrl.user_action"></message-button>
-                            <contact-button user="$ctrl.user" ng-if="$ctrl.user_action"></contact-button>
-                            <div class="clearfix"></div>
-                            <block-button user="$ctrl.user" ng-if="$ctrl.user_action"></block-button>
-                            <report-abuse-button user="$ctrl.user" ></report-abuse-button>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-
-
-
-                </div>
-
-
-              </div>
-
-
+             <full-profile-basic-info user="$ctrl.user" view-type="FULLPROFILE"></full-profile-basic-info>
+             
             </div>
 
             <div class="clearfix"></div>
@@ -414,7 +308,7 @@
                           <p class="list-group-item-left pull-left">{{'AGE' | translate}}</p>
                           {{$ctrl.count}}
                           <p class="list-group-item-right pull-left">{{$ctrl.fieldPartnerPre.age.from}}
-                            <span class="small"> {{'TO' | translate}} </span> {{$ctrl.fieldPartnerPre.age.to}}{{'YEARS' | translate}}
+                            <span class="small"> {{'TO' | translate}} </span> {{$ctrl.fieldPartnerPre.age.to}} {{'YEARS' | translate}}
                             <span class="pull-right"
                               ng-class="$ctrl.getCalss($ctrl.fieldPartnerPre.age,'age') ? 'tick-ok':'tick-not'">
                               <i class="fa fa-check-circle"></i>

@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function activitesRoutes(Router) {
+module.exports = function activitesRoutes(Router,loginservice) {
     Router.configureRoutes([
         {
             name: "root.pre_location",
@@ -11,8 +11,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     activityType:"LOCATION"
                 },
@@ -29,8 +34,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     activityType:"EDUCATION"
                 },
@@ -47,8 +57,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     activityType:"OCCUPATION"
                 },
@@ -65,8 +80,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     range:null,
                     activityType:"VIEWED_PROFILE"
@@ -83,8 +103,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     range:null,
                     activityType:"LIKED"
@@ -102,8 +127,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     range:null,
                     activityType:"VISITOR"
@@ -121,8 +151,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     range:null,
                     activityType:"RECENTLT_CONTACTED"
@@ -140,8 +175,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     activityType:"BLOCKED"
                 },
@@ -158,8 +198,13 @@ module.exports = function activitesRoutes(Router) {
                         controller: "activityController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     result:null,
                     activityType:"NEWPROFILES"
                 },

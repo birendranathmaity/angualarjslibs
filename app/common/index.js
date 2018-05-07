@@ -13,13 +13,19 @@ var searchFields=require('./search.fields.js');
 var AccountSettingsController = require('./settings/settings.ctrl');
 var notificationController = require('./notifications/notifications.ctrl');
 var fullprofileController = require('./fullprofile/fullprofile.ctrl');
+var previewprofileController = require('./previewprofile/previewprofile.ctrl');
 var serachByController = require('./serachby.dir.ctrl');
 var serachFieldsControllerDir = require('./search.fields.ctrl');
 var noinformation = require('./noinformation');
 var userProfile = require('./user.profile');
 var timelineProfile = require('./timeline.profile');
+var fullProfileBasicInfo = require('./fullprofile.basic.info');
+var previewProLink = require('./preview.pro.link.dir');
+var WhoCanViewProfileController= require('./whocanviewmyprofile/who.view.profile');
 module.exports = angular.module('app.ui.common', [])
 .run(routes)
+.directive('previewProLink', previewProLink)
+.directive('fullProfileBasicInfo', fullProfileBasicInfo)
 .directive('timelineProfile', timelineProfile)
 .directive('notificationText', notificationText)
 .directive('userProfile', userProfile)
@@ -28,9 +34,11 @@ module.exports = angular.module('app.ui.common', [])
 .directive('searchBy', searchBy)
 .directive('searchFields', searchFields)
 .directive('noinformation', noinformation)
+.controller('WhoCanViewProfileController', WhoCanViewProfileController)
 .controller('AccountSettingsController', AccountSettingsController)
 .controller('notificationController', notificationController)  
-.controller('fullprofileController', fullprofileController) 
+.controller('fullprofileController', fullprofileController)
+.controller('previewprofileController', previewprofileController)  
 .controller('serachByControllerDir', serachByController)
 .controller('serachFieldsControllerDir', serachFieldsControllerDir)
 .factory("useractions",userAction)

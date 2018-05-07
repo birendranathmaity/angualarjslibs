@@ -2,8 +2,8 @@
 module.exports = function () {
   //"BASEURL":"http://192.169.136.224:4000",
 
-  var url="http://192.169.136.224:4000";
-  //var url = "http://localhost:4000";
+  //var url="http://192.169.136.224:4000";
+  var url = "http://localhost:4000";
   return {
     "BASEURL": url,
     "LOGIN": "/login",
@@ -62,7 +62,12 @@ module.exports = function () {
     "UPDATEUSER": "/updateUser",
     "CHECK_ONLINE": "/check_online",
     "GET_CALENDER_REQUESTS": "/get_calender_requests",
-    "CREATE_REPORT_ABUSE": "/create_report_abuse"
+    "CREATE_REPORT_ABUSE": "/create_report_abuse",
+    "PREVIEW_PROFILE": "/preview_profile",
+    "SHARE_PROFILE":"/share_profile",
+    "GET_WHO_CAN_VIEW_PROFILE":"/get_who_can_view_profile",
+    "SAVE_WHO_CAN_VIEW_PROFILE":"/save_who_can_view_profile",
+    "CHANGE_PROFILE_STATUS":"/change_profile_status"
   };
 
 

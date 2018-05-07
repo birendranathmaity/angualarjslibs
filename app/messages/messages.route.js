@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function myHomeRoutes(Router) {
+module.exports = function myHomeRoutes(Router,loginservice) {
     Router.configureRoutes([
         {
             name: "root.mail",
@@ -11,9 +11,12 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "mailController as $ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'messages'
             }
         },
@@ -27,8 +30,13 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "RequestController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     requestType:"PHOTO",
                     viewType:"RECEIVED"
                 },
@@ -45,8 +53,13 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "RequestController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     requestType:"MESSAGE",
                     viewType:"RECEIVED"
                 },
@@ -63,8 +76,13 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "RequestController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
                     requestType:"CONTACT",
                     viewType:"RECEIVED"
                 },

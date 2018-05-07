@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function commonroutes(Router) {
+module.exports = function commonroutes(Router,loginservice) {
     Router.configureRoutes([
         {
             name: "root.notifications",
@@ -11,9 +11,12 @@ module.exports = function commonroutes(Router) {
                         controller: "notificationController as $ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'notifications'
             }
         },
@@ -27,11 +30,39 @@ module.exports = function commonroutes(Router) {
                         controller: "fullprofileController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
-                    isblock:false,
+                   
+                    isblock:false
                 },
                 title: 'fullprofile'
+            }
+        },
+        {
+            name: "root.previewprofile",
+            config: {
+                url: '/previewprofile?:id',
+                views: {
+                    '@': {
+                        templateUrl: "app/common/previewprofile/previewprofile.html",
+                        controller: "previewprofileController as $ctrl"
+                    }
+                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER','GUEST']
+                    }
+                  },
+                params: {
+                  
+                    isblock:false
+                },
+                title: 'previewprofile'
             }
         },
         {
@@ -44,10 +75,30 @@ module.exports = function commonroutes(Router) {
                         controller: "AccountSettingsController as $ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 title: 'settings'
+            }
+        }, {
+            name: "root.whocanviewmyprofile",
+            config: {
+                url: '/whocanviewmyprofile',
+                views: {
+                    '@': {
+                        templateUrl: "app/common/whocanviewmyprofile/who.view.profile.html",
+                        controller: "WhoCanViewProfileController as $ctrl"
+                    }
+                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER']
+                    }
+                  },
+                title: 'whocanviewmyprofile'
             }
         }
     ]);

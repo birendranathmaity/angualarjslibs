@@ -5,6 +5,7 @@ var uiRouter = require('angular-ui-router');
 require('ui-router-extras');
 var ngAnimate = require('angular-animate');
 var moment = window.moment = require('moment');
+require('angular-permission');
 require('angular-ui-switch');
 require('angular-ui-bootstrap');
 require('ui-select');
@@ -33,6 +34,8 @@ var activites = require('./activites');
 angular.module('app.ui', [
     uiRouter,
     'ct.ui.router.extras',
+    'permission',
+    'permission.ui',
     ngAnimate,
     'ui.bootstrap',
     'ngSanitize',
@@ -59,32 +62,62 @@ angular.module('app.ui', [
     search.name,
     activites.name
 
-  
-]).config(['$cryptoProvider', function($cryptoProvider){
+
+]).config(['$cryptoProvider', function ($cryptoProvider) {
     $cryptoProvider.setCryptographyKey('DHOLBAAJE.COM');
-}]).provider('$crypto', function CryptoKeyProvider() {
+}]).run(function ($rootScope, loginservice, $location) {
+    
+    var isAuthenticated = loginservice.isAuthenticated();
+    if (!isAuthenticated.isAuth && !isAuthenticated.role) {
+        loginservice.setRole("GUEST", true); 
+     
+    }
+    if (isAuthenticated.isAuth && isAuthenticated.role) {
+        var role = isAuthenticated.role;
+        loginservice.setRole(role, isAuthenticated.more_info_vr);
+        if (!isAuthenticated.more_info_vr) {
+            $location.path("/moreinfo");
+
+        }
+
+    }
+    if (isAuthenticated.isAuth && !isAuthenticated.role) {
+        loginservice
+            .getAuthObject()
+            .then(function (user) {
+                loginservice.setRole(user.user_role, user.more_info_vr);
+                if (!user.more_info_vr) {
+                    $location.path("/moreinfo");
+
+                }
+            });
+
+    }
+
+
+}).provider('$crypto', function CryptoKeyProvider() {
     var cryptoKey;
 
-    this.setCryptographyKey = function(value) {
+    this.setCryptographyKey = function (value) {
         cryptoKey = value;
     };
 
-    this.$get = [function(){
+    this.$get = [function () {
         return {
-            getCryptoKey: function() {
+            getCryptoKey: function () {
                 return cryptoKey;
             },
 
-            encrypt: function(message, key) {
+            encrypt: function (message, key) {
 
                 if (key === undefined) {
                     key = cryptoKey;
                 }
 
-                return CryptoJS.AES.encrypt(message, key ).toString();
+                return CryptoJS.AES.encrypt(message, key).toString();
             },
 
-            decrypt: function(message, key) {
+            decrypt: function (message, key) {
 
                 if (key === undefined) {
                     key = cryptoKey;

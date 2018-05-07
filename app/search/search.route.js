@@ -13,9 +13,11 @@ module.exports = function searchRoutes(Router) {
                         controller: "searchByController as $ctrl"
                     }
                 },
-                 params: {
-                    permisstion: "ALLUSER"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER']
+                    }
+                  },
                 title: 'searchby'
             }
         },
@@ -29,9 +31,11 @@ module.exports = function searchRoutes(Router) {
                         controller: "searchHistoryController as $ctrl"
                     }
                 },
-                params: {
-                    permisstion: "ALLUSER"
-                },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER']
+                    }
+                  },
                 title: 'search_history'
             }
         },
@@ -46,9 +50,14 @@ module.exports = function searchRoutes(Router) {
                     }
                 },
                 params: {
-                    permisstion: "ALLUSER",
+                  
                     fields:null
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER']
+                    }
+                  },
                 title: 'search_result'
             }
         }

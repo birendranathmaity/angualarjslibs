@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function (messagesservice, $uibModal, useractions, $rootScope) {
+module.exports = function (messagesservice,loginservice,$location, $uibModal, useractions, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'app/matches/components/like.button.html',
@@ -73,6 +73,11 @@ module.exports = function (messagesservice, $uibModal, useractions, $rootScope) 
                     });
                 }
                 controller.checkBlock = function () {
+                    var isAuthenticated = loginservice.isAuthenticated();
+                    if (!isAuthenticated.isAuth){
+                        $location.path("/login");
+                        return;
+                    }
                     if (controller.is_blocked_profile) {
                         alertPopup();
                         return;

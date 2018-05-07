@@ -1,5 +1,5 @@
 /* @ngInject */
-module.exports = function myHomeRoutes(Router) {
+module.exports = function myHomeRoutes(Router,loginservice) {
     Router.configureRoutes([
         {
             name: "root.pre_matches",
@@ -11,8 +11,14 @@ module.exports = function myHomeRoutes(Router) {
                         controller: "PreMatchesController as $ctrl"
                     }
                 },
+                data: {
+                    permissions: {
+                      only: ['FREEUSER'],
+                      redirectTo: loginservice.redirectTo()
+                    }
+                  },
                 params: {
-                    permisstion: "ALLUSER",
+                   
                     result:null
                 },
                 title: 'Matches'

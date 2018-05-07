@@ -412,7 +412,6 @@ module.exports = function fullprofileController($crypto, countryService, $state,
         else {
 
             useractions.get_default_search_config("DEFAULT_PARTNER_PRE", controller.user, function (fields) {
-
                 controller.fieldPartnerPre = fields;
                 loadCoun(controller.fieldPartnerPre.country);
                 for (var key in controller.fieldPartnerPre) {

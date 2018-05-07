@@ -36,6 +36,21 @@ module.exports = function ($rootScope, countryService, loginservice, $http, toas
         },
         create_report_abuse: function (data, success, error) {
             $http.post(ServiceUrls.BASEURL + ServiceUrls.CREATE_REPORT_ABUSE, data).success(success).error(error);
+        }, 
+        preview_profile: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.PREVIEW_PROFILE, data).success(success).error(error);
+        },
+        share_profile: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SHARE_PROFILE, data).success(success).error(error);
+        },
+        getWhoCanViewProfile: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.GET_WHO_CAN_VIEW_PROFILE, data).success(success).error(error);
+        },
+        saveWhoCanViewProfile: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.SAVE_WHO_CAN_VIEW_PROFILE, data).success(success).error(error);
+        },
+        changeProfileStatus: function (data, success, error) {
+            $http.post(ServiceUrls.BASEURL + ServiceUrls.CHANGE_PROFILE_STATUS, data).success(success).error(error);
         },
         userEmitInfo: function () {
             // var user = $rootScope.current_user_de_all;

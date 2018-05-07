@@ -1,9 +1,12 @@
+var UserModel = require('./model/user.model');
 var block = require('./model/block.model');
 var setting = require('./model/setting.model');
 var request = require('./model/request.model');
+var shareProfileModel = require('./model/share.profile.model');
 var commonQuery = require('./common.query');
 var check = require('./check_user');
 var reportAbuseModel = require('./model/report.abuse.model');
+var whocanviewModel=require('./model/whocanview.model');
 exports.checkOnline=function(req,res){
     check.api.isOnline(req.user_id,function(isOnline){
 
@@ -515,3 +518,406 @@ exports.save_settings=function(req,res){
 
     });
 };
+exports.getPreviewProfileUser=function(req,res){
+        UserModel.aggregate([ {
+        
+                $match: {
+        
+                    "user_role": {
+        
+                        "$nin": ["ADMIN", "MARRAGE_BUREAU"]
+        
+                    },
+
+                    "user_id":{"$eq":req.body.user_id},
+                    "user_status":{"$eq":"ACTIVE"}
+                   
+                   
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "userbasicinfos",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "basic"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$basic",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "countries",
+        
+                    localField: "basic.country",
+        
+                    foreignField: "id",
+        
+                    as: "cn"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$cn",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "states",
+        
+                    localField: "basic.state",
+        
+                    foreignField: "id",
+        
+                    as: "st"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$st",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "cities",
+        
+                    localField: "basic.city",
+        
+                    foreignField: "id",
+        
+                    as: "ct"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$ct",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "userphotos",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "pics"
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "userintrests",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "interest"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$interest",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "usereducations",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "education"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$education",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            }, {
+        
+                $lookup: {
+        
+                    from: "userfamilies",
+        
+                    localField: "user_id",
+        
+                    foreignField: "user_id",
+        
+                    as: "family"
+        
+                }
+        
+            }, {
+        
+                "$unwind": {
+        
+                    "path": "$family",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            },
+            {
+                
+                        $lookup: {
+                
+                            from: "settings",
+                
+                            localField: "user_id",
+                
+                            foreignField: "user_id",
+                
+                            as: "setting"
+                
+                        }
+                
+                    }, {
+                
+                        "$unwind": {
+                
+                            "path": "$setting",
+                
+                            "preserveNullAndEmptyArrays": true
+                
+                        }
+                
+                    },
+          {
+        
+                $project: {
+        
+                    "_id": 1,
+                    "user_id": "$user_id",
+                    "online": "$lastlogin.online",
+                    "user_status": "$user_status",
+                    "first_name": "$first_name",
+                    "last_name": "$last_name",
+                    "gender": "$gender",
+                    "dob": "$dob",
+                    "age": "$age",
+                    "height": "$interest.height",
+                    "location_name": {
+                        country: "$cn.name",
+                        state: "$st.name",
+                        city: "$ct.name"
+                    },
+                    phone_number: "$phone_number",
+                    "country": "$basic.country",
+                    "state": "$basic.state",
+                    "city": "$basic.city",
+                    "maritialstatus": "$basic.maritialstatus",
+                    "mothertounge": "$basic.mothertounge",
+                    "religion": "$basic.religion",
+                    "caste": "$basic.caste",
+                    "high_edu": "$education.high_edu",
+                    "occupation": "$education.occupation",
+                    "physical_status": "$interest.physical_status",
+                    body_type: "$interest.body_type",
+                    complexion: "$interest.complexion",
+                    expectation: "$interest.expectation",
+                    "horoscope": "$family.horoscope",
+                    "aincome": "$family.aincome",
+                    "created_by": "$created_by",
+                    "created_on": "$created_on",
+                    "pic": commonQuery.query.isPhotoUploaded(),
+                    "setting": "$setting",
+                     userinfo: {
+                        "albums": commonQuery.query.albums(),
+                        "basic": "$basic",
+                        "education": "$education",
+                        "interest": "$interest",
+                        "family": "$family"
+                       
+                    }
+        
+        
+        
+                }
+        
+            },
+           
+        
+        
+            {
+        
+                "$unwind": {
+        
+                    "path": "$pic",
+        
+                    "preserveNullAndEmptyArrays": true
+        
+                }
+        
+            },
+            
+            {
+        
+                $project: {
+                    setting: {
+                        
+                                        $ifNull: ["$setting", null]
+                        
+                                    },
+                    pic: {
+        
+                        $ifNull: ["$pic", null]
+        
+                    },
+                 "user": "$$ROOT"
+        
+                }
+        
+            },
+          
+        {
+        
+                $project: {
+                    user_id: "$user.user_id",
+                    online: "$user.online",
+                    location_name: "$user.location_name",
+                    "first_name": "$user.first_name",
+                    "last_name": "$user.last_name",
+                    "gender": "$user.gender",
+                    "age": "$user.age",
+                     dob: "$user.dob",
+                    "height": "$user.height",
+                    "maritialstatus": "$user.maritialstatus",
+                    "mothertounge": "$user.mothertounge",
+                    "religion": "$user.religion",
+                    "caste": "$user.caste",
+                    "created_by": "$user.created_by",
+                    "physical_status": "$user.physical_status",
+                    "occupation": "$user.occupation",
+                    "high_edu": "$user.high_edu",
+                     pic: commonQuery.query.photo_profile(),
+                     userinfo: "$user.userinfo"
+                }
+            }
+            ],function(err,result){
+
+res.json(result);
+
+            });
+}
+exports.shareProfileUser=function(req,res){
+    req.body.share_on=new Date();
+    shareProfileModel.update(
+        {
+            user_id: req.body.user_id,
+            receiver_email: req.body.receiver_email.toLowerCase()
+
+        },
+        req.body,
+        {upsert:true},
+
+
+        function (err, docs) {
+
+            res.json({
+                success: true
+            });
+        });
+}
+exports.getWhoCanViewProfile=function(req,res){
+    whocanviewModel.findOne(req.body, { _id: 0 }, function (err, result) {
+        
+                res.json(result);
+            });
+}
+exports.saveWhoCanViewProfile=function(req,res){
+    whocanviewModel.findOne({
+        user_id: req.body.user_id
+
+    }, function (err, profile) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            if (profile) {
+                req.body.updated_on = new Date();
+                whocanviewModel.update({ user_id: req.body.user_id }, req.body, function (err, user) {
+
+                    res.json({
+                        success: true,
+                        data: "updated"
+                    });
+                });
+            } else {
+                req.body.created_on = new Date();
+                var whocanview = new whocanviewModel(req.body);
+                whocanview.save(function (err, result) {
+
+                    res.json({ success: true })
+                });
+
+            }
+        }
+    });
+ }
+ exports.changeProfileStatus=function(req,res){
+    
+}
+ 

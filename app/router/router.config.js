@@ -4,6 +4,7 @@ module.exports = function ($stateProvider, $urlRouterProvider,$locationProvider,
         $stateProvider: $stateProvider,
         $urlRouterProvider: $urlRouterProvider
     };
+    $urlRouterProvider.deferIntercept();
     $locationProvider.html5Mode(true);
 //    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
        

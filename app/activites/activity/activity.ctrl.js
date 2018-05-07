@@ -34,7 +34,7 @@ module.exports = function activityController($state, $stateParams, $location, se
     controller.loadViewType = function () {
 
         searchService.getSearchResult(req, function (result) {
-
+console.log(result)
             setUserData(result);
         }, function (error) { });
 

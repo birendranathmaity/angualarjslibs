@@ -37,8 +37,14 @@ module.exports = function ($location, $rootScope, $state, $sessionStorage, route
             route.config.resolve = route.config.resolve || {};
             stateProvider.state(route.name, route.config);
         });
+      
+       // urlRouterProvider.otherwise('/404');
+       urlRouterProvider.otherwise( function($injector) {
+        var $state = $injector.get("$state");
+        $state.go('register');
+      });
+      
 
-        urlRouterProvider.otherwise('/404');
     }
 
     /**
@@ -71,7 +77,7 @@ module.exports = function ($location, $rootScope, $state, $sessionStorage, route
             //var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) || 'unknown target';
             //var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
             //logger.error(msg, [current]);
-            $location.path('/404');
+            $location.path('/login');
         }
         );
     }
@@ -109,149 +115,149 @@ module.exports = function ($location, $rootScope, $state, $sessionStorage, route
 
             //if(toParams.permisstion === "NOACTION")
 
-            if (toState.name === "login") {
+            // if (toState.name === "login") {
 
-                return;
-            }
-
-            if (!$sessionStorage.token) {
-                // event.preventDefault();
-                $location.path("/");
-                return;
-
-            }
-            else{
-
-            }
-            // if already authenticated...
-
-            //  callR();
-            //  event.preventDefault();
-            //  if(!stateChangeStarted) {
-            //     stateChangeStarted = true;
-            //    // callR();
-            //    callR()
+            //     return;
             // }
 
+            // if (!$sessionStorage.token) {
+            //     // event.preventDefault();
+            //     $location.path("/");
+            //     return;
+
+            // }
+            // else{
+
+            // }
+            // // if already authenticated...
+
+            // //  callR();
+            // //  event.preventDefault();
+            // //  if(!stateChangeStarted) {
+            // //     stateChangeStarted = true;
+            // //    // callR();
+            // //    callR()
+            // // }
+
             $rootScope.$broadcast("loadhedermenu", toState);
-            var isAuthenticated = loginservice.isAuthenticated();
+            // var isAuthenticated = loginservice.isAuthenticated();
 
-            var role;
+            // var role;
 
-            if (isAuthenticated.isAuth && isAuthenticated.role) {
+            // if (isAuthenticated.isAuth && isAuthenticated.role) {
 
-                role = isAuthenticated.role;
-                if (role === "FREEUSER" && !isAuthenticated.more_info_vr) {
-                    $location.path('/moreinfo');
+            //     role = isAuthenticated.role;
+            //     if (role === "FREEUSER" && !isAuthenticated.more_info_vr) {
+            //         $location.path('/moreinfo');
                    
-                    return;
-                }
-                if (role === "FREEUSER" && isAuthenticated.more_info_vr) {
-                   // $location.path('/dashboard');
-                   console.log(toState.name)
-                    return;
-                }
-                if (role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
+            //         return;
+            //     }
+            //     if (role === "FREEUSER" && isAuthenticated.more_info_vr) {
+            //        // $location.path('/dashboard');
+            //        console.log(toState.name)
+            //         return;
+            //     }
+            //     if (role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
                   
-                    return;
+            //         return;
 
-                }
-                if (role === "FREEUSER" && toParams.permisstion === "NOACTION") {
+            //     }
+            //     if (role === "FREEUSER" && toParams.permisstion === "NOACTION") {
                     
-                    return;
+            //         return;
 
-                }
+            //     }
 
-                if (role === "ADMIN" && toParams.permisstion === "ADMIN") {
+            //     if (role === "ADMIN" && toParams.permisstion === "ADMIN") {
 
-                    return;
-                }
-                if (role === "ADMIN" && toParams.permisstion === "NOACTION") {
+            //         return;
+            //     }
+            //     if (role === "ADMIN" && toParams.permisstion === "NOACTION") {
 
-                    return;
-                }
-                if (role === "ADMIN" && toParams.permisstion === "ALLUSER") {
+            //         return;
+            //     }
+            //     if (role === "ADMIN" && toParams.permisstion === "ALLUSER") {
 
-                    event.preventDefault();
-                    return;
-                }
+            //         event.preventDefault();
+            //         return;
+            //     }
 
-                if (role === "ADMIN" && toParams.permisstion !== "ADMIN") {
-                    $location.path("/404");
-                    return;
+            //     if (role === "ADMIN" && toParams.permisstion !== "ADMIN") {
+            //         $location.path("/404");
+            //         return;
 
-                }
+            //     }
 
-            }
-            if (!isAuthenticated.isAuth && !isAuthenticated.role) {
-                // console.log("no login and no role")
+            // }
+            // if (!isAuthenticated.isAuth && !isAuthenticated.role) {
+            //     // console.log("no login and no role")
 
-                $location.path("/register");
-                return;
-            }
-            event.preventDefault();
+            //     $location.path("/register");
+            //     return;
+            // }
+            // event.preventDefault();
 
 
-            if (isAuthenticated.isAuth && !isAuthenticated.role) {
+            // if (isAuthenticated.isAuth && !isAuthenticated.role) {
 
-                loginservice
-                    .getAuthObject()
-                    .then(function (user) {
-                        if (user.user_role === "FREEUSER" && !user.more_info_vr) {
+            //     loginservice
+            //         .getAuthObject()
+            //         .then(function (user) {
+            //             if (user.user_role === "FREEUSER" && !user.more_info_vr) {
                            
-                            $state.go("moreinfo", toParams);
-                            return;
-                        }
-                        if (user.user_role === "FREEUSER" && user.more_info_vr) {
-                            console.log(toState.name)
-                            if(toState.name==="moreinfo"){
-                                $state.go("root.dashboard", toParams);
-                                return;
-                            }
-                            // 
+            //                 $state.go("moreinfo", toParams);
+            //                 return;
+            //             }
+            //             if (user.user_role === "FREEUSER" && user.more_info_vr) {
+            //                 console.log(toState.name)
+            //                 if(toState.name==="moreinfo"){
+            //                     $state.go("root.dashboard", toParams);
+            //                     return;
+            //                 }
+            //                 // 
                             
-                         }
-                        if (user.user_role) {
+            //              }
+            //             if (user.user_role) {
 
-                            if (user.user_role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
-                                $state.go(toState, toParams);
-                                return;
+            //                 if (user.user_role === "FREEUSER" && toParams.permisstion === "ALLUSER") {
+            //                     $state.go(toState, toParams);
+            //                     return;
 
-                            }
-                            if (user.user_role === "FREEUSER" && toParams.permisstion === "ADMIN") {
+            //                 }
+            //                 if (user.user_role === "FREEUSER" && toParams.permisstion === "ADMIN") {
 
-                                $state.go("root.404");
-                                return;
-                            }
-                            if (user.user_role === "FREEUSER" && toParams.permisstion === "NOACTION") {
-                                $state.go(toState, toParams);
-                                return;
-                            }
-                            if (user.user_role === "ADMIN" && toParams.permisstion === "ADMIN") {
+            //                     $state.go("root.404");
+            //                     return;
+            //                 }
+            //                 if (user.user_role === "FREEUSER" && toParams.permisstion === "NOACTION") {
+            //                     $state.go(toState, toParams);
+            //                     return;
+            //                 }
+            //                 if (user.user_role === "ADMIN" && toParams.permisstion === "ADMIN") {
 
-                                $state.go(toState, toParams);
-                                return;
-                            }
-                            if (user.user_role === "ADMIN" && toParams.permisstion === "ALLUSER") {
+            //                     $state.go(toState, toParams);
+            //                     return;
+            //                 }
+            //                 if (user.user_role === "ADMIN" && toParams.permisstion === "ALLUSER") {
 
-                                $state.go("root.404");
-                                return;
-                            }
-                            if (user.user_role === "ADMIN" && toParams.permisstion === "NOACTION") {
-                                $state.go(toState, toParams);
-                                return;
-                            }
-                            if (user.user_role === "ADMIN" && toParams.permisstion !== "ALLUSER") {
-                                $state.go(toState, toParams);
+            //                     $state.go("root.404");
+            //                     return;
+            //                 }
+            //                 if (user.user_role === "ADMIN" && toParams.permisstion === "NOACTION") {
+            //                     $state.go(toState, toParams);
+            //                     return;
+            //                 }
+            //                 if (user.user_role === "ADMIN" && toParams.permisstion !== "ALLUSER") {
+            //                     $state.go(toState, toParams);
 
-                                return;
-                            }
+            //                     return;
+            //                 }
 
-                        }
-                    });
+            //             }
+            //         });
 
 
-            }
+            // }
 
 
         });

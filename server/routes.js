@@ -39,6 +39,11 @@ module.exports = function (app, express, process) {
     //settings//
     app.post(serviceConfig.SAVE_SETTINGS, ensureAuthorized, useractions.save_settings);
     app.post(serviceConfig.GET_SETTINGS, ensureAuthorized, useractions.get_settings);
+    app.post(serviceConfig.CHANGE_PROFILE_STATUS, ensureAuthorized, useractions.changeProfileStatus);
+    
+    //whocanview profile//
+    app.post(serviceConfig.SAVE_WHO_CAN_VIEW_PROFILE, ensureAuthorized, useractions.saveWhoCanViewProfile);
+    app.post(serviceConfig.GET_WHO_CAN_VIEW_PROFILE, ensureAuthorized, useractions.getWhoCanViewProfile);
     //calender data//
     app.post(serviceConfig.GET_CALENDER_REQUESTS, ensureAuthorized, search.getRequestsCount);
 
@@ -50,6 +55,10 @@ module.exports = function (app, express, process) {
     app.post(serviceConfig.CREATE_USER_BLOCK, ensureAuthorized, useractions.CreateUserBlock);
     app.post(serviceConfig.UPDATE_USER_BLOCK, ensureAuthorized, useractions.updateUserBlock);
     app.post(serviceConfig.CREATE_REPORT_ABUSE, ensureAuthorized, useractions.createReportAbuse);
+    app.post(serviceConfig.PREVIEW_PROFILE, useractions.getPreviewProfileUser);
+    app.post(serviceConfig.SHARE_PROFILE, useractions.shareProfileUser);
+
+   
     
     //messages//
     app.post(serviceConfig.GET_MESSAGES, ensureAuthorized, messages.getMessagesByType);
@@ -217,12 +226,6 @@ module.exports = function (app, express, process) {
 
     // });
     function ensureAuthorized(req, res, next) {
-        var ip = (req.headers['x-forwarded-for'] ||
-            req.connection.remoteAddress ||
-            req.socket.remoteAddress ||
-            req.connection.socket.remoteAddress).split(",")[0];
-
-        console.log(ip)
         var bearerToken;
         var bearerHeader = req.headers["authorization"];
         if (typeof bearerHeader !== 'undefined') {

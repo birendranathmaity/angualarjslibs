@@ -1,82 +1,257 @@
 <div class="page-content">
-    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-  
-    <div class="clearfix"></div>
-    <div class="content1">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-   
-   
-      <div class="row">
-
-       <!------------------------ Left Strat -------------------------->
-        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
-   
-          
-                                <!--- messages accordian Start-->
-
-          <div class="grid simple accounts-list">
-            <div class="grid-title no-border">
-              <h4 class="bold">{{'ACCOUNT_SETTINGS'| translate}}</h4>
-            </div>
-            <div class="grid-body no-border pro-bord">  
-                <div class="panel-group" >
-          
-                 
-                 <div class="list-group"> 
-                   
-                                 <a href="edit-contact.html" class="list-group-item disabled ">{{'EDIT_CONTACT_DETAILS'| translate}}</a> 
-                                  <!-- <a href="notifications-settings.html" class="list-group-item">Notification Settings </a> -->
-                          <!-- <a href="edit-sms-notification.html" class="list-group-item ">Edit SMS, Notification Alert </a> -->
+  <div class="clearfix"></div>
+  <div class="content">
 
 
-                          <a href="change-password.html" class="list-group-item">{{'CHANGE_PASSWORD'| translate}}</a>
-                          <!-- <a href="who-can-view-profile.html" class="list-group-item"> Who Can View My Profilencelled </a>
+
+    <div class="row">
+
+      <!------------------------ Left Strat -------------------------->
+      <div class="col-md-3 col-lg-3 col-xs-12 col-sm-4 p-r-0">
+
+
+        <!--- messages accordian Start-->
+
+        <div class="grid simple accounts-list">
+          <div class="grid-title no-border">
+            <h4 class="bold">{{'ACCOUNT_SETTINGS'| translate}}</h4>
+          </div>
+          <div class="grid-body no-border pro-bord">
+            <div class="panel-group">
+
+
+              <div class="list-group">
+                  <a ng-click="$ctrl.loadModule('PROFILE_SETTING')" ng-class="{'active':$ctrl.modulename==='PROFILE_SETTING'}" class="hand list-group-item">{{'Profile setting'| translate}}</a>
+                <a ng-click="$ctrl.loadModule('DEACTIVATE_PROFILE')" ng-class="{'active':$ctrl.modulename==='DEACTIVATE_PROFILE'}" class="hand list-group-item">{{'Deactivate Profile'| translate}}</a>
+                <a ng-click="$ctrl.loadModule('DELETE_PROFILE')" ng-class="{'active':$ctrl.modulename==='DELETE_PROFILE'}" class="hand list-group-item">{{'Delete Profile'| translate}}</a>
+                <a ng-click="$ctrl.loadModule('EDIT_CONTACT')" ng-class="{'active':$ctrl.modulename==='EDIT_CONTACT'}" class="hand list-group-item disabled ">{{'EDIT_CONTACT_DETAILS'| translate}}</a>
+                <!-- <a href="notifications-settings.html" class="list-group-item">Notification Settings </a> -->
+                <!-- <a href="edit-sms-notification.html" class="list-group-item ">Edit SMS, Notification Alert </a> -->
+
+                
+                <a ng-click="$ctrl.loadModule('CHANGE_PASSWORD')" ng-class="{'active':$ctrl.modulename==='CHANGE_PASSWORD'}" class="hand list-group-item">{{'CHANGE_PASSWORD'| translate}}</a>
+                <!-- <a href="who-can-view-profile.html" class="list-group-item"> Who Can View My Profilencelled </a>
                             <a href="deactivate-profile.html" class="list-group-item">Deactivate Profile</a>
                              <a href="delete-profile.html" class="list-group-item ">Delete Profile</a>
                              <a href="my-preferable.html" class="list-group-item">My Preferable Calling Times </a> -->
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="grid simple no-padding ad-here">
+          <div class="grid-body no-border no-padding">
+            <img src="assets/img/290x269.jpg" />
+          </div>
+        </div>
+
+
+      </div>
+      <!------------------------------------------------ profile End ------------------------------------------------>
+      <!------------------------------------------------ you maylike Strat ------------------------------------------------>
+      <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
+        <div class="col-md-9 col-lg-9 col-xs-12 no-padding ">
+          <!-- CHANGE_PASSWORD -->
+          <div class="grid simple pw-body" ng-if="$ctrl.modulename==='CHANGE_PASSWORD'">
+            <div class="prof-title no-border">
+              <h4 class="">Change Password</h4>
+
+
+            </div>
+            <div class="grid-body   no-border">
+              <div class="hr-line"> </div>
+              <div class="row">
+                <div class="col-lg-12 m-t-20">
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="bmd-list-group-col">
+                        <p class="list-group-item-left pull-left">Enter Current Password</p>
+
+                        <p class="list-group-item-right pull-left width-50">
+
+                          <input class="width-92" type="test" />
+
+
+                        </p>
+
+
+
+
+
+
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Enter New Password </p>
+
+                        <p class="list-group-item-right pull-left">
+                          <input type="test" />
+
+                        </p>
+
+                        <p class="clearfix"></p>
+                        <p class="list-group-item-left pull-left">Confirm Password </p>
+
+                        <p class="list-group-item-right pull-left">
+                          <input type="test" />
+
+                        </p>
+                        <p class="clearfix"></p>
+
+
+
+                        <button class="change-pwd"> Change Password</button>
+
+
+
+
+
+
+
+
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+
+
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+          <!-- end -->
+          <!-- delete profile -->
+          <div class="grid simple whocan-body" ng-if="$ctrl.modulename==='DELETE_PROFILE'">
+            <div class="prof-title no-border">
+              <h4 class="">Delete Profile</h4>
+
+
+            </div>
+            <div class="grid-body   no-border">
+              <div class="hr-line"> </div>
+              <div class="row">
+                <div class="col-lg-12 ">
+                  <div class="selectdays">
+                    <p class="semi-bold"> Please Choose a reason for profile Delection.</p>
+
+
+                    <ul class="delete-p">
+                      <p class="small-text"> Note : Deleted Profiles Cannot be restored.</p>
+                      <li>
+                        <div class="radio radio-success">
+                          <div ng-repeat="reason in $ctrl.deleteprofileresons">
+                        <input  id="{{reason.value}}" name="optionyes" ng-model="$ctrl.delreason" ng-value="reason.value" type="radio" >
+                            <label for="{{reason.value}}">{{reason.name}} </label>
+                          
+                          </div>
                         </div>
-                  
-     
-      
-      
-    </div>
-            </div> 
-          </div>                   
-        
- 
-            <div class="grid simple no-padding ad-here">
-              <div class="grid-body no-border no-padding">  
-                <img src="assets/img/290x269.jpg"/>
+                      </li>
+                    </ul>
+                    <div class="pull-right">
+                        <button  ng-disabled="$ctrl.delreason===''" class="save d-active"> Delete Now </button>
+                      </div>
+                      <div class="clearfix "></div>
+                      <div class="p-t-10"></div>
+                      <div class="hr-line "> </div>
+                  </div>
+                </div>
+
+
+
+
+
+
               </div>
             </div>
 
- 
-    </div>
-    <!------------------------------------------------ profile End ------------------------------------------------>
-    <!------------------------------------------------ you maylike Strat ------------------------------------------------>
-  <div class="col-md-9 col-lg-9 col-xs-12 col-sm-8 ">
-       <div class="col-md-9 col-lg-9 col-xs-12 no-padding ">
-        <div class="grid simple acc-body">
-              <div class="prof-title no-border">
-                <h4 class="">{{'NOTIFICATION_SETTINGS'| translate}}</h4>
+          </div>
+          <!-- end -->
+          <!-- deactivate profile -->
+          <div class="grid simple whocan-body" ng-if="$ctrl.modulename==='DEACTIVATE_PROFILE'">
+            <div class="prof-title no-border">
+              <h4 class="">Deactivate Profile</h4>
 
-             
-              </div>
-              <div class="grid-body   no-border">
-                <div class="hr-line"> </div>
-                  <div class="row"> 
-                    <div class="col-lg-12 m-t-10">
-                    <p>{{'NOTIFICATION_SETTINGS_HEADING'| translate}} 
 
-                    </p>
+            </div>
+            <div class="grid-body   no-border">
+              <div class="hr-line"> </div>
+              <div class="row">
+                <div class="col-lg-12 m-t-20">
+                  <p> Tell Us When Would You like to receivwe PHone calls from ourtelemarketing executives. Tell Us When Would
+                    You like to receivwe PHone calls from ourtelemarketing executives.Tell Us When Would You like to receivwe
+                    PHone calls from ourtelemarketing executives.</p>
+                  <p>Tell Us When Would You like to receivwe PHone calls from ourtelemarketing executives. Tell Us When Would
+                    You like to receivwe. </p>
+                </div>
+                <div class="col-lg-12 m-t-10 ">
+                  <div class="selectdays">
+                    <p>Select the Number of days / months you would like to keep your profile Deactivated.</p>
+                    <select class="minimal m-t-10">
+                      <option> selec days</option>
+                      <option> 1</option>
+                      <option> 2</option>
+                      <option> 3</option>
+                    </select>
+                  </div>
+                  <p class="small-text m-t-10"> Note : Would You like to receivwe PHone calls from ourtelemarketing executives. Tell Us When Would You
+                    like to receivwe </p>
+                </div>
+
+
+                <div class="row-fluid m-t-20">
+                  <div class="col-lg-12">
+                    <div class="pull-left">
+                      <button class="save d-active"> Deactivate Now </button>
                     </div>
-           
 
-                    
-
+                    <div class="clearfix "></div>
+                    <div class="p-t-10"></div>
+                    <div class="hr-line "> </div>
+                    <p class="small-text m-t-10"> Note : Would You like to receivwe PHone calls from ourtelemarketing executives. Tell Us When Would You
+                      like to receivwe </p>
                   </div>
 
-                  <div class="grid-body no-border pro-bord no-padding">  
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+          <!-- end -->
+          <!-- profile setting -->
+          <div class="grid simple acc-body" ng-if="$ctrl.modulename==='PROFILE_SETTING'">
+            <div class="prof-title no-border">
+              <h4 class="">{{'NOTIFICATION_SETTINGS'| translate}}</h4>
+
+
+            </div>
+            <div class="grid-body   no-border">
+              <div class="hr-line"> </div>
+              <div class="row">
+                <div class="col-lg-12 m-t-10">
+                  <p>{{'NOTIFICATION_SETTINGS_HEADING'| translate}}
+
+                  </p>
+                </div>
+
+
+
+
+              </div>
+
+              <div class="grid-body no-border pro-bord no-padding">
                 <div class="panel-group" id="accordion" data-toggle="">
                   <div class="panel panel-default">
                     <div class="panel-heading">
@@ -88,114 +263,127 @@
                     </div>
                     <div id="" class="panel-collapse collapse in">
                       <div class="panel-body">
-      
-<div class="col-lg-12 no-padding">
 
-                     <p class="recent-h-n"> {{'MESSAGE'| translate}}</p>
-                     <p class="small-text">{{'MESSAGEHEADING'| translate}}</p>                           
-                             
-                              <div class="pull-left" >
-                          
-                                <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.message" on="Yes" off="No" class=" wide pripubsw"></switch>
-                                
-                  
-</div>
+                        <div class="col-lg-12 no-padding">
+
+                          <p class="recent-h-n"> {{'MESSAGE'| translate}}</p>
+                          <p class="small-text">{{'MESSAGEHEADING'| translate}}</p>
+
+                          <div class="pull-left">
+
+                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.message" on="Yes" off="No" class=" wide pripubsw"></switch>
 
 
+                          </div>
 
+
+
+                        </div>
+
+                        <div class=" clearfix"></div>
+                        <div class="col-lg-12 m-t-10 no-padding">
+
+                          <p class="recent-h-n">{{'PHOTO'| translate}} </p>
+                          <p class="small-text">{{'PHOTOHEADING'| translate}}</p>
+
+                          <div class="pull-left">
+
+                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.photo" on="Yes" off="No" class=" wide pripubsw"></switch>
+
+
+                          </div>
+                        </div>
+                        <div class=" clearfix"></div>
+                        <div class="col-lg-12 m-t-10 no-padding">
+
+                          <p class="recent-h-n"> {{'CONTACT'| translate}}</p>
+                          <p class="small-text">{{'CONTACTHEADING'| translate}}</p>
+
+                          <div class="pull-left">
+
+                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.contact" on="Yes" off="No" class=" wide pripubsw"></switch>
+
+
+                          </div>
+                        </div>
+                        <div class=" clearfix"></div>
+
+                        <div class="col-lg-12 m-t-10 no-padding">
+
+                          <p class="recent-h-n"> {{'EMAIL'| translate}}</p>
+                          <p class="small-text">{{'EMAILHEADING'| translate}}</p>
+
+                          <div class="pull-left">
+
+                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.email" on="Yes" off="No" class=" wide pripubsw"></switch>
+
+
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 m-t-10 no-padding">
+
+                          <p class="recent-h-n"> {{'NOTIFICATIONS'| translate}}</p>
+                          <p class="small-text">{{'NOTIFICATIONHEADING'| translate}}</p>
+
+                          <div class="pull-left">
+
+                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.notification" on="Yes" off="No" class=" wide pripubsw"></switch>
+
+
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-12 clearfix">
+                          <button type="button" ng-click="$ctrl.save()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4">
+                            <i class="fa fa-save"></i>&nbsp;{{'SAVE' | translate}}</button>
+
+                        </div>
+
+                      </div>
                     </div>
-              
-                    <div class=" clearfix"></div>
-                    <div class="col-lg-12 m-t-10 no-padding">
-
-                     <p class="recent-h-n">{{'PHOTO'| translate}}  </p>
-                     <p class="small-text">{{'PHOTOHEADING'| translate}}</p>                           
-                             
-                                <div class="pull-left" >
-                          
-                                    <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.photo" on="Yes" off="No" class=" wide pripubsw"></switch>
-                                    
-                  
-</div>
-</div>                    <div class=" clearfix"></div>
-                    <div class="col-lg-12 m-t-10 no-padding">
-
-                     <p class="recent-h-n"> {{'CONTACT'| translate}}</p>
-                     <p class="small-text">{{'CONTACTHEADING'| translate}}</p>                           
-                             
-                               <div class="pull-left" >
-                          
-                                <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.contact" on="Yes" off="No" class=" wide pripubsw"></switch>
-                                
-                  
-</div></div>
-<div class=" clearfix"></div>
-                    
-<div class="col-lg-12 m-t-10 no-padding">
-    
-                         <p class="recent-h-n"> {{'EMAIL'| translate}}</p>
-                         <p class="small-text">{{'EMAILHEADING'| translate}}</p>                           
-                                 
-                                   <div class="pull-left" >
-                              
-                                    <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.email" on="Yes" off="No" class=" wide pripubsw"></switch>
-                                    
-                      
-    </div></div>
-    <div class="clearfix"></div>
-    <div class="col-lg-12 m-t-10 no-padding">
-            
-                                 <p class="recent-h-n"> {{'NOTIFICATIONS'| translate}}</p>
-                                 <p class="small-text">{{'NOTIFICATIONHEADING'| translate}}</p>                           
-                                         
-                                           <div class="pull-left" >
-                                      
-                                            <switch id="enabled1" name="enabled1" ng-model="$ctrl.setting.notification" on="Yes" off="No" class=" wide pripubsw"></switch>
-                                            
-                              
-            </div></div>
-            <div class="clearfix"></div>
-    <div class="col-xs-12 clearfix"> 
-        <button type="button" ng-click="$ctrl.save()" class="btn btn-primary btn-cons search-by-btn m-t-30 col-md-offset-4 col-lg-4"> <i class="fa fa-save"></i>&nbsp;{{'SAVE' | translate}}</button>
-       
-    </div>
-                  
-</div></div>
-</div></div>
-
-
-
-                    
- 
-
-
-                 </div>
-             
-  
-   
-    </div>
-            </div> 
-
-            
+                  </div>
                 </div>
-             
-              
 
 
-                
 
-  <div class="col-md-3 col-lg-3 col-sm-12  col-xs-12  ">
-     <div class="grid simple no-padding ad-here">
-              <div class="grid-body no-border no-padding">  
-                <img src="assets/img/290x269.jpg"/>
+
+
+
+
               </div>
+
+
+
             </div>
+          </div>
+<!-- end profile setting -->
 
-</div>
+        </div>
 
-       
-    
+
+
+
+
+
+        <div class="col-md-3 col-lg-3 col-sm-12  col-xs-12  ">
+          <div class="grid simple no-padding ad-here">
+            <div class="grid-body no-border no-padding">
+              <img src="assets/img/290x269.jpg" />
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+<style>
+
+  .radio-success div{
+display: inline;
+  }
+</style>
